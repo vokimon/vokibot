@@ -1,0 +1,17 @@
+pluginManagement {
+    repositories {
+        mavenLocal()
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+    }
+    //includeBuild("build-logic/plugins/android-yaml-strings")
+}
+dependencyResolutionManagement {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+rootProject.name = 'VokiBot'
+include ':app'
