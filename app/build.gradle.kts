@@ -152,6 +152,8 @@ tasks.withType<Test> {
 }
 
 dependencies {
+    implementation(project(":shared"))
+
     // Platform BOM imports
     implementation(platform(libs.androidx.compose.bom))
     implementation(platform(libs.kotlinx.coroutines.bom))

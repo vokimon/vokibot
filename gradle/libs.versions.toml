@@ -5,7 +5,7 @@ targetSdk = "36"
 minSdk = "26"
 
 # Plugins
-agp = "8.13.0"
+agp = "8.13.2"
 kotlin = "2.3.20"
 compose-compiler = "1.5.15"
 spotless = "8.4.0"
@@ -16,6 +16,7 @@ androidx-appcompat = "1.7.1"
 androidx-compose-bom = "2026.03.01"
 androidx-constraintlayout = "2.2.1"
 androidx-core-ktx = "1.17.0"
+androidx-datastore-preferences = "1.2.1"
 androidx-lifecycle-runtime-ktx = "2.10.0"
 androidx-material = "1.13.0"
 androidx-preference-ktx = "1.2.1"
@@ -47,6 +48,7 @@ androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version
 androidx-material = { group = "com.google.android.material", name = "material", version.ref = "androidx-material" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "androidx-activity-compose" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "androidx-constraintlayout" }
+androidx-datastore-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "androidx-datastore-preferences" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "androidx-lifecycle-runtime-ktx" }
 androidx-preference-ktx = { group = "androidx.preference", name = "preference-ktx", version.ref = "androidx-preference-ktx" }
 
@@ -61,6 +63,7 @@ kotlin-test = { group = "org.jetbrains.kotlin", name = "kotlin-test", version.re
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
