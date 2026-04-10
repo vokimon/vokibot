@@ -21,6 +21,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -115,7 +116,8 @@ fun ActivityHeader(snapshot: ActivityContextSnapshot) {
 @Composable
 fun IntentActionSelector(
     supportedActions: List<ActionDefinition>,
-    onSelected: (ActionDefinition?) -> Unit
+    onSelected: (ActionDefinition?) -> Unit,
+    onCustomChanged: (String) -> Unit
 ) {
     var expanded by remember { mutableStateOf(false) }
 
@@ -129,6 +131,8 @@ fun IntentActionSelector(
             if (useAll) null else options.firstOrNull()
         )
     }
+
+    var custom by remember { mutableStateOf("") }
 
     Column {
 
@@ -144,7 +148,7 @@ fun IntentActionSelector(
         ) {
 
             Text(
-                text = selected?.label ?: "Custom",
+                text = selected?.label ?: "Custom or none",
                 modifier = Modifier.weight(1f)
             )
 
@@ -160,7 +164,7 @@ fun IntentActionSelector(
         ) {
 
             DropdownMenuItem(
-                text = { Text("Custom") },
+                text = { Text("Custom or none") },
                 onClick = {
                     selected = null
                     expanded = false
@@ -179,6 +183,21 @@ fun IntentActionSelector(
                     }
                 )
             }
+        }
+
+        if (selected == null) {
+
+            Spacer(modifier = Modifier.height(8.dp))
+
+            OutlinedTextField(
+                value = custom,
+                onValueChange = {
+                    custom = it
+                    onCustomChanged(it)
+                },
+                label = { Text("Action string (optional)") },
+                modifier = Modifier.fillMaxWidth()
+            )
         }
     }
 }
@@ -199,6 +218,7 @@ fun IntentEditor(
     }
 
     var selectedAction by remember { mutableStateOf<ActionDefinition?>(null) }
+    var customAction by remember { mutableStateOf("") }
 
     Column(
         modifier = Modifier.fillMaxSize()
@@ -217,7 +237,8 @@ fun IntentEditor(
 
             IntentActionSelector(
                 supportedActions = snapshot.supportedActions,
-                onSelected = { selectedAction = it }
+                onSelected = { selectedAction = it },
+                onCustomChanged = { customAction = it }
             )
         }
 
@@ -227,8 +248,9 @@ fun IntentEditor(
                     setClassName(packageName, activityName)
                     addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
 
-                    selectedAction?.let {
-                        action = it.action
+                    when {
+                        selectedAction != null -> action = selectedAction!!.action
+                        customAction.isNotBlank() -> action = customAction
                     }
                 }
 
