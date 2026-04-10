@@ -8,9 +8,9 @@ sealed class BuilderScreen {
 
     data object AppList : BuilderScreen()
 
-    data class AppIntents(val packageName: String) : BuilderScreen()
+    data class ActivityList(val packageName: String) : BuilderScreen()
 
-    data class ExtrasEditor(
+    data class IntentEditor(
         val packageName: String,
         val activityName: String
     ) : BuilderScreen()
@@ -18,7 +18,6 @@ sealed class BuilderScreen {
 
 @Composable
 fun IntentActionBuilder(
-    onActionBuilt: (AppIntentItem) -> Unit
 ) {
 
     val nav = rememberStackNavigatorState<BuilderScreen>(
@@ -33,18 +32,18 @@ fun IntentActionBuilder(
                 AppList(
                     onSelected = { app ->
                         nav.push(
-                            BuilderScreen.AppIntents(app.packageName)
+                            BuilderScreen.ActivityList(app.packageName)
                         )
                     }
                 )
             }
 
-            is BuilderScreen.AppIntents -> {
+            is BuilderScreen.ActivityList -> {
                 ActivityList(
                     packageName = screen.packageName,
                     onSelected = { intent ->
                         nav.push(
-                            BuilderScreen.ExtrasEditor(
+                            BuilderScreen.IntentEditor(
                                 packageName = screen.packageName,
                                 activityName = intent.activityName
                             )
@@ -53,12 +52,10 @@ fun IntentActionBuilder(
                 )
             }
 
-            is BuilderScreen.ExtrasEditor -> {
-                IntentExtrasEditor(
+            is BuilderScreen.IntentEditor -> {
+                IntentEditor(
                     packageName = screen.packageName,
                     activityName = screen.activityName,
-                    extras = emptyList(),
-                    baseIntent = android.content.Intent()
                 )
             }
         }

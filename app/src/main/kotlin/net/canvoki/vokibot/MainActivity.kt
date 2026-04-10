@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
                 WatermarkBox(
                     watermark = painterResource(R.drawable.ic_brand),
                 ) {
-                    IntentActionBuilder() {}
+                    IntentActionBuilder()
                 }
             }
         }

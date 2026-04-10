@@ -25,30 +25,20 @@ private fun launchTestIntent(
 ) {
     val intent = Intent(baseIntent).apply {
         setClassName(packageName, activityName)
-
-        extras.forEach { extra ->
-            putExtra(extra.key, extra.value)
-        }
     }
 
     context.startActivity(intent)
 }
-
-// ---- Model (placeholder per futur editor) ----
 
 data class IntentExtraItem(
     val key: String,
     val value: String
 )
 
-// ---- UI ----
-
 @Composable
-fun IntentExtrasEditor(
+fun IntentEditor(
     packageName: String,
     activityName: String,
-    extras: List<IntentExtraItem> = emptyList(),
-    baseIntent: Intent = Intent()
 ) {
     val context = LocalContext.current
 
@@ -59,37 +49,12 @@ fun IntentExtrasEditor(
     ) {
 
         Text(
-            text = "Extras",
+            text = activityName,
             style = MaterialTheme.typography.titleMedium
         )
 
         Spacer(modifier = Modifier.height(12.dp))
 
-        if (extras.isEmpty()) {
-            Text(
-                text = "No extras defined",
-                style = MaterialTheme.typography.bodyMedium
-            )
-        } else {
-            extras.forEach { extra ->
-                Row(
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    Text(
-                        text = extra.key,
-                        style = MaterialTheme.typography.bodyMedium,
-                        modifier = Modifier.weight(1f)
-                    )
-                    Text(
-                        text = extra.value,
-                        style = MaterialTheme.typography.bodyMedium,
-                        modifier = Modifier.weight(1f)
-                    )
-                }
-            }
-        }
-
-        Spacer(modifier = Modifier.height(24.dp))
 
         Button(
             onClick = {
@@ -97,8 +62,8 @@ fun IntentExtrasEditor(
                     context = context,
                     packageName = packageName,
                     activityName = activityName,
-                    extras = extras,
-                    baseIntent = baseIntent
+                    extras = emptyList(),
+                    baseIntent = Intent(),
                 )
                 }
         ) {
