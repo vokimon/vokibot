@@ -10,3 +10,4 @@ app/release/
 app/debug/
 *.p12
 .env
+.*.sw?

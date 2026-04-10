@@ -171,7 +171,7 @@ dependencies {
 
     debugImplementation(libs.androidx.compose.ui.tooling)
 
-    // Tes
+    // Test
     testImplementation(libs.junit)
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.kotlin.test)
