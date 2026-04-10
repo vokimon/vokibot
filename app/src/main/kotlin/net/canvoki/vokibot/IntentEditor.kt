@@ -5,12 +5,15 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.drawable.Drawable
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -21,42 +24,72 @@ import androidx.compose.ui.graphics.painter.BitmapPainter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.drawable.toBitmap
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.Arrangement
 
-data class ActivityInfo(
+data class ActivityContextSnapshot(
     val packageName: String,
     val activityName: String,
     val appLabel: String,
-    val appIcon: Drawable?
+    val appIcon: Drawable?,
+    val supportedActions: List<ActionDefinition>
 )
 
-fun loadActivityInfo(
+fun probeSupportedActions(
     context: Context,
     packageName: String,
     activityName: String
-): ActivityInfo {
+): List<ActionDefinition> {
+
+    val pm = context.packageManager
+    val supported = mutableListOf<ActionDefinition>()
+
+    for (actionDef in StandardActions.all()) {
+
+        val intent = Intent(actionDef.action).apply {
+            setClassName(packageName, activityName)
+        }
+
+        val resolved = pm.queryIntentActivities(intent, 0)
+
+        if (resolved.isNotEmpty()) {
+            supported.add(actionDef)
+        }
+    }
+
+    return supported
+}
+
+fun loadActivityContextSnapshot(
+    context: Context,
+    packageName: String,
+    activityName: String
+): ActivityContextSnapshot {
 
     val pm = context.packageManager
 
     val appInfo = pm.getApplicationInfo(packageName, 0)
 
-    return ActivityInfo(
+    val appLabel = pm.getApplicationLabel(appInfo).toString()
+    val appIcon = pm.getApplicationIcon(appInfo)
+
+    return ActivityContextSnapshot(
         packageName = packageName,
         activityName = activityName,
-        appLabel = pm.getApplicationLabel(appInfo).toString(),
-        appIcon = pm.getApplicationIcon(appInfo)
+        appLabel = appLabel,
+        appIcon = appIcon,
+        supportedActions = probeSupportedActions(
+            context,
+            packageName,
+            activityName
+        )
     )
 }
 
 @Composable
-fun ActivityHeader(
-    info: ActivityInfo
-) {
+fun ActivityHeader(snapshot: ActivityContextSnapshot) {
     Row {
 
         Image(
-            painter = info.appIcon?.let {
+            painter = snapshot.appIcon?.let {
                 BitmapPainter(it.toBitmap().asImageBitmap())
             } ?: painterResource(R.drawable.ic_brand),
             contentDescription = null
@@ -65,8 +98,27 @@ fun ActivityHeader(
         Spacer(modifier = Modifier.width(12.dp))
 
         Column {
-            Text(text = info.appLabel)
-            Text(text = info.activityName)
+            Text(snapshot.appLabel)
+            Text(snapshot.activityName)
+        }
+    }
+}
+
+@Composable
+fun ActionIcons(actions: List<ActionDefinition>) {
+    Row {
+
+        actions.take(4).forEach { action ->
+
+            Icon(
+                painter = painterResource(action.iconRes),
+                contentDescription = action.action,
+                modifier = Modifier
+                    .width(18.dp)
+                    .height(18.dp)
+            )
+
+            Spacer(modifier = Modifier.width(4.dp))
         }
     }
 }
@@ -78,21 +130,28 @@ fun IntentEditor(
 ) {
     val context = LocalContext.current
 
-    val info = remember(packageName, activityName) {
-        loadActivityInfo(context, packageName, activityName)
+    val snapshot = remember(packageName, activityName) {
+        loadActivityContextSnapshot(
+            context,
+            packageName,
+            activityName
+        )
     }
 
     Column(
         modifier = Modifier.fillMaxSize(),
-        verticalArrangement = androidx.compose.foundation.layout.Arrangement.SpaceBetween
+        verticalArrangement = Arrangement.SpaceBetween
     ) {
 
         Column {
-            ActivityHeader(info = info)
+
+            ActivityHeader(snapshot)
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            Text("Preparing intent editor...")
+            Text("Supported actions:")
+
+            ActionIcons(snapshot.supportedActions)
         }
 
         Button(
