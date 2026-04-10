@@ -18,10 +18,11 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -58,7 +59,7 @@ fun probeSupportedActions(
             setClassName(packageName, activityName)
         }
 
-        val resolved = pm.queryIntentActivities(intent, 0)
+        val resolved = pm.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY)
 
         if (resolved.isNotEmpty()) {
             supported.add(actionDef)
@@ -75,7 +76,6 @@ fun loadActivityContextSnapshot(
 ): ActivityContextSnapshot {
 
     val pm = context.packageManager
-
     val appInfo = pm.getApplicationInfo(packageName, 0)
 
     return ActivityContextSnapshot(
@@ -83,11 +83,7 @@ fun loadActivityContextSnapshot(
         activityName = activityName,
         appLabel = pm.getApplicationLabel(appInfo).toString(),
         appIcon = pm.getApplicationIcon(appInfo),
-        supportedActions = probeSupportedActions(
-            context,
-            packageName,
-            activityName
-        )
+        supportedActions = probeSupportedActions(context, packageName, activityName)
     )
 }
 
@@ -121,18 +117,10 @@ fun IntentActionSelector(
 ) {
     var expanded by remember { mutableStateOf(false) }
 
-    val allActions = StandardActions.all()
-
-    val useAll = supportedActions.isEmpty() || supportedActions.size == allActions.size
-    val options = if (useAll) allActions else supportedActions
-
-    var selected by remember {
-        mutableStateOf<ActionDefinition?>(
-            if (useAll) null else options.firstOrNull()
-        )
-    }
-
+    var selected by remember { mutableStateOf<ActionDefinition?>(null) }
     var custom by remember { mutableStateOf("") }
+
+    val hasSupported = supportedActions.isNotEmpty()
 
     Column {
 
@@ -163,6 +151,21 @@ fun IntentActionSelector(
             onDismissRequest = { expanded = false }
         ) {
 
+            if (hasSupported) {
+
+                supportedActions.forEach { action ->
+
+                    DropdownMenuItem(
+                        text = { Text(action.label) },
+                        onClick = {
+                            selected = action
+                            expanded = false
+                            onSelected(action)
+                        }
+                    )
+                }
+            }
+
             DropdownMenuItem(
                 text = { Text("Custom or none") },
                 onClick = {
@@ -171,18 +174,6 @@ fun IntentActionSelector(
                     onSelected(null)
                 }
             )
-
-            options.forEach { action ->
-
-                DropdownMenuItem(
-                    text = { Text(action.label) },
-                    onClick = {
-                        selected = action
-                        expanded = false
-                        onSelected(action)
-                    }
-                )
-            }
         }
 
         if (selected == null) {
@@ -210,15 +201,12 @@ fun IntentEditor(
     val context = LocalContext.current
 
     val snapshot = remember(packageName, activityName) {
-        loadActivityContextSnapshot(
-            context,
-            packageName,
-            activityName
-        )
+        loadActivityContextSnapshot(context, packageName, activityName)
     }
 
     var selectedAction by remember { mutableStateOf<ActionDefinition?>(null) }
     var customAction by remember { mutableStateOf("") }
+    var extrasState by remember { mutableStateOf<Map<String, Any?>>(emptyMap()) }
 
     Column(
         modifier = Modifier.fillMaxSize()
@@ -240,6 +228,86 @@ fun IntentEditor(
                 onSelected = { selectedAction = it },
                 onCustomChanged = { customAction = it }
             )
+
+            selectedAction?.let { action ->
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                action.extras.forEach { spec ->
+
+                    when (spec.type) {
+
+                        ExtraType.STRING -> {
+                            val value = extrasState[spec.key] as? String ?: ""
+
+                            OutlinedTextField(
+                                value = value,
+                                onValueChange = {
+                                    extrasState = extrasState + (spec.key to it)
+                                },
+                                label = { Text(spec.label) },
+                                modifier = Modifier.fillMaxWidth()
+                            )
+                        }
+
+                        ExtraType.INT -> {
+                            val value = (extrasState[spec.key] as? Int)?.toString() ?: ""
+
+                            OutlinedTextField(
+                                value = value,
+                                onValueChange = {
+                                    extrasState = extrasState + (spec.key to it.toIntOrNull())
+                                },
+                                label = { Text(spec.label) },
+                                modifier = Modifier.fillMaxWidth()
+                            )
+                        }
+
+                        ExtraType.BOOLEAN -> {
+                            val value = extrasState[spec.key] as? Boolean ?: false
+
+                            Row {
+                                Text(spec.label, modifier = Modifier.weight(1f))
+                                Switch(
+                                    checked = value,
+                                    onCheckedChange = {
+                                        extrasState = extrasState + (spec.key to it)
+                                    }
+                                )
+                            }
+                        }
+
+                        ExtraType.STRING_ARRAY -> {
+                            val value = extrasState[spec.key] as? String ?: ""
+
+                            OutlinedTextField(
+                                value = value,
+                                onValueChange = {
+                                    extrasState = extrasState + (spec.key to it)
+                                },
+                                label = { Text("${spec.label} (comma separated)") },
+                                modifier = Modifier.fillMaxWidth()
+                            )
+                        }
+
+                        ExtraType.URI,
+                        ExtraType.URI_LIST -> {
+                            val value = extrasState[spec.key] as? String ?: ""
+
+                            OutlinedTextField(
+                                value = value,
+                                onValueChange = {
+                                    extrasState = extrasState + (spec.key to it)
+                                },
+                                label = { Text(spec.label) },
+                                modifier = Modifier.fillMaxWidth()
+                            )
+                        }
+                    }
+
+                    Spacer(modifier = Modifier.height(8.dp))
+                }
+            }
         }
 
         Button(
@@ -251,6 +319,14 @@ fun IntentEditor(
                     when {
                         selectedAction != null -> action = selectedAction!!.action
                         customAction.isNotBlank() -> action = customAction
+                    }
+
+                    extrasState.forEach { (key, value) ->
+                        when (value) {
+                            is String -> putExtra(key, value)
+                            is Int -> putExtra(key, value)
+                            is Boolean -> putExtra(key, value)
+                        }
                     }
                 }
 
