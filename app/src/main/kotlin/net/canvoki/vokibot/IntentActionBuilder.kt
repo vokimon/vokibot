@@ -14,7 +14,39 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 
-private sealed class BuilderScreen {
+class StackNavigation<T>(
+    initial: T
+) {
+
+    private var stack by mutableStateOf(listOf(initial))
+
+    private var _isForward by mutableStateOf(true)
+    val isForward: Boolean get() = _isForward
+
+    val screen: T get() = stack.last()
+
+    fun navigateTo(screen: T) {
+        _isForward = true
+        stack = stack + screen
+    }
+
+    fun back() {
+        if (stack.size > 1) {
+            _isForward = false
+            stack = stack.dropLast(1)
+        }
+    }
+}
+
+@Composable
+fun rememberStackNavigation(
+    initial: BuilderScreen
+): StackNavigation<BuilderScreen> {
+    return remember { StackNavigation(initial) }
+}
+
+
+sealed class BuilderScreen {
 
     data object AppList : BuilderScreen()
 
@@ -30,32 +62,22 @@ private sealed class BuilderScreen {
 fun IntentActionBuilder(
     onActionBuilt: (AppIntentItem) -> Unit
 ) {
-    var screen by remember {
-        mutableStateOf<BuilderScreen>(BuilderScreen.AppList)
-    }
-    var isForward by remember {
-        mutableStateOf(true)
-    }
+    val nav = rememberStackNavigation(BuilderScreen.AppList)
 
-    BackHandler(enabled = screen != BuilderScreen.AppList) {
-        screen = when (screen) {
-            is BuilderScreen.ExtrasEditor -> BuilderScreen.AppIntents((screen as BuilderScreen.ExtrasEditor).packageName)
-            is BuilderScreen.AppIntents -> BuilderScreen.AppList
-            else -> BuilderScreen.AppList
-        }
-        isForward = false
+    BackHandler(enabled = nav.screen != BuilderScreen.AppList) {
+        nav.back()
     }
 
     AnimatedContent(
-        targetState = screen,
+        targetState = nav.screen,
         transitionSpec = {
 
             val enter = slideInHorizontally {
-                if (isForward) it else -it
+                if (nav.isForward) it else -it
             } + fadeIn()
 
             val exit = slideOutHorizontally {
-                if (isForward) -it else it
+                if (nav.isForward) -it else it
             } + fadeOut()
 
             enter togetherWith exit
@@ -68,8 +90,7 @@ fun IntentActionBuilder(
             is BuilderScreen.AppList -> {
                 AppList(
                     onSelected = { app ->
-                        isForward = true
-                        screen = BuilderScreen.AppIntents(app.packageName)
+                        nav.navigateTo(BuilderScreen.AppIntents(app.packageName))
                     }
                 )
             }
@@ -78,10 +99,11 @@ fun IntentActionBuilder(
                 AppIntentList(
                     packageName = target.packageName,
                     onSelected = { intent ->
-                            isForward = true
-                        screen = BuilderScreen.ExtrasEditor(
-                            packageName = target.packageName,
-                            activityName = intent.activityName
+                        nav.navigateTo(
+                            screen = BuilderScreen.ExtrasEditor(
+                                packageName = target.packageName,
+                                activityName = intent.activityName
+                            )
                         )
                     }
                 )
