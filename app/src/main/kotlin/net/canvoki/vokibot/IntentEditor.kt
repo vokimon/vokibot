@@ -5,18 +5,27 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.drawable.Drawable
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.graphics.asImageBitmap
@@ -68,14 +77,11 @@ fun loadActivityContextSnapshot(
 
     val appInfo = pm.getApplicationInfo(packageName, 0)
 
-    val appLabel = pm.getApplicationLabel(appInfo).toString()
-    val appIcon = pm.getApplicationIcon(appInfo)
-
     return ActivityContextSnapshot(
         packageName = packageName,
         activityName = activityName,
-        appLabel = appLabel,
-        appIcon = appIcon,
+        appLabel = pm.getApplicationLabel(appInfo).toString(),
+        appIcon = pm.getApplicationIcon(appInfo),
         supportedActions = probeSupportedActions(
             context,
             packageName,
@@ -86,16 +92,18 @@ fun loadActivityContextSnapshot(
 
 @Composable
 fun ActivityHeader(snapshot: ActivityContextSnapshot) {
+
     Row {
 
         Image(
             painter = snapshot.appIcon?.let {
                 BitmapPainter(it.toBitmap().asImageBitmap())
             } ?: painterResource(R.drawable.ic_brand),
-            contentDescription = null
+            contentDescription = null,
+            modifier = Modifier.size(48.dp)
         )
 
-        Spacer(modifier = Modifier.width(12.dp))
+        Spacer(modifier = Modifier.size(12.dp))
 
         Column {
             Text(snapshot.appLabel)
@@ -105,20 +113,72 @@ fun ActivityHeader(snapshot: ActivityContextSnapshot) {
 }
 
 @Composable
-fun ActionIcons(actions: List<ActionDefinition>) {
-    Row {
+fun IntentActionSelector(
+    supportedActions: List<ActionDefinition>,
+    onSelected: (ActionDefinition?) -> Unit
+) {
+    var expanded by remember { mutableStateOf(false) }
 
-        actions.take(4).forEach { action ->
+    val allActions = StandardActions.all()
 
-            Icon(
-                painter = painterResource(action.iconRes),
-                contentDescription = action.action,
-                modifier = Modifier
-                    .width(18.dp)
-                    .height(18.dp)
+    val useAll = supportedActions.isEmpty() || supportedActions.size == allActions.size
+    val options = if (useAll) allActions else supportedActions
+
+    var selected by remember {
+        mutableStateOf<ActionDefinition?>(
+            if (useAll) null else options.firstOrNull()
+        )
+    }
+
+    Column {
+
+        Text("Action")
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clickable { expanded = true }
+                .padding(12.dp)
+        ) {
+
+            Text(
+                text = selected?.label ?: "Custom",
+                modifier = Modifier.weight(1f)
             )
 
-            Spacer(modifier = Modifier.width(4.dp))
+            Icon(
+                painter = painterResource(R.drawable.ic_arrow_drop_down),
+                contentDescription = null
+            )
+        }
+
+        DropdownMenu(
+            expanded = expanded,
+            onDismissRequest = { expanded = false }
+        ) {
+
+            DropdownMenuItem(
+                text = { Text("Custom") },
+                onClick = {
+                    selected = null
+                    expanded = false
+                    onSelected(null)
+                }
+            )
+
+            options.forEach { action ->
+
+                DropdownMenuItem(
+                    text = { Text(action.label) },
+                    onClick = {
+                        selected = action
+                        expanded = false
+                        onSelected(action)
+                    }
+                )
+            }
         }
     }
 }
@@ -138,20 +198,27 @@ fun IntentEditor(
         )
     }
 
+    var selectedAction by remember { mutableStateOf<ActionDefinition?>(null) }
+
     Column(
-        modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.SpaceBetween
+        modifier = Modifier.fillMaxSize()
     ) {
 
-        Column {
+        Column(
+            modifier = Modifier
+                .weight(1f)
+                .verticalScroll(rememberScrollState())
+                .padding(16.dp)
+        ) {
 
             ActivityHeader(snapshot)
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            Text("Supported actions:")
-
-            ActionIcons(snapshot.supportedActions)
+            IntentActionSelector(
+                supportedActions = snapshot.supportedActions,
+                onSelected = { selectedAction = it }
+            )
         }
 
         Button(
@@ -159,9 +226,17 @@ fun IntentEditor(
                 val intent = Intent().apply {
                     setClassName(packageName, activityName)
                     addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+
+                    selectedAction?.let {
+                        action = it.action
+                    }
                 }
+
                 context.startActivity(intent)
-            }
+            },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp)
         ) {
             Text("Try")
         }
