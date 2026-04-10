@@ -38,7 +38,7 @@ import androidx.core.graphics.drawable.toBitmap
 
 // ---- Model ----
 
-data class AppIntentItem(
+data class ActivityItem(
     val label: String,
     val activityName: String,
     val icon: Drawable?,
@@ -47,10 +47,10 @@ data class AppIntentItem(
 
 // ---- Query logic ----
 
-private fun queryAppIntents(
+private fun queryActivitys(
     context: Context,
     packageName: String
-): List<AppIntentItem> {
+): List<ActivityItem> {
     val pm = context.packageManager
 
     val packageInfo = pm.getPackageInfo(
@@ -82,7 +82,7 @@ private fun queryAppIntents(
         .map { activityInfo ->
             val actions = activityActions[activityInfo.name] ?: emptyList()
 
-            AppIntentItem(
+            ActivityItem(
                 label = activityInfo.loadLabel(pm).toString(),
                 activityName = activityInfo.name,
                 icon = activityInfo.loadIcon(pm),
@@ -126,25 +126,25 @@ private fun ActionIcons(actions: List<String>) {
 // ---- Public composable ----
 
 @Composable
-fun AppIntentList(
+fun ActivityList(
     packageName: String,
-    onSelected: (AppIntentItem) -> Unit
+    onSelected: (ActivityItem) -> Unit
 ) {
     val context = LocalContext.current
 
     var items by remember(packageName) {
-        mutableStateOf(emptyList<AppIntentItem>())
+        mutableStateOf(emptyList<ActivityItem>())
     }
 
     LaunchedEffect(packageName) {
-        items = queryAppIntents(context, packageName)
+        items = queryActivitys(context, packageName)
     }
 
     LazyColumn(
         modifier = Modifier.fillMaxSize()
     ) {
         items(items) { item ->
-            AppIntentRow(item, onSelected)
+            ActivityRow(item, onSelected)
         }
     }
 }
@@ -152,9 +152,9 @@ fun AppIntentList(
 // ---- Row ----
 
 @Composable
-private fun AppIntentRow(
-    item: AppIntentItem,
-    onClick: (AppIntentItem) -> Unit
+private fun ActivityRow(
+    item: ActivityItem,
+    onClick: (ActivityItem) -> Unit
 ) {
     Row(
         modifier = Modifier

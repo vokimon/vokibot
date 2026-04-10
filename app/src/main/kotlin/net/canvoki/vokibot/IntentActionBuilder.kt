@@ -40,7 +40,7 @@ fun IntentActionBuilder(
             }
 
             is BuilderScreen.AppIntents -> {
-                AppIntentList(
+                ActivityList(
                     packageName = screen.packageName,
                     onSelected = { intent ->
                         nav.push(
