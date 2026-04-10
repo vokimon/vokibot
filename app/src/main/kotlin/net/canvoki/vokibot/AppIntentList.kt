@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.drawable.Drawable
-import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -15,6 +14,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Icon
@@ -35,24 +35,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.drawable.toBitmap
-
-// ---- Known actions ----
-
-data class KnownAction(
-    val action: String,
-    @DrawableRes val iconRes: Int
-)
-
-private val knownActions = listOf(
-    KnownAction(Intent.ACTION_VIEW, R.drawable.ic_visibility),
-    KnownAction(Intent.ACTION_SEND, R.drawable.ic_send),
-    KnownAction(Intent.ACTION_SENDTO, R.drawable.ic_mail),
-    KnownAction(Intent.ACTION_DIAL, R.drawable.ic_call),
-    KnownAction(Intent.ACTION_CALL, R.drawable.ic_phone),
-    KnownAction(Intent.ACTION_EDIT, R.drawable.ic_edit),
-    KnownAction(Intent.ACTION_PICK, R.drawable.ic_photo_library),
-    KnownAction(Intent.ACTION_MAIN, R.drawable.ic_apps)
-)
 
 // ---- Model ----
 
@@ -80,8 +62,9 @@ private fun queryAppIntents(
 
     val activityActions = mutableMapOf<String, MutableList<String>>()
 
-    for (known in knownActions) {
-        val intent = Intent(known.action).apply {
+    for (standard in StandardActions.all()) {
+
+        val intent = Intent(standard.action).apply {
             `package` = packageName
         }
 
@@ -90,7 +73,7 @@ private fun queryAppIntents(
         for (resolveInfo in results) {
             val name = resolveInfo.activityInfo.name
             activityActions.getOrPut(name) { mutableListOf() }
-                .add(known.action)
+                .add(standard.action)
         }
     }
 
@@ -100,8 +83,7 @@ private fun queryAppIntents(
             val actions = activityActions[activityInfo.name] ?: emptyList()
 
             AppIntentItem(
-                label = activityInfo.loadLabel(pm)?.toString()
-                    ?: activityInfo.name.substringAfterLast('.'),
+                label = activityInfo.loadLabel(pm).toString(),
                 activityName = activityInfo.name,
                 icon = activityInfo.loadIcon(pm),
                 supportedActions = actions
@@ -119,12 +101,26 @@ private fun drawableToPainter(drawable: Drawable?): Painter {
     } ?: painterResource(R.drawable.ic_brand)
 }
 
-// ---- Action icon ----
+// ---- Actions icons ----
 
 @Composable
-private fun actionIcon(actions: List<String>): Painter? {
-    val match = knownActions.firstOrNull { it.action in actions }
-    return match?.let { painterResource(it.iconRes) }
+private fun ActionIcons(actions: List<String>) {
+    Row(
+        modifier = Modifier.wrapContentWidth(),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        actions.take(3).forEach { action ->
+
+            val iconRes = StandardActions.icon(action)
+            Icon(
+                painter = painterResource(iconRes),
+                contentDescription = action,
+                modifier = Modifier
+                    .size(18.dp)
+                    .padding(start = 4.dp)
+            )
+        }
+    }
 }
 
 // ---- Public composable ----
@@ -189,14 +185,8 @@ private fun AppIntentRow(
             )
         }
 
-        val trailing = actionIcon(item.supportedActions)
-
         Spacer(modifier = Modifier.width(8.dp))
 
-        Icon(
-            painter = trailing ?: painterResource(R.drawable.ic_brand),
-            contentDescription = "Action",
-            modifier = Modifier.size(20.dp)
-        )
+        ActionIcons(item.supportedActions)
     }
 }
