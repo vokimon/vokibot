@@ -111,7 +111,7 @@ fun AppListItem(
 
 @Composable
 fun AppList(
-    onAppSelected: (AppInfo) -> Unit,
+    onSelected: (AppInfo) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
@@ -175,7 +175,7 @@ fun AppList(
                 items(apps, key = { it.packageName }) { app ->
                     AppListItem(
                         app = app,
-                        onClick = { onAppSelected(app) },
+                        onClick = { onSelected(app) },
                     )
                 }
             }

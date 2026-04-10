@@ -7,7 +7,6 @@ import androidx.compose.ui.res.painterResource
 import net.canvoki.shared.component.AppScaffold
 import net.canvoki.shared.component.WatermarkBox
 import net.canvoki.shared.log
-import net.canvoki.vokibot.AppList
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,11 +16,7 @@ class MainActivity : AppCompatActivity() {
                 WatermarkBox(
                     watermark = painterResource(R.drawable.ic_brand),
                 ) {
-                    AppList(
-                        onAppSelected = { app ->
-                            log("Selected: ${app.packageName}")
-                        },
-                    )
+                    IntentActionBuilder() {}
                 }
             }
         }
