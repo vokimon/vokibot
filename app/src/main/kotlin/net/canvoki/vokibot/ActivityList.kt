@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.graphics.drawable.Drawable
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -17,6 +18,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -32,6 +34,7 @@ import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.graphics.painter.BitmapPainter
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.drawable.toBitmap
@@ -128,9 +131,12 @@ private fun ActionIcons(actions: List<String>) {
 @Composable
 fun ActivityList(
     packageName: String,
-    onSelected: (ActivityItem) -> Unit
+    onSelected: (ActivityItem) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
+    var isLoading by remember { mutableStateOf(true) }
+    var error by remember { mutableStateOf<String?>(null) }
 
     var items by remember(packageName) {
         mutableStateOf(emptyList<ActivityItem>())
@@ -138,13 +144,41 @@ fun ActivityList(
 
     LaunchedEffect(packageName) {
         items = queryActivitys(context, packageName)
+        isLoading = false
     }
 
-    LazyColumn(
-        modifier = Modifier.fillMaxSize()
-    ) {
-        items(items) { item ->
-            ActivityRow(item, onSelected)
+    when {
+        isLoading -> {
+            Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                CircularProgressIndicator()
+            }
+        }
+        error != null -> {
+            Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                Text(
+                    text = error!!,
+                    color = MaterialTheme.colorScheme.error,
+                    textAlign = TextAlign.Center,
+                )
+            }
+        }
+        items.isEmpty() -> {
+            Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                Text(
+                    text = "No activities found",
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
+        }
+        else -> {
+            LazyColumn(
+                modifier = Modifier.fillMaxSize()
+            ) {
+                items(items) { item ->
+                    ActivityRow(item, onSelected)
+                }
+            }
         }
     }
 }
