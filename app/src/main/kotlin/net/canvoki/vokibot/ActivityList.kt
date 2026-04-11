@@ -36,6 +36,7 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.drawable.toBitmap
 import net.canvoki.shared.component.AsyncList
@@ -140,6 +141,7 @@ fun ActivityList(
         refreshKeys = listOf(packageName),
         loader = { queryActivitys(context, packageName) },
         itemKey = { it.activityName },
+        notFoundMessage = stringResource(R.string.activitylist_not_found),
     ) { item ->
         ActivityRow(item, onSelected)
     }
