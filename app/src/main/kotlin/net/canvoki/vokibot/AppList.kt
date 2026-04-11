@@ -123,8 +123,9 @@ fun AppList(
     LaunchedEffect(Unit) {
         withContext(Dispatchers.IO) {
             try {
+                val flags = 0
                 val installedApps = packageManager
-                    .getInstalledPackages(0)
+                    .getInstalledPackages(flags)
                     .filter { it.packageName != context.packageName }
                     .mapNotNull { pkg ->
                         try {
