@@ -34,9 +34,9 @@ import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.graphics.painter.BitmapPainter
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.drawable.toBitmap
 import net.canvoki.shared.component.AsyncList
@@ -47,37 +47,39 @@ data class ActivityItem(
     val label: String,
     val activityName: String,
     val icon: Drawable?,
-    val supportedActions: List<String> = emptyList()
+    val supportedActions: List<String> = emptyList(),
 )
 
 // ---- Query logic ----
 
 private fun queryActivitys(
     context: Context,
-    packageName: String
+    packageName: String,
 ): List<ActivityItem> {
     val pm = context.packageManager
 
-    val packageInfo = pm.getPackageInfo(
-        packageName,
-        PackageManager.GET_ACTIVITIES
-    )
+    val packageInfo =
+        pm.getPackageInfo(
+            packageName,
+            PackageManager.GET_ACTIVITIES,
+        )
 
     val activities = packageInfo.activities ?: return emptyList()
 
     val activityActions = mutableMapOf<String, MutableList<String>>()
 
     for (standard in StandardActions.all()) {
-
-        val intent = Intent(standard.action).apply {
-            `package` = packageName
-        }
+        val intent =
+            Intent(standard.action).apply {
+                `package` = packageName
+            }
 
         val results = pm.queryIntentActivities(intent, PackageManager.MATCH_ALL)
 
         for (resolveInfo in results) {
             val name = resolveInfo.activityInfo.name
-            activityActions.getOrPut(name) { mutableListOf() }
+            activityActions
+                .getOrPut(name) { mutableListOf() }
                 .add(standard.action)
         }
     }
@@ -91,20 +93,18 @@ private fun queryActivitys(
                 label = activityInfo.loadLabel(pm).toString(),
                 activityName = activityInfo.name,
                 icon = activityInfo.loadIcon(pm),
-                supportedActions = actions
+                supportedActions = actions,
             )
-        }
-        .sortedBy { it.label.lowercase() }
+        }.sortedBy { it.label.lowercase() }
 }
 
 // ---- Drawable -> Painter ----
 
 @Composable
-private fun drawableToPainter(drawable: Drawable?): Painter {
-    return drawable?.let {
+private fun drawableToPainter(drawable: Drawable?): Painter =
+    drawable?.let {
         BitmapPainter(it.toBitmap().asImageBitmap())
     } ?: painterResource(R.drawable.ic_brand)
-}
 
 // ---- Actions icons ----
 
@@ -112,7 +112,7 @@ private fun drawableToPainter(drawable: Drawable?): Painter {
 private fun ActionIcons(actions: List<String>) {
     Row(
         modifier = Modifier.wrapContentWidth(),
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         actions.take(3).forEach { action ->
 
@@ -120,9 +120,10 @@ private fun ActionIcons(actions: List<String>) {
             Icon(
                 painter = painterResource(iconRes),
                 contentDescription = action,
-                modifier = Modifier
-                    .size(18.dp)
-                    .padding(start = 4.dp)
+                modifier =
+                    Modifier
+                        .size(18.dp)
+                        .padding(start = 4.dp),
             )
         }
     }
@@ -152,34 +153,35 @@ fun ActivityList(
 @Composable
 private fun ActivityRow(
     item: ActivityItem,
-    onClick: (ActivityItem) -> Unit
+    onClick: (ActivityItem) -> Unit,
 ) {
     Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clickable { onClick(item) }
-            .padding(horizontal = 16.dp, vertical = 12.dp),
-        verticalAlignment = Alignment.CenterVertically
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .clickable { onClick(item) }
+                .padding(horizontal = 16.dp, vertical = 12.dp),
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         Image(
             painter = drawableToPainter(item.icon),
             contentDescription = item.label,
-            modifier = Modifier.size(40.dp)
+            modifier = Modifier.size(40.dp),
         )
 
         Spacer(modifier = Modifier.width(12.dp))
 
         Column(
-            modifier = Modifier.weight(1f)
+            modifier = Modifier.weight(1f),
         ) {
             Text(
                 text = item.label,
-                style = MaterialTheme.typography.bodyLarge
+                style = MaterialTheme.typography.bodyLarge,
             )
 
             Text(
                 text = item.activityName,
-                style = MaterialTheme.typography.bodySmall
+                style = MaterialTheme.typography.bodySmall,
             )
         }
 

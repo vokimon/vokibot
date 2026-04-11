@@ -5,36 +5,35 @@ import net.canvoki.shared.component.StackNavigator
 import net.canvoki.shared.component.rememberStackNavigatorState
 
 sealed class BuilderScreen {
-
     data object AppList : BuilderScreen()
 
-    data class ActivityList(val packageName: String) : BuilderScreen()
+    data class ActivityList(
+        val packageName: String,
+    ) : BuilderScreen()
 
     data class IntentEditor(
         val packageName: String,
-        val activityName: String
+        val activityName: String,
     ) : BuilderScreen()
 }
 
 @Composable
-fun IntentActionBuilder(
-) {
-
-    val nav = rememberStackNavigatorState<BuilderScreen>(
-        BuilderScreen.AppList
-    )
+fun IntentActionBuilder() {
+    val nav =
+        rememberStackNavigatorState<BuilderScreen>(
+            BuilderScreen.AppList,
+        )
 
     StackNavigator(state = nav) { screen ->
 
         when (screen) {
-
             is BuilderScreen.AppList -> {
                 AppList(
                     onSelected = { app ->
                         nav.push(
-                            BuilderScreen.ActivityList(app.packageName)
+                            BuilderScreen.ActivityList(app.packageName),
                         )
-                    }
+                    },
                 )
             }
 
@@ -45,10 +44,10 @@ fun IntentActionBuilder(
                         nav.push(
                             BuilderScreen.IntentEditor(
                                 packageName = screen.packageName,
-                                activityName = intent.activityName
-                            )
+                                activityName = intent.activityName,
+                            ),
                         )
-                    }
+                    },
                 )
             }
 

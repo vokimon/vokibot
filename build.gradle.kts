@@ -21,7 +21,8 @@ spotless {
     kotlin {
         target(
             "app/src/**/*.kt",
-            "buildSrc/src/**/*.kt"
+            "buildSrc/src/**/*.kt",
+            "share/src/**/*.kt",
         )
         ktlint("1.7.1")
     }
