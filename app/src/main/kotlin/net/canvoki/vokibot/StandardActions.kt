@@ -36,6 +36,12 @@ object StandardActions {
     private val registry: Map<String, ActionDefinition> = listOf(
 
         ActionDefinition(
+            action = Intent.ACTION_MAIN,
+            label = "Main",
+            iconRes = R.drawable.ic_apps
+        ),
+
+        ActionDefinition(
             action = Intent.ACTION_VIEW,
             label = "View",
             iconRes = R.drawable.ic_visibility,
@@ -151,12 +157,6 @@ object StandardActions {
                     label = "MIME types"
                 )
             )
-        ),
-
-        ActionDefinition(
-            action = Intent.ACTION_MAIN,
-            label = "Main",
-            iconRes = R.drawable.ic_apps
         ),
 
         ActionDefinition(

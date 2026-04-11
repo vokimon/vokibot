@@ -53,15 +53,21 @@ fun probeSupportedActions(
     val pm = context.packageManager
     val supported = mutableListOf<ActionDefinition>()
 
+    val targetPackage = packageName
+    val targetActivity = activityName
+
     for (actionDef in StandardActions.all()) {
 
-        val intent = Intent(actionDef.action).apply {
-            setClassName(packageName, activityName)
-        }
+        val intent = Intent(actionDef.action)
 
         val resolved = pm.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY)
 
-        if (resolved.isNotEmpty()) {
+        val matchesTarget = resolved.any { ri ->
+            ri.activityInfo?.packageName == targetPackage &&
+            ri.activityInfo?.name == targetActivity
+        }
+
+        if (matchesTarget) {
             supported.add(actionDef)
         }
     }
@@ -120,7 +126,18 @@ fun IntentActionSelector(
     var selected by remember { mutableStateOf<ActionDefinition?>(null) }
     var custom by remember { mutableStateOf("") }
 
-    val hasSupported = supportedActions.isNotEmpty()
+    val actionsToShow = if (supportedActions.isNotEmpty()) {
+        supportedActions
+    } else {
+        StandardActions.all()
+    }
+
+    LaunchedEffect(actionsToShow) {
+        if (selected == null) {
+            selected = actionsToShow.firstOrNull()
+            onSelected(selected)
+        }
+    }
 
     Column {
 
@@ -151,19 +168,16 @@ fun IntentActionSelector(
             onDismissRequest = { expanded = false }
         ) {
 
-            if (hasSupported) {
+            actionsToShow.forEach { action ->
 
-                supportedActions.forEach { action ->
-
-                    DropdownMenuItem(
-                        text = { Text(action.label) },
-                        onClick = {
-                            selected = action
-                            expanded = false
-                            onSelected(action)
-                        }
-                    )
-                }
+                DropdownMenuItem(
+                    text = { Text(action.label) },
+                    onClick = {
+                        selected = action
+                        expanded = false
+                        onSelected(action)
+                    }
+                )
             }
 
             DropdownMenuItem(
@@ -199,7 +213,6 @@ fun IntentEditor(
     activityName: String
 ) {
     val context = LocalContext.current
-
     val snapshot = remember(packageName, activityName) {
         loadActivityContextSnapshot(context, packageName, activityName)
     }
