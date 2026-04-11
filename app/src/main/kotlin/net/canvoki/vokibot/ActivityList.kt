@@ -38,6 +38,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.drawable.toBitmap
+import net.canvoki.shared.component.AsyncList
 
 // ---- Model ----
 
@@ -135,51 +136,12 @@ fun ActivityList(
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
-    var isLoading by remember { mutableStateOf(true) }
-    var error by remember { mutableStateOf<String?>(null) }
-
-    var items by remember(packageName) {
-        mutableStateOf(emptyList<ActivityItem>())
-    }
-
-    LaunchedEffect(packageName) {
-        items = queryActivitys(context, packageName)
-        isLoading = false
-    }
-
-    when {
-        isLoading -> {
-            Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                CircularProgressIndicator()
-            }
-        }
-        error != null -> {
-            Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                Text(
-                    text = error!!,
-                    color = MaterialTheme.colorScheme.error,
-                    textAlign = TextAlign.Center,
-                )
-            }
-        }
-        items.isEmpty() -> {
-            Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                Text(
-                    text = "No activities found",
-                    style = MaterialTheme.typography.bodyLarge,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
-            }
-        }
-        else -> {
-            LazyColumn(
-                modifier = Modifier.fillMaxSize()
-            ) {
-                items(items) { item ->
-                    ActivityRow(item, onSelected)
-                }
-            }
-        }
+    AsyncList(
+        refreshKeys = listOf(packageName),
+        loader = { queryActivitys(context, packageName) },
+        itemKey = { it.activityName },
+    ) { item ->
+        ActivityRow(item, onSelected)
     }
 }
 

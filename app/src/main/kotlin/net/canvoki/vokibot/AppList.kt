@@ -44,6 +44,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import net.canvoki.shared.component.AsyncList
 import net.canvoki.vokibot.R
 
 data class AppInfo(
@@ -83,23 +84,20 @@ fun AppListItem(
             .padding(16.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        val iconPainter = remember(app.iconDrawable) {
-            app.iconDrawable?.toPainter()
-        }
+        val iconPainter = remember(app.iconDrawable) { app.iconDrawable?.toPainter() }
 
         Icon(
             painter = iconPainter ?: painterResource(R.drawable.ic_brand),
             contentDescription = null,
             modifier = Modifier.size(40.dp),
-            tint =
-                if (iconPainter == null)
-                    MaterialTheme.colorScheme.onSurfaceVariant
-                else
-                    androidx.compose.ui.graphics.Color.Unspecified,
+            tint = if (iconPainter == null)
+                MaterialTheme.colorScheme.onSurfaceVariant
+            else
+                androidx.compose.ui.graphics.Color.Unspecified,
         )
 
         Spacer(modifier = Modifier.width(16.dp))
-        Column(modifier = Modifier.weight(1f)) {
+        androidx.compose.foundation.layout.Column(modifier = Modifier.weight(1f)) {
             Text(
                 text = app.appName,
                 style = MaterialTheme.typography.bodyLarge,
@@ -113,90 +111,35 @@ fun AppListItem(
     }
 }
 
-@Composable
-fun AppListContent(
-    onSelected: (AppInfo) -> Unit,
-    modifier: Modifier = Modifier,
-    filterText: String = "",
-    filterCategories: Set<Int> = emptySet(),
-    showSystemApps: Boolean = true,
-) {
-    val context = LocalContext.current
-    val packageManager = context.packageManager
-    var apps by remember { mutableStateOf<List<AppInfo>>(emptyList()) }
-    var isLoading by remember { mutableStateOf(true) }
-    var error by remember { mutableStateOf<String?>(null) }
+// ---- Función suspendible para AsyncList ----
 
-    LaunchedEffect(Unit) {
-        withContext(Dispatchers.IO) {
+private suspend fun loadApps(
+    packageManager: PackageManager,
+    ownPackageName: String,
+    filterText: String,
+    filterCategories: Set<Int>,
+    showSystemApps: Boolean
+): List<AppInfo> = withContext(Dispatchers.IO) {
+    packageManager.getInstalledPackages(0)
+        .filter { it.packageName != ownPackageName }
+        .mapNotNull { pkg ->
             try {
-                val installedApps = packageManager
-                    .getInstalledPackages(0)
-                    .filter { it.packageName != context.packageName }
-                    .mapNotNull { pkg ->
-                        try {
-                            val ai: ApplicationInfo = pkg.applicationInfo ?: return@mapNotNull null
-                            val appName = ai.loadLabel(packageManager).toString()
-                            val icon = ai.loadIcon(packageManager)
-                            val category = ai.category
-                            val isSystem = (ai.flags and ApplicationInfo.FLAG_SYSTEM) != 0
-                            AppInfo(pkg.packageName, appName, icon, category, isSystem)
-                        } catch (_: Exception) {
-                            null
-                        }
-                    }
-                    .sortedBy { it.appName.lowercase() }
-
-                apps = installedApps
-            } catch (e: Exception) {
-                error = e.message ?: "Unknown error"
-            } finally {
-                isLoading = false
+                val ai = pkg.applicationInfo ?: return@mapNotNull null
+                val appName = ai.loadLabel(packageManager).toString()
+                val icon = ai.loadIcon(packageManager)
+                val category = ai.category
+                val isSystem = (ai.flags and ApplicationInfo.FLAG_SYSTEM) != 0
+                AppInfo(pkg.packageName, appName, icon, category, isSystem)
+            } catch (_: Exception) {
+                null
             }
         }
-    }
-
-    val filteredApps = apps.filter { app ->
-        (filterText.isBlank() || app.appName.contains(filterText, ignoreCase = true))
-                && (filterCategories.isEmpty() || filterCategories.contains(app.category))
-                && (showSystemApps || !app.isSystemApp)
-    }
-
-    when {
-        isLoading -> {
-            Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                CircularProgressIndicator()
-            }
+        .filter { app ->
+            (filterText.isBlank() || app.appName.contains(filterText, ignoreCase = true))
+                    && (filterCategories.isEmpty() || filterCategories.contains(app.category))
+                    && (showSystemApps || !app.isSystemApp)
         }
-        error != null -> {
-            Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                Text(
-                    text = error!!,
-                    color = MaterialTheme.colorScheme.error,
-                    textAlign = TextAlign.Center,
-                )
-            }
-        }
-        filteredApps.isEmpty() -> {
-            Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                Text(
-                    text = "No applications found",
-                    style = MaterialTheme.typography.bodyLarge,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
-            }
-        }
-        else -> {
-            LazyColumn(modifier = modifier.fillMaxSize()) {
-                items(filteredApps, key = { it.packageName }) { app ->
-                    AppListItem(
-                        app = app,
-                        onClick = { onSelected(app) },
-                    )
-                }
-            }
-        }
-    }
+        .sortedBy { it.appName.lowercase() }
 }
 
 @Composable
@@ -209,14 +152,17 @@ fun AppList(
     var showSystemApps by remember { mutableStateOf(true) }
     var showSheet by remember { mutableStateOf(false) }
 
+    val context = LocalContext.current
+    val packageManager = context.packageManager
+
     Box(modifier = modifier.fillMaxSize()) {
-        AppListContent(
-            onSelected = onSelected,
-            modifier = Modifier.fillMaxSize(),
-            filterText = filterText,
-            filterCategories = selectedCategories,
-            showSystemApps = showSystemApps
-        )
+        AsyncList(
+            refreshKeys = listOf(filterText, selectedCategories, showSystemApps),
+            loader = { loadApps(packageManager, context.packageName, filterText, selectedCategories, showSystemApps) },
+            itemKey = { it.packageName }
+        ) { app ->
+            AppListItem(app, onClick = { onSelected(app) })
+        }
 
         FloatingActionButton(
             onClick = { showSheet = true },
