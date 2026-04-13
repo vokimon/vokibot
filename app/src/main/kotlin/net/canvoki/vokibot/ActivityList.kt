@@ -52,7 +52,7 @@ data class ActivityItem(
 
 // ---- Query logic ----
 
-private fun queryActivitys(
+private fun queryActivities(
     context: Context,
     packageName: String,
 ): List<ActivityItem> {
@@ -140,7 +140,10 @@ fun ActivityList(
     val context = LocalContext.current
     AsyncList(
         refreshKeys = listOf(packageName),
-        loader = { queryActivitys(context, packageName) },
+        loader = {
+            logPublicComponents(context, packageName)
+            queryActivities(context, packageName)
+        },
         itemKey = { it.activityName },
         notFoundMessage = stringResource(R.string.activitylist_not_found),
     ) { item ->

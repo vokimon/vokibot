@@ -4,8 +4,6 @@ import android.content.Intent
 import android.provider.MediaStore
 import android.speech.RecognizerIntent
 
-// ---- Types ----
-
 enum class ExtraType {
     STRING,
     URI,
@@ -22,14 +20,28 @@ data class ExtraSpec(
     val label: String = key,
 )
 
+/**
+ * Strategy for probing whether a component accepts an action.
+ * Describes how to construct the test intent for resolution checks.
+ */
+enum class ProbeStrategy {
+    /** Action works with just the action string (e.g., MAIN, SEND) */
+    ACTION_ONLY,
+
+    /** Action typically requires a data URI to match filters (e.g., VIEW, DIAL) */
+    REQUIRES_URI,
+
+    /** Action typically requires specific extras to match filters (e.g., IMAGE_CAPTURE) */
+    REQUIRES_EXTRAS,
+}
+
 data class ActionDefinition(
     val action: String,
     val label: String,
     val iconRes: Int,
+    val probeStrategy: ProbeStrategy = ProbeStrategy.ACTION_ONLY,
     val extras: List<ExtraSpec> = emptyList(),
 )
-
-// ---- Registry ----
 
 object StandardActions {
     private val registry: Map<String, ActionDefinition> =
@@ -43,6 +55,7 @@ object StandardActions {
                 action = Intent.ACTION_VIEW,
                 label = "View",
                 iconRes = R.drawable.ic_visibility,
+                probeStrategy = ProbeStrategy.REQUIRES_URI,
                 extras =
                     listOf(
                         ExtraSpec(
@@ -100,6 +113,7 @@ object StandardActions {
                 action = Intent.ACTION_DIAL,
                 label = "Dial",
                 iconRes = R.drawable.ic_call,
+                probeStrategy = ProbeStrategy.REQUIRES_URI,
                 extras =
                     listOf(
                         ExtraSpec(
@@ -114,6 +128,7 @@ object StandardActions {
                 action = Intent.ACTION_CALL,
                 label = "Call",
                 iconRes = R.drawable.ic_phone,
+                probeStrategy = ProbeStrategy.REQUIRES_URI,
                 extras =
                     listOf(
                         ExtraSpec(
@@ -128,11 +143,13 @@ object StandardActions {
                 action = Intent.ACTION_EDIT,
                 label = "Edit",
                 iconRes = R.drawable.ic_edit,
+                probeStrategy = ProbeStrategy.REQUIRES_URI,
             ),
             ActionDefinition(
                 action = Intent.ACTION_PICK,
                 label = "Pick",
                 iconRes = R.drawable.ic_photo_library,
+                probeStrategy = ProbeStrategy.REQUIRES_URI,
                 extras =
                     listOf(
                         ExtraSpec(
@@ -147,19 +164,12 @@ object StandardActions {
                 action = Intent.ACTION_GET_CONTENT,
                 label = "Get Content",
                 iconRes = R.drawable.ic_folder,
-                extras =
-                    listOf(
-                        ExtraSpec(
-                            key = Intent.EXTRA_MIME_TYPES,
-                            type = ExtraType.STRING_ARRAY,
-                            label = "MIME types",
-                        ),
-                    ),
             ),
             ActionDefinition(
                 action = MediaStore.ACTION_IMAGE_CAPTURE,
                 label = "Take Photo",
                 iconRes = R.drawable.ic_photo_camera,
+                probeStrategy = ProbeStrategy.REQUIRES_EXTRAS,
                 extras =
                     listOf(
                         ExtraSpec(
@@ -174,6 +184,7 @@ object StandardActions {
                 action = MediaStore.ACTION_VIDEO_CAPTURE,
                 label = "Record Video",
                 iconRes = R.drawable.ic_videocam,
+                probeStrategy = ProbeStrategy.REQUIRES_EXTRAS,
                 extras =
                     listOf(
                         ExtraSpec(
@@ -197,6 +208,7 @@ object StandardActions {
                 action = RecognizerIntent.ACTION_RECOGNIZE_SPEECH,
                 label = "Speech Recognition",
                 iconRes = R.drawable.ic_mic,
+                probeStrategy = ProbeStrategy.REQUIRES_EXTRAS,
                 extras =
                     listOf(
                         ExtraSpec(
@@ -219,8 +231,6 @@ object StandardActions {
             ),
         ).associateBy { it.action }
 
-    // ---- API ----
-
     fun all(): List<ActionDefinition> = registry.values.toList()
 
     fun get(action: String?): ActionDefinition? = action?.let { registry[it] }
@@ -230,4 +240,6 @@ object StandardActions {
     fun label(action: String?): String? = get(action)?.label
 
     fun extras(action: String?): List<ExtraSpec> = get(action)?.extras ?: emptyList()
+
+    fun probeStrategy(action: String?): ProbeStrategy = get(action)?.probeStrategy ?: ProbeStrategy.ACTION_ONLY
 }
