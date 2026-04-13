@@ -1,16 +1,13 @@
 package net.canvoki.vokibot
 
-import android.content.Context
-import android.content.Intent
+import android.content.ComponentName
 import android.content.pm.PackageManager
 import android.graphics.drawable.Drawable
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -18,16 +15,10 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.asImageBitmap
@@ -36,12 +27,11 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.drawable.toBitmap
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import net.canvoki.shared.component.AsyncList
-
-// ---- Model ----
 
 data class ActivityItem(
     val label: String,
@@ -50,63 +40,43 @@ data class ActivityItem(
     val supportedActions: List<String> = emptyList(),
 )
 
-// ---- Query logic ----
-
-private fun queryActivities(
-    context: Context,
+private suspend fun queryActivities(
+    context: android.content.Context,
     packageName: String,
-): List<ActivityItem> {
-    val pm = context.packageManager
+): List<ActivityItem> =
+    withContext(Dispatchers.IO) {
+        val result = queryPublicComponents(context, packageName, exportedOnly = true)
 
-    val packageInfo =
-        pm.getPackageInfo(
-            packageName,
-            PackageManager.GET_ACTIVITIES,
-        )
+        result.components
+            .filter { it.type == ComponentType.ACTIVITY }
+            .sortedBy { it.label?.lowercase() ?: it.name.lowercase() }
+            .map { component ->
+                val icon =
+                    try {
+                        val pm = context.packageManager
+                        val componentName = ComponentName(packageName, component.name)
 
-    val activities = packageInfo.activities ?: return emptyList()
+                        @Suppress("DEPRECATION")
+                        val info = pm.getActivityInfo(componentName, 0)
+                        info.loadIcon(pm)
+                    } catch (e: Exception) {
+                        null
+                    }
 
-    val activityActions = mutableMapOf<String, MutableList<String>>()
-
-    for (standard in StandardActions.all()) {
-        val intent =
-            Intent(standard.action).apply {
-                `package` = packageName
+                ActivityItem(
+                    label = component.label ?: component.name.substringAfterLast('.'),
+                    activityName = component.name,
+                    icon = icon,
+                    supportedActions = component.actions,
+                )
             }
-
-        val results = pm.queryIntentActivities(intent, PackageManager.MATCH_ALL)
-
-        for (resolveInfo in results) {
-            val name = resolveInfo.activityInfo.name
-            activityActions
-                .getOrPut(name) { mutableListOf() }
-                .add(standard.action)
-        }
     }
-
-    return activities
-        .filter { it.exported }
-        .map { activityInfo ->
-            val actions = activityActions[activityInfo.name] ?: emptyList()
-
-            ActivityItem(
-                label = activityInfo.loadLabel(pm).toString(),
-                activityName = activityInfo.name,
-                icon = activityInfo.loadIcon(pm),
-                supportedActions = actions,
-            )
-        }.sortedBy { it.label.lowercase() }
-}
-
-// ---- Drawable -> Painter ----
 
 @Composable
 private fun drawableToPainter(drawable: Drawable?): Painter =
     drawable?.let {
         BitmapPainter(it.toBitmap().asImageBitmap())
     } ?: painterResource(R.drawable.ic_brand)
-
-// ---- Actions icons ----
 
 @Composable
 private fun ActionIcons(actions: List<String>) {
@@ -115,21 +85,15 @@ private fun ActionIcons(actions: List<String>) {
         verticalAlignment = Alignment.CenterVertically,
     ) {
         actions.take(3).forEach { action ->
-
             val iconRes = StandardActions.icon(action)
             Icon(
                 painter = painterResource(iconRes),
                 contentDescription = action,
-                modifier =
-                    Modifier
-                        .size(18.dp)
-                        .padding(start = 4.dp),
+                modifier = Modifier.size(18.dp).padding(start = 4.dp),
             )
         }
     }
 }
-
-// ---- Public composable ----
 
 @Composable
 fun ActivityList(
@@ -150,8 +114,6 @@ fun ActivityList(
         ActivityRow(item, onSelected)
     }
 }
-
-// ---- Row ----
 
 @Composable
 private fun ActivityRow(
