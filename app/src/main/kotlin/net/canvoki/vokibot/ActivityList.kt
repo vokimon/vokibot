@@ -1,7 +1,5 @@
 package net.canvoki.vokibot
 
-import android.content.ComponentName
-import android.content.pm.PackageManager
 import android.graphics.drawable.Drawable
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -29,48 +27,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.drawable.toBitmap
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import net.canvoki.shared.component.AsyncList
-
-data class ActivityItem(
-    val label: String,
-    val activityName: String,
-    val icon: Drawable?,
-    val supportedActions: List<String> = emptyList(),
-)
-
-private suspend fun queryActivities(
-    context: android.content.Context,
-    packageName: String,
-): List<ActivityItem> =
-    withContext(Dispatchers.IO) {
-        val result = queryPublicComponents(context, packageName, exportedOnly = true)
-
-        result.components
-            .filter { it.type == ComponentType.ACTIVITY }
-            .sortedBy { it.label?.lowercase() ?: it.name.lowercase() }
-            .map { component ->
-                val icon =
-                    try {
-                        val pm = context.packageManager
-                        val componentName = ComponentName(packageName, component.name)
-
-                        @Suppress("DEPRECATION")
-                        val info = pm.getActivityInfo(componentName, 0)
-                        info.loadIcon(pm)
-                    } catch (e: Exception) {
-                        null
-                    }
-
-                ActivityItem(
-                    label = component.label ?: component.name.substringAfterLast('.'),
-                    activityName = component.name,
-                    icon = icon,
-                    supportedActions = component.actions,
-                )
-            }
-    }
 
 @Composable
 private fun drawableToPainter(drawable: Drawable?): Painter =
@@ -98,60 +55,52 @@ private fun ActionIcons(actions: List<String>) {
 @Composable
 fun ActivityList(
     packageName: String,
-    onSelected: (ActivityItem) -> Unit,
+    onSelected: (PublicComponent) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
     AsyncList(
         refreshKeys = listOf(packageName),
         loader = {
-            logPublicComponents(context, packageName)
-            queryActivities(context, packageName)
+            queryPublicComponents(context, packageName, exportedOnly = true)
+                .components
+                .filter { it.type == ComponentType.ACTIVITY }
+                .sortedBy { it.label?.lowercase() ?: it.name.lowercase() }
         },
-        itemKey = { it.activityName },
+        itemKey = { it.name },
         notFoundMessage = stringResource(R.string.activitylist_not_found),
-    ) { item ->
-        ActivityRow(item, onSelected)
+    ) { component ->
+        ActivityRow(component, onSelected)
     }
 }
 
 @Composable
 private fun ActivityRow(
-    item: ActivityItem,
-    onClick: (ActivityItem) -> Unit,
+    component: PublicComponent,
+    onClick: (PublicComponent) -> Unit,
 ) {
     Row(
         modifier =
             Modifier
                 .fillMaxWidth()
-                .clickable { onClick(item) }
+                .clickable { onClick(component) }
                 .padding(horizontal = 16.dp, vertical = 12.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Image(
-            painter = drawableToPainter(item.icon),
-            contentDescription = item.label,
+            painter = drawableToPainter(component.icon),
+            contentDescription = component.label,
             modifier = Modifier.size(40.dp),
         )
 
         Spacer(modifier = Modifier.width(12.dp))
 
-        Column(
-            modifier = Modifier.weight(1f),
-        ) {
-            Text(
-                text = item.label,
-                style = MaterialTheme.typography.bodyLarge,
-            )
-
-            Text(
-                text = item.activityName,
-                style = MaterialTheme.typography.bodySmall,
-            )
+        Column(modifier = Modifier.weight(1f)) {
+            Text(text = component.label ?: component.name, style = MaterialTheme.typography.bodyLarge)
+            Text(text = component.name, style = MaterialTheme.typography.bodySmall)
         }
 
         Spacer(modifier = Modifier.width(8.dp))
-
-        ActionIcons(item.supportedActions)
+        ActionIcons(component.actions)
     }
 }

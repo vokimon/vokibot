@@ -1,9 +1,11 @@
 package net.canvoki.vokibot
 
+import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
+import android.graphics.drawable.Drawable
 import android.os.Build
 import androidx.core.content.pm.PackageInfoCompat
 import kotlinx.coroutines.Dispatchers
@@ -34,6 +36,7 @@ data class PublicComponent(
     val name: String,
     val exported: Boolean,
     val label: String?,
+    val icon: Drawable? = null,
     val permissions: List<String> = emptyList(),
     val authorities: List<String> = emptyList(),
     val actions: List<String> = emptyList(),
@@ -125,12 +128,23 @@ suspend fun queryPublicComponents(
 
         packageInfo.activities?.forEach { info ->
             val data = discoveryResult[info.name]
+            val icon =
+                try {
+                    val componentName = ComponentName(packageName, info.name)
+
+                    @Suppress("DEPRECATION")
+                    val activityInfo = packageManager.getActivityInfo(componentName, 0)
+                    activityInfo.loadIcon(packageManager)
+                } catch (e: Exception) {
+                    null
+                }
             components.add(
                 PublicComponent(
                     type = ComponentType.ACTIVITY,
                     name = info.name,
                     exported = info.exported,
                     label = info.loadLabel(packageManager).toString(),
+                    icon = icon,
                     permissions = listOfNotNull(info.permission),
                     actions = data?.actions ?: emptyList(),
                     actionFilterType = data?.filterType ?: ActionFilterType.UNKNOWN,

@@ -40,11 +40,11 @@ fun IntentActionBuilder() {
             is BuilderScreen.ActivityList -> {
                 ActivityList(
                     packageName = screen.packageName,
-                    onSelected = { intent ->
+                    onSelected = { component ->
                         nav.push(
                             BuilderScreen.IntentEditor(
                                 packageName = screen.packageName,
-                                activityName = intent.activityName,
+                                activityName = component.name,
                             ),
                         )
                     },
