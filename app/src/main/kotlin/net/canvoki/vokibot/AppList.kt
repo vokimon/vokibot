@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyListState
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
@@ -29,7 +30,6 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -150,6 +150,7 @@ private suspend fun loadApps(
 @Composable
 fun AppList(
     onSelected: (AppInfo) -> Unit,
+    listState: LazyListState = rememberLazyListState(),
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
@@ -162,7 +163,6 @@ fun AppList(
     val selectedCategories by remember { derivedStateOf { categoryFilterString.toCategorySet() } }
 
     var showSheet by remember { mutableStateOf(false) }
-    val listState = rememberSaveable(saver = LazyListState.Saver) { LazyListState() }
 
     Box(modifier = modifier.fillMaxSize()) {
         AsyncList(

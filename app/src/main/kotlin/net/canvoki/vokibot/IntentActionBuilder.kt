@@ -1,6 +1,8 @@
 package net.canvoki.vokibot
 
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.saveable.rememberSaveable
 import net.canvoki.shared.component.StackNavigator
 import net.canvoki.shared.component.rememberStackNavigatorState
 
@@ -23,12 +25,14 @@ fun IntentActionBuilder() {
         rememberStackNavigatorState<BuilderScreen>(
             BuilderScreen.AppList,
         )
+    val appListState = rememberSaveable(saver = LazyListState.Saver) { LazyListState() }
 
     StackNavigator(state = nav) { screen ->
 
         when (screen) {
             is BuilderScreen.AppList -> {
                 AppList(
+                    listState = appListState,
                     onSelected = { app ->
                         nav.push(
                             BuilderScreen.ActivityList(app.packageName),
