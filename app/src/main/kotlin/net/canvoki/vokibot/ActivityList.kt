@@ -44,7 +44,7 @@ private fun ActionIcons(actions: List<String>) {
             Icon(
                 painter = painterResource(iconRes),
                 contentDescription = action,
-                modifier = Modifier.size(18.dp).padding(start = 4.dp),
+                modifier = Modifier.size(22.dp).padding(start = 4.dp),
             )
         }
     }
