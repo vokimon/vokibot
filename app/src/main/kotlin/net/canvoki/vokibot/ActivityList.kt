@@ -11,8 +11,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentWidth
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -64,10 +62,10 @@ fun ActivityList(
         loader = {
             queryPublicComponents(context, packageName, exportedOnly = true)
                 .components
-                .filter { it.type == ComponentType.ACTIVITY }
-                .sortedBy { it.label?.lowercase() ?: it.name.lowercase() }
+                .sortedWith(compareBy({ it.type }, { !it.exported }, { it.name }))
         },
         itemKey = { it.name },
+        groupBy = { it.type.displayName },
         notFoundMessage = stringResource(R.string.activitylist_not_found),
     ) { component ->
         ActivityRow(component, onSelected)
@@ -80,11 +78,10 @@ private fun ActivityRow(
     onClick: (PublicComponent) -> Unit,
 ) {
     Row(
-        modifier =
-            Modifier
-                .fillMaxWidth()
-                .clickable { onClick(component) }
-                .padding(horizontal = 16.dp, vertical = 12.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable { onClick(component) }
+            .padding(horizontal = 16.dp, vertical = 12.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Image(
