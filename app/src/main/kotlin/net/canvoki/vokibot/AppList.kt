@@ -175,10 +175,7 @@ fun AppList(
 
         FloatingActionButton(
             onClick = { showSheet = true },
-            modifier =
-                Modifier
-                    .align(Alignment.BottomEnd)
-                    .padding(16.dp),
+            modifier = Modifier.align(Alignment.BottomEnd).padding(16.dp),
         ) {
             Icon(
                 painter = painterResource(R.drawable.ic_filter_list),
@@ -189,9 +186,7 @@ fun AppList(
 
     if (showSheet) {
         @OptIn(androidx.compose.material3.ExperimentalMaterial3Api::class)
-        ModalBottomSheet(
-            onDismissRequest = { showSheet = false },
-        ) {
+        ModalBottomSheet(onDismissRequest = { showSheet = false }) {
             Column(modifier = Modifier.padding(16.dp)) {
                 Text("Filters", style = MaterialTheme.typography.titleMedium)
                 Spacer(modifier = Modifier.size(12.dp))
@@ -240,12 +235,8 @@ fun AppList(
                         Checkbox(
                             checked = selectedCategories.contains(catId),
                             onCheckedChange = { checked ->
-                                selectedCategories =
-                                    if (checked) {
-                                        selectedCategories + catId
-                                    } else {
-                                        selectedCategories - catId
-                                    }
+                                val newSet = if (checked) selectedCategories + catId else selectedCategories - catId
+                                categoryFilterString = newSet.toPreferenceString()
                             },
                         )
                         Spacer(modifier = Modifier.width(8.dp))
