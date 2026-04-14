@@ -187,19 +187,24 @@ fun AppList(
         @OptIn(androidx.compose.material3.ExperimentalMaterial3Api::class)
         ModalBottomSheet(onDismissRequest = { showSheet = false }) {
             Column(modifier = Modifier.padding(16.dp)) {
-                Text(stringResource(R.string.app_list_filter_title), style = MaterialTheme.typography.titleMedium)
+                Text(
+                    stringResource(R.string.app_list_filter_title),
+                    style = MaterialTheme.typography.titleMedium,
+                )
                 Spacer(modifier = Modifier.size(12.dp))
 
                 OutlinedTextField(
                     value = filterText,
                     onValueChange = { filterText = it },
-                    label = { Text(stringResource(R.string.app_list_filter_search_label)) },
+                    label = {
+                        Text(stringResource(R.string.app_list_filter_search_label))
+                    },
                     trailingIcon = {
                         if (filterText.isNotEmpty()) {
                             IconButton(onClick = { filterText = "" }) {
                                 Icon(
                                     painter = painterResource(R.drawable.ic_close),
-                                    contentDescription = stringResource(R.string.app_list_filter_clear_cd)
+                                    contentDescription = stringResource(R.string.app_list_filter_clear_cd),
                                 )
                             }
                         }
@@ -219,17 +224,21 @@ fun AppList(
 
                 Spacer(modifier = Modifier.size(12.dp))
 
-                val categories = listOf(
-                    ApplicationInfo.CATEGORY_GAME to stringResource(R.string.app_list_filter_category_game),
-                    ApplicationInfo.CATEGORY_MAPS to stringResource(R.string.app_list_filter_category_maps),
-                    ApplicationInfo.CATEGORY_AUDIO to stringResource(R.string.app_list_filter_category_audio),
-                    ApplicationInfo.CATEGORY_VIDEO to stringResource(R.string.app_list_filter_category_video),
-                    ApplicationInfo.CATEGORY_SOCIAL to stringResource(R.string.app_list_filter_category_social),
-                    ApplicationInfo.CATEGORY_PRODUCTIVITY to stringResource(R.string.app_list_filter_category_productivity),
-                    ApplicationInfo.CATEGORY_UNDEFINED to stringResource(R.string.app_list_filter_category_other),
-                )
+                val categories =
+                    listOf(
+                        ApplicationInfo.CATEGORY_GAME to R.string.app_list_filter_category_game,
+                        ApplicationInfo.CATEGORY_MAPS to R.string.app_list_filter_category_maps,
+                        ApplicationInfo.CATEGORY_AUDIO to R.string.app_list_filter_category_audio,
+                        ApplicationInfo.CATEGORY_VIDEO to R.string.app_list_filter_category_video,
+                        ApplicationInfo.CATEGORY_SOCIAL to R.string.app_list_filter_category_social,
+                        ApplicationInfo.CATEGORY_PRODUCTIVITY to R.string.app_list_filter_category_productivity,
+                        ApplicationInfo.CATEGORY_UNDEFINED to R.string.app_list_filter_category_other,
+                    )
 
-                Text(stringResource(R.string.app_list_filter_categories_title), style = MaterialTheme.typography.titleSmall)
+                Text(
+                    stringResource(R.string.app_list_filter_categories_title),
+                    style = MaterialTheme.typography.titleSmall,
+                )
                 Spacer(modifier = Modifier.size(8.dp))
                 categories.forEach { (catId, label) ->
                     Row(verticalAlignment = Alignment.CenterVertically) {
@@ -241,7 +250,7 @@ fun AppList(
                             },
                         )
                         Spacer(modifier = Modifier.width(8.dp))
-                        Text(label)
+                        Text(stringResource(label))
                     }
                 }
             }
