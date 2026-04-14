@@ -158,7 +158,6 @@ fun AppList(
     var showSystemApps by rememberMutablePreference("app_list_show_system", false)
     var categoryFilterString by rememberMutablePreference("app_list_show_categories", "")
 
-    // Derived state: convert string <-> Set<Int>
     val selectedCategories by remember { derivedStateOf { categoryFilterString.toCategorySet() } }
 
     var showSheet by remember { mutableStateOf(false) }
@@ -179,7 +178,7 @@ fun AppList(
         ) {
             Icon(
                 painter = painterResource(R.drawable.ic_filter_list),
-                contentDescription = "Filter",
+                contentDescription = stringResource(R.string.app_list_filter_fab_cd),
             )
         }
     }
@@ -188,17 +187,20 @@ fun AppList(
         @OptIn(androidx.compose.material3.ExperimentalMaterial3Api::class)
         ModalBottomSheet(onDismissRequest = { showSheet = false }) {
             Column(modifier = Modifier.padding(16.dp)) {
-                Text("Filters", style = MaterialTheme.typography.titleMedium)
+                Text(stringResource(R.string.app_list_filter_title), style = MaterialTheme.typography.titleMedium)
                 Spacer(modifier = Modifier.size(12.dp))
 
                 OutlinedTextField(
                     value = filterText,
                     onValueChange = { filterText = it },
-                    label = { Text("Search") },
+                    label = { Text(stringResource(R.string.app_list_filter_search_label)) },
                     trailingIcon = {
                         if (filterText.isNotEmpty()) {
                             IconButton(onClick = { filterText = "" }) {
-                                Icon(painterResource(R.drawable.ic_close), contentDescription = "Clear")
+                                Icon(
+                                    painter = painterResource(R.drawable.ic_close),
+                                    contentDescription = stringResource(R.string.app_list_filter_clear_cd)
+                                )
                             }
                         }
                     },
@@ -208,7 +210,7 @@ fun AppList(
                 Spacer(modifier = Modifier.size(12.dp))
 
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    Text("Show system apps", modifier = Modifier.weight(1f))
+                    Text(stringResource(R.string.app_list_filter_show_system), modifier = Modifier.weight(1f))
                     Switch(
                         checked = showSystemApps,
                         onCheckedChange = { showSystemApps = it },
@@ -217,18 +219,17 @@ fun AppList(
 
                 Spacer(modifier = Modifier.size(12.dp))
 
-                val categories =
-                    listOf(
-                        ApplicationInfo.CATEGORY_GAME to "Games",
-                        ApplicationInfo.CATEGORY_MAPS to "Maps",
-                        ApplicationInfo.CATEGORY_AUDIO to "Music/Audio",
-                        ApplicationInfo.CATEGORY_VIDEO to "Video",
-                        ApplicationInfo.CATEGORY_SOCIAL to "Social",
-                        ApplicationInfo.CATEGORY_PRODUCTIVITY to "Productivity",
-                        ApplicationInfo.CATEGORY_UNDEFINED to "Other",
-                    )
+                val categories = listOf(
+                    ApplicationInfo.CATEGORY_GAME to stringResource(R.string.app_list_filter_category_game),
+                    ApplicationInfo.CATEGORY_MAPS to stringResource(R.string.app_list_filter_category_maps),
+                    ApplicationInfo.CATEGORY_AUDIO to stringResource(R.string.app_list_filter_category_audio),
+                    ApplicationInfo.CATEGORY_VIDEO to stringResource(R.string.app_list_filter_category_video),
+                    ApplicationInfo.CATEGORY_SOCIAL to stringResource(R.string.app_list_filter_category_social),
+                    ApplicationInfo.CATEGORY_PRODUCTIVITY to stringResource(R.string.app_list_filter_category_productivity),
+                    ApplicationInfo.CATEGORY_UNDEFINED to stringResource(R.string.app_list_filter_category_other),
+                )
 
-                Text("Categories", style = MaterialTheme.typography.titleSmall)
+                Text(stringResource(R.string.app_list_filter_categories_title), style = MaterialTheme.typography.titleSmall)
                 Spacer(modifier = Modifier.size(8.dp))
                 categories.forEach { (catId, label) ->
                     Row(verticalAlignment = Alignment.CenterVertically) {

@@ -1,3 +1,16 @@
 app_name: Vokibot
 applist_not_found: "No applications found"
 activitylist_not_found: "No activities found"
+app_list_filter_fab_cd: Filter
+app_list_filter_title: Filters
+app_list_filter_search_label: Search
+app_list_filter_clear_cd: Clear
+app_list_filter_show_system: Show system apps
+app_list_filter_categories_title: Categories
+app_list_filter_category_game: Games
+app_list_filter_category_maps: Maps
+app_list_filter_category_audio: Music/Audio
+app_list_filter_category_video: Video
+app_list_filter_category_social: Social
+app_list_filter_category_productivity: Productivity
+app_list_filter_category_other: Other

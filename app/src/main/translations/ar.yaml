@@ -1,3 +1,16 @@
 app_name: Vokibot
 applist_not_found: "لم يتم العثور على تطبيقات"
 activitylist_not_found: "لم يتم العثور على أنشطة"
+app_list_filter_fab_cd: تصفية
+app_list_filter_title: عوامل التصفية
+app_list_filter_search_label: بحث
+app_list_filter_clear_cd: مسح
+app_list_filter_show_system: إظهار تطبيقات النظام
+app_list_filter_categories_title: الفئات
+app_list_filter_category_game: الألعاب
+app_list_filter_category_maps: الخرائط
+app_list_filter_category_audio: الموسيقى/الصوت
+app_list_filter_category_video: الفيديو
+app_list_filter_category_social: اجتماعي
+app_list_filter_category_productivity: الإنتاجية
+app_list_filter_category_other: أخرى

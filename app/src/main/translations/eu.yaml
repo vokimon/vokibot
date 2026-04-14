@@ -1,3 +1,16 @@
 app_name: Vokibot
 applist_not_found: "Ez da aplikaziorik aurkitu"
 activitylist_not_found: "Ez da aktibitaterik aurkitu"
+app_list_filter_fab_cd: Iragazi
+app_list_filter_title: Iragazkiak
+app_list_filter_search_label: Bilatu
+app_list_filter_clear_cd: Garbitu
+app_list_filter_show_system: Erakutsi sistema-aplikazioak
+app_list_filter_categories_title: Kategoriak
+app_list_filter_category_game: Jokoak
+app_list_filter_category_maps: Mapak
+app_list_filter_category_audio: Musika/Audioa
+app_list_filter_category_video: Bideoak
+app_list_filter_category_social: Sozialak
+app_list_filter_category_productivity: Produktibitatea
+app_list_filter_category_other: Besteak
