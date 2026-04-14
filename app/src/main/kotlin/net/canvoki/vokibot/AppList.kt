@@ -52,7 +52,19 @@ data class AppInfo(
     val iconDrawable: Drawable?,
     val category: Int,
     val isSystemApp: Boolean,
-)
+) {
+    companion object {
+        val CATEGORY_OPTIONS: List<Pair<Int, Int>> = listOf(
+            ApplicationInfo.CATEGORY_GAME to R.string.app_list_filter_category_game,
+            ApplicationInfo.CATEGORY_MAPS to R.string.app_list_filter_category_maps,
+            ApplicationInfo.CATEGORY_AUDIO to R.string.app_list_filter_category_audio,
+            ApplicationInfo.CATEGORY_VIDEO to R.string.app_list_filter_category_video,
+            ApplicationInfo.CATEGORY_SOCIAL to R.string.app_list_filter_category_social,
+            ApplicationInfo.CATEGORY_PRODUCTIVITY to R.string.app_list_filter_category_productivity,
+            ApplicationInfo.CATEGORY_UNDEFINED to R.string.app_list_filter_category_other,
+        )
+    }
+}
 
 private fun Drawable.toPainter(): Painter =
     when (this) {
@@ -227,23 +239,12 @@ fun AppList(
 
                 Spacer(modifier = Modifier.size(12.dp))
 
-                val categories =
-                    listOf(
-                        ApplicationInfo.CATEGORY_GAME to R.string.app_list_filter_category_game,
-                        ApplicationInfo.CATEGORY_MAPS to R.string.app_list_filter_category_maps,
-                        ApplicationInfo.CATEGORY_AUDIO to R.string.app_list_filter_category_audio,
-                        ApplicationInfo.CATEGORY_VIDEO to R.string.app_list_filter_category_video,
-                        ApplicationInfo.CATEGORY_SOCIAL to R.string.app_list_filter_category_social,
-                        ApplicationInfo.CATEGORY_PRODUCTIVITY to R.string.app_list_filter_category_productivity,
-                        ApplicationInfo.CATEGORY_UNDEFINED to R.string.app_list_filter_category_other,
-                    )
-
                 Text(
                     stringResource(R.string.app_list_filter_categories_title),
                     style = MaterialTheme.typography.titleSmall,
                 )
                 Spacer(modifier = Modifier.size(8.dp))
-                categories.forEach { (catId, label) ->
+                AppInfo.CATEGORY_OPTIONS.forEach { (catId, label) ->
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Checkbox(
                             checked = selectedCategories.contains(catId),
