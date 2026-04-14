@@ -9,13 +9,13 @@ import net.canvoki.shared.component.rememberStackNavigatorState
 sealed class BuilderScreen {
     data object AppList : BuilderScreen()
 
-    data class ActivityList(
+    data class ComponentList(
         val packageName: String,
     ) : BuilderScreen()
 
     data class IntentEditor(
         val packageName: String,
-        val activityName: String,
+        val componentName: String,
     ) : BuilderScreen()
 }
 
@@ -35,20 +35,20 @@ fun IntentActionBuilder() {
                     listState = appListState,
                     onSelected = { app ->
                         nav.push(
-                            BuilderScreen.ActivityList(app.packageName),
+                            BuilderScreen.ComponentList(app.packageName),
                         )
                     },
                 )
             }
 
-            is BuilderScreen.ActivityList -> {
-                ActivityList(
+            is BuilderScreen.ComponentList -> {
+                AppComponentList(
                     packageName = screen.packageName,
                     onSelected = { component ->
                         nav.push(
                             BuilderScreen.IntentEditor(
                                 packageName = screen.packageName,
-                                activityName = component.name,
+                                componentName = component.name,
                             ),
                         )
                     },
@@ -58,7 +58,7 @@ fun IntentActionBuilder() {
             is BuilderScreen.IntentEditor -> {
                 IntentEditor(
                     packageName = screen.packageName,
-                    activityName = screen.activityName,
+                    activityName = screen.componentName,
                 )
             }
         }

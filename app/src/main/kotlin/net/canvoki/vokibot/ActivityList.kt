@@ -51,7 +51,7 @@ private fun ActionIcons(actions: List<String>) {
 }
 
 @Composable
-fun ActivityList(
+fun AppComponentList(
     packageName: String,
     onSelected: (PublicComponent) -> Unit,
     modifier: Modifier = Modifier,
@@ -68,12 +68,12 @@ fun ActivityList(
         groupBy = { it.type.displayName },
         notFoundMessage = stringResource(R.string.activitylist_not_found),
     ) { component ->
-        ActivityRow(component, onSelected)
+        ComponentRow(component, onSelected)
     }
 }
 
 @Composable
-private fun ActivityRow(
+private fun ComponentRow(
     component: PublicComponent,
     onClick: (PublicComponent) -> Unit,
 ) {
