@@ -15,10 +15,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -28,7 +25,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -41,11 +38,11 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import net.canvoki.shared.component.AsyncList
+import net.canvoki.shared.component.preferences.rememberMutablePreference
 import net.canvoki.vokibot.R
 
 data class AppInfo(
@@ -101,7 +98,7 @@ fun AppListItem(
         )
 
         Spacer(modifier = Modifier.width(16.dp))
-        androidx.compose.foundation.layout.Column(modifier = Modifier.weight(1f)) {
+        Column(modifier = Modifier.weight(1f)) {
             Text(
                 text = app.appName,
                 style = MaterialTheme.typography.bodyLarge,
@@ -114,6 +111,11 @@ fun AppListItem(
         }
     }
 }
+
+private fun Set<Int>.toPreferenceString(): String = joinToString(",") { it.toString() }
+
+private fun String.toCategorySet(): Set<Int> =
+    split(",").filter { it.isNotBlank() }.mapNotNull { it.toIntOrNull() }.toSet()
 
 private suspend fun loadApps(
     packageManager: PackageManager,
@@ -149,13 +151,17 @@ fun AppList(
     onSelected: (AppInfo) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    var filterText by remember { mutableStateOf("") }
-    var selectedCategories by remember { mutableStateOf(setOf<Int>()) }
-    var showSystemApps by remember { mutableStateOf(true) }
-    var showSheet by remember { mutableStateOf(false) }
-
     val context = LocalContext.current
     val packageManager = context.packageManager
+
+    var filterText by rememberMutablePreference("app_list_filter_text", "")
+    var showSystemApps by rememberMutablePreference("app_list_show_system", false)
+    var categoryFilterString by rememberMutablePreference("app_list_show_categories", "")
+
+    // Derived state: convert string <-> Set<Int>
+    val selectedCategories by remember { derivedStateOf { categoryFilterString.toCategorySet() } }
+
+    var showSheet by remember { mutableStateOf(false) }
 
     Box(modifier = modifier.fillMaxSize()) {
         AsyncList(
