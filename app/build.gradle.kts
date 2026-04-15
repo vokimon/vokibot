@@ -8,6 +8,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.kotlin.serialization)
     id("net.canvoki.android-yaml-strings") version "1.0.0"
 }
 
@@ -25,7 +26,7 @@ fun loadEnv() {
         if (parts.size == 2) {
             val key = parts[0].trim()
             val value = parts[1].trim()
-            // Elimina cometes dobles o simples envolvents
+            // Remove quotes
             val cleanedValue = value.removeSurrounding("\"").removeSurrounding("'")
             project.ext.set(key, cleanedValue)
         }
@@ -157,6 +158,7 @@ dependencies {
     // Platform BOM imports
     implementation(platform(libs.androidx.compose.bom))
     implementation(platform(libs.kotlinx.coroutines.bom))
+    implementation(platform(libs.kotlinx.serialization.bom))
 
     // AndroidX
     implementation(libs.androidx.core.ktx)
@@ -164,6 +166,7 @@ dependencies {
     implementation(libs.androidx.material)
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.kotlinx.serialization.json)
 
     // Compose
     implementation(libs.androidx.compose.material3)
