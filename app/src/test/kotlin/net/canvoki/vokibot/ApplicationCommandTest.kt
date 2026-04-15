@@ -1,9 +1,10 @@
 package net.canvoki.vokibot
 
 import kotlinx.serialization.json.Json
-import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test
+import net.canvoki.shared.test.assertEquals
+import net.canvoki.shared.test.assertJsonEqual
 
 class ApplicationCommandTest {
     private val json =
@@ -13,131 +14,162 @@ class ApplicationCommandTest {
             classDiscriminator = "type"
         }
 
-    @Test
-    fun `LaunchActivityCommand serializes and deserializes`() {
-        val command =
-            LaunchActivityCommand(
-                displayName = "Open Maps",
-                packageName = "com.google.android.apps.maps",
-                className = "com.google.android.apps.maps.MapsActivity",
-                action = "android.intent.action.VIEW",
-                dataUri = "geo:0,0?q=Madrid",
-                extras =
-                    mapOf(
-                        "query" to ExtraValue.StringValue("gas stations"),
-                        "zoom" to ExtraValue.IntValue(15),
-                        "favorite" to ExtraValue.BooleanValue(true),
-                    ),
-                flagList = listOf("NEW_TASK", "CLEAR_TOP"),
-            )
-
-        val serialized = command.toJson()
-        val deserialized = ApplicationCommand.fromJson(serialized) as LaunchActivityCommand
-        assertEquals(
-            deserialized.toString(),
-            "LaunchActivityCommand(" +
-                "displayName=Open Maps, " +
-                "packageName=com.google.android.apps.maps, " +
-                "className=com.google.android.apps.maps.MapsActivity, " +
-                "action=android.intent.action.VIEW, " +
-                "dataUri=geo:0,0?q=Madrid, " +
-                "extras={query=StringValue(" +
-                "value=gas stations), " +
-                "zoom=IntValue(value=15), " +
-                "favorite=BooleanValue(value=true)" +
-                "}, " +
-                "flagList=[NEW_TASK, CLEAR_TOP]" +
-                ")",
+    // ---------- LaunchActivityCommand ----------
+    fun launchActivityCommandBase() =
+        LaunchActivityCommand(
+            displayName = "Open Maps",
+            packageName = "com.google.android.apps.maps",
+            className = "com.google.android.apps.maps.MapsActivity",
+            action = "android.intent.action.VIEW",
+            dataUri = "geo:0,0?q=Madrid",
+            extras =
+                mapOf(
+                    "query" to ExtraValue.StringValue("gas stations"),
+                    "zoom" to ExtraValue.IntValue(15),
+                    "favorite" to ExtraValue.BooleanValue(true),
+                ),
+            flagList = listOf("NEW_TASK", "CLEAR_TOP"),
         )
+
+    fun launchActivityCommandJson() =
+        """
+        {
+          "type": "launch_activity",
+          "displayName": "Open Maps",
+          "packageName": "com.google.android.apps.maps",
+          "className": "com.google.android.apps.maps.MapsActivity",
+          "action": "android.intent.action.VIEW",
+          "dataUri": "geo:0,0?q=Madrid",
+          "extras": {
+            "query": {"type": "string", "value": "gas stations"},
+            "zoom": {"type": "int", "value": 15},
+            "favorite": {"type": "boolean", "value": true}
+          },
+          "flagList": ["NEW_TASK", "CLEAR_TOP"]
+        }
+        """.trimIndent()
+
+    @Test
+    fun `LaunchActivityCommand toJson`() {
+        assertJsonEqual(launchActivityCommandBase().toJson(), launchActivityCommandJson())
     }
 
     @Test
-    fun `SendBroadcastCommand serializes and deserializes`() {
-        val command =
-            SendBroadcastCommand(
-                displayName = "Send SMS",
-                packageName = "com.android.messaging",
-                action = "android.intent.action.SENDTO",
-                dataUri = "smsto:+1234567890",
-                extras = mapOf("sms_body" to ExtraValue.StringValue("Hello")),
-                permission = "android.permission.SEND_SMS",
-            )
+    fun `LaunchActivityCommand fromJson`() {
+        val deserialized = ApplicationCommand.fromJson(launchActivityCommandJson())
+        assertEquals(launchActivityCommandBase().toString(), deserialized.toString())
+    }
 
-        val serialized = command.toJson()
-        val deserialized = ApplicationCommand.fromJson(serialized) as SendBroadcastCommand
-        assertEquals(
-            deserialized.toString(),
-            "SendBroadcastCommand(" +
-                "displayName=Send SMS, " +
-                "packageName=com.android.messaging, " +
-                "action=android.intent.action.SENDTO, " +
-                "dataUri=smsto:+1234567890, " +
-                "extras={sms_body=StringValue(value=Hello)}, " +
-                "permission=android.permission.SEND_SMS" +
-                ")",
+    // ---------- SendBroadcastCommand ----------
+    fun sendBroadcastCommandBase() =
+        SendBroadcastCommand(
+            displayName = "Send SMS",
+            packageName = "com.android.messaging",
+            action = "android.intent.action.SENDTO",
+            dataUri = "smsto:+1234567890",
+            extras = mapOf("sms_body" to ExtraValue.StringValue("Hello")),
+            permission = "android.permission.SEND_SMS",
         )
+
+    fun sendBroadcastCommandJson() =
+        """
+        {
+          "type": "send_broadcast",
+          "displayName": "Send SMS",
+          "packageName": "com.android.messaging",
+          "action": "android.intent.action.SENDTO",
+          "dataUri": "smsto:+1234567890",
+          "extras": {
+            "sms_body": {"type": "string", "value": "Hello"}
+          },
+          "permission": "android.permission.SEND_SMS"
+        }
+        """.trimIndent()
+
+    @Test
+    fun `SendBroadcastCommand toJson`() {
+        assertJsonEqual(sendBroadcastCommandBase().toJson(), sendBroadcastCommandJson())
     }
 
     @Test
-    fun `StartServiceCommand serializes and deserializes`() {
-        val command =
-            StartServiceCommand(
-                displayName = "Sync Data",
-                packageName = "com.example.app",
-                className = "com.example.app.SyncService",
-                action = "com.example.ACTION_SYNC",
-                extras = mapOf("force" to ExtraValue.BooleanValue(true)),
-            )
+    fun `SendBroadcastCommand fromJson`() {
+        val deserialized = ApplicationCommand.fromJson(sendBroadcastCommandJson())
+        assertEquals(sendBroadcastCommandBase().toString(), deserialized.toString())
+    }
 
-        val serialized = command.toJson()
-        val deserialized = ApplicationCommand.fromJson(serialized) as StartServiceCommand
+    // ---------- StartServiceCommand ----------
+    fun startServiceCommandBase() =
+        StartServiceCommand(
+            displayName = "Sync Data",
+            packageName = "com.example.app",
+            className = "com.example.app.SyncService",
+            action = "com.example.ACTION_SYNC",
+            extras = mapOf("force" to ExtraValue.BooleanValue(true)),
+        )
 
-        assertEquals(
-            deserialized.toString(),
-            "StartServiceCommand(" +
-                "displayName=Sync Data, " +
-                "packageName=com.example.app, " +
-                "className=com.example.app.SyncService, " +
-                "action=com.example.ACTION_SYNC, " +
-                "extras={force=BooleanValue(value=true)}" +
-                ")",
-        )
-        assertEquals(command.className, deserialized.className)
-        assertEquals(command.action, deserialized.action)
-        assertEquals(
-            (command.extras["force"] as ExtraValue.BooleanValue).value,
-            (deserialized.extras["force"] as ExtraValue.BooleanValue).value,
-        )
+    fun startServiceCommandJson() =
+        """
+        {
+          "type": "start_service",
+          "displayName": "Sync Data",
+          "packageName": "com.example.app",
+          "className": "com.example.app.SyncService",
+          "action": "com.example.ACTION_SYNC",
+          "extras": {
+            "force": {"type": "boolean", "value": true}
+          }
+        }
+        """.trimIndent()
+
+    @Test
+    fun `StartServiceCommand toJson`() {
+        assertJsonEqual(startServiceCommandBase().toJson(), startServiceCommandJson())
     }
 
     @Test
-    fun `AccessProviderCommand serializes and deserializes`() {
-        val command =
-            AccessProviderCommand(
-                displayName = "Read Contacts",
-                packageName = "com.android.contacts",
-                authority = "com.android.contacts",
-                operation = ProviderOperation.QUERY,
-                path = "contacts",
-                extras = mapOf("limit" to ExtraValue.IntValue(10)),
-            )
-
-        val serialized = command.toJson()
-        val deserialized = ApplicationCommand.fromJson(serialized) as AccessProviderCommand
-        assertEquals(
-            deserialized.toString(),
-            "AccessProviderCommand(" +
-                "displayName=Read Contacts, " +
-                "packageName=com.android.contacts, " +
-                "authority=com.android.contacts, " +
-                "operation=QUERY, " +
-                "path=contacts, " +
-                "mimeType=null, " +
-                "extras={limit=IntValue(value=10)}" +
-                ")",
-        )
+    fun `StartServiceCommand fromJson`() {
+        val deserialized = ApplicationCommand.fromJson(startServiceCommandJson())
+        assertEquals(startServiceCommandBase().toString(), deserialized.toString())
     }
 
+    // ---------- AccessProviderCommand ----------
+    fun accessProviderCommandBase() =
+        AccessProviderCommand(
+            displayName = "Read Contacts",
+            packageName = "com.android.contacts",
+            authority = "com.android.contacts",
+            operation = ProviderOperation.QUERY,
+            path = "contacts",
+            extras = mapOf("limit" to ExtraValue.IntValue(10)),
+        )
+
+    fun accessProviderCommandJson() =
+        """
+        {
+          "type": "access_provider",
+          "displayName": "Read Contacts",
+          "packageName": "com.android.contacts",
+          "authority": "com.android.contacts",
+          "operation": "QUERY",
+          "path": "contacts",
+          "extras": {
+            "limit": {"type": "int", "value": 10}
+          }
+        }
+        """.trimIndent()
+
+    @Test
+    fun `AccessProviderCommand toJson`() {
+        assertJsonEqual(accessProviderCommandBase().toJson(), accessProviderCommandJson())
+    }
+
+    @Test
+    fun `AccessProviderCommand fromJson`() {
+        val deserialized = ApplicationCommand.fromJson(accessProviderCommandJson())
+        assertEquals(accessProviderCommandBase().toString(), deserialized.toString())
+    }
+
+    // ---------- Polymorphic & Edge Cases ----------
     @Test
     fun `Polymorphic deserialization uses type discriminator`() {
         val jsonStrings =
@@ -166,40 +198,22 @@ class ApplicationCommandTest {
             )
 
         val serialized = json.encodeToString(extras)
-
-        // Verify type discriminators are present
         assertTrue(serialized.contains("\"string\""))
         assertTrue(serialized.contains("\"int\""))
         assertTrue(serialized.contains("\"long\""))
         assertTrue(serialized.contains("\"boolean\""))
         assertTrue(serialized.contains("\"float\""))
 
-        // Round-trip
         val deserialized = json.decodeFromString<Map<String, ExtraValue>>(serialized)
-        assertEquals(
-            (extras["str"] as ExtraValue.StringValue).value,
-            (deserialized["str"] as ExtraValue.StringValue).value,
-        )
+        assertEquals((extras["str"] as ExtraValue.StringValue).value, (deserialized["str"] as ExtraValue.StringValue).value)
         assertEquals((extras["num"] as ExtraValue.IntValue).value, (deserialized["num"] as ExtraValue.IntValue).value)
-        assertEquals(
-            (extras["bool"] as ExtraValue.BooleanValue).value,
-            (deserialized["bool"] as ExtraValue.BooleanValue).value,
-        )
+        assertEquals((extras["bool"] as ExtraValue.BooleanValue).value, (deserialized["bool"] as ExtraValue.BooleanValue).value)
     }
 
     @Test
     fun `Null and empty fields are handled correctly`() {
-        val command =
-            LaunchActivityCommand(
-                displayName = "Minimal",
-                packageName = "pkg",
-                className = "cls",
-                // All optional fields omitted/null
-            )
-
-        val serialized = command.toJson()
-        val deserialized = ApplicationCommand.fromJson(serialized) as LaunchActivityCommand
-
+        val command = LaunchActivityCommand(displayName = "Minimal", packageName = "pkg", className = "cls")
+        val deserialized = ApplicationCommand.fromJson(command.toJson()) as LaunchActivityCommand
         assertEquals(null, deserialized.action)
         assertEquals(null, deserialized.dataUri)
         assertTrue(deserialized.extras.isEmpty())
@@ -215,10 +229,8 @@ class ApplicationCommandTest {
                 StartServiceCommand("C", "p", "c"),
                 AccessProviderCommand("D", "p", "auth", ProviderOperation.QUERY),
             )
-
         commands.forEach { original ->
-            val json = original.toJson()
-            val restored = ApplicationCommand.fromJson(json)
+            val restored = ApplicationCommand.fromJson(original.toJson())
             assertEquals(original::class, restored::class)
             assertEquals(original.displayName, restored.displayName)
             assertEquals(original.packageName, restored.packageName)
