@@ -176,6 +176,7 @@ dependencies {
 
     // Test
     testImplementation(libs.junit)
+    testImplementation(libs.java.diff.utils)
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.kotlin.test)
 
