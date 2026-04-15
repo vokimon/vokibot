@@ -54,15 +54,16 @@ data class AppInfo(
     val isSystemApp: Boolean,
 ) {
     companion object {
-        val CATEGORY_OPTIONS: List<Pair<Int, Int>> = listOf(
-            ApplicationInfo.CATEGORY_GAME to R.string.app_list_filter_category_game,
-            ApplicationInfo.CATEGORY_MAPS to R.string.app_list_filter_category_maps,
-            ApplicationInfo.CATEGORY_AUDIO to R.string.app_list_filter_category_audio,
-            ApplicationInfo.CATEGORY_VIDEO to R.string.app_list_filter_category_video,
-            ApplicationInfo.CATEGORY_SOCIAL to R.string.app_list_filter_category_social,
-            ApplicationInfo.CATEGORY_PRODUCTIVITY to R.string.app_list_filter_category_productivity,
-            ApplicationInfo.CATEGORY_UNDEFINED to R.string.app_list_filter_category_other,
-        )
+        val CATEGORY_OPTIONS: List<Pair<Int, Int>> =
+            listOf(
+                ApplicationInfo.CATEGORY_GAME to R.string.app_list_filter_category_game,
+                ApplicationInfo.CATEGORY_MAPS to R.string.app_list_filter_category_maps,
+                ApplicationInfo.CATEGORY_AUDIO to R.string.app_list_filter_category_audio,
+                ApplicationInfo.CATEGORY_VIDEO to R.string.app_list_filter_category_video,
+                ApplicationInfo.CATEGORY_SOCIAL to R.string.app_list_filter_category_social,
+                ApplicationInfo.CATEGORY_PRODUCTIVITY to R.string.app_list_filter_category_productivity,
+                ApplicationInfo.CATEGORY_UNDEFINED to R.string.app_list_filter_category_other,
+            )
     }
 }
 
