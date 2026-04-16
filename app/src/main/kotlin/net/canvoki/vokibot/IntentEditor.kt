@@ -39,7 +39,7 @@ import androidx.core.graphics.drawable.toBitmap
 
 data class ActivityContextSnapshot(
     val packageName: String,
-    val activityName: String,
+    val componentName: String,
     val appLabel: String,
     val appIcon: Drawable?,
     val supportedActions: List<ActionDefinition>,
@@ -48,13 +48,13 @@ data class ActivityContextSnapshot(
 fun probeSupportedActions(
     context: Context,
     packageName: String,
-    activityName: String,
+    componentName: String,
 ): List<ActionDefinition> {
     val pm = context.packageManager
     val supported = mutableListOf<ActionDefinition>()
 
     val targetPackage = packageName
-    val targetActivity = activityName
+    val targetActivity = componentName
 
     for (actionDef in StandardActions.all()) {
         val intent = Intent(actionDef.action)
@@ -78,17 +78,17 @@ fun probeSupportedActions(
 fun loadActivityContextSnapshot(
     context: Context,
     packageName: String,
-    activityName: String,
+    componentName: String,
 ): ActivityContextSnapshot {
     val pm = context.packageManager
     val appInfo = pm.getApplicationInfo(packageName, 0)
 
     return ActivityContextSnapshot(
         packageName = packageName,
-        activityName = activityName,
+        componentName = componentName,
         appLabel = pm.getApplicationLabel(appInfo).toString(),
         appIcon = pm.getApplicationIcon(appInfo),
-        supportedActions = probeSupportedActions(context, packageName, activityName),
+        supportedActions = probeSupportedActions(context, packageName, componentName),
     )
 }
 
@@ -108,7 +108,7 @@ fun ActivityHeader(snapshot: ActivityContextSnapshot) {
 
         Column {
             Text(snapshot.appLabel)
-            Text(snapshot.activityName)
+            Text(snapshot.componentName)
         }
     }
 }
@@ -206,12 +206,13 @@ fun IntentActionSelector(
 @Composable
 fun IntentEditor(
     packageName: String,
-    activityName: String,
+    component: PublicComponent,
 ) {
     val context = LocalContext.current
+    val componentName = component.name
     val snapshot =
-        remember(packageName, activityName) {
-            loadActivityContextSnapshot(context, packageName, activityName)
+        remember(packageName, componentName) {
+            loadActivityContextSnapshot(context, packageName, componentName)
         }
 
     var selectedAction by remember { mutableStateOf<ActionDefinition?>(null) }
@@ -323,7 +324,7 @@ fun IntentEditor(
             onClick = {
                 val intent =
                     Intent().apply {
-                        setClassName(packageName, activityName)
+                        setClassName(packageName, componentName)
                         addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
 
                         when {

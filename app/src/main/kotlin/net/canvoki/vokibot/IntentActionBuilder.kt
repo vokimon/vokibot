@@ -16,6 +16,7 @@ sealed class BuilderScreen {
     data class IntentEditor(
         val packageName: String,
         val componentName: String,
+        val component: PublicComponent,
     ) : BuilderScreen()
 }
 
@@ -49,6 +50,7 @@ fun IntentActionBuilder() {
                             BuilderScreen.IntentEditor(
                                 packageName = screen.packageName,
                                 componentName = component.name,
+                                component = component,
                             ),
                         )
                     },
@@ -58,7 +60,7 @@ fun IntentActionBuilder() {
             is BuilderScreen.IntentEditor -> {
                 IntentEditor(
                     packageName = screen.packageName,
-                    activityName = screen.componentName,
+                    component = screen.component,
                 )
             }
         }
