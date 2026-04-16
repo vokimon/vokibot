@@ -35,7 +35,7 @@ data class PublicComponent(
     val type: ComponentType,
     val name: String,
     val exported: Boolean,
-    val label: String?,
+    val label: String,
     val icon: Drawable? = null,
     val permissions: List<String> = emptyList(),
     val authorities: List<String> = emptyList(),
@@ -47,7 +47,7 @@ data class PublicComponent(
         buildString {
             appendLine("[${type.displayName}] $name")
             appendLine("  Exported: $exported")
-            if (label != null && label != name) appendLine("  Label: $label")
+            if (label != name) appendLine("  Label: $label")
             if (permissions.isNotEmpty()) appendLine("  Permissions: ${permissions.joinToString(", ")}")
             if (authorities.isNotEmpty()) appendLine("  Authorities: ${authorities.joinToString(", ")}")
 

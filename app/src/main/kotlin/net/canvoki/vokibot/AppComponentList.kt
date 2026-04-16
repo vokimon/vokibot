@@ -94,7 +94,7 @@ private fun ComponentRow(
         Spacer(modifier = Modifier.width(12.dp))
 
         Column(modifier = Modifier.weight(1f)) {
-            Text(text = component.label ?: component.name, style = MaterialTheme.typography.bodyLarge)
+            Text(text = component.label, style = MaterialTheme.typography.bodyLarge)
             Text(text = component.name, style = MaterialTheme.typography.bodySmall)
         }
 

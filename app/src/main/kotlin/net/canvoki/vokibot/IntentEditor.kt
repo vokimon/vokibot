@@ -93,11 +93,11 @@ fun loadActivityContextSnapshot(
 }
 
 @Composable
-fun ActivityHeader(snapshot: ActivityContextSnapshot) {
+fun ActivityHeader(component: PublicComponent) {
     Row {
         Image(
             painter =
-                snapshot.appIcon?.let {
+                component.icon?.let {
                     BitmapPainter(it.toBitmap().asImageBitmap())
                 } ?: painterResource(R.drawable.ic_brand),
             contentDescription = null,
@@ -107,8 +107,8 @@ fun ActivityHeader(snapshot: ActivityContextSnapshot) {
         Spacer(modifier = Modifier.size(12.dp))
 
         Column {
-            Text(snapshot.appLabel)
-            Text(snapshot.componentName)
+            Text(component.label)
+            Text(component.name)
         }
     }
 }
@@ -229,7 +229,7 @@ fun IntentEditor(
                     .verticalScroll(rememberScrollState())
                     .padding(16.dp),
         ) {
-            ActivityHeader(snapshot)
+            ActivityHeader(component)
 
             Spacer(modifier = Modifier.height(16.dp))
 
