@@ -26,6 +26,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.asImageBitmap
@@ -34,6 +35,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.drawable.toBitmap
+import kotlinx.coroutines.launch
 
 @Composable
 fun ActivityHeader(component: PublicComponent) {
@@ -152,6 +154,7 @@ fun IntentEditor(
     component: PublicComponent,
 ) {
     val context = LocalContext.current
+    val scope = rememberCoroutineScope()
     val componentName = component.name
 
     val actionsToShow = remember(component.actions) {
@@ -268,26 +271,32 @@ fun IntentEditor(
 
         Button(
             onClick = {
-                val intent =
-                    Intent().apply {
-                        setClassName(packageName, componentName)
-                        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-
-                        when {
-                            selectedAction != null -> action = selectedAction!!.action
-                            customAction.isNotBlank() -> action = customAction
-                        }
-
-                        extrasState.forEach { (key, value) ->
-                            when (value) {
-                                is String -> putExtra(key, value)
-                                is Int -> putExtra(key, value)
-                                is Boolean -> putExtra(key, value)
-                            }
-                        }
+                val actionStr = selectedAction?.action ?: customAction.takeIf { it.isNotBlank() }
+                val typedExtras = extrasState.mapValues { (_, v) ->
+                    when (v) {
+                        is String -> ExtraValue.StringValue(v)
+                        is Int -> ExtraValue.IntValue(v)
+                        is Boolean -> ExtraValue.BooleanValue(v)
+                        else -> ExtraValue.StringValue(v?.toString() ?: "")
                     }
+                }
 
-                context.startActivity(intent)
+                val command = LaunchActivityCommand(
+                    displayName = component.label,
+                    packageName = packageName,
+                    className = component.name,
+                    action = actionStr,
+                    extras = typedExtras,
+                )
+
+                scope.launch {
+                    try {
+                        command.execute(context)
+                    } catch (e: Exception) {
+                        // TODO: Show error to user (Snackbar/Toast)
+                        e.printStackTrace()
+                    }
+                }
             },
             modifier =
                 Modifier
