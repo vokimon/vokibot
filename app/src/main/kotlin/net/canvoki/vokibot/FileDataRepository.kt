@@ -11,19 +11,23 @@ class FileDataRepository(directoryPath: String) {
         _directory.mkdirs()
     }
 
+    fun _commandFile(id: String): File {
+        return File(_directory, "command_$id.json")
+    }
+
     fun saveCommand(id: String, command: Command) {
-        val file = File(_directory, "$id.json")
+        val file = _commandFile(id)
         file.writeText(command.toJson())
     }
 
     fun loadCommand(id: String): Command? {
-        val file = File(_directory, "$id.json")
+        val file = _commandFile(id)
         if (!file.exists()) return null
         return ApplicationCommand.fromJson(file.readText())
     }
 
     fun removeCommand(id: String) {
-        val file = File(_directory, "$id.json")
+        val file = _commandFile(id)
         if (!file.exists()) return
         file.delete()
     }
