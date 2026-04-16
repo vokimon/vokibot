@@ -68,11 +68,29 @@ class FileDataRepositoryTest {
 
         assertCommandEqual(original, retrieved)
     }
+
+    @Test
+    fun saveAndLoadCommand_differentIdsAreIsolated() {
+        val repository = FileDataRepository(testDir)
+        val idA = "cmd_a"
+        val idB = "cmd_b"
+        val commandA = defaultCommand()
+        val commandB = defaultCommand(displayName = "Different Command")
+
+        repository.saveCommand(idA, commandA)
+        repository.saveCommand(idB, commandB)
+        val retrievedA = repository.loadCommand(idA)
+
+        assertCommandEqual(commandA, retrievedA)
+    }
+
 }
 
 
-private fun defaultCommand(): ApplicationCommand = LaunchActivityCommand(
-    displayName = "Test Command",
+private fun defaultCommand(
+    displayName: String =  "Test Command",
+): ApplicationCommand = LaunchActivityCommand(
+    displayName = displayName,
     packageName = "com.test.pkg",
     className = "com.test.pkg.MainActivity"
 )

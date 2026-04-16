@@ -4,16 +4,16 @@ import java.io.File
 
 class FileDataRepository(directoryPath: String) {
     typealias Command = ApplicationCommand
-    var _command: Command? = null
+    private val _commands = mutableMapOf<String, Command>()
     init {
         File(directoryPath).mkdirs()
     }
 
     fun saveCommand(id: String, command: Command) {
-        _command = command
+        _commands[id] = command
     }
 
     fun loadCommand(id: String): Command? {
-        return _command
+        return _commands[id]
     }
 }
