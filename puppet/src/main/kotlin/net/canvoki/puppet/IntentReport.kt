@@ -36,7 +36,8 @@ fun IntentReport(activityName: String, intent: Intent) {
             if (extras != null && !extras.isEmpty) {
                 for (key in extras.keySet()) {
                     val value = extras[key]?.toString() ?: "null"
-                    Text("  $key = $value")
+                    val type = extras[key]?.javaClass?.simpleName
+                    Text("  $key (${type}) = $value")
                 }
             } else {
                 Text("  (none)")

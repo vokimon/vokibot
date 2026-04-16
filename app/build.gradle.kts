@@ -151,6 +151,27 @@ tasks.withType<Test> {
     }
 }
 
+tasks.register("installPuppetForTests") {
+    dependsOn(":puppet:assembleDebug")
+    doLast {
+        val puppetApk = project(":puppet").file("build/outputs/apk/debug/puppet-debug.apk")
+        if (!puppetApk.exists()) {
+            throw GradleException("Puppet APK not found: ${puppetApk.absolutePath}")
+        }
+        @Suppress("DEPRECATION")
+        exec {
+            executable(androidComponents.sdkComponents.adb.get().asFile.absolutePath)
+            args("install", "-r", puppetApk.absolutePath)
+        }
+    }
+}
+
+afterEvaluate {
+    tasks.named("connectedFlossDebugAndroidTest") {
+        dependsOn("installPuppetForTests")
+    }
+}
+
 dependencies {
     implementation(project(":shared"))
 
@@ -174,6 +195,7 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.tooling)
 
     // Test
+    testImplementation(project(":shared"))
     testImplementation(libs.junit)
     testImplementation(libs.java.diff.utils)
     testImplementation(libs.kotlinx.coroutines.test)
@@ -181,5 +203,7 @@ dependencies {
 
     androidTestImplementation(libs.androidx.test.core)
     androidTestImplementation(libs.androidx.test.ext.junit)
+    androidTestImplementation(libs.java.diff.utils)
+    androidTestImplementation(libs.androidx.test.espresso.core)
     androidTestImplementation(libs.kotlinx.coroutines.test)
 }
