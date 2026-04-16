@@ -58,10 +58,10 @@ class FileDataRepositoryTest {
     }
 
     @Test
-    fun saveAndLoadCommand_roundTrip() {
+    fun loadCommand_alreadySaved() {
         val repository = FileDataRepository(testDir)
         val commandId = "my_command"
-        val original = defaultCommand()
+        val original = buildCommand()
 
         repository.saveCommand(commandId, original)
         val retrieved = repository.loadCommand(commandId)
@@ -70,16 +70,26 @@ class FileDataRepositoryTest {
     }
 
     @Test
+    fun loadCommand_notFound_returnsNull() {
+        val repository = FileDataRepository(testDir)
+
+        val original = buildCommand()
+        repository.saveCommand("id1", original)
+
+        val retrieved = repository.loadCommand("non_existent_id")
+
+        assertCommandEqual(null, retrieved)
+    }
+
+    @Test
     fun commandsIsolatedById() {
         val repository = FileDataRepository(testDir)
-        val idA = "cmd_a"
-        val idB = "cmd_b"
-        val commandA = defaultCommand()
-        val commandB = defaultCommand(displayName = "Different Command")
+        val commandA = buildCommand()
+        val commandB = buildCommand(displayName = "Different Command")
 
-        repository.saveCommand(idA, commandA)
-        repository.saveCommand(idB, commandB)
-        val retrievedA = repository.loadCommand(idA)
+        repository.saveCommand("id_A", commandA)
+        repository.saveCommand("id_B", commandB)
+        val retrievedA = repository.loadCommand("id_A")
 
         assertCommandEqual(commandA, retrievedA)
     }
@@ -87,20 +97,29 @@ class FileDataRepositoryTest {
     @Test
     fun dataIsPersistent() {
         val repo1 = FileDataRepository(testDir)
-        val commandId = "persistent_cmd"
-        val original = defaultCommand()
-        repo1.saveCommand(commandId, original)
+        val original = buildCommand()
+        repo1.saveCommand("id1", original)
 
         val repo2 = FileDataRepository(testDir) // Same directory, new instance
-        val retrieved = repo2.loadCommand(commandId)
+        val retrieved = repo2.loadCommand("id1")
 
         assertCommandEqual(original, retrieved)
     }
 
+    @Test
+    fun removeCommand() {
+        val repo = FileDataRepository(testDir)
+        val original = buildCommand()
+        repo.saveCommand("id1", original)
+        repo.removeCommand("id1")
+
+        val retrieved = repo.loadCommand("id1")
+        assertCommandEqual(null, retrieved)
+    }
 }
 
 
-private fun defaultCommand(
+private fun buildCommand(
     displayName: String =  "Test Command",
 ): ApplicationCommand = LaunchActivityCommand(
     displayName = displayName,

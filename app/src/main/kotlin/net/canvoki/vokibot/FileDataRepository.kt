@@ -21,4 +21,10 @@ class FileDataRepository(directoryPath: String) {
         if (!file.exists()) return null
         return ApplicationCommand.fromJson(file.readText())
     }
+
+    fun removeCommand(id: String) {
+        val file = File(_directory, "$id.json")
+        if (!file.exists()) return
+        file.delete()
+    }
 }
