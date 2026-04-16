@@ -2,8 +2,6 @@ package net.canvoki.vokibot
 
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.graphics.drawable.Drawable
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -36,61 +34,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.drawable.toBitmap
-
-data class ActivityContextSnapshot(
-    val packageName: String,
-    val componentName: String,
-    val appLabel: String,
-    val appIcon: Drawable?,
-    val supportedActions: List<ActionDefinition>,
-)
-
-fun probeSupportedActions(
-    context: Context,
-    packageName: String,
-    componentName: String,
-): List<ActionDefinition> {
-    val pm = context.packageManager
-    val supported = mutableListOf<ActionDefinition>()
-
-    val targetPackage = packageName
-    val targetActivity = componentName
-
-    for (actionDef in StandardActions.all()) {
-        val intent = Intent(actionDef.action)
-
-        val resolved = pm.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY)
-
-        val matchesTarget =
-            resolved.any { ri ->
-                ri.activityInfo?.packageName == targetPackage &&
-                    ri.activityInfo?.name == targetActivity
-            }
-
-        if (matchesTarget) {
-            supported.add(actionDef)
-        }
-    }
-
-    return supported
-}
-
-fun loadActivityContextSnapshot(
-    context: Context,
-    packageName: String,
-    componentName: String,
-): ActivityContextSnapshot {
-    val pm = context.packageManager
-    val appInfo = pm.getApplicationInfo(packageName, 0)
-
-    return ActivityContextSnapshot(
-        packageName = packageName,
-        componentName = componentName,
-        appLabel = pm.getApplicationLabel(appInfo).toString(),
-        appIcon = pm.getApplicationIcon(appInfo),
-        supportedActions = probeSupportedActions(context, packageName, componentName),
-    )
-}
 
 @Composable
 fun ActivityHeader(component: PublicComponent) {
