@@ -5,15 +5,20 @@ import java.io.File
 class FileDataRepository(directoryPath: String) {
     typealias Command = ApplicationCommand
     private val _commands = mutableMapOf<String, Command>()
+    private val _directory = File(directoryPath)
+
     init {
-        File(directoryPath).mkdirs()
+        _directory.mkdirs()
     }
 
     fun saveCommand(id: String, command: Command) {
-        _commands[id] = command
+        val file = File(_directory, "$id.json")
+        file.writeText(command.toJson())
     }
 
     fun loadCommand(id: String): Command? {
-        return _commands[id]
+        val file = File(_directory, "$id.json")
+        if (!file.exists()) return null
+        return ApplicationCommand.fromJson(file.readText())
     }
 }

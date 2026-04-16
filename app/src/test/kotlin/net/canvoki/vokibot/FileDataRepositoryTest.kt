@@ -70,7 +70,7 @@ class FileDataRepositoryTest {
     }
 
     @Test
-    fun saveAndLoadCommand_differentIdsAreIsolated() {
+    fun commandsIsolatedById() {
         val repository = FileDataRepository(testDir)
         val idA = "cmd_a"
         val idB = "cmd_b"
@@ -82,6 +82,19 @@ class FileDataRepositoryTest {
         val retrievedA = repository.loadCommand(idA)
 
         assertCommandEqual(commandA, retrievedA)
+    }
+
+    @Test
+    fun dataIsPersistent() {
+        val repo1 = FileDataRepository(testDir)
+        val commandId = "persistent_cmd"
+        val original = defaultCommand()
+        repo1.saveCommand(commandId, original)
+
+        val repo2 = FileDataRepository(testDir) // Same directory, new instance
+        val retrieved = repo2.loadCommand(commandId)
+
+        assertCommandEqual(original, retrieved)
     }
 
 }
