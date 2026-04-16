@@ -4,7 +4,6 @@ import java.io.File
 
 class FileDataRepository(directoryPath: String) {
     typealias Command = ApplicationCommand
-    private val _commands = mutableMapOf<String, Command>()
     private val _directory = File(directoryPath)
 
     init {
@@ -31,4 +30,10 @@ class FileDataRepository(directoryPath: String) {
         if (!file.exists()) return
         file.delete()
     }
+
+    fun existsCommand(id: String): Boolean {
+        val file = _commandFile(id)
+        return file.exists()
+    }
+
 }

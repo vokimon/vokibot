@@ -95,7 +95,7 @@ class FileDataRepositoryTest {
     }
 
     @Test
-    fun dataIsPersistent() {
+    fun dataPersistence() {
         val repo1 = FileDataRepository(testDir)
         val original = buildCommand()
         repo1.saveCommand("id1", original)
@@ -115,6 +115,26 @@ class FileDataRepositoryTest {
 
         val retrieved = repo.loadCommand("id1")
         assertCommandEqual(null, retrieved)
+    }
+
+    @Test
+    fun existsComandWhenItExists() {
+        val repo = FileDataRepository(testDir)
+        val original = buildCommand()
+        repo.saveCommand("id1", original)
+
+        val doesExist = repo.existsCommand("id1")
+        assertEquals(true, doesExist)
+    }
+
+    @Test
+    fun existsComandWhenItDoesNotExist() {
+        val repo = FileDataRepository(testDir)
+        val original = buildCommand()
+        repo.saveCommand("id1", original)
+
+        val doesExist = repo.existsCommand("non-existing")
+        assertEquals(false, doesExist)
     }
 }
 
