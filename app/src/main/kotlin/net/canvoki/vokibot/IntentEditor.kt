@@ -210,10 +210,13 @@ fun IntentEditor(
 ) {
     val context = LocalContext.current
     val componentName = component.name
-    val snapshot =
-        remember(packageName, componentName) {
-            loadActivityContextSnapshot(context, packageName, componentName)
+
+    val actionsToShow = remember(component.actions) {
+        val mapped = component.actions.mapNotNull { actionStr ->
+            StandardActions.all().find { it.action == actionStr }
         }
+        if (mapped.isNotEmpty()) mapped else StandardActions.all()
+    }
 
     var selectedAction by remember { mutableStateOf<ActionDefinition?>(null) }
     var customAction by remember { mutableStateOf("") }
@@ -234,7 +237,7 @@ fun IntentEditor(
             Spacer(modifier = Modifier.height(16.dp))
 
             IntentActionSelector(
-                supportedActions = snapshot.supportedActions,
+                supportedActions = actionsToShow,
                 onSelected = { selectedAction = it },
                 onCustomChanged = { customAction = it },
             )
