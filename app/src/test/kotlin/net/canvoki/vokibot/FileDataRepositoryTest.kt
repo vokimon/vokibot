@@ -1,11 +1,13 @@
 package net.canvoki.vokibot
 
+import net.canvoki.shared.test.assertEquals
 import org.junit.After
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import java.io.File
+import net.canvoki.shared.test.assertJsonEqual
 
 class FileDataRepositoryTest {
     private val testDir = "test_repo"
@@ -34,4 +36,50 @@ class FileDataRepositoryTest {
             File(testDir).exists(),
         )
     }
+
+    @Test
+    fun preservesExistingFilesOnConstruction() {
+        val existingFile = File(testDir, "existing.txt")
+        val originalContent = "original content\nwith multiple lines"
+
+        // Setup: create directory and file with known content BEFORE repository construction
+        File(testDir).mkdirs()
+        existingFile.writeText(originalContent)
+
+        // Act: construct repository (should not mutate existing files)
+        FileDataRepository(testDir)
+
+        // Assert: file content unchanged
+        assertEquals(
+            originalContent,
+            existingFile.readText(),
+            "Existing file content should be preserved after repository construction",
+        )
+    }
+
+    @Test
+    fun saveAndLoadCommand_roundTrip() {
+        val repository = FileDataRepository(testDir)
+        val commandId = "my_command"
+        val original = defaultCommand()
+
+        repository.saveCommand(commandId, original)
+        val retrieved = repository.loadCommand(commandId)
+
+        assertCommandEqual(original, retrieved)
+    }
+}
+
+
+private fun defaultCommand(): ApplicationCommand = LaunchActivityCommand(
+    displayName = "Test Command",
+    packageName = "com.test.pkg",
+    className = "com.test.pkg.MainActivity"
+)
+
+fun assertCommandEqual(expected: ApplicationCommand?, actual: ApplicationCommand?) {
+    assertJsonEqual(
+        expected?.toJson() ?: "null",
+        actual?.toJson() ?: "null",
+    )
 }
