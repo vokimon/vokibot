@@ -150,6 +150,7 @@ data class LaunchActivityCommand(
     val extras: Map<String, ExtraValue> = emptyMap(),
     val flagList: List<String> = emptyList(),
 ) : ApplicationCommand() {
+    @kotlinx.serialization.Transient
     override val typeLabelRes: Int = R.string.command_type_launch_activity
 
     override suspend fun execute(context: Context) {
@@ -195,6 +196,7 @@ data class SendBroadcastCommand(
     val extras: Map<String, ExtraValue> = emptyMap(),
     val permission: String? = null,
 ) : ApplicationCommand() {
+    @kotlinx.serialization.Transient
     override val typeLabelRes: Int = R.string.command_type_send_broadcast
 
     override suspend fun execute(context: Context) {
@@ -226,6 +228,7 @@ data class StartServiceCommand(
     val action: String? = null,
     val extras: Map<String, ExtraValue> = emptyMap(),
 ) : ApplicationCommand() {
+    @kotlinx.serialization.Transient
     override val typeLabelRes: Int = R.string.command_type_start_service
 
     override suspend fun execute(context: Context) {
@@ -259,6 +262,7 @@ data class AccessProviderCommand(
     val mimeType: String? = null,
     val extras: Map<String, ExtraValue> = emptyMap(),
 ) : ApplicationCommand() {
+    @kotlinx.serialization.Transient
     override val typeLabelRes: Int = R.string.command_type_access_provider
 
     override suspend fun execute(context: Context) {
