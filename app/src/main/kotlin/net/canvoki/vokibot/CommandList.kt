@@ -1,24 +1,31 @@
 package net.canvoki.vokibot
 
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.ListItem
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.launch
+import net.canvoki.shared.component.AsyncList
 import net.canvoki.shared.component.ChooserDialog
 import net.canvoki.shared.component.ChooserOption
 
@@ -27,20 +34,79 @@ fun CommandList(
     onLaunchAppSelected: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    val scope = rememberCoroutineScope()
+    val context = LocalContext.current
+    val repository = remember { FileDataRepository.fromContext(context) }
     var showTypeChooser by remember { mutableStateOf(false) }
+    var refreshCounter by remember { mutableStateOf(0) }
 
     Box(modifier = modifier.fillMaxSize()) {
-        /*
         AsyncList(
-            refreshKeys = listOf(filterText, selectedCategories, showSystemApps),
-            loader = { loadApps(packageManager, context.packageName, filterText, selectedCategories, showSystemApps) },
-            itemKey = { it.packageName },
-            notFoundMessage = stringResource(R.string.applist_not_found),
-            listState = listState,
-        ) { app ->
-            AppListItem(app, onClick = { onSelected(app) })
+            refreshKeys = listOf(refreshCounter),
+            loader = { repository.loadAllCommands() },
+            itemKey = { it.id },
+            //notFoundMessage = stringResource(R.string.commandlist_not_found),
+        ) { command ->
+            var menuExpanded by remember { mutableStateOf(false) }
+
+            ListItem(
+                headlineContent = { Text(command.displayName) },
+                supportingContent = {
+                    Text(
+                        text = "${command.packageName}/${(command as? LaunchActivityCommand)?.className ?: ""}",
+                        style = MaterialTheme.typography.bodySmall,
+                        maxLines = 1,
+                    )
+                },
+                trailingContent = {
+                    IconButton(onClick = { menuExpanded = true }) {
+                        Icon(
+                            painter = painterResource(R.drawable.ic_more_vert),
+                            contentDescription = "Options",
+                        )
+                    }
+                    DropdownMenu(
+                        expanded = menuExpanded,
+                        onDismissRequest = { menuExpanded = false },
+                    ) {
+                        DropdownMenuItem(
+                            text = { Text("Try") },
+                            leadingIcon = {
+                                Icon(
+                                    painter = painterResource(R.drawable.ic_play_arrow),
+                                    contentDescription = null,
+                                )
+                            },
+                            onClick = {
+                                menuExpanded = false
+                                scope.launch {
+                                    try {
+                                        command.execute(context)
+                                    } catch (e: Exception) {
+                                        // TODO: Show error via UserMessage
+                                        e.printStackTrace()
+                                    }
+                                }
+                            },
+                        )
+                        DropdownMenuItem(
+                            text = { Text("Remove") },
+                            leadingIcon = {
+                                Icon(
+                                    painter = painterResource(R.drawable.ic_delete),
+                                    contentDescription = null,
+                                )
+                            },
+                            onClick = {
+                                menuExpanded = false
+                                repository.removeCommand(command.id)
+                                refreshCounter++
+                            },
+                        )
+                    }
+                },
+            )
         }
-        */
 
         FloatingActionButton(
             onClick = { showTypeChooser = true },
@@ -51,22 +117,20 @@ fun CommandList(
                 contentDescription = "Create command",
             )
         }
-        if (showTypeChooser) {
-            ChooserDialog(
-                title = "Create Command",
-                options = listOf(
-                    ChooserOption(value = "application", label = "Launch an Application"),
-                ),
-                selectedValue = "",
-                onConfirm = { value ->
-                    showTypeChooser = false
-                    if (value == "application") {
-                        onLaunchAppSelected()
-                    }
-                },
-                onDismiss = { showTypeChooser = false },
+    }
 
-            )
-        }
+    if (showTypeChooser) {
+        ChooserDialog(
+            title = "Create Command",
+            options = listOf(
+                ChooserOption(value = "application", label = "Launch an Application"),
+            ),
+            selectedValue = "",
+            onConfirm = { value ->
+                showTypeChooser = false
+                if (value == "application") onLaunchAppSelected()
+            },
+            onDismiss = { showTypeChooser = false },
+        )
     }
 }
