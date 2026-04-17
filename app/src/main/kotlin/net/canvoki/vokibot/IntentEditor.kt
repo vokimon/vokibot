@@ -44,7 +44,7 @@ import kotlinx.coroutines.launch
 import net.canvoki.shared.usermessage.UserMessage
 
 @Composable
-fun ActivityHeader(component: PublicComponent) {
+fun ActivityHeader(packageName: String, component: PublicComponent) {
     Row {
         Image(
             painter =
@@ -59,7 +59,7 @@ fun ActivityHeader(component: PublicComponent) {
 
         Column {
             Text(component.label)
-            Text(component.name)
+            Text(formatComponentName(packageName, component.name))
         }
     }
 }
@@ -161,7 +161,6 @@ fun IntentEditor(
 ) {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
-    val componentName = component.name
     val repository = remember { FileDataRepository.fromContext(context) }
 
     val actionsToShow = remember(component.actions) {
@@ -211,7 +210,7 @@ fun IntentEditor(
                     .verticalScroll(rememberScrollState())
                     .padding(16.dp),
         ) {
-            ActivityHeader(component)
+            ActivityHeader(packageName = packageName, component = component)
 
             Spacer(modifier = Modifier.height(16.dp))
 
@@ -395,4 +394,9 @@ fun IntentEditor(
             },
         )
     }
+}
+
+private fun formatComponentName(packageName: String, fullName: String): String {
+    val prefix = "$packageName."
+    return if (fullName.startsWith(prefix)) fullName.substring(packageName.length) else fullName
 }

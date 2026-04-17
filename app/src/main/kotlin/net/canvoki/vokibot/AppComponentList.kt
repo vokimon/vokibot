@@ -68,12 +68,13 @@ fun AppComponentList(
         groupBy = { it.type.displayName },
         notFoundMessage = stringResource(R.string.activitylist_not_found),
     ) { component ->
-        ComponentRow(component, onSelected)
+        ComponentRow(packageName, component, onSelected)
     }
 }
 
 @Composable
 private fun ComponentRow(
+    packageName: String,
     component: PublicComponent,
     onClick: (PublicComponent) -> Unit,
 ) {
@@ -95,10 +96,15 @@ private fun ComponentRow(
 
         Column(modifier = Modifier.weight(1f)) {
             Text(text = component.label, style = MaterialTheme.typography.bodyLarge)
-            Text(text = component.name, style = MaterialTheme.typography.bodySmall)
+            Text(text = formatComponentName(packageName, component.name), style = MaterialTheme.typography.bodySmall)
         }
 
         Spacer(modifier = Modifier.width(8.dp))
         ActionIcons(component.actions)
     }
+}
+
+private fun formatComponentName(packageName: String, fullName: String): String {
+    val prefix = "$packageName."
+    return if (fullName.startsWith(prefix)) fullName.substring(packageName.length) else fullName
 }
