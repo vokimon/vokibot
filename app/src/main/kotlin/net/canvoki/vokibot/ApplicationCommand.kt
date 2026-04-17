@@ -91,6 +91,16 @@ sealed class ApplicationCommand {
     abstract val displayName: String
     abstract val packageName: String
 
+    val id: String
+        get() = displayName.toFileSystemId()
+
+    private fun String.toFileSystemId(): String =
+        replace(Regex("[^a-zA-Z0-9_.-]"), "_")
+            .replace(Regex("_+"), "_")
+            .take(64)
+            .trim('_')
+            .ifBlank { "unnamed" }
+
     /**
      * Execute this command when the trigger condition is met.
      */

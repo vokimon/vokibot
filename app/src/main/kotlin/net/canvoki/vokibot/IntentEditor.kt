@@ -351,10 +351,10 @@ fun IntentEditor(
                 Button(
                     onClick = {
                         val command = buildCommand(proposedName)
-                        if (repository.existsCommand(proposedName)) {
+                        if (repository.existsCommand(command.id)) {
                             showOverwriteDialog = true
                         } else {
-                            repository.saveCommand(proposedName, command)
+                            repository.saveCommand(command)
                             UserMessage.Info(commandSavedMsg).post()
                         }
                         showNameDialog = false
@@ -379,7 +379,7 @@ fun IntentEditor(
             confirmButton = {
                 Button(
                     onClick = {
-                        repository.saveCommand(proposedName, buildCommand(proposedName))
+                        repository.saveCommand(buildCommand(proposedName))
                         UserMessage.Info(commandOverwrittenMsg).post()
                         showOverwriteDialog = false
                     },

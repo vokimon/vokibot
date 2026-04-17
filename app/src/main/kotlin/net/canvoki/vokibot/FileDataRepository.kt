@@ -24,8 +24,8 @@ class FileDataRepository(directoryPath: String = "repodata") {
         return File(_directory, "command_$id.json")
     }
 
-    fun saveCommand(id: String, command: Command) {
-        val file = _commandFile(id)
+    fun saveCommand(command: Command) {
+        val file = _commandFile(command.id)
         file.writeText(command.toJson())
     }
 

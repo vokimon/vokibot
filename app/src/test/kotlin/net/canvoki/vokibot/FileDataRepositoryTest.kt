@@ -60,11 +60,10 @@ class FileDataRepositoryTest {
     @Test
     fun loadCommand_alreadySaved() {
         val repository = FileDataRepository(testDir)
-        val commandId = "my_command"
-        val original = buildCommand()
+        val original = buildCommand("my_id")
 
-        repository.saveCommand(commandId, original)
-        val retrieved = repository.loadCommand(commandId)
+        repository.saveCommand(original)
+        val retrieved = repository.loadCommand("my_id")
 
         assertCommandEqual(original, retrieved)
     }
@@ -73,8 +72,8 @@ class FileDataRepositoryTest {
     fun loadCommand_notFound_returnsNull() {
         val repository = FileDataRepository(testDir)
 
-        val original = buildCommand()
-        repository.saveCommand("id1", original)
+        val original = buildCommand("id1")
+        repository.saveCommand(original)
 
         val retrieved = repository.loadCommand("non_existent_id")
 
@@ -84,11 +83,11 @@ class FileDataRepositoryTest {
     @Test
     fun commandsIsolatedById() {
         val repository = FileDataRepository(testDir)
-        val commandA = buildCommand()
-        val commandB = buildCommand(displayName = "Different Command")
+        val commandA = buildCommand("id_A")
+        val commandB = buildCommand("id_B")
 
-        repository.saveCommand("id_A", commandA)
-        repository.saveCommand("id_B", commandB)
+        repository.saveCommand(commandA)
+        repository.saveCommand(commandB)
         val retrievedA = repository.loadCommand("id_A")
 
         assertCommandEqual(commandA, retrievedA)
@@ -97,8 +96,8 @@ class FileDataRepositoryTest {
     @Test
     fun dataPersistence() {
         val repo1 = FileDataRepository(testDir)
-        val original = buildCommand()
-        repo1.saveCommand("id1", original)
+        val original = buildCommand("id1")
+        repo1.saveCommand(original)
 
         val repo2 = FileDataRepository(testDir) // Same directory, new instance
         val retrieved = repo2.loadCommand("id1")
@@ -109,8 +108,8 @@ class FileDataRepositoryTest {
     @Test
     fun removeCommand() {
         val repo = FileDataRepository(testDir)
-        val original = buildCommand()
-        repo.saveCommand("id1", original)
+        val original = buildCommand("id1")
+        repo.saveCommand(original)
         repo.removeCommand("id1")
 
         val retrieved = repo.loadCommand("id1")
@@ -120,8 +119,8 @@ class FileDataRepositoryTest {
     @Test
     fun existsComandWhenItExists() {
         val repo = FileDataRepository(testDir)
-        val command = buildCommand()
-        repo.saveCommand("id1", command)
+        val command = buildCommand("id1")
+        repo.saveCommand(command)
 
         val doesExist = repo.existsCommand("id1")
         assertEquals(true, doesExist)
@@ -130,8 +129,8 @@ class FileDataRepositoryTest {
     @Test
     fun existsComandWhenItDoesNotExist() {
         val repo = FileDataRepository(testDir)
-        val command = buildCommand()
-        repo.saveCommand("id1", command)
+        val command = buildCommand("id1")
+        repo.saveCommand(command)
 
         val doesExist = repo.existsCommand("non-existing")
         assertEquals(false, doesExist)
@@ -140,8 +139,8 @@ class FileDataRepositoryTest {
     @Test
     fun listCommands_singleCommand() {
         val repo = FileDataRepository(testDir)
-        val command = buildCommand()
-        repo.saveCommand("id1", command)
+        val command = buildCommand("id1")
+        repo.saveCommand(command)
 
         val list = repo.listCommands()
         assertEquals(listOf("id1"), list)
@@ -159,8 +158,8 @@ class FileDataRepositoryTest {
     fun listCommands_manyCommands() {
         val repo = FileDataRepository(testDir)
 
-        repo.saveCommand("id1", buildCommand())
-        repo.saveCommand("id2", buildCommand(displayName="Second"))
+        repo.saveCommand(buildCommand("id1"))
+        repo.saveCommand(buildCommand("id2"))
 
         val list = repo.listCommands()
         assertEquals(listOf("id1","id2"), list)
@@ -169,7 +168,7 @@ class FileDataRepositoryTest {
     @Test
     fun listCommands_ignoresBadPrefix() {
         val repo = FileDataRepository(testDir)
-        repo.saveCommand("cmd1", buildCommand())
+        repo.saveCommand(buildCommand("cmd1"))
         File(testDir, "log.json").writeText("{}")
 
         assertEquals(listOf("cmd1"), repo.listCommands())
@@ -178,7 +177,7 @@ class FileDataRepositoryTest {
     @Test
     fun listCommands_ignoresBadSuffix() {
         val repo = FileDataRepository(testDir)
-        repo.saveCommand("cmd1", buildCommand())
+        repo.saveCommand(buildCommand("cmd1"))
         File(testDir, "command_log.txt").writeText("{}")
 
         assertEquals(listOf("cmd1"), repo.listCommands())
@@ -187,8 +186,8 @@ class FileDataRepositoryTest {
     @Test
     fun loadAllCommands_returnsSingleSavedCommand() {
         val repo = FileDataRepository(testDir)
-        val original = buildCommand()
-        repo.saveCommand("id1", original)
+        val original = buildCommand("id1")
+        repo.saveCommand(original)
 
         val loaded = repo.loadAllCommands()
         assertCommandEqual(original, loaded.firstOrNull())
