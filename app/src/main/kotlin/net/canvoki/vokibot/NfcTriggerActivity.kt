@@ -1,5 +1,6 @@
 package net.canvoki.vokibot
 
+import android.content.Intent
 import android.nfc.NfcAdapter
 import android.nfc.Tag
 import android.os.Bundle
@@ -13,45 +14,42 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import net.canvoki.shared.component.AppScaffold
+import net.canvoki.shared.component.WatermarkBox
 
 class NfcTriggerActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
-            MaterialTheme {
-                NfcUidDisplayScreen(
-                    intent = intent,
-                    onBack = { finish() }
-                )
-            }
+         setContent {
+            NfcActivityScreen(
+                intent = intent,
+                onBack = { finish() }
+            )
         }
     }
 
-    override fun onNewIntent(intent: android.content.Intent) {
+    override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         // Update the content with the new intent
         setContent {
-            MaterialTheme {
-                NfcUidDisplayScreen(
-                    intent = intent,
-                    onBack = { finish() }
-                )
-            }
+            NfcActivityScreen(
+                intent = intent,
+                onBack = { finish() }
+            )
         }
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
+
 @Composable
-private fun NfcUidDisplayScreen(
-    intent: android.content.Intent,
+private fun NfcActivityScreen(
+    intent: Intent,
     onBack: () -> Unit,
 ) {
-    val uid = remember(intent) { extractUidFromIntent(intent) }
-
-    Scaffold(
+    AppScaffold(
         topBar = {
+            @OptIn(ExperimentalMaterial3Api::class)
             TopAppBar(
                 title = { Text(stringResource(R.string.nfc_trigger_title)) },
                 navigationIcon = {
@@ -64,6 +62,28 @@ private fun NfcUidDisplayScreen(
                 }
             )
         }
+    ) {
+        WatermarkBox(
+            watermark = painterResource(R.drawable.ic_brand),
+        ) {
+            NfcUidDisplayScreen(
+                intent = intent,
+                onBack = onBack,
+            )
+        }
+    }
+}
+
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun NfcUidDisplayScreen(
+    intent: Intent,
+    onBack: () -> Unit,
+) {
+    val uid = remember(intent) { extractUidFromIntent(intent) }
+
+    Scaffold(
     ) { padding ->
         Column(
             modifier = Modifier
