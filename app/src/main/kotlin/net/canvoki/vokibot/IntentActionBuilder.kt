@@ -7,6 +7,7 @@ import net.canvoki.shared.component.StackNavigator
 import net.canvoki.shared.component.rememberStackNavigatorState
 
 sealed class BuilderScreen {
+    data object CommandList : BuilderScreen()
     data object AppList : BuilderScreen()
 
     data class ComponentList(
@@ -24,13 +25,17 @@ sealed class BuilderScreen {
 fun IntentActionBuilder() {
     val nav =
         rememberStackNavigatorState<BuilderScreen>(
-            BuilderScreen.AppList,
+            BuilderScreen.CommandList,
         )
     val appListState = rememberSaveable(saver = LazyListState.Saver) { LazyListState() }
 
     StackNavigator(state = nav) { screen ->
 
         when (screen) {
+            is BuilderScreen.CommandList -> CommandList(
+                onLaunchAppSelected = { nav.push(BuilderScreen.AppList) }
+            )
+
             is BuilderScreen.AppList -> {
                 AppList(
                     listState = appListState,
