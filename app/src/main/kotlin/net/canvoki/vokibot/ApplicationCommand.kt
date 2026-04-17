@@ -96,6 +96,7 @@ sealed class ApplicationCommand {
      * String resource ID for the human-readable command type label.
      * Used for grouping, filtering, and display in lists.
      */
+    @kotlinx.serialization.Transient
     @get:StringRes
     abstract val typeLabelRes: Int
 
