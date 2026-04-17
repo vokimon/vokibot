@@ -38,3 +38,7 @@ commandlist_delete_title: Befehl löschen?
 commandlist_delete_message: Diese Aktion kann nicht rückgängig gemacht werden.
 commandlist_delete: Löschen
 commandlist_cancel: Abbrechen
+command_type_launch_activity: "App: Bildschirm öffnen"
+command_type_send_broadcast: "App: Benachrichtigung senden"
+command_type_start_service: "App: Prozess starten"
+command_type_access_provider: "App: Auf Daten zugreifen"

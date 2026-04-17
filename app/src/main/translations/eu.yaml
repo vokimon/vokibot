@@ -38,3 +38,7 @@ commandlist_delete_title: Komandoa ezabatu?
 commandlist_delete_message: Ekintza hau ezin da desegin.
 commandlist_delete: Ezabatu
 commandlist_cancel: Utzi
+command_type_launch_activity: "Aplikazioa: Pantaila ireki"
+command_type_send_broadcast: "Aplikazioa: Jakinarazpena bidali"
+command_type_start_service: "Aplikazioa: Prozesua abiarazi"
+command_type_access_provider: "Aplikazioa: Datuetara sartu"

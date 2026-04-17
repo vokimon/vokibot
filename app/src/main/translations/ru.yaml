@@ -38,3 +38,7 @@ commandlist_delete_title: Удалить команду?
 commandlist_delete_message: Это действие нельзя отменить.
 commandlist_delete: Удалить
 commandlist_cancel: Отмена
+command_type_launch_activity: "Приложение: Открыть экран"
+command_type_send_broadcast: "Приложение: Отправить уведомление"
+command_type_start_service: "Приложение: Запустить процесс"
+command_type_access_provider: "Приложение: Доступ к данным"

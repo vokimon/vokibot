@@ -1,7 +1,10 @@
 package net.canvoki.vokibot
 
+import android.content.ComponentName
+import android.content.Context
 import android.graphics.drawable.Drawable
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -65,11 +68,37 @@ fun AppComponentList(
                 .sortedWith(compareBy({ it.type }, { !it.exported }, { it.name }))
         },
         itemKey = { it.name },
-        groupBy = { it.type.displayName },
+        groupBy = { it.type.name },
+        headerContent = { groupKey: String ->
+            ComponentGroupHeader(groupKey)
+        },
         notFoundMessage = stringResource(R.string.activitylist_not_found),
     ) { component ->
         ComponentRow(packageName, component, onSelected)
     }
+}
+
+/**
+ * Renders a translated, styled header for a component type group.
+ * Maps the string group key back to ComponentType for translation.
+ */
+@Composable
+private fun ComponentGroupHeader(groupKey: String) {
+    val type = ComponentType.valueOf(groupKey)
+    Text(
+        text = when (type) {
+            ComponentType.ACTIVITY -> stringResource(R.string.command_type_launch_activity)
+            ComponentType.RECEIVER -> stringResource(R.string.command_type_send_broadcast)
+            ComponentType.SERVICE -> stringResource(R.string.command_type_start_service)
+            ComponentType.PROVIDER -> stringResource(R.string.command_type_access_provider)
+        },
+        style = MaterialTheme.typography.titleSmall,
+        color = MaterialTheme.colorScheme.primary,
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(MaterialTheme.colorScheme.surface)
+            .padding(horizontal = 16.dp, vertical = 8.dp),
+    )
 }
 
 @Composable

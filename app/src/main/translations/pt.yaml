@@ -38,3 +38,7 @@ commandlist_delete_title: Excluir comando?
 commandlist_delete_message: Esta ação não pode ser desfeita.
 commandlist_delete: Excluir
 commandlist_cancel: Cancelar
+command_type_launch_activity: "Aplicativo: Abrir tela"
+command_type_send_broadcast: "Aplicativo: Enviar notificação"
+command_type_start_service: "Aplicativo: Iniciar processo"
+command_type_access_provider: "Aplicativo: Acessar dados"

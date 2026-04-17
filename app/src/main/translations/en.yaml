@@ -38,3 +38,7 @@ commandlist_delete_title: Delete Command?
 commandlist_delete_message: This action cannot be undone.
 commandlist_delete: Delete
 commandlist_cancel: Cancel
+command_type_launch_activity: "Application: Open screen"
+command_type_send_broadcast: "Application: Send notification"
+command_type_start_service: "Application: Start process"
+command_type_access_provider: "Application: Access data"

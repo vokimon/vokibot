@@ -38,3 +38,7 @@ commandlist_delete_title: حذف الأمر؟
 commandlist_delete_message: لا يمكن التراجع عن هذا الإجراء.
 commandlist_delete: حذف
 commandlist_cancel: إلغاء
+command_type_launch_activity: "التطبيق: فتح شاشة"
+command_type_send_broadcast: "التطبيق: إرسال إشعار"
+command_type_start_service: "التطبيق: بدء عملية"
+command_type_access_provider: "التطبيق: الوصول إلى البيانات"

@@ -3,6 +3,7 @@ package net.canvoki.vokibot
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import androidx.annotation.StringRes
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
@@ -91,6 +92,13 @@ sealed class ApplicationCommand {
     abstract val displayName: String
     abstract val packageName: String
 
+    /**
+     * String resource ID for the human-readable command type label.
+     * Used for grouping, filtering, and display in lists.
+     */
+    @get:StringRes
+    abstract val typeLabelRes: Int
+
     val id: String
         get() = displayName.toFileSystemId()
 
@@ -142,6 +150,8 @@ data class LaunchActivityCommand(
     val extras: Map<String, ExtraValue> = emptyMap(),
     val flagList: List<String> = emptyList(),
 ) : ApplicationCommand() {
+    override val typeLabelRes: Int = R.string.command_type_launch_activity
+
     override suspend fun execute(context: Context) {
         val intent = Intent()
         intent.setClassName(packageName, className)
@@ -185,6 +195,8 @@ data class SendBroadcastCommand(
     val extras: Map<String, ExtraValue> = emptyMap(),
     val permission: String? = null,
 ) : ApplicationCommand() {
+    override val typeLabelRes: Int = R.string.command_type_send_broadcast
+
     override suspend fun execute(context: Context) {
         val intent = Intent(action)
         intent.setPackage(packageName)
@@ -214,6 +226,8 @@ data class StartServiceCommand(
     val action: String? = null,
     val extras: Map<String, ExtraValue> = emptyMap(),
 ) : ApplicationCommand() {
+    override val typeLabelRes: Int = R.string.command_type_start_service
+
     override suspend fun execute(context: Context) {
         val intent = Intent()
         intent.setClassName(packageName, className)
@@ -245,6 +259,8 @@ data class AccessProviderCommand(
     val mimeType: String? = null,
     val extras: Map<String, ExtraValue> = emptyMap(),
 ) : ApplicationCommand() {
+    override val typeLabelRes: Int = R.string.command_type_access_provider
+
     override suspend fun execute(context: Context) {
         val uri = buildUri()
 

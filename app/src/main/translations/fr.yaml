@@ -38,3 +38,7 @@ commandlist_delete_title: Supprimer la commande ?
 commandlist_delete_message: Cette action est irréversible.
 commandlist_delete: Supprimer
 commandlist_cancel: Annuler
+command_type_launch_activity: "Application : Ouvrir un écran"
+command_type_send_broadcast: "Application : Envoyer une notification"
+command_type_start_service: "Application : Démarrer un processus"
+command_type_access_provider: "Application : Accéder aux données"
