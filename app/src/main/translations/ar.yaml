@@ -14,3 +14,16 @@ app_list_filter_category_video: الفيديو
 app_list_filter_category_social: اجتماعي
 app_list_filter_category_productivity: الإنتاجية
 app_list_filter_category_other: أخرى
+intent_editor_action_label: "إجراء"
+intent_editor_custom_or_none: "مخصص أو لا شيء"
+intent_editor_action_string_optional: "سلسلة الإجراء (اختياري)"
+intent_editor_save_command_title: "حفظ الأمر"
+intent_editor_command_name_label: "اسم الأمر"
+intent_editor_save: "حفظ"
+intent_editor_cancel: "إلغاء"
+intent_editor_overwrite_title: "استبدال؟"
+intent_editor_overwrite_message: "يوجد بالفعل أمر باسم '{commandName}'."
+intent_editor_replace: "استبدال"
+intent_editor_try: "تجربة"
+intent_editor_command_saved: "تم حفظ الأمر: {commandName}"
+intent_editor_command_overwritten: "تم استبدال الأمر: {commandName}"

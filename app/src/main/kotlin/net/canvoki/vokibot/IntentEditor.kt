@@ -37,6 +37,7 @@ import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.graphics.painter.BitmapPainter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.drawable.toBitmap
 import kotlinx.coroutines.launch
@@ -89,7 +90,7 @@ fun IntentActionSelector(
     }
 
     Column {
-        Text("Action")
+        Text(stringResource(R.string.intent_editor_action_label))
 
         Spacer(modifier = Modifier.height(8.dp))
 
@@ -101,7 +102,7 @@ fun IntentActionSelector(
                     .padding(12.dp),
         ) {
             Text(
-                text = selected?.label ?: "Custom or none",
+                text = selected?.label ?: stringResource(R.string.intent_editor_custom_or_none),
                 modifier = Modifier.weight(1f),
             )
 
@@ -128,7 +129,7 @@ fun IntentActionSelector(
             }
 
             DropdownMenuItem(
-                text = { Text("Custom or none") },
+                text = { Text(stringResource(R.string.intent_editor_custom_or_none)) },
                 onClick = {
                     selected = null
                     expanded = false
@@ -146,7 +147,7 @@ fun IntentActionSelector(
                     custom = it
                     onCustomChanged(it)
                 },
-                label = { Text("Action string (optional)") },
+                label = { Text(stringResource(R.string.intent_editor_action_string_optional)) },
                 modifier = Modifier.fillMaxWidth(),
             )
         }
@@ -176,6 +177,10 @@ fun IntentEditor(
     var showNameDialog by remember { mutableStateOf(false) }
     var proposedName by remember { mutableStateOf(component.label) }
     var showOverwriteDialog by remember { mutableStateOf(false) }
+
+    val commandSavedMsg = stringResource(R.string.intent_editor_command_saved, proposedName)
+    val commandOverwrittenMsg = stringResource(R.string.intent_editor_command_overwritten, proposedName)
+    val overwriteMsg = stringResource(R.string.intent_editor_overwrite_message, proposedName)
 
     fun buildCommand(displayName: String): LaunchActivityCommand {
         val actionStr = selectedAction?.action ?: customAction.takeIf { it.isNotBlank() }
@@ -317,7 +322,7 @@ fun IntentEditor(
                 },
                 modifier = Modifier.weight(1f),
             ) {
-                Text("Try")
+                Text(stringResource(R.string.intent_editor_try))
             }
             Button(
                 onClick = {
@@ -325,7 +330,7 @@ fun IntentEditor(
                 },
                 modifier = Modifier.weight(1f),
             ) {
-                Text("Save")
+                Text(stringResource(R.string.intent_editor_save))
             }
         }
     }
@@ -333,12 +338,12 @@ fun IntentEditor(
     if (showNameDialog) {
         AlertDialog(
             onDismissRequest = { showNameDialog = false },
-            title = { Text("Save Command") },
+            title = { Text(stringResource(R.string.intent_editor_save_command_title)) },
             text = {
                 OutlinedTextField(
                     value = proposedName,
                     onValueChange = { proposedName = it },
-                    label = { Text("Command name") },
+                    label = { Text(stringResource(R.string.intent_editor_command_name_label)) },
                     modifier = Modifier.fillMaxWidth(),
                     singleLine = true,
                 )
@@ -351,16 +356,18 @@ fun IntentEditor(
                             showOverwriteDialog = true
                         } else {
                             repository.saveCommand(proposedName, command)
-                            UserMessage.Info("Command saved: $proposedName").post()
+                            UserMessage.Info(commandSavedMsg).post()
                         }
                         showNameDialog = false
                     },
                 ) {
-                    Text("Save")
+                    Text(stringResource(R.string.intent_editor_save))
                 }
             },
             dismissButton = {
-                TextButton(onClick = { showNameDialog = false }) { Text("Cancel") }
+                TextButton(onClick = { showNameDialog = false }) {
+                    Text(stringResource(R.string.intent_editor_cancel))
+                }
             },
         )
     }
@@ -368,21 +375,23 @@ fun IntentEditor(
     if (showOverwriteDialog) {
         AlertDialog(
             onDismissRequest = { showOverwriteDialog = false },
-            title = { Text("Overwrite?") },
-            text = { Text("A command named '$proposedName' already exists.") },
+            title = { Text(stringResource(R.string.intent_editor_overwrite_title)) },
+            text = { Text(overwriteMsg) },
             confirmButton = {
                 Button(
                     onClick = {
                         repository.saveCommand(proposedName, buildCommand(proposedName))
-                        UserMessage.Info("Command overwritten: $proposedName").post()
+                        UserMessage.Info(commandOverwrittenMsg).post()
                         showOverwriteDialog = false
                     },
                 ) {
-                    Text("Replace")
+                    Text(stringResource(R.string.intent_editor_replace))
                 }
             },
             dismissButton = {
-                TextButton(onClick = { showOverwriteDialog = false }) { Text("Cancel") }
+                TextButton(onClick = { showOverwriteDialog = false }) {
+                    Text(stringResource(R.string.intent_editor_cancel))
+                }
             },
         )
     }

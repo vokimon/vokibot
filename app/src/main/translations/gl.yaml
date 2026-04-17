@@ -14,3 +14,16 @@ app_list_filter_category_video: Vídeos
 app_list_filter_category_social: Social
 app_list_filter_category_productivity: Produtividade
 app_list_filter_category_other: Outras
+intent_editor_action_label: "Acción"
+intent_editor_custom_or_none: "Personalizada ou ningunha"
+intent_editor_action_string_optional: "Cadea de acción (opcional)"
+intent_editor_save_command_title: "Gardar comando"
+intent_editor_command_name_label: "Nome do comando"
+intent_editor_save: "Gardar"
+intent_editor_cancel: "Cancelar"
+intent_editor_overwrite_title: "Sobrescribir?"
+intent_editor_overwrite_message: "Xa existe un comando chamado '{commandName}'."
+intent_editor_replace: "Substituír"
+intent_editor_try: "Probar"
+intent_editor_command_saved: "Comando gardado: {commandName}"
+intent_editor_command_overwritten: "Comando sobrescrito: {commandName}"

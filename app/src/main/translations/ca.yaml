@@ -14,3 +14,16 @@ app_list_filter_category_video: Vídeos
 app_list_filter_category_social: Social
 app_list_filter_category_productivity: Productivitat
 app_list_filter_category_other: Altres
+intent_editor_action_label: "Acció"
+intent_editor_custom_or_none: "Personalitzada o cap"
+intent_editor_action_string_optional: "Cadena d'acció (opcional)"
+intent_editor_save_command_title: "Desa l'ordre"
+intent_editor_command_name_label: "Nom de l'ordre"
+intent_editor_save: "Desa"
+intent_editor_cancel: "Cancel·la"
+intent_editor_overwrite_title: "Sobreescriure?"
+intent_editor_overwrite_message: "Ja existeix una ordre anomenada '{commandName}'."
+intent_editor_replace: "Reemplaça"
+intent_editor_try: "Prova"
+intent_editor_command_saved: "Ordre desada: {commandName}"
+intent_editor_command_overwritten: "Ordre sobreescrita: {commandName}"

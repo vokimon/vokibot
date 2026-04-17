@@ -14,3 +14,16 @@ app_list_filter_category_video: Видео
 app_list_filter_category_social: Социальные
 app_list_filter_category_productivity: Продуктивность
 app_list_filter_category_other: Другие
+intent_editor_action_label: "Действие"
+intent_editor_custom_or_none: "Пользовательское или нет"
+intent_editor_action_string_optional: "Строка действия (необязательно)"
+intent_editor_save_command_title: "Сохранить команду"
+intent_editor_command_name_label: "Название команды"
+intent_editor_save: "Сохранить"
+intent_editor_cancel: "Отмена"
+intent_editor_overwrite_title: "Перезаписать?"
+intent_editor_overwrite_message: "Команда с именем '{commandName}' уже существует."
+intent_editor_replace: "Заменить"
+intent_editor_try: "Попробовать"
+intent_editor_command_saved: "Команда сохранена: {commandName}"
+intent_editor_command_overwritten: "Команда перезаписана: {commandName}"

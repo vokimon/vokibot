@@ -14,3 +14,16 @@ app_list_filter_category_video: Vidéos
 app_list_filter_category_social: Réseaux sociaux
 app_list_filter_category_productivity: Productivité
 app_list_filter_category_other: Autres
+intent_editor_action_label: "Action"
+intent_editor_custom_or_none: "Personnalisée ou aucune"
+intent_editor_action_string_optional: "Chaîne d'action (optionnelle)"
+intent_editor_save_command_title: "Enregistrer la commande"
+intent_editor_command_name_label: "Nom de la commande"
+intent_editor_save: "Enregistrer"
+intent_editor_cancel: "Annuler"
+intent_editor_overwrite_title: "Écraser ?"
+intent_editor_overwrite_message: "Une commande nommée '{commandName}' existe déjà."
+intent_editor_replace: "Remplacer"
+intent_editor_try: "Essayer"
+intent_editor_command_saved: "Commande enregistrée : {commandName}"
+intent_editor_command_overwritten: "Commande écrasée : {commandName}"

@@ -14,3 +14,16 @@ app_list_filter_category_video: Bideoak
 app_list_filter_category_social: Sozialak
 app_list_filter_category_productivity: Produktibitatea
 app_list_filter_category_other: Besteak
+intent_editor_action_label: "Ekintza"
+intent_editor_custom_or_none: "Pertsonalizatua edo bat ere ez"
+intent_editor_action_string_optional: "Ekintza-katea (auzokoa)"
+intent_editor_save_command_title: "Gorde komandoa"
+intent_editor_command_name_label: "Komandoaren izena"
+intent_editor_save: "Gorde"
+intent_editor_cancel: "Utzi"
+intent_editor_overwrite_title: "Gainidatzi?"
+intent_editor_overwrite_message: "'{commandName}' izeneko komandoa dagoeneko existitzen da."
+intent_editor_replace: "Ordeztu"
+intent_editor_try: "Probatu"
+intent_editor_command_saved: "Komandoa gordeta: {commandName}"
+intent_editor_command_overwritten: "Komandoa gainidatzita: {commandName}"

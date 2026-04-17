@@ -14,3 +14,16 @@ app_list_filter_category_video: Videos
 app_list_filter_category_social: Social
 app_list_filter_category_productivity: Productividat
 app_list_filter_category_other: Atros
+intent_editor_action_label: "Aición"
+intent_editor_custom_or_none: "Personalizada u garra"
+intent_editor_action_string_optional: "Cadena d'acción (opcional)"
+intent_editor_save_command_title: "Alzar orden"
+intent_editor_command_name_label: "Nombre de l'orden"
+intent_editor_save: "Alzar"
+intent_editor_cancel: "Cancelar"
+intent_editor_overwrite_title: "Sobrescribir?"
+intent_editor_overwrite_message: "Ya existe una orden clamada '{commandName}'."
+intent_editor_replace: "Reemplazar"
+intent_editor_try: "Probar"
+intent_editor_command_saved: "Orden alzada: {commandName}"
+intent_editor_command_overwritten: "Orden sobrescrita: {commandName}"
