@@ -183,6 +183,16 @@ class FileDataRepositoryTest {
 
         assertEquals(listOf("cmd1"), repo.listCommands())
     }
+
+    @Test
+    fun loadAllCommands_returnsSingleSavedCommand() {
+        val repo = FileDataRepository(testDir)
+        val original = buildCommand()
+        repo.saveCommand("id1", original)
+
+        val loaded = repo.loadAllCommands()
+        assertCommandEqual(original, loaded.firstOrNull())
+    }
 }
 
 

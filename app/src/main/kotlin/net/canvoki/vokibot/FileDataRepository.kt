@@ -55,4 +55,9 @@ class FileDataRepository(directoryPath: String = "repodata") {
         }
     }
 
+    fun loadAllCommands(): List<Command> {
+        return listCommands().mapNotNull { id ->
+            loadCommand(id)
+        }
+    }
 }
