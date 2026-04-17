@@ -3,6 +3,7 @@ package net.canvoki.vokibot
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.FloatingActionButton
@@ -12,6 +13,7 @@ import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -34,11 +36,14 @@ fun CommandList(
     onLaunchAppSelected: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val scope = rememberCoroutineScope()
     val context = LocalContext.current
+    val scope = rememberCoroutineScope()
     val repository = remember { FileDataRepository.fromContext(context) }
     var showTypeChooser by remember { mutableStateOf(false) }
     var refreshCounter by remember { mutableStateOf(0) }
+
+    // Delete confirmation state
+    var commandToDelete by remember { mutableStateOf<String?>(null) }
 
     Box(modifier = modifier.fillMaxSize()) {
         AsyncList(
@@ -83,7 +88,6 @@ fun CommandList(
                                     try {
                                         command.execute(context)
                                     } catch (e: Exception) {
-                                        // TODO: Show error via UserMessage
                                         e.printStackTrace()
                                     }
                                 }
@@ -99,8 +103,7 @@ fun CommandList(
                             },
                             onClick = {
                                 menuExpanded = false
-                                repository.removeCommand(command.id)
-                                refreshCounter++
+                                commandToDelete = command.id // Show confirmation dialog
                             },
                         )
                     }
@@ -117,6 +120,33 @@ fun CommandList(
                 contentDescription = "Create command",
             )
         }
+    }
+
+    // Delete confirmation dialog
+    if (commandToDelete != null) {
+        AlertDialog(
+            onDismissRequest = { commandToDelete = null },
+            title = { Text("Delete Command?") },
+            text = { Text("This action cannot be undone.") },
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        commandToDelete?.let { id ->
+                            repository.removeCommand(id)
+                            refreshCounter++
+                            commandToDelete = null
+                        }
+                    },
+                ) {
+                    Text("Delete", color = MaterialTheme.colorScheme.error)
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { commandToDelete = null }) {
+                    Text("Cancel")
+                }
+            },
+        )
     }
 
     if (showTypeChooser) {
