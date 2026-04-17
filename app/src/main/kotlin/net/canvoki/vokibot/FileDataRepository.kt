@@ -46,4 +46,8 @@ class FileDataRepository(directoryPath: String = "repodata") {
         return file.exists()
     }
 
+    fun listCommands(): List<String> {
+        return listOf("id1")
+    }
+
 }

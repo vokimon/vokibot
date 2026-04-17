@@ -136,6 +136,16 @@ class FileDataRepositoryTest {
         val doesExist = repo.existsCommand("non-existing")
         assertEquals(false, doesExist)
     }
+
+    @Test
+    fun listCommandsWhenOnlyOne() {
+        val repo = FileDataRepository(testDir)
+        val original = buildCommand()
+        repo.saveCommand("id1", original)
+
+        val list = repo.listCommands()
+        assertEquals(listOf("id1"), list)
+    }
 }
 
 
