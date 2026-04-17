@@ -120,8 +120,8 @@ class FileDataRepositoryTest {
     @Test
     fun existsComandWhenItExists() {
         val repo = FileDataRepository(testDir)
-        val original = buildCommand()
-        repo.saveCommand("id1", original)
+        val command = buildCommand()
+        repo.saveCommand("id1", command)
 
         val doesExist = repo.existsCommand("id1")
         assertEquals(true, doesExist)
@@ -130,8 +130,8 @@ class FileDataRepositoryTest {
     @Test
     fun existsComandWhenItDoesNotExist() {
         val repo = FileDataRepository(testDir)
-        val original = buildCommand()
-        repo.saveCommand("id1", original)
+        val command = buildCommand()
+        repo.saveCommand("id1", command)
 
         val doesExist = repo.existsCommand("non-existing")
         assertEquals(false, doesExist)
@@ -140,8 +140,8 @@ class FileDataRepositoryTest {
     @Test
     fun listCommandsWhenOnlyOne() {
         val repo = FileDataRepository(testDir)
-        val original = buildCommand()
-        repo.saveCommand("id1", original)
+        val command = buildCommand()
+        repo.saveCommand("id1", command)
 
         val list = repo.listCommands()
         assertEquals(listOf("id1"), list)
@@ -153,6 +153,17 @@ class FileDataRepositoryTest {
 
         val list = repo.listCommands()
         assertEquals(emptyList<String>(), list)
+    }
+
+    @Test
+    fun listCommandsWhenManyCommands() {
+        val repo = FileDataRepository(testDir)
+
+        repo.saveCommand("id1", buildCommand())
+        repo.saveCommand("id2", buildCommand(displayName="Second"))
+
+        val list = repo.listCommands()
+        assertEquals(listOf("id1","id2"), list)
     }
 }
 
