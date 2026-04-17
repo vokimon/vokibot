@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -14,13 +15,16 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -36,6 +40,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.drawable.toBitmap
 import kotlinx.coroutines.launch
+import net.canvoki.shared.usermessage.UserMessage
 
 @Composable
 fun ActivityHeader(component: PublicComponent) {
@@ -156,6 +161,7 @@ fun IntentEditor(
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
     val componentName = component.name
+    val repository = remember { FileDataRepository.fromContext(context) }
 
     val actionsToShow = remember(component.actions) {
         val mapped = component.actions.mapNotNull { actionStr ->
@@ -167,6 +173,28 @@ fun IntentEditor(
     var selectedAction by remember { mutableStateOf<ActionDefinition?>(null) }
     var customAction by remember { mutableStateOf("") }
     var extrasState by remember { mutableStateOf<Map<String, Any?>>(emptyMap()) }
+    var showNameDialog by remember { mutableStateOf(false) }
+    var proposedName by remember { mutableStateOf(component.label) }
+    var showOverwriteDialog by remember { mutableStateOf(false) }
+
+    fun buildCommand(displayName: String): LaunchActivityCommand {
+        val actionStr = selectedAction?.action ?: customAction.takeIf { it.isNotBlank() }
+        val typedExtras = extrasState.mapValues { (_, v) ->
+            when (v) {
+                is String -> ExtraValue.StringValue(v)
+                is Int -> ExtraValue.IntValue(v)
+                is Boolean -> ExtraValue.BooleanValue(v)
+                else -> ExtraValue.StringValue(v?.toString() ?: "")
+            }
+        }
+        return LaunchActivityCommand(
+            displayName = displayName,
+            packageName = packageName,
+            className = component.name,
+            action = actionStr,
+            extras = typedExtras,
+        )
+    }
 
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -269,41 +297,93 @@ fun IntentEditor(
             }
         }
 
-        Button(
-            onClick = {
-                val actionStr = selectedAction?.action ?: customAction.takeIf { it.isNotBlank() }
-                val typedExtras = extrasState.mapValues { (_, v) ->
-                    when (v) {
-                        is String -> ExtraValue.StringValue(v)
-                        is Int -> ExtraValue.IntValue(v)
-                        is Boolean -> ExtraValue.BooleanValue(v)
-                        else -> ExtraValue.StringValue(v?.toString() ?: "")
-                    }
-                }
-
-                val command = LaunchActivityCommand(
-                    displayName = component.label,
-                    packageName = packageName,
-                    className = component.name,
-                    action = actionStr,
-                    extras = typedExtras,
-                )
-
-                scope.launch {
-                    try {
-                        command.execute(context)
-                    } catch (e: Exception) {
-                        // TODO: Show error to user (Snackbar/Toast)
-                        e.printStackTrace()
-                    }
-                }
-            },
+        Row(
             modifier =
                 Modifier
                     .fillMaxWidth()
                     .padding(16.dp),
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
         ) {
-            Text("Try")
+            OutlinedButton(
+                onClick = {
+                    val command = buildCommand(component.label)
+                    scope.launch {
+                        try {
+                            command.execute(context)
+                        } catch (e: Exception) {
+                            e.printStackTrace()
+                        }
+                    }
+                },
+                modifier = Modifier.weight(1f),
+            ) {
+                Text("Try")
+            }
+            Button(
+                onClick = {
+                    showNameDialog = true
+                },
+                modifier = Modifier.weight(1f),
+            ) {
+                Text("Save")
+            }
         }
+    }
+
+    if (showNameDialog) {
+        AlertDialog(
+            onDismissRequest = { showNameDialog = false },
+            title = { Text("Save Command") },
+            text = {
+                OutlinedTextField(
+                    value = proposedName,
+                    onValueChange = { proposedName = it },
+                    label = { Text("Command name") },
+                    modifier = Modifier.fillMaxWidth(),
+                    singleLine = true,
+                )
+            },
+            confirmButton = {
+                Button(
+                    onClick = {
+                        val command = buildCommand(proposedName)
+                        if (repository.existsCommand(proposedName)) {
+                            showOverwriteDialog = true
+                        } else {
+                            repository.saveCommand(proposedName, command)
+                            UserMessage.Info("Command saved: $proposedName").post()
+                        }
+                        showNameDialog = false
+                    },
+                ) {
+                    Text("Save")
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { showNameDialog = false }) { Text("Cancel") }
+            },
+        )
+    }
+
+    if (showOverwriteDialog) {
+        AlertDialog(
+            onDismissRequest = { showOverwriteDialog = false },
+            title = { Text("Overwrite?") },
+            text = { Text("A command named '$proposedName' already exists.") },
+            confirmButton = {
+                Button(
+                    onClick = {
+                        repository.saveCommand(proposedName, buildCommand(proposedName))
+                        UserMessage.Info("Command overwritten: $proposedName").post()
+                        showOverwriteDialog = false
+                    },
+                ) {
+                    Text("Replace")
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { showOverwriteDialog = false }) { Text("Cancel") }
+            },
+        )
     }
 }
