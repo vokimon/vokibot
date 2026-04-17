@@ -68,7 +68,6 @@ private fun NfcActivityScreen(
         ) {
             NfcUidDisplayScreen(
                 intent = intent,
-                onBack = onBack,
             )
         }
     }
@@ -79,7 +78,6 @@ private fun NfcActivityScreen(
 @Composable
 private fun NfcUidDisplayScreen(
     intent: Intent,
-    onBack: () -> Unit,
 ) {
     val uid = remember(intent) { extractUidFromIntent(intent) }
 
