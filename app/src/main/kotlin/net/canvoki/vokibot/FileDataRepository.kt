@@ -47,7 +47,9 @@ class FileDataRepository(directoryPath: String = "repodata") {
     }
 
     fun listCommands(): List<String> {
-        val files = _directory.listFiles() ?: return emptyList()
+        val files = _directory.listFiles { _, name ->
+            name.startsWith("command_")
+        } ?: return emptyList()
         return files.map {
             it.name.removePrefix("command_").removeSuffix(".json")
         }

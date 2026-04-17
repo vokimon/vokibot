@@ -138,7 +138,7 @@ class FileDataRepositoryTest {
     }
 
     @Test
-    fun listCommandsWhenOnlyOne() {
+    fun listCommands_singleCommand() {
         val repo = FileDataRepository(testDir)
         val command = buildCommand()
         repo.saveCommand("id1", command)
@@ -148,7 +148,7 @@ class FileDataRepositoryTest {
     }
 
     @Test
-    fun listCommandsWhenNoCommands() {
+    fun listCommands_noCommands() {
         val repo = FileDataRepository(testDir)
 
         val list = repo.listCommands()
@@ -156,7 +156,7 @@ class FileDataRepositoryTest {
     }
 
     @Test
-    fun listCommandsWhenManyCommands() {
+    fun listCommands_manyCommands() {
         val repo = FileDataRepository(testDir)
 
         repo.saveCommand("id1", buildCommand())
@@ -164,6 +164,14 @@ class FileDataRepositoryTest {
 
         val list = repo.listCommands()
         assertEquals(listOf("id1","id2"), list)
+    }
+    @Test
+    fun listCommands_ignoresBadPrefix() {
+        val repo = FileDataRepository(testDir)
+        repo.saveCommand("cmd1", buildCommand())
+        File(testDir, "log.json").writeText("{}")
+
+        assertEquals(listOf("cmd1"), repo.listCommands())
     }
 }
 
