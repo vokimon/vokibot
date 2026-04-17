@@ -2,8 +2,10 @@ package net.canvoki.vokibot
 
 import android.content.ComponentName
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.AlertDialog
@@ -54,6 +56,10 @@ fun CommandList(
             refreshKeys = listOf(refreshCounter),
             loader = { repository.loadAllCommands() },
             itemKey = { it.id },
+            groupBy = { command -> command.typeLabelRes.toString() },
+            headerContent = { key: String ->
+                CommandGroupHeader(key)
+            },
             notFoundMessage = stringResource(R.string.commandlist_not_found),
         ) { command ->
             var menuExpanded by remember { mutableStateOf(false) }
@@ -194,4 +200,22 @@ fun CommandList(
             onDismiss = { showTypeChooser = false },
         )
     }
+}
+
+/**
+ * Renders a translated, styled header for a command type group.
+ * Converts the string key back to Int @StringRes for translation.
+ */
+@Composable
+private fun CommandGroupHeader(key: String) {
+    val resId = key.toInt()
+    Text(
+        text = stringResource(resId),
+        style = MaterialTheme.typography.titleSmall,
+        color = MaterialTheme.colorScheme.primary,
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(MaterialTheme.colorScheme.surface)
+            .padding(horizontal = 16.dp, vertical = 8.dp),
+    )
 }
