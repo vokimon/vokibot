@@ -1,6 +1,6 @@
 app_name: Vokibot
-applist_not_found: "No s'ha trobat cap aplicacion"
-activitylist_not_found: "No s'ha trobat cap activitat"
+applist_not_found: No s'ha trobat cap aplicacion
+activitylist_not_found: No s'ha trobat cap activitat
 app_list_filter_fab_cd: Filtrar
 app_list_filter_title: Filtros
 app_list_filter_search_label: Buscar
@@ -14,16 +14,27 @@ app_list_filter_category_video: Videos
 app_list_filter_category_social: Social
 app_list_filter_category_productivity: Productividat
 app_list_filter_category_other: Atros
-intent_editor_action_label: "Aición"
-intent_editor_custom_or_none: "Personalizada u garra"
-intent_editor_action_string_optional: "Cadena d'acción (opcional)"
-intent_editor_save_command_title: "Alzar orden"
-intent_editor_command_name_label: "Nombre de l'orden"
-intent_editor_save: "Alzar"
-intent_editor_cancel: "Cancelar"
-intent_editor_overwrite_title: "Sobrescribir?"
-intent_editor_overwrite_message: "Ya existe una orden clamada '{commandName}'."
-intent_editor_replace: "Reemplazar"
-intent_editor_try: "Probar"
+intent_editor_action_label: Aición
+intent_editor_custom_or_none: Personalizada u garra
+intent_editor_action_string_optional: Cadena d'acción (opcional)
+intent_editor_save_command_title: Alzar orden
+intent_editor_command_name_label: Nombre de l'orden
+intent_editor_save: Alzar
+intent_editor_cancel: Cancelar
+intent_editor_overwrite_title: Sobrescribir?
+intent_editor_overwrite_message: Ya existe una orden clamada '{commandName}'.
+intent_editor_replace: Reemplazar
+intent_editor_try: Probar
 intent_editor_command_saved: "Orden alzada: {commandName}"
 intent_editor_command_overwritten: "Orden sobrescrita: {commandName}"
+commandlist_not_found: No i ha órdenes alzadas
+commandlist_create_fab_desc: Crear orden
+commandlist_create_command_title: Crear orden
+commandlist_launch_app_option: Executar una aplicación
+commandlist_run: Executar
+commandlist_remove: Borrar
+commandlist_options_desc: Opcions
+commandlist_delete_title: Borrar orden?
+commandlist_delete_message: Esta acción no se puede desfer.
+commandlist_delete: Borrar
+commandlist_cancel: Cancelar

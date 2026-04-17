@@ -1,6 +1,6 @@
 app_name: Vokibot
-applist_not_found: "No s'ha trobat cap aplicació"
-activitylist_not_found: "No s'ha trobat cap activitat"
+applist_not_found: No s'ha trobat cap aplicació
+activitylist_not_found: No s'ha trobat cap activitat
 app_list_filter_fab_cd: Filtra
 app_list_filter_title: Filtres
 app_list_filter_search_label: Cerca
@@ -14,16 +14,27 @@ app_list_filter_category_video: Vídeos
 app_list_filter_category_social: Social
 app_list_filter_category_productivity: Productivitat
 app_list_filter_category_other: Altres
-intent_editor_action_label: "Acció"
-intent_editor_custom_or_none: "Personalitzada o cap"
-intent_editor_action_string_optional: "Cadena d'acció (opcional)"
-intent_editor_save_command_title: "Desa l'ordre"
-intent_editor_command_name_label: "Nom de l'ordre"
-intent_editor_save: "Desa"
-intent_editor_cancel: "Cancel·la"
-intent_editor_overwrite_title: "Sobreescriure?"
-intent_editor_overwrite_message: "Ja existeix una ordre anomenada '{commandName}'."
-intent_editor_replace: "Reemplaça"
-intent_editor_try: "Prova"
+intent_editor_action_label: Acció
+intent_editor_custom_or_none: Personalitzada o cap
+intent_editor_action_string_optional: Cadena d'acció (opcional)
+intent_editor_save_command_title: Desa l'ordre
+intent_editor_command_name_label: Nom de l'ordre
+intent_editor_save: Desa
+intent_editor_cancel: Cancel·la
+intent_editor_overwrite_title: Sobreescriure?
+intent_editor_overwrite_message: Ja existeix una ordre anomenada '{commandName}'.
+intent_editor_replace: Reemplaça
+intent_editor_try: Prova
 intent_editor_command_saved: "Ordre desada: {commandName}"
 intent_editor_command_overwritten: "Ordre sobreescrita: {commandName}"
+commandlist_not_found: No hi ha ordres desades
+commandlist_create_fab_desc: Crea una ordre
+commandlist_create_command_title: Crea una ordre
+commandlist_launch_app_option: Executa una aplicació
+commandlist_run: Executa
+commandlist_remove: Suprimeix
+commandlist_options_desc: Opcions
+commandlist_delete_title: Realment vols suprimir l'ordre?
+commandlist_delete_message: Aquesta acció no es pot desfer.
+commandlist_delete: Suprimir
+commandlist_cancel: Cancel·la

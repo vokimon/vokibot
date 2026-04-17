@@ -41,8 +41,6 @@ fun CommandList(
     val repository = remember { FileDataRepository.fromContext(context) }
     var showTypeChooser by remember { mutableStateOf(false) }
     var refreshCounter by remember { mutableStateOf(0) }
-
-    // Delete confirmation state
     var commandToDelete by remember { mutableStateOf<String?>(null) }
 
     Box(modifier = modifier.fillMaxSize()) {
@@ -50,7 +48,7 @@ fun CommandList(
             refreshKeys = listOf(refreshCounter),
             loader = { repository.loadAllCommands() },
             itemKey = { it.id },
-            //notFoundMessage = stringResource(R.string.commandlist_not_found),
+            notFoundMessage = stringResource(R.string.commandlist_not_found),
         ) { command ->
             var menuExpanded by remember { mutableStateOf(false) }
 
@@ -67,7 +65,7 @@ fun CommandList(
                     IconButton(onClick = { menuExpanded = true }) {
                         Icon(
                             painter = painterResource(R.drawable.ic_more_vert),
-                            contentDescription = "Options",
+                            contentDescription = stringResource(R.string.commandlist_options_desc),
                         )
                     }
                     DropdownMenu(
@@ -75,7 +73,7 @@ fun CommandList(
                         onDismissRequest = { menuExpanded = false },
                     ) {
                         DropdownMenuItem(
-                            text = { Text("Try") },
+                            text = { Text(stringResource(R.string.commandlist_run)) },
                             leadingIcon = {
                                 Icon(
                                     painter = painterResource(R.drawable.ic_play_arrow),
@@ -94,7 +92,7 @@ fun CommandList(
                             },
                         )
                         DropdownMenuItem(
-                            text = { Text("Remove") },
+                            text = { Text(stringResource(R.string.commandlist_remove)) },
                             leadingIcon = {
                                 Icon(
                                     painter = painterResource(R.drawable.ic_delete),
@@ -103,7 +101,7 @@ fun CommandList(
                             },
                             onClick = {
                                 menuExpanded = false
-                                commandToDelete = command.id // Show confirmation dialog
+                                commandToDelete = command.id
                             },
                         )
                     }
@@ -117,17 +115,16 @@ fun CommandList(
         ) {
             Icon(
                 painter = painterResource(R.drawable.ic_add),
-                contentDescription = "Create command",
+                contentDescription = stringResource(R.string.commandlist_create_fab_desc),
             )
         }
     }
 
-    // Delete confirmation dialog
     if (commandToDelete != null) {
         AlertDialog(
             onDismissRequest = { commandToDelete = null },
-            title = { Text("Delete Command?") },
-            text = { Text("This action cannot be undone.") },
+            title = { Text(stringResource(R.string.commandlist_delete_title)) },
+            text = { Text(stringResource(R.string.commandlist_delete_message)) },
             confirmButton = {
                 TextButton(
                     onClick = {
@@ -138,12 +135,12 @@ fun CommandList(
                         }
                     },
                 ) {
-                    Text("Delete", color = MaterialTheme.colorScheme.error)
+                    Text(stringResource(R.string.commandlist_delete), color = MaterialTheme.colorScheme.error)
                 }
             },
             dismissButton = {
                 TextButton(onClick = { commandToDelete = null }) {
-                    Text("Cancel")
+                    Text(stringResource(R.string.commandlist_cancel))
                 }
             },
         )
@@ -151,9 +148,9 @@ fun CommandList(
 
     if (showTypeChooser) {
         ChooserDialog(
-            title = "Create Command",
+            title = stringResource(R.string.commandlist_create_command_title),
             options = listOf(
-                ChooserOption(value = "application", label = "Launch an Application"),
+                ChooserOption(value = "application", label = stringResource(R.string.commandlist_launch_app_option)),
             ),
             selectedValue = "",
             onConfirm = { value ->

@@ -1,6 +1,6 @@
 app_name: Vokibot
-applist_not_found: "No hay aplicaciones"
-activitylist_not_found: "No hay actividades"
+applist_not_found: No hay aplicaciones
+activitylist_not_found: No hay actividades
 app_list_filter_fab_cd: Filtrar
 app_list_filter_title: Filtros
 app_list_filter_search_label: Buscar
@@ -14,16 +14,27 @@ app_list_filter_category_video: Vídeos
 app_list_filter_category_social: Social
 app_list_filter_category_productivity: Productividad
 app_list_filter_category_other: Otras
-intent_editor_action_label: "Acción"
-intent_editor_custom_or_none: "Personalizada o ninguna"
-intent_editor_action_string_optional: "Cadena de acción (opcional)"
-intent_editor_save_command_title: "Guardar comando"
-intent_editor_command_name_label: "Nombre del comando"
-intent_editor_save: "Guardar"
-intent_editor_cancel: "Cancelar"
-intent_editor_overwrite_title: "¿Sobrescribir?"
-intent_editor_overwrite_message: "Ya existe un comando llamado '{commandName}'."
-intent_editor_replace: "Reemplazar"
-intent_editor_try: "Probar"
+intent_editor_action_label: Acción
+intent_editor_custom_or_none: Personalizada o ninguna
+intent_editor_action_string_optional: Cadena de acción (opcional)
+intent_editor_save_command_title: Guardar comando
+intent_editor_command_name_label: Nombre del comando
+intent_editor_save: Guardar
+intent_editor_cancel: Cancelar
+intent_editor_overwrite_title: ¿Sobrescribir?
+intent_editor_overwrite_message: Ya existe un comando llamado '{commandName}'.
+intent_editor_replace: Reemplazar
+intent_editor_try: Probar
 intent_editor_command_saved: "Comando guardado: {commandName}"
 intent_editor_command_overwritten: "Comando sobrescrito: {commandName}"
+commandlist_not_found: No hay comandos guardados
+commandlist_create_fab_desc: Crear comando
+commandlist_create_command_title: Crear comando
+commandlist_launch_app_option: Ejecutar una aplicación
+commandlist_run: Ejecutar
+commandlist_remove: Eliminar
+commandlist_options_desc: Opciones
+commandlist_delete_title: ¿Eliminar comando?
+commandlist_delete_message: Esta acción no se puede deshacer.
+commandlist_delete: Eliminar
+commandlist_cancel: Cancelar

@@ -1,6 +1,6 @@
 app_name: Vokibot
-applist_not_found: "No applications found"
-activitylist_not_found: "No activities found"
+applist_not_found: No applications found
+activitylist_not_found: No activities found
 app_list_filter_fab_cd: Filter
 app_list_filter_title: Filters
 app_list_filter_search_label: Search
@@ -14,16 +14,27 @@ app_list_filter_category_video: Video
 app_list_filter_category_social: Social
 app_list_filter_category_productivity: Productivity
 app_list_filter_category_other: Other
-intent_editor_action_label: "Action"
-intent_editor_custom_or_none: "Custom or none"
-intent_editor_action_string_optional: "Action string (optional)"
-intent_editor_save_command_title: "Save Command"
-intent_editor_command_name_label: "Command name"
-intent_editor_save: "Save"
-intent_editor_cancel: "Cancel"
-intent_editor_overwrite_title: "Overwrite?"
-intent_editor_overwrite_message: "A command named '{commandName}' already exists."
-intent_editor_replace: "Replace"
-intent_editor_try: "Try"
+intent_editor_action_label: Action
+intent_editor_custom_or_none: Custom or none
+intent_editor_action_string_optional: Action string (optional)
+intent_editor_save_command_title: Save Command
+intent_editor_command_name_label: Command name
+intent_editor_save: Save
+intent_editor_cancel: Cancel
+intent_editor_overwrite_title: Overwrite?
+intent_editor_overwrite_message: A command named '{commandName}' already exists.
+intent_editor_replace: Replace
+intent_editor_try: Try
 intent_editor_command_saved: "Command saved: {commandName}"
 intent_editor_command_overwritten: "Command overwritten: {commandName}"
+commandlist_not_found: No saved commands
+commandlist_create_fab_desc: Create command
+commandlist_create_command_title: Create Command
+commandlist_launch_app_option: Launch an Application
+commandlist_run: Run
+commandlist_remove: Remove
+commandlist_options_desc: Options
+commandlist_delete_title: Delete Command?
+commandlist_delete_message: This action cannot be undone.
+commandlist_delete: Delete
+commandlist_cancel: Cancel

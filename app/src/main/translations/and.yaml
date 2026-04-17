@@ -1,3 +1,40 @@
 app_name: Vokibot
-applist_not_found: "No ay aplicaçionê"
-activitylist_not_found: "No ay âttibidadê"
+applist_not_found: No ay aplicaçionê
+activitylist_not_found: No ay âttibidadê
+app_list_filter_fab_cd: Firtrâh
+app_list_filter_title: Firtrô
+app_list_filter_search_label: Bûccâh
+app_list_filter_clear_cd: Borrâh
+app_list_filter_show_system: Môttrâh aplicaçionê der çîttema
+app_list_filter_categories_title: Categoríâ
+app_list_filter_category_game: Huegô
+app_list_filter_category_maps: Mapâ
+app_list_filter_category_audio: Múçica/Audio
+app_list_filter_category_video: Bídeô
+app_list_filter_category_social: Çoçiâh
+app_list_filter_category_productivity: Prodûttibidá
+app_list_filter_category_other: Otrâ
+intent_editor_action_label: Âççión
+intent_editor_custom_or_none: Perçonaliçá o ninguna
+intent_editor_action_string_optional: Cadena de âççión (ôççionâh)
+intent_editor_save_command_title: Guardâh comando
+intent_editor_command_name_label: Nombre der comando
+intent_editor_save: Guardâh
+intent_editor_cancel: Cançelâh
+intent_editor_overwrite_title: ¿Çobrêccribîh?
+intent_editor_overwrite_message: Ya êççîtte un comando yamao '{commandName}'.
+intent_editor_replace: Reemplaçâh
+intent_editor_try: Probâh
+intent_editor_command_saved: "Comando guardao: {commandName}"
+intent_editor_command_overwritten: "Comando çobrêccrito: {commandName}"
+commandlist_not_found: No ay comandô guardáô
+commandlist_create_fab_desc: Creâh comando
+commandlist_create_command_title: Creâh comando
+commandlist_launch_app_option: Ehecutâh una aplicaçión
+commandlist_run: Ehecutâh
+commandlist_remove: Eliminâh
+commandlist_options_desc: Ôççionê
+commandlist_delete_title: ¿Eliminâh comando?
+commandlist_delete_message: Êtta âççión no çe puede deçaçêh.
+commandlist_delete: Eliminâh
+commandlist_cancel: Cançelâh

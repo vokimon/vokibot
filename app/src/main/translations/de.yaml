@@ -1,6 +1,6 @@
 app_name: Vokibot
-applist_not_found: "Keine Anwendungen gefunden"
-activitylist_not_found: "Keine Aktivitäten gefunden"
+applist_not_found: Keine Anwendungen gefunden
+activitylist_not_found: Keine Aktivitäten gefunden
 app_list_filter_fab_cd: Filtern
 app_list_filter_title: Filter
 app_list_filter_search_label: Suchen
@@ -14,16 +14,27 @@ app_list_filter_category_video: Videos
 app_list_filter_category_social: Sozial
 app_list_filter_category_productivity: Produktivität
 app_list_filter_category_other: Andere
-intent_editor_action_label: "Aktion"
-intent_editor_custom_or_none: "Benutzerdefiniert oder keine"
-intent_editor_action_string_optional: "Aktionszeichenfolge (optional)"
-intent_editor_save_command_title: "Befehl speichern"
-intent_editor_command_name_label: "Befehlsname"
-intent_editor_save: "Speichern"
-intent_editor_cancel: "Abbrechen"
-intent_editor_overwrite_title: "Überschreiben?"
-intent_editor_overwrite_message: "Ein Befehl namens '{commandName}' existiert bereits."
-intent_editor_replace: "Ersetzen"
-intent_editor_try: "Testen"
+intent_editor_action_label: Aktion
+intent_editor_custom_or_none: Benutzerdefiniert oder keine
+intent_editor_action_string_optional: Aktionszeichenfolge (optional)
+intent_editor_save_command_title: Befehl speichern
+intent_editor_command_name_label: Befehlsname
+intent_editor_save: Speichern
+intent_editor_cancel: Abbrechen
+intent_editor_overwrite_title: Überschreiben?
+intent_editor_overwrite_message: Ein Befehl namens '{commandName}' existiert bereits.
+intent_editor_replace: Ersetzen
+intent_editor_try: Testen
 intent_editor_command_saved: "Befehl gespeichert: {commandName}"
 intent_editor_command_overwritten: "Befehl überschrieben: {commandName}"
+commandlist_not_found: Keine gespeicherten Befehle
+commandlist_create_fab_desc: Befehl erstellen
+commandlist_create_command_title: Befehl erstellen
+commandlist_launch_app_option: Anwendung starten
+commandlist_run: Ausführen
+commandlist_remove: Entfernen
+commandlist_options_desc: Optionen
+commandlist_delete_title: Befehl löschen?
+commandlist_delete_message: Diese Aktion kann nicht rückgängig gemacht werden.
+commandlist_delete: Löschen
+commandlist_cancel: Abbrechen

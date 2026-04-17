@@ -1,6 +1,6 @@
 app_name: Vokibot
-applist_not_found: "Приложения не найдены"
-activitylist_not_found: "Действия не найдены"
+applist_not_found: Приложения не найдены
+activitylist_not_found: Действия не найдены
 app_list_filter_fab_cd: Фильтр
 app_list_filter_title: Фильтры
 app_list_filter_search_label: Поиск
@@ -14,16 +14,27 @@ app_list_filter_category_video: Видео
 app_list_filter_category_social: Социальные
 app_list_filter_category_productivity: Продуктивность
 app_list_filter_category_other: Другие
-intent_editor_action_label: "Действие"
-intent_editor_custom_or_none: "Пользовательское или нет"
-intent_editor_action_string_optional: "Строка действия (необязательно)"
-intent_editor_save_command_title: "Сохранить команду"
-intent_editor_command_name_label: "Название команды"
-intent_editor_save: "Сохранить"
-intent_editor_cancel: "Отмена"
-intent_editor_overwrite_title: "Перезаписать?"
-intent_editor_overwrite_message: "Команда с именем '{commandName}' уже существует."
-intent_editor_replace: "Заменить"
-intent_editor_try: "Попробовать"
+intent_editor_action_label: Действие
+intent_editor_custom_or_none: Пользовательское или нет
+intent_editor_action_string_optional: Строка действия (необязательно)
+intent_editor_save_command_title: Сохранить команду
+intent_editor_command_name_label: Название команды
+intent_editor_save: Сохранить
+intent_editor_cancel: Отмена
+intent_editor_overwrite_title: Перезаписать?
+intent_editor_overwrite_message: Команда с именем '{commandName}' уже существует.
+intent_editor_replace: Заменить
+intent_editor_try: Попробовать
 intent_editor_command_saved: "Команда сохранена: {commandName}"
 intent_editor_command_overwritten: "Команда перезаписана: {commandName}"
+commandlist_not_found: Нет сохранённых команд
+commandlist_create_fab_desc: Создать команду
+commandlist_create_command_title: Создать команду
+commandlist_launch_app_option: Запустить приложение
+commandlist_run: Запустить
+commandlist_remove: Удалить
+commandlist_options_desc: Параметры
+commandlist_delete_title: Удалить команду?
+commandlist_delete_message: Это действие нельзя отменить.
+commandlist_delete: Удалить
+commandlist_cancel: Отмена

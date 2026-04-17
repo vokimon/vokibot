@@ -1,6 +1,6 @@
 app_name: Vokibot
-applist_not_found: "Non se atoparon aplicacións"
-activitylist_not_found: "Non se atoparon actividades"
+applist_not_found: Non se atoparon aplicacións
+activitylist_not_found: Non se atoparon actividades
 app_list_filter_fab_cd: Filtrar
 app_list_filter_title: Filtros
 app_list_filter_search_label: Buscar
@@ -14,16 +14,27 @@ app_list_filter_category_video: Vídeos
 app_list_filter_category_social: Social
 app_list_filter_category_productivity: Produtividade
 app_list_filter_category_other: Outras
-intent_editor_action_label: "Acción"
-intent_editor_custom_or_none: "Personalizada ou ningunha"
-intent_editor_action_string_optional: "Cadea de acción (opcional)"
-intent_editor_save_command_title: "Gardar comando"
-intent_editor_command_name_label: "Nome do comando"
-intent_editor_save: "Gardar"
-intent_editor_cancel: "Cancelar"
-intent_editor_overwrite_title: "Sobrescribir?"
-intent_editor_overwrite_message: "Xa existe un comando chamado '{commandName}'."
-intent_editor_replace: "Substituír"
-intent_editor_try: "Probar"
+intent_editor_action_label: Acción
+intent_editor_custom_or_none: Personalizada ou ningunha
+intent_editor_action_string_optional: Cadea de acción (opcional)
+intent_editor_save_command_title: Gardar comando
+intent_editor_command_name_label: Nome do comando
+intent_editor_save: Gardar
+intent_editor_cancel: Cancelar
+intent_editor_overwrite_title: Sobrescribir?
+intent_editor_overwrite_message: Xa existe un comando chamado '{commandName}'.
+intent_editor_replace: Substituír
+intent_editor_try: Probar
 intent_editor_command_saved: "Comando gardado: {commandName}"
 intent_editor_command_overwritten: "Comando sobrescrito: {commandName}"
+commandlist_not_found: Non hai comandos gardados
+commandlist_create_fab_desc: Crear comando
+commandlist_create_command_title: Crear comando
+commandlist_launch_app_option: Executar unha aplicación
+commandlist_run: Executar
+commandlist_remove: Eliminar
+commandlist_options_desc: Opcións
+commandlist_delete_title: Eliminar comando?
+commandlist_delete_message: Esta acción non se pode desfacer.
+commandlist_delete: Eliminar
+commandlist_cancel: Cancelar
