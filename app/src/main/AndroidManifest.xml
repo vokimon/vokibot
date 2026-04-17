@@ -8,6 +8,10 @@
     <!-- Optional: For automation that needs to launch apps -->
     <uses-permission android:name="android.permission.EXPAND_STATUS_BAR" />
 
+    <!-- NFC Detection -->
+    <uses-permission android:name="android.permission.NFC" />
+    <uses-feature android:name="android.hardware.nfc" android:required="false" />
+
     <!--
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -48,6 +52,20 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <!-- NFC Trigger Activity -->
+        <activity
+            android:label="@string/nfc_trigger_activity_label"
+            android:name=".NfcTriggerActivity"
+            android:launchMode="singleTop"
+            android:exported="true">
+
+            <intent-filter>
+                <action android:name="android.nfc.action.TAG_DISCOVERED" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
         </activity>
 
     </application>

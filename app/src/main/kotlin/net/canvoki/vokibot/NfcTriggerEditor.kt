@@ -1,0 +1,187 @@
+package net.canvoki.vokibot
+
+import android.nfc.NfcAdapter
+import android.nfc.Tag
+import androidx.activity.ComponentActivity
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardCapitalization
+import androidx.compose.ui.unit.dp
+import net.canvoki.shared.component.Async
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun NfcTriggerEditor(
+    onTriggerCreated: (uid: String) -> Unit,
+    onBack: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    val context = LocalContext.current
+    val activity = context as? ComponentActivity
+    val nfcAdapter = remember { NfcAdapter.getDefaultAdapter(context) }
+
+    var uid by remember { mutableStateOf("") }
+    var isScanning by remember { mutableStateOf(false) }
+    var isNfcAvailable by remember { mutableStateOf(true) }
+    var isNfcEnabled by remember { mutableStateOf(true) }
+
+    LaunchedEffect(Unit) {
+        if (nfcAdapter == null) {
+            isNfcAvailable = false
+        } else if (!nfcAdapter.isEnabled) {
+            isNfcEnabled = false
+        }
+    }
+
+    DisposableEffect(isScanning) {
+        val callback = NfcAdapter.ReaderCallback { tag ->
+            val hexUid = tag.id.joinToString(":") { "%02X".format(it) }
+            activity?.runOnUiThread {
+                uid = hexUid
+                isScanning = false
+            }
+        }
+
+        if (isScanning && nfcAdapter != null && nfcAdapter.isEnabled) {
+            nfcAdapter.enableReaderMode(
+                activity,
+                callback,
+                NfcAdapter.FLAG_READER_NFC_A or
+                NfcAdapter.FLAG_READER_NFC_B or
+                NfcAdapter.FLAG_READER_NFC_F or
+                NfcAdapter.FLAG_READER_NFC_V or
+                NfcAdapter.FLAG_READER_SKIP_NDEF_CHECK,
+                null
+            )
+        }
+
+        onDispose {
+            if (isScanning && nfcAdapter != null) {
+                nfcAdapter.disableReaderMode(activity)
+            }
+        }
+    }
+
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text(stringResource(R.string.nfc_trigger_title)) },
+                navigationIcon = {
+                    IconButton(onClick = onBack) {
+                        Icon(
+                            painter = painterResource(R.drawable.ic_arrow_back),
+                            contentDescription = stringResource(R.string.nfc_trigger_back)
+                        )
+                    }
+                }
+            )
+        }
+    ) { padding ->
+        Column(
+            modifier = modifier
+                .fillMaxSize()
+                .padding(padding)
+                .padding(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
+            if (!isNfcAvailable) {
+                Text(
+                    text = stringResource(R.string.nfc_not_available),
+                    color = MaterialTheme.colorScheme.error,
+                    style = MaterialTheme.typography.bodyMedium
+                )
+            } else if (!isNfcEnabled) {
+                Text(
+                    text = stringResource(R.string.nfc_not_enabled),
+                    color = MaterialTheme.colorScheme.error,
+                    style = MaterialTheme.typography.bodyMedium
+                )
+            } else {
+                OutlinedTextField(
+                    value = uid,
+                    onValueChange = { uid = it },
+                    label = { Text(stringResource(R.string.nfc_trigger_uid_label)) },
+                    placeholder = { Text("04:AB:12:CD:56:78:90") },
+                    modifier = Modifier.fillMaxWidth(),
+                    keyboardOptions = KeyboardOptions(
+                        capitalization = KeyboardCapitalization.Characters,
+                        imeAction = ImeAction.Done
+                    )
+                )
+
+                Button(
+                    onClick = { isScanning = !isScanning },
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = if (isScanning) ButtonDefaults.buttonColors(
+                        containerColor = MaterialTheme.colorScheme.errorContainer,
+                        contentColor = MaterialTheme.colorScheme.onErrorContainer
+                    ) else ButtonDefaults.buttonColors()
+                ) {
+                    Icon(
+                        painter = painterResource(
+                            if (isScanning) R.drawable.ic_close else R.drawable.ic_nfc
+                        ),
+                        contentDescription = null,
+                        modifier = Modifier.size(24.dp)
+                    )
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Text(
+                        text = if (isScanning)
+                            stringResource(R.string.nfc_trigger_scanning)
+                        else
+                            stringResource(R.string.nfc_trigger_scan)
+                    )
+                }
+
+                if (isScanning) {
+                    Text(
+                        text = stringResource(R.string.nfc_trigger_scanning_hint),
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.primary
+                    )
+                }
+
+                if (uid.isNotEmpty() && !isScanning) {
+                    Card(
+                        modifier = Modifier.fillMaxWidth(),
+                        colors = CardDefaults.cardColors(
+                            containerColor = MaterialTheme.colorScheme.secondaryContainer
+                        )
+                    ) {
+                        Column(modifier = Modifier.padding(16.dp)) {
+                            Text(
+                                text = stringResource(R.string.nfc_trigger_detected),
+                                style = MaterialTheme.typography.labelMedium,
+                                color = MaterialTheme.colorScheme.onSecondaryContainer
+                            )
+                            Text(
+                                text = uid,
+                                style = MaterialTheme.typography.headlineSmall,
+                                modifier = Modifier.padding(top = 4.dp)
+                            )
+                        }
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                Button(
+                    onClick = { if (uid.isNotBlank()) onTriggerCreated(uid.trim()) },
+                    enabled = uid.isNotBlank(),
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text(stringResource(R.string.nfc_trigger_save))
+                }
+            }
+        }
+    }
+}
