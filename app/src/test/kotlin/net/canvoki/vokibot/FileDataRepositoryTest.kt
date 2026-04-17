@@ -165,11 +165,21 @@ class FileDataRepositoryTest {
         val list = repo.listCommands()
         assertEquals(listOf("id1","id2"), list)
     }
+
     @Test
     fun listCommands_ignoresBadPrefix() {
         val repo = FileDataRepository(testDir)
         repo.saveCommand("cmd1", buildCommand())
         File(testDir, "log.json").writeText("{}")
+
+        assertEquals(listOf("cmd1"), repo.listCommands())
+    }
+
+    @Test
+    fun listCommands_ignoresBadSuffix() {
+        val repo = FileDataRepository(testDir)
+        repo.saveCommand("cmd1", buildCommand())
+        File(testDir, "command_log.txt").writeText("{}")
 
         assertEquals(listOf("cmd1"), repo.listCommands())
     }
