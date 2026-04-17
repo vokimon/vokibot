@@ -146,6 +146,14 @@ class FileDataRepositoryTest {
         val list = repo.listCommands()
         assertEquals(listOf("id1"), list)
     }
+
+    @Test
+    fun listCommandsWhenNoCommands() {
+        val repo = FileDataRepository(testDir)
+
+        val list = repo.listCommands()
+        assertEquals(emptyList<String>(), list)
+    }
 }
 
 
