@@ -1,8 +1,11 @@
 package net.canvoki.vokibot
 
+import android.content.ComponentName
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
@@ -22,10 +25,13 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.graphics.painter.BitmapPainter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.core.graphics.drawable.toBitmap
 import kotlinx.coroutines.launch
 import net.canvoki.shared.component.AsyncList
 import net.canvoki.shared.component.ChooserDialog
@@ -52,6 +58,20 @@ fun CommandList(
         ) { command ->
             var menuExpanded by remember { mutableStateOf(false) }
 
+            // Get component icon (only for LaunchActivityCommand)
+            val componentIcon = remember(command.packageName) {
+                runCatching {
+                    val pm = context.packageManager
+                    val className = (command as? LaunchActivityCommand)?.className
+                    if (className != null) {
+                        val componentName = ComponentName(command.packageName, className)
+                        pm.getActivityIcon(componentName)
+                    } else {
+                        pm.getApplicationIcon(command.packageName)
+                    }
+                }.getOrNull()
+            }
+
             ListItem(
                 headlineContent = { Text(command.displayName) },
                 supportingContent = {
@@ -59,6 +79,20 @@ fun CommandList(
                         text = "${command.packageName}/${(command as? LaunchActivityCommand)?.className ?: ""}",
                         style = MaterialTheme.typography.bodySmall,
                         maxLines = 1,
+                    )
+                },
+                leadingContent = {
+                    componentIcon?.let { icon ->
+                        Image(
+                            painter = BitmapPainter(icon.toBitmap().asImageBitmap()),
+                            contentDescription = null,
+                            modifier = Modifier.size(40.dp),
+                        )
+                    } ?: Icon(
+                        painter = painterResource(R.drawable.ic_brand),
+                        contentDescription = null,
+                        modifier = Modifier.size(40.dp),
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
                 },
                 trailingContent = {
