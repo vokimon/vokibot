@@ -65,7 +65,7 @@ class FileDataRepositoryTest {
         repository.saveCommand(original)
         val retrieved = repository.loadCommand("my_id")
 
-        assertCommandEqual(original, retrieved)
+        assertDataEqual(original, retrieved)
     }
 
     @Test
@@ -77,7 +77,7 @@ class FileDataRepositoryTest {
 
         val retrieved = repository.loadCommand("non_existent_id")
 
-        assertCommandEqual(null, retrieved)
+        assertDataEqual(null, retrieved)
     }
 
     @Test
@@ -90,7 +90,7 @@ class FileDataRepositoryTest {
         repository.saveCommand(commandB)
         val retrievedA = repository.loadCommand("id_A")
 
-        assertCommandEqual(commandA, retrievedA)
+        assertDataEqual(commandA, retrievedA)
     }
 
     @Test
@@ -102,7 +102,7 @@ class FileDataRepositoryTest {
         val repo2 = FileDataRepository(testDir) // Same directory, new instance
         val retrieved = repo2.loadCommand("id1")
 
-        assertCommandEqual(original, retrieved)
+        assertDataEqual(original, retrieved)
     }
 
     @Test
@@ -113,7 +113,7 @@ class FileDataRepositoryTest {
         repo.removeCommand("id1")
 
         val retrieved = repo.loadCommand("id1")
-        assertCommandEqual(null, retrieved)
+        assertDataEqual(null, retrieved)
     }
 
     @Test
@@ -190,10 +190,42 @@ class FileDataRepositoryTest {
         repo.saveCommand(original)
 
         val loaded = repo.loadAllCommands()
-        assertCommandEqual(original, loaded.firstOrNull())
+        assertDataEqual(original, loaded.firstOrNull())
     }
+
+    @Test
+    fun loadAllCommands_returnsManySavedCommand() {
+        val repo = FileDataRepository(testDir)
+        val data1 = buildCommand("id1")
+        val data2 = buildCommand("id2")
+        repo.saveCommand(data1)
+        repo.saveCommand(data2)
+
+        val loaded = repo.loadAllCommands()
+        assertDataEqual(data1, loaded.firstOrNull())
+        assertDataEqual(data2, loaded.lastOrNull())
+    }
+
+    @Test
+    fun loadNfcTrigger_alreadySaved() {
+        val repository = FileDataRepository(testDir)
+        val original = buildNfc("my tag", "10:01")
+
+        repository.saveNfcTrigger(original)
+        val retrieved = repository.loadNfcTrigger("10:01")
+
+        assertDataEqual(original, retrieved)
+    }
+
 }
 
+
+fun <T: StorableEntity> assertDataEqual(expected: T?, actual: T?) {
+    assertJsonEqual(
+        expected?.toJson() ?: "null",
+        actual?.toJson() ?: "null",
+    )
+}
 
 private fun buildCommand(
     displayName: String =  "Test Command",
@@ -203,9 +235,12 @@ private fun buildCommand(
     className = "com.test.pkg.MainActivity"
 )
 
-fun assertCommandEqual(expected: ApplicationCommand?, actual: ApplicationCommand?) {
-    assertJsonEqual(
-        expected?.toJson() ?: "null",
-        actual?.toJson() ?: "null",
-    )
-}
+
+private fun buildNfc(
+    name: String,
+    uid: String,
+): NfcTrigger = NfcTrigger(
+    displayName = name,
+    uid = uid,
+)
+

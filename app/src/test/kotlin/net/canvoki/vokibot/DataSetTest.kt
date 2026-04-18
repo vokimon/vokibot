@@ -217,7 +217,7 @@ private fun buildCommand(
     className = "com.test.pkg.MainActivity"
 )
 
-fun assertDataEqual(expected: ApplicationCommand?, actual: ApplicationCommand?) {
+fun assertDataEqual(expected: StorableEntity?, actual: StorableEntity?) {
     assertJsonEqual(
         expected?.toJson() ?: "null",
         actual?.toJson() ?: "null",
