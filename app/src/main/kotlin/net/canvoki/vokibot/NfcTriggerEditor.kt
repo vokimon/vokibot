@@ -37,7 +37,7 @@ fun NfcTriggerEditor(
     var displayName by rememberSaveable { mutableStateOf("") }
     var uid by rememberSaveable { mutableStateOf("") }
     var isScanning by rememberSaveable { mutableStateOf(false) }
-    var scanSuccess by rememberSaveable { mutableStateOf(false) }
+    var scanSuccess by remember { mutableStateOf(false) }
     var isNfcAvailable by rememberSaveable { mutableStateOf(true) }
     var isNfcEnabled by rememberSaveable { mutableStateOf(true) }
     var isSaving by rememberSaveable { mutableStateOf(false) }
