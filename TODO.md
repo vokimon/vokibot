@@ -9,16 +9,16 @@
 - [x] Implement the save button
 - [x] Add new top level screen Command picker
 - [x] Add button to add action -> Show a menu of kind (only application by now) -> got to current app list
-- [ ] List saved commands
-- [ ] Command Menu: "Run"
-- [ ] Command Menu: "Delete"
+- [x] List saved commands
+- [x] Command Menu: "Run"
+- [x] Command Menu: "Delete"
 - [ ] Complete the dialog for Activities
 - [ ] Extract as composables the parts of the dialog that might be reused
 - [ ] Conditionally choose the Activity or no dialog depending of the kind
 - [ ] Progressively, one component kind at a time, add the dialog of that kind of App component, reusing parts of Activity and composing its ApplicationCommand.
 - [ ] Command Menu: "Edit"
 - [ ] Use UserMessage for Try errors
-- [ ] Overwrite dialog: if not confirm, back to ask the name not full cancell
+- [ ] ApplicationCommand: Overwrite dialog: if not confirm, back to ask the name not full cancell
 - [ ] Save dialog: smarter default naming, not just the app name
 - [ ] AppList: Filter sheet gets cropped on landscape
 - [ ] IntentEditor: Action select with icons

@@ -7,11 +7,16 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -36,16 +41,20 @@ fun TriggerList(
     val context = LocalContext.current
     val repository = remember { FileDataRepository.fromContext(context) }
     var showTypeChooser by remember { mutableStateOf(false) }
+    var refreshCounter by remember { mutableStateOf(0) }
+    var triggerToDelete by remember { mutableStateOf<NfcTrigger?>(null) }
 
     Box(modifier = modifier.fillMaxSize()) {
         AsyncList(
-            refreshKeys = listOf(Unit),
+            refreshKeys = listOf(refreshCounter),
             loader = { repository.nfcTrigger.all() },
             itemKey = { it.id },
             groupBy = { "nfc" },
             headerContent = { key -> TriggerGroupHeader(key) },
             notFoundMessage = stringResource(R.string.triggerlist_not_found),
         ) { trigger ->
+            var menuExpanded by remember { mutableStateOf(false) }
+
             ListItem(
                 headlineContent = { Text(trigger.displayName) },
                 supportingContent = { Text(trigger.uid) },
@@ -57,8 +66,32 @@ fun TriggerList(
                         tint = MaterialTheme.colorScheme.primary
                     )
                 },
-                modifier = Modifier.clickable {
-                    onTriggerSelected("nfc", trigger.id)
+                modifier = Modifier.clickable { onTriggerSelected("nfc", trigger.id) },
+                trailingContent = {
+                    IconButton(onClick = { menuExpanded = true }) {
+                        Icon(
+                            painter = painterResource(R.drawable.ic_more_vert),
+                            contentDescription = stringResource(R.string.triggerlist_options_desc)
+                        )
+                    }
+                    DropdownMenu(
+                        expanded = menuExpanded,
+                        onDismissRequest = { menuExpanded = false }
+                    ) {
+                        DropdownMenuItem(
+                            text = { Text(stringResource(R.string.triggerlist_delete)) },
+                            leadingIcon = {
+                                Icon(
+                                    painter = painterResource(R.drawable.ic_delete),
+                                    contentDescription = null
+                                )
+                            },
+                            onClick = {
+                                menuExpanded = false
+                                triggerToDelete = trigger
+                            }
+                        )
+                    }
                 }
             )
         }
@@ -72,6 +105,33 @@ fun TriggerList(
                 contentDescription = stringResource(R.string.triggerlist_create_fab_desc)
             )
         }
+    }
+
+    // Delete confirmation dialog
+    if (triggerToDelete != null) {
+        AlertDialog(
+            onDismissRequest = { triggerToDelete = null },
+            title = { Text(stringResource(R.string.triggerlist_delete_title)) },
+            text = { Text(stringResource(R.string.triggerlist_delete_message)) },
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        triggerToDelete?.let { t ->
+                            repository.nfcTrigger.remove(t.id)
+                            refreshCounter++
+                            triggerToDelete = null
+                        }
+                    }
+                ) {
+                    Text(stringResource(R.string.triggerlist_delete), color = MaterialTheme.colorScheme.error)
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { triggerToDelete = null }) {
+                    Text(stringResource(R.string.triggerlist_cancel))
+                }
+            }
+        )
     }
 
     if (showTypeChooser) {
