@@ -207,6 +207,18 @@ class DataSetTest {
         assertDataEqual(data2, loaded.lastOrNull())
     }
 
+    @Test
+    fun all_returnsManySavedItemInverseOrder() {
+        val dataSet = createDataSet()
+        val data1 = buildCommand("id1")
+        val data2 = buildCommand("id2")
+        dataSet.save(data2)
+        dataSet.save(data1)
+
+        val loaded = dataSet.all()
+        assertDataEqual(data1, loaded.firstOrNull())
+        assertDataEqual(data2, loaded.lastOrNull())
+    }
 }
 
 private fun buildCommand(

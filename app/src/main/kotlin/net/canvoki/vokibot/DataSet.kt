@@ -56,7 +56,7 @@ class DataSet<T : StorableEntity>(
     fun listIds(): List<String> {
         return directory.listFiles { _, name ->
             name.startsWith(prefix) && name.endsWith(".json")
-        }?.map { it.name.removePrefix(prefix).removeSuffix(".json") } ?: emptyList()
+        }?.map { it.name.removePrefix(prefix).removeSuffix(".json") }?.sorted() ?: emptyList()
     }
 
     fun all(): List<T> = listIds().mapNotNull { load(it) }

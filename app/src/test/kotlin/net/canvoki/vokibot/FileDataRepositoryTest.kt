@@ -42,20 +42,21 @@ class FileDataRepositoryTest {
         val existingFile = File(testDir, "existing.txt")
         val originalContent = "original content\nwith multiple lines"
 
-        // Setup: create directory and file with known content BEFORE repository construction
         File(testDir).mkdirs()
         existingFile.writeText(originalContent)
 
-        // Act: construct repository (should not mutate existing files)
         FileDataRepository(testDir)
 
-        // Assert: file content unchanged
         assertEquals(
             originalContent,
             existingFile.readText(),
             "Existing file content should be preserved after repository construction",
         )
     }
+
+    // ─────────────────────────────────────────────────────────────
+    // Command Tests
+    // ─────────────────────────────────────────────────────────────
 
     @Test
     fun loadCommand_alreadySaved() {
@@ -71,7 +72,6 @@ class FileDataRepositoryTest {
     @Test
     fun loadCommand_notFound_returnsNull() {
         val repository = FileDataRepository(testDir)
-
         val original = buildCommand("id1")
         repository.saveCommand(original)
 
@@ -99,7 +99,7 @@ class FileDataRepositoryTest {
         val original = buildCommand("id1")
         repo1.saveCommand(original)
 
-        val repo2 = FileDataRepository(testDir) // Same directory, new instance
+        val repo2 = FileDataRepository(testDir)
         val retrieved = repo2.loadCommand("id1")
 
         assertDataEqual(original, retrieved)
@@ -117,7 +117,7 @@ class FileDataRepositoryTest {
     }
 
     @Test
-    fun existsComandWhenItExists() {
+    fun existsCommandWhenItExists() {
         val repo = FileDataRepository(testDir)
         val command = buildCommand("id1")
         repo.saveCommand(command)
@@ -127,7 +127,7 @@ class FileDataRepositoryTest {
     }
 
     @Test
-    fun existsComandWhenItDoesNotExist() {
+    fun existsCommandWhenItDoesNotExist() {
         val repo = FileDataRepository(testDir)
         val command = buildCommand("id1")
         repo.saveCommand(command)
@@ -149,7 +149,6 @@ class FileDataRepositoryTest {
     @Test
     fun listCommands_noCommands() {
         val repo = FileDataRepository(testDir)
-
         val list = repo.listCommands()
         assertEquals(emptyList<String>(), list)
     }
@@ -157,12 +156,11 @@ class FileDataRepositoryTest {
     @Test
     fun listCommands_manyCommands() {
         val repo = FileDataRepository(testDir)
-
         repo.saveCommand(buildCommand("id1"))
         repo.saveCommand(buildCommand("id2"))
 
         val list = repo.listCommands()
-        assertEquals(listOf("id1","id2"), list)
+        assertEquals(listOf("id1", "id2"), list)
     }
 
     @Test
@@ -194,7 +192,7 @@ class FileDataRepositoryTest {
     }
 
     @Test
-    fun loadAllCommands_returnsManySavedCommand() {
+    fun loadAllCommands_returnsManySavedCommands() {
         val repo = FileDataRepository(testDir)
         val data1 = buildCommand("id1")
         val data2 = buildCommand("id2")
@@ -205,6 +203,10 @@ class FileDataRepositoryTest {
         assertDataEqual(data1, loaded.firstOrNull())
         assertDataEqual(data2, loaded.lastOrNull())
     }
+
+    // ─────────────────────────────────────────────────────────────
+    // NFC Trigger Tests (mirroring command tests)
+    // ─────────────────────────────────────────────────────────────
 
     @Test
     fun loadNfcTrigger_alreadySaved() {
@@ -217,10 +219,131 @@ class FileDataRepositoryTest {
         assertDataEqual(original, retrieved)
     }
 
+    @Test
+    fun loadNfcTrigger_notFound_returnsNull() {
+        val repository = FileDataRepository(testDir)
+        val original = buildNfc("tag", "10:01")
+        repository.saveNfcTrigger(original)
+
+        val retrieved = repository.loadNfcTrigger("non_existent")
+
+        assertDataEqual(null, retrieved)
+    }
+
+    @Test
+    fun nfcTriggersIsolatedById() {
+        val repository = FileDataRepository(testDir)
+        val triggerA = buildNfc("tag A", "AA:01")
+        val triggerB = buildNfc("tag B", "BB:02")
+
+        repository.saveNfcTrigger(triggerA)
+        repository.saveNfcTrigger(triggerB)
+        val retrievedA = repository.loadNfcTrigger("AA:01")
+
+        assertDataEqual(triggerA, retrievedA)
+    }
+
+    @Test
+    fun removeNfcTrigger() {
+        val repo = FileDataRepository(testDir)
+        val original = buildNfc("tag", "10:01")
+        repo.saveNfcTrigger(original)
+        repo.removeNfcTrigger("10:01")
+
+        val retrieved = repo.loadNfcTrigger("10:01")
+        assertDataEqual(null, retrieved)
+    }
+
+    @Test
+    fun existsNfcTriggerWhenItExists() {
+        val repo = FileDataRepository(testDir)
+        val trigger = buildNfc("tag", "10:01")
+        repo.saveNfcTrigger(trigger)
+
+        val doesExist = repo.existsNfcTrigger("10:01")
+        assertEquals(true, doesExist)
+    }
+
+    @Test
+    fun existsNfcTriggerWhenItDoesNotExist() {
+        val repo = FileDataRepository(testDir)
+        val trigger = buildNfc("tag", "10:01")
+        repo.saveNfcTrigger(trigger)
+
+        val doesExist = repo.existsNfcTrigger("non-existing")
+        assertEquals(false, doesExist)
+    }
+
+    @Test
+    fun listNfcTriggers_singleTrigger() {
+        val repo = FileDataRepository(testDir)
+        val trigger = buildNfc("tag", "10:01")
+        repo.saveNfcTrigger(trigger)
+
+        val list = repo.listNfcTriggers()
+        assertEquals(listOf("10_01"), list)
+    }
+
+    @Test
+    fun listNfcTriggers_noTriggers() {
+        val repo = FileDataRepository(testDir)
+        val list = repo.listNfcTriggers()
+        assertEquals(emptyList<String>(), list)
+    }
+
+    @Test
+    fun listNfcTriggers_manyTriggers() {
+        val repo = FileDataRepository(testDir)
+        repo.saveNfcTrigger(buildNfc("tag1", "10:01"))
+        repo.saveNfcTrigger(buildNfc("tag2", "20:02"))
+
+        val list = repo.listNfcTriggers()
+        assertEquals(listOf("10_01", "20_02"), list.sorted())
+    }
+
+    @Test
+    fun listNfcTriggers_ignoresBadPrefix() {
+        val repo = FileDataRepository(testDir)
+        repo.saveNfcTrigger(buildNfc("tag", "10:01"))
+        File(testDir, "log.json").writeText("{}")
+
+        assertEquals(listOf("10_01"), repo.listNfcTriggers())
+    }
+
+    @Test
+    fun listNfcTriggers_ignoresBadSuffix() {
+        val repo = FileDataRepository(testDir)
+        repo.saveNfcTrigger(buildNfc("tag", "10:01"))
+        File(testDir, "trigger_nfc_log.txt").writeText("{}")
+
+        assertEquals(listOf("10_01"), repo.listNfcTriggers())
+    }
+
+    @Test
+    fun loadAllNfcTriggers_returnsSingleSavedTrigger() {
+        val repo = FileDataRepository(testDir)
+        val original = buildNfc("tag", "10:01")
+        repo.saveNfcTrigger(original)
+
+        val loaded = repo.loadAllNfcTriggers()
+        assertDataEqual(original, loaded.firstOrNull())
+    }
+
+    @Test
+    fun loadAllNfcTriggers_returnsManySavedTriggers() {
+        val repo = FileDataRepository(testDir)
+        val data1 = buildNfc("tag1", "10:01")
+        val data2 = buildNfc("tag2", "20:02")
+        repo.saveNfcTrigger(data1)
+        repo.saveNfcTrigger(data2)
+
+        val loaded = repo.loadAllNfcTriggers()
+        assertDataEqual(data1, loaded.firstOrNull())
+        assertDataEqual(data2, loaded.lastOrNull())
+    }
 }
 
-
-fun <T: StorableEntity> assertDataEqual(expected: T?, actual: T?) {
+fun <T : StorableEntity> assertDataEqual(expected: T?, actual: T?) {
     assertJsonEqual(
         expected?.toJson() ?: "null",
         actual?.toJson() ?: "null",
@@ -228,13 +351,12 @@ fun <T: StorableEntity> assertDataEqual(expected: T?, actual: T?) {
 }
 
 private fun buildCommand(
-    displayName: String =  "Test Command",
+    displayName: String = "Test Command",
 ): ApplicationCommand = LaunchActivityCommand(
     displayName = displayName,
     packageName = "com.test.pkg",
     className = "com.test.pkg.MainActivity"
 )
-
 
 private fun buildNfc(
     name: String,
@@ -243,4 +365,3 @@ private fun buildNfc(
     displayName = name,
     uid = uid,
 )
-
