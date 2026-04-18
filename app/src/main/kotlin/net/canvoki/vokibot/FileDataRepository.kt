@@ -4,7 +4,6 @@ import android.content.Context
 import java.io.File
 
 class FileDataRepository(directoryPath: String = "repodata") {
-    typealias Command = ApplicationCommand
     private val _directory = File(directoryPath)
 
     init {
@@ -16,48 +15,33 @@ class FileDataRepository(directoryPath: String = "repodata") {
 
         fun fromContext(context: Context, subdirectory: String = DEFAULT_SUBDIRECTORY): FileDataRepository {
             val dir = File(context.filesDir, subdirectory)
-            return FileDataRepository(dir.getAbsolutePath())
+            return FileDataRepository(dir.absolutePath)
         }
     }
 
-    fun _commandFile(id: String): File {
-        return File(_directory, "command_$id.json")
+    val command: DataSet<ApplicationCommand> by lazy {
+        DataSet(_directory, "command_", ApplicationCommand::fromJson)
     }
 
-    fun saveCommand(command: Command) {
-        val file = _commandFile(command.id)
-        file.writeText(command.toJson())
+    val nfcTrigger: DataSet<NfcTrigger> by lazy {
+        DataSet(_directory, "trigger_nfc_", NfcTrigger::fromJson)
     }
 
-    fun loadCommand(id: String): Command? {
-        val file = _commandFile(id)
-        if (!file.exists()) return null
-        return ApplicationCommand.fromJson(file.readText())
-    }
+    // ─────────────────────────────────────────────────────────────
+    // Backward-compatible delegates (keep old tests passing)
+    // ─────────────────────────────────────────────────────────────
 
-    fun removeCommand(id: String) {
-        val file = _commandFile(id)
-        if (!file.exists()) return
-        file.delete()
-    }
+    fun saveCommand(cmd: ApplicationCommand) = command.save(cmd)
+    fun loadCommand(id: String) = command.load(id)
+    fun removeCommand(id: String) = command.remove(id)
+    fun existsCommand(id: String) = command.exists(id)
+    fun listCommands() = command.listIds()
+    fun loadAllCommands() = command.all()
 
-    fun existsCommand(id: String): Boolean {
-        val file = _commandFile(id)
-        return file.exists()
-    }
-
-    fun listCommands(): List<String> {
-        val files = _directory.listFiles { _, name ->
-            name.startsWith("command_") && name.endsWith(".json")
-        } ?: return emptyList()
-        return files.map {
-            it.name.removePrefix("command_").removeSuffix(".json")
-        }
-    }
-
-    fun loadAllCommands(): List<Command> {
-        return listCommands().mapNotNull { id ->
-            loadCommand(id)
-        }
-    }
+    fun saveNfcTrigger(trigger: NfcTrigger) = nfcTrigger.save(trigger)
+    fun loadNfcTrigger(id: String) = nfcTrigger.load(id)
+    fun removeNfcTrigger(id: String) = nfcTrigger.remove(id)
+    fun existsNfcTrigger(id: String) = nfcTrigger.exists(id)
+    fun listNfcTriggers() = nfcTrigger.listIds()
+    fun loadAllNfcTriggers() = nfcTrigger.all()
 }

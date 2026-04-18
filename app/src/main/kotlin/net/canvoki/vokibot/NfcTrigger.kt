@@ -15,16 +15,19 @@ import kotlinx.serialization.json.Json
 data class NfcTrigger(
     val displayName: String,
     val uid: String,
-) {
+) : StorableEntity {
     // TODO: Hack for non-polymorphic serialization
     val type = "nfc_trigger"
-    val id: String
-        get() = uid.replace(":", "_")
+
+    override val id: String
+        get() = toFileSystemId(uid)
 
 
-    fun toJson(): String = Companion.json.encodeToString(serializer(), this)
+    override fun toJson(): String = Companion.json.encodeToString(serializer(), this)
 
     companion object {
+        fun safeId(id: String) = id
+
         private val json = Json {
             explicitNulls = false
             encodeDefaults = true

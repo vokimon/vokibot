@@ -8,6 +8,13 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 
+fun toFileSystemId(id: String): String =
+    id.replace(Regex("[^a-zA-Z0-9_.-]"), "_")
+        .replace(Regex("_+"), "_")
+        .take(64)
+        .trim('_')
+        .ifBlank { "unnamed" }
+
 /**
  * Type-safe extra values for Intents.
  */
@@ -88,7 +95,7 @@ sealed class ExtraValue {
  * Base class for automation commands that interact with other applications.
  */
 @Serializable
-sealed class ApplicationCommand {
+sealed class ApplicationCommand : StorableEntity {
     abstract val displayName: String
     abstract val packageName: String
 
@@ -96,19 +103,11 @@ sealed class ApplicationCommand {
      * String resource ID for the human-readable command type label.
      * Used for grouping, filtering, and display in lists.
      */
-    @kotlinx.serialization.Transient
     @get:StringRes
     abstract val typeLabelRes: Int
 
-    val id: String
-        get() = displayName.toFileSystemId()
-
-    private fun String.toFileSystemId(): String =
-        replace(Regex("[^a-zA-Z0-9_.-]"), "_")
-            .replace(Regex("_+"), "_")
-            .take(64)
-            .trim('_')
-            .ifBlank { "unnamed" }
+    override val id: String
+        get() = toFileSystemId(displayName)
 
     /**
      * Execute this command when the trigger condition is met.
@@ -119,7 +118,7 @@ sealed class ApplicationCommand {
      * Serialize this command to JSON.
      * Instance method because you already have the object.
      */
-    fun toJson(): String = Companion.json.encodeToString(serializer(), this)
+    override fun toJson(): String = Companion.json.encodeToString(serializer(), this)
 
     companion object {
         private val json =
