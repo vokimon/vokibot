@@ -1,10 +1,12 @@
 package net.canvoki.vokibot
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ListItem
@@ -28,6 +30,7 @@ import net.canvoki.shared.component.ChooserOption
 @Composable
 fun TriggerList(
     onNewTrigger: (String) -> Unit,
+    onTriggerSelected: (type: String, id: String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
@@ -47,6 +50,17 @@ fun TriggerList(
             ListItem(
                 headlineContent = { Text(trigger.displayName) },
                 supportingContent = { Text(trigger.uid) },
+                leadingContent = {
+                    Icon(
+                        painter = painterResource(R.drawable.ic_nfc),
+                        contentDescription = null,//stringResource(R.string.trigger_type_nfc),
+                        modifier = Modifier.size(40.dp),
+                        tint = MaterialTheme.colorScheme.primary
+                    )
+                },
+                modifier = Modifier.clickable {
+                    onTriggerSelected("nfc", trigger.id)
+                }
             )
         }
 

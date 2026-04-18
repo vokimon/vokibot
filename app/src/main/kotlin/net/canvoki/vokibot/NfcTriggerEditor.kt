@@ -20,7 +20,6 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun NfcTriggerEditor(
     onSaved: () -> Unit,
-    onBack: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current

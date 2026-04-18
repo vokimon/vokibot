@@ -57,12 +57,14 @@ fun IntentActionBuilder() {
                         "nfc" -> nav.push(BuilderScreen.NfcTriggerEditor)
                         else -> {}
                     }
-                }
+                },
+                onTriggerSelected = { type, id ->
+                    log("Created $id of type $type")
+                },
             )
 
             is BuilderScreen.NfcTriggerEditor -> NfcTriggerEditor(
-                onBack = { nav.back() },
-                onSaved = { },
+                onSaved = { nav.back() },
             )
 
             is BuilderScreen.CommandList -> CommandList(
