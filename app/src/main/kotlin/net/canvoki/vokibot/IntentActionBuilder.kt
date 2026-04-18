@@ -16,6 +16,9 @@ import net.canvoki.shared.component.rememberStackNavigatorState
 @Serializable
 sealed class BuilderScreen {
     @Serializable
+    data object AutomationList : BuilderScreen()
+
+    @Serializable
     data object AutomationEditor : BuilderScreen()
 
     @Serializable
@@ -46,24 +49,35 @@ sealed class BuilderScreen {
 fun IntentActionBuilder() {
     val nav =
         rememberStackNavigatorState<BuilderScreen>(
-            BuilderScreen.AutomationEditor,
+            BuilderScreen.AutomationList,
         )
     val appListState = rememberSaveable(saver = LazyListState.Saver) { LazyListState() }
     var currentComponent by remember { mutableStateOf<PublicComponent?>(null) }
-    var selectedTrigger by remember { mutableStateOf<Pair<String, String>?>(null) }
-    var selectedCommands by remember { mutableStateOf<List<String>>(emptyList()) }
+    var triggerResult by remember { mutableStateOf<Pair<String, String>?>(null) }
+    var commandResult by remember { mutableStateOf<String?>(null) }
+
+    var editingAutomationId by remember { mutableStateOf<String?>(null) }
 
     StackNavigator(state = nav) { screen ->
 
         when (screen) {
+            is BuilderScreen.AutomationList -> AutomationList(
+                onNewAutomation = {
+                    editingAutomationId = null
+                    nav.push(BuilderScreen.AutomationEditor)
+                },
+                onAutomationSelected = { id ->
+                    editingAutomationId = id
+                    nav.push(BuilderScreen.AutomationEditor)
+                }
+            )
+
             is BuilderScreen.AutomationEditor -> AutomationEditor(
-                triggerSelection = selectedTrigger,
-                commandSelections = selectedCommands,
+                editingId = editingAutomationId,
+                triggerPickResult = triggerResult,
+                commandPickResult = commandResult,
                 onRequestTrigger = { nav.push(BuilderScreen.TriggerList) },
                 onRequestAddCommand = { nav.push(BuilderScreen.CommandList) },
-                onRemoveCommand = { index ->
-                    selectedCommands = selectedCommands.toMutableList().apply { removeAt(index) }
-                },
                 onSave = { automation ->
                     nav.back()
                 }
@@ -77,7 +91,7 @@ fun IntentActionBuilder() {
                     }
                 },
                 onTriggerSelected = { type, id ->
-                    selectedTrigger = type to id
+                    triggerResult = type to id
                     nav.back()
                 },
             )
@@ -89,7 +103,7 @@ fun IntentActionBuilder() {
             is BuilderScreen.CommandList -> CommandList(
                 onLaunchAppSelected = { nav.push(BuilderScreen.AppList) },
                 onCommandSelected = {
-                    selectedCommands = selectedCommands + it
+                    commandResult = it
                     nav.back()
                 }
             )

@@ -1,6 +1,5 @@
 package net.canvoki.vokibot
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -16,65 +15,61 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.Json
-
-@Serializable
-@SerialName("automation")
-data class Automation(
-    val name: String,
-    val triggerType: String,
-    val triggerId: String,
-    val commandIds: List<String>,
-) : StorableEntity {
-    override val id: String
-        get() = name.replace(Regex("[^a-zA-Z0-9_.-]"), "_").take(64).ifBlank { "automation" }
-    override fun toJson(): String = Companion.json.encodeToString(serializer(), this)
-
-    companion object {
-        private val json = Json {
-            explicitNulls = false
-            encodeDefaults = true
-            classDiscriminator = "type"
-        }
-        fun fromJson(jsonString: String): Automation = json.decodeFromString(serializer(), jsonString)
-    }
-}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AutomationEditor(
-    triggerSelection: Pair<String, String>? = null,
-    commandSelections: List<String> = emptyList(),
+    editingId: String? = null,
+    triggerPickResult: Pair<String, String>? = null,
+    commandPickResult: String? = null,
     onRequestTrigger: () -> Unit,
     onRequestAddCommand: () -> Unit,
-    onRemoveCommand: (Int) -> Unit,
     onSave: (Automation) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
     val repository = remember { FileDataRepository.fromContext(context) }
 
-    // Local form state (survives rotation)
+    // Local draft state (survives rotation)
     var name by rememberSaveable { mutableStateOf("") }
     var triggerType by rememberSaveable { mutableStateOf("") }
     var triggerId by rememberSaveable { mutableStateOf("") }
+    var commandIds by rememberSaveable { mutableStateOf<List<String>>(emptyList()) }
 
-    // Sync external trigger selection into local state
-    LaunchedEffect(triggerSelection) {
-        triggerSelection?.let { (type, id) ->
+    // Load existing automation or initialize new
+    LaunchedEffect(editingId) {
+        if (editingId != null) {
+            repository.automation.load(editingId)?.let { existing ->
+                name = existing.name
+                triggerType = existing.triggerType
+                triggerId = existing.triggerId
+                commandIds = existing.commandIds
+            }
+        }
+    }
+
+    // Consume one-shot picker results
+    LaunchedEffect(triggerPickResult) {
+        triggerPickResult?.let { (type, id) ->
             triggerType = type
             triggerId = id
         }
     }
 
-    // Resolve display names
+    LaunchedEffect(commandPickResult) {
+        commandPickResult?.let { id ->
+            if (!commandIds.contains(id)) {
+                commandIds = commandIds + id
+            }
+        }
+    }
+
+    // Resolve display names (lightweight, cached per change)
     val triggerDisplayName = remember(triggerType, triggerId) {
         if (triggerType == "nfc") repository.nfcTrigger.load(triggerId)?.displayName else null
     }
-    val commandDisplayNames = remember(commandSelections) {
-        commandSelections.map { id -> repository.command.load(id)?.displayName ?: id }
+    val commandDisplayNames = remember(commandIds) {
+        commandIds.map { id -> repository.command.load(id)?.displayName ?: id }
     }
 
     Column(
@@ -84,7 +79,6 @@ fun AutomationEditor(
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        // ── Name ──────────────────────────────────────────────────────
         OutlinedTextField(
             value = name,
             onValueChange = { name = it },
@@ -95,19 +89,14 @@ fun AutomationEditor(
             keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next)
         )
 
-        // ── Trigger ───────────────────────────────────────────────────
         Card(
             modifier = Modifier
                 .fillMaxWidth()
                 .clickable(onClick = onRequestTrigger),
-            colors = CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.surfaceVariant
-            )
+            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
         ) {
             Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
+                modifier = Modifier.fillMaxWidth().padding(16.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Icon(
@@ -133,13 +122,12 @@ fun AutomationEditor(
             }
         }
 
-        // ── Commands ──────────────────────────────────────────────────
         Text(
             text = stringResource(R.string.automation_commands_label),
             style = MaterialTheme.typography.titleMedium
         )
 
-        if (commandSelections.isEmpty()) {
+        if (commandIds.isEmpty()) {
             Text(
                 text = stringResource(R.string.automation_commands_empty),
                 style = MaterialTheme.typography.bodyMedium,
@@ -150,14 +138,10 @@ fun AutomationEditor(
                 commandDisplayNames.forEachIndexed { index, cmdName ->
                     Card(
                         modifier = Modifier.fillMaxWidth(),
-                        colors = CardDefaults.cardColors(
-                            containerColor = MaterialTheme.colorScheme.secondaryContainer
-                        )
+                        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer)
                     ) {
                         Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(horizontal = 16.dp, vertical = 12.dp),
+                            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 12.dp),
                             horizontalArrangement = Arrangement.SpaceBetween,
                             verticalAlignment = Alignment.CenterVertically
                         ) {
@@ -166,7 +150,10 @@ fun AutomationEditor(
                                 style = MaterialTheme.typography.bodyMedium,
                                 modifier = Modifier.weight(1f)
                             )
-                            IconButton(onClick = { onRemoveCommand(index) }) {
+                            // ✅ Removal now only affects local draft state
+                            IconButton(onClick = {
+                                commandIds = commandIds.toMutableList().apply { removeAt(index) }
+                            }) {
                                 Icon(
                                     painter = painterResource(R.drawable.ic_delete),
                                     contentDescription = stringResource(R.string.automation_remove_command_desc),
@@ -194,16 +181,15 @@ fun AutomationEditor(
 
         Spacer(modifier = Modifier.height(24.dp))
 
-        // ── Save ──────────────────────────────────────────────────────
         Button(
             onClick = {
-                if (name.isNotBlank() && triggerId.isNotBlank() && commandSelections.isNotEmpty()) {
-                    val automation = Automation(name.trim(), triggerType, triggerId, commandSelections)
+                if (name.isNotBlank() && triggerId.isNotBlank() && commandIds.isNotEmpty()) {
+                    val automation = Automation(name.trim(), triggerType, triggerId, commandIds)
                     repository.automation.save(automation)
                     onSave(automation)
                 }
             },
-            enabled = name.isNotBlank() && triggerId.isNotBlank() && commandSelections.isNotEmpty(),
+            enabled = name.isNotBlank() && triggerId.isNotBlank() && commandIds.isNotEmpty(),
             modifier = Modifier.fillMaxWidth()
         ) {
             Text(stringResource(R.string.automation_save))
