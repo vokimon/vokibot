@@ -42,51 +42,55 @@ command_type_launch_activity: "Приложение: Открыть экран"
 command_type_send_broadcast: "Приложение: Отправить уведомление"
 command_type_start_service: "Приложение: Запустить процесс"
 command_type_access_provider: "Приложение: Доступ к данным"
-nfc_trigger_back: "Назад"
-nfc_trigger_uid_label: "UID метки"
-nfc_trigger_scan: "Сканировать NFC-метку"
-nfc_trigger_scanning: "Остановить сканирование"
-nfc_trigger_scanning_hint: "Поднесите метку к устройству"
-nfc_trigger_detected: "Метка обнаружена"
-nfc_trigger_save: "Сохранить триггер"
-nfc_not_available: "NFC-оборудование не найдено на этом устройстве"
-nfc_not_enabled: "Включите NFC в настройках системы"
-nfc_trigger_uid_hint: "Это уникальный идентификатор метки, которую вы коснулись"
-nfc_trigger_no_tag: "Метка не обнаружена. Коснитесь NFC-метки, чтобы увидеть её идентификатор."
-nfc_trigger_activity_label: "Запустить команду с помощью этой NFC-метки"
-triggerlist_not_found: "Триггеры не настроены"
-triggerlist_create_fab_desc: "Создать триггер"
-triggerlist_create_title: "Создать триггер"
-triggerlist_option_nfc: "NFC-метка"
-trigger_group_nfc: "NFC-метка"
-nfc_trigger_name_label: "Имя для метки"
-nfc_trigger_name_placeholder: "напр. Проездной"
-nfc_trigger_scan_success: "Метка обнаружена ✓"
-triggerlist_options_desc: "Параметры"
-triggerlist_delete: "Удалить"
-triggerlist_delete_title: "Удалить метку?"
-triggerlist_delete_message: "Это действие нельзя отменить."
-triggerlist_cancel: "Отмена"
-automation_name_label: "Название автоматизации"
-automation_name_placeholder: "напр. Утренний ритуал, Выход из дома"
-automation_trigger_label: "Триггер"
-automation_trigger_placeholder: "Нажмите, чтобы выбрать триггер"
-automation_commands_label: "Команды"
-automation_commands_empty: "Команды еще не добавлены"
-automation_add_command: "Добавить команду"
-automation_remove_command_desc: "Удалить команду"
-automation_save: "Сохранить автоматизацию"
-automationlist_not_found: "Автоматизации не настроены"
-automationlist_create_fab_desc: "Создать автоматизацию"
-automationlist_options_desc: "Параметры"
-automationlist_delete: "Удалить"
-automationlist_delete_title: "Удалить автоматизацию?"
-automationlist_delete_message: "Это действие нельзя отменить."
-automationlist_cancel: "Отмена"
-automation_type_automation: "Правило автоматизации"
-automation_group_automation: "Правила автоматизации"
-nfc_trigger_searching: "Поиск автоматизации..."
-nfc_trigger_executing: "Выполнение автоматизации..."
-nfc_trigger_not_registered: "Эта метка не зарегистрирована"
-nfc_trigger_no_automation: "Нет автоматизации, связанной с этой меткой"
-nfc_trigger_create_automation: "Создать автоматизацию"
+nfc_trigger_back: Назад
+nfc_trigger_uid_label: UID метки
+nfc_trigger_scan: Сканировать NFC-метку
+nfc_trigger_scanning: Остановить сканирование
+nfc_trigger_scanning_hint: Поднесите метку к устройству
+nfc_trigger_detected: Метка обнаружена
+nfc_trigger_save: Сохранить триггер
+nfc_not_available: NFC-оборудование не найдено на этом устройстве
+nfc_not_enabled: Включите NFC в настройках системы
+nfc_trigger_uid_hint: Это уникальный идентификатор метки, которую вы коснулись
+nfc_trigger_no_tag: Метка не обнаружена. Коснитесь NFC-метки, чтобы увидеть её идентификатор.
+nfc_trigger_activity_label: Запустить команду с помощью этой NFC-метки
+triggerlist_not_found: Триггеры не настроены
+triggerlist_create_fab_desc: Создать триггер
+triggerlist_create_title: Создать триггер
+triggerlist_option_nfc: NFC-метка
+trigger_group_nfc: NFC-метка
+nfc_trigger_name_label: Имя для метки
+nfc_trigger_name_placeholder: напр. Проездной
+nfc_trigger_scan_success: Метка обнаружена ✓
+triggerlist_options_desc: Параметры
+triggerlist_delete: Удалить
+triggerlist_delete_title: Удалить метку?
+triggerlist_delete_message: Это действие нельзя отменить.
+triggerlist_cancel: Отмена
+automation_name_label: Название автоматизации
+automation_name_placeholder: напр. Утренний ритуал, Выход из дома
+automation_trigger_label: Триггер
+automation_trigger_placeholder: Нажмите, чтобы выбрать триггер
+automation_commands_label: Команды
+automation_commands_empty: Команды еще не добавлены
+automation_add_command: Добавить команду
+automation_remove_command_desc: Удалить команду
+automation_save: Сохранить автоматизацию
+automationlist_not_found: Автоматизации не настроены
+automationlist_create_fab_desc: Создать автоматизацию
+automationlist_options_desc: Параметры
+automationlist_delete: Удалить
+automationlist_delete_title: Удалить автоматизацию?
+automationlist_delete_message: Это действие нельзя отменить.
+automationlist_cancel: Отмена
+automation_type_automation: Правило автоматизации
+automation_group_automation: Правила автоматизации
+nfc_trigger_searching: Поиск автоматизации...
+nfc_trigger_executing: Выполнение автоматизации...
+nfc_trigger_not_registered: Эта метка не зарегистрирована
+nfc_trigger_no_automation: Нет автоматизации, связанной с этой меткой
+nfc_trigger_create_automation: Создать автоматизацию
+nfc_trigger_default_name: Новая NFC-метка
+nfc_trigger_name_dialog_title: Назовите эту метку
+nfc_trigger_name_dialog_confirm: Сохранить и продолжить
+nfc_trigger_name_dialog_cancel: Отмена

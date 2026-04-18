@@ -27,11 +27,11 @@ fun NfcTriggerEditor(
     onSaved: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    val scope = rememberCoroutineScope()
     val context = LocalContext.current
     val activity = context as? ComponentActivity
     val nfcAdapter = remember { NfcAdapter.getDefaultAdapter(context) }
     val repository = remember { FileDataRepository.fromContext(context) }
-    val scope = rememberCoroutineScope()
 
     // Saveable state survives rotation
     var displayName by rememberSaveable { mutableStateOf("") }

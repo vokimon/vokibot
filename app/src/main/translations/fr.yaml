@@ -42,51 +42,55 @@ command_type_launch_activity: "Application : Ouvrir un écran"
 command_type_send_broadcast: "Application : Envoyer une notification"
 command_type_start_service: "Application : Démarrer un processus"
 command_type_access_provider: "Application : Accéder aux données"
-nfc_trigger_back: "Retour"
-nfc_trigger_uid_label: "UID de l'étiquette"
-nfc_trigger_scan: "Scanner l'étiquette NFC"
-nfc_trigger_scanning: "Arrêter le scan"
-nfc_trigger_scanning_hint: "Approchez l'étiquette du dispositif"
-nfc_trigger_detected: "Étiquette détectée"
-nfc_trigger_save: "Enregistrer le déclencheur"
-nfc_not_available: "Matériel NFC non trouvé sur ce dispositif"
-nfc_not_enabled: "Veuillez activer le NFC dans les paramètres système"
-nfc_trigger_uid_hint: "Ceci est l'ID unique de l'étiquette que vous avez touchée"
-nfc_trigger_no_tag: "Aucune étiquette détectée. Touchez une étiquette NFC pour voir son ID."
-nfc_trigger_activity_label: "Exécutez une commande avec cette étiquette NFC"
-triggerlist_not_found: "Aucun déclencheur configuré"
-triggerlist_create_fab_desc: "Créer un déclencheur"
-triggerlist_create_title: "Créer un déclencheur"
-triggerlist_option_nfc: "Étiquette NFC"
-trigger_group_nfc: "Étiquette NFC"
-nfc_trigger_name_label: "Nom de l'étiquette"
-nfc_trigger_name_placeholder: "ex. Carte de bus"
-nfc_trigger_scan_success: "Étiquette détectée ✓"
-triggerlist_options_desc: "Options"
-triggerlist_delete: "Supprimer"
-triggerlist_delete_title: "Supprimer l'étiquette ?"
-triggerlist_delete_message: "Cette action est irréversible."
-triggerlist_cancel: "Annuler"
-automation_name_label: "Nom de l'automatisation"
-automation_name_placeholder: "ex. Routine matin, Je quitte la maison"
-automation_trigger_label: "Déclencheur"
-automation_trigger_placeholder: "Appuyez pour sélectionner un déclencheur"
-automation_commands_label: "Commandes"
-automation_commands_empty: "Aucune commande ajoutée"
-automation_add_command: "Ajouter une commande"
-automation_remove_command_desc: "Supprimer la commande"
-automation_save: "Enregistrer l'automatisation"
-automationlist_not_found: "Aucune automatisation configurée"
-automationlist_create_fab_desc: "Créer une automatisation"
-automationlist_options_desc: "Options"
-automationlist_delete: "Supprimer"
-automationlist_delete_title: "Supprimer l'automatisation ?"
-automationlist_delete_message: "Cette action est irréversible."
-automationlist_cancel: "Annuler"
-automation_type_automation: "Règle d'automatisation"
-automation_group_automation: "Règles d'automatisation"
-nfc_trigger_searching: "Recherche d'automatisation..."
-nfc_trigger_executing: "Exécution de l'automatisation..."
-nfc_trigger_not_registered: "Cette étiquette n'est pas enregistrée"
-nfc_trigger_no_automation: "Aucune automatisation liée à cette étiquette"
-nfc_trigger_create_automation: "Créer une automatisation"
+nfc_trigger_back: Retour
+nfc_trigger_uid_label: UID de l'étiquette
+nfc_trigger_scan: Scanner l'étiquette NFC
+nfc_trigger_scanning: Arrêter le scan
+nfc_trigger_scanning_hint: Approchez l'étiquette du dispositif
+nfc_trigger_detected: Étiquette détectée
+nfc_trigger_save: Enregistrer le déclencheur
+nfc_not_available: Matériel NFC non trouvé sur ce dispositif
+nfc_not_enabled: Veuillez activer le NFC dans les paramètres système
+nfc_trigger_uid_hint: Ceci est l'ID unique de l'étiquette que vous avez touchée
+nfc_trigger_no_tag: Aucune étiquette détectée. Touchez une étiquette NFC pour voir son ID.
+nfc_trigger_activity_label: Exécutez une commande avec cette étiquette NFC
+triggerlist_not_found: Aucun déclencheur configuré
+triggerlist_create_fab_desc: Créer un déclencheur
+triggerlist_create_title: Créer un déclencheur
+triggerlist_option_nfc: Étiquette NFC
+trigger_group_nfc: Étiquette NFC
+nfc_trigger_name_label: Nom de l'étiquette
+nfc_trigger_name_placeholder: ex. Carte de bus
+nfc_trigger_scan_success: Étiquette détectée ✓
+triggerlist_options_desc: Options
+triggerlist_delete: Supprimer
+triggerlist_delete_title: Supprimer l'étiquette ?
+triggerlist_delete_message: Cette action est irréversible.
+triggerlist_cancel: Annuler
+automation_name_label: Nom de l'automatisation
+automation_name_placeholder: ex. Routine matin, Je quitte la maison
+automation_trigger_label: Déclencheur
+automation_trigger_placeholder: Appuyez pour sélectionner un déclencheur
+automation_commands_label: Commandes
+automation_commands_empty: Aucune commande ajoutée
+automation_add_command: Ajouter une commande
+automation_remove_command_desc: Supprimer la commande
+automation_save: Enregistrer l'automatisation
+automationlist_not_found: Aucune automatisation configurée
+automationlist_create_fab_desc: Créer une automatisation
+automationlist_options_desc: Options
+automationlist_delete: Supprimer
+automationlist_delete_title: Supprimer l'automatisation ?
+automationlist_delete_message: Cette action est irréversible.
+automationlist_cancel: Annuler
+automation_type_automation: Règle d'automatisation
+automation_group_automation: Règles d'automatisation
+nfc_trigger_searching: Recherche d'automatisation...
+nfc_trigger_executing: Exécution de l'automatisation...
+nfc_trigger_not_registered: Cette étiquette n'est pas enregistrée
+nfc_trigger_no_automation: Aucune automatisation liée à cette étiquette
+nfc_trigger_create_automation: Créer une automatisation
+nfc_trigger_default_name: Nouvelle étiquette NFC
+nfc_trigger_name_dialog_title: Nommer cette étiquette
+nfc_trigger_name_dialog_confirm: Enregistrer et continuer
+nfc_trigger_name_dialog_cancel: Annuler

@@ -54,6 +54,8 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".AutomationEditorActivity" />
+
         <!-- NFC Trigger Activity -->
         <activity
             android:label="@string/nfc_trigger_activity_label"

@@ -42,51 +42,55 @@ command_type_launch_activity: "Aplikazioa: Pantaila ireki"
 command_type_send_broadcast: "Aplikazioa: Jakinarazpena bidali"
 command_type_start_service: "Aplikazioa: Prozesua abiarazi"
 command_type_access_provider: "Aplikazioa: Datuetara sartu"
-nfc_trigger_back: "Atzera"
-nfc_trigger_uid_label: "Etiketaren UIDa"
-nfc_trigger_scan: "Eskaneatu NFC etiketa"
-nfc_trigger_scanning: "Gelditu eskaneatzea"
-nfc_trigger_scanning_hint: "Hurbildu etiketa gailura"
-nfc_trigger_detected: "Etiketa detektatua"
-nfc_trigger_save: "Gorde abiarazlea"
-nfc_not_available: "Ez da NFC hardwarea aurkitu gailu honetan"
-nfc_not_enabled: "Gaitu NFC sistemaren ezarpenetan"
-nfc_trigger_uid_hint: "Hau ukitu duzun etiketaren ID bakarra da"
-nfc_trigger_no_tag: "Ez da etiketarik detektatu. Ukitu NFC etiketa bat bere IDa ikusteko."
-nfc_trigger_activity_label: "Exekutatu komando bat NFC etiketa honekin"
-triggerlist_not_found: "Ez dago abiarazlerik konfiguratuta"
-triggerlist_create_fab_desc: "Abiarazlea sortu"
-triggerlist_create_title: "Abiarazlea sortu"
-triggerlist_option_nfc: "NFC etiketa"
-trigger_group_nfc: "NFC etiketa"
-nfc_trigger_name_label: "Etiketaren izena"
-nfc_trigger_name_placeholder: "adib. Bus txartela"
-nfc_trigger_scan_success: "Etiketa detektatua ✓"
-triggerlist_options_desc: "Aukerak"
-triggerlist_delete: "Ezabatu"
-triggerlist_delete_title: "Etiketa ezabatu?"
-triggerlist_delete_message: "Ekintza hau ezin da desegin."
-triggerlist_cancel: "Utzi"
-automation_name_label: "Automatizazioaren izena"
-automation_name_placeholder: "adib. Goiz errutina, Etxetik atera"
-automation_trigger_label: "Abiarazlea"
-automation_trigger_placeholder: "Ukitu abiarazle bat hautatzeko"
-automation_commands_label: "Komandoak"
-automation_commands_empty: "Oraindik ez da komandorik gehitu"
-automation_add_command: "Gehitu komandoa"
-automation_remove_command_desc: "Kendu komandoa"
-automation_save: "Gorde automatizazioa"
-automationlist_not_found: "Ez dago automatizaziorik konfiguratuta"
-automationlist_create_fab_desc: "Automatizazioa sortu"
-automationlist_options_desc: "Aukerak"
-automationlist_delete: "Ezabatu"
-automationlist_delete_title: "Automatizazioa ezabatu?"
-automationlist_delete_message: "Ekintza hau ezin da desegin."
-automationlist_cancel: "Utzi"
-automation_type_automation: "Automatizazio araua"
-automation_group_automation: "Automatizazio arauak"
-nfc_trigger_searching: "Automatizazioa bilatzen..."
-nfc_trigger_executing: "Automatizazioa exekutatzen..."
-nfc_trigger_not_registered: "Etiketa hau ez dago erregistratuta"
-nfc_trigger_no_automation: "Ez dago automatizaziorik etiketa honekin lotuta"
-nfc_trigger_create_automation: "Automatizazioa sortu"
+nfc_trigger_back: Atzera
+nfc_trigger_uid_label: Etiketaren UIDa
+nfc_trigger_scan: Eskaneatu NFC etiketa
+nfc_trigger_scanning: Gelditu eskaneatzea
+nfc_trigger_scanning_hint: Hurbildu etiketa gailura
+nfc_trigger_detected: Etiketa detektatua
+nfc_trigger_save: Gorde abiarazlea
+nfc_not_available: Ez da NFC hardwarea aurkitu gailu honetan
+nfc_not_enabled: Gaitu NFC sistemaren ezarpenetan
+nfc_trigger_uid_hint: Hau ukitu duzun etiketaren ID bakarra da
+nfc_trigger_no_tag: Ez da etiketarik detektatu. Ukitu NFC etiketa bat bere IDa ikusteko.
+nfc_trigger_activity_label: Exekutatu komando bat NFC etiketa honekin
+triggerlist_not_found: Ez dago abiarazlerik konfiguratuta
+triggerlist_create_fab_desc: Abiarazlea sortu
+triggerlist_create_title: Abiarazlea sortu
+triggerlist_option_nfc: NFC etiketa
+trigger_group_nfc: NFC etiketa
+nfc_trigger_name_label: Etiketaren izena
+nfc_trigger_name_placeholder: adib. Bus txartela
+nfc_trigger_scan_success: Etiketa detektatua ✓
+triggerlist_options_desc: Aukerak
+triggerlist_delete: Ezabatu
+triggerlist_delete_title: Etiketa ezabatu?
+triggerlist_delete_message: Ekintza hau ezin da desegin.
+triggerlist_cancel: Utzi
+automation_name_label: Automatizazioaren izena
+automation_name_placeholder: adib. Goiz errutina, Etxetik atera
+automation_trigger_label: Abiarazlea
+automation_trigger_placeholder: Ukitu abiarazle bat hautatzeko
+automation_commands_label: Komandoak
+automation_commands_empty: Oraindik ez da komandorik gehitu
+automation_add_command: Gehitu komandoa
+automation_remove_command_desc: Kendu komandoa
+automation_save: Gorde automatizazioa
+automationlist_not_found: Ez dago automatizaziorik konfiguratuta
+automationlist_create_fab_desc: Automatizazioa sortu
+automationlist_options_desc: Aukerak
+automationlist_delete: Ezabatu
+automationlist_delete_title: Automatizazioa ezabatu?
+automationlist_delete_message: Ekintza hau ezin da desegin.
+automationlist_cancel: Utzi
+automation_type_automation: Automatizazio araua
+automation_group_automation: Automatizazio arauak
+nfc_trigger_searching: Automatizazioa bilatzen...
+nfc_trigger_executing: Automatizazioa exekutatzen...
+nfc_trigger_not_registered: Etiketa hau ez dago erregistratuta
+nfc_trigger_no_automation: Ez dago automatizaziorik etiketa honekin lotuta
+nfc_trigger_create_automation: Automatizazioa sortu
+nfc_trigger_default_name: NFC etiketa berria
+nfc_trigger_name_dialog_title: Eman izena etiketa honi
+nfc_trigger_name_dialog_confirm: Gorde eta jarraitu
+nfc_trigger_name_dialog_cancel: Utzi

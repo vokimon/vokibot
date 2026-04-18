@@ -42,51 +42,55 @@ command_type_launch_activity: "Aplicación: Abrir pantalla"
 command_type_send_broadcast: "Aplicación: Enviar notificación"
 command_type_start_service: "Aplicación: Iniciar proceso"
 command_type_access_provider: "Aplicación: Acceder a datos"
-nfc_trigger_back: "Atrás"
-nfc_trigger_uid_label: "UID da etiqueta"
-nfc_trigger_scan: "Escanear etiqueta NFC"
-nfc_trigger_scanning: "Deter escaneo"
-nfc_trigger_scanning_hint: "Acerque a etiqueta ao dispositivo"
-nfc_trigger_detected: "Etiqueta detectada"
-nfc_trigger_save: "Gardar disparador"
-nfc_not_available: "Non se atopou hardware NFC neste dispositivo"
-nfc_not_enabled: "Activa NFC na configuración do sistema"
-nfc_trigger_uid_hint: "Este é o ID único da etiqueta que tocastes"
-nfc_trigger_no_tag: "Non se detectou ningunha etiqueta. Toca unha etiqueta NFC para ver o seu ID."
-nfc_trigger_activity_label: "Executa unha orde con esta etiqueta NFC"
-triggerlist_not_found: "Non hai disparadores configurados"
-triggerlist_create_fab_desc: "Crear disparador"
-triggerlist_create_title: "Crear disparador"
-triggerlist_option_nfc: "Etiqueta NFC"
-trigger_group_nfc: "Etiqueta NFC"
-nfc_trigger_name_label: "Nome da etiqueta"
-nfc_trigger_name_placeholder: "ex. Tarxeta de bus"
-nfc_trigger_scan_success: "Etiqueta detectada ✓"
-triggerlist_options_desc: "Opcións"
-triggerlist_delete: "Eliminar"
-triggerlist_delete_title: "Eliminar etiqueta?"
-triggerlist_delete_message: "Esta acción non se pode desfacer."
-triggerlist_cancel: "Cancelar"
-automation_name_label: "Nome da automatización"
-automation_name_placeholder: "ex. Rutina da mañá, Saio de casa"
-automation_trigger_label: "Disparador"
-automation_trigger_placeholder: "Toca para seleccionar un disparador"
-automation_commands_label: "Ordes"
-automation_commands_empty: "Aínda non se engadiron ordes"
-automation_add_command: "Engadir orde"
-automation_remove_command_desc: "Eliminar orde"
-automation_save: "Gardar automatización"
-automationlist_not_found: "Non hai automatizacións configuradas"
-automationlist_create_fab_desc: "Crear automatización"
-automationlist_options_desc: "Opcións"
-automationlist_delete: "Eliminar"
-automationlist_delete_title: "Eliminar automatización?"
-automationlist_delete_message: "Esta acción non se pode desfacer."
-automationlist_cancel: "Cancelar"
-automation_type_automation: "Regra de automatización"
-automation_group_automation: "Regras de automatización"
-nfc_trigger_searching: "Buscando automatización..."
-nfc_trigger_executing: "Executando automatización..."
-nfc_trigger_not_registered: "Esta etiqueta non está rexistrada"
-nfc_trigger_no_automation: "Ningunha automatización vinculada a esta etiqueta"
-nfc_trigger_create_automation: "Crear automatización"
+nfc_trigger_back: Atrás
+nfc_trigger_uid_label: UID da etiqueta
+nfc_trigger_scan: Escanear etiqueta NFC
+nfc_trigger_scanning: Deter escaneo
+nfc_trigger_scanning_hint: Acerque a etiqueta ao dispositivo
+nfc_trigger_detected: Etiqueta detectada
+nfc_trigger_save: Gardar disparador
+nfc_not_available: Non se atopou hardware NFC neste dispositivo
+nfc_not_enabled: Activa NFC na configuración do sistema
+nfc_trigger_uid_hint: Este é o ID único da etiqueta que tocastes
+nfc_trigger_no_tag: Non se detectou ningunha etiqueta. Toca unha etiqueta NFC para ver o seu ID.
+nfc_trigger_activity_label: Executa unha orde con esta etiqueta NFC
+triggerlist_not_found: Non hai disparadores configurados
+triggerlist_create_fab_desc: Crear disparador
+triggerlist_create_title: Crear disparador
+triggerlist_option_nfc: Etiqueta NFC
+trigger_group_nfc: Etiqueta NFC
+nfc_trigger_name_label: Nome da etiqueta
+nfc_trigger_name_placeholder: ex. Tarxeta de bus
+nfc_trigger_scan_success: Etiqueta detectada ✓
+triggerlist_options_desc: Opcións
+triggerlist_delete: Eliminar
+triggerlist_delete_title: Eliminar etiqueta?
+triggerlist_delete_message: Esta acción non se pode desfacer.
+triggerlist_cancel: Cancelar
+automation_name_label: Nome da automatización
+automation_name_placeholder: ex. Rutina da mañá, Saio de casa
+automation_trigger_label: Disparador
+automation_trigger_placeholder: Toca para seleccionar un disparador
+automation_commands_label: Ordes
+automation_commands_empty: Aínda non se engadiron ordes
+automation_add_command: Engadir orde
+automation_remove_command_desc: Eliminar orde
+automation_save: Gardar automatización
+automationlist_not_found: Non hai automatizacións configuradas
+automationlist_create_fab_desc: Crear automatización
+automationlist_options_desc: Opcións
+automationlist_delete: Eliminar
+automationlist_delete_title: Eliminar automatización?
+automationlist_delete_message: Esta acción non se pode desfacer.
+automationlist_cancel: Cancelar
+automation_type_automation: Regra de automatización
+automation_group_automation: Regras de automatización
+nfc_trigger_searching: Buscando automatización...
+nfc_trigger_executing: Executando automatización...
+nfc_trigger_not_registered: Esta etiqueta non está rexistrada
+nfc_trigger_no_automation: Ningunha automatización vinculada a esta etiqueta
+nfc_trigger_create_automation: Crear automatización
+nfc_trigger_default_name: Nova etiqueta NFC
+nfc_trigger_name_dialog_title: Pór nome a esta etiqueta
+nfc_trigger_name_dialog_confirm: Gardar e continuar
+nfc_trigger_name_dialog_cancel: Cancelar

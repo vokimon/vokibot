@@ -42,51 +42,55 @@ command_type_launch_activity: "App: Bildschirm öffnen"
 command_type_send_broadcast: "App: Benachrichtigung senden"
 command_type_start_service: "App: Prozess starten"
 command_type_access_provider: "App: Auf Daten zugreifen"
-nfc_trigger_back: "Zurück"
-nfc_trigger_uid_label: "Tag-UID"
-nfc_trigger_scan: "NFC-Tag scannen"
-nfc_trigger_scanning: "Scan stoppen"
-nfc_trigger_scanning_hint: "Tag an das Gerät halten"
-nfc_trigger_detected: "Tag erkannt"
-nfc_trigger_save: "Trigger speichern"
-nfc_not_available: "NFC-Hardware auf diesem Gerät nicht gefunden"
-nfc_not_enabled: "Bitte aktivieren Sie NFC in den Systemeinstellungen"
-nfc_trigger_uid_hint: "Dies ist die eindeutige ID des Tags, das Sie berührt haben"
-nfc_trigger_no_tag: "Kein Tag erkannt. Berühren Sie ein NFC-Tag, um seine ID anzuzeigen."
-nfc_trigger_activity_label: "Befehl mit diesem NFC-Tag ausführen"
-triggerlist_not_found: "Keine Trigger konfiguriert"
-triggerlist_create_fab_desc: "Trigger erstellen"
-triggerlist_create_title: "Trigger erstellen"
-triggerlist_option_nfc: "NFC-Tag"
-trigger_group_nfc: "NFC-Tag"
-nfc_trigger_name_label: "Tag-Name"
-nfc_trigger_name_placeholder: "z.B. Buskarte"
-nfc_trigger_scan_success: "Tag erkannt ✓"
-triggerlist_options_desc: "Optionen"
-triggerlist_delete: "Löschen"
-triggerlist_delete_title: "Tag löschen?"
-triggerlist_delete_message: "Diese Aktion kann nicht rückgängig gemacht werden."
-triggerlist_cancel: "Abbrechen"
-automation_name_label: "Automatisierungsname"
-automation_name_placeholder: "z.B. Morgenroutine, Haus verlassen"
-automation_trigger_label: "Trigger"
-automation_trigger_placeholder: "Tippen, um einen Trigger auszuwählen"
-automation_commands_label: "Befehle"
-automation_commands_empty: "Noch keine Befehle hinzugefügt"
-automation_add_command: "Befehl hinzufügen"
-automation_remove_command_desc: "Befehl entfernen"
-automation_save: "Automatisierung speichern"
-automationlist_not_found: "Keine Automatisierungen konfiguriert"
-automationlist_create_fab_desc: "Automatisierung erstellen"
-automationlist_options_desc: "Optionen"
-automationlist_delete: "Löschen"
-automationlist_delete_title: "Automatisierung löschen?"
-automationlist_delete_message: "Diese Aktion kann nicht rückgängig gemacht werden."
-automationlist_cancel: "Abbrechen"
-automation_type_automation: "Automatisierungsregel"
-automation_group_automation: "Automatisierungsregeln"
-nfc_trigger_searching: "Suche nach Automatisierung..."
-nfc_trigger_executing: "Automatisierung wird ausgeführt..."
-nfc_trigger_not_registered: "Dieser Tag ist nicht registriert"
-nfc_trigger_no_automation: "Keine Automatisierung mit diesem Tag verknüpft"
-nfc_trigger_create_automation: "Automatisierung erstellen"
+nfc_trigger_back: Zurück
+nfc_trigger_uid_label: Tag-UID
+nfc_trigger_scan: NFC-Tag scannen
+nfc_trigger_scanning: Scan stoppen
+nfc_trigger_scanning_hint: Tag an das Gerät halten
+nfc_trigger_detected: Tag erkannt
+nfc_trigger_save: Trigger speichern
+nfc_not_available: NFC-Hardware auf diesem Gerät nicht gefunden
+nfc_not_enabled: Bitte aktivieren Sie NFC in den Systemeinstellungen
+nfc_trigger_uid_hint: Dies ist die eindeutige ID des Tags, das Sie berührt haben
+nfc_trigger_no_tag: Kein Tag erkannt. Berühren Sie ein NFC-Tag, um seine ID anzuzeigen.
+nfc_trigger_activity_label: Befehl mit diesem NFC-Tag ausführen
+triggerlist_not_found: Keine Trigger konfiguriert
+triggerlist_create_fab_desc: Trigger erstellen
+triggerlist_create_title: Trigger erstellen
+triggerlist_option_nfc: NFC-Tag
+trigger_group_nfc: NFC-Tag
+nfc_trigger_name_label: Tag-Name
+nfc_trigger_name_placeholder: z.B. Buskarte
+nfc_trigger_scan_success: Tag erkannt ✓
+triggerlist_options_desc: Optionen
+triggerlist_delete: Löschen
+triggerlist_delete_title: Tag löschen?
+triggerlist_delete_message: Diese Aktion kann nicht rückgängig gemacht werden.
+triggerlist_cancel: Abbrechen
+automation_name_label: Automatisierungsname
+automation_name_placeholder: z.B. Morgenroutine, Haus verlassen
+automation_trigger_label: Trigger
+automation_trigger_placeholder: Tippen, um einen Trigger auszuwählen
+automation_commands_label: Befehle
+automation_commands_empty: Noch keine Befehle hinzugefügt
+automation_add_command: Befehl hinzufügen
+automation_remove_command_desc: Befehl entfernen
+automation_save: Automatisierung speichern
+automationlist_not_found: Keine Automatisierungen konfiguriert
+automationlist_create_fab_desc: Automatisierung erstellen
+automationlist_options_desc: Optionen
+automationlist_delete: Löschen
+automationlist_delete_title: Automatisierung löschen?
+automationlist_delete_message: Diese Aktion kann nicht rückgängig gemacht werden.
+automationlist_cancel: Abbrechen
+automation_type_automation: Automatisierungsregel
+automation_group_automation: Automatisierungsregeln
+nfc_trigger_searching: Suche nach Automatisierung...
+nfc_trigger_executing: Automatisierung wird ausgeführt...
+nfc_trigger_not_registered: Dieser Tag ist nicht registriert
+nfc_trigger_no_automation: Keine Automatisierung mit diesem Tag verknüpft
+nfc_trigger_create_automation: Automatisierung erstellen
+nfc_trigger_default_name: Neuer NFC-Tag
+nfc_trigger_name_dialog_title: Tag benennen
+nfc_trigger_name_dialog_confirm: Speichern & Weiter
+nfc_trigger_name_dialog_cancel: Abbrechen
