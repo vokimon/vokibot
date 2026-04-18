@@ -198,7 +198,9 @@ fun AutomationEditor(
         Button(
             onClick = {
                 if (name.isNotBlank() && triggerId.isNotBlank() && commandSelections.isNotEmpty()) {
-                    onSave(Automation(name.trim(), triggerType, triggerId, commandSelections))
+                    val automation = Automation(name.trim(), triggerType, triggerId, commandSelections)
+                    repository.automation.save(automation)
+                    onSave(automation)
                 }
             },
             enabled = name.isNotBlank() && triggerId.isNotBlank() && commandSelections.isNotEmpty(),

@@ -64,7 +64,9 @@ fun IntentActionBuilder() {
                 onRemoveCommand = { index ->
                     selectedCommands = selectedCommands.toMutableList().apply { removeAt(index) }
                 },
-                onSave = { automation -> nav.back() }
+                onSave = { automation ->
+                    nav.back()
+                }
             )
 
             is BuilderScreen.TriggerList -> TriggerList(

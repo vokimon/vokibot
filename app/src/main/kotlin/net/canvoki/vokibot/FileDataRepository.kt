@@ -19,12 +19,20 @@ class FileDataRepository(directoryPath: String = "repodata") {
         }
     }
 
+    // ─────────────────────────────────────────────────────────────
+    // Typed DataSets (single source of truth for file logic)
+    // ─────────────────────────────────────────────────────────────
+
     val command: DataSet<ApplicationCommand> by lazy {
         DataSet(_directory, "command_", ApplicationCommand::fromJson)
     }
 
     val nfcTrigger: DataSet<NfcTrigger> by lazy {
         DataSet(_directory, "trigger_nfc_", NfcTrigger::fromJson)
+    }
+
+    val automation: DataSet<Automation> by lazy {
+        DataSet(_directory, "automation_", Automation::fromJson)
     }
 
     // ─────────────────────────────────────────────────────────────
@@ -44,4 +52,11 @@ class FileDataRepository(directoryPath: String = "repodata") {
     fun existsNfcTrigger(id: String) = nfcTrigger.exists(id)
     fun listNfcTriggers() = nfcTrigger.listIds()
     fun loadAllNfcTriggers() = nfcTrigger.all()
+
+    fun saveAutomation(auto: Automation) = automation.save(auto)
+    fun loadAutomation(id: String) = automation.load(id)
+    fun removeAutomation(id: String) = automation.remove(id)
+    fun existsAutomation(id: String) = automation.exists(id)
+    fun listAutomations() = automation.listIds()
+    fun loadAllAutomations() = automation.all()
 }
