@@ -3,6 +3,7 @@ package net.canvoki.vokibot
 import android.content.ComponentName
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -42,6 +43,7 @@ import net.canvoki.shared.component.ChooserOption
 @Composable
 fun CommandList(
     onLaunchAppSelected: () -> Unit,
+    onCommandSelected: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
@@ -87,6 +89,7 @@ fun CommandList(
                         maxLines = 1,
                     )
                 },
+                modifier = Modifier.clickable { onCommandSelected(command.id) },
                 leadingContent = {
                     componentIcon?.let { icon ->
                         Image(

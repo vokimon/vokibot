@@ -16,6 +16,9 @@ import net.canvoki.shared.component.rememberStackNavigatorState
 @Serializable
 sealed class BuilderScreen {
     @Serializable
+    data object AutomationEditor : BuilderScreen()
+
+    @Serializable
     data object TriggerList : BuilderScreen()
 
     @Serializable
@@ -43,14 +46,27 @@ sealed class BuilderScreen {
 fun IntentActionBuilder() {
     val nav =
         rememberStackNavigatorState<BuilderScreen>(
-            BuilderScreen.TriggerList,
+            BuilderScreen.AutomationEditor,
         )
     val appListState = rememberSaveable(saver = LazyListState.Saver) { LazyListState() }
     var currentComponent by remember { mutableStateOf<PublicComponent?>(null) }
+    var selectedTrigger by remember { mutableStateOf<Pair<String, String>?>(null) }
+    var selectedCommands by remember { mutableStateOf<List<String>>(emptyList()) }
 
     StackNavigator(state = nav) { screen ->
 
         when (screen) {
+            is BuilderScreen.AutomationEditor -> AutomationEditor(
+                triggerSelection = selectedTrigger,
+                commandSelections = selectedCommands,
+                onRequestTrigger = { nav.push(BuilderScreen.TriggerList) },
+                onRequestAddCommand = { nav.push(BuilderScreen.CommandList) },
+                onRemoveCommand = { index ->
+                    selectedCommands = selectedCommands.toMutableList().apply { removeAt(index) }
+                },
+                onSave = { automation -> nav.back() }
+            )
+
             is BuilderScreen.TriggerList -> TriggerList(
                 onNewTrigger = { typeTag ->
                     when (typeTag) {
@@ -59,7 +75,8 @@ fun IntentActionBuilder() {
                     }
                 },
                 onTriggerSelected = { type, id ->
-                    log("Created $id of type $type")
+                    selectedTrigger = type to id
+                    nav.back()
                 },
             )
 
@@ -68,7 +85,11 @@ fun IntentActionBuilder() {
             )
 
             is BuilderScreen.CommandList -> CommandList(
-                onLaunchAppSelected = { nav.push(BuilderScreen.AppList) }
+                onLaunchAppSelected = { nav.push(BuilderScreen.AppList) },
+                onCommandSelected = {
+                    selectedCommands = selectedCommands + it
+                    nav.back()
+                }
             )
 
             is BuilderScreen.AppList -> {
