@@ -42,7 +42,6 @@ fun TriggerList(
             refreshKeys = listOf(Unit),
             loader = { repository.nfcTrigger.all() },
             itemKey = { it.id },
-            // TODO: All items go to the same group for now. Easily extensible later.
             groupBy = { "nfc" },
             headerContent = { key -> TriggerGroupHeader(key) },
             notFoundMessage = stringResource(R.string.triggerlist_not_found),

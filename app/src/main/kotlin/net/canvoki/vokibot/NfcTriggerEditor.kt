@@ -4,9 +4,12 @@ import android.nfc.NfcAdapter
 import android.nfc.Tag
 import androidx.activity.ComponentActivity
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -15,6 +18,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -26,14 +31,28 @@ fun NfcTriggerEditor(
     val activity = context as? ComponentActivity
     val nfcAdapter = remember { NfcAdapter.getDefaultAdapter(context) }
     val repository = remember { FileDataRepository.fromContext(context) }
+    val scope = rememberCoroutineScope()
 
-    var displayName by remember { mutableStateOf("") }
-    var uid by remember { mutableStateOf("") }
-    var isScanning by remember { mutableStateOf(false) }
-    var isNfcAvailable by remember { mutableStateOf(true) }
-    var isNfcEnabled by remember { mutableStateOf(true) }
-    var isSaving by remember { mutableStateOf(false) }
+    // Saveable state survives rotation
+    var displayName by rememberSaveable { mutableStateOf("") }
+    var uid by rememberSaveable { mutableStateOf("") }
+    var isScanning by rememberSaveable { mutableStateOf(false) }
+    var scanSuccess by rememberSaveable { mutableStateOf(false) }
+    var isNfcAvailable by rememberSaveable { mutableStateOf(true) }
+    var isNfcEnabled by rememberSaveable { mutableStateOf(true) }
+    var isSaving by rememberSaveable { mutableStateOf(false) }
 
+    // Check repository when UID changes to auto-fill name
+    LaunchedEffect(uid) {
+        if (uid.isNotBlank()) {
+            val existing = repository.nfcTrigger.load(uid)
+            if (existing != null && displayName.isBlank()) {
+                displayName = existing.displayName
+            }
+        }
+    }
+
+    // Initial NFC availability check
     LaunchedEffect(Unit) {
         if (nfcAdapter == null) {
             isNfcAvailable = false
@@ -42,12 +61,18 @@ fun NfcTriggerEditor(
         }
     }
 
+    // NFC Reader Mode lifecycle
     DisposableEffect(isScanning) {
         val callback = NfcAdapter.ReaderCallback { tag ->
             val hexUid = tag.id.joinToString(":") { "%02X".format(it) }
             activity?.runOnUiThread {
                 uid = hexUid
                 isScanning = false
+                scanSuccess = true
+                scope.launch {
+                    delay(2000)
+                    scanSuccess = false
+                }
             }
         }
 
@@ -74,6 +99,7 @@ fun NfcTriggerEditor(
     Column(
         modifier = modifier
             .fillMaxSize()
+            .verticalScroll(rememberScrollState())
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(16.dp)
@@ -144,34 +170,19 @@ fun NfcTriggerEditor(
                 )
             }
 
+            // Dynamic feedback: scanning hint OR success message
             if (isScanning) {
                 Text(
                     text = stringResource(R.string.nfc_trigger_scanning_hint),
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.primary
                 )
-            }
-
-            if (uid.isNotEmpty()) {
-                Card(
-                    modifier = Modifier.fillMaxWidth(),
-                    colors = CardDefaults.cardColors(
-                        containerColor = MaterialTheme.colorScheme.secondaryContainer
-                    )
-                ) {
-                    Column(modifier = Modifier.padding(16.dp)) {
-                        Text(
-                            text = stringResource(R.string.nfc_trigger_detected),
-                            style = MaterialTheme.typography.labelMedium,
-                            color = MaterialTheme.colorScheme.onSecondaryContainer
-                        )
-                        Text(
-                            text = uid,
-                            style = MaterialTheme.typography.headlineSmall,
-                            modifier = Modifier.padding(top = 4.dp)
-                        )
-                    }
-                }
+            } else if (scanSuccess) {
+                Text(
+                    text = stringResource(R.string.nfc_trigger_scan_success),
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.tertiary
+                )
             }
 
             Spacer(modifier = Modifier.height(16.dp))

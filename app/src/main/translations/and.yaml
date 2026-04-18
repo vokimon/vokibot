@@ -38,20 +38,20 @@ commandlist_delete_title: ¿Eliminâh comando?
 commandlist_delete_message: Êtta âççión no çe puede deçaçêh.
 commandlist_delete: Eliminâh
 commandlist_cancel: Cançelâh
-command_type_launch_activity: 'Aplicaçión: Abrîh pantaya'
-command_type_send_broadcast: 'Aplicaçión: Embiâh notificaçión'
-command_type_start_service: 'Aplicaçión: Iniçiâh proçeço'
-command_type_access_provider: 'Aplicaçión: Âççedêh a çû datô'
-nfc_trigger_title: Configuraçión der dîpparadôh NFC
-nfc_trigger_back: Atrâh
-nfc_trigger_uid_label: UÎH de la etiqueta
-nfc_trigger_scan: Êccaneâh etiqueta NFC
-nfc_trigger_scanning: Detenêh êccaneo
-nfc_trigger_scanning_hint: Açerca la etiqueta ar dîppoçitibo
-nfc_trigger_detected: Etiqueta detêttá
-nfc_trigger_save: Guardâh dîpparadôh
-nfc_not_available: No çe encontró ardware NFC en êtte dîppoçitibo
-nfc_not_enabled: Âttiba NFC en la configuraçión der çîttema
-nfc_trigger_uid_hint: Êtte êh el ID único de la etiqueta que âh tocao
-nfc_trigger_no_tag: No çe detêttó ninguna etiqueta. Toca una etiqueta NFC pa bêh çu ID.
-nfc_trigger_activity_label: Ehecuta un comando con êtta etiqueta NFC
+command_type_launch_activity: "Aplicaçión: Abrîh pantaya"
+command_type_send_broadcast: "Aplicaçión: Embiâh notificaçión"
+command_type_start_service: "Aplicaçión: Iniçiâh proçeço"
+command_type_access_provider: "Aplicaçión: Âççedêh a çû datô"
+nfc_trigger_title: "Configuraçión der dîpparadôh NFC"
+nfc_trigger_back: "Atrâh"
+nfc_trigger_uid_label: "UÎH de la etiqueta"
+nfc_trigger_scan: "Êccaneâh etiqueta NFC"
+nfc_trigger_scanning: "Detenêh êccaneo"
+nfc_trigger_scanning_hint: "Açerca la etiqueta ar dîppoçitibo"
+nfc_trigger_detected: "Etiqueta detêttá"
+nfc_trigger_save: "Guardâh dîpparadôh"
+nfc_not_available: "No çe encontró ardware NFC en êtte dîppoçitibo"
+nfc_not_enabled: "Âttiba NFC en la configuraçión der çîttema"
+nfc_trigger_uid_hint: "Êtte êh el ID único de la etiqueta que âh tocao"
+nfc_trigger_no_tag: "No çe detêttó ninguna etiqueta. Toca una etiqueta NFC pa bêh çu ID."
+nfc_trigger_activity_label: "Ehecuta un comando con êtta etiqueta NFC"
