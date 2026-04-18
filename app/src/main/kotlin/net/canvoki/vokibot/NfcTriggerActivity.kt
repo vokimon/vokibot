@@ -125,7 +125,7 @@ private fun extractUidFromIntent(intent: Intent): String? {
     return if (intent.action == NfcAdapter.ACTION_TAG_DISCOVERED ||
         intent.action == NfcAdapter.ACTION_TECH_DISCOVERED) {
 
-        val tag = intent.getParcelableExtra<Tag>(NfcAdapter.EXTRA_TAG)
+        val tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG, Tag::class.java)
         tag?.id?.joinToString(":") { "%02X".format(it) }
     } else {
         null
