@@ -90,7 +90,6 @@ nfc_trigger_executing: Executando automatización...
 nfc_trigger_not_registered: Ista etiqueta no ye rechistrada
 nfc_trigger_no_automation: Garra automatización vinculada a ista etiqueta
 nfc_trigger_create_automation: Crear automatización
-nfc_trigger_default_name: Nueva etiqueta NFC
 nfc_trigger_name_dialog_title: Poner nombre a ista etiqueta
 nfc_trigger_name_dialog_confirm: Alzar y continar
 nfc_trigger_name_dialog_cancel: Cancelar

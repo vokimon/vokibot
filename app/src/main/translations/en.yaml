@@ -90,7 +90,6 @@ nfc_trigger_executing: Running automation...
 nfc_trigger_not_registered: This tag is not registered
 nfc_trigger_no_automation: No automation linked to this tag
 nfc_trigger_create_automation: Create Automation
-nfc_trigger_default_name: New NFC Tag
 nfc_trigger_name_dialog_title: Name this tag
 nfc_trigger_name_dialog_confirm: Save & Continue
 nfc_trigger_name_dialog_cancel: Cancel

@@ -90,7 +90,6 @@ nfc_trigger_executing: تشغيل الأتمتة...
 nfc_trigger_not_registered: هذه العلامة غير مسجلة
 nfc_trigger_no_automation: لا توجد أتمتة مرتبطة بهذه العلامة
 nfc_trigger_create_automation: إنشاء أتمتة
-nfc_trigger_default_name: علامة NFC جديدة
 nfc_trigger_name_dialog_title: تسمية هذه العلامة
 nfc_trigger_name_dialog_confirm: حفظ ومتابعة
 nfc_trigger_name_dialog_cancel: إلغاء

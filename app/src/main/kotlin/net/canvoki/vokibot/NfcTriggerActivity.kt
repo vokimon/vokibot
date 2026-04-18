@@ -134,7 +134,6 @@ private fun NfcUidDisplayScreen(
     val context = LocalContext.current
     var showNameDialog by remember { mutableStateOf(false) }
     var triggerNameInput by remember { mutableStateOf("") }
-    var defaultNfcName = stringResource(R.string.nfc_trigger_default_name)
     val repository = remember { FileDataRepository.fromContext(context) }
 
     Column(
@@ -250,7 +249,7 @@ private fun NfcUidDisplayScreen(
                         // Theoretically the case, cannot happen
                         if (uid != null) {
                             val trigger = NfcTrigger(
-                                displayName = triggerNameInput.ifBlank { defaultNfcName },
+                                displayName = triggerNameInput,
                                 uid = uid,
                             )
                             repository.nfcTrigger.save(trigger)

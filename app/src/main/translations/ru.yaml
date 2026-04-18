@@ -90,7 +90,6 @@ nfc_trigger_executing: Выполнение автоматизации...
 nfc_trigger_not_registered: Эта метка не зарегистрирована
 nfc_trigger_no_automation: Нет автоматизации, связанной с этой меткой
 nfc_trigger_create_automation: Создать автоматизацию
-nfc_trigger_default_name: Новая NFC-метка
 nfc_trigger_name_dialog_title: Назовите эту метку
 nfc_trigger_name_dialog_confirm: Сохранить и продолжить
 nfc_trigger_name_dialog_cancel: Отмена
