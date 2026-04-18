@@ -16,6 +16,12 @@ import net.canvoki.shared.component.rememberStackNavigatorState
 @Serializable
 sealed class BuilderScreen {
     @Serializable
+    data object TriggerList : BuilderScreen()
+
+    @Serializable
+    data object NfcTriggerEditor: BuilderScreen()
+
+    @Serializable
     data object CommandList : BuilderScreen()
 
     @Serializable
@@ -37,7 +43,7 @@ sealed class BuilderScreen {
 fun IntentActionBuilder() {
     val nav =
         rememberStackNavigatorState<BuilderScreen>(
-            BuilderScreen.CommandList,
+            BuilderScreen.TriggerList,
         )
     val appListState = rememberSaveable(saver = LazyListState.Saver) { LazyListState() }
     var currentComponent by remember { mutableStateOf<PublicComponent?>(null) }
@@ -45,6 +51,20 @@ fun IntentActionBuilder() {
     StackNavigator(state = nav) { screen ->
 
         when (screen) {
+            is BuilderScreen.TriggerList -> TriggerList(
+                onNewTrigger = { typeTag ->
+                    when (typeTag) {
+                        "nfc" -> nav.push(BuilderScreen.NfcTriggerEditor)
+                        else -> {}
+                    }
+                }
+            )
+
+            is BuilderScreen.NfcTriggerEditor -> NfcTriggerEditor(
+                onBack = { nav.back() },
+                onSaved = { },
+            )
+
             is BuilderScreen.CommandList -> CommandList(
                 onLaunchAppSelected = { nav.push(BuilderScreen.AppList) }
             )

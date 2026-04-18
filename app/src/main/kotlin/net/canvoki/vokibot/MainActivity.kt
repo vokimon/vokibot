@@ -12,8 +12,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            NfcTriggerEditor(onTriggerCreated = {}, onBack={})
-            /*
             AppScaffold {
                 WatermarkBox(
                     watermark = painterResource(R.drawable.ic_brand),
@@ -21,7 +19,6 @@ class MainActivity : AppCompatActivity() {
                     IntentActionBuilder()
                 }
             }
-            */
         }
     }
 }
