@@ -48,15 +48,23 @@ sealed class BuilderScreen {
 }
 
 @Composable
-fun IntentActionBuilder() {
+fun IntentActionBuilder(
+    initialStack: List<BuilderScreen> = listOf(BuilderScreen.AutomationList)
+) {
     val nav =
         rememberStackNavigatorState<BuilderScreen>(
-            BuilderScreen.AutomationList,
+            initialStack.first(),
         )
     val appListState = rememberSaveable(saver = LazyListState.Saver) { LazyListState() }
     var currentComponent by remember { mutableStateOf<PublicComponent?>(null) }
     var triggerResult by remember { mutableStateOf<Pair<String, String>?>(null) }
     var commandResult by remember { mutableStateOf<String?>(null) }
+
+    LaunchedEffect(Unit) {
+        initialStack.drop(1).forEach { screen ->
+            nav.push(screen)
+        }
+    }
 
     StackNavigator(state = nav) { screen ->
 
