@@ -1,0 +1,76 @@
+name: CI
+
+on:
+  push:
+    branches: [ master, develop ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      RELEASE_STORE_BASE64: ${{ secrets.RELEASE_STORE_BASE64 }}
+      RELEASE_STORE_PASSWORD: ${{ secrets.RELEASE_STORE_PASSWORD }}
+      RELEASE_KEY_ALIAS: ${{ secrets.RELEASE_KEY_ALIAS }}
+      RELEASE_KEY_PASSWORD: ${{ secrets.RELEASE_KEY_PASSWORD }}
+    steps:
+    - uses: actions/checkout@v6
+      with:
+        submodules: true
+    
+    - name: Set up JDK 17
+      uses: actions/setup-java@v5
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        
+    - name: Setup Android SDK
+      uses: android-actions/setup-android@v3
+      
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+      
+    - name: Set up signing keystore
+      run: |
+        KEYSTORE_PATH="$RUNNER_TEMP/release-keystore.p12"
+        ENV_PATH=".env"
+
+        echo "$RELEASE_STORE_BASE64" | base64 --decode > "$KEYSTORE_PATH"
+
+        cat <<EOF > "$ENV_PATH"
+        RELEASE_STORE_FILE=$KEYSTORE_PATH
+        RELEASE_STORE_PASSWORD=$RELEASE_STORE_PASSWORD
+        RELEASE_KEY_ALIAS=$RELEASE_KEY_ALIAS
+        RELEASE_KEY_PASSWORD=$RELEASE_KEY_PASSWORD
+        EOF
+
+    # This step is temporary until plugin publication is approved
+    #- name: Build plugin locally
+    #  shell: bash
+    #  run: |
+    #    git clone https://github.com/vokimon/android-yaml-strings.git plugin-temp
+    #    cd plugin-temp
+    #    ./gradlew publishToMavenLocal
+
+    - name: Build with Gradle
+      run: ./gradlew build
+      
+    - name: Run tests
+      run: ./gradlew test
+      
+    - name: Build APK
+      run: ./gradlew assemble
+
+    - name: Rename APKs for clarity
+      run: |
+        mkdir -p upload-apks
+        find . -type f -name "*.apk" -exec cp {} upload-apks/ \;
+
+    - name: Upload APK
+      uses: actions/upload-artifact@v7
+      with:
+        name: VokiBot-apk
+        path: |
+          upload-apks/
+
