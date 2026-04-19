@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import androidx.annotation.StringRes
+import androidx.core.net.toUri
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
@@ -160,7 +161,7 @@ data class LaunchActivityCommand(
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
 
         action?.let { intent.action = it }
-        dataUri?.let { intent.data = Uri.parse(it) }
+        dataUri?.let { intent.data = it.toUri() }
 
         extras.entries.forEach { (key, value) ->
             value.addToIntent(intent, key)
@@ -203,7 +204,7 @@ data class SendBroadcastCommand(
     override suspend fun execute(context: Context) {
         val intent = Intent(action)
         intent.setPackage(packageName)
-        dataUri?.let { intent.data = Uri.parse(it) }
+        dataUri?.let { intent.data = it.toUri() }
 
         extras.entries.forEach { (key, value) ->
             value.addToIntent(intent, key)
@@ -285,7 +286,7 @@ data class AccessProviderCommand(
     }
 
     private fun buildUri(): Uri {
-        val baseUri = Uri.parse("content://$authority")
+        val baseUri = "content://$authority".toUri()
         return path?.let { Uri.withAppendedPath(baseUri, it) } ?: baseUri
     }
 }
