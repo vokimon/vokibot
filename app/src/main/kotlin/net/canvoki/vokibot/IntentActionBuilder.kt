@@ -19,7 +19,9 @@ sealed class BuilderScreen {
     data object AutomationList : BuilderScreen()
 
     @Serializable
-    data object AutomationEditor : BuilderScreen()
+    data class AutomationEditor (
+        val editingId: String? = null,
+    ): BuilderScreen()
 
     @Serializable
     data object TriggerList : BuilderScreen()
@@ -56,24 +58,20 @@ fun IntentActionBuilder() {
     var triggerResult by remember { mutableStateOf<Pair<String, String>?>(null) }
     var commandResult by remember { mutableStateOf<String?>(null) }
 
-    var editingAutomationId by remember { mutableStateOf<String?>(null) }
-
     StackNavigator(state = nav) { screen ->
 
         when (screen) {
             is BuilderScreen.AutomationList -> AutomationList(
                 onNewAutomation = {
-                    editingAutomationId = null
-                    nav.push(BuilderScreen.AutomationEditor)
+                    nav.push(BuilderScreen.AutomationEditor())
                 },
                 onAutomationSelected = { id ->
-                    editingAutomationId = id
-                    nav.push(BuilderScreen.AutomationEditor)
+                    nav.push(BuilderScreen.AutomationEditor(editingId = id))
                 }
             )
 
             is BuilderScreen.AutomationEditor -> AutomationEditor(
-                editingId = editingAutomationId,
+                editingId = screen.editingId,
                 triggerPickResult = triggerResult,
                 commandPickResult = commandResult,
                 onRequestTrigger = { nav.push(BuilderScreen.TriggerList) },
