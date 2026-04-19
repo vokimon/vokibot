@@ -22,17 +22,17 @@ data class NfcTrigger(
     override val id: String
         get() = toFileSystemId(uid)
 
-
     override fun toJson(): String = Companion.json.encodeToString(serializer(), this)
 
     companion object {
         fun safeId(id: String) = id
 
-        private val json = Json {
-            explicitNulls = false
-            encodeDefaults = true
-            classDiscriminator = "type"
-        }
+        private val json =
+            Json {
+                explicitNulls = false
+                encodeDefaults = true
+                classDiscriminator = "type"
+            }
 
         fun fromJson(jsonString: String): NfcTrigger = json.decodeFromString(serializer(), jsonString)
     }

@@ -3,10 +3,10 @@ package net.canvoki.vokibot
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import kotlinx.serialization.Serializable
@@ -19,15 +19,15 @@ sealed class BuilderScreen {
     data object AutomationList : BuilderScreen()
 
     @Serializable
-    data class AutomationEditor (
+    data class AutomationEditor(
         val editingId: String? = null,
-    ): BuilderScreen()
+    ) : BuilderScreen()
 
     @Serializable
     data object TriggerList : BuilderScreen()
 
     @Serializable
-    data object NfcTriggerEditor: BuilderScreen()
+    data object NfcTriggerEditor : BuilderScreen()
 
     @Serializable
     data object CommandList : BuilderScreen()
@@ -48,9 +48,7 @@ sealed class BuilderScreen {
 }
 
 @Composable
-fun IntentActionBuilder(
-    initialStack: List<BuilderScreen> = listOf(BuilderScreen.AutomationList)
-) {
+fun IntentActionBuilder(initialStack: List<BuilderScreen> = listOf(BuilderScreen.AutomationList)) {
     val nav =
         rememberStackNavigatorState<BuilderScreen>(
             initialStack.first(),
@@ -69,50 +67,55 @@ fun IntentActionBuilder(
     StackNavigator(state = nav) { screen ->
 
         when (screen) {
-            is BuilderScreen.AutomationList -> AutomationList(
-                onNewAutomation = {
-                    nav.push(BuilderScreen.AutomationEditor())
-                },
-                onAutomationSelected = { id ->
-                    nav.push(BuilderScreen.AutomationEditor(editingId = id))
-                }
-            )
+            is BuilderScreen.AutomationList ->
+                AutomationList(
+                    onNewAutomation = {
+                        nav.push(BuilderScreen.AutomationEditor())
+                    },
+                    onAutomationSelected = { id ->
+                        nav.push(BuilderScreen.AutomationEditor(editingId = id))
+                    },
+                )
 
-            is BuilderScreen.AutomationEditor -> AutomationEditor(
-                editingId = screen.editingId,
-                triggerPickResult = triggerResult,
-                commandPickResult = commandResult,
-                onRequestTrigger = { nav.push(BuilderScreen.TriggerList) },
-                onRequestAddCommand = { nav.push(BuilderScreen.CommandList) },
-                onSave = { automation ->
-                    nav.back()
-                }
-            )
+            is BuilderScreen.AutomationEditor ->
+                AutomationEditor(
+                    editingId = screen.editingId,
+                    triggerPickResult = triggerResult,
+                    commandPickResult = commandResult,
+                    onRequestTrigger = { nav.push(BuilderScreen.TriggerList) },
+                    onRequestAddCommand = { nav.push(BuilderScreen.CommandList) },
+                    onSave = { automation ->
+                        nav.back()
+                    },
+                )
 
-            is BuilderScreen.TriggerList -> TriggerList(
-                onNewTrigger = { typeTag ->
-                    when (typeTag) {
-                        "nfc" -> nav.push(BuilderScreen.NfcTriggerEditor)
-                        else -> {}
-                    }
-                },
-                onTriggerSelected = { type, id ->
-                    triggerResult = type to id
-                    nav.back()
-                },
-            )
+            is BuilderScreen.TriggerList ->
+                TriggerList(
+                    onNewTrigger = { typeTag ->
+                        when (typeTag) {
+                            "nfc" -> nav.push(BuilderScreen.NfcTriggerEditor)
+                            else -> {}
+                        }
+                    },
+                    onTriggerSelected = { type, id ->
+                        triggerResult = type to id
+                        nav.back()
+                    },
+                )
 
-            is BuilderScreen.NfcTriggerEditor -> NfcTriggerEditor(
-                onSaved = { nav.back() },
-            )
+            is BuilderScreen.NfcTriggerEditor ->
+                NfcTriggerEditor(
+                    onSaved = { nav.back() },
+                )
 
-            is BuilderScreen.CommandList -> CommandList(
-                onLaunchAppSelected = { nav.push(BuilderScreen.AppList) },
-                onCommandSelected = {
-                    commandResult = it
-                    nav.back()
-                }
-            )
+            is BuilderScreen.CommandList ->
+                CommandList(
+                    onLaunchAppSelected = { nav.push(BuilderScreen.AppList) },
+                    onCommandSelected = {
+                        commandResult = it
+                        nav.back()
+                    },
+                )
 
             is BuilderScreen.AppList -> {
                 AppList(
@@ -146,11 +149,12 @@ fun IntentActionBuilder(
                     LaunchedEffect(screen.packageName, screen.componentName) {
                         // Double-check inside coroutine in case state changed during launch
                         if (currentComponent == null) {
-                            currentComponent = queryPublicComponents(
-                                context,
-                                screen.packageName,
-                                exportedOnly = true
-                            ).components.find { it.name == screen.componentName }
+                            currentComponent =
+                                queryPublicComponents(
+                                    context,
+                                    screen.packageName,
+                                    exportedOnly = true,
+                                ).components.find { it.name == screen.componentName }
                         }
                     }
                 }

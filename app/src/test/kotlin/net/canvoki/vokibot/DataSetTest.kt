@@ -1,13 +1,13 @@
 package net.canvoki.vokibot
 
 import net.canvoki.shared.test.assertEquals
+import net.canvoki.shared.test.assertJsonEqual
 import org.junit.After
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import java.io.File
-import net.canvoki.shared.test.assertJsonEqual
 
 class DataSetTest {
     private val testDir = "test_dataset"
@@ -221,15 +221,17 @@ class DataSetTest {
     }
 }
 
-private fun buildCommand(
-    displayName: String = "Test Command",
-): ApplicationCommand = LaunchActivityCommand(
-    displayName = displayName,
-    packageName = "com.test.pkg",
-    className = "com.test.pkg.MainActivity"
-)
+private fun buildCommand(displayName: String = "Test Command"): ApplicationCommand =
+    LaunchActivityCommand(
+        displayName = displayName,
+        packageName = "com.test.pkg",
+        className = "com.test.pkg.MainActivity",
+    )
 
-fun assertDataEqual(expected: StorableEntity?, actual: StorableEntity?) {
+fun assertDataEqual(
+    expected: StorableEntity?,
+    actual: StorableEntity?,
+) {
     assertJsonEqual(
         expected?.toJson() ?: "null",
         actual?.toJson() ?: "null",

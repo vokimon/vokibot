@@ -86,18 +86,20 @@ fun AppComponentList(
 private fun ComponentGroupHeader(groupKey: String) {
     val type = ComponentType.valueOf(groupKey)
     Text(
-        text = when (type) {
-            ComponentType.ACTIVITY -> stringResource(R.string.command_type_launch_activity)
-            ComponentType.RECEIVER -> stringResource(R.string.command_type_send_broadcast)
-            ComponentType.SERVICE -> stringResource(R.string.command_type_start_service)
-            ComponentType.PROVIDER -> stringResource(R.string.command_type_access_provider)
-        },
+        text =
+            when (type) {
+                ComponentType.ACTIVITY -> stringResource(R.string.command_type_launch_activity)
+                ComponentType.RECEIVER -> stringResource(R.string.command_type_send_broadcast)
+                ComponentType.SERVICE -> stringResource(R.string.command_type_start_service)
+                ComponentType.PROVIDER -> stringResource(R.string.command_type_access_provider)
+            },
         style = MaterialTheme.typography.titleSmall,
         color = MaterialTheme.colorScheme.primary,
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(MaterialTheme.colorScheme.surface)
-            .padding(horizontal = 16.dp, vertical = 8.dp),
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .background(MaterialTheme.colorScheme.surface)
+                .padding(horizontal = 16.dp, vertical = 8.dp),
     )
 }
 
@@ -133,7 +135,10 @@ private fun ComponentRow(
     }
 }
 
-private fun formatComponentName(packageName: String, fullName: String): String {
+private fun formatComponentName(
+    packageName: String,
+    fullName: String,
+): String {
     val prefix = "$packageName."
     return if (fullName.startsWith(prefix)) fullName.substring(packageName.length) else fullName
 }

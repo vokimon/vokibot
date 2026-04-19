@@ -1,13 +1,13 @@
 package net.canvoki.vokibot
 
 import net.canvoki.shared.test.assertEquals
+import net.canvoki.shared.test.assertJsonEqual
 import org.junit.After
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import java.io.File
-import net.canvoki.shared.test.assertJsonEqual
 
 class FileDataRepositoryTest {
     private val testDir = "test_repo"
@@ -343,25 +343,28 @@ class FileDataRepositoryTest {
     }
 }
 
-fun <T : StorableEntity> assertDataEqual(expected: T?, actual: T?) {
+fun <T : StorableEntity> assertDataEqual(
+    expected: T?,
+    actual: T?,
+) {
     assertJsonEqual(
         expected?.toJson() ?: "null",
         actual?.toJson() ?: "null",
     )
 }
 
-private fun buildCommand(
-    displayName: String = "Test Command",
-): ApplicationCommand = LaunchActivityCommand(
-    displayName = displayName,
-    packageName = "com.test.pkg",
-    className = "com.test.pkg.MainActivity"
-)
+private fun buildCommand(displayName: String = "Test Command"): ApplicationCommand =
+    LaunchActivityCommand(
+        displayName = displayName,
+        packageName = "com.test.pkg",
+        className = "com.test.pkg.MainActivity",
+    )
 
 private fun buildNfc(
     name: String,
     uid: String,
-): NfcTrigger = NfcTrigger(
-    displayName = name,
-    uid = uid,
-)
+): NfcTrigger =
+    NfcTrigger(
+        displayName = name,
+        uid = uid,
+    )

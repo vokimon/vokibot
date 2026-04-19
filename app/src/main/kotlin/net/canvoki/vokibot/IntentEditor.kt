@@ -44,7 +44,10 @@ import kotlinx.coroutines.launch
 import net.canvoki.shared.usermessage.UserMessage
 
 @Composable
-fun ActivityHeader(packageName: String, component: PublicComponent) {
+fun ActivityHeader(
+    packageName: String,
+    component: PublicComponent,
+) {
     Row {
         Image(
             painter =
@@ -163,12 +166,14 @@ fun IntentEditor(
     val scope = rememberCoroutineScope()
     val repository = remember { FileDataRepository.fromContext(context) }
 
-    val actionsToShow = remember(component.actions) {
-        val mapped = component.actions.mapNotNull { actionStr ->
-            StandardActions.all().find { it.action == actionStr }
+    val actionsToShow =
+        remember(component.actions) {
+            val mapped =
+                component.actions.mapNotNull { actionStr ->
+                    StandardActions.all().find { it.action == actionStr }
+                }
+            if (mapped.isNotEmpty()) mapped else StandardActions.all()
         }
-        if (mapped.isNotEmpty()) mapped else StandardActions.all()
-    }
 
     var selectedAction by remember { mutableStateOf<ActionDefinition?>(null) }
     var customAction by remember { mutableStateOf("") }
@@ -183,14 +188,15 @@ fun IntentEditor(
 
     fun buildCommand(displayName: String): LaunchActivityCommand {
         val actionStr = selectedAction?.action ?: customAction.takeIf { it.isNotBlank() }
-        val typedExtras = extrasState.mapValues { (_, v) ->
-            when (v) {
-                is String -> ExtraValue.StringValue(v)
-                is Int -> ExtraValue.IntValue(v)
-                is Boolean -> ExtraValue.BooleanValue(v)
-                else -> ExtraValue.StringValue(v?.toString() ?: "")
+        val typedExtras =
+            extrasState.mapValues { (_, v) ->
+                when (v) {
+                    is String -> ExtraValue.StringValue(v)
+                    is Int -> ExtraValue.IntValue(v)
+                    is Boolean -> ExtraValue.BooleanValue(v)
+                    else -> ExtraValue.StringValue(v?.toString() ?: "")
+                }
             }
-        }
         return LaunchActivityCommand(
             displayName = displayName,
             packageName = packageName,
@@ -396,7 +402,10 @@ fun IntentEditor(
     }
 }
 
-private fun formatComponentName(packageName: String, fullName: String): String {
+private fun formatComponentName(
+    packageName: String,
+    fullName: String,
+): String {
     val prefix = "$packageName."
     return if (fullName.startsWith(prefix)) fullName.substring(packageName.length) else fullName
 }

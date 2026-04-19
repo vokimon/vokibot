@@ -1,9 +1,5 @@
 package net.canvoki.vokibot
 
-import org.junit.Assert.assertEquals
-import org.junit.Before
-import org.junit.Test
-import org.junit.runner.RunWith
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import kotlinx.coroutines.test.runTest
@@ -14,15 +10,15 @@ import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 import kotlinx.serialization.json.putJsonArray
 import kotlinx.serialization.json.putJsonObject
-import kotlinx.serialization.json.buildJsonObject
-import kotlinx.serialization.json.put
-import kotlinx.serialization.json.putJsonArray
-import kotlinx.serialization.json.putJsonObject
+import net.canvoki.shared.test.canonicalizeJson
 import net.canvoki.vokibot.ActionFilterType
 import net.canvoki.vokibot.ComponentType
 import net.canvoki.vokibot.PublicComponent
 import net.canvoki.vokibot.PublicComponentsResult
-import net.canvoki.shared.test.canonicalizeJson
+import org.junit.Assert.assertEquals
+import org.junit.Before
+import org.junit.Test
+import org.junit.runner.RunWith
 
 /**
  * Formats a component's parsed data into a canonical JSON string for snapshot-style testing.
@@ -31,11 +27,12 @@ import net.canvoki.shared.test.canonicalizeJson
  * TODO: Add dataSchemes, mimeTypes, permissions when properly supported
  */
 fun PublicComponentsResult.formatComponentJson(componentName: String): String {
-    val comp = components.find { it.name == componentName || it.name.endsWith(componentName) }
-        ?: return buildJsonObject {
-            put("found", false)
-            put("message", "Component '$componentName' not found")
-        }.let { canonicalizeJson(it.toString()) }
+    val comp =
+        components.find { it.name == componentName || it.name.endsWith(componentName) }
+            ?: return buildJsonObject {
+                put("found", false)
+                put("message", "Component '$componentName' not found")
+            }.let { canonicalizeJson(it.toString()) }
 
     return buildJsonObject {
         put("found", true)
@@ -74,67 +71,72 @@ fun assertComponentInfoEquals(
 
 @RunWith(AndroidJUnit4::class)
 class ComponentDiscoveryTest {
-
     @Before
     fun setup() {
         PuppetHelper.requireInstalled()
     }
 
     @Test
-    fun mainActivity_snapshot() = runTest {
-        val context = InstrumentationRegistry.getInstrumentation().targetContext
-        val result = queryPublicComponents(context, "net.canvoki.puppet", exportedOnly = true)
+    fun mainActivity_snapshot() =
+        runTest {
+            val context = InstrumentationRegistry.getInstrumentation().targetContext
+            val result = queryPublicComponents(context, "net.canvoki.puppet", exportedOnly = true)
 
-        val expected = """
-        {
-          "actions": {
-            "filterType": "SPECIFIC_ACTIONS",
-            "values": ["android.intent.action.MAIN"]
-          },
-          "exported": true,
-          "found": true,
-          "label": "0_Puppet",
-          "name": "net.canvoki.puppet.MainActivity",
-          "type": "ACTIVITY"
+            val expected =
+                """
+                {
+                  "actions": {
+                    "filterType": "SPECIFIC_ACTIONS",
+                    "values": ["android.intent.action.MAIN"]
+                  },
+                  "exported": true,
+                  "found": true,
+                  "label": "0_Puppet",
+                  "name": "net.canvoki.puppet.MainActivity",
+                  "type": "ACTIVITY"
+                }
+                """.trimIndent()
+
+            assertComponentInfoEquals(expected, result, ".MainActivity")
         }
-        """.trimIndent()
-
-        assertComponentInfoEquals(expected, result, ".MainActivity")
-    }
 
     @Test
-    fun unfilteredActivity_snapshot() = runTest {
-        val context = InstrumentationRegistry.getInstrumentation().targetContext
-        val result = queryPublicComponents(context, "net.canvoki.puppet", exportedOnly = true)
+    fun unfilteredActivity_snapshot() =
+        runTest {
+            val context = InstrumentationRegistry.getInstrumentation().targetContext
+            val result = queryPublicComponents(context, "net.canvoki.puppet", exportedOnly = true)
 
-        val expected = """
-        {
-          "actions": {
-            "filterType": "UNKNOWN"
-          },
-          "exported": true,
-          "found": true,
-          "label": "Unfiltered",
-          "name": "net.canvoki.puppet.UnfilteredActivity",
-          "type": "ACTIVITY"
+            val expected =
+                """
+                {
+                  "actions": {
+                    "filterType": "UNKNOWN"
+                  },
+                  "exported": true,
+                  "found": true,
+                  "label": "Unfiltered",
+                  "name": "net.canvoki.puppet.UnfilteredActivity",
+                  "type": "ACTIVITY"
+                }
+                """.trimIndent()
+
+            assertComponentInfoEquals(expected, result, ".UnfilteredActivity")
         }
-        """.trimIndent()
-
-        assertComponentInfoEquals(expected, result, ".UnfilteredActivity")
-    }
 
     @Test
-    fun privateActivity_excludedWhenExportedOnly() = runTest {
-        val context = InstrumentationRegistry.getInstrumentation().targetContext
-        val result = queryPublicComponents(context, "net.canvoki.puppet", exportedOnly = true)
+    fun privateActivity_excludedWhenExportedOnly() =
+        runTest {
+            val context = InstrumentationRegistry.getInstrumentation().targetContext
+            val result = queryPublicComponents(context, "net.canvoki.puppet", exportedOnly = true)
 
-        val expected = """
-        {
-          "found": false,
-          "message": "Component '.PrivateActivity' not found"
+            val expected =
+                """
+                {
+                  "found": false,
+                  "message": "Component '.PrivateActivity' not found"
+                }
+                """.trimIndent()
+
+            assertComponentInfoEquals(expected, result, ".PrivateActivity")
         }
-        """.trimIndent()
-
-        assertComponentInfoEquals(expected, result, ".PrivateActivity")
-    }
 }

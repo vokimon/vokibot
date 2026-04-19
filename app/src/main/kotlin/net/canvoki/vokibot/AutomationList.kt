@@ -52,19 +52,27 @@ fun AutomationList(
         ) { automation ->
             var menuExpanded by remember { mutableStateOf(false) }
 
-            val triggerDisplayName = remember(automation.triggerType, automation.triggerId) {
-                if (automation.triggerType == "nfc") repository.nfcTrigger.load(automation.triggerId)?.displayName else null
-            }
+            val triggerDisplayName =
+                remember(automation.triggerType, automation.triggerId) {
+                    if (automation.triggerType ==
+                        "nfc"
+                    ) {
+                        repository.nfcTrigger.load(automation.triggerId)?.displayName
+                    } else {
+                        null
+                    }
+                }
 
             ListItem(
                 headlineContent = { Text(automation.name) },
                 supportingContent = {
                     Text(
-                        text = buildString {
-                            triggerDisplayName?.let { append("$it • ") }
-                            append("${automation.commandIds.size} command(s)")
-                        },
-                        maxLines = 1
+                        text =
+                            buildString {
+                                triggerDisplayName?.let { append("$it • ") }
+                                append("${automation.commandIds.size} command(s)")
+                            },
+                        maxLines = 1,
                     )
                 },
                 leadingContent = {
@@ -72,7 +80,7 @@ fun AutomationList(
                         painter = painterResource(R.drawable.ic_check_circle),
                         contentDescription = stringResource(R.string.automation_type_automation),
                         modifier = Modifier.size(40.dp),
-                        tint = MaterialTheme.colorScheme.primary
+                        tint = MaterialTheme.colorScheme.primary,
                     )
                 },
                 modifier = Modifier.clickable { onAutomationSelected(automation.id) },
@@ -80,28 +88,28 @@ fun AutomationList(
                     IconButton(onClick = { menuExpanded = true }) {
                         Icon(
                             painter = painterResource(R.drawable.ic_more_vert),
-                            contentDescription = stringResource(R.string.automationlist_options_desc)
+                            contentDescription = stringResource(R.string.automationlist_options_desc),
                         )
                     }
                     DropdownMenu(
                         expanded = menuExpanded,
-                        onDismissRequest = { menuExpanded = false }
+                        onDismissRequest = { menuExpanded = false },
                     ) {
                         DropdownMenuItem(
                             text = { Text(stringResource(R.string.automationlist_delete)) },
                             leadingIcon = {
                                 Icon(
                                     painter = painterResource(R.drawable.ic_delete),
-                                    contentDescription = null
+                                    contentDescription = null,
                                 )
                             },
                             onClick = {
                                 menuExpanded = false
                                 automationToDelete = automation
-                            }
+                            },
                         )
                     }
-                }
+                },
             )
         }
 
@@ -111,7 +119,7 @@ fun AutomationList(
         ) {
             Icon(
                 painter = painterResource(R.drawable.ic_add),
-                contentDescription = stringResource(R.string.automationlist_create_fab_desc)
+                contentDescription = stringResource(R.string.automationlist_create_fab_desc),
             )
         }
     }
@@ -129,7 +137,7 @@ fun AutomationList(
                             refreshCounter++
                             automationToDelete = null
                         }
-                    }
+                    },
                 ) {
                     Text(stringResource(R.string.automationlist_delete), color = MaterialTheme.colorScheme.error)
                 }
@@ -138,7 +146,7 @@ fun AutomationList(
                 TextButton(onClick = { automationToDelete = null }) {
                     Text(stringResource(R.string.automationlist_cancel))
                 }
-            }
+            },
         )
     }
 }
@@ -149,9 +157,10 @@ private fun AutomationGroupHeader(groupKey: String) {
         text = stringResource(R.string.automation_group_automation),
         style = MaterialTheme.typography.titleSmall,
         color = MaterialTheme.colorScheme.primary,
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(MaterialTheme.colorScheme.surface)
-            .padding(horizontal = 16.dp, vertical = 8.dp),
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .background(MaterialTheme.colorScheme.surface)
+                .padding(horizontal = 16.dp, vertical = 8.dp),
     )
 }

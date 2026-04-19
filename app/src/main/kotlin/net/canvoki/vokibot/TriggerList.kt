@@ -61,9 +61,9 @@ fun TriggerList(
                 leadingContent = {
                     Icon(
                         painter = painterResource(R.drawable.ic_nfc),
-                        contentDescription = null,//stringResource(R.string.trigger_type_nfc),
+                        contentDescription = null, //stringResource(R.string.trigger_type_nfc),
                         modifier = Modifier.size(40.dp),
-                        tint = MaterialTheme.colorScheme.primary
+                        tint = MaterialTheme.colorScheme.primary,
                     )
                 },
                 modifier = Modifier.clickable { onTriggerSelected("nfc", trigger.id) },
@@ -71,28 +71,28 @@ fun TriggerList(
                     IconButton(onClick = { menuExpanded = true }) {
                         Icon(
                             painter = painterResource(R.drawable.ic_more_vert),
-                            contentDescription = stringResource(R.string.triggerlist_options_desc)
+                            contentDescription = stringResource(R.string.triggerlist_options_desc),
                         )
                     }
                     DropdownMenu(
                         expanded = menuExpanded,
-                        onDismissRequest = { menuExpanded = false }
+                        onDismissRequest = { menuExpanded = false },
                     ) {
                         DropdownMenuItem(
                             text = { Text(stringResource(R.string.triggerlist_delete)) },
                             leadingIcon = {
                                 Icon(
                                     painter = painterResource(R.drawable.ic_delete),
-                                    contentDescription = null
+                                    contentDescription = null,
                                 )
                             },
                             onClick = {
                                 menuExpanded = false
                                 triggerToDelete = trigger
-                            }
+                            },
                         )
                     }
-                }
+                },
             )
         }
 
@@ -102,7 +102,7 @@ fun TriggerList(
         ) {
             Icon(
                 painter = painterResource(R.drawable.ic_add),
-                contentDescription = stringResource(R.string.triggerlist_create_fab_desc)
+                contentDescription = stringResource(R.string.triggerlist_create_fab_desc),
             )
         }
     }
@@ -121,7 +121,7 @@ fun TriggerList(
                             refreshCounter++
                             triggerToDelete = null
                         }
-                    }
+                    },
                 ) {
                     Text(stringResource(R.string.triggerlist_delete), color = MaterialTheme.colorScheme.error)
                 }
@@ -130,17 +130,18 @@ fun TriggerList(
                 TextButton(onClick = { triggerToDelete = null }) {
                     Text(stringResource(R.string.triggerlist_cancel))
                 }
-            }
+            },
         )
     }
 
     if (showTypeChooser) {
         ChooserDialog(
             title = stringResource(R.string.triggerlist_create_title),
-            options = listOf(
-                ChooserOption(value = "nfc", label = stringResource(R.string.triggerlist_option_nfc)),
-                ChooserOption(value = "nfc", label = stringResource(R.string.triggerlist_option_nfc)),
-            ),
+            options =
+                listOf(
+                    ChooserOption(value = "nfc", label = stringResource(R.string.triggerlist_option_nfc)),
+                    ChooserOption(value = "nfc", label = stringResource(R.string.triggerlist_option_nfc)),
+                ),
             selectedValue = "",
             onConfirm = { value ->
                 showTypeChooser = false
@@ -159,9 +160,10 @@ private fun TriggerGroupHeader(groupKey: String) {
         text = stringResource(R.string.trigger_group_nfc),
         style = MaterialTheme.typography.titleSmall,
         color = MaterialTheme.colorScheme.primary,
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(MaterialTheme.colorScheme.surface)
-            .padding(horizontal = 16.dp, vertical = 8.dp),
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .background(MaterialTheme.colorScheme.surface)
+                .padding(horizontal = 16.dp, vertical = 8.dp),
     )
 }

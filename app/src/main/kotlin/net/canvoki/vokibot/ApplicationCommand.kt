@@ -9,7 +9,8 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 
 fun toFileSystemId(id: String): String =
-    id.replace(Regex("[^a-zA-Z0-9_.-]"), "_")
+    id
+        .replace(Regex("[^a-zA-Z0-9_.-]"), "_")
         .replace(Regex("_+"), "_")
         .take(64)
         .trim('_')

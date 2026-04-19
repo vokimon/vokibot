@@ -1,10 +1,10 @@
 package net.canvoki.vokibot
 
 import kotlinx.serialization.json.Json
-import org.junit.Assert.assertTrue
-import org.junit.Test
 import net.canvoki.shared.test.assertEquals
 import net.canvoki.shared.test.assertJsonEqual
+import org.junit.Assert.assertTrue
+import org.junit.Test
 
 class ApplicationCommandTest {
     private val json =
@@ -205,9 +205,15 @@ class ApplicationCommandTest {
         assertTrue(serialized.contains("\"float\""))
 
         val deserialized = json.decodeFromString<Map<String, ExtraValue>>(serialized)
-        assertEquals((extras["str"] as ExtraValue.StringValue).value, (deserialized["str"] as ExtraValue.StringValue).value)
+        assertEquals(
+            (extras["str"] as ExtraValue.StringValue).value,
+            (deserialized["str"] as ExtraValue.StringValue).value,
+        )
         assertEquals((extras["num"] as ExtraValue.IntValue).value, (deserialized["num"] as ExtraValue.IntValue).value)
-        assertEquals((extras["bool"] as ExtraValue.BooleanValue).value, (deserialized["bool"] as ExtraValue.BooleanValue).value)
+        assertEquals(
+            (extras["bool"] as ExtraValue.BooleanValue).value,
+            (deserialized["bool"] as ExtraValue.BooleanValue).value,
+        )
     }
 
     @Test

@@ -1,10 +1,10 @@
 package net.canvoki.vokibot
 
 import kotlinx.serialization.json.Json
-import org.junit.Assert.assertTrue
-import org.junit.Test
 import net.canvoki.shared.test.assertEquals
 import net.canvoki.shared.test.assertJsonEqual
+import org.junit.Assert.assertTrue
+import org.junit.Test
 
 class NfcTriggerTest {
     private val json =
@@ -18,7 +18,7 @@ class NfcTriggerTest {
     fun nfcTriggerBase() =
         NfcTrigger(
             displayName = "My ID Card",
-            uid = "01:23:45:67:AB:CD:EF"
+            uid = "01:23:45:67:AB:CD:EF",
         )
 
     fun nfcTriggerJson() =
