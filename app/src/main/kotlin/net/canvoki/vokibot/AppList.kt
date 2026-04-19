@@ -163,8 +163,8 @@ private suspend fun loadApps(
 @Composable
 fun AppList(
     onSelected: (AppInfo) -> Unit,
-    listState: LazyListState = rememberLazyListState(),
     modifier: Modifier = Modifier,
+    listState: LazyListState = rememberLazyListState(),
 ) {
     val context = LocalContext.current
     val packageManager = context.packageManager

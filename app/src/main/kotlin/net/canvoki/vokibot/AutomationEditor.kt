@@ -41,13 +41,13 @@ import androidx.compose.ui.unit.dp
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AutomationEditor(
+    modifier: Modifier = Modifier,
     editingId: String? = null,
     triggerPickResult: Pair<String, String>? = null,
     commandPickResult: String? = null,
     onRequestTrigger: () -> Unit,
     onRequestAddCommand: () -> Unit,
     onSave: (Automation) -> Unit,
-    modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
     val repository = remember { FileDataRepository.fromContext(context) }
