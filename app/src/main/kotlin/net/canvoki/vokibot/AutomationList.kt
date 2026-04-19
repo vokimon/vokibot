@@ -19,6 +19,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -38,7 +39,7 @@ fun AutomationList(
 ) {
     val context = LocalContext.current
     val repository = remember { FileDataRepository.fromContext(context) }
-    var refreshCounter by remember { mutableStateOf(0) }
+    var refreshCounter by remember { mutableIntStateOf(0) }
     var automationToDelete by remember { mutableStateOf<Automation?>(null) }
 
     Box(modifier = modifier.fillMaxSize()) {

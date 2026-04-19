@@ -19,6 +19,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -41,7 +42,7 @@ fun TriggerList(
     val context = LocalContext.current
     val repository = remember { FileDataRepository.fromContext(context) }
     var showTypeChooser by remember { mutableStateOf(false) }
-    var refreshCounter by remember { mutableStateOf(0) }
+    var refreshCounter by remember { mutableIntStateOf(0) }
     var triggerToDelete by remember { mutableStateOf<NfcTrigger?>(null) }
 
     Box(modifier = modifier.fillMaxSize()) {
