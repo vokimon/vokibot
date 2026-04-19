@@ -292,7 +292,13 @@ private fun extractUidFromIntent(intent: Intent): String? =
     if (intent.action == NfcAdapter.ACTION_TAG_DISCOVERED ||
         intent.action == NfcAdapter.ACTION_TECH_DISCOVERED
     ) {
-        val tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG, Tag::class.java)
+        val tag =
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
+                intent.getParcelableExtra(NfcAdapter.EXTRA_TAG, Tag::class.java)
+            } else {
+                @Suppress("DEPRECATION")
+                intent.getParcelableExtra<Tag>(NfcAdapter.EXTRA_TAG)
+            }
         tag?.id?.joinToString(":") { "%02X".format(it) }
     } else {
         null
