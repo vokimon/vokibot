@@ -4,8 +4,10 @@ Android automation tool
 
 Start any application on approaching the device to an NFC tag.
 
-This project aims to be a "anything can trigger anything you can do",
+This project aims to be a "on any trigger do anything",
 but let's start humble.
+
+<!-- end-of-description -->
 
 **Warning:**
 Some of the options presented might not be fully functional,
