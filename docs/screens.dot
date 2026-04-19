@@ -1,0 +1,31 @@
+digraph BuilderScreens {
+    graph [rankdir=LR, fontname="Helvetica", fontsize=10, bgcolor="#FAFAFA"];
+    node [shape=box, style="filled,rounded", fillcolor="#E3F2FD", color="#64B5F6", fontname="Helvetica", fontsize=9, margin="0.2,0.1"];
+    edge [fontname="Helvetica", fontsize=8, color="#424242", penwidth=1.2];
+
+    AutomationList [label="AutomationList"];
+    AutomationEditor [label="AutomationEditor\n\neditingId: String?"];
+    TriggerList [label="TriggerList"];
+    NfcTriggerEditor [label="NfcTriggerEditor"];
+    CommandList [label="CommandList"];
+    AppList [label="AppList"];
+    ComponentList [label="ComponentList\n\npackageName: String"];
+    IntentEditor [label="IntentEditor\n\npackageName: String\ncomponentName: String"];
+
+    // Pushes (solid)
+    AutomationList -> AutomationEditor [label="editingId=null"];
+    AutomationList -> AutomationEditor [label="editingId=id"];
+    AutomationEditor -> TriggerList [label=""];
+    TriggerList -> NfcTriggerEditor [label="[type=\"nfc\"]"];
+    AutomationEditor -> CommandList [label=""];
+    CommandList -> AppList [label=""];
+    AppList -> ComponentList [label="packageName"];
+    ComponentList -> IntentEditor [label="packageName, componentName"];
+
+    // Returns (dashed)
+    NfcTriggerEditor -> TriggerList [label="", style=dashed, color=gray];
+    TriggerList -> AutomationEditor [label=":type, id", style=dashed, color=gray];
+    CommandList -> AutomationEditor [label=":commandId", style=dashed, color=gray];
+    AutomationEditor -> AutomationList [label="", style=dashed, color=gray];
+}
+
