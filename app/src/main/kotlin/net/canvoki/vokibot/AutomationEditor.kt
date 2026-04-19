@@ -1,13 +1,35 @@
 package net.canvoki.vokibot
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material3.Button
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -30,13 +52,11 @@ fun AutomationEditor(
     val context = LocalContext.current
     val repository = remember { FileDataRepository.fromContext(context) }
 
-    // Local draft state (survives rotation)
     var name by rememberSaveable { mutableStateOf("") }
     var triggerType by rememberSaveable { mutableStateOf("") }
     var triggerId by rememberSaveable { mutableStateOf("") }
     var commandIds by rememberSaveable { mutableStateOf<List<String>>(emptyList()) }
 
-    // Load existing automation or initialize new
     LaunchedEffect(editingId) {
         if (editingId != null) {
             repository.automation.load(editingId)?.let { existing ->
@@ -48,7 +68,6 @@ fun AutomationEditor(
         }
     }
 
-    // Consume one-shot picker results
     LaunchedEffect(triggerPickResult) {
         triggerPickResult?.let { (type, id) ->
             triggerType = type
@@ -64,20 +83,22 @@ fun AutomationEditor(
         }
     }
 
-    // Resolve display names (lightweight, cached per change)
-    val triggerDisplayName = remember(triggerType, triggerId) {
-        if (triggerType == "nfc") repository.nfcTrigger.load(triggerId)?.displayName else null
-    }
-    val commandDisplayNames = remember(commandIds) {
-        commandIds.map { id -> repository.command.load(id)?.displayName ?: id }
-    }
+    val triggerDisplayName =
+        remember(triggerType, triggerId) {
+            if (triggerType == "nfc") repository.nfcTrigger.load(triggerId)?.displayName else null
+        }
+    val commandDisplayNames =
+        remember(commandIds) {
+            commandIds.map { id -> repository.command.load(id)?.displayName ?: id }
+        }
 
     Column(
-        modifier = modifier
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState())
-            .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        modifier =
+            modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState())
+                .padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         OutlinedTextField(
             value = name,
@@ -86,37 +107,42 @@ fun AutomationEditor(
             placeholder = { Text(stringResource(R.string.automation_name_placeholder)) },
             modifier = Modifier.fillMaxWidth(),
             singleLine = true,
-            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next)
+            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
         )
 
         Card(
-            modifier = Modifier
-                .fillMaxWidth()
-                .clickable(onClick = onRequestTrigger),
-            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .clickable(onClick = onRequestTrigger),
+            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
         ) {
             Row(
                 modifier = Modifier.fillMaxWidth().padding(16.dp),
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 Icon(
                     painter = painterResource(R.drawable.ic_nfc),
                     contentDescription = null,
                     tint = MaterialTheme.colorScheme.primary,
-                    modifier = Modifier.size(24.dp)
+                    modifier = Modifier.size(24.dp),
                 )
                 Spacer(modifier = Modifier.width(12.dp))
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
                         text = stringResource(R.string.automation_trigger_label),
                         style = MaterialTheme.typography.labelSmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
                     Text(
                         text = triggerDisplayName ?: stringResource(R.string.automation_trigger_placeholder),
                         style = MaterialTheme.typography.bodyLarge,
-                        color = if (triggerDisplayName != null) MaterialTheme.colorScheme.onSurface
-                                else MaterialTheme.colorScheme.primary
+                        color =
+                            if (triggerDisplayName != null) {
+                                MaterialTheme.colorScheme.onSurface
+                            } else {
+                                MaterialTheme.colorScheme.primary
+                            },
                     )
                 }
             }
@@ -124,40 +150,39 @@ fun AutomationEditor(
 
         Text(
             text = stringResource(R.string.automation_commands_label),
-            style = MaterialTheme.typography.titleMedium
+            style = MaterialTheme.typography.titleMedium,
         )
 
         if (commandIds.isEmpty()) {
             Text(
                 text = stringResource(R.string.automation_commands_empty),
                 style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
         } else {
             Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 commandDisplayNames.forEachIndexed { index, cmdName ->
                     Card(
                         modifier = Modifier.fillMaxWidth(),
-                        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer)
+                        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer),
                     ) {
                         Row(
                             modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 12.dp),
                             horizontalArrangement = Arrangement.SpaceBetween,
-                            verticalAlignment = Alignment.CenterVertically
+                            verticalAlignment = Alignment.CenterVertically,
                         ) {
                             Text(
                                 text = "${index + 1}. $cmdName",
                                 style = MaterialTheme.typography.bodyMedium,
-                                modifier = Modifier.weight(1f)
+                                modifier = Modifier.weight(1f),
                             )
-                            // ✅ Removal now only affects local draft state
                             IconButton(onClick = {
                                 commandIds = commandIds.toMutableList().apply { removeAt(index) }
                             }) {
                                 Icon(
                                     painter = painterResource(R.drawable.ic_delete),
                                     contentDescription = stringResource(R.string.automation_remove_command_desc),
-                                    tint = MaterialTheme.colorScheme.error
+                                    tint = MaterialTheme.colorScheme.error,
                                 )
                             }
                         }
@@ -168,12 +193,12 @@ fun AutomationEditor(
 
         Button(
             onClick = onRequestAddCommand,
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
         ) {
             Icon(
                 painter = painterResource(R.drawable.ic_add),
                 contentDescription = null,
-                modifier = Modifier.size(20.dp)
+                modifier = Modifier.size(20.dp),
             )
             Spacer(modifier = Modifier.width(8.dp))
             Text(stringResource(R.string.automation_add_command))
@@ -190,7 +215,7 @@ fun AutomationEditor(
                 }
             },
             enabled = name.isNotBlank() && triggerId.isNotBlank() && commandIds.isNotEmpty(),
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
         ) {
             Text(stringResource(R.string.automation_save))
         }

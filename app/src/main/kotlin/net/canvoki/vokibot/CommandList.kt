@@ -67,18 +67,19 @@ fun CommandList(
             var menuExpanded by remember { mutableStateOf(false) }
 
             // Get component icon (only for LaunchActivityCommand)
-            val componentIcon = remember(command.packageName) {
-                runCatching {
-                    val pm = context.packageManager
-                    val className = (command as? LaunchActivityCommand)?.className
-                    if (className != null) {
-                        val componentName = ComponentName(command.packageName, className)
-                        pm.getActivityIcon(componentName)
-                    } else {
-                        pm.getApplicationIcon(command.packageName)
-                    }
-                }.getOrNull()
-            }
+            val componentIcon =
+                remember(command.packageName) {
+                    runCatching {
+                        val pm = context.packageManager
+                        val className = (command as? LaunchActivityCommand)?.className
+                        if (className != null) {
+                            val componentName = ComponentName(command.packageName, className)
+                            pm.getActivityIcon(componentName)
+                        } else {
+                            pm.getApplicationIcon(command.packageName)
+                        }
+                    }.getOrNull()
+                }
 
             ListItem(
                 headlineContent = { Text(command.displayName) },
@@ -116,7 +117,9 @@ fun CommandList(
                         onDismissRequest = { menuExpanded = false },
                     ) {
                         DropdownMenuItem(
-                            text = { Text(stringResource(R.string.commandlist_run)) },
+                            text = {
+                                Text(stringResource(R.string.commandlist_run))
+                            },
                             leadingIcon = {
                                 Icon(
                                     painter = painterResource(R.drawable.ic_play_arrow),
@@ -192,9 +195,13 @@ fun CommandList(
     if (showTypeChooser) {
         ChooserDialog(
             title = stringResource(R.string.commandlist_create_command_title),
-            options = listOf(
-                ChooserOption(value = "application", label = stringResource(R.string.commandlist_launch_app_option)),
-            ),
+            options =
+                listOf(
+                    ChooserOption(
+                        value = "application",
+                        label = stringResource(R.string.commandlist_launch_app_option),
+                    ),
+                ),
             selectedValue = "",
             onConfirm = { value ->
                 showTypeChooser = false
@@ -216,9 +223,10 @@ private fun CommandGroupHeader(key: String) {
         text = stringResource(resId),
         style = MaterialTheme.typography.titleSmall,
         color = MaterialTheme.colorScheme.primary,
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(MaterialTheme.colorScheme.surface)
-            .padding(horizontal = 16.dp, vertical = 8.dp),
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .background(MaterialTheme.colorScheme.surface)
+                .padding(horizontal = 16.dp, vertical = 8.dp),
     )
 }

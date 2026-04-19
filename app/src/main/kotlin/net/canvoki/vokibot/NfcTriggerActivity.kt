@@ -6,10 +6,29 @@ import android.nfc.Tag
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -22,11 +41,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import net.canvoki.shared.component.AppScaffold
 import net.canvoki.shared.component.WatermarkBox
-import net.canvoki.shared.log
 
 class NfcTriggerActivity : ComponentActivity() {
-    // Single source of truth for the latest intent.
-    // Updating this triggers recomposition without destroying dialog state.
     private val currentIntent = mutableStateOf<Intent?>(null)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,20 +55,21 @@ class NfcTriggerActivity : ComponentActivity() {
                 intent = intent,
                 onAutomationExecuted = { finish() },
                 onCreateAutomation = { triggerId, triggerType ->
-                    val editorIntent = Intent(this, AutomationEditorActivity::class.java).apply {
-                        putExtra("trigger_type", triggerType)
-                        putExtra("trigger_id", triggerId)
-                    }
+                    val editorIntent =
+                        Intent(this, AutomationEditorActivity::class.java).apply {
+                            putExtra("trigger_type", triggerType)
+                            putExtra("trigger_id", triggerId)
+                        }
                     startActivity(editorIntent)
                     finish()
-                }
+                },
             )
         }
     }
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
-        currentIntent.value = intent // Triggers recomposition, preserves dialog state
+        currentIntent.value = intent
     }
 }
 
@@ -84,8 +101,10 @@ private fun NfcActivityScreen(
             return@LaunchedEffect
         }
 
-        val automations = repository.automation.all()
-            .filter { it.triggerType == "nfc" && it.triggerId == trigger.id }
+        val automations =
+            repository.automation
+                .all()
+                .filter { it.triggerType == "nfc" && it.triggerId == trigger.id }
 
         if (automations.isEmpty()) {
             executionState = ExecutionState.NoAutomation
@@ -117,7 +136,7 @@ private fun NfcActivityScreen(
                     executionState = executionState,
                     onCreateAutomation = { triggerId, triggerType ->
                         onCreateAutomation(triggerId, triggerType)
-                    }
+                    },
                 )
             }
         }
@@ -137,11 +156,12 @@ private fun NfcUidDisplayScreen(
     val repository = remember { FileDataRepository.fromContext(context) }
 
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Center,
     ) {
         when (executionState) {
             is ExecutionState.Searching -> {
@@ -159,24 +179,24 @@ private fun NfcUidDisplayScreen(
                     painter = painterResource(R.drawable.ic_nfc),
                     contentDescription = null,
                     modifier = Modifier.size(64.dp),
-                    tint = MaterialTheme.colorScheme.primary
+                    tint = MaterialTheme.colorScheme.primary,
                 )
                 Spacer(modifier = Modifier.height(24.dp))
                 Text(
                     text = stringResource(R.string.nfc_trigger_detected),
-                    style = MaterialTheme.typography.titleMedium
+                    style = MaterialTheme.typography.titleMedium,
                 )
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
                     text = uid ?: "???",
                     style = MaterialTheme.typography.headlineMedium,
-                    modifier = Modifier.padding(vertical = 8.dp)
+                    modifier = Modifier.padding(vertical = 8.dp),
                 )
                 Spacer(modifier = Modifier.height(16.dp))
                 Text(
                     text = stringResource(R.string.nfc_trigger_not_registered),
                     style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
                 Spacer(modifier = Modifier.height(16.dp))
                 Button(onClick = {
@@ -191,27 +211,27 @@ private fun NfcUidDisplayScreen(
                     painter = painterResource(R.drawable.ic_nfc),
                     contentDescription = null,
                     modifier = Modifier.size(64.dp),
-                    tint = MaterialTheme.colorScheme.primary
+                    tint = MaterialTheme.colorScheme.primary,
                 )
                 Spacer(modifier = Modifier.height(24.dp))
                 Text(
                     text = triggerName ?: stringResource(R.string.nfc_trigger_detected),
-                    style = MaterialTheme.typography.titleMedium
+                    style = MaterialTheme.typography.titleMedium,
                 )
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
                     text = uid ?: "???",
                     style = MaterialTheme.typography.headlineSmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
                 Spacer(modifier = Modifier.height(16.dp))
                 Text(
                     text = stringResource(R.string.nfc_trigger_no_automation),
                     style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
                 Spacer(modifier = Modifier.height(16.dp))
-                Button(onClick = { onCreateAutomation(uid?.replace(":", "_")?:"", "nfc") }) {
+                Button(onClick = { onCreateAutomation(uid?.replace(":", "_") ?: "", "nfc") }) {
                     Text(stringResource(R.string.nfc_trigger_create_automation))
                 }
             }
@@ -219,17 +239,14 @@ private fun NfcUidDisplayScreen(
                 Text(
                     text = stringResource(R.string.nfc_trigger_no_tag),
                     style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
             }
         }
     }
-    // Dialog renders only when explicitly opened
     if (showNameDialog) {
         AlertDialog(
-            onDismissRequest = {
-                showNameDialog = false
-            },
+            onDismissRequest = { showNameDialog = false },
             title = { Text(stringResource(R.string.nfc_trigger_name_dialog_title)) },
             text = {
                 Column {
@@ -239,56 +256,58 @@ private fun NfcUidDisplayScreen(
                         label = { Text(stringResource(R.string.nfc_trigger_name_label)) },
                         placeholder = { Text(stringResource(R.string.nfc_trigger_name_placeholder)) },
                         singleLine = true,
-                        keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Words)
+                        keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Words),
                     )
                 }
             },
             confirmButton = {
                 TextButton(
                     onClick = {
-                        // Theoretically the case, cannot happen
                         if (uid != null) {
-                            val trigger = NfcTrigger(
-                                displayName = triggerNameInput,
-                                uid = uid,
-                            )
+                            val trigger =
+                                NfcTrigger(
+                                    displayName = triggerNameInput,
+                                    uid = uid,
+                                )
                             repository.nfcTrigger.save(trigger)
                             showNameDialog = false
                             onCreateAutomation(trigger.id, "nfc")
                         }
                     },
-                    enabled = triggerNameInput.isNotBlank()
+                    enabled = triggerNameInput.isNotBlank(),
                 ) {
                     Text(stringResource(R.string.nfc_trigger_name_dialog_confirm))
                 }
             },
             dismissButton = {
-                TextButton(onClick = {
-                    showNameDialog = false
-                }) {
+                TextButton(onClick = { showNameDialog = false }) {
                     Text(stringResource(R.string.nfc_trigger_name_dialog_cancel))
                 }
-            }
+            },
         )
     }
 }
 
-private fun extractUidFromIntent(intent: Intent): String? {
-    return if (intent.action == NfcAdapter.ACTION_TAG_DISCOVERED ||
-        intent.action == NfcAdapter.ACTION_TECH_DISCOVERED) {
-
+private fun extractUidFromIntent(intent: Intent): String? =
+    if (intent.action == NfcAdapter.ACTION_TAG_DISCOVERED ||
+        intent.action == NfcAdapter.ACTION_TECH_DISCOVERED
+    ) {
         val tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG, Tag::class.java)
         tag?.id?.joinToString(":") { "%02X".format(it) }
     } else {
         null
     }
-}
 
 private sealed class ExecutionState {
     data object Idle : ExecutionState()
+
     data object Searching : ExecutionState()
+
     data object Executing : ExecutionState()
+
     data object NoTrigger : ExecutionState()
+
     data object NoAutomation : ExecutionState()
+
     data object Error : ExecutionState()
 }
