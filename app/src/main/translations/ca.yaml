@@ -70,7 +70,7 @@ triggerlist_cancel: Cancel·la
 automation_name_label: Nom de l'automatització
 automation_name_placeholder: p. ex. Rutina matí, Marxo de casa
 automation_trigger_label: Disparador
-automation_trigger_placeholder: Toca per seleccionar un disparador
+automation_trigger_placeholder: "Cap seleccionat"
 automation_commands_label: Ordres
 automation_commands_empty: Encara no s'han afegit ordres
 automation_add_command: Afegeix una ordre
@@ -93,3 +93,5 @@ nfc_trigger_create_automation: Crea una automatització
 nfc_trigger_name_dialog_title: Anomena aquesta etiqueta
 nfc_trigger_name_dialog_confirm: Desa i continua
 nfc_trigger_name_dialog_cancel: Cancel·la
+automation_trigger_hint: "Toca per seleccionar"
+automation_add_command_desc: "Afegeix una ordre"

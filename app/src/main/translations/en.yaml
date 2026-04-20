@@ -70,7 +70,7 @@ triggerlist_cancel: Cancel
 automation_name_label: Automation name
 automation_name_placeholder: e.g. Morning routine, Leave home
 automation_trigger_label: Trigger
-automation_trigger_placeholder: Tap to select a trigger
+automation_trigger_placeholder: "None selected"
 automation_commands_label: Commands
 automation_commands_empty: No commands added yet
 automation_add_command: Add Command
@@ -93,3 +93,5 @@ nfc_trigger_create_automation: Create Automation
 nfc_trigger_name_dialog_title: Name this tag
 nfc_trigger_name_dialog_confirm: Save & Continue
 nfc_trigger_name_dialog_cancel: Cancel
+automation_trigger_hint: "Tap to select"
+automation_add_command_desc: "Add command"

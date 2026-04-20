@@ -70,7 +70,7 @@ triggerlist_cancel: Отмена
 automation_name_label: Название автоматизации
 automation_name_placeholder: напр. Утренний ритуал, Выход из дома
 automation_trigger_label: Триггер
-automation_trigger_placeholder: Нажмите, чтобы выбрать триггер
+automation_trigger_placeholder: "Не выбрано"
 automation_commands_label: Команды
 automation_commands_empty: Команды еще не добавлены
 automation_add_command: Добавить команду
@@ -93,3 +93,5 @@ nfc_trigger_create_automation: Создать автоматизацию
 nfc_trigger_name_dialog_title: Назовите эту метку
 nfc_trigger_name_dialog_confirm: Сохранить и продолжить
 nfc_trigger_name_dialog_cancel: Отмена
+automation_trigger_hint: "Нажмите, чтобы выбрать"
+automation_add_command_desc: "Добавить команду"

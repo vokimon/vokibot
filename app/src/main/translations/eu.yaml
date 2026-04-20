@@ -70,7 +70,7 @@ triggerlist_cancel: Utzi
 automation_name_label: Automatizazioaren izena
 automation_name_placeholder: adib. Goiz errutina, Etxetik atera
 automation_trigger_label: Abiarazlea
-automation_trigger_placeholder: Ukitu abiarazle bat hautatzeko
+automation_trigger_placeholder: "Bat ere ez da hautatu"
 automation_commands_label: Komandoak
 automation_commands_empty: Oraindik ez da komandorik gehitu
 automation_add_command: Gehitu komandoa
@@ -93,3 +93,5 @@ nfc_trigger_create_automation: Automatizazioa sortu
 nfc_trigger_name_dialog_title: Eman izena etiketa honi
 nfc_trigger_name_dialog_confirm: Gorde eta jarraitu
 nfc_trigger_name_dialog_cancel: Utzi
+automation_trigger_hint: "Ukitu hautatzeko"
+automation_add_command_desc: "Gehitu komandoa"

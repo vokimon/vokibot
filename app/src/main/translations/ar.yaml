@@ -70,7 +70,7 @@ triggerlist_cancel: إلغاء
 automation_name_label: اسم الأتمتة
 automation_name_placeholder: 'مثال: روتين الصباح، مغادرة المنزل'
 automation_trigger_label: المشغل
-automation_trigger_placeholder: انقر لتحديد مشغل
+automation_trigger_placeholder: "لم يتم اختيار أيّ"
 automation_commands_label: الأوامر
 automation_commands_empty: لم تتم إضافة أي أوامر بعد
 automation_add_command: إضافة أمر
@@ -93,3 +93,5 @@ nfc_trigger_create_automation: إنشاء أتمتة
 nfc_trigger_name_dialog_title: تسمية هذه العلامة
 nfc_trigger_name_dialog_confirm: حفظ ومتابعة
 nfc_trigger_name_dialog_cancel: إلغاء
+automation_trigger_hint: "انقر للاختيار"
+automation_add_command_desc: "إضافة أمر"

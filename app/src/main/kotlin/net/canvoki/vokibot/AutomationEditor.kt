@@ -58,13 +58,12 @@ fun AutomationEditor(
     var commandIds by rememberSaveable { mutableStateOf<List<String>>(emptyList()) }
 
     LaunchedEffect(editingId) {
-        if (editingId != null) {
-            repository.automation.load(editingId)?.let { existing ->
-                name = existing.name
-                triggerType = existing.triggerType
-                triggerId = existing.triggerId
-                commandIds = existing.commandIds
-            }
+        if (editingId == null) return@LaunchedEffect
+        repository.automation.load(editingId)?.let { existing ->
+            name = existing.name
+            triggerType = existing.triggerType
+            triggerId = existing.triggerId
+            commandIds = existing.commandIds
         }
     }
 
@@ -104,11 +103,21 @@ fun AutomationEditor(
             value = name,
             onValueChange = { name = it },
             label = { Text(stringResource(R.string.automation_name_label)) },
-            placeholder = { Text(stringResource(R.string.automation_name_placeholder)) },
             modifier = Modifier.fillMaxWidth(),
             singleLine = true,
             keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
         )
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Text(
+                text = stringResource(R.string.automation_trigger_label),
+                style = MaterialTheme.typography.titleMedium,
+            )
+        }
 
         Card(
             modifier =
@@ -122,18 +131,13 @@ fun AutomationEditor(
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Icon(
-                    painter = painterResource(R.drawable.ic_nfc),
+                    painter = painterResource(R.drawable.ic_flash_on),
                     contentDescription = null,
                     tint = MaterialTheme.colorScheme.primary,
                     modifier = Modifier.size(24.dp),
                 )
                 Spacer(modifier = Modifier.width(12.dp))
                 Column(modifier = Modifier.weight(1f)) {
-                    Text(
-                        text = stringResource(R.string.automation_trigger_label),
-                        style = MaterialTheme.typography.labelSmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    )
                     Text(
                         text = triggerDisplayName ?: stringResource(R.string.automation_trigger_placeholder),
                         style = MaterialTheme.typography.bodyLarge,
@@ -144,20 +148,42 @@ fun AutomationEditor(
                                 MaterialTheme.colorScheme.primary
                             },
                     )
+                    if (triggerDisplayName == null) {
+                        Text(
+                            text = stringResource(R.string.automation_trigger_hint),
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
+                    }
                 }
             }
         }
 
-        Text(
-            text = stringResource(R.string.automation_commands_label),
-            style = MaterialTheme.typography.titleMedium,
-        )
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Text(
+                text = stringResource(R.string.automation_commands_label),
+                style = MaterialTheme.typography.titleMedium,
+            )
+            IconButton(onClick = onRequestAddCommand) {
+                Icon(
+                    painter = painterResource(R.drawable.ic_add),
+                    contentDescription = stringResource(R.string.automation_add_command_desc),
+                    tint = MaterialTheme.colorScheme.primary,
+                    modifier = Modifier.size(24.dp),
+                )
+            }
+        }
 
         if (commandIds.isEmpty()) {
             Text(
                 text = stringResource(R.string.automation_commands_empty),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.padding(start = 4.dp),
             )
         } else {
             Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -172,7 +198,7 @@ fun AutomationEditor(
                             verticalAlignment = Alignment.CenterVertically,
                         ) {
                             Text(
-                                text = "${index + 1}. $cmdName",
+                                text = cmdName,
                                 style = MaterialTheme.typography.bodyMedium,
                                 modifier = Modifier.weight(1f),
                             )
@@ -189,19 +215,6 @@ fun AutomationEditor(
                     }
                 }
             }
-        }
-
-        Button(
-            onClick = onRequestAddCommand,
-            modifier = Modifier.fillMaxWidth(),
-        ) {
-            Icon(
-                painter = painterResource(R.drawable.ic_add),
-                contentDescription = null,
-                modifier = Modifier.size(20.dp),
-            )
-            Spacer(modifier = Modifier.width(8.dp))
-            Text(stringResource(R.string.automation_add_command))
         }
 
         Spacer(modifier = Modifier.height(24.dp))

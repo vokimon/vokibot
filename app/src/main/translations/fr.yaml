@@ -70,7 +70,7 @@ triggerlist_cancel: Annuler
 automation_name_label: Nom de l'automatisation
 automation_name_placeholder: ex. Routine matin, Je quitte la maison
 automation_trigger_label: Déclencheur
-automation_trigger_placeholder: Appuyez pour sélectionner un déclencheur
+automation_trigger_placeholder: "Aucun sélectionné"
 automation_commands_label: Commandes
 automation_commands_empty: Aucune commande ajoutée
 automation_add_command: Ajouter une commande
@@ -93,3 +93,5 @@ nfc_trigger_create_automation: Créer une automatisation
 nfc_trigger_name_dialog_title: Nommer cette étiquette
 nfc_trigger_name_dialog_confirm: Enregistrer et continuer
 nfc_trigger_name_dialog_cancel: Annuler
+automation_trigger_hint: "Appuyez pour sélectionner"
+automation_add_command_desc: "Ajouter une commande"
