@@ -120,15 +120,16 @@ fun AutomationEditor(
                 TextButton(onClick = { showDiscardDialog = false }) {
                     Text(stringResource(R.string.automation_discard_cancel))
                 }
-            }
+            },
         )
     }
 
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState()),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState()),
+        verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         TextButton(
             onClick = {
@@ -137,8 +138,7 @@ fun AutomationEditor(
                 onSave(automation)
             },
             enabled = triggerId.isNotBlank() && commandIds.isNotEmpty(),
-            modifier = Modifier
-                .align(Alignment.End),
+            modifier = Modifier.align(Alignment.End),
         ) {
             Text(stringResource(R.string.automation_done))
         }
@@ -161,31 +161,39 @@ fun AutomationEditor(
         ) {
             Row(
                 modifier = Modifier.fillMaxWidth().padding(16.dp),
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 Icon(
                     painterResource(R.drawable.ic_flash_on),
                     contentDescription = null,
                     tint = MaterialTheme.colorScheme.primary,
-                    modifier = Modifier.size(24.dp)
+                    modifier = Modifier.size(24.dp),
                 )
                 Spacer(Modifier.width(12.dp))
                 Column(Modifier.weight(1f)) {
-                    val triggerName = remember(triggerId) {
-                        if (triggerType == "nfc" && triggerId.isNotBlank()) {
-                            repository.nfcTrigger.load(triggerId)?.displayName
-                        } else null
-                    }
+                    val triggerName =
+                        remember(triggerId) {
+                            if (triggerType == "nfc" && triggerId.isNotBlank()) {
+                                repository.nfcTrigger.load(triggerId)?.displayName
+                            } else {
+                                null
+                            }
+                        }
                     Text(
                         text = triggerName ?: stringResource(R.string.automation_trigger_placeholder),
                         style = MaterialTheme.typography.bodyLarge,
-                        color = if (triggerId.isNotBlank()) MaterialTheme.colorScheme.onSurface else MaterialTheme.colorScheme.primary
+                        color =
+                            if (triggerId.isNotBlank()) {
+                                MaterialTheme.colorScheme.onSurface
+                            } else {
+                                MaterialTheme.colorScheme.primary
+                            },
                     )
                     if (triggerId.isBlank()) {
                         Text(
                             stringResource(R.string.automation_trigger_hint),
                             style = MaterialTheme.typography.labelSmall,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
                         )
                     }
                 }
@@ -195,7 +203,7 @@ fun AutomationEditor(
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Text(stringResource(R.string.automation_commands_label), style = MaterialTheme.typography.titleMedium)
             IconButton(onClick = onRequestAddCommand) {
@@ -203,7 +211,7 @@ fun AutomationEditor(
                     painterResource(R.drawable.ic_add),
                     contentDescription = stringResource(R.string.automation_add_command_desc),
                     tint = MaterialTheme.colorScheme.primary,
-                    modifier = Modifier.size(24.dp)
+                    modifier = Modifier.size(24.dp),
                 )
             }
         }
@@ -213,22 +221,23 @@ fun AutomationEditor(
                 stringResource(R.string.automation_commands_empty),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
-                modifier = Modifier.padding(start = 4.dp)
+                modifier = Modifier.padding(start = 4.dp),
             )
         } else {
             Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                val commandNames = remember(commandIds) {
-                    commandIds.map { id -> repository.command.load(id)?.displayName ?: id }
-                }
+                val commandNames =
+                    remember(commandIds) {
+                        commandIds.map { id -> repository.command.load(id)?.displayName ?: id }
+                    }
                 commandNames.forEachIndexed { index, cmdName ->
                     Card(
                         modifier = Modifier.fillMaxWidth(),
-                        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer)
+                        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer),
                     ) {
                         Row(
                             modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 12.dp),
                             horizontalArrangement = Arrangement.SpaceBetween,
-                            verticalAlignment = Alignment.CenterVertically
+                            verticalAlignment = Alignment.CenterVertically,
                         ) {
                             Text(cmdName, style = MaterialTheme.typography.bodyMedium, modifier = Modifier.weight(1f))
                             IconButton(onClick = {
@@ -237,7 +246,7 @@ fun AutomationEditor(
                                 Icon(
                                     painterResource(R.drawable.ic_delete),
                                     contentDescription = stringResource(R.string.automation_remove_command_desc),
-                                    tint = MaterialTheme.colorScheme.error
+                                    tint = MaterialTheme.colorScheme.error,
                                 )
                             }
                         }
