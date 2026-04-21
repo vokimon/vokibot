@@ -95,3 +95,11 @@ nfc_trigger_name_dialog_confirm: Сохранить и продолжить
 nfc_trigger_name_dialog_cancel: Отмена
 automation_trigger_hint: "Нажмите, чтобы выбрать"
 automation_add_command_desc: "Добавить команду"
+automation_edit_title: "Редактировать автоматизацию"
+automation_discard_title: "Отменить изменения?"
+automation_discard_message: "Несохранённые изменения будут утеряны."
+automation_discard_confirm: "Отменить"
+automation_discard_cancel: "Отмена"
+automation_done: "Готово"
+automation_hint_trigger: "Выберите триггер для продолжения"
+automation_hint_commands: "Добавьте хотя бы одну команду"

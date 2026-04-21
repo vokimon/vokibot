@@ -95,3 +95,11 @@ nfc_trigger_name_dialog_confirm: Salvar e continuar
 nfc_trigger_name_dialog_cancel: Cancelar
 automation_trigger_hint: "Toque para selecionar"
 automation_add_command_desc: "Adicionar comando"
+automation_edit_title: "Editar automação"
+automation_discard_title: "Descartar alterações?"
+automation_discard_message: "As alterações não guardadas serão perdidas."
+automation_discard_confirm: "Descartar"
+automation_discard_cancel: "Cancelar"
+automation_done: "Concluído"
+automation_hint_trigger: "Selecione um acionador para continuar"
+automation_hint_commands: "Adicione pelo menos um comando"

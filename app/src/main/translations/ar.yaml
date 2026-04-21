@@ -95,3 +95,11 @@ nfc_trigger_name_dialog_confirm: حفظ ومتابعة
 nfc_trigger_name_dialog_cancel: إلغاء
 automation_trigger_hint: "انقر للاختيار"
 automation_add_command_desc: "إضافة أمر"
+automation_edit_title: "تعديل الأتمتة"
+automation_discard_title: "هل تريد تجاهل التغييرات؟"
+automation_discard_message: "ستفقد التغييرات غير المحفوظة."
+automation_discard_confirm: "تجاهل"
+automation_discard_cancel: "إلغاء"
+automation_done: "تم"
+automation_hint_trigger: "حدد مشغلاً للمتابعة"
+automation_hint_commands: "أضف أمرًا واحدًا على الأقل"

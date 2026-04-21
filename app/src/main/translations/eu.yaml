@@ -95,3 +95,11 @@ nfc_trigger_name_dialog_confirm: Gorde eta jarraitu
 nfc_trigger_name_dialog_cancel: Utzi
 automation_trigger_hint: "Ukitu hautatzeko"
 automation_add_command_desc: "Gehitu komandoa"
+automation_edit_title: "Editatu automatizazioa"
+automation_discard_title: "Baztertu aldaketak?"
+automation_discard_message: "Gorde gabeko aldaketak galduko dira."
+automation_discard_confirm: "Baztertu"
+automation_discard_cancel: "Utzi"
+automation_done: "Eginda"
+automation_hint_trigger: "Hautatu trigger bat jarraitzeko"
+automation_hint_commands: "Gehitu gutxienez komando bat"

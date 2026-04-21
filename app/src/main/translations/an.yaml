@@ -95,3 +95,11 @@ nfc_trigger_name_dialog_confirm: Alzar y continar
 nfc_trigger_name_dialog_cancel: Cancelar
 automation_trigger_hint: "Toca ta seleccionar"
 automation_add_command_desc: "Añadir una orden"
+automation_edit_title: "Editar automatización"
+automation_discard_title: "Descartar os cambeos?"
+automation_discard_message: "Se perderán os cambeos no guardaus."
+automation_discard_confirm: "Descartar"
+automation_discard_cancel: "Cancelar"
+automation_done: "Heito"
+automation_hint_trigger: "Selecciona un disparador pa continar"
+automation_hint_commands: "Anyade a lo menos una orden"

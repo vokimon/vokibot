@@ -95,3 +95,11 @@ nfc_trigger_name_dialog_confirm: Desa i continua
 nfc_trigger_name_dialog_cancel: Cancel·la
 automation_trigger_hint: "Toca per seleccionar"
 automation_add_command_desc: "Afegeix una ordre"
+automation_edit_title: "Edita automatització"
+automation_discard_title: "Descartar els canvis?"
+automation_discard_message: "Es perdran els canvis no desats."
+automation_discard_confirm: "Descarta"
+automation_discard_cancel: "Cancel·la"
+automation_done: "Fet"
+automation_hint_trigger: "Selecciona un disparador per continuar"
+automation_hint_commands: "Afegeix almenys una ordre"

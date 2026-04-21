@@ -95,3 +95,11 @@ nfc_trigger_name_dialog_confirm: Speichern & Weiter
 nfc_trigger_name_dialog_cancel: Abbrechen
 automation_trigger_hint: "Tippen zum Auswählen"
 automation_add_command_desc: "Befehl hinzufügen"
+automation_edit_title: "Automatisierung bearbeiten"
+automation_discard_title: "Änderungen verwerfen?"
+automation_discard_message: "Nicht gespeicherte Änderungen gehen verloren."
+automation_discard_confirm: "Verwerfen"
+automation_discard_cancel: "Abbrechen"
+automation_done: "Fertig"
+automation_hint_trigger: "Wählen Sie einen Trigger aus, um fortzufahren"
+automation_hint_commands: "Fügen Sie mindestens einen Befehl hinzu"

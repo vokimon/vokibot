@@ -95,3 +95,11 @@ nfc_trigger_name_dialog_confirm: Save & Continue
 nfc_trigger_name_dialog_cancel: Cancel
 automation_trigger_hint: "Tap to select"
 automation_add_command_desc: "Add command"
+automation_edit_title: "Edit Automation"
+automation_discard_title: "Discard changes?"
+automation_discard_message: "Unsaved changes will be lost."
+automation_discard_confirm: "Discard"
+automation_discard_cancel: "Cancel"
+automation_done: "Done"
+automation_hint_trigger: "Select a trigger to continue"
+automation_hint_commands: "Add at least one command"
