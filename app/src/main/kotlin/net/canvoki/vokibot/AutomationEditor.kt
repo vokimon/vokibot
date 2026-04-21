@@ -60,19 +60,18 @@ fun AutomationEditor(
     var triggerType by rememberSaveable { mutableStateOf("") }
     var triggerId by rememberSaveable { mutableStateOf("") }
     var commandIds by rememberSaveable { mutableStateOf<List<String>>(emptyList()) }
-    var originalState by remember { mutableStateOf<Triple<String, String, List<String>>?>(null) }
+    var isDirty by rememberSaveable { mutableStateOf(false) }
     var showDiscardDialog by remember { mutableStateOf(false) }
-
-    val isDirty = originalState == null ||
-            name != originalState!!.first ||
-            triggerId != originalState!!.second ||
-            commandIds != originalState!!.third
+    var lastLoadedId by remember { mutableStateOf<String?>(null) }
 
     LaunchedEffect(editingId) {
+        if (editingId == lastLoadedId) return@LaunchedEffect
+
         name = ""
         triggerType = ""
         triggerId = ""
         commandIds = emptyList()
+        isDirty = false
 
         if (editingId != null) {
             repository.automation.load(editingId)?.let { existing ->
@@ -82,13 +81,14 @@ fun AutomationEditor(
                 commandIds = existing.commandIds
             }
         }
-        originalState = Triple(name, triggerId, commandIds)
+        lastLoadedId = editingId
     }
 
     LaunchedEffect(triggerPickResult) {
         triggerPickResult?.let { (type, id) ->
             triggerType = type
             triggerId = id
+            isDirty = true
             onTriggerConsumed()
         }
     }
@@ -97,6 +97,7 @@ fun AutomationEditor(
         commandPickResult?.let { id ->
             if (!commandIds.contains(id)) {
                 commandIds = commandIds + id
+                isDirty = true
             }
             onCommandConsumed()
         }
@@ -112,7 +113,11 @@ fun AutomationEditor(
             title = { Text(stringResource(R.string.automation_discard_title)) },
             text = { Text(stringResource(R.string.automation_discard_message)) },
             confirmButton = {
-                TextButton(onClick = { showDiscardDialog = false; onBack() }) {
+                TextButton(onClick = {
+                    isDirty = false
+                    showDiscardDialog = false
+                    onBack()
+                }) {
                     Text(stringResource(R.string.automation_discard_confirm))
                 }
             },
@@ -135,6 +140,7 @@ fun AutomationEditor(
             onClick = {
                 val automation = Automation(name.trim(), triggerType, triggerId, commandIds)
                 repository.automation.save(automation)
+                isDirty = false
                 onSave(automation)
             },
             enabled = triggerId.isNotBlank() && commandIds.isNotEmpty(),
@@ -145,7 +151,10 @@ fun AutomationEditor(
 
         OutlinedTextField(
             value = name,
-            onValueChange = { name = it },
+            onValueChange = {
+                name = it
+                isDirty = true
+            },
             label = { Text(stringResource(R.string.automation_name_label)) },
             placeholder = { Text(stringResource(R.string.automation_name_placeholder)) },
             modifier = Modifier.fillMaxWidth(),
@@ -156,8 +165,12 @@ fun AutomationEditor(
         Text(stringResource(R.string.automation_trigger_label), style = MaterialTheme.typography.titleMedium)
 
         Card(
-            modifier = Modifier.fillMaxWidth().clickable(onClick = onRequestTrigger),
-            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
+            modifier =
+                Modifier.fillMaxWidth().clickable(onClick = {
+                    onRequestTrigger()
+                    isDirty = true
+                }),
+            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
         ) {
             Row(
                 modifier = Modifier.fillMaxWidth().padding(16.dp),
@@ -206,7 +219,10 @@ fun AutomationEditor(
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Text(stringResource(R.string.automation_commands_label), style = MaterialTheme.typography.titleMedium)
-            IconButton(onClick = onRequestAddCommand) {
+            IconButton(onClick = {
+                onRequestAddCommand()
+                isDirty = true
+            }) {
                 Icon(
                     painterResource(R.drawable.ic_add),
                     contentDescription = stringResource(R.string.automation_add_command_desc),
@@ -242,6 +258,7 @@ fun AutomationEditor(
                             Text(cmdName, style = MaterialTheme.typography.bodyMedium, modifier = Modifier.weight(1f))
                             IconButton(onClick = {
                                 commandIds = commandIds.filterIndexed { i, _ -> i != index }
+                                isDirty = true
                             }) {
                                 Icon(
                                     painterResource(R.drawable.ic_delete),
