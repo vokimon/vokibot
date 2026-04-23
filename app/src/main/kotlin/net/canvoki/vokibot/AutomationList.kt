@@ -125,31 +125,52 @@ fun AutomationList(
         }
     }
 
-    if (automationToDelete != null) {
-        AlertDialog(
-            onDismissRequest = { automationToDelete = null },
-            title = { Text(stringResource(R.string.automationlist_delete_title)) },
-            text = { Text(stringResource(R.string.automationlist_delete_message)) },
-            confirmButton = {
-                TextButton(
-                    onClick = {
-                        automationToDelete?.let { auto ->
-                            repository.automation.remove(auto.id)
-                            refreshCounter++
-                            automationToDelete = null
-                        }
-                    },
-                ) {
-                    Text(stringResource(R.string.automationlist_delete), color = MaterialTheme.colorScheme.error)
-                }
-            },
-            dismissButton = {
-                TextButton(onClick = { automationToDelete = null }) {
-                    Text(stringResource(R.string.automationlist_cancel))
-                }
-            },
-        )
-    }
+    ConfirmDialog(
+        show = automationToDelete != null,
+        title = stringResource(R.string.automationlist_delete_title),
+        text = stringResource(R.string.automationlist_delete_message),
+        confirmText = stringResource(R.string.automationlist_delete),
+        dismissText = stringResource(R.string.automationlist_cancel),
+        onConfirm = {
+            automationToDelete?.let { auto ->
+                repository.automation.remove(auto.id)
+                refreshCounter++
+                automationToDelete = null
+            }
+        },
+        onDismiss = {
+            automationToDelete = null
+        },
+    )
+
+}
+
+@Composable
+fun ConfirmDialog(
+    show: Boolean,
+    title: String,
+    text: String,
+    confirmText: String,
+    dismissText: String,
+    onConfirm: () -> Unit,
+    onDismiss: () -> Unit,
+) {
+    if (!show) return
+    AlertDialog(
+        onDismissRequest = { onDismiss },
+        title = { Text(title) },
+        text = { Text(text) },
+        confirmButton = {
+            TextButton(onClick = onConfirm) {
+                Text(confirmText, color = MaterialTheme.colorScheme.error)
+            }
+        },
+        dismissButton = {
+            TextButton(onClick = onDismiss) {
+                Text(dismissText)
+            }
+        },
+    )
 }
 
 @Composable
