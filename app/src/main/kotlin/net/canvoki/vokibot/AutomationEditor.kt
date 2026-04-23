@@ -107,27 +107,21 @@ fun AutomationEditor(
         showDiscardDialog = true
     }
 
-    if (showDiscardDialog) {
-        AlertDialog(
-            onDismissRequest = { showDiscardDialog = false },
-            title = { Text(stringResource(R.string.automation_discard_title)) },
-            text = { Text(stringResource(R.string.automation_discard_message)) },
-            confirmButton = {
-                TextButton(onClick = {
-                    isDirty = false
-                    showDiscardDialog = false
-                    onBack()
-                }) {
-                    Text(stringResource(R.string.automation_discard_confirm))
-                }
-            },
-            dismissButton = {
-                TextButton(onClick = { showDiscardDialog = false }) {
-                    Text(stringResource(R.string.automation_discard_cancel))
-                }
-            },
-        )
-    }
+    ConfirmDialog(
+        show = showDiscardDialog,
+        title = stringResource(R.string.automation_discard_title),
+        text = stringResource(R.string.automation_discard_message),
+        confirmText = stringResource(R.string.automation_discard_confirm),
+        dismissText = stringResource(R.string.automation_discard_cancel),
+        onConfirm = {
+            isDirty = false
+            showDiscardDialog = false
+            onBack()
+        },
+        onDismiss = {
+            showDiscardDialog = false
+        },
+    )
 
     Column(
         modifier =
