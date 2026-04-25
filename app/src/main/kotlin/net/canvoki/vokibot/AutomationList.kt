@@ -31,8 +31,7 @@ import net.canvoki.shared.component.AsyncList
 
 @Composable
 fun AutomationList(
-    onNewAutomation: () -> Unit,
-    onAutomationSelected: (id: String) -> Unit,
+    nav: ScreenNavigator,
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
@@ -82,7 +81,11 @@ fun AutomationList(
                         tint = MaterialTheme.colorScheme.primary,
                     )
                 },
-                modifier = Modifier.clickable { onAutomationSelected(automation.id) },
+                modifier = Modifier.clickable {
+                    nav.push(BuilderScreen.AutomationEditor(automation.id)) {
+                        refreshCounter++
+                    }
+                },
                 trailingContent = {
                     IconButton(onClick = { menuExpanded = true }) {
                         Icon(
@@ -113,7 +116,11 @@ fun AutomationList(
         }
 
         FloatingActionButton(
-            onClick = { onNewAutomation() },
+            onClick = {
+                nav.push(BuilderScreen.AutomationEditor(null)) {
+                    refreshCounter++
+                }
+            },
             modifier = Modifier.align(Alignment.BottomEnd).padding(16.dp),
         ) {
             Icon(
@@ -140,7 +147,6 @@ fun AutomationList(
             automationToDelete = null
         },
     )
-
 }
 
 @Composable

@@ -14,7 +14,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -39,19 +38,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AutomationEditor(
-    modifier: Modifier = Modifier,
+    nav: ScreenNavigator,
     editingId: String?,
-    triggerPickResult: Pair<String, String>?,
-    commandPickResult: String?,
-    onTriggerConsumed: () -> Unit,
-    onCommandConsumed: () -> Unit,
-    onRequestTrigger: () -> Unit,
-    onRequestAddCommand: () -> Unit,
-    onSave: (Automation) -> Unit,
-    onBack: () -> Unit,
 ) {
     val context = LocalContext.current
     val repository = remember { FileDataRepository.fromContext(context) }
@@ -84,25 +74,6 @@ fun AutomationEditor(
         lastLoadedId = editingId
     }
 
-    LaunchedEffect(triggerPickResult) {
-        triggerPickResult?.let { (type, id) ->
-            triggerType = type
-            triggerId = id
-            isDirty = true
-            onTriggerConsumed()
-        }
-    }
-
-    LaunchedEffect(commandPickResult) {
-        commandPickResult?.let { id ->
-            if (!commandIds.contains(id)) {
-                commandIds = commandIds + id
-                isDirty = true
-            }
-            onCommandConsumed()
-        }
-    }
-
     BackHandler(enabled = isDirty) {
         showDiscardDialog = true
     }
@@ -116,7 +87,7 @@ fun AutomationEditor(
         onConfirm = {
             isDirty = false
             showDiscardDialog = false
-            onBack()
+            nav.back()
         },
         onDismiss = {
             showDiscardDialog = false
@@ -135,7 +106,7 @@ fun AutomationEditor(
                 val automation = Automation(name.trim(), triggerType, triggerId, commandIds)
                 repository.automation.save(automation)
                 isDirty = false
-                onSave(automation)
+                nav.back()
             },
             enabled = triggerId.isNotBlank() && commandIds.isNotEmpty(),
             modifier = Modifier.align(Alignment.End),
@@ -159,12 +130,17 @@ fun AutomationEditor(
         Text(stringResource(R.string.automation_trigger_label), style = MaterialTheme.typography.titleMedium)
 
         Card(
+            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
             modifier =
                 Modifier.fillMaxWidth().clickable(onClick = {
-                    onRequestTrigger()
-                    isDirty = true
+                    nav.push(BuilderScreen.TriggerList) { result: Pair<String, String>? ->
+                        result?.let { (type, id) ->
+                            triggerType = type
+                            triggerId = id
+                            isDirty = true
+                        }
+                    }
                 }),
-            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
         ) {
             Row(
                 modifier = Modifier.fillMaxWidth().padding(16.dp),
@@ -214,8 +190,14 @@ fun AutomationEditor(
         ) {
             Text(stringResource(R.string.automation_commands_label), style = MaterialTheme.typography.titleMedium)
             IconButton(onClick = {
-                onRequestAddCommand()
-                isDirty = true
+                nav.push(BuilderScreen.CommandList) { result: String? ->
+                    result?.let { id ->
+                        if (!commandIds.contains(id)) {
+                            commandIds = commandIds + id
+                            isDirty = true
+                        }
+                    }
+                }
             }) {
                 Icon(
                     painterResource(R.drawable.ic_add),

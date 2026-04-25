@@ -42,6 +42,18 @@ import net.canvoki.shared.component.ChooserDialog
 import net.canvoki.shared.component.ChooserOption
 
 @Composable
+fun CommandList(nav: ScreenNavigator) {
+    CommandList(
+        onLaunchAppSelected = {
+            nav.push(BuilderScreen.AppList)
+        },
+        onCommandSelected = { commandId ->
+            nav.back(commandId)
+        },
+    )
+}
+
+@Composable
 fun CommandList(
     onLaunchAppSelected: () -> Unit,
     onCommandSelected: (String) -> Unit,

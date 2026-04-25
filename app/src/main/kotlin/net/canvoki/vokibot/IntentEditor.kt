@@ -159,6 +159,32 @@ fun IntentActionSelector(
 
 @Composable
 fun IntentEditor(
+    nav: ScreenNavigator,
+    packageName: String,
+    componentName: String,
+) {
+    var currentComponent by remember { mutableStateOf<PublicComponent?>(null) }
+    val context = LocalContext.current
+
+    LaunchedEffect(packageName, componentName) {
+        if (currentComponent == null) {
+            currentComponent =
+                queryPublicComponents(context, packageName, exportedOnly = true)
+                    .components
+                    .find { it.name == componentName }
+        }
+    }
+
+    currentComponent?.let { component ->
+        IntentEditor(
+            packageName = packageName,
+            component = component,
+        )
+    }
+}
+
+@Composable
+fun IntentEditor(
     packageName: String,
     component: PublicComponent,
 ) {

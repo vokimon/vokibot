@@ -55,6 +55,19 @@ private fun ActionIcons(actions: List<String>) {
 
 @Composable
 fun AppComponentList(
+    nav: ScreenNavigator,
+    packageName: String,
+) {
+    AppComponentList(
+        packageName = packageName,
+        onSelected = { component ->
+            nav.push(BuilderScreen.IntentEditor(packageName, component.name)) { result: Unit? -> }
+        },
+    )
+}
+
+@Composable
+fun AppComponentList(
     packageName: String,
     onSelected: (PublicComponent) -> Unit,
     modifier: Modifier = Modifier,

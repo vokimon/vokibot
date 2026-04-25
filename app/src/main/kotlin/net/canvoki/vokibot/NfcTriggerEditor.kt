@@ -46,6 +46,14 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
+
+@Composable
+fun NfcTriggerEditor(nav: ScreenNavigator) {
+    NfcTriggerEditor(
+        onSaved = { nav.back() },
+    )
+}
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NfcTriggerEditor(

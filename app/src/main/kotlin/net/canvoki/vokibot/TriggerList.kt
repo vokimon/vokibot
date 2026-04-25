@@ -33,6 +33,21 @@ import net.canvoki.shared.component.AsyncList
 import net.canvoki.shared.component.ChooserDialog
 import net.canvoki.shared.component.ChooserOption
 
+
+@Composable
+fun TriggerList(nav: ScreenNavigator) {
+    TriggerList(
+        onNewTrigger = { typeTag ->
+            if (typeTag == "nfc") {
+                nav.push(BuilderScreen.NfcTriggerEditor) { result: Unit? -> }
+            }
+        },
+        onTriggerSelected = { type, id ->
+            nav.back(Pair(type, id))
+        },
+    )
+}
+
 @Composable
 fun TriggerList(
     onNewTrigger: (String) -> Unit,
