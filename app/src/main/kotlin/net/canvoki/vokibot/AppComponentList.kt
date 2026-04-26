@@ -33,6 +33,34 @@ import net.canvoki.shared.component.AsyncList
 import net.canvoki.shared.component.spike.StackNavigatorState
 import net.canvoki.shared.component.spike.StackedScreen
 
+@Serializable data class AppComponentList(
+    val packageName: String,
+) : StackedScreen<Unit>() {
+    @Composable
+    override fun render(nav: StackNavigatorState) {
+        val context = LocalContext.current
+        AsyncList(
+            refreshKeys = listOf(packageName),
+            loader = {
+                queryPublicComponents(context, packageName, exportedOnly = true)
+                    .components
+                    .sortedWith(compareBy({ it.type }, { !it.exported }, { it.name }))
+            },
+            itemKey = { it.name },
+            groupBy = { it.type.name },
+            headerContent = { groupKey: String ->
+                ComponentGroupHeader(groupKey)
+            },
+            notFoundMessage = stringResource(R.string.activitylist_not_found),
+        ) { component ->
+            ComponentRow(packageName, component) {
+                nav.push(IntentEditor(packageName, component.name)) {
+                }
+            }
+        }
+    }
+}
+
 @Composable
 private fun drawableToPainter(drawable: Drawable?): Painter =
     drawable?.let {
@@ -53,50 +81,6 @@ private fun ActionIcons(actions: List<String>) {
                 modifier = Modifier.size(22.dp).padding(start = 4.dp),
             )
         }
-    }
-}
-
-
-@Serializable data class AppComponentList(
-    val packageName: String,
-) : StackedScreen<Unit>() {
-    @Composable
-    override fun render(
-        nav: StackNavigatorState,
-    ) {
-        AppComponentList(
-            packageName = packageName,
-            onSelected = { component ->
-                nav.push(IntentEditor(packageName, component.name)) { result: Unit? -> }
-            },
-        )
-    }
-}
-
-
-
-@Composable
-fun AppComponentList(
-    packageName: String,
-    onSelected: (PublicComponent) -> Unit,
-    modifier: Modifier = Modifier,
-) {
-    val context = LocalContext.current
-    AsyncList(
-        refreshKeys = listOf(packageName),
-        loader = {
-            queryPublicComponents(context, packageName, exportedOnly = true)
-                .components
-                .sortedWith(compareBy({ it.type }, { !it.exported }, { it.name }))
-        },
-        itemKey = { it.name },
-        groupBy = { it.type.name },
-        headerContent = { groupKey: String ->
-            ComponentGroupHeader(groupKey)
-        },
-        notFoundMessage = stringResource(R.string.activitylist_not_found),
-    ) { component ->
-        ComponentRow(packageName, component, onSelected)
     }
 }
 
