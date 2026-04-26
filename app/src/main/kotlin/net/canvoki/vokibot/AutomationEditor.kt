@@ -41,6 +41,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun AutomationEditor(
     nav: ScreenNavigator,
+    screen: BuilderScreen<*>,
     editingId: String?,
 ) {
     val context = LocalContext.current
@@ -74,8 +75,10 @@ fun AutomationEditor(
         lastLoadedId = editingId
     }
 
-    BackHandler(enabled = isDirty) {
-        showDiscardDialog = true
+    LaunchedEffect(isDirty) {
+        nav.onBack(screen, enabled = isDirty) {
+            showDiscardDialog = true
+        }
     }
 
     ConfirmDialog(

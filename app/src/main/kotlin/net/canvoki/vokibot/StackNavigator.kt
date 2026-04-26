@@ -46,6 +46,7 @@ class StackNavigatorState<T : Screen<*>>(initial: T) {
     internal var pushed: T? by mutableStateOf(null)
     internal var backed: T? by mutableStateOf(null)
     private val callbacks = mutableMapOf<Any, (Any?) -> Unit>()
+    private val screenHandlers = mutableMapOf<Screen<*>, () -> Unit>()
 
     val current: T get() = stack.last()
     val canGoBack: Boolean get() = stack.size > 1
@@ -60,6 +61,14 @@ class StackNavigatorState<T : Screen<*>>(initial: T) {
     internal fun <R> invokeCallback(screen: T, result: R?) {
         callbacks[screen]?.invoke(result)
         callbacks.remove(screen)
+    }
+
+    internal fun setBackHandler(owner: Screen<*>, enabled: Boolean, handler: () -> Unit) {
+        if (enabled) screenHandlers[owner] = handler else screenHandlers.remove(owner)
+    }
+
+    internal fun handleBack(default: () -> Unit) {
+        screenHandlers[current]?.invoke() ?: default()
     }
 
     /** Push without result callback (ignore return value). */
@@ -105,6 +114,7 @@ class StackNavigatorState<T : Screen<*>>(initial: T) {
  *
  * Provides overloads for simple navigation (push/back without results)
  * and typed navigation (push/back with result callbacks).
+ * Includes [onBack] for declarative system-back interception.
  */
 class Navigator<T : Screen<*>> internal constructor(
     private val state: StackNavigatorState<T>
@@ -120,6 +130,20 @@ class Navigator<T : Screen<*>> internal constructor(
     fun <R> back(result: R?) { state.back(result) }
 
     val canGoBack: Boolean get() = state.canGoBack
+
+    /**
+     * Registers a custom handler for the system back button.
+     *
+     * Handlers are keyed explicitly to the [screen] parameter, preventing background
+     * recompositions from interfering with the active top screen.
+     *
+     * @param screen The screen instance that owns this back behavior.
+     * @param enabled Whether the custom handler should intercept back presses.
+     * @param handler Logic to execute instead of default navigation.
+     */
+    fun onBack(screen: Screen<*>, enabled: Boolean = true, handler: () -> Unit = {}) {
+        state.setBackHandler(screen, enabled, handler)
+    }
 }
 
 @Composable
@@ -151,7 +175,7 @@ fun <T : Screen<*>> StackNavigator(
     content: @Composable (T, Navigator<T>) -> Unit
 ) {
     BackHandler(enabled = state.canGoBack) {
-        state.back<Unit>(null)
+        state.handleBack { state.back<Unit>(null) }
     }
 
     var widthPx by remember { mutableStateOf(-1f) }

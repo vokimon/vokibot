@@ -48,13 +48,13 @@ fun IntentActionBuilder(
     StackNavigator(state = navState) { screen, nav ->
         when (screen) {
             is BuilderScreen.AutomationList -> AutomationList(nav)
-            is BuilderScreen.AutomationEditor -> AutomationEditor(nav, screen.editingId)
+            is BuilderScreen.AutomationEditor -> AutomationEditor(nav, screen, screen.editingId)
             is BuilderScreen.TriggerList -> TriggerList(nav)
             is BuilderScreen.NfcTriggerEditor -> NfcTriggerEditor(nav)
             is BuilderScreen.CommandList -> CommandList(nav)
             is BuilderScreen.AppList -> AppList(nav)
             is BuilderScreen.AppComponentList -> AppComponentList(nav, screen.packageName)
-            is BuilderScreen.IntentEditor -> IntentEditor(nav, screen.packageName, screen.componentName)
+            is BuilderScreen.IntentEditor -> IntentEditor(nav, screen, screen.packageName, screen.componentName)
         }
     }
 }

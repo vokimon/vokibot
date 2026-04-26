@@ -1,5 +1,16 @@
 # Change log
 
+- [x] First screen at the begining with no slide animation
+- [x] On push, previous screen slide out left (not fully which is not a problem if the next work)
+- [ ] On push, previous screen fades out -> No the screen is still visible!!!
+- [x] On push, new screen slides left in
+- [-] On push, new screen slides fades in (not sure if it is happening, i would say yes)
+- [ ] On back, discarded screen slides right out (No, it just disappears instantly)
+- [ ] On back, discarded screen fades out (No, it just disappears instantly)
+- [x] On back, recovered screen slides right in
+- [-] On back, recovered screen fades in (not sure since it does not starts from zero)
+
+
 - [x] Push the retrieved PublicComponent to the IntentEditor
 - [x] IntentEditor: Use data from the PublicComponent
 - [x] Remove the old data retrieval in IntentEditor

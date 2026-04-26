@@ -160,6 +160,7 @@ fun IntentActionSelector(
 @Composable
 fun IntentEditor(
     nav: ScreenNavigator,
+    screen: BuilderScreen<*>,
     packageName: String,
     componentName: String,
 ) {
@@ -177,6 +178,7 @@ fun IntentEditor(
 
     currentComponent?.let { component ->
         IntentEditor(
+            screen = screen,
             packageName = packageName,
             component = component,
         )
@@ -185,6 +187,7 @@ fun IntentEditor(
 
 @Composable
 fun IntentEditor(
+    screen: BuilderScreen<*>,
     packageName: String,
     component: PublicComponent,
 ) {
