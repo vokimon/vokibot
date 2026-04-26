@@ -143,7 +143,12 @@ private fun fromLeftIn() = SlideFade(-1f, 0f, 0f, 1f)
 private fun toRightOut() = SlideFade(0f, 1f, 1f, 0f)
 
 private enum class ScreenRole {
-    ENTER_PUSH, EXIT_PUSH, ENTER_BACK, EXIT_BACK, IDLE_TOP, IDLE_BACKGROUND
+    ENTER_PUSH,
+    EXIT_PUSH,
+    ENTER_POP,
+    EXIT_POP,
+    IDLE_TOP,
+    IDLE_BACKGROUND,
 }
 
 @Composable
@@ -176,8 +181,8 @@ fun StackNavigator(initial: StackedScreen<*>, vararg additional: StackedScreen<*
             val role = when {
                 screen == state.pushed -> ScreenRole.ENTER_PUSH
                 screen == state.current && state.pushed != null -> ScreenRole.EXIT_PUSH
-                screen == state.backed -> ScreenRole.EXIT_BACK
-                screen == state.current && state.backed != null -> ScreenRole.ENTER_BACK
+                screen == state.backed -> ScreenRole.EXIT_POP
+                screen == state.current && state.backed != null -> ScreenRole.ENTER_POP
                 screen == state.current -> ScreenRole.IDLE_TOP
                 else -> ScreenRole.IDLE_BACKGROUND
             }
@@ -185,8 +190,8 @@ fun StackNavigator(initial: StackedScreen<*>, vararg additional: StackedScreen<*
             val transition = when (role) {
                 ScreenRole.ENTER_PUSH -> fromRightIn()
                 ScreenRole.EXIT_PUSH -> toLeftOut()
-                ScreenRole.ENTER_BACK -> fromLeftIn()
-                ScreenRole.EXIT_BACK -> toRightOut()
+                ScreenRole.ENTER_POP -> fromLeftIn()
+                ScreenRole.EXIT_POP -> toRightOut()
                 else -> null
             }
 
@@ -197,7 +202,7 @@ fun StackNavigator(initial: StackedScreen<*>, vararg additional: StackedScreen<*
                     anim.snapTo(0f)
                     anim.animateTo(1f, tween(durationMillis = 300, easing = FastOutSlowInEasing))
                     if (role == ScreenRole.ENTER_PUSH) state.endPush()
-                    if (role == ScreenRole.EXIT_BACK) state.endBack()
+                    if (role == ScreenRole.EXIT_POP) state.endBack()
                 }
             }
 
