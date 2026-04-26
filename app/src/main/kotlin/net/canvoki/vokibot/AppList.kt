@@ -103,8 +103,6 @@ data object AppList : StackedScreen<Unit>() {
     }
 }
 
-
-
 @Composable
 fun AppListItem(
     app: AppInfo,

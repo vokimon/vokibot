@@ -35,9 +35,7 @@ import net.canvoki.shared.component.spike.StackedScreen
 @Serializable
 data object AutomationList : StackedScreen<Unit>() {
     @Composable
-    override fun render(
-        nav: StackNavigatorState,
-    ) {
+    override fun render(nav: StackNavigatorState) {
         val context = LocalContext.current
         val repository = remember { FileDataRepository.fromContext(context) }
         var refreshCounter by remember { mutableIntStateOf(0) }
@@ -85,11 +83,12 @@ data object AutomationList : StackedScreen<Unit>() {
                             tint = MaterialTheme.colorScheme.primary,
                         )
                     },
-                    modifier = Modifier.clickable {
-                        nav.push(AutomationEditor(automation.id)) {
-                            refreshCounter++
-                        }
-                    },
+                    modifier =
+                        Modifier.clickable {
+                            nav.push(AutomationEditor(automation.id)) {
+                                refreshCounter++
+                            }
+                        },
                     trailingContent = {
                         IconButton(onClick = { menuExpanded = true }) {
                             Icon(

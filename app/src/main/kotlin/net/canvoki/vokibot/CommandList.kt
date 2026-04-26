@@ -59,7 +59,6 @@ data object CommandList : StackedScreen<String>() {
     }
 }
 
-
 @Composable
 fun CommandList(
     onLaunchAppSelected: () -> Unit,

@@ -46,8 +46,12 @@ abstract class StackedScreen<R> {
  * This class is passed directly to screens. Internal members are hidden by Kotlin's
  * [internal] visibility, so screens only see the public navigation API.
  */
-class StackNavigatorState(initial: StackedScreen<*>) {
-    constructor(fullStack: List<StackedScreen<*>>) : this(fullStack.last()) { stack = fullStack }
+class StackNavigatorState(
+    initial: StackedScreen<*>,
+) {
+    constructor(fullStack: List<StackedScreen<*>>) : this(fullStack.last()) {
+        stack = fullStack
+    }
 
     var stack by mutableStateOf(listOf(initial))
         internal set
@@ -60,14 +64,20 @@ class StackNavigatorState(initial: StackedScreen<*>) {
     val current: StackedScreen<*> get() = stack.last()
     val canGoBack: Boolean get() = stack.size > 1
 
-    internal fun <R> registerCallback(screen: StackedScreen<*>, callback: (R?) -> Unit) {
+    internal fun <R> registerCallback(
+        screen: StackedScreen<*>,
+        callback: (R?) -> Unit,
+    ) {
         callbacks[screen] = { result ->
             @Suppress("UNCHECKED_CAST")
             callback(result as R?)
         }
     }
 
-    internal fun <R> invokeCallback(screen: StackedScreen<*>, result: R?) {
+    internal fun <R> invokeCallback(
+        screen: StackedScreen<*>,
+        result: R?,
+    ) {
         callbacks[screen]?.invoke(result)
         callbacks.remove(screen)
     }
@@ -82,7 +92,11 @@ class StackNavigatorState(initial: StackedScreen<*>) {
      * @param enabled Whether the custom handler should intercept back presses.
      * @param handler Logic to execute instead of default navigation.
      */
-    fun onBack(screen: StackedScreen<*>, enabled: Boolean = true, handler: () -> Unit = {}) {
+    fun onBack(
+        screen: StackedScreen<*>,
+        enabled: Boolean = true,
+        handler: () -> Unit = {},
+    ) {
         if (enabled) screenHandlers[screen] = handler else screenHandlers.remove(screen)
     }
 
@@ -97,7 +111,10 @@ class StackNavigatorState(initial: StackedScreen<*>) {
     }
 
     /** Push with typed result callback. */
-    fun <R> push(screen: StackedScreen<R>, resultCallback: (R?) -> Unit) {
+    fun <R> push(
+        screen: StackedScreen<R>,
+        resultCallback: (R?) -> Unit,
+    ) {
         if (pushed != null || backed != null) return
         @Suppress("UNCHECKED_CAST")
         registerCallback(screen, resultCallback)
@@ -134,12 +151,16 @@ private data class SlideFade(
     val endAlpha: Float,
 ) {
     fun offset(t: Float) = startOffset + (endOffset - startOffset) * t
+
     fun alpha(t: Float) = startAlpha + (endAlpha - startAlpha) * t
 }
 
 private fun fromRightIn() = SlideFade(1f, 0f, 0f, 1f)
+
 private fun toLeftOut() = SlideFade(0f, -1f, 1f, 0f)
+
 private fun fromLeftIn() = SlideFade(-1f, 0f, 0f, 1f)
+
 private fun toRightOut() = SlideFade(0f, 1f, 1f, 0f)
 
 private enum class ScreenRole {
@@ -152,13 +173,19 @@ private enum class ScreenRole {
 }
 
 @Composable
-fun StackNavigator(initial: StackedScreen<*>, vararg additional: StackedScreen<*>) {
-    val state = remember {
-        StackNavigatorState(buildList {
-            add(initial)
-            addAll(additional)
-        })
-    }
+fun StackNavigator(
+    bottom: StackedScreen<*>,
+    vararg additional: StackedScreen<*>,
+) {
+    val state =
+        remember {
+            StackNavigatorState(
+                buildList {
+                    add(bottom)
+                    addAll(additional)
+                },
+            )
+        }
 
     BackHandler(enabled = state.canGoBack) {
         state.handleBack { state.pop<Unit>(null) }
@@ -167,33 +194,37 @@ fun StackNavigator(initial: StackedScreen<*>, vararg additional: StackedScreen<*
     var widthPx by remember { mutableStateOf(-1f) }
 
     Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .onSizeChanged { widthPx = it.width.toFloat() }
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .onSizeChanged { widthPx = it.width.toFloat() },
     ) {
-        val screens = buildList {
-            addAll(state.stack)
-            state.pushed?.let { add(it) }
-            state.backed?.let { add(it) }
-        }
+        val screens =
+            buildList {
+                addAll(state.stack)
+                state.pushed?.let { add(it) }
+                state.backed?.let { add(it) }
+            }
 
         screens.forEach { screen ->
-            val role = when {
-                screen == state.pushed -> ScreenRole.ENTER_PUSH
-                screen == state.current && state.pushed != null -> ScreenRole.EXIT_PUSH
-                screen == state.backed -> ScreenRole.EXIT_POP
-                screen == state.current && state.backed != null -> ScreenRole.ENTER_POP
-                screen == state.current -> ScreenRole.IDLE_TOP
-                else -> ScreenRole.IDLE_BACKGROUND
-            }
+            val role =
+                when {
+                    screen == state.pushed -> ScreenRole.ENTER_PUSH
+                    screen == state.current && state.pushed != null -> ScreenRole.EXIT_PUSH
+                    screen == state.backed -> ScreenRole.EXIT_POP
+                    screen == state.current && state.backed != null -> ScreenRole.ENTER_POP
+                    screen == state.current -> ScreenRole.IDLE_TOP
+                    else -> ScreenRole.IDLE_BACKGROUND
+                }
 
-            val transition = when (role) {
-                ScreenRole.ENTER_PUSH -> fromRightIn()
-                ScreenRole.EXIT_PUSH -> toLeftOut()
-                ScreenRole.ENTER_POP -> fromLeftIn()
-                ScreenRole.EXIT_POP -> toRightOut()
-                else -> null
-            }
+            val transition =
+                when (role) {
+                    ScreenRole.ENTER_PUSH -> fromRightIn()
+                    ScreenRole.EXIT_PUSH -> toLeftOut()
+                    ScreenRole.ENTER_POP -> fromLeftIn()
+                    ScreenRole.EXIT_POP -> toRightOut()
+                    else -> null
+                }
 
             val anim = remember(screen, state.pushed, state.backed) { Animatable(0f) }
 
@@ -206,20 +237,22 @@ fun StackNavigator(initial: StackedScreen<*>, vararg additional: StackedScreen<*
                 }
             }
 
-            val offsetX = when {
-                widthPx < 0f -> 0f
-                transition != null -> transition.offset(anim.value) * widthPx
-                role == ScreenRole.IDLE_BACKGROUND -> -widthPx
-                else -> 0f
-            }
+            val offsetX =
+                when {
+                    widthPx < 0f -> 0f
+                    transition != null -> transition.offset(anim.value) * widthPx
+                    role == ScreenRole.IDLE_BACKGROUND -> -widthPx
+                    else -> 0f
+                }
 
             val alpha = transition?.alpha(anim.value) ?: if (role == ScreenRole.IDLE_BACKGROUND) 0f else 1f
 
             Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .graphicsLayer { this.alpha = alpha }
-                    .offset { IntOffset(offsetX.roundToInt(), 0) }
+                modifier =
+                    Modifier
+                        .fillMaxSize()
+                        .graphicsLayer { this.alpha = alpha }
+                        .offset { IntOffset(offsetX.roundToInt(), 0) },
             ) {
                 screen.render(state)
             }

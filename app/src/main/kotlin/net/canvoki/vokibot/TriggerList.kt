@@ -51,8 +51,6 @@ data object TriggerList : StackedScreen<Pair<String, String>>() {
             },
         )
     }
-
-
 }
 
 @Composable

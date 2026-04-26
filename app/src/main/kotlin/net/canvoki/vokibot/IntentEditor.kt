@@ -166,9 +166,7 @@ data class IntentEditor(
     val componentName: String,
 ) : StackedScreen<Unit>() {
     @Composable
-    override fun render(
-        nav: StackNavigatorState,
-    ) {
+    override fun render(nav: StackNavigatorState) {
         var currentComponent by remember { mutableStateOf<PublicComponent?>(null) }
         val context = LocalContext.current
 
@@ -189,8 +187,6 @@ data class IntentEditor(
         }
     }
 }
-
-
 
 @Composable
 fun IntentEditor(
@@ -427,7 +423,6 @@ fun IntentEditor(
             showOverwriteDialog = false
         },
     )
-
 }
 
 private fun formatComponentName(

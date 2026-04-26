@@ -46,9 +46,7 @@ data class AutomationEditor(
     val editingId: String? = null,
 ) : StackedScreen<Unit>() {
     @Composable
-    override fun render(
-        nav: StackNavigatorState,
-    ) {
+    override fun render(nav: StackNavigatorState) {
         val context = LocalContext.current
         val repository = remember { FileDataRepository.fromContext(context) }
 
@@ -232,14 +230,21 @@ data class AutomationEditor(
                     commandNames.forEachIndexed { index, cmdName ->
                         Card(
                             modifier = Modifier.fillMaxWidth(),
-                            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer),
+                            colors =
+                                CardDefaults.cardColors(
+                                    containerColor = MaterialTheme.colorScheme.secondaryContainer,
+                                ),
                         ) {
                             Row(
                                 modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 12.dp),
                                 horizontalArrangement = Arrangement.SpaceBetween,
                                 verticalAlignment = Alignment.CenterVertically,
                             ) {
-                                Text(cmdName, style = MaterialTheme.typography.bodyMedium, modifier = Modifier.weight(1f))
+                                Text(
+                                    cmdName,
+                                    style = MaterialTheme.typography.bodyMedium,
+                                    modifier = Modifier.weight(1f),
+                                )
                                 IconButton(onClick = {
                                     commandIds = commandIds.filterIndexed { i, _ -> i != index }
                                     isDirty = true
