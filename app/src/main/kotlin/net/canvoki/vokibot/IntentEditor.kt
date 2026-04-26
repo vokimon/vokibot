@@ -406,29 +406,22 @@ fun IntentEditor(
         )
     }
 
-    if (showOverwriteDialog) {
-        AlertDialog(
-            onDismissRequest = { showOverwriteDialog = false },
-            title = { Text(stringResource(R.string.intent_editor_overwrite_title)) },
-            text = { Text(overwriteMsg) },
-            confirmButton = {
-                Button(
-                    onClick = {
-                        repository.saveCommand(buildCommand(proposedName))
-                        UserMessage.Info(commandOverwrittenMsg).post()
-                        showOverwriteDialog = false
-                    },
-                ) {
-                    Text(stringResource(R.string.intent_editor_replace))
-                }
-            },
-            dismissButton = {
-                TextButton(onClick = { showOverwriteDialog = false }) {
-                    Text(stringResource(R.string.intent_editor_cancel))
-                }
-            },
-        )
-    }
+    ConfirmDialog(
+        show = showOverwriteDialog,
+        title = stringResource(R.string.intent_editor_overwrite_title),
+        text = stringResource(R.string.intent_editor_overwrite_message, proposedName),
+        confirmText = stringResource(R.string.intent_editor_replace),
+        dismissText = stringResource(R.string.intent_editor_cancel),
+        onConfirm = {
+            repository.saveCommand(buildCommand(proposedName))
+            UserMessage.Info(commandOverwrittenMsg).post()
+            showOverwriteDialog = false
+        },
+        onDismiss = {
+            showOverwriteDialog = false
+        },
+    )
+
 }
 
 private fun formatComponentName(
