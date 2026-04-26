@@ -127,10 +127,6 @@ class StackNavigatorState(initial: StackedScreen<*>) {
     }
 }
 
-@Composable
-fun rememberStackNavigatorState(initial: StackedScreen<*>): StackNavigatorState =
-    remember { StackNavigatorState(initial) }
-
 private data class SlideFade(
     val startOffset: Float,
     val endOffset: Float,
