@@ -53,7 +53,7 @@ data object CommandList : StackedScreen<String>() {
                 nav.push(AppList)
             },
             onCommandSelected = { commandId ->
-                nav.back(commandId)
+                nav.pop(commandId)
             },
         )
     }

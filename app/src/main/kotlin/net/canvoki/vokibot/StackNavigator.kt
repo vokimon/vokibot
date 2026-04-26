@@ -26,7 +26,7 @@ import kotlin.math.roundToInt
  * Subclasses must implement [render] to provide their UI.
  * Screen data should be passed via constructor parameters (must be [Serializable]).
  *
- * @param R The type of value returned when this screen completes via [StackNavigatorState.back].
+ * @param R The type of value returned when this screen completes via [StackNavigatorState.pop].
  *          Use [Unit] for screens that do not return data.
  */
 @Serializable
@@ -105,12 +105,12 @@ class StackNavigatorState(initial: StackedScreen<*>) {
     }
 
     /** Back without result (returns null to parent). */
-    fun back() {
-        back<Unit>(null)
+    fun pop() {
+        pop<Unit>(null)
     }
 
     /** Back with typed result. */
-    fun <R> back(result: R?) {
+    fun <R> pop(result: R?) {
         if (!canGoBack || pushed != null || backed != null) return
         invokeCallback(current, result)
         backed = current
@@ -161,7 +161,7 @@ fun StackNavigator(initial: StackedScreen<*>, vararg additional: StackedScreen<*
     }
 
     BackHandler(enabled = state.canGoBack) {
-        state.handleBack { state.back<Unit>(null) }
+        state.handleBack { state.pop<Unit>(null) }
     }
 
     var widthPx by remember { mutableStateOf(-1f) }

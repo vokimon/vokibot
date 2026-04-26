@@ -54,7 +54,7 @@ data object NfcTriggerEditor : StackedScreen<Unit>() {
     @Composable
     override fun render(nav: StackNavigatorState) {
         NfcTriggerEditor(
-            onSaved = { nav.back() },
+            onSaved = { nav.pop() },
         )
     }
 }

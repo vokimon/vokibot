@@ -95,7 +95,7 @@ data class AutomationEditor(
             onConfirm = {
                 isDirty = false
                 showDiscardDialog = false
-                nav.back()
+                nav.pop()
             },
             onDismiss = {
                 showDiscardDialog = false
@@ -114,7 +114,7 @@ data class AutomationEditor(
                     val automation = Automation(name.trim(), triggerType, triggerId, commandIds)
                     repository.automation.save(automation)
                     isDirty = false
-                    nav.back()
+                    nav.pop()
                 },
                 enabled = triggerId.isNotBlank() && commandIds.isNotEmpty(),
                 modifier = Modifier.align(Alignment.End),

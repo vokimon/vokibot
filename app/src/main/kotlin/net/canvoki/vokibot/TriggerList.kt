@@ -47,7 +47,7 @@ data object TriggerList : StackedScreen<Pair<String, String>>() {
                 }
             },
             onTriggerSelected = { type, id ->
-                nav.back(Pair(type, id))
+                nav.pop(Pair(type, id))
             },
         )
     }
