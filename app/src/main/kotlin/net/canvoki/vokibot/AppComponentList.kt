@@ -62,7 +62,7 @@ import net.canvoki.shared.component.spike.StackedScreen
 }
 
 @Composable
-private fun drawableToPainter(drawable: Drawable?): Painter =
+fun drawableToPainter(drawable: Drawable?): Painter =
     drawable?.let {
         BitmapPainter(it.toBitmap().asImageBitmap())
     } ?: painterResource(R.drawable.ic_brand)
