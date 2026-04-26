@@ -37,213 +37,219 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
+import kotlinx.serialization.Serializable
+import net.canvoki.shared.component.spike.StackNavigatorState
+import net.canvoki.shared.component.spike.StackedScreen
 
-@Composable
-fun AutomationEditor(
-    nav: ScreenNavigator,
-    screen: BuilderScreen<*>,
-    editingId: String?,
-) {
-    val context = LocalContext.current
-    val repository = remember { FileDataRepository.fromContext(context) }
+@Serializable
+data class AutomationEditor(
+    val editingId: String? = null,
+) : StackedScreen<Unit>() {
+    @Composable
+    override fun render(
+        nav: StackNavigatorState,
+    ) {
+        val context = LocalContext.current
+        val repository = remember { FileDataRepository.fromContext(context) }
 
-    var name by rememberSaveable { mutableStateOf("") }
-    var triggerType by rememberSaveable { mutableStateOf("") }
-    var triggerId by rememberSaveable { mutableStateOf("") }
-    var commandIds by rememberSaveable { mutableStateOf<List<String>>(emptyList()) }
-    var isDirty by rememberSaveable { mutableStateOf(false) }
-    var showDiscardDialog by remember { mutableStateOf(false) }
-    var lastLoadedId by remember { mutableStateOf<String?>(null) }
+        var name by rememberSaveable { mutableStateOf("") }
+        var triggerType by rememberSaveable { mutableStateOf("") }
+        var triggerId by rememberSaveable { mutableStateOf("") }
+        var commandIds by rememberSaveable { mutableStateOf<List<String>>(emptyList()) }
+        var isDirty by rememberSaveable { mutableStateOf(false) }
+        var showDiscardDialog by remember { mutableStateOf(false) }
+        var lastLoadedId by remember { mutableStateOf<String?>(null) }
 
-    LaunchedEffect(editingId) {
-        if (editingId == lastLoadedId) return@LaunchedEffect
+        LaunchedEffect(editingId) {
+            if (editingId == lastLoadedId) return@LaunchedEffect
 
-        name = ""
-        triggerType = ""
-        triggerId = ""
-        commandIds = emptyList()
-        isDirty = false
+            name = ""
+            triggerType = ""
+            triggerId = ""
+            commandIds = emptyList()
+            isDirty = false
 
-        if (editingId != null) {
-            repository.automation.load(editingId)?.let { existing ->
-                name = existing.name
-                triggerType = existing.triggerType
-                triggerId = existing.triggerId
-                commandIds = existing.commandIds
+            if (editingId != null) {
+                repository.automation.load(editingId)?.let { existing ->
+                    name = existing.name
+                    triggerType = existing.triggerType
+                    triggerId = existing.triggerId
+                    commandIds = existing.commandIds
+                }
+            }
+            lastLoadedId = editingId
+        }
+
+        LaunchedEffect(isDirty) {
+            nav.onBack(this@AutomationEditor, enabled = isDirty) {
+                showDiscardDialog = true
             }
         }
-        lastLoadedId = editingId
-    }
 
-    LaunchedEffect(isDirty) {
-        nav.onBack(screen, enabled = isDirty) {
-            showDiscardDialog = true
-        }
-    }
-
-    ConfirmDialog(
-        show = showDiscardDialog,
-        title = stringResource(R.string.automation_discard_title),
-        text = stringResource(R.string.automation_discard_message),
-        confirmText = stringResource(R.string.automation_discard_confirm),
-        dismissText = stringResource(R.string.automation_discard_cancel),
-        onConfirm = {
-            isDirty = false
-            showDiscardDialog = false
-            nav.back()
-        },
-        onDismiss = {
-            showDiscardDialog = false
-        },
-    )
-
-    Column(
-        modifier =
-            Modifier
-                .fillMaxSize()
-                .verticalScroll(rememberScrollState()),
-        verticalArrangement = Arrangement.spacedBy(16.dp),
-    ) {
-        TextButton(
-            onClick = {
-                val automation = Automation(name.trim(), triggerType, triggerId, commandIds)
-                repository.automation.save(automation)
+        ConfirmDialog(
+            show = showDiscardDialog,
+            title = stringResource(R.string.automation_discard_title),
+            text = stringResource(R.string.automation_discard_message),
+            confirmText = stringResource(R.string.automation_discard_confirm),
+            dismissText = stringResource(R.string.automation_discard_cancel),
+            onConfirm = {
                 isDirty = false
+                showDiscardDialog = false
                 nav.back()
             },
-            enabled = triggerId.isNotBlank() && commandIds.isNotEmpty(),
-            modifier = Modifier.align(Alignment.End),
-        ) {
-            Text(stringResource(R.string.automation_done))
-        }
-
-        OutlinedTextField(
-            value = name,
-            onValueChange = {
-                name = it
-                isDirty = true
+            onDismiss = {
+                showDiscardDialog = false
             },
-            label = { Text(stringResource(R.string.automation_name_label)) },
-            placeholder = { Text(stringResource(R.string.automation_name_placeholder)) },
-            modifier = Modifier.fillMaxWidth(),
-            singleLine = true,
-            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
         )
 
-        Text(stringResource(R.string.automation_trigger_label), style = MaterialTheme.typography.titleMedium)
-
-        Card(
-            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
+        Column(
             modifier =
-                Modifier.fillMaxWidth().clickable(onClick = {
-                    nav.push(BuilderScreen.TriggerList) { result: Pair<String, String>? ->
-                        result?.let { (type, id) ->
-                            triggerType = type
-                            triggerId = id
-                            isDirty = true
-                        }
-                    }
-                }),
+                Modifier
+                    .fillMaxSize()
+                    .verticalScroll(rememberScrollState()),
+            verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
-            Row(
-                modifier = Modifier.fillMaxWidth().padding(16.dp),
-                verticalAlignment = Alignment.CenterVertically,
+            TextButton(
+                onClick = {
+                    val automation = Automation(name.trim(), triggerType, triggerId, commandIds)
+                    repository.automation.save(automation)
+                    isDirty = false
+                    nav.back()
+                },
+                enabled = triggerId.isNotBlank() && commandIds.isNotEmpty(),
+                modifier = Modifier.align(Alignment.End),
             ) {
-                Icon(
-                    painterResource(R.drawable.ic_flash_on),
-                    contentDescription = null,
-                    tint = MaterialTheme.colorScheme.primary,
-                    modifier = Modifier.size(24.dp),
-                )
-                Spacer(Modifier.width(12.dp))
-                Column(Modifier.weight(1f)) {
-                    val triggerName =
-                        remember(triggerId) {
-                            if (triggerType == "nfc" && triggerId.isNotBlank()) {
-                                repository.nfcTrigger.load(triggerId)?.displayName
-                            } else {
-                                null
+                Text(stringResource(R.string.automation_done))
+            }
+
+            OutlinedTextField(
+                value = name,
+                onValueChange = {
+                    name = it
+                    isDirty = true
+                },
+                label = { Text(stringResource(R.string.automation_name_label)) },
+                placeholder = { Text(stringResource(R.string.automation_name_placeholder)) },
+                modifier = Modifier.fillMaxWidth(),
+                singleLine = true,
+                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
+            )
+
+            Text(stringResource(R.string.automation_trigger_label), style = MaterialTheme.typography.titleMedium)
+
+            Card(
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
+                modifier =
+                    Modifier.fillMaxWidth().clickable(onClick = {
+                        nav.push(TriggerList) { result: Pair<String, String>? ->
+                            result?.let { (type, id) ->
+                                triggerType = type
+                                triggerId = id
+                                isDirty = true
                             }
                         }
-                    Text(
-                        text = triggerName ?: stringResource(R.string.automation_trigger_placeholder),
-                        style = MaterialTheme.typography.bodyLarge,
-                        color =
-                            if (triggerId.isNotBlank()) {
-                                MaterialTheme.colorScheme.onSurface
-                            } else {
-                                MaterialTheme.colorScheme.primary
-                            },
+                    }),
+            ) {
+                Row(
+                    modifier = Modifier.fillMaxWidth().padding(16.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Icon(
+                        painterResource(R.drawable.ic_flash_on),
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.primary,
+                        modifier = Modifier.size(24.dp),
                     )
-                    if (triggerId.isBlank()) {
+                    Spacer(Modifier.width(12.dp))
+                    Column(Modifier.weight(1f)) {
+                        val triggerName =
+                            remember(triggerId) {
+                                if (triggerType == "nfc" && triggerId.isNotBlank()) {
+                                    repository.nfcTrigger.load(triggerId)?.displayName
+                                } else {
+                                    null
+                                }
+                            }
                         Text(
-                            stringResource(R.string.automation_trigger_hint),
-                            style = MaterialTheme.typography.labelSmall,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            text = triggerName ?: stringResource(R.string.automation_trigger_placeholder),
+                            style = MaterialTheme.typography.bodyLarge,
+                            color =
+                                if (triggerId.isNotBlank()) {
+                                    MaterialTheme.colorScheme.onSurface
+                                } else {
+                                    MaterialTheme.colorScheme.primary
+                                },
                         )
-                    }
-                }
-            }
-        }
-
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            Text(stringResource(R.string.automation_commands_label), style = MaterialTheme.typography.titleMedium)
-            IconButton(onClick = {
-                nav.push(BuilderScreen.CommandList) { result: String? ->
-                    result?.let { id ->
-                        if (!commandIds.contains(id)) {
-                            commandIds = commandIds + id
-                            isDirty = true
+                        if (triggerId.isBlank()) {
+                            Text(
+                                stringResource(R.string.automation_trigger_hint),
+                                style = MaterialTheme.typography.labelSmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            )
                         }
                     }
                 }
-            }) {
-                Icon(
-                    painterResource(R.drawable.ic_add),
-                    contentDescription = stringResource(R.string.automation_add_command_desc),
-                    tint = MaterialTheme.colorScheme.primary,
-                    modifier = Modifier.size(24.dp),
-                )
             }
-        }
 
-        if (commandIds.isEmpty()) {
-            Text(
-                stringResource(R.string.automation_commands_empty),
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                modifier = Modifier.padding(start = 4.dp),
-            )
-        } else {
-            Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                val commandNames =
-                    remember(commandIds) {
-                        commandIds.map { id -> repository.command.load(id)?.displayName ?: id }
-                    }
-                commandNames.forEachIndexed { index, cmdName ->
-                    Card(
-                        modifier = Modifier.fillMaxWidth(),
-                        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer),
-                    ) {
-                        Row(
-                            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 12.dp),
-                            horizontalArrangement = Arrangement.SpaceBetween,
-                            verticalAlignment = Alignment.CenterVertically,
-                        ) {
-                            Text(cmdName, style = MaterialTheme.typography.bodyMedium, modifier = Modifier.weight(1f))
-                            IconButton(onClick = {
-                                commandIds = commandIds.filterIndexed { i, _ -> i != index }
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Text(stringResource(R.string.automation_commands_label), style = MaterialTheme.typography.titleMedium)
+                IconButton(onClick = {
+                    nav.push(CommandList) { result: String? ->
+                        result?.let { id ->
+                            if (!commandIds.contains(id)) {
+                                commandIds = commandIds + id
                                 isDirty = true
-                            }) {
-                                Icon(
-                                    painterResource(R.drawable.ic_delete),
-                                    contentDescription = stringResource(R.string.automation_remove_command_desc),
-                                    tint = MaterialTheme.colorScheme.error,
-                                )
+                            }
+                        }
+                    }
+                }) {
+                    Icon(
+                        painterResource(R.drawable.ic_add),
+                        contentDescription = stringResource(R.string.automation_add_command_desc),
+                        tint = MaterialTheme.colorScheme.primary,
+                        modifier = Modifier.size(24.dp),
+                    )
+                }
+            }
+
+            if (commandIds.isEmpty()) {
+                Text(
+                    stringResource(R.string.automation_commands_empty),
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.padding(start = 4.dp),
+                )
+            } else {
+                Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                    val commandNames =
+                        remember(commandIds) {
+                            commandIds.map { id -> repository.command.load(id)?.displayName ?: id }
+                        }
+                    commandNames.forEachIndexed { index, cmdName ->
+                        Card(
+                            modifier = Modifier.fillMaxWidth(),
+                            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer),
+                        ) {
+                            Row(
+                                modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 12.dp),
+                                horizontalArrangement = Arrangement.SpaceBetween,
+                                verticalAlignment = Alignment.CenterVertically,
+                            ) {
+                                Text(cmdName, style = MaterialTheme.typography.bodyMedium, modifier = Modifier.weight(1f))
+                                IconButton(onClick = {
+                                    commandIds = commandIds.filterIndexed { i, _ -> i != index }
+                                    isDirty = true
+                                }) {
+                                    Icon(
+                                        painterResource(R.drawable.ic_delete),
+                                        contentDescription = stringResource(R.string.automation_remove_command_desc),
+                                        tint = MaterialTheme.colorScheme.error,
+                                    )
+                                }
                             }
                         }
                     }

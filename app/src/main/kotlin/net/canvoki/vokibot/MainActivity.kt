@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.ui.res.painterResource
 import net.canvoki.shared.component.AppScaffold
 import net.canvoki.shared.component.WatermarkBox
+import net.canvoki.shared.component.spike.StackNavigator
 import net.canvoki.shared.log
 
 class MainActivity : AppCompatActivity() {
@@ -16,7 +17,7 @@ class MainActivity : AppCompatActivity() {
                 WatermarkBox(
                     watermark = painterResource(R.drawable.ic_brand),
                 ) {
-                    IntentActionBuilder()
+                    StackNavigator(AutomationList)
                 }
             }
         }

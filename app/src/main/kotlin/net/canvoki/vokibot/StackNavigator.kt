@@ -21,50 +21,69 @@ import kotlinx.serialization.Serializable
 import kotlin.math.roundToInt
 
 /**
- * Base class for navigation screens.
+ * Base class for stack-based navigation screens.
  *
- * Defined as [open] to allow cross-module inheritance.
- * Client modules should define a [sealed] subclass for exhaustiveness checking.
+ * Subclasses must implement [render] to provide their UI.
+ * Screen data should be passed via constructor parameters (must be [Serializable]).
  *
- * @param R The type of value returned when this screen completes via [Navigator.back].
+ * @param R The type of value returned when this screen completes via [StackNavigatorState.back].
  *          Use [Unit] for screens that do not return data.
  */
 @Serializable
-open class Screen<R>
+abstract class StackedScreen<R> {
+    /**
+     * Renders the screen UI.
+     * Access screen data via `this` (e.g., `this.editingId`).
+     * Register back behavior via `nav.onBack(this, ...)`
+     */
+    @Composable
+    abstract fun render(nav: StackNavigatorState)
+}
 
 /**
  * Navigation state holding the stack, transient transition flags, and result callbacks.
  *
- * @param T The concrete screen type (must extend [Screen]).
+ * This class is passed directly to screens. Internal members are hidden by Kotlin's
+ * [internal] visibility, so screens only see the public navigation API.
  */
-class StackNavigatorState<T : Screen<*>>(initial: T) {
-    constructor(fullStack: List<T>) : this(fullStack.last()) { stack = fullStack }
+class StackNavigatorState(initial: StackedScreen<*>) {
+    constructor(fullStack: List<StackedScreen<*>>) : this(fullStack.last()) { stack = fullStack }
 
     var stack by mutableStateOf(listOf(initial))
         internal set
 
-    internal var pushed: T? by mutableStateOf(null)
-    internal var backed: T? by mutableStateOf(null)
+    internal var pushed: StackedScreen<*>? by mutableStateOf(null)
+    internal var backed: StackedScreen<*>? by mutableStateOf(null)
     private val callbacks = mutableMapOf<Any, (Any?) -> Unit>()
-    private val screenHandlers = mutableMapOf<Screen<*>, () -> Unit>()
+    private val screenHandlers = mutableMapOf<StackedScreen<*>, () -> Unit>()
 
-    val current: T get() = stack.last()
+    val current: StackedScreen<*> get() = stack.last()
     val canGoBack: Boolean get() = stack.size > 1
 
-    internal fun <R> registerCallback(screen: T, callback: (R?) -> Unit) {
+    internal fun <R> registerCallback(screen: StackedScreen<*>, callback: (R?) -> Unit) {
         callbacks[screen] = { result ->
             @Suppress("UNCHECKED_CAST")
             callback(result as R?)
         }
     }
 
-    internal fun <R> invokeCallback(screen: T, result: R?) {
+    internal fun <R> invokeCallback(screen: StackedScreen<*>, result: R?) {
         callbacks[screen]?.invoke(result)
         callbacks.remove(screen)
     }
 
-    internal fun setBackHandler(owner: Screen<*>, enabled: Boolean, handler: () -> Unit) {
-        if (enabled) screenHandlers[owner] = handler else screenHandlers.remove(owner)
+    /**
+     * Registers a custom handler for the system back button.
+     *
+     * Handlers are keyed explicitly to the [screen] parameter, preventing background
+     * recompositions from interfering with the active top screen.
+     *
+     * @param screen The screen instance that owns this back behavior.
+     * @param enabled Whether the custom handler should intercept back presses.
+     * @param handler Logic to execute instead of default navigation.
+     */
+    fun onBack(screen: StackedScreen<*>, enabled: Boolean = true, handler: () -> Unit = {}) {
+        if (enabled) screenHandlers[screen] = handler else screenHandlers.remove(screen)
     }
 
     internal fun handleBack(default: () -> Unit) {
@@ -72,18 +91,17 @@ class StackNavigatorState<T : Screen<*>>(initial: T) {
     }
 
     /** Push without result callback (ignore return value). */
-    fun push(screen: Screen<*>) {
+    fun push(screen: StackedScreen<*>) {
         if (pushed != null || backed != null) return
-        @Suppress("UNCHECKED_CAST")
-        pushed = screen as T
+        pushed = screen
     }
 
     /** Push with typed result callback. */
-    fun <R> push(screen: Screen<R>, resultCallback: (R?) -> Unit) {
+    fun <R> push(screen: StackedScreen<R>, resultCallback: (R?) -> Unit) {
         if (pushed != null || backed != null) return
         @Suppress("UNCHECKED_CAST")
-        registerCallback(screen as T, resultCallback)
-        pushed = screen as T
+        registerCallback(screen, resultCallback)
+        pushed = screen
     }
 
     /** Back without result (returns null to parent). */
@@ -109,45 +127,8 @@ class StackNavigatorState<T : Screen<*>>(initial: T) {
     }
 }
 
-/**
- * Navigation facade passed to screens.
- *
- * Provides overloads for simple navigation (push/back without results)
- * and typed navigation (push/back with result callbacks).
- * Includes [onBack] for declarative system-back interception.
- */
-class Navigator<T : Screen<*>> internal constructor(
-    private val state: StackNavigatorState<T>
-) {
-    fun push(screen: Screen<*>) { state.push(screen) }
-
-    fun <R> push(screen: Screen<R>, resultCallback: (R?) -> Unit) {
-        state.push(screen, resultCallback)
-    }
-
-    fun back() { state.back() }
-
-    fun <R> back(result: R?) { state.back(result) }
-
-    val canGoBack: Boolean get() = state.canGoBack
-
-    /**
-     * Registers a custom handler for the system back button.
-     *
-     * Handlers are keyed explicitly to the [screen] parameter, preventing background
-     * recompositions from interfering with the active top screen.
-     *
-     * @param screen The screen instance that owns this back behavior.
-     * @param enabled Whether the custom handler should intercept back presses.
-     * @param handler Logic to execute instead of default navigation.
-     */
-    fun onBack(screen: Screen<*>, enabled: Boolean = true, handler: () -> Unit = {}) {
-        state.setBackHandler(screen, enabled, handler)
-    }
-}
-
 @Composable
-fun <T : Screen<*>> rememberStackNavigatorState(initial: T): StackNavigatorState<T> =
+fun rememberStackNavigatorState(initial: StackedScreen<*>): StackNavigatorState =
     remember { StackNavigatorState(initial) }
 
 private data class SlideFade(
@@ -170,10 +151,14 @@ private enum class ScreenRole {
 }
 
 @Composable
-fun <T : Screen<*>> StackNavigator(
-    state: StackNavigatorState<T>,
-    content: @Composable (T, Navigator<T>) -> Unit
-) {
+fun StackNavigator(initial: StackedScreen<*>, vararg additional: StackedScreen<*>) {
+    val state = remember {
+        StackNavigatorState(buildList {
+            add(initial)
+            addAll(additional)
+        })
+    }
+
     BackHandler(enabled = state.canGoBack) {
         state.handleBack { state.back<Unit>(null) }
     }
@@ -235,7 +220,7 @@ fun <T : Screen<*>> StackNavigator(
                     .graphicsLayer { this.alpha = alpha }
                     .offset { IntOffset(offsetX.roundToInt(), 0) }
             ) {
-                content(screen, Navigator(state))
+                screen.render(state)
             }
         }
     }

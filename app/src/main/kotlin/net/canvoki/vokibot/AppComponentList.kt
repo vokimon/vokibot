@@ -28,7 +28,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.drawable.toBitmap
+import kotlinx.serialization.Serializable
 import net.canvoki.shared.component.AsyncList
+import net.canvoki.shared.component.spike.StackNavigatorState
+import net.canvoki.shared.component.spike.StackedScreen
 
 @Composable
 private fun drawableToPainter(drawable: Drawable?): Painter =
@@ -53,18 +56,24 @@ private fun ActionIcons(actions: List<String>) {
     }
 }
 
-@Composable
-fun AppComponentList(
-    nav: ScreenNavigator,
-    packageName: String,
-) {
-    AppComponentList(
-        packageName = packageName,
-        onSelected = { component ->
-            nav.push(BuilderScreen.IntentEditor(packageName, component.name)) { result: Unit? -> }
-        },
-    )
+
+@Serializable data class AppComponentList(
+    val packageName: String,
+) : StackedScreen<Unit>() {
+    @Composable
+    override fun render(
+        nav: StackNavigatorState,
+    ) {
+        AppComponentList(
+            packageName = packageName,
+            onSelected = { component ->
+                nav.push(IntentEditor(packageName, component.name)) { result: Unit? -> }
+            },
+        )
+    }
 }
+
+
 
 @Composable
 fun AppComponentList(

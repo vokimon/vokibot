@@ -45,14 +45,20 @@ import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.serialization.Serializable
+import net.canvoki.shared.component.spike.StackNavigatorState
+import net.canvoki.shared.component.spike.StackedScreen
 
-
-@Composable
-fun NfcTriggerEditor(nav: ScreenNavigator) {
-    NfcTriggerEditor(
-        onSaved = { nav.back() },
-    )
+@Serializable
+data object NfcTriggerEditor : StackedScreen<Unit>() {
+    @Composable
+    override fun render(nav: StackNavigatorState) {
+        NfcTriggerEditor(
+            onSaved = { nav.back() },
+        )
+    }
 }
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

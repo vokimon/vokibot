@@ -27,126 +27,131 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import kotlinx.serialization.Serializable
 import net.canvoki.shared.component.AsyncList
+import net.canvoki.shared.component.spike.StackNavigatorState
+import net.canvoki.shared.component.spike.StackedScreen
 
-@Composable
-fun AutomationList(
-    nav: ScreenNavigator,
-    modifier: Modifier = Modifier,
-) {
-    val context = LocalContext.current
-    val repository = remember { FileDataRepository.fromContext(context) }
-    var refreshCounter by remember { mutableIntStateOf(0) }
-    var automationToDelete by remember { mutableStateOf<Automation?>(null) }
+@Serializable
+data object AutomationList : StackedScreen<Unit>() {
+    @Composable
+    override fun render(
+        nav: StackNavigatorState,
+    ) {
+        val context = LocalContext.current
+        val repository = remember { FileDataRepository.fromContext(context) }
+        var refreshCounter by remember { mutableIntStateOf(0) }
+        var automationToDelete by remember { mutableStateOf<Automation?>(null) }
 
-    Box(modifier = modifier.fillMaxSize()) {
-        AsyncList(
-            refreshKeys = listOf(refreshCounter),
-            loader = { repository.automation.all() },
-            itemKey = { it.id },
-            groupBy = { "automation" },
-            headerContent = { key -> AutomationGroupHeader(key) },
-            notFoundMessage = stringResource(R.string.automationlist_not_found),
-        ) { automation ->
-            var menuExpanded by remember { mutableStateOf(false) }
+        Box(modifier = Modifier.fillMaxSize()) {
+            AsyncList(
+                refreshKeys = listOf(refreshCounter),
+                loader = { repository.automation.all() },
+                itemKey = { it.id },
+                groupBy = { "automation" },
+                headerContent = { key -> AutomationGroupHeader(key) },
+                notFoundMessage = stringResource(R.string.automationlist_not_found),
+            ) { automation ->
+                var menuExpanded by remember { mutableStateOf(false) }
 
-            val triggerDisplayName =
-                remember(automation.triggerType, automation.triggerId) {
-                    if (automation.triggerType ==
-                        "nfc"
-                    ) {
-                        repository.nfcTrigger.load(automation.triggerId)?.displayName
-                    } else {
-                        null
+                val triggerDisplayName =
+                    remember(automation.triggerType, automation.triggerId) {
+                        if (automation.triggerType ==
+                            "nfc"
+                        ) {
+                            repository.nfcTrigger.load(automation.triggerId)?.displayName
+                        } else {
+                            null
+                        }
                     }
-                }
 
-            ListItem(
-                headlineContent = { Text(automation.name) },
-                supportingContent = {
-                    Text(
-                        text =
-                            buildString {
-                                triggerDisplayName?.let { append("$it • ") }
-                                append("${automation.commandIds.size} command(s)")
-                            },
-                        maxLines = 1,
-                    )
-                },
-                leadingContent = {
-                    Icon(
-                        painter = painterResource(R.drawable.ic_check_circle),
-                        contentDescription = stringResource(R.string.automation_type_automation),
-                        modifier = Modifier.size(40.dp),
-                        tint = MaterialTheme.colorScheme.primary,
-                    )
-                },
-                modifier = Modifier.clickable {
-                    nav.push(BuilderScreen.AutomationEditor(automation.id)) {
+                ListItem(
+                    headlineContent = { Text(automation.name) },
+                    supportingContent = {
+                        Text(
+                            text =
+                                buildString {
+                                    triggerDisplayName?.let { append("$it • ") }
+                                    append("${automation.commandIds.size} command(s)")
+                                },
+                            maxLines = 1,
+                        )
+                    },
+                    leadingContent = {
+                        Icon(
+                            painter = painterResource(R.drawable.ic_check_circle),
+                            contentDescription = stringResource(R.string.automation_type_automation),
+                            modifier = Modifier.size(40.dp),
+                            tint = MaterialTheme.colorScheme.primary,
+                        )
+                    },
+                    modifier = Modifier.clickable {
+                        nav.push(AutomationEditor(automation.id)) {
+                            refreshCounter++
+                        }
+                    },
+                    trailingContent = {
+                        IconButton(onClick = { menuExpanded = true }) {
+                            Icon(
+                                painter = painterResource(R.drawable.ic_more_vert),
+                                contentDescription = stringResource(R.string.automationlist_options_desc),
+                            )
+                        }
+                        DropdownMenu(
+                            expanded = menuExpanded,
+                            onDismissRequest = { menuExpanded = false },
+                        ) {
+                            DropdownMenuItem(
+                                text = { Text(stringResource(R.string.automationlist_delete)) },
+                                leadingIcon = {
+                                    Icon(
+                                        painter = painterResource(R.drawable.ic_delete),
+                                        contentDescription = null,
+                                    )
+                                },
+                                onClick = {
+                                    menuExpanded = false
+                                    automationToDelete = automation
+                                },
+                            )
+                        }
+                    },
+                )
+            }
+
+            FloatingActionButton(
+                onClick = {
+                    nav.push(AutomationEditor(null)) {
                         refreshCounter++
                     }
                 },
-                trailingContent = {
-                    IconButton(onClick = { menuExpanded = true }) {
-                        Icon(
-                            painter = painterResource(R.drawable.ic_more_vert),
-                            contentDescription = stringResource(R.string.automationlist_options_desc),
-                        )
-                    }
-                    DropdownMenu(
-                        expanded = menuExpanded,
-                        onDismissRequest = { menuExpanded = false },
-                    ) {
-                        DropdownMenuItem(
-                            text = { Text(stringResource(R.string.automationlist_delete)) },
-                            leadingIcon = {
-                                Icon(
-                                    painter = painterResource(R.drawable.ic_delete),
-                                    contentDescription = null,
-                                )
-                            },
-                            onClick = {
-                                menuExpanded = false
-                                automationToDelete = automation
-                            },
-                        )
-                    }
-                },
-            )
+                modifier = Modifier.align(Alignment.BottomEnd).padding(16.dp),
+            ) {
+                Icon(
+                    painter = painterResource(R.drawable.ic_add),
+                    contentDescription = stringResource(R.string.automationlist_create_fab_desc),
+                )
+            }
         }
 
-        FloatingActionButton(
-            onClick = {
-                nav.push(BuilderScreen.AutomationEditor(null)) {
+        ConfirmDialog(
+            show = automationToDelete != null,
+            title = stringResource(R.string.automationlist_delete_title),
+            text = stringResource(R.string.automationlist_delete_message),
+            confirmText = stringResource(R.string.automationlist_delete),
+            dismissText = stringResource(R.string.automationlist_cancel),
+            onConfirm = {
+                automationToDelete?.let { auto ->
+                    repository.automation.remove(auto.id)
                     refreshCounter++
+                    automationToDelete = null
                 }
             },
-            modifier = Modifier.align(Alignment.BottomEnd).padding(16.dp),
-        ) {
-            Icon(
-                painter = painterResource(R.drawable.ic_add),
-                contentDescription = stringResource(R.string.automationlist_create_fab_desc),
-            )
-        }
-    }
-
-    ConfirmDialog(
-        show = automationToDelete != null,
-        title = stringResource(R.string.automationlist_delete_title),
-        text = stringResource(R.string.automationlist_delete_message),
-        confirmText = stringResource(R.string.automationlist_delete),
-        dismissText = stringResource(R.string.automationlist_cancel),
-        onConfirm = {
-            automationToDelete?.let { auto ->
-                repository.automation.remove(auto.id)
-                refreshCounter++
+            onDismiss = {
                 automationToDelete = null
-            }
-        },
-        onDismiss = {
-            automationToDelete = null
-        },
-    )
+            },
+        )
+    }
 }
 
 @Composable

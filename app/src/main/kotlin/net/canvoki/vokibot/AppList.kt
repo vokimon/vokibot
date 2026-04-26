@@ -43,8 +43,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import kotlinx.serialization.Serializable
 import net.canvoki.shared.component.AsyncList
 import net.canvoki.shared.component.preferences.rememberMutablePreference
+import net.canvoki.shared.component.spike.StackNavigatorState
+import net.canvoki.shared.component.spike.StackedScreen
 import net.canvoki.vokibot.R
 
 data class AppInfo(
@@ -85,17 +88,22 @@ private fun Drawable.toPainter(): Painter =
         }
     }
 
-@Composable
-fun AppList(nav: ScreenNavigator) {
-    val listState = rememberSaveable(saver = LazyListState.Saver) { LazyListState() }
+@Serializable
+data object AppList : StackedScreen<Unit>() {
+    @Composable
+    override fun render(nav: StackNavigatorState) {
+        val listState = rememberSaveable(saver = LazyListState.Saver) { LazyListState() }
 
-    AppList(
-        listState = listState,
-        onSelected = { app ->
-            nav.push(BuilderScreen.AppComponentList(app.packageName)) { result: Unit? -> }
-        },
-    )
+        AppList(
+            listState = listState,
+            onSelected = { app ->
+                nav.push(AppComponentList(app.packageName)) { result: Unit? -> }
+            },
+        )
+    }
 }
+
+
 
 @Composable
 fun AppListItem(

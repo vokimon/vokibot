@@ -29,23 +29,30 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import kotlinx.serialization.Serializable
 import net.canvoki.shared.component.AsyncList
 import net.canvoki.shared.component.ChooserDialog
 import net.canvoki.shared.component.ChooserOption
+import net.canvoki.shared.component.spike.StackNavigatorState
+import net.canvoki.shared.component.spike.StackedScreen
+
+@Serializable
+data object TriggerList : StackedScreen<Pair<String, String>>() {
+    @Composable
+    override fun render(nav: StackNavigatorState) {
+        TriggerList(
+            onNewTrigger = { typeTag ->
+                if (typeTag == "nfc") {
+                    nav.push(NfcTriggerEditor) { result: Unit? -> }
+                }
+            },
+            onTriggerSelected = { type, id ->
+                nav.back(Pair(type, id))
+            },
+        )
+    }
 
 
-@Composable
-fun TriggerList(nav: ScreenNavigator) {
-    TriggerList(
-        onNewTrigger = { typeTag ->
-            if (typeTag == "nfc") {
-                nav.push(BuilderScreen.NfcTriggerEditor) { result: Unit? -> }
-            }
-        },
-        onTriggerSelected = { type, id ->
-            nav.back(Pair(type, id))
-        },
-    )
 }
 
 @Composable

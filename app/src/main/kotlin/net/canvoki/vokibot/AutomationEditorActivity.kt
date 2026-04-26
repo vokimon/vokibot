@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import net.canvoki.shared.component.AppScaffold
+import net.canvoki.shared.component.spike.StackNavigator
 
 class AutomationEditorActivity : ComponentActivity() {
     private var createdAutomationId: String? = null
@@ -35,12 +36,9 @@ class AutomationEditorActivity : ComponentActivity() {
 
         setContent {
             AppScaffold {
-                IntentActionBuilder(
-                    initialStack =
-                        listOf(
-                            BuilderScreen.AutomationList,
-                            BuilderScreen.AutomationEditor(editingId = createdAutomationId),
-                        ),
+                StackNavigator(
+                    AutomationList,
+                    AutomationEditor(editingId = createdAutomationId),
                 )
             }
         }

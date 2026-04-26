@@ -41,6 +41,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.drawable.toBitmap
 import kotlinx.coroutines.launch
+import kotlinx.serialization.Serializable
+import net.canvoki.shared.component.spike.StackNavigatorState
+import net.canvoki.shared.component.spike.StackedScreen
 import net.canvoki.shared.usermessage.UserMessage
 
 @Composable
@@ -157,37 +160,40 @@ fun IntentActionSelector(
     }
 }
 
-@Composable
-fun IntentEditor(
-    nav: ScreenNavigator,
-    screen: BuilderScreen<*>,
-    packageName: String,
-    componentName: String,
-) {
-    var currentComponent by remember { mutableStateOf<PublicComponent?>(null) }
-    val context = LocalContext.current
+@Serializable
+data class IntentEditor(
+    val packageName: String,
+    val componentName: String,
+) : StackedScreen<Unit>() {
+    @Composable
+    override fun render(
+        nav: StackNavigatorState,
+    ) {
+        var currentComponent by remember { mutableStateOf<PublicComponent?>(null) }
+        val context = LocalContext.current
 
-    LaunchedEffect(packageName, componentName) {
-        if (currentComponent == null) {
-            currentComponent =
-                queryPublicComponents(context, packageName, exportedOnly = true)
-                    .components
-                    .find { it.name == componentName }
+        LaunchedEffect(packageName, componentName) {
+            if (currentComponent == null) {
+                currentComponent =
+                    queryPublicComponents(context, packageName, exportedOnly = true)
+                        .components
+                        .find { it.name == componentName }
+            }
         }
-    }
 
-    currentComponent?.let { component ->
-        IntentEditor(
-            screen = screen,
-            packageName = packageName,
-            component = component,
-        )
+        currentComponent?.let { component ->
+            IntentEditor(
+                packageName = packageName,
+                component = component,
+            )
+        }
     }
 }
 
+
+
 @Composable
 fun IntentEditor(
-    screen: BuilderScreen<*>,
     packageName: String,
     component: PublicComponent,
 ) {

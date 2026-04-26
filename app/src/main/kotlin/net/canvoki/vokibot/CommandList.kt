@@ -37,21 +37,28 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.drawable.toBitmap
 import kotlinx.coroutines.launch
+import kotlinx.serialization.Serializable
 import net.canvoki.shared.component.AsyncList
 import net.canvoki.shared.component.ChooserDialog
 import net.canvoki.shared.component.ChooserOption
+import net.canvoki.shared.component.spike.StackNavigatorState
+import net.canvoki.shared.component.spike.StackedScreen
 
-@Composable
-fun CommandList(nav: ScreenNavigator) {
-    CommandList(
-        onLaunchAppSelected = {
-            nav.push(BuilderScreen.AppList)
-        },
-        onCommandSelected = { commandId ->
-            nav.back(commandId)
-        },
-    )
+@Serializable
+data object CommandList : StackedScreen<String>() {
+    @Composable
+    override fun render(nav: StackNavigatorState) {
+        CommandList(
+            onLaunchAppSelected = {
+                nav.push(AppList)
+            },
+            onCommandSelected = { commandId ->
+                nav.back(commandId)
+            },
+        )
+    }
 }
+
 
 @Composable
 fun CommandList(
