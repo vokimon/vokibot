@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -139,7 +140,7 @@ class StackNavigatorState(
         pushed = null
     }
 
-    internal fun endBack() {
+    internal fun endPop() {
         backed = null
     }
 }
@@ -188,7 +189,7 @@ fun StackNavigator(
         }
 
     BackHandler(enabled = state.canGoBack) {
-        state.handleBack { state.pop<Unit>(null) }
+        state.handleBack { state.pop() }
     }
 
     var widthPx by remember { mutableStateOf(-1f) }
@@ -233,7 +234,7 @@ fun StackNavigator(
                     anim.snapTo(0f)
                     anim.animateTo(1f, tween(durationMillis = 300, easing = FastOutSlowInEasing))
                     if (role == ScreenRole.ENTER_PUSH) state.endPush()
-                    if (role == ScreenRole.EXIT_POP) state.endBack()
+                    if (role == ScreenRole.EXIT_POP) state.endPop()
                 }
             }
 
@@ -247,15 +248,18 @@ fun StackNavigator(
 
             val alpha = transition?.alpha(anim.value) ?: if (role == ScreenRole.IDLE_BACKGROUND) 0f else 1f
 
-            Box(
-                modifier =
-                    Modifier
-                        .fillMaxSize()
-                        .graphicsLayer { this.alpha = alpha }
-                        .offset { IntOffset(offsetX.roundToInt(), 0) },
-            ) {
-                screen.render(state)
+            key(screen) {
+                Box(
+                    modifier =
+                        Modifier
+                            .fillMaxSize()
+                            .graphicsLayer { this.alpha = alpha }
+                            .offset { IntOffset(offsetX.roundToInt(), 0) },
+                ) {
+                    screen.render(state)
+                }
             }
+
         }
     }
 }
