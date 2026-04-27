@@ -13,13 +13,22 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.Saver
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.unit.IntOffset
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.serializer
 import kotlin.math.roundToInt
+import kotlin.reflect.KClass
+import kotlin.reflect.full.starProjectedType
 
 /**
  * Base class for stack-based navigation screens.
@@ -178,8 +187,45 @@ fun StackNavigator(
     bottom: StackedScreen<*>,
     vararg additional: StackedScreen<*>,
 ) {
-    val state =
+    val json =
         remember {
+            Json {
+                ignoreUnknownKeys = true
+                explicitNulls = false
+            }
+        }
+
+    // Cross-module Saver: serializes screens as "ClassName|JsonString"
+    // Discovers serializers at runtime via reflection. Zero registration, zero casts.
+    val state =
+        rememberSaveable(
+            saver =
+                Saver<StackNavigatorState, List<String>>(
+                    save = { navState ->
+                        navState.stack.map { screen ->
+                            val kClass = screen::class
+                            val className = kClass.java.name
+
+                            @Suppress("UNCHECKED_CAST")
+                            val kSerializer = serializer(kClass.starProjectedType) as KSerializer<StackedScreen<*>>
+                            val jsonStr = json.encodeToString(kSerializer, screen)
+                            "$className|$jsonStr"
+                        }
+                    },
+                    restore = { saved ->
+                        val restoredScreens =
+                            saved.map { entry ->
+                                val (className, jsonStr) = entry.split('|', limit = 2)
+                                val kClass = Class.forName(className).kotlin
+
+                                @Suppress("UNCHECKED_CAST")
+                                val kSerializer = serializer(kClass.starProjectedType) as KSerializer<StackedScreen<*>>
+                                json.decodeFromString(kSerializer, jsonStr)
+                            }
+                        StackNavigatorState(restoredScreens)
+                    },
+                ),
+        ) {
             StackNavigatorState(
                 buildList {
                     add(bottom)
@@ -259,7 +305,6 @@ fun StackNavigator(
                     screen.render(state)
                 }
             }
-
         }
     }
 }

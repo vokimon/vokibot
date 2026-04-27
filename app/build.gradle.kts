@@ -187,6 +187,7 @@ dependencies {
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.kotlinx.serialization.json)
+    implementation("org.jetbrains.kotlin:kotlin-reflect:1.9.0")
 
     // Compose
     implementation(libs.androidx.compose.material3)
