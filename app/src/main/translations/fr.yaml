@@ -42,26 +42,24 @@ command_type_launch_activity: "Application : Ouvrir un écran"
 command_type_send_broadcast: "Application : Envoyer une notification"
 command_type_start_service: "Application : Démarrer un processus"
 command_type_access_provider: "Application : Accéder aux données"
-nfc_trigger_back: Retour
+nfc_editor_header: Étiquette NFC
+nfc_refresh_status: Actualiser l'état du NFC
+nfc_autodetect_hint: Approchez l'étiquette du dispositif pour la détecter automatiquement
+nfc_not_available: Matériel NFC non trouvé sur ce dispositif
+nfc_enable_autodetect: Activez le NFC pour la détection automatique
 nfc_trigger_uid_label: UID de l'étiquette
-nfc_trigger_scan: Scanner l'étiquette NFC
-nfc_trigger_scanning: Arrêter le scan
-nfc_trigger_scanning_hint: Approchez l'étiquette du dispositif
 nfc_trigger_detected: Étiquette détectée
 nfc_trigger_save: Enregistrer le déclencheur
-nfc_not_available: Matériel NFC non trouvé sur ce dispositif
-nfc_not_enabled: Veuillez activer le NFC dans les paramètres système
-nfc_trigger_uid_hint: Ceci est l'ID unique de l'étiquette que vous avez touchée
 nfc_trigger_no_tag: Aucune étiquette détectée. Touchez une étiquette NFC pour voir son ID.
 nfc_trigger_activity_label: Exécutez une commande avec cette étiquette NFC
+nfc_trigger_name_label: Nom de l'étiquette
+nfc_trigger_name_placeholder: ex. Carte de bus
+nfc_trigger_scan_success: Étiquette détectée ✓
 triggerlist_not_found: Aucun déclencheur configuré
 triggerlist_create_fab_desc: Créer un déclencheur
 triggerlist_create_title: Créer un déclencheur
 triggerlist_option_nfc: Étiquette NFC
 trigger_group_nfc: Étiquette NFC
-nfc_trigger_name_label: Nom de l'étiquette
-nfc_trigger_name_placeholder: ex. Carte de bus
-nfc_trigger_scan_success: Étiquette détectée ✓
 triggerlist_options_desc: Options
 triggerlist_delete: Supprimer
 triggerlist_delete_title: Supprimer l'étiquette ?
@@ -70,7 +68,7 @@ triggerlist_cancel: Annuler
 automation_name_label: Nom de l'automatisation
 automation_name_placeholder: ex. Routine matin, Je quitte la maison
 automation_trigger_label: Déclencheur
-automation_trigger_placeholder: "Aucun sélectionné"
+automation_trigger_placeholder: Aucun sélectionné
 automation_commands_label: Commandes
 automation_commands_empty: Aucune commande ajoutée
 automation_add_command: Ajouter une commande
@@ -93,13 +91,13 @@ nfc_trigger_create_automation: Créer une automatisation
 nfc_trigger_name_dialog_title: Nommer cette étiquette
 nfc_trigger_name_dialog_confirm: Enregistrer et continuer
 nfc_trigger_name_dialog_cancel: Annuler
-automation_trigger_hint: "Appuyez pour sélectionner"
-automation_add_command_desc: "Ajouter une commande"
-automation_edit_title: "Modifier l'automatisation"
-automation_discard_title: "Annuler les modifications ?"
-automation_discard_message: "Les modifications non enregistrées seront perdues."
-automation_discard_confirm: "Ignorer"
-automation_discard_cancel: "Annuler"
-automation_done: "Terminé"
-automation_hint_trigger: "Sélectionnez un déclencheur pour continuer"
-automation_hint_commands: "Ajoutez au moins une commande"
+automation_trigger_hint: Appuyez pour sélectionner
+automation_add_command_desc: Ajouter une commande
+automation_edit_title: Modifier l'automatisation
+automation_discard_title: Annuler les modifications ?
+automation_discard_message: Les modifications non enregistrées seront perdues.
+automation_discard_confirm: Ignorer
+automation_discard_cancel: Annuler
+automation_done: Terminé
+automation_hint_trigger: Sélectionnez un déclencheur pour continuer
+automation_hint_commands: Ajoutez au moins une commande

@@ -42,26 +42,24 @@ command_type_launch_activity: "التطبيق: فتح شاشة"
 command_type_send_broadcast: "التطبيق: إرسال إشعار"
 command_type_start_service: "التطبيق: بدء عملية"
 command_type_access_provider: "التطبيق: الوصول إلى البيانات"
-nfc_trigger_back: رجوع
+nfc_editor_header: علامة NFC
+nfc_refresh_status: تحديث حالة NFC
+nfc_autodetect_hint: قرب العلامة من الجهاز للكشف التلقائي
+nfc_not_available: لا يوجد دعم لتقنية NFC في هذا الجهاز
+nfc_enable_autodetect: فعّل NFC للكشف التلقائي
 nfc_trigger_uid_label: معرف العلامة
-nfc_trigger_scan: مسح علامة NFC
-nfc_trigger_scanning: إيقاف المسح
-nfc_trigger_scanning_hint: قرب العلامة من الجهاز
 nfc_trigger_detected: تم اكتشاف العلامة
 nfc_trigger_save: حفظ المشغل
-nfc_not_available: لم يتم العثور على أجهزة NFC على هذا الجهاز
-nfc_not_enabled: يرجى تمكين NFC في إعدادات النظام
-nfc_trigger_uid_hint: هذا هو المعرف الفريد للعلامة التي لمستها
 nfc_trigger_no_tag: لم يتم اكتشاف علامة. انقر على علامة NFC لعرض معرفها.
 nfc_trigger_activity_label: تشغيل أمر باستخدام بطاقة NFC هذه
+nfc_trigger_name_label: اسم العلامة
+nfc_trigger_name_placeholder: 'مثال: بطاقة الحافلة'
+nfc_trigger_scan_success: تم اكتشاف البطاقة ✓
 triggerlist_not_found: لم يتم تكوين أي مشغلات
 triggerlist_create_fab_desc: إنشاء مشغل
 triggerlist_create_title: إنشاء مشغل
 triggerlist_option_nfc: علامة NFC
 trigger_group_nfc: علامة NFC
-nfc_trigger_name_label: اسم العلامة
-nfc_trigger_name_placeholder: 'مثال: بطاقة الحافلة'
-nfc_trigger_scan_success: تم اكتشاف العلامة ✓
 triggerlist_options_desc: خيارات
 triggerlist_delete: حذف
 triggerlist_delete_title: حذف العلامة؟
@@ -70,7 +68,7 @@ triggerlist_cancel: إلغاء
 automation_name_label: اسم الأتمتة
 automation_name_placeholder: 'مثال: روتين الصباح، مغادرة المنزل'
 automation_trigger_label: المشغل
-automation_trigger_placeholder: "لم يتم اختيار أيّ"
+automation_trigger_placeholder: لم يتم اختيار أيّ
 automation_commands_label: الأوامر
 automation_commands_empty: لم تتم إضافة أي أوامر بعد
 automation_add_command: إضافة أمر
@@ -93,13 +91,13 @@ nfc_trigger_create_automation: إنشاء أتمتة
 nfc_trigger_name_dialog_title: تسمية هذه العلامة
 nfc_trigger_name_dialog_confirm: حفظ ومتابعة
 nfc_trigger_name_dialog_cancel: إلغاء
-automation_trigger_hint: "انقر للاختيار"
-automation_add_command_desc: "إضافة أمر"
-automation_edit_title: "تعديل الأتمتة"
-automation_discard_title: "هل تريد تجاهل التغييرات؟"
-automation_discard_message: "ستفقد التغييرات غير المحفوظة."
-automation_discard_confirm: "تجاهل"
-automation_discard_cancel: "إلغاء"
-automation_done: "تم"
-automation_hint_trigger: "حدد مشغلاً للمتابعة"
-automation_hint_commands: "أضف أمرًا واحدًا على الأقل"
+automation_trigger_hint: انقر للاختيار
+automation_add_command_desc: إضافة أمر
+automation_edit_title: تعديل الأتمتة
+automation_discard_title: هل تريد تجاهل التغييرات؟
+automation_discard_message: ستفقد التغييرات غير المحفوظة.
+automation_discard_confirm: تجاهل
+automation_discard_cancel: إلغاء
+automation_done: تم
+automation_hint_trigger: حدد مشغلاً للمتابعة
+automation_hint_commands: أضف أمرًا واحدًا على الأقل

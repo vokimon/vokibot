@@ -1,31 +1,30 @@
 package net.canvoki.vokibot
 
+import android.content.Context
+import android.content.Intent
 import android.nfc.NfcAdapter
-import android.nfc.Tag
+import android.provider.Settings
 import androidx.activity.ComponentActivity
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
@@ -59,7 +58,6 @@ data object NfcTriggerEditor : StackedScreen<Unit>() {
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NfcTriggerEditor(
     onSaved: () -> Unit,
@@ -73,45 +71,52 @@ fun NfcTriggerEditor(
 
     var displayName by rememberSaveable { mutableStateOf("") }
     var uid by rememberSaveable { mutableStateOf("") }
-    var isScanning by rememberSaveable { mutableStateOf(false) }
     var scanSuccess by remember { mutableStateOf(false) }
     var isNfcAvailable by rememberSaveable { mutableStateOf(true) }
     var isNfcEnabled by rememberSaveable { mutableStateOf(true) }
     var isSaving by rememberSaveable { mutableStateOf(false) }
+
+    fun checkNfcState() {
+        isNfcAvailable = nfcAdapter != null
+        isNfcEnabled = nfcAdapter?.isEnabled == true
+    }
+
+    // Initial check + periodic polling to sync with system settings
+    LaunchedEffect(Unit) {
+        checkNfcState()
+        while (true) {
+            delay(2000)
+            checkNfcState()
+        }
+    }
 
     LaunchedEffect(uid) {
         if (uid.isNotBlank()) {
             val existing = repository.nfcTrigger.load(uid)
             if (existing != null && displayName.isBlank()) {
                 displayName = existing.displayName
+            } else {
+                displayName = "NFC $uid"
             }
         }
     }
 
-    LaunchedEffect(Unit) {
-        if (nfcAdapter == null) {
-            isNfcAvailable = false
-        } else if (!nfcAdapter.isEnabled) {
-            isNfcEnabled = false
-        }
-    }
-
-    DisposableEffect(isScanning) {
+    // Enable reader mode only when hardware is present and enabled
+    DisposableEffect(isNfcEnabled, isNfcAvailable, nfcAdapter) {
         val callback =
             NfcAdapter.ReaderCallback { tag ->
                 val hexUid = tag.id.joinToString(":") { "%02X".format(it) }
                 activity?.runOnUiThread {
                     uid = hexUid
-                    isScanning = false
                     scanSuccess = true
                     scope.launch {
-                        delay(2000)
+                        delay(1500)
                         scanSuccess = false
                     }
                 }
             }
 
-        if (isScanning && nfcAdapter != null && nfcAdapter.isEnabled) {
+        if (isNfcAvailable && isNfcEnabled && nfcAdapter != null && activity != null) {
             nfcAdapter.enableReaderMode(
                 activity,
                 callback,
@@ -125,7 +130,7 @@ fun NfcTriggerEditor(
         }
 
         onDispose {
-            if (isScanning && nfcAdapter != null) {
+            if (nfcAdapter != null && activity != null) {
                 nfcAdapter.disableReaderMode(activity)
             }
         }
@@ -140,99 +145,26 @@ fun NfcTriggerEditor(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
-        if (!isNfcAvailable) {
-            Text(
-                text = stringResource(R.string.nfc_not_available),
-                color = MaterialTheme.colorScheme.error,
-                style = MaterialTheme.typography.bodyMedium,
-            )
-        } else if (!isNfcEnabled) {
-            Text(
-                text = stringResource(R.string.nfc_not_enabled),
-                color = MaterialTheme.colorScheme.error,
-                style = MaterialTheme.typography.bodyMedium,
-            )
-        } else {
-            OutlinedTextField(
-                value = displayName,
-                onValueChange = { displayName = it },
-                label = { Text(stringResource(R.string.nfc_trigger_name_label)) },
-                placeholder = { Text(stringResource(R.string.nfc_trigger_name_placeholder)) },
-                modifier = Modifier.fillMaxWidth(),
-                singleLine = true,
-                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
-            )
-
-            OutlinedTextField(
-                value = uid,
-                onValueChange = { uid = it },
-                label = { Text(stringResource(R.string.nfc_trigger_uid_label)) },
-                placeholder = { Text("04:AB:12:CD:56:78:90") },
-                modifier = Modifier.fillMaxWidth(),
-                keyboardOptions =
-                    KeyboardOptions(
-                        capitalization = KeyboardCapitalization.Characters,
-                        imeAction = ImeAction.Done,
-                    ),
-                trailingIcon = {
-                    IconButton(onClick = { isScanning = true }) {
-                        Icon(
-                            painter = painterResource(R.drawable.ic_nfc),
-                            contentDescription = stringResource(R.string.nfc_trigger_scan),
-                        )
-                    }
-                },
-            )
-
-            Button(
-                onClick = { isScanning = !isScanning },
-                modifier = Modifier.fillMaxWidth(),
-                colors =
-                    if (isScanning) {
-                        ButtonDefaults.buttonColors(
-                            containerColor = MaterialTheme.colorScheme.errorContainer,
-                            contentColor = MaterialTheme.colorScheme.onErrorContainer,
-                        )
-                    } else {
-                        ButtonDefaults.buttonColors()
-                    },
-            ) {
+        // Header: always visible
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
                 Icon(
-                    painter =
-                        painterResource(
-                            if (isScanning) R.drawable.ic_close else R.drawable.ic_nfc,
-                        ),
+                    painter = painterResource(R.drawable.ic_nfc),
                     contentDescription = null,
                     modifier = Modifier.size(24.dp),
+                    tint = MaterialTheme.colorScheme.primary,
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
-                    text =
-                        if (isScanning) {
-                            stringResource(R.string.nfc_trigger_scanning)
-                        } else {
-                            stringResource(R.string.nfc_trigger_scan)
-                        },
+                    text = stringResource(R.string.nfc_editor_header),
+                    style = MaterialTheme.typography.titleLarge,
                 )
             }
-
-            if (isScanning) {
-                Text(
-                    text = stringResource(R.string.nfc_trigger_scanning_hint),
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.primary,
-                )
-            } else if (scanSuccess) {
-                Text(
-                    text = stringResource(R.string.nfc_trigger_scan_success),
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.tertiary,
-                )
-            }
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            Button(
+            TextButton(
                 onClick = {
                     if (displayName.isNotBlank() && uid.isNotBlank()) {
                         isSaving = true
@@ -247,17 +179,85 @@ fun NfcTriggerEditor(
                     }
                 },
                 enabled = displayName.isNotBlank() && uid.isNotBlank() && !isSaving,
-                modifier = Modifier.fillMaxWidth(),
+                colors =
+                    ButtonDefaults.textButtonColors(
+                        contentColor = MaterialTheme.colorScheme.primary,
+                        disabledContentColor = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.38f),
+                    ),
             ) {
                 if (isSaving) {
                     CircularProgressIndicator(
-                        modifier = Modifier.size(24.dp),
-                        color = MaterialTheme.colorScheme.onPrimary,
+                        modifier = Modifier.size(20.dp),
+                        color = MaterialTheme.colorScheme.onSurface,
                     )
                 } else {
-                    Text(stringResource(R.string.nfc_trigger_save))
+                    Text(text = stringResource(R.string.nfc_trigger_save))
                 }
             }
         }
+
+        // Editable fields: always visible
+        OutlinedTextField(
+            value = displayName,
+            onValueChange = { displayName = it },
+            label = { Text(stringResource(R.string.nfc_trigger_name_label)) },
+            placeholder = { Text(stringResource(R.string.nfc_trigger_name_placeholder)) },
+            modifier = Modifier.fillMaxWidth(),
+            singleLine = true,
+            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
+        )
+
+        OutlinedTextField(
+            value = uid,
+            onValueChange = { uid = it },
+            label = { Text(stringResource(R.string.nfc_trigger_uid_label)) },
+            placeholder = { Text("04:AB:12:CD:56:78:90") },
+            modifier = Modifier.fillMaxWidth(),
+            keyboardOptions =
+                KeyboardOptions(
+                    capitalization = KeyboardCapitalization.Characters,
+                    imeAction = ImeAction.Done,
+                ),
+        )
+
+        // Dynamic status messages: centered
+        if (!isNfcAvailable) {
+            Text(
+                text = stringResource(R.string.nfc_not_available),
+                color = MaterialTheme.colorScheme.error,
+                style = MaterialTheme.typography.bodyMedium,
+            )
+        } else if (!isNfcEnabled) {
+            TextButton(
+                onClick = { configNfc(context) },
+            ) {
+                Text(
+                    text = stringResource(R.string.nfc_enable_autodetect),
+                    color = MaterialTheme.colorScheme.error,
+                    style = MaterialTheme.typography.bodyMedium,
+                )
+            }
+        } else {
+            Text(
+                text = stringResource(R.string.nfc_autodetect_hint),
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.primary,
+            )
+            if (scanSuccess) {
+                Text(
+                    text = stringResource(R.string.nfc_trigger_scan_success),
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.tertiary,
+                )
+            }
+        }
     }
+}
+
+fun configNfc(context: Context) {
+    Intent(Settings.ACTION_NFC_SETTINGS)
+        .apply {
+            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        }.takeIf { context.packageManager.resolveActivity(it, 0) != null }
+        ?.let { context.startActivity(it) }
 }

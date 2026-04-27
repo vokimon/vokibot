@@ -42,26 +42,24 @@ command_type_launch_activity: "Aplicació: Obrir pantalla"
 command_type_send_broadcast: "Aplicació: Enviar una notificació"
 command_type_start_service: "Aplicació: Iniciar procés"
 command_type_access_provider: "Aplicació: Accedir a dades"
-nfc_trigger_back: Enrere
+nfc_editor_header: Etiqueta NFC
+nfc_refresh_status: Actualitza l'estat del NFC
+nfc_autodetect_hint: Apropa l'etiqueta al dispositiu per detectar-la automàticament
+nfc_not_available: No s'ha trobat maquinari NFC en aquest dispositiu
+nfc_enable_autodetect: Activa el NFC per a la detecció automàtica
 nfc_trigger_uid_label: UID de l'etiqueta
-nfc_trigger_scan: Escaneja etiqueta NFC
-nfc_trigger_scanning: Atura l'escaneig
-nfc_trigger_scanning_hint: Apropa l'etiqueta al dispositiu
 nfc_trigger_detected: Etiqueta detectada
 nfc_trigger_save: Desa el disparador
-nfc_not_available: No s'ha trobat hardware NFC en aquest dispositiu
-nfc_not_enabled: Activa el NFC a la configuració del sistema
-nfc_trigger_uid_hint: Aquest és l'ID únic de l'etiqueta que has tocat
 nfc_trigger_no_tag: No s'ha detectat cap etiqueta. Toca una etiqueta NFC per veure'n l'ID.
 nfc_trigger_activity_label: Dispara una ordre amb aquest NFC
+nfc_trigger_name_label: Nom per a l'etiqueta
+nfc_trigger_name_placeholder: p. ex. Targeta de bus
+nfc_trigger_scan_success: Etiqueta detectada ✓
 triggerlist_not_found: No hi ha cap disparador configurat
 triggerlist_create_fab_desc: Crea un disparador
 triggerlist_create_title: Crea un disparador
 triggerlist_option_nfc: Etiqueta NFC
 trigger_group_nfc: Etiqueta NFC
-nfc_trigger_name_label: Nom per a l'etiqueta
-nfc_trigger_name_placeholder: p. ex. Targeta de bus
-nfc_trigger_scan_success: Etiqueta detectada ✓
 triggerlist_options_desc: Opcions
 triggerlist_delete: Suprimeix
 triggerlist_delete_title: Suprimir l'etiqueta?
@@ -70,7 +68,7 @@ triggerlist_cancel: Cancel·la
 automation_name_label: Nom de l'automatització
 automation_name_placeholder: p. ex. Rutina matí, Marxo de casa
 automation_trigger_label: Disparador
-automation_trigger_placeholder: "Cap seleccionat"
+automation_trigger_placeholder: Cap seleccionat
 automation_commands_label: Ordres
 automation_commands_empty: Encara no s'han afegit ordres
 automation_add_command: Afegeix una ordre
@@ -93,13 +91,13 @@ nfc_trigger_create_automation: Crea una automatització
 nfc_trigger_name_dialog_title: Anomena aquesta etiqueta
 nfc_trigger_name_dialog_confirm: Desa i continua
 nfc_trigger_name_dialog_cancel: Cancel·la
-automation_trigger_hint: "Toca per seleccionar"
-automation_add_command_desc: "Afegeix una ordre"
-automation_edit_title: "Edita automatització"
-automation_discard_title: "Descartar els canvis?"
-automation_discard_message: "Es perdran els canvis no desats."
-automation_discard_confirm: "Descarta"
-automation_discard_cancel: "Cancel·la"
-automation_done: "Fet"
-automation_hint_trigger: "Selecciona un disparador per continuar"
-automation_hint_commands: "Afegeix almenys una ordre"
+automation_trigger_hint: Toca per seleccionar
+automation_add_command_desc: Afegeix una ordre
+automation_edit_title: Edita automatització
+automation_discard_title: Descartar els canvis?
+automation_discard_message: Es perdran els canvis no desats.
+automation_discard_confirm: Descarta
+automation_discard_cancel: Cancel·la
+automation_done: Fet
+automation_hint_trigger: Selecciona un disparador per continuar
+automation_hint_commands: Afegeix almenys una ordre

@@ -42,26 +42,24 @@ command_type_launch_activity: "Aplikazioa: Pantaila ireki"
 command_type_send_broadcast: "Aplikazioa: Jakinarazpena bidali"
 command_type_start_service: "Aplikazioa: Prozesua abiarazi"
 command_type_access_provider: "Aplikazioa: Datuetara sartu"
-nfc_trigger_back: Atzera
+nfc_editor_header: NFC Etiketa
+nfc_refresh_status: Freskatu NFC egoera
+nfc_autodetect_hint: Hurbildu etiketa gailuara automatikoki detektatzeko
+nfc_not_available: NFC hardwarea ez da aurkitu gailu honetan
+nfc_enable_autodetect: Gaitu NFC detekzio automatikorako
 nfc_trigger_uid_label: Etiketaren UIDa
-nfc_trigger_scan: Eskaneatu NFC etiketa
-nfc_trigger_scanning: Gelditu eskaneatzea
-nfc_trigger_scanning_hint: Hurbildu etiketa gailura
 nfc_trigger_detected: Etiketa detektatua
 nfc_trigger_save: Gorde abiarazlea
-nfc_not_available: Ez da NFC hardwarea aurkitu gailu honetan
-nfc_not_enabled: Gaitu NFC sistemaren ezarpenetan
-nfc_trigger_uid_hint: Hau ukitu duzun etiketaren ID bakarra da
 nfc_trigger_no_tag: Ez da etiketarik detektatu. Ukitu NFC etiketa bat bere IDa ikusteko.
 nfc_trigger_activity_label: Exekutatu komando bat NFC etiketa honekin
+nfc_trigger_name_label: Etiketaren izena
+nfc_trigger_name_placeholder: adib. Bus txartela
+nfc_trigger_scan_success: Etiketa detektatua ✓
 triggerlist_not_found: Ez dago abiarazlerik konfiguratuta
 triggerlist_create_fab_desc: Abiarazlea sortu
 triggerlist_create_title: Abiarazlea sortu
 triggerlist_option_nfc: NFC etiketa
 trigger_group_nfc: NFC etiketa
-nfc_trigger_name_label: Etiketaren izena
-nfc_trigger_name_placeholder: adib. Bus txartela
-nfc_trigger_scan_success: Etiketa detektatua ✓
 triggerlist_options_desc: Aukerak
 triggerlist_delete: Ezabatu
 triggerlist_delete_title: Etiketa ezabatu?
@@ -70,7 +68,7 @@ triggerlist_cancel: Utzi
 automation_name_label: Automatizazioaren izena
 automation_name_placeholder: adib. Goiz errutina, Etxetik atera
 automation_trigger_label: Abiarazlea
-automation_trigger_placeholder: "Bat ere ez da hautatu"
+automation_trigger_placeholder: Bat ere ez da hautatu
 automation_commands_label: Komandoak
 automation_commands_empty: Oraindik ez da komandorik gehitu
 automation_add_command: Gehitu komandoa
@@ -93,13 +91,13 @@ nfc_trigger_create_automation: Automatizazioa sortu
 nfc_trigger_name_dialog_title: Eman izena etiketa honi
 nfc_trigger_name_dialog_confirm: Gorde eta jarraitu
 nfc_trigger_name_dialog_cancel: Utzi
-automation_trigger_hint: "Ukitu hautatzeko"
-automation_add_command_desc: "Gehitu komandoa"
-automation_edit_title: "Editatu automatizazioa"
-automation_discard_title: "Baztertu aldaketak?"
-automation_discard_message: "Gorde gabeko aldaketak galduko dira."
-automation_discard_confirm: "Baztertu"
-automation_discard_cancel: "Utzi"
-automation_done: "Eginda"
-automation_hint_trigger: "Hautatu trigger bat jarraitzeko"
-automation_hint_commands: "Gehitu gutxienez komando bat"
+automation_trigger_hint: Ukitu hautatzeko
+automation_add_command_desc: Gehitu komandoa
+automation_edit_title: Editatu automatizazioa
+automation_discard_title: Baztertu aldaketak?
+automation_discard_message: Gorde gabeko aldaketak galduko dira.
+automation_discard_confirm: Baztertu
+automation_discard_cancel: Utzi
+automation_done: Eginda
+automation_hint_trigger: Hautatu trigger bat jarraitzeko
+automation_hint_commands: Gehitu gutxienez komando bat

@@ -42,26 +42,24 @@ command_type_launch_activity: "Aplicación: Ubrir pantalla"
 command_type_send_broadcast: "Aplicación: Ninviar notificación"
 command_type_start_service: "Aplicación: Prencipiar proceso"
 command_type_access_provider: "Aplicación: Acceder a datos"
-nfc_trigger_back: Taiz
+nfc_editor_header: Etiqueta NFC
+nfc_refresh_status: Esfreixar estau d'o NFC
+nfc_autodetect_hint: Acampa l'etiqueta ta o dispositivo ta autodetectar-la
+nfc_not_available: No s'ha trobau hardware NFC en iste dispositivo
+nfc_enable_autodetect: Activa o NFC ta l'autodetección
 nfc_trigger_uid_label: UID de l'etiqueta
-nfc_trigger_scan: Escanear etiqueta NFC
-nfc_trigger_scanning: Aturar escaneo
-nfc_trigger_scanning_hint: Acerque l'etiqueta a o dispositivo
 nfc_trigger_detected: Etiqueta detectada
 nfc_trigger_save: Alzar disparador
-nfc_not_available: No s'ha trobau hardware NFC en iste dispositivo
-nfc_not_enabled: Activa NFC en a configuración d'o sistema
-nfc_trigger_uid_hint: Iste ye l'ID unico de l'etiqueta que has tocau
 nfc_trigger_no_tag: No s'ha detectau garra etiqueta. Toca una etiqueta NFC ta veyer o suyo ID.
 nfc_trigger_activity_label: Executar una orden con ista etiqueta NFC
+nfc_trigger_name_label: Nombre pa l'etiqueta
+nfc_trigger_name_placeholder: eix. Tarxeta de bus
+nfc_trigger_scan_success: Etiqueta detectada ✓
 triggerlist_not_found: No i ha garra disparador configurau
 triggerlist_create_fab_desc: Crear disparador
 triggerlist_create_title: Crear disparador
 triggerlist_option_nfc: Etiqueta NFC
 trigger_group_nfc: Etiqueta NFC
-nfc_trigger_name_label: Nombre pa l'etiqueta
-nfc_trigger_name_placeholder: eix. Tarxeta de bus
-nfc_trigger_scan_success: Etiqueta detectada ✓
 triggerlist_options_desc: Opcions
 triggerlist_delete: Borrar
 triggerlist_delete_title: Borrar etiqueta?
@@ -70,7 +68,7 @@ triggerlist_cancel: Cancelar
 automation_name_label: Nombre d'a automatización
 automation_name_placeholder: eix. Rutina matin, M'en vaiga de casa
 automation_trigger_label: Disparador
-automation_trigger_placeholder: "Garra seleccionau"
+automation_trigger_placeholder: Garra seleccionau
 automation_commands_label: Órdenes
 automation_commands_empty: Encara no s'han adhibiu órdenes
 automation_add_command: Adhibir orden
@@ -93,13 +91,13 @@ nfc_trigger_create_automation: Crear automatización
 nfc_trigger_name_dialog_title: Poner nombre a ista etiqueta
 nfc_trigger_name_dialog_confirm: Alzar y continar
 nfc_trigger_name_dialog_cancel: Cancelar
-automation_trigger_hint: "Toca ta seleccionar"
-automation_add_command_desc: "Añadir una orden"
-automation_edit_title: "Editar automatización"
-automation_discard_title: "Descartar os cambeos?"
-automation_discard_message: "Se perderán os cambeos no guardaus."
-automation_discard_confirm: "Descartar"
-automation_discard_cancel: "Cancelar"
-automation_done: "Heito"
-automation_hint_trigger: "Selecciona un disparador pa continar"
-automation_hint_commands: "Anyade a lo menos una orden"
+automation_trigger_hint: Toca ta seleccionar
+automation_add_command_desc: Añadir una orden
+automation_edit_title: Editar automatización
+automation_discard_title: Descartar os cambeos?
+automation_discard_message: Se perderán os cambeos no guardaus.
+automation_discard_confirm: Descartar
+automation_discard_cancel: Cancelar
+automation_done: Heito
+automation_hint_trigger: Selecciona un disparador pa continar
+automation_hint_commands: Anyade a lo menos una orden

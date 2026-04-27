@@ -42,26 +42,24 @@ command_type_launch_activity: "Application: Open screen"
 command_type_send_broadcast: "Application: Send notification"
 command_type_start_service: "Application: Start process"
 command_type_access_provider: "Application: Access data"
-nfc_trigger_back: Back
+nfc_editor_header: NFC Tag
+nfc_refresh_status: Refresh NFC status
+nfc_autodetect_hint: Bring the tag close to the device to autodetect
+nfc_not_available: NFC hardware not found on this device
+nfc_enable_autodetect: Enable NFC for autodetection
 nfc_trigger_uid_label: Tag UID
-nfc_trigger_scan: Scan NFC Tag
-nfc_trigger_scanning: Stop Scanning
-nfc_trigger_scanning_hint: Bring tag close to the device
 nfc_trigger_detected: Tag detected
 nfc_trigger_save: Save Trigger
-nfc_not_available: NFC hardware not found on this device
-nfc_not_enabled: Please enable NFC in system settings
-nfc_trigger_uid_hint: This is the unique ID of the tag you tapped
 nfc_trigger_no_tag: No tag detected. Tap an NFC tag to see its ID.
 nfc_trigger_activity_label: Trigger a command with this NFC tag
+nfc_trigger_name_label: Tag name
+nfc_trigger_name_placeholder: e.g. Bus card
+nfc_trigger_scan_success: Tag detected ✓
 triggerlist_not_found: No triggers configured
 triggerlist_create_fab_desc: Create trigger
 triggerlist_create_title: Create Trigger
 triggerlist_option_nfc: NFC Tag
 trigger_group_nfc: NFC Tag
-nfc_trigger_name_label: Tag name
-nfc_trigger_name_placeholder: e.g. Bus card
-nfc_trigger_scan_success: Tag detected ✓
 triggerlist_options_desc: Options
 triggerlist_delete: Delete
 triggerlist_delete_title: Delete tag?
@@ -70,7 +68,7 @@ triggerlist_cancel: Cancel
 automation_name_label: Automation name
 automation_name_placeholder: e.g. Morning routine, Leave home
 automation_trigger_label: Trigger
-automation_trigger_placeholder: "None selected"
+automation_trigger_placeholder: None selected
 automation_commands_label: Commands
 automation_commands_empty: No commands added yet
 automation_add_command: Add Command
@@ -93,13 +91,13 @@ nfc_trigger_create_automation: Create Automation
 nfc_trigger_name_dialog_title: Name this tag
 nfc_trigger_name_dialog_confirm: Save & Continue
 nfc_trigger_name_dialog_cancel: Cancel
-automation_trigger_hint: "Tap to select"
-automation_add_command_desc: "Add command"
-automation_edit_title: "Edit Automation"
-automation_discard_title: "Discard changes?"
-automation_discard_message: "Unsaved changes will be lost."
-automation_discard_confirm: "Discard"
-automation_discard_cancel: "Cancel"
-automation_done: "Done"
-automation_hint_trigger: "Select a trigger to continue"
-automation_hint_commands: "Add at least one command"
+automation_trigger_hint: Tap to select
+automation_add_command_desc: Add command
+automation_edit_title: Edit Automation
+automation_discard_title: Discard changes?
+automation_discard_message: Unsaved changes will be lost.
+automation_discard_confirm: Discard
+automation_discard_cancel: Cancel
+automation_done: Done
+automation_hint_trigger: Select a trigger to continue
+automation_hint_commands: Add at least one command

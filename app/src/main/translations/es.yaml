@@ -42,26 +42,24 @@ command_type_launch_activity: "Aplicación: Abrir pantalla"
 command_type_send_broadcast: "Aplicación: Enviar notificación"
 command_type_start_service: "Aplicación: Iniciar proceso"
 command_type_access_provider: "Aplicación: Acceder a sus datos"
-nfc_trigger_back: Atrás
+nfc_editor_header: Etiqueta NFC
+nfc_refresh_status: Actualizar estado del NFC
+nfc_autodetect_hint: Acerca la etiqueta al dispositivo para detectarla automáticamente
+nfc_not_available: Hardware NFC no encontrado en este dispositivo
+nfc_enable_autodetect: Activa el NFC para la detección automática
 nfc_trigger_uid_label: UID de la etiqueta
-nfc_trigger_scan: Escanear etiqueta NFC
-nfc_trigger_scanning: Detener escaneo
-nfc_trigger_scanning_hint: Acerca la etiqueta al dispositivo
 nfc_trigger_detected: Etiqueta detectada
 nfc_trigger_save: Guardar disparador
-nfc_not_available: No se encontró hardware NFC en este dispositivo
-nfc_not_enabled: Activa NFC en la configuración del sistema
-nfc_trigger_uid_hint: Este es el ID único de la etiqueta que has tocado
 nfc_trigger_no_tag: No se detectó ninguna etiqueta. Toca una etiqueta NFC para ver su ID.
 nfc_trigger_activity_label: Ejecuta un comando con esta etiqueta NFC
+nfc_trigger_name_label: Nombre para la etiqueta
+nfc_trigger_name_placeholder: ej. Tarjeta de bus
+nfc_trigger_scan_success: Etiqueta detectada ✓
 triggerlist_not_found: No hay disparadores configurados
 triggerlist_create_fab_desc: Crear disparador
 triggerlist_create_title: Crear disparador
 triggerlist_option_nfc: Etiqueta NFC
 trigger_group_nfc: Etiqueta NFC
-nfc_trigger_name_label: Nombre para la etiqueta
-nfc_trigger_name_placeholder: ej. Tarjeta de bus
-nfc_trigger_scan_success: Etiqueta detectada ✓
 triggerlist_options_desc: Opciones
 triggerlist_delete: Eliminar
 triggerlist_delete_title: ¿Eliminar etiqueta?
@@ -70,7 +68,7 @@ triggerlist_cancel: Cancelar
 automation_name_label: Nombre de la automatización
 automation_name_placeholder: ej. Rutina mañana, Salgo de casa
 automation_trigger_label: Disparador
-automation_trigger_placeholder: "Ninguno seleccionado"
+automation_trigger_placeholder: Ninguno seleccionado
 automation_commands_label: Comandos
 automation_commands_empty: Aún no se han añadido comandos
 automation_add_command: Añadir comando
@@ -93,13 +91,13 @@ nfc_trigger_create_automation: Crear automatización
 nfc_trigger_name_dialog_title: Nombrar esta etiqueta
 nfc_trigger_name_dialog_confirm: Guardar y continuar
 nfc_trigger_name_dialog_cancel: Cancelar
-automation_trigger_hint: "Toca para seleccionar"
-automation_add_command_desc: "Añadir comando"
-automation_edit_title: "Editar automatización"
-automation_discard_title: "¿Descartar cambios?"
-automation_discard_message: "Se perderán los cambios no guardados."
-automation_discard_confirm: "Descartar"
-automation_discard_cancel: "Cancelar"
-automation_done: "Hecho"
-automation_hint_trigger: "Selecciona un disparador para continuar"
-automation_hint_commands: "Añade al menos un comando"
+automation_trigger_hint: Toca para seleccionar
+automation_add_command_desc: Añadir comando
+automation_edit_title: Editar automatización
+automation_discard_title: ¿Descartar cambios?
+automation_discard_message: Se perderán los cambios no guardados.
+automation_discard_confirm: Descartar
+automation_discard_cancel: Cancelar
+automation_done: Hecho
+automation_hint_trigger: Selecciona un disparador para continuar
+automation_hint_commands: Añade al menos un comando

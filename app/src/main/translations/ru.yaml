@@ -42,26 +42,24 @@ command_type_launch_activity: "Приложение: Открыть экран"
 command_type_send_broadcast: "Приложение: Отправить уведомление"
 command_type_start_service: "Приложение: Запустить процесс"
 command_type_access_provider: "Приложение: Доступ к данным"
-nfc_trigger_back: Назад
+nfc_editor_header: Метка NFC
+nfc_refresh_status: Обновить статус NFC
+nfc_autodetect_hint: Поднесите метку к устройству для автоопределения
+nfc_not_available: На этом устройстве не найдено оборудование NFC
+nfc_enable_autodetect: Включите NFC для автоопределения
 nfc_trigger_uid_label: UID метки
-nfc_trigger_scan: Сканировать NFC-метку
-nfc_trigger_scanning: Остановить сканирование
-nfc_trigger_scanning_hint: Поднесите метку к устройству
 nfc_trigger_detected: Метка обнаружена
 nfc_trigger_save: Сохранить триггер
-nfc_not_available: NFC-оборудование не найдено на этом устройстве
-nfc_not_enabled: Включите NFC в настройках системы
-nfc_trigger_uid_hint: Это уникальный идентификатор метки, которую вы коснулись
 nfc_trigger_no_tag: Метка не обнаружена. Коснитесь NFC-метки, чтобы увидеть её идентификатор.
 nfc_trigger_activity_label: Запустить команду с помощью этой NFC-метки
+nfc_trigger_name_label: Имя для метки
+nfc_trigger_name_placeholder: напр. Проездной
+nfc_trigger_scan_success: Метка обнаружена ✓
 triggerlist_not_found: Триггеры не настроены
 triggerlist_create_fab_desc: Создать триггер
 triggerlist_create_title: Создать триггер
 triggerlist_option_nfc: NFC-метка
 trigger_group_nfc: NFC-метка
-nfc_trigger_name_label: Имя для метки
-nfc_trigger_name_placeholder: напр. Проездной
-nfc_trigger_scan_success: Метка обнаружена ✓
 triggerlist_options_desc: Параметры
 triggerlist_delete: Удалить
 triggerlist_delete_title: Удалить метку?
@@ -70,7 +68,7 @@ triggerlist_cancel: Отмена
 automation_name_label: Название автоматизации
 automation_name_placeholder: напр. Утренний ритуал, Выход из дома
 automation_trigger_label: Триггер
-automation_trigger_placeholder: "Не выбрано"
+automation_trigger_placeholder: Не выбрано
 automation_commands_label: Команды
 automation_commands_empty: Команды еще не добавлены
 automation_add_command: Добавить команду
@@ -93,13 +91,13 @@ nfc_trigger_create_automation: Создать автоматизацию
 nfc_trigger_name_dialog_title: Назовите эту метку
 nfc_trigger_name_dialog_confirm: Сохранить и продолжить
 nfc_trigger_name_dialog_cancel: Отмена
-automation_trigger_hint: "Нажмите, чтобы выбрать"
-automation_add_command_desc: "Добавить команду"
-automation_edit_title: "Редактировать автоматизацию"
-automation_discard_title: "Отменить изменения?"
-automation_discard_message: "Несохранённые изменения будут утеряны."
-automation_discard_confirm: "Отменить"
-automation_discard_cancel: "Отмена"
-automation_done: "Готово"
-automation_hint_trigger: "Выберите триггер для продолжения"
-automation_hint_commands: "Добавьте хотя бы одну команду"
+automation_trigger_hint: Нажмите, чтобы выбрать
+automation_add_command_desc: Добавить команду
+automation_edit_title: Редактировать автоматизацию
+automation_discard_title: Отменить изменения?
+automation_discard_message: Несохранённые изменения будут утеряны.
+automation_discard_confirm: Отменить
+automation_discard_cancel: Отмена
+automation_done: Готово
+automation_hint_trigger: Выберите триггер для продолжения
+automation_hint_commands: Добавьте хотя бы одну команду
