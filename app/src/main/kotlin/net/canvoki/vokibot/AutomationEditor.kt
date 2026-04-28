@@ -157,6 +157,14 @@ data class AutomationEditor(
                     modifier = Modifier.fillMaxWidth().padding(16.dp),
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
+                    val triggerInfo =
+                        remember(triggerId, triggerType) {
+                            if (triggerType == "nfc" && triggerId.isNotBlank()) {
+                                repository.nfcTrigger.load(triggerId)
+                            } else {
+                                null
+                            }
+                        }
                     Icon(
                         painterResource(R.drawable.ic_flash_on),
                         contentDescription = null,
@@ -165,31 +173,16 @@ data class AutomationEditor(
                     )
                     Spacer(Modifier.width(12.dp))
                     Column(Modifier.weight(1f)) {
-                        val triggerName =
-                            remember(triggerId) {
-                                if (triggerType == "nfc" && triggerId.isNotBlank()) {
-                                    repository.nfcTrigger.load(triggerId)?.displayName
-                                } else {
-                                    null
-                                }
-                            }
                         Text(
-                            text = triggerName ?: stringResource(R.string.automation_trigger_placeholder),
+                            text = triggerInfo?.displayName ?: stringResource(R.string.automation_trigger_placeholder),
                             style = MaterialTheme.typography.bodyLarge,
-                            color =
-                                if (triggerId.isNotBlank()) {
-                                    MaterialTheme.colorScheme.onSurface
-                                } else {
-                                    MaterialTheme.colorScheme.primary
-                                },
+                            color = MaterialTheme.colorScheme.primary,
                         )
-                        if (triggerId.isBlank()) {
-                            Text(
-                                stringResource(R.string.automation_trigger_hint),
-                                style = MaterialTheme.typography.labelSmall,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                            )
-                        }
+                        Text(
+                            text = triggerInfo?.uid ?: stringResource(R.string.automation_trigger_hint),
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
                     }
                 }
             }
