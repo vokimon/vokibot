@@ -38,8 +38,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import kotlinx.serialization.Serializable
-import net.canvoki.shared.component.spike.StackNavigatorState
-import net.canvoki.shared.component.spike.StackedScreen
+import net.canvoki.shared.component.StackNavigatorState
+import net.canvoki.shared.component.StackedScreen
 
 @Serializable
 data class AutomationEditor(

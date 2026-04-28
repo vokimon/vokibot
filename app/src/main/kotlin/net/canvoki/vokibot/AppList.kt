@@ -45,9 +45,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.Serializable
 import net.canvoki.shared.component.AsyncList
+import net.canvoki.shared.component.StackNavigatorState
+import net.canvoki.shared.component.StackedScreen
 import net.canvoki.shared.component.preferences.rememberMutablePreference
-import net.canvoki.shared.component.spike.StackNavigatorState
-import net.canvoki.shared.component.spike.StackedScreen
 import net.canvoki.vokibot.R
 
 data class AppInfo(

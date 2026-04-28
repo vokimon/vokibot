@@ -30,8 +30,8 @@ import androidx.compose.ui.unit.dp
 import androidx.core.graphics.drawable.toBitmap
 import kotlinx.serialization.Serializable
 import net.canvoki.shared.component.AsyncList
-import net.canvoki.shared.component.spike.StackNavigatorState
-import net.canvoki.shared.component.spike.StackedScreen
+import net.canvoki.shared.component.StackNavigatorState
+import net.canvoki.shared.component.StackedScreen
 
 @Serializable data class AppComponentList(
     val packageName: String,

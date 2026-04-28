@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import net.canvoki.shared.component.AppScaffold
-import net.canvoki.shared.component.spike.StackNavigator
+import net.canvoki.shared.component.StackNavigator
 
 class AutomationEditorActivity : ComponentActivity() {
     private var createdAutomationId: String? = null

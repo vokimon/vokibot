@@ -47,6 +47,7 @@ kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-cor
 # Kotlinx Serialization BOM
 kotlinx-serialization-bom = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-bom", version.ref = "kotlinx-serialization-bom" }
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json" }
+kotlin-reflect = { group = "org.jetbrains.kotlin", name = "kotlin-reflect", version.ref = "kotlin" }
 
 # AndroidX (no-BOM)
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidx-core-ktx" }

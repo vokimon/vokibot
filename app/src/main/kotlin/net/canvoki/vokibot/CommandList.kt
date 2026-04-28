@@ -38,8 +38,8 @@ import kotlinx.serialization.Serializable
 import net.canvoki.shared.component.AsyncList
 import net.canvoki.shared.component.ChooserDialog
 import net.canvoki.shared.component.ChooserOption
-import net.canvoki.shared.component.spike.StackNavigatorState
-import net.canvoki.shared.component.spike.StackedScreen
+import net.canvoki.shared.component.StackNavigatorState
+import net.canvoki.shared.component.StackedScreen
 
 @Serializable
 data object CommandList : StackedScreen<String>() {
