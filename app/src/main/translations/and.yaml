@@ -42,10 +42,14 @@ command_type_launch_activity: "Aplicaçión: Abrîh pantaya"
 command_type_send_broadcast: "Aplicaçión: Embiâh notificaçión"
 command_type_start_service: "Aplicaçión: Iniçiâh proçeço"
 command_type_access_provider: "Aplicaçión: Âççedêh a çû datô"
+nfc_editor_header: Etiqueta NFC
 nfc_editor_save: Guardâh dîpparadôh
 nfc_editor_name_label: Nombre pa la etiqueta
 nfc_editor_name_placeholder: ej. Tarheta de bûh
 nfc_editor_uid_label: UÎH de la etiqueta
+nfc_editor_not_available: Êtte dîppoçitibo no tiene çoporte pa NFC
+nfc_editor_enable_to_autodetect: Âttiba er NFC pa autodetêttâh
+nfc_editor_autodetect_hint: Açerca la etiqueta pa autodetêttâh
 nfc_editor_scan_success: Etiqueta detêttá ✓
 nfc_trigger_detected: Etiqueta detêttá
 nfc_trigger_no_tag: No çe detêttó ninguna etiqueta. Toca una etiqueta NFC pa bêh çu ID.
@@ -86,3 +90,13 @@ automationlist_delete_message: Êtta âççión no çe puede deçaçêh.
 automationlist_cancel: Cançelâh
 automation_type_automation: Regla de automatiçaçión
 automation_group_automation: Reglâ de automatiçaçión
+automation_trigger_hint: Toca pa çelêççionâh
+automation_add_command_desc: Añadîh comando
+automation_edit_title: Editâh automatiçaçión
+automation_discard_title: ¿Dêccartâh cambiô?
+automation_discard_message: Çe perderán lô cambiô no guardáô.
+automation_discard_confirm: Dêccartâh
+automation_discard_cancel: Cançelâh
+automation_done: Exo
+automation_hint_trigger: Çelêççiona un dîpparadôh pa continuâh
+automation_hint_commands: Añade ar menô un comando
