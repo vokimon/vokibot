@@ -77,9 +77,10 @@ fun TriggerList(
                         tint = MaterialTheme.colorScheme.primary,
                     )
                 },
-                modifier = Modifier.clickable {
-                    nav.pop(Pair("nfc", trigger.id))
-                },
+                modifier =
+                    Modifier.clickable {
+                        nav.pop(Pair("nfc", trigger.id))
+                    },
                 trailingContent = {
                     IconButton(onClick = { menuExpanded = true }) {
                         Icon(
@@ -158,9 +159,8 @@ fun TriggerList(
             onConfirm = { triggerType ->
                 showTypeChooser = false
                 if (triggerType == "nfc") {
-                    nav.push(NfcTriggerEditor) { refreshCounter++}
+                    nav.push(NfcTriggerEditor) { refreshCounter++ }
                 }
-
             },
             onDismiss = {
                 showTypeChooser = false
