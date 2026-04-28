@@ -253,8 +253,8 @@ private fun NfcUidDisplayScreen(
                     OutlinedTextField(
                         value = triggerNameInput,
                         onValueChange = { triggerNameInput = it },
-                        label = { Text(stringResource(R.string.nfc_trigger_name_label)) },
-                        placeholder = { Text(stringResource(R.string.nfc_trigger_name_placeholder)) },
+                        label = { Text(stringResource(R.string.nfc_editor_name_label)) },
+                        placeholder = { Text(stringResource(R.string.nfc_editor_name_placeholder)) },
                         singleLine = true,
                         keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Words),
                     )

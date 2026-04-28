@@ -43,17 +43,17 @@ command_type_send_broadcast: "Aplikazioa: Jakinarazpena bidali"
 command_type_start_service: "Aplikazioa: Prozesua abiarazi"
 command_type_access_provider: "Aplikazioa: Datuetara sartu"
 nfc_editor_header: NFC Etiketa
-nfc_trigger_enable_to_autodetect: Gaitu NFC automatikoki detektatzeko
-nfc_trigger_not_available: Gailu honek ez du NFC euskarririk
-nfc_trigger_autodetect_hint: Hurbildu etiketa automatikoki detektatzeko
-nfc_trigger_uid_label: Etiketaren UIDa
+nfc_editor_save: Gorde
+nfc_editor_name_label: Etiketaren izena
+nfc_editor_name_placeholder: adib. Bus txartela
+nfc_editor_uid_label: Etiketaren UIDa
+nfc_editor_not_available: Gailu honek ez du NFC euskarririk
+nfc_editor_enable_to_autodetect: Gaitu NFC automatikoki detektatzeko
+nfc_editor_autodetect_hint: Hurbildu etiketa automatikoki detektatzeko
+nfc_editor_scan_success: Etiketa detektatua ✓
 nfc_trigger_detected: Etiketa detektatua
-nfc_trigger_save: Gorde abiarazlea
 nfc_trigger_no_tag: Ez da etiketarik detektatu. Ukitu NFC etiketa bat bere IDa ikusteko.
 nfc_trigger_activity_label: Exekutatu komando bat NFC etiketa honekin
-nfc_trigger_name_label: Etiketaren izena
-nfc_trigger_name_placeholder: adib. Bus txartela
-nfc_trigger_scan_success: Etiketa detektatua ✓
 nfc_trigger_searching: Automatizazioa bilatzen…
 nfc_trigger_executing: Automatizazioa exekutatzen…
 nfc_trigger_not_registered: Etiketa hau ez dago erregistratuta

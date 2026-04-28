@@ -43,17 +43,17 @@ command_type_send_broadcast: "التطبيق: إرسال إشعار"
 command_type_start_service: "التطبيق: بدء عملية"
 command_type_access_provider: "التطبيق: الوصول إلى البيانات"
 nfc_editor_header: علامة NFC
-nfc_trigger_enable_to_autodetect: فعّل NFC للكشف التلقائي
-nfc_trigger_not_available: هذا الجهاز لا يدعم تقنية NFC
-nfc_trigger_autodetect_hint: قرب البطاقة للكشف التلقائي
-nfc_trigger_uid_label: معرف العلامة
+nfc_editor_save: حفظ
+nfc_editor_name_label: اسم العلامة
+nfc_editor_name_placeholder: 'مثال: بطاقة الحافلة'
+nfc_editor_uid_label: معرف العلامة
+nfc_editor_not_available: هذا الجهاز لا يدعم تقنية NFC
+nfc_editor_enable_to_autodetect: فعّل NFC للكشف التلقائي
+nfc_editor_autodetect_hint: قرب البطاقة للكشف التلقائي
+nfc_editor_scan_success: تم اكتشاف البطاقة ✓
 nfc_trigger_detected: تم اكتشاف العلامة
-nfc_trigger_save: حفظ المشغل
 nfc_trigger_no_tag: لم يتم اكتشاف علامة. انقر على علامة NFC لعرض معرفها.
 nfc_trigger_activity_label: تشغيل أمر باستخدام بطاقة NFC هذه
-nfc_trigger_name_label: اسم العلامة
-nfc_trigger_name_placeholder: 'مثال: بطاقة الحافلة'
-nfc_trigger_scan_success: تم اكتشاف البطاقة ✓
 nfc_trigger_searching: البحث عن أتمتة…
 nfc_trigger_executing: تشغيل الأتمتة…
 nfc_trigger_not_registered: هذه العلامة غير مسجلة

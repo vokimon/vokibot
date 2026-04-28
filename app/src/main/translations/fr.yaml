@@ -43,17 +43,17 @@ command_type_send_broadcast: "Application : Envoyer une notification"
 command_type_start_service: "Application : Démarrer un processus"
 command_type_access_provider: "Application : Accéder aux données"
 nfc_editor_header: Étiquette NFC
-nfc_trigger_enable_to_autodetect: Activez le NFC pour la détection automatique
-nfc_trigger_not_available: Cet appareil ne prend pas en charge le NFC
-nfc_trigger_autodetect_hint: Approchez l'étiquette pour autodétecter
-nfc_trigger_uid_label: UID de l'étiquette
+nfc_editor_save: Enregistrer
+nfc_editor_name_label: Nom de l'étiquette
+nfc_editor_name_placeholder: ex. Carte de bus
+nfc_editor_uid_label: UID de l'étiquette
+nfc_editor_not_available: Cet appareil ne prend pas en charge le NFC
+nfc_editor_enable_to_autodetect: Activez le NFC pour la détection automatique
+nfc_editor_autodetect_hint: Approchez l'étiquette pour autodétecter
+nfc_editor_scan_success: Étiquette détectée ✓
 nfc_trigger_detected: Étiquette détectée
-nfc_trigger_save: Enregistrer le déclencheur
 nfc_trigger_no_tag: Aucune étiquette détectée. Touchez une étiquette NFC pour voir son ID.
 nfc_trigger_activity_label: Exécutez une commande avec cette étiquette NFC
-nfc_trigger_name_label: Nom de l'étiquette
-nfc_trigger_name_placeholder: ex. Carte de bus
-nfc_trigger_scan_success: Étiquette détectée ✓
 nfc_trigger_searching: Recherche d'automatisation…
 nfc_trigger_executing: Exécution de l'automatisation…
 nfc_trigger_not_registered: Cette étiquette n'est pas enregistrée

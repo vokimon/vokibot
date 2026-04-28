@@ -43,17 +43,17 @@ command_type_send_broadcast: "Aplicativo: Enviar notificação"
 command_type_start_service: "Aplicativo: Iniciar processo"
 command_type_access_provider: "Aplicativo: Acessar dados"
 nfc_editor_header: Etiqueta NFC
-nfc_trigger_enable_to_autodetect: Ative o NFC para detetar automaticamente
-nfc_trigger_not_available: Este dispositivo não tem suporte para NFC
-nfc_trigger_autodetect_hint: Aproxime a etiqueta para detetar automaticamente
-nfc_trigger_uid_label: UID da etiqueta
+nfc_editor_save: Guardar
+nfc_editor_name_label: Nome da etiqueta
+nfc_editor_name_placeholder: ex. Cartão de ônibus
+nfc_editor_uid_label: UID da etiqueta
+nfc_editor_not_available: Este dispositivo não tem suporte para NFC
+nfc_editor_enable_to_autodetect: Ative o NFC para detetar automaticamente
+nfc_editor_autodetect_hint: Aproxime a etiqueta para detetar automaticamente
+nfc_editor_scan_success: Etiqueta detetada ✓
 nfc_trigger_detected: Etiqueta detectada
-nfc_trigger_save: Salvar gatilho
 nfc_trigger_no_tag: Nenhuma etiqueta detectada. Toque em uma etiqueta NFC para ver seu ID.
 nfc_trigger_activity_label: Executar um comando com esta etiqueta NFC
-nfc_trigger_name_label: Nome da etiqueta
-nfc_trigger_name_placeholder: ex. Cartão de ônibus
-nfc_trigger_scan_success: Etiqueta detetada ✓
 nfc_trigger_searching: Procurando automação…
 nfc_trigger_executing: Executando automação…
 nfc_trigger_not_registered: Esta etiqueta não está registrada
