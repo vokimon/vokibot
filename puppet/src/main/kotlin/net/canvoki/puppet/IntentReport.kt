@@ -35,9 +35,11 @@ fun IntentReport(activityName: String, intent: Intent) {
             val extras = intent.extras
             if (extras != null && !extras.isEmpty) {
                 for (key in extras.keySet()) {
-                    val value = extras[key]?.toString() ?: "null"
-                    val type = extras[key]?.javaClass?.simpleName
-                    Text("  $key (${type}) = $value")
+                    @Suppress("DEPRECATION")
+                    val value = intent.extras?.get(key)
+                    val valueString = value?.toString() ?: "null"
+                    val type = value?.javaClass?.simpleName
+                    Text("  $key (${type}) = $valueString")
                 }
             } else {
                 Text("  (none)")
