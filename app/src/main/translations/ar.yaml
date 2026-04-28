@@ -17,7 +17,6 @@ app_list_filter_category_other: أخرى
 intent_editor_action_label: إجراء
 intent_editor_custom_or_none: مخصص أو لا شيء
 intent_editor_action_string_optional: سلسلة الإجراء (اختياري)
-intent_editor_save_command_title: حفظ الأمر
 intent_editor_command_name_label: اسم الأمر
 intent_editor_save: حفظ
 intent_editor_cancel: إلغاء
@@ -34,8 +33,6 @@ commandlist_launch_app_option: تشغيل تطبيق
 commandlist_run: تشغيل
 commandlist_remove: إزالة
 commandlist_options_desc: خيارات
-commandlist_delete_title: حذف الأمر؟
-commandlist_delete_message: لا يمكن التراجع عن هذا الإجراء.
 commandlist_delete: حذف
 commandlist_cancel: إلغاء
 command_type_launch_activity: "التطبيق: فتح شاشة"
@@ -66,37 +63,30 @@ triggerlist_not_found: لم يتم تكوين أي مشغلات
 triggerlist_create_fab_desc: إنشاء مشغل
 triggerlist_create_title: إنشاء مشغل
 triggerlist_option_nfc: علامة NFC
-trigger_group_nfc: علامة NFC
 triggerlist_options_desc: خيارات
 triggerlist_delete: حذف
-triggerlist_delete_title: حذف العلامة؟
-triggerlist_delete_message: لا يمكن التراجع عن هذا الإجراء.
 triggerlist_cancel: إلغاء
+trigger_group_nfc: علامة NFC
+automation_header: أتمتة
 automation_name_label: اسم الأتمتة
 automation_name_placeholder: 'مثال: روتين الصباح، مغادرة المنزل'
 automation_trigger_label: المشغل
 automation_trigger_placeholder: لم يتم اختيار أيّ
 automation_commands_label: الأوامر
 automation_commands_empty: لم تتم إضافة أي أوامر بعد
-automation_add_command: إضافة أمر
 automation_remove_command_desc: إزالة الأمر
-automation_save: حفظ الأتمتة
 automationlist_not_found: لم يتم تكوين أي أتمتة
 automationlist_create_fab_desc: إنشاء أتمتة
 automationlist_options_desc: خيارات
 automationlist_delete: حذف
-automationlist_delete_title: حذف الأتمتة؟
 automationlist_delete_message: لا يمكن التراجع عن هذا الإجراء.
 automationlist_cancel: إلغاء
 automation_type_automation: قاعدة أتمتة
 automation_group_automation: قواعد الأتمتة
 automation_trigger_hint: انقر للاختيار
 automation_add_command_desc: إضافة أمر
-automation_edit_title: تعديل الأتمتة
 automation_discard_title: هل تريد تجاهل التغييرات؟
 automation_discard_message: ستفقد التغييرات غير المحفوظة.
 automation_discard_confirm: تجاهل
 automation_discard_cancel: إلغاء
 automation_done: تم
-automation_hint_trigger: حدد مشغلاً للمتابعة
-automation_hint_commands: أضف أمرًا واحدًا على الأقل

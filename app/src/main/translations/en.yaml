@@ -17,7 +17,6 @@ app_list_filter_category_other: Other
 intent_editor_action_label: Action
 intent_editor_custom_or_none: Custom or none
 intent_editor_action_string_optional: Action string (optional)
-intent_editor_save_command_title: Save Command
 intent_editor_command_name_label: Command name
 intent_editor_save: Save
 intent_editor_cancel: Cancel
@@ -34,8 +33,6 @@ commandlist_launch_app_option: Launch an Application
 commandlist_run: Run
 commandlist_remove: Remove
 commandlist_options_desc: Options
-commandlist_delete_title: Delete Command?
-commandlist_delete_message: This action cannot be undone.
 commandlist_delete: Delete
 commandlist_cancel: Cancel
 command_type_launch_activity: "Application: Open screen"
@@ -66,37 +63,30 @@ triggerlist_not_found: No triggers configured
 triggerlist_create_fab_desc: Create trigger
 triggerlist_create_title: Create Trigger
 triggerlist_option_nfc: NFC Tag
-trigger_group_nfc: NFC Tag
 triggerlist_options_desc: Options
 triggerlist_delete: Delete
-triggerlist_delete_title: Delete tag?
-triggerlist_delete_message: This action cannot be undone.
 triggerlist_cancel: Cancel
+trigger_group_nfc: NFC Tag
+automation_header: Automation
 automation_name_label: Automation name
 automation_name_placeholder: e.g. Morning routine, Leave home
 automation_trigger_label: Trigger
 automation_trigger_placeholder: None selected
 automation_commands_label: Commands
 automation_commands_empty: No commands added yet
-automation_add_command: Add Command
 automation_remove_command_desc: Remove command
-automation_save: Save Automation
 automationlist_not_found: No automations configured
 automationlist_create_fab_desc: Create automation
 automationlist_options_desc: Options
 automationlist_delete: Delete
-automationlist_delete_title: Delete automation?
 automationlist_delete_message: This action cannot be undone.
 automationlist_cancel: Cancel
 automation_type_automation: Automation Rule
 automation_group_automation: Automation Rules
 automation_trigger_hint: Tap to select
 automation_add_command_desc: Add command
-automation_edit_title: Edit Automation
 automation_discard_title: Discard changes?
 automation_discard_message: Unsaved changes will be lost.
 automation_discard_confirm: Discard
 automation_discard_cancel: Cancel
 automation_done: Done
-automation_hint_trigger: Select a trigger to continue
-automation_hint_commands: Add at least one command

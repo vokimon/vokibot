@@ -17,7 +17,6 @@ app_list_filter_category_other: Altres
 intent_editor_action_label: Acció
 intent_editor_custom_or_none: Personalitzada o cap
 intent_editor_action_string_optional: Cadena d'acció (opcional)
-intent_editor_save_command_title: Desa l'ordre
 intent_editor_command_name_label: Nom de l'ordre
 intent_editor_save: Desa
 intent_editor_cancel: Cancel·la
@@ -34,8 +33,6 @@ commandlist_launch_app_option: Executa una aplicació
 commandlist_run: Executa
 commandlist_remove: Suprimeix
 commandlist_options_desc: Opcions
-commandlist_delete_title: Realment vols suprimir l'ordre?
-commandlist_delete_message: Aquesta acció no es pot desfer.
 commandlist_delete: Suprimir
 commandlist_cancel: Cancel·la
 command_type_launch_activity: "Aplicació: Obrir pantalla"
@@ -66,37 +63,30 @@ triggerlist_not_found: No hi ha cap disparador configurat
 triggerlist_create_fab_desc: Crea un disparador
 triggerlist_create_title: Crea un disparador
 triggerlist_option_nfc: Etiqueta NFC
-trigger_group_nfc: Etiqueta NFC
 triggerlist_options_desc: Opcions
 triggerlist_delete: Suprimeix
-triggerlist_delete_title: Suprimir l'etiqueta?
-triggerlist_delete_message: Aquesta acció no es pot desfer.
 triggerlist_cancel: Cancel·la
+trigger_group_nfc: Etiqueta NFC
+automation_header: Automatització
 automation_name_label: Nom de l'automatització
 automation_name_placeholder: p. ex. Rutina matí, Marxo de casa
 automation_trigger_label: Disparador
 automation_trigger_placeholder: Cap seleccionat
 automation_commands_label: Ordres
 automation_commands_empty: Encara no s'han afegit ordres
-automation_add_command: Afegeix una ordre
 automation_remove_command_desc: Suprimeix l'ordre
-automation_save: Desa l'automatització
 automationlist_not_found: No hi ha automatitzacions configurades
 automationlist_create_fab_desc: Crea una automatització
 automationlist_options_desc: Opcions
 automationlist_delete: Suprimeix
-automationlist_delete_title: Suprimir l'automatització?
 automationlist_delete_message: Aquesta acció no es pot desfer.
 automationlist_cancel: Cancel·la
 automation_type_automation: Regla d'automatització
 automation_group_automation: Regles d'automatització
 automation_trigger_hint: Toca per seleccionar
 automation_add_command_desc: Afegeix una ordre
-automation_edit_title: Edita automatització
 automation_discard_title: Descartar els canvis?
 automation_discard_message: Es perdran els canvis no desats.
 automation_discard_confirm: Descarta
 automation_discard_cancel: Cancel·la
 automation_done: Fet
-automation_hint_trigger: Selecciona un disparador per continuar
-automation_hint_commands: Afegeix almenys una ordre

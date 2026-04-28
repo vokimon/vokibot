@@ -41,6 +41,7 @@ import androidx.compose.ui.unit.dp
 import kotlinx.serialization.Serializable
 import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
+import net.canvoki.vokibot.common.EditorHeader
 
 @Serializable
 data class AutomationEditor(
@@ -108,18 +109,18 @@ data class AutomationEditor(
                     .verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
-            TextButton(
-                onClick = {
+            EditorHeader(
+                title = stringResource(R.string.automation_header),
+                icon = painterResource(R.drawable.ic_brand),
+                actionText = stringResource(R.string.automation_done),
+                action = {
                     val automation = Automation(name.trim(), triggerType, triggerId, commandIds)
                     repository.automation.save(automation)
                     isDirty = false
                     nav.pop()
                 },
-                enabled = triggerId.isNotBlank() && commandIds.isNotEmpty(),
-                modifier = Modifier.align(Alignment.End),
-            ) {
-                Text(stringResource(R.string.automation_done))
-            }
+                actionEnabled = triggerId.isNotBlank() && commandIds.isNotEmpty(),
+            )
 
             OutlinedTextField(
                 value = name,

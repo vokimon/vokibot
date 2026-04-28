@@ -17,7 +17,6 @@ app_list_filter_category_other: Otrâ
 intent_editor_action_label: Âççión
 intent_editor_custom_or_none: Perçonaliçá o ninguna
 intent_editor_action_string_optional: Cadena de âççión (ôççionâh)
-intent_editor_save_command_title: Guardâh comando
 intent_editor_command_name_label: Nombre der comando
 intent_editor_save: Guardâh
 intent_editor_cancel: Cançelâh
@@ -34,8 +33,6 @@ commandlist_launch_app_option: Ehecutâh una aplicaçión
 commandlist_run: Ehecutâh
 commandlist_remove: Eliminâh
 commandlist_options_desc: Ôççionê
-commandlist_delete_title: ¿Eliminâh comando?
-commandlist_delete_message: Êtta âççión no çe puede deçaçêh.
 commandlist_delete: Eliminâh
 commandlist_cancel: Cançelâh
 command_type_launch_activity: "Aplicaçión: Abrîh pantaya"
@@ -66,37 +63,29 @@ triggerlist_not_found: No ay dîpparadorê configuráô
 triggerlist_create_fab_desc: Creâh dîpparadôh
 triggerlist_create_title: Creâh dîpparadôh
 triggerlist_option_nfc: Etiqueta NFC
-trigger_group_nfc: Etiqueta NFC
 triggerlist_options_desc: Ôççionê
 triggerlist_delete: Eliminâh
-triggerlist_delete_title: ¿Eliminâh etiqueta?
-triggerlist_delete_message: Êtta âççión no çe puede deçaçêh.
 triggerlist_cancel: Cançelâh
+trigger_group_nfc: Etiqueta NFC
 automation_name_label: Nombre de la automatiçaçión
 automation_name_placeholder: ej. Rutina mañana, Çargo de caça
 automation_trigger_label: Dîpparadôh
 automation_trigger_placeholder: Toca pa çelêççionâh un dîpparadôh
 automation_commands_label: Comandô
 automation_commands_empty: Aún no çe an añadío comandô
-automation_add_command: Añadîh comando
 automation_remove_command_desc: Eliminâh comando
-automation_save: Guardâh automatiçaçión
 automationlist_not_found: No ay automatiçaçionê configurâh
 automationlist_create_fab_desc: Creâh automatiçaçión
 automationlist_options_desc: Ôççionê
 automationlist_delete: Eliminâh
-automationlist_delete_title: ¿Eliminâh automatiçaçión?
 automationlist_delete_message: Êtta âççión no çe puede deçaçêh.
 automationlist_cancel: Cançelâh
 automation_type_automation: Regla de automatiçaçión
 automation_group_automation: Reglâ de automatiçaçión
 automation_trigger_hint: Toca pa çelêççionâh
 automation_add_command_desc: Añadîh comando
-automation_edit_title: Editâh automatiçaçión
 automation_discard_title: ¿Dêccartâh cambiô?
 automation_discard_message: Çe perderán lô cambiô no guardáô.
 automation_discard_confirm: Dêccartâh
 automation_discard_cancel: Cançelâh
 automation_done: Exo
-automation_hint_trigger: Çelêççiona un dîpparadôh pa continuâh
-automation_hint_commands: Añade ar menô un comando

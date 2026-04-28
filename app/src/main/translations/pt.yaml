@@ -17,7 +17,6 @@ app_list_filter_category_other: Outras
 intent_editor_action_label: Ação
 intent_editor_custom_or_none: Personalizada ou nenhuma
 intent_editor_action_string_optional: String de ação (opcional)
-intent_editor_save_command_title: Salvar comando
 intent_editor_command_name_label: Nome do comando
 intent_editor_save: Salvar
 intent_editor_cancel: Cancelar
@@ -34,8 +33,6 @@ commandlist_launch_app_option: Abrir um aplicativo
 commandlist_run: Executar
 commandlist_remove: Remover
 commandlist_options_desc: Opções
-commandlist_delete_title: Excluir comando?
-commandlist_delete_message: Esta ação não pode ser desfeita.
 commandlist_delete: Excluir
 commandlist_cancel: Cancelar
 command_type_launch_activity: "Aplicativo: Abrir tela"
@@ -66,37 +63,30 @@ triggerlist_not_found: Nenhum gatilho configurado
 triggerlist_create_fab_desc: Criar gatilho
 triggerlist_create_title: Criar gatilho
 triggerlist_option_nfc: Etiqueta NFC
-trigger_group_nfc: Etiqueta NFC
 triggerlist_options_desc: Opções
 triggerlist_delete: Excluir
-triggerlist_delete_title: Excluir etiqueta?
-triggerlist_delete_message: Esta ação não pode ser desfeita.
 triggerlist_cancel: Cancelar
+trigger_group_nfc: Etiqueta NFC
+automation_header: Automatização
 automation_name_label: Nome da automação
 automation_name_placeholder: ex. Rotina da manhã, Sair de casa
 automation_trigger_label: Gatilho
 automation_trigger_placeholder: Nenhum selecionado
 automation_commands_label: Comandos
 automation_commands_empty: Nenhum comando adicionado ainda
-automation_add_command: Adicionar comando
 automation_remove_command_desc: Remover comando
-automation_save: Salvar automação
 automationlist_not_found: Nenhuma automação configurada
 automationlist_create_fab_desc: Criar automação
 automationlist_options_desc: Opções
 automationlist_delete: Excluir
-automationlist_delete_title: Excluir automação?
 automationlist_delete_message: Esta ação não pode ser desfeita.
 automationlist_cancel: Cancelar
 automation_type_automation: Regra de automação
 automation_group_automation: Regras de automação
 automation_trigger_hint: Toque para selecionar
 automation_add_command_desc: Adicionar comando
-automation_edit_title: Editar automação
 automation_discard_title: Descartar alterações?
 automation_discard_message: As alterações não guardadas serão perdidas.
 automation_discard_confirm: Descartar
 automation_discard_cancel: Cancelar
 automation_done: Concluído
-automation_hint_trigger: Selecione um acionador para continuar
-automation_hint_commands: Adicione pelo menos um comando

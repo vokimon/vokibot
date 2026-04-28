@@ -7,18 +7,12 @@ import android.provider.Settings
 import androidx.activity.ComponentActivity
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -48,6 +42,7 @@ import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
 import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
+import net.canvoki.vokibot.common.EditorHeader
 
 @Serializable
 data object NfcTriggerEditor : StackedScreen<Unit>() {
@@ -134,56 +129,26 @@ data object NfcTriggerEditor : StackedScreen<Unit>() {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
-            // Header: always visible
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Icon(
-                        painter = painterResource(R.drawable.ic_nfc),
-                        contentDescription = null,
-                        modifier = Modifier.size(24.dp),
-                        tint = MaterialTheme.colorScheme.primary,
-                    )
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Text(
-                        text = stringResource(R.string.nfc_editor_header),
-                        style = MaterialTheme.typography.titleLarge,
-                    )
-                }
-                TextButton(
-                    onClick = {
-                        if (displayName.isNotBlank() && uid.isNotBlank()) {
-                            isSaving = true
-                            val trigger =
-                                NfcTrigger(
-                                    displayName = displayName.trim(),
-                                    uid = uid.trim(),
-                                )
-                            repository.nfcTrigger.save(trigger)
-                            isSaving = false
-                            nav.pop()
-                        }
-                    },
-                    enabled = displayName.isNotBlank() && uid.isNotBlank() && !isSaving,
-                    colors =
-                        ButtonDefaults.textButtonColors(
-                            contentColor = MaterialTheme.colorScheme.primary,
-                            disabledContentColor = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.38f),
-                        ),
-                ) {
-                    if (isSaving) {
-                        CircularProgressIndicator(
-                            modifier = Modifier.size(20.dp),
-                            color = MaterialTheme.colorScheme.onSurface,
-                        )
-                    } else {
-                        Text(text = stringResource(R.string.nfc_editor_save))
+            EditorHeader(
+                icon = painterResource(R.drawable.ic_nfc),
+                title = stringResource(R.string.nfc_editor_header),
+                actionText = stringResource(R.string.nfc_editor_save),
+                actionEnabled = displayName.isNotBlank() && uid.isNotBlank() && !isSaving,
+                actionIsRunning = isSaving,
+                action = {
+                    if (displayName.isNotBlank() && uid.isNotBlank()) {
+                        isSaving = true
+                        val trigger =
+                            NfcTrigger(
+                                displayName = displayName.trim(),
+                                uid = uid.trim(),
+                            )
+                        repository.nfcTrigger.save(trigger)
+                        isSaving = false
+                        nav.pop()
                     }
-                }
-            }
+                },
+            )
 
             // Editable fields: always visible
             OutlinedTextField(

@@ -17,7 +17,6 @@ app_list_filter_category_other: Другие
 intent_editor_action_label: Действие
 intent_editor_custom_or_none: Пользовательское или нет
 intent_editor_action_string_optional: Строка действия (необязательно)
-intent_editor_save_command_title: Сохранить команду
 intent_editor_command_name_label: Название команды
 intent_editor_save: Сохранить
 intent_editor_cancel: Отмена
@@ -34,8 +33,6 @@ commandlist_launch_app_option: Запустить приложение
 commandlist_run: Запустить
 commandlist_remove: Удалить
 commandlist_options_desc: Параметры
-commandlist_delete_title: Удалить команду?
-commandlist_delete_message: Это действие нельзя отменить.
 commandlist_delete: Удалить
 commandlist_cancel: Отмена
 command_type_launch_activity: "Приложение: Открыть экран"
@@ -66,37 +63,30 @@ triggerlist_not_found: Триггеры не настроены
 triggerlist_create_fab_desc: Создать триггер
 triggerlist_create_title: Создать триггер
 triggerlist_option_nfc: NFC-метка
-trigger_group_nfc: NFC-метка
 triggerlist_options_desc: Параметры
 triggerlist_delete: Удалить
-triggerlist_delete_title: Удалить метку?
-triggerlist_delete_message: Это действие нельзя отменить.
 triggerlist_cancel: Отмена
+trigger_group_nfc: NFC-метка
+automation_header: Автоматизация
 automation_name_label: Название автоматизации
 automation_name_placeholder: напр. Утренний ритуал, Выход из дома
 automation_trigger_label: Триггер
 automation_trigger_placeholder: Не выбрано
 automation_commands_label: Команды
 automation_commands_empty: Команды еще не добавлены
-automation_add_command: Добавить команду
 automation_remove_command_desc: Удалить команду
-automation_save: Сохранить автоматизацию
 automationlist_not_found: Автоматизации не настроены
 automationlist_create_fab_desc: Создать автоматизацию
 automationlist_options_desc: Параметры
 automationlist_delete: Удалить
-automationlist_delete_title: Удалить автоматизацию?
 automationlist_delete_message: Это действие нельзя отменить.
 automationlist_cancel: Отмена
 automation_type_automation: Правило автоматизации
 automation_group_automation: Правила автоматизации
 automation_trigger_hint: Нажмите, чтобы выбрать
 automation_add_command_desc: Добавить команду
-automation_edit_title: Редактировать автоматизацию
 automation_discard_title: Отменить изменения?
 automation_discard_message: Несохранённые изменения будут утеряны.
 automation_discard_confirm: Отменить
 automation_discard_cancel: Отмена
 automation_done: Готово
-automation_hint_trigger: Выберите триггер для продолжения
-automation_hint_commands: Добавьте хотя бы одну команду

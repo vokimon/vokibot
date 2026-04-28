@@ -17,7 +17,6 @@ app_list_filter_category_other: Besteak
 intent_editor_action_label: Ekintza
 intent_editor_custom_or_none: Pertsonalizatua edo bat ere ez
 intent_editor_action_string_optional: Ekintza-katea (auzokoa)
-intent_editor_save_command_title: Gorde komandoa
 intent_editor_command_name_label: Komandoaren izena
 intent_editor_save: Gorde
 intent_editor_cancel: Utzi
@@ -34,8 +33,6 @@ commandlist_launch_app_option: Aplikazio bat abiarazi
 commandlist_run: Exekutatu
 commandlist_remove: Kendu
 commandlist_options_desc: Aukerak
-commandlist_delete_title: Komandoa ezabatu?
-commandlist_delete_message: Ekintza hau ezin da desegin.
 commandlist_delete: Ezabatu
 commandlist_cancel: Utzi
 command_type_launch_activity: "Aplikazioa: Pantaila ireki"
@@ -66,37 +63,30 @@ triggerlist_not_found: Ez dago abiarazlerik konfiguratuta
 triggerlist_create_fab_desc: Abiarazlea sortu
 triggerlist_create_title: Abiarazlea sortu
 triggerlist_option_nfc: NFC etiketa
-trigger_group_nfc: NFC etiketa
 triggerlist_options_desc: Aukerak
 triggerlist_delete: Ezabatu
-triggerlist_delete_title: Etiketa ezabatu?
-triggerlist_delete_message: Ekintza hau ezin da desegin.
 triggerlist_cancel: Utzi
+trigger_group_nfc: NFC etiketa
+automation_header: Automatizazio
 automation_name_label: Automatizazioaren izena
 automation_name_placeholder: adib. Goiz errutina, Etxetik atera
 automation_trigger_label: Abiarazlea
 automation_trigger_placeholder: Bat ere ez da hautatu
 automation_commands_label: Komandoak
 automation_commands_empty: Oraindik ez da komandorik gehitu
-automation_add_command: Gehitu komandoa
 automation_remove_command_desc: Kendu komandoa
-automation_save: Gorde automatizazioa
 automationlist_not_found: Ez dago automatizaziorik konfiguratuta
 automationlist_create_fab_desc: Automatizazioa sortu
 automationlist_options_desc: Aukerak
 automationlist_delete: Ezabatu
-automationlist_delete_title: Automatizazioa ezabatu?
 automationlist_delete_message: Ekintza hau ezin da desegin.
 automationlist_cancel: Utzi
 automation_type_automation: Automatizazio araua
 automation_group_automation: Automatizazio arauak
 automation_trigger_hint: Ukitu hautatzeko
 automation_add_command_desc: Gehitu komandoa
-automation_edit_title: Editatu automatizazioa
 automation_discard_title: Baztertu aldaketak?
 automation_discard_message: Gorde gabeko aldaketak galduko dira.
 automation_discard_confirm: Baztertu
 automation_discard_cancel: Utzi
 automation_done: Eginda
-automation_hint_trigger: Hautatu trigger bat jarraitzeko
-automation_hint_commands: Gehitu gutxienez komando bat
