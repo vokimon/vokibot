@@ -15,17 +15,22 @@ Start any application on approaching the device to an NFC tag.
 This project aims to be a "on any trigger do anything",
 but let's start humble.
 
+## Features
+
+- Triggers:
+    - NFC tags
+- Commands:
+    - Launch application
+- License: AGPLv3+
+- Theming: Material3 light and dark
+- Languages: an, ar, ca, de, en, es, eu, fr, gl, pt, ru, andaluh (no iso yet)
+
 <!-- end-of-description -->
 
 **Warning:**
-Some of the options presented might not be fully functional,
+Some of the options presented might not be fully functional yet,
 like calling services, providers, broadcast or any activity requiring additional information.
 Those components are shown but might not work.
-
-
-
-
-
 
 ## License
 
