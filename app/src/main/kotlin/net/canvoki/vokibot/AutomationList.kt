@@ -54,9 +54,7 @@ data object AutomationList : StackedScreen<Unit>() {
 
                 val triggerDisplayName =
                     remember(automation.triggerType, automation.triggerId) {
-                        if (automation.triggerType ==
-                            "nfc"
-                        ) {
+                        if (automation.triggerType == "nfc") {
                             repository.nfcTrigger.load(automation.triggerId)?.displayName
                         } else {
                             null

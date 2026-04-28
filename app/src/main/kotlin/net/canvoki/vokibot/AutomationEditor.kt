@@ -36,6 +36,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import kotlinx.serialization.Serializable
 import net.canvoki.shared.component.StackNavigatorState
@@ -133,7 +134,10 @@ data class AutomationEditor(
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
             )
 
-            Text(stringResource(R.string.automation_trigger_label), style = MaterialTheme.typography.titleMedium)
+            Text(
+                stringResource(R.string.automation_trigger_label),
+                style = MaterialTheme.typography.titleMedium,
+            )
 
             Card(
                 colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
@@ -219,7 +223,8 @@ data class AutomationEditor(
                     stringResource(R.string.automation_commands_empty),
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    modifier = Modifier.padding(start = 4.dp),
+                    modifier = Modifier.padding(start = 4.dp).fillMaxWidth(),
+                    textAlign = TextAlign.Center,
                 )
             } else {
                 Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
