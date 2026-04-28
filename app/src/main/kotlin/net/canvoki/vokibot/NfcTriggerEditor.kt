@@ -41,6 +41,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -226,6 +227,7 @@ fun NfcTriggerEditor(
                 text = stringResource(R.string.nfc_not_available),
                 color = MaterialTheme.colorScheme.error,
                 style = MaterialTheme.typography.bodyMedium,
+                textAlign = TextAlign.Center,
             )
         } else if (!isNfcEnabled) {
             TextButton(
@@ -235,19 +237,21 @@ fun NfcTriggerEditor(
                     text = stringResource(R.string.nfc_enable_autodetect),
                     color = MaterialTheme.colorScheme.error,
                     style = MaterialTheme.typography.bodyMedium,
+                    textAlign = TextAlign.Center,
                 )
             }
         } else {
             Text(
                 text = stringResource(R.string.nfc_autodetect_hint),
-                style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.primary,
+                style = MaterialTheme.typography.bodyMedium,
+                textAlign = TextAlign.Center,
             )
             if (scanSuccess) {
                 Text(
                     text = stringResource(R.string.nfc_trigger_scan_success),
-                    style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.tertiary,
+                    style = MaterialTheme.typography.bodyMedium,
                 )
             }
         }
