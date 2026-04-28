@@ -17,6 +17,7 @@ app_list_filter_category_other: Atros
 intent_editor_action_label: Aición
 intent_editor_custom_or_none: Personalizada u garra
 intent_editor_action_string_optional: Cadena d'acción (opcional)
+intent_editor_save_command_title: Alzar orden
 intent_editor_command_name_label: Nombre de l'orden
 intent_editor_save: Alzar
 intent_editor_cancel: Cancelar
@@ -33,6 +34,8 @@ commandlist_launch_app_option: Executar una aplicación
 commandlist_run: Executar
 commandlist_remove: Borrar
 commandlist_options_desc: Opcions
+commandlist_delete_title: Borrar orden?
+commandlist_delete_message: Esta acción no se puede desfer.
 commandlist_delete: Borrar
 commandlist_cancel: Cancelar
 command_type_launch_activity: "Aplicación: Ubrir pantalla"
@@ -63,10 +66,12 @@ triggerlist_not_found: No i ha garra disparador configurau
 triggerlist_create_fab_desc: Crear disparador
 triggerlist_create_title: Crear disparador
 triggerlist_option_nfc: Etiqueta NFC
+trigger_group_nfc: Etiqueta NFC
 triggerlist_options_desc: Opcions
 triggerlist_delete: Borrar
+triggerlist_delete_title: Borrar etiqueta?
+triggerlist_delete_message: Esta acción no se puede desfer.
 triggerlist_cancel: Cancelar
-trigger_group_nfc: Etiqueta NFC
 automation_header: Automatización
 automation_name_label: Nombre d'a automatización
 automation_name_placeholder: eix. Rutina matin, M'en vaiga de casa
@@ -74,19 +79,25 @@ automation_trigger_label: Disparador
 automation_trigger_placeholder: Garra seleccionau
 automation_commands_label: Órdenes
 automation_commands_empty: Encara no s'han adhibiu órdenes
+automation_add_command: Adhibir orden
 automation_remove_command_desc: Borrar orden
+automation_save: Alzar automatización
 automationlist_not_found: No i ha garra automatización configurada
 automationlist_create_fab_desc: Crear automatización
 automationlist_options_desc: Opcions
 automationlist_delete: Borrar
+automationlist_delete_title: Borrar automatización?
 automationlist_delete_message: Esta acción no se puede desfer.
 automationlist_cancel: Cancelar
 automation_type_automation: Regla d'automatización
 automation_group_automation: Reglas d'automatización
 automation_trigger_hint: Toca ta seleccionar
 automation_add_command_desc: Añadir una orden
+automation_edit_title: Editar automatización
 automation_discard_title: Descartar os cambeos?
 automation_discard_message: Se perderán os cambeos no guardaus.
 automation_discard_confirm: Descartar
 automation_discard_cancel: Cancelar
 automation_done: Heito
+automation_hint_trigger: Selecciona un disparador pa continar
+automation_hint_commands: Anyade a lo menos una orden

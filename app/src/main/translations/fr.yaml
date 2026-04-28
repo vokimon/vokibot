@@ -17,6 +17,7 @@ app_list_filter_category_other: Autres
 intent_editor_action_label: Action
 intent_editor_custom_or_none: Personnalisée ou aucune
 intent_editor_action_string_optional: Chaîne d'action (optionnelle)
+intent_editor_save_command_title: Enregistrer la commande
 intent_editor_command_name_label: Nom de la commande
 intent_editor_save: Enregistrer
 intent_editor_cancel: Annuler
@@ -33,6 +34,8 @@ commandlist_launch_app_option: Lancer une application
 commandlist_run: Exécuter
 commandlist_remove: Supprimer
 commandlist_options_desc: Options
+commandlist_delete_title: Supprimer la commande ?
+commandlist_delete_message: Cette action est irréversible.
 commandlist_delete: Supprimer
 commandlist_cancel: Annuler
 command_type_launch_activity: "Application : Ouvrir un écran"
@@ -63,10 +66,12 @@ triggerlist_not_found: Aucun déclencheur configuré
 triggerlist_create_fab_desc: Créer un déclencheur
 triggerlist_create_title: Créer un déclencheur
 triggerlist_option_nfc: Étiquette NFC
+trigger_group_nfc: Étiquette NFC
 triggerlist_options_desc: Options
 triggerlist_delete: Supprimer
+triggerlist_delete_title: Supprimer l'étiquette ?
+triggerlist_delete_message: Cette action est irréversible.
 triggerlist_cancel: Annuler
-trigger_group_nfc: Étiquette NFC
 automation_header: Automatisation
 automation_name_label: Nom de l'automatisation
 automation_name_placeholder: ex. Routine matin, Je quitte la maison
@@ -74,19 +79,25 @@ automation_trigger_label: Déclencheur
 automation_trigger_placeholder: Aucun sélectionné
 automation_commands_label: Commandes
 automation_commands_empty: Aucune commande ajoutée
+automation_add_command: Ajouter une commande
 automation_remove_command_desc: Supprimer la commande
+automation_save: Enregistrer l'automatisation
 automationlist_not_found: Aucune automatisation configurée
 automationlist_create_fab_desc: Créer une automatisation
 automationlist_options_desc: Options
 automationlist_delete: Supprimer
+automationlist_delete_title: Supprimer l'automatisation ?
 automationlist_delete_message: Cette action est irréversible.
 automationlist_cancel: Annuler
 automation_type_automation: Règle d'automatisation
 automation_group_automation: Règles d'automatisation
 automation_trigger_hint: Appuyez pour sélectionner
 automation_add_command_desc: Ajouter une commande
+automation_edit_title: Modifier l'automatisation
 automation_discard_title: Annuler les modifications ?
 automation_discard_message: Les modifications non enregistrées seront perdues.
 automation_discard_confirm: Ignorer
 automation_discard_cancel: Annuler
 automation_done: Terminé
+automation_hint_trigger: Sélectionnez un déclencheur pour continuer
+automation_hint_commands: Ajoutez au moins une commande
