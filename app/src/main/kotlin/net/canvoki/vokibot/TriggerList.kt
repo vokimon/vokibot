@@ -40,23 +40,13 @@ import net.canvoki.shared.component.StackedScreen
 data object TriggerList : StackedScreen<Pair<String, String>>() {
     @Composable
     override fun Screen(nav: StackNavigatorState) {
-        TriggerList(
-            onNewTrigger = { typeTag ->
-                if (typeTag == "nfc") {
-                    nav.push(NfcTriggerEditor) { result: Unit? -> }
-                }
-            },
-            onTriggerSelected = { type, id ->
-                nav.pop(Pair(type, id))
-            },
-        )
+        TriggerList(nav)
     }
 }
 
 @Composable
 fun TriggerList(
-    onNewTrigger: (String) -> Unit,
-    onTriggerSelected: (type: String, id: String) -> Unit,
+    nav: StackNavigatorState,
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
@@ -87,7 +77,9 @@ fun TriggerList(
                         tint = MaterialTheme.colorScheme.primary,
                     )
                 },
-                modifier = Modifier.clickable { onTriggerSelected("nfc", trigger.id) },
+                modifier = Modifier.clickable {
+                    nav.pop(Pair("nfc", trigger.id))
+                },
                 trailingContent = {
                     IconButton(onClick = { menuExpanded = true }) {
                         Icon(
@@ -161,12 +153,14 @@ fun TriggerList(
             options =
                 listOf(
                     ChooserOption(value = "nfc", label = stringResource(R.string.triggerlist_option_nfc)),
-                    ChooserOption(value = "nfc", label = stringResource(R.string.triggerlist_option_nfc)),
                 ),
             selectedValue = "",
-            onConfirm = { value ->
+            onConfirm = { triggerType ->
                 showTypeChooser = false
-                onNewTrigger(value)
+                if (triggerType == "nfc") {
+                    nav.push(NfcTriggerEditor) { refreshCounter++}
+                }
+
             },
             onDismiss = {
                 showTypeChooser = false
