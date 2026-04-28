@@ -42,7 +42,6 @@ command_type_launch_activity: "Aplicaçión: Abrîh pantaya"
 command_type_send_broadcast: "Aplicaçión: Embiâh notificaçión"
 command_type_start_service: "Aplicaçión: Iniçiâh proçeço"
 command_type_access_provider: "Aplicaçión: Âççedêh a çû datô"
-nfc_not_available: No çe encontró ardware NFC en êtte dîppoçitibo
 nfc_trigger_uid_label: UÎH de la etiqueta
 nfc_trigger_detected: Etiqueta detêttá
 nfc_trigger_save: Guardâh dîpparadôh
@@ -51,6 +50,14 @@ nfc_trigger_activity_label: Ehecuta un comando con êtta etiqueta NFC
 nfc_trigger_name_label: Nombre pa la etiqueta
 nfc_trigger_name_placeholder: ej. Tarheta de bûh
 nfc_trigger_scan_success: Etiqueta detêttá ✓
+nfc_trigger_searching: Bûccando automatiçaçión…
+nfc_trigger_executing: Ehecutando automatiçaçión…
+nfc_trigger_not_registered: Êtta etiqueta no êttá rehîttrá
+nfc_trigger_no_automation: Ninguna automatiçaçión binculá a êtta etiqueta
+nfc_trigger_create_automation: Creâh automatiçaçión
+nfc_trigger_name_dialog_title: Nombrâh êtta etiqueta
+nfc_trigger_name_dialog_confirm: Guardâh y continuâh
+nfc_trigger_name_dialog_cancel: Cançelâh
 triggerlist_not_found: No ay dîpparadorê configuráô
 triggerlist_create_fab_desc: Creâh dîpparadôh
 triggerlist_create_title: Creâh dîpparadôh
@@ -79,11 +86,3 @@ automationlist_delete_message: Êtta âççión no çe puede deçaçêh.
 automationlist_cancel: Cançelâh
 automation_type_automation: Regla de automatiçaçión
 automation_group_automation: Reglâ de automatiçaçión
-nfc_trigger_searching: Bûccando automatiçaçión…
-nfc_trigger_executing: Ehecutando automatiçaçión…
-nfc_trigger_not_registered: Êtta etiqueta no êttá rehîttrá
-nfc_trigger_no_automation: Ninguna automatiçaçión binculá a êtta etiqueta
-nfc_trigger_create_automation: Creâh automatiçaçión
-nfc_trigger_name_dialog_title: Nombrâh êtta etiqueta
-nfc_trigger_name_dialog_confirm: Guardâh y continuâh
-nfc_trigger_name_dialog_cancel: Cançelâh

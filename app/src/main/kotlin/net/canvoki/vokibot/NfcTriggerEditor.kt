@@ -224,7 +224,7 @@ fun NfcTriggerEditor(
         // Dynamic status messages: centered
         if (!isNfcAvailable) {
             Text(
-                text = stringResource(R.string.nfc_not_available),
+                text = stringResource(R.string.nfc_trigger_not_available),
                 color = MaterialTheme.colorScheme.error,
                 style = MaterialTheme.typography.bodyMedium,
                 textAlign = TextAlign.Center,
@@ -234,7 +234,7 @@ fun NfcTriggerEditor(
                 onClick = { configNfc(context) },
             ) {
                 Text(
-                    text = stringResource(R.string.nfc_enable_autodetect),
+                    text = stringResource(R.string.nfc_trigger_enable_to_autodetect),
                     color = MaterialTheme.colorScheme.error,
                     style = MaterialTheme.typography.bodyMedium,
                     textAlign = TextAlign.Center,
@@ -242,7 +242,7 @@ fun NfcTriggerEditor(
             }
         } else {
             Text(
-                text = stringResource(R.string.nfc_autodetect_hint),
+                text = stringResource(R.string.nfc_trigger_autodetect_hint),
                 color = MaterialTheme.colorScheme.primary,
                 style = MaterialTheme.typography.bodyMedium,
                 textAlign = TextAlign.Center,
@@ -252,6 +252,7 @@ fun NfcTriggerEditor(
                     text = stringResource(R.string.nfc_trigger_scan_success),
                     color = MaterialTheme.colorScheme.tertiary,
                     style = MaterialTheme.typography.bodyMedium,
+                    textAlign = TextAlign.Center,
                 )
             }
         }

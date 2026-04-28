@@ -43,10 +43,9 @@ command_type_send_broadcast: "Aplikazioa: Jakinarazpena bidali"
 command_type_start_service: "Aplikazioa: Prozesua abiarazi"
 command_type_access_provider: "Aplikazioa: Datuetara sartu"
 nfc_editor_header: NFC Etiketa
-nfc_refresh_status: Freskatu NFC egoera
-nfc_autodetect_hint: Hurbildu etiketa gailuara automatikoki detektatzeko
-nfc_not_available: NFC hardwarea ez da aurkitu gailu honetan
-nfc_enable_autodetect: Gaitu NFC detekzio automatikorako
+nfc_trigger_enable_to_autodetect: Gaitu NFC automatikoki detektatzeko
+nfc_trigger_not_available: Gailu honek ez du NFC euskarririk
+nfc_trigger_autodetect_hint: Hurbildu etiketa automatikoki detektatzeko
 nfc_trigger_uid_label: Etiketaren UIDa
 nfc_trigger_detected: Etiketa detektatua
 nfc_trigger_save: Gorde abiarazlea
@@ -55,6 +54,14 @@ nfc_trigger_activity_label: Exekutatu komando bat NFC etiketa honekin
 nfc_trigger_name_label: Etiketaren izena
 nfc_trigger_name_placeholder: adib. Bus txartela
 nfc_trigger_scan_success: Etiketa detektatua ✓
+nfc_trigger_searching: Automatizazioa bilatzen…
+nfc_trigger_executing: Automatizazioa exekutatzen…
+nfc_trigger_not_registered: Etiketa hau ez dago erregistratuta
+nfc_trigger_no_automation: Ez dago automatizaziorik etiketa honekin lotuta
+nfc_trigger_create_automation: Automatizazioa sortu
+nfc_trigger_name_dialog_title: Eman izena etiketa honi
+nfc_trigger_name_dialog_confirm: Gorde eta jarraitu
+nfc_trigger_name_dialog_cancel: Utzi
 triggerlist_not_found: Ez dago abiarazlerik konfiguratuta
 triggerlist_create_fab_desc: Abiarazlea sortu
 triggerlist_create_title: Abiarazlea sortu
@@ -83,14 +90,6 @@ automationlist_delete_message: Ekintza hau ezin da desegin.
 automationlist_cancel: Utzi
 automation_type_automation: Automatizazio araua
 automation_group_automation: Automatizazio arauak
-nfc_trigger_searching: Automatizazioa bilatzen…
-nfc_trigger_executing: Automatizazioa exekutatzen…
-nfc_trigger_not_registered: Etiketa hau ez dago erregistratuta
-nfc_trigger_no_automation: Ez dago automatizaziorik etiketa honekin lotuta
-nfc_trigger_create_automation: Automatizazioa sortu
-nfc_trigger_name_dialog_title: Eman izena etiketa honi
-nfc_trigger_name_dialog_confirm: Gorde eta jarraitu
-nfc_trigger_name_dialog_cancel: Utzi
 automation_trigger_hint: Ukitu hautatzeko
 automation_add_command_desc: Gehitu komandoa
 automation_edit_title: Editatu automatizazioa

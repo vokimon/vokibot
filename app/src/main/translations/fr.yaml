@@ -43,10 +43,9 @@ command_type_send_broadcast: "Application : Envoyer une notification"
 command_type_start_service: "Application : Démarrer un processus"
 command_type_access_provider: "Application : Accéder aux données"
 nfc_editor_header: Étiquette NFC
-nfc_refresh_status: Actualiser l'état du NFC
-nfc_autodetect_hint: Approchez l'étiquette du dispositif pour la détecter automatiquement
-nfc_not_available: Matériel NFC non trouvé sur ce dispositif
-nfc_enable_autodetect: Activez le NFC pour la détection automatique
+nfc_trigger_enable_to_autodetect: Activez le NFC pour la détection automatique
+nfc_trigger_not_available: Cet appareil ne prend pas en charge le NFC
+nfc_trigger_autodetect_hint: Approchez l'étiquette pour autodétecter
 nfc_trigger_uid_label: UID de l'étiquette
 nfc_trigger_detected: Étiquette détectée
 nfc_trigger_save: Enregistrer le déclencheur
@@ -55,6 +54,14 @@ nfc_trigger_activity_label: Exécutez une commande avec cette étiquette NFC
 nfc_trigger_name_label: Nom de l'étiquette
 nfc_trigger_name_placeholder: ex. Carte de bus
 nfc_trigger_scan_success: Étiquette détectée ✓
+nfc_trigger_searching: Recherche d'automatisation…
+nfc_trigger_executing: Exécution de l'automatisation…
+nfc_trigger_not_registered: Cette étiquette n'est pas enregistrée
+nfc_trigger_no_automation: Aucune automatisation liée à cette étiquette
+nfc_trigger_create_automation: Créer une automatisation
+nfc_trigger_name_dialog_title: Nommer cette étiquette
+nfc_trigger_name_dialog_confirm: Enregistrer et continuer
+nfc_trigger_name_dialog_cancel: Annuler
 triggerlist_not_found: Aucun déclencheur configuré
 triggerlist_create_fab_desc: Créer un déclencheur
 triggerlist_create_title: Créer un déclencheur
@@ -83,14 +90,6 @@ automationlist_delete_message: Cette action est irréversible.
 automationlist_cancel: Annuler
 automation_type_automation: Règle d'automatisation
 automation_group_automation: Règles d'automatisation
-nfc_trigger_searching: Recherche d'automatisation…
-nfc_trigger_executing: Exécution de l'automatisation…
-nfc_trigger_not_registered: Cette étiquette n'est pas enregistrée
-nfc_trigger_no_automation: Aucune automatisation liée à cette étiquette
-nfc_trigger_create_automation: Créer une automatisation
-nfc_trigger_name_dialog_title: Nommer cette étiquette
-nfc_trigger_name_dialog_confirm: Enregistrer et continuer
-nfc_trigger_name_dialog_cancel: Annuler
 automation_trigger_hint: Appuyez pour sélectionner
 automation_add_command_desc: Ajouter une commande
 automation_edit_title: Modifier l'automatisation

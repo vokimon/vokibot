@@ -42,7 +42,10 @@ command_type_launch_activity: "App: Bildschirm öffnen"
 command_type_send_broadcast: "App: Benachrichtigung senden"
 command_type_start_service: "App: Prozess starten"
 command_type_access_provider: "App: Auf Daten zugreifen"
-nfc_not_available: NFC-Hardware auf diesem Gerät nicht gefunden
+nfc_editor_header: NFC-Tag
+nfc_trigger_enable_to_autodetect: NFC für Autoerkennung aktivieren
+nfc_trigger_not_available: Dieses Gerät unterstützt kein NFC
+nfc_trigger_autodetect_hint: NFC-Tag nah ans Gerät halten
 nfc_trigger_uid_label: Tag-UID
 nfc_trigger_detected: Tag erkannt
 nfc_trigger_save: Trigger speichern
@@ -51,6 +54,14 @@ nfc_trigger_activity_label: Befehl mit diesem NFC-Tag ausführen
 nfc_trigger_name_label: Tag-Name
 nfc_trigger_name_placeholder: z.B. Buskarte
 nfc_trigger_scan_success: Tag erkannt ✓
+nfc_trigger_searching: Suche nach Automatisierung…
+nfc_trigger_executing: Automatisierung wird ausgeführt…
+nfc_trigger_not_registered: Dieser Tag ist nicht registriert
+nfc_trigger_no_automation: Keine Automatisierung mit diesem Tag verknüpft
+nfc_trigger_create_automation: Automatisierung erstellen
+nfc_trigger_name_dialog_title: Tag benennen
+nfc_trigger_name_dialog_confirm: Speichern & Weiter
+nfc_trigger_name_dialog_cancel: Abbrechen
 triggerlist_not_found: Keine Trigger konfiguriert
 triggerlist_create_fab_desc: Trigger erstellen
 triggerlist_create_title: Trigger erstellen
@@ -79,14 +90,6 @@ automationlist_delete_message: Diese Aktion kann nicht rückgängig gemacht werd
 automationlist_cancel: Abbrechen
 automation_type_automation: Automatisierungsregel
 automation_group_automation: Automatisierungsregeln
-nfc_trigger_searching: Suche nach Automatisierung…
-nfc_trigger_executing: Automatisierung wird ausgeführt…
-nfc_trigger_not_registered: Dieser Tag ist nicht registriert
-nfc_trigger_no_automation: Keine Automatisierung mit diesem Tag verknüpft
-nfc_trigger_create_automation: Automatisierung erstellen
-nfc_trigger_name_dialog_title: Tag benennen
-nfc_trigger_name_dialog_confirm: Speichern & Weiter
-nfc_trigger_name_dialog_cancel: Abbrechen
 automation_trigger_hint: Tippen zum Auswählen
 automation_add_command_desc: Befehl hinzufügen
 automation_edit_title: Automatisierung bearbeiten

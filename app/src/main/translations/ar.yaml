@@ -43,10 +43,9 @@ command_type_send_broadcast: "التطبيق: إرسال إشعار"
 command_type_start_service: "التطبيق: بدء عملية"
 command_type_access_provider: "التطبيق: الوصول إلى البيانات"
 nfc_editor_header: علامة NFC
-nfc_refresh_status: تحديث حالة NFC
-nfc_autodetect_hint: قرب العلامة من الجهاز للكشف التلقائي
-nfc_not_available: لا يوجد دعم لتقنية NFC في هذا الجهاز
-nfc_enable_autodetect: فعّل NFC للكشف التلقائي
+nfc_trigger_enable_to_autodetect: فعّل NFC للكشف التلقائي
+nfc_trigger_not_available: هذا الجهاز لا يدعم تقنية NFC
+nfc_trigger_autodetect_hint: قرب البطاقة للكشف التلقائي
 nfc_trigger_uid_label: معرف العلامة
 nfc_trigger_detected: تم اكتشاف العلامة
 nfc_trigger_save: حفظ المشغل
@@ -55,6 +54,14 @@ nfc_trigger_activity_label: تشغيل أمر باستخدام بطاقة NFC ه
 nfc_trigger_name_label: اسم العلامة
 nfc_trigger_name_placeholder: 'مثال: بطاقة الحافلة'
 nfc_trigger_scan_success: تم اكتشاف البطاقة ✓
+nfc_trigger_searching: البحث عن أتمتة…
+nfc_trigger_executing: تشغيل الأتمتة…
+nfc_trigger_not_registered: هذه العلامة غير مسجلة
+nfc_trigger_no_automation: لا توجد أتمتة مرتبطة بهذه العلامة
+nfc_trigger_create_automation: إنشاء أتمتة
+nfc_trigger_name_dialog_title: تسمية هذه العلامة
+nfc_trigger_name_dialog_confirm: حفظ ومتابعة
+nfc_trigger_name_dialog_cancel: إلغاء
 triggerlist_not_found: لم يتم تكوين أي مشغلات
 triggerlist_create_fab_desc: إنشاء مشغل
 triggerlist_create_title: إنشاء مشغل
@@ -83,14 +90,6 @@ automationlist_delete_message: لا يمكن التراجع عن هذا الإج
 automationlist_cancel: إلغاء
 automation_type_automation: قاعدة أتمتة
 automation_group_automation: قواعد الأتمتة
-nfc_trigger_searching: البحث عن أتمتة…
-nfc_trigger_executing: تشغيل الأتمتة…
-nfc_trigger_not_registered: هذه العلامة غير مسجلة
-nfc_trigger_no_automation: لا توجد أتمتة مرتبطة بهذه العلامة
-nfc_trigger_create_automation: إنشاء أتمتة
-nfc_trigger_name_dialog_title: تسمية هذه العلامة
-nfc_trigger_name_dialog_confirm: حفظ ومتابعة
-nfc_trigger_name_dialog_cancel: إلغاء
 automation_trigger_hint: انقر للاختيار
 automation_add_command_desc: إضافة أمر
 automation_edit_title: تعديل الأتمتة

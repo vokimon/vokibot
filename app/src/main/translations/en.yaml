@@ -43,10 +43,9 @@ command_type_send_broadcast: "Application: Send notification"
 command_type_start_service: "Application: Start process"
 command_type_access_provider: "Application: Access data"
 nfc_editor_header: NFC Tag
-nfc_refresh_status: Refresh NFC status
-nfc_autodetect_hint: Bring the tag close to the device to autodetect
-nfc_not_available: NFC hardware not found on this device
-nfc_enable_autodetect: Enable NFC for autodetection
+nfc_trigger_enable_to_autodetect: Enable NFC to autodetect
+nfc_trigger_not_available: This device has no NFC support
+nfc_trigger_autodetect_hint: Hold tag close to autodetect
 nfc_trigger_uid_label: Tag UID
 nfc_trigger_detected: Tag detected
 nfc_trigger_save: Save Trigger
@@ -55,6 +54,14 @@ nfc_trigger_activity_label: Trigger a command with this NFC tag
 nfc_trigger_name_label: Tag name
 nfc_trigger_name_placeholder: e.g. Bus card
 nfc_trigger_scan_success: Tag detected ✓
+nfc_trigger_searching: Looking for automation…
+nfc_trigger_executing: Running automation…
+nfc_trigger_not_registered: This tag is not registered
+nfc_trigger_no_automation: No automation linked to this tag
+nfc_trigger_create_automation: Create Automation
+nfc_trigger_name_dialog_title: Name this tag
+nfc_trigger_name_dialog_confirm: Save & Continue
+nfc_trigger_name_dialog_cancel: Cancel
 triggerlist_not_found: No triggers configured
 triggerlist_create_fab_desc: Create trigger
 triggerlist_create_title: Create Trigger
@@ -83,14 +90,6 @@ automationlist_delete_message: This action cannot be undone.
 automationlist_cancel: Cancel
 automation_type_automation: Automation Rule
 automation_group_automation: Automation Rules
-nfc_trigger_searching: Looking for automation…
-nfc_trigger_executing: Running automation…
-nfc_trigger_not_registered: This tag is not registered
-nfc_trigger_no_automation: No automation linked to this tag
-nfc_trigger_create_automation: Create Automation
-nfc_trigger_name_dialog_title: Name this tag
-nfc_trigger_name_dialog_confirm: Save & Continue
-nfc_trigger_name_dialog_cancel: Cancel
 automation_trigger_hint: Tap to select
 automation_add_command_desc: Add command
 automation_edit_title: Edit Automation

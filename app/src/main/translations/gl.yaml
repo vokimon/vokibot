@@ -43,10 +43,9 @@ command_type_send_broadcast: "Aplicación: Enviar notificación"
 command_type_start_service: "Aplicación: Iniciar proceso"
 command_type_access_provider: "Aplicación: Acceder a datos"
 nfc_editor_header: Etiqueta NFC
-nfc_refresh_status: Actualizar o estado do NFC
-nfc_autodetect_hint: Achega a etiqueta ao dispositivo para deteotala automaticamente
-nfc_not_available: Non se atopou hardware NFC neste dispositivo
-nfc_enable_autodetect: Activa o NFC para a detección automática
+nfc_trigger_enable_to_autodetect: Activa o NFC para detectar automaticamente
+nfc_trigger_not_available: Este dispositivo non ten soporte para NFC
+nfc_trigger_autodetect_hint: Achega a etiqueta para autodetectar
 nfc_trigger_uid_label: UID da etiqueta
 nfc_trigger_detected: Etiqueta detectada
 nfc_trigger_save: Gardar disparador
@@ -55,6 +54,14 @@ nfc_trigger_activity_label: Executa unha orde con esta etiqueta NFC
 nfc_trigger_name_label: Nome da etiqueta
 nfc_trigger_name_placeholder: ex. Tarxeta de bus
 nfc_trigger_scan_success: Etiqueta detectada ✓
+nfc_trigger_searching: Buscando automatización…
+nfc_trigger_executing: Executando automatización…
+nfc_trigger_not_registered: Esta etiqueta non está rexistrada
+nfc_trigger_no_automation: Ningunha automatización vinculada a esta etiqueta
+nfc_trigger_create_automation: Crear automatización
+nfc_trigger_name_dialog_title: Pór nome a esta etiqueta
+nfc_trigger_name_dialog_confirm: Gardar e continuar
+nfc_trigger_name_dialog_cancel: Cancelar
 triggerlist_not_found: Non hai disparadores configurados
 triggerlist_create_fab_desc: Crear disparador
 triggerlist_create_title: Crear disparador
@@ -83,14 +90,6 @@ automationlist_delete_message: Esta acción non se pode desfacer.
 automationlist_cancel: Cancelar
 automation_type_automation: Regra de automatización
 automation_group_automation: Regras de automatización
-nfc_trigger_searching: Buscando automatización…
-nfc_trigger_executing: Executando automatización…
-nfc_trigger_not_registered: Esta etiqueta non está rexistrada
-nfc_trigger_no_automation: Ningunha automatización vinculada a esta etiqueta
-nfc_trigger_create_automation: Crear automatización
-nfc_trigger_name_dialog_title: Pór nome a esta etiqueta
-nfc_trigger_name_dialog_confirm: Gardar e continuar
-nfc_trigger_name_dialog_cancel: Cancelar
 automation_trigger_hint: Toca para seleccionar
 automation_add_command_desc: Engadir unha orde
 automation_edit_title: Editar automatización
