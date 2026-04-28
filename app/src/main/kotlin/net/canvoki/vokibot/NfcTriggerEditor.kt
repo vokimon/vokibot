@@ -52,7 +52,7 @@ import net.canvoki.shared.component.StackedScreen
 @Serializable
 data object NfcTriggerEditor : StackedScreen<Unit>() {
     @Composable
-    override fun render(nav: StackNavigatorState) {
+    override fun Screen(nav: StackNavigatorState) {
         val scope = rememberCoroutineScope()
         val context = LocalContext.current
         val activity = context as? ComponentActivity

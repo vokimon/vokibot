@@ -39,7 +39,7 @@ import net.canvoki.shared.component.StackedScreen
 @Serializable
 data object TriggerList : StackedScreen<Pair<String, String>>() {
     @Composable
-    override fun render(nav: StackNavigatorState) {
+    override fun Screen(nav: StackNavigatorState) {
         TriggerList(
             onNewTrigger = { typeTag ->
                 if (typeTag == "nfc") {

@@ -46,7 +46,7 @@ data class AutomationEditor(
     val editingId: String? = null,
 ) : StackedScreen<Unit>() {
     @Composable
-    override fun render(nav: StackNavigatorState) {
+    override fun Screen(nav: StackNavigatorState) {
         val context = LocalContext.current
         val repository = remember { FileDataRepository.fromContext(context) }
 

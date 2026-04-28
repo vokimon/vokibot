@@ -91,7 +91,7 @@ private fun Drawable.toPainter(): Painter =
 @Serializable
 data object AppList : StackedScreen<Unit>() {
     @Composable
-    override fun render(nav: StackNavigatorState) {
+    override fun Screen(nav: StackNavigatorState) {
         val listState = rememberSaveable(saver = LazyListState.Saver) { LazyListState() }
 
         AppList(

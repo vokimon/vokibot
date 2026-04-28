@@ -35,7 +35,7 @@ import net.canvoki.shared.component.StackedScreen
 @Serializable
 data object AutomationList : StackedScreen<Unit>() {
     @Composable
-    override fun render(nav: StackNavigatorState) {
+    override fun Screen(nav: StackNavigatorState) {
         val context = LocalContext.current
         val repository = remember { FileDataRepository.fromContext(context) }
         var refreshCounter by remember { mutableIntStateOf(0) }

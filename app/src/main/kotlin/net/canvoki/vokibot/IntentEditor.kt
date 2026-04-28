@@ -160,7 +160,7 @@ data class IntentEditor(
     val componentName: String,
 ) : StackedScreen<Unit>() {
     @Composable
-    override fun render(nav: StackNavigatorState) {
+    override fun Screen(nav: StackNavigatorState) {
         var currentComponent by remember { mutableStateOf<PublicComponent?>(null) }
         val context = LocalContext.current
 

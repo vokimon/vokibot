@@ -44,7 +44,7 @@ import net.canvoki.shared.component.StackedScreen
 @Serializable
 data object CommandList : StackedScreen<String>() {
     @Composable
-    override fun render(nav: StackNavigatorState) {
+    override fun Screen(nav: StackNavigatorState) {
         CommandList(
             onLaunchAppSelected = {
                 nav.push(AppList)
