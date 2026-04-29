@@ -66,6 +66,7 @@ triggerlist_not_found: No hay disparadores configurados
 triggerlist_create_fab_desc: Crear disparador
 triggerlist_create_title: Crear disparador
 triggerlist_option_nfc: Etiqueta NFC
+triggerlist_option_widget: Widget
 trigger_group_nfc: Etiqueta NFC
 triggerlist_options_desc: Opciones
 triggerlist_delete: Eliminar
@@ -101,4 +102,9 @@ automation_discard_cancel: Cancelar
 automation_done: Hecho
 automation_hint_trigger: Selecciona un disparador para continuar
 automation_hint_commands: Añade al menos un comando
-triggerlist_option_widget: Widget
+shortcut_editor_create_title: Crear acceso directo
+shortcut_editor_edit_title: Editar acceso directo
+shortcut_editor_name_label: Nombre
+shortcut_editor_create: Crear y fijar
+shortcut_editor_save: Guardar y actualizar
+triggerlist_option_shortcut: Acceso directo

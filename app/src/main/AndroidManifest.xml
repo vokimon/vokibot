@@ -70,6 +70,19 @@
 
         </activity>
 
+        <!-- Shorcut Trigger -->
+        <activity
+            android:name=".ShortcutDispatchActivity"
+            android:exported="true"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:launchMode="singleTask"
+            android:taskAffinity=""
+            android:excludeFromRecents="true">
+            <intent-filter>
+                <action android:name="net.canvoki.vokibot.ACTION_SHORTCUT_TRIGGER" />
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>

@@ -66,6 +66,7 @@ triggerlist_not_found: Nenhum gatilho configurado
 triggerlist_create_fab_desc: Criar gatilho
 triggerlist_create_title: Criar gatilho
 triggerlist_option_nfc: Etiqueta NFC
+triggerlist_option_widget: Widget
 trigger_group_nfc: Etiqueta NFC
 triggerlist_options_desc: Opções
 triggerlist_delete: Excluir
@@ -101,4 +102,9 @@ automation_discard_cancel: Cancelar
 automation_done: Concluído
 automation_hint_trigger: Selecione um acionador para continuar
 automation_hint_commands: Adicione pelo menos um comando
-triggerlist_option_widget: Widget
+shortcut_editor_create_title: Criar atalho
+shortcut_editor_edit_title: Editar atalho
+shortcut_editor_name_label: Nome
+shortcut_editor_create: Criar e fixar
+shortcut_editor_save: Guardar e atualizar
+triggerlist_option_shortcut: Atalho

@@ -161,7 +161,7 @@ fun TriggerList(
                 // Push the corresponding editor screen based on typeKey
                 when (triggerType) {
                     NfcTrigger.TYPE -> nav.push(NfcTriggerEditor) { refreshCounter++ }
-                    //WidgetTrigger.TYPE -> nav.push(WidgetTriggerEditor) { refreshCounter++ }
+                    ShortcutTrigger.TYPE -> nav.push(ShortcutTriggerEditor(null)) { refreshCounter++ }
                     else -> log("Unknown trigger type selected: $triggerType")
                 }
             },

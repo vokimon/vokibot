@@ -101,3 +101,9 @@ automation_discard_cancel: Cançelâh
 automation_done: Exo
 automation_hint_trigger: Çelêççiona un dîpparadôh pa continuâh
 automation_hint_commands: Añade ar menô un comando
+shortcut_editor_create_title: Creâh âççeço dirêtto
+shortcut_editor_edit_title: Editâh âççeço dirêtto
+shortcut_editor_name_label: Nombre
+shortcut_editor_create: Creâh y fihâh
+shortcut_editor_save: Guardâh y âttualiçâh
+triggerlist_option_shortcut: Âççeço dirêtto

@@ -66,6 +66,7 @@ triggerlist_not_found: لم يتم تكوين أي مشغلات
 triggerlist_create_fab_desc: إنشاء مشغل
 triggerlist_create_title: إنشاء مشغل
 triggerlist_option_nfc: علامة NFC
+triggerlist_option_widget: ودجت
 trigger_group_nfc: علامة NFC
 triggerlist_options_desc: خيارات
 triggerlist_delete: حذف
@@ -101,4 +102,9 @@ automation_discard_cancel: إلغاء
 automation_done: تم
 automation_hint_trigger: حدد مشغلاً للمتابعة
 automation_hint_commands: أضف أمرًا واحدًا على الأقل
-triggerlist_option_widget: ودجت
+shortcut_editor_create_title: إنشاء اختصار
+shortcut_editor_edit_title: تحرير الاختصار
+shortcut_editor_name_label: الاسم
+shortcut_editor_create: إنشاء وتثبيت
+shortcut_editor_save: حفظ وتحديث
+triggerlist_option_shortcut: اختصار

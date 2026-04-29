@@ -66,6 +66,7 @@ triggerlist_not_found: Keine Trigger konfiguriert
 triggerlist_create_fab_desc: Trigger erstellen
 triggerlist_create_title: Trigger erstellen
 triggerlist_option_nfc: NFC-Tag
+triggerlist_option_widget: Widget
 trigger_group_nfc: NFC-Tag
 triggerlist_options_desc: Optionen
 triggerlist_delete: Löschen
@@ -101,4 +102,9 @@ automation_discard_cancel: Abbrechen
 automation_done: Fertig
 automation_hint_trigger: Wählen Sie einen Trigger aus, um fortzufahren
 automation_hint_commands: Fügen Sie mindestens einen Befehl hinzu
-triggerlist_option_widget: Widget
+shortcut_editor_create_title: Kurztaste erstellen
+shortcut_editor_edit_title: Kurztaste bearbeiten
+shortcut_editor_name_label: Name
+shortcut_editor_create: Erstellen und anheften
+shortcut_editor_save: Speichern und aktualisieren
+triggerlist_option_shortcut: Kurztaste

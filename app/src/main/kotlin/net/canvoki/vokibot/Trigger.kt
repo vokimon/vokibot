@@ -54,7 +54,7 @@ abstract class Trigger : StorableEntity {
 
         init {
             NfcTrigger.register()
-            WidgetTrigger.register()
+            ShortcutTrigger.register()
         }
     }
 

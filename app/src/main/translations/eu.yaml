@@ -66,6 +66,7 @@ triggerlist_not_found: Ez dago abiarazlerik konfiguratuta
 triggerlist_create_fab_desc: Abiarazlea sortu
 triggerlist_create_title: Abiarazlea sortu
 triggerlist_option_nfc: NFC etiketa
+triggerlist_option_widget: Widgeta
 trigger_group_nfc: NFC etiketa
 triggerlist_options_desc: Aukerak
 triggerlist_delete: Ezabatu
@@ -101,4 +102,9 @@ automation_discard_cancel: Utzi
 automation_done: Eginda
 automation_hint_trigger: Hautatu trigger bat jarraitzeko
 automation_hint_commands: Gehitu gutxienez komando bat
-triggerlist_option_widget: Widgeta
+shortcut_editor_create_title: Sortu lasterbidea
+shortcut_editor_edit_title: Editatu lasterbidea
+shortcut_editor_name_label: Izena
+shortcut_editor_create: Sortu eta ainguratu
+shortcut_editor_save: Gorde eta eguneratu
+triggerlist_option_shortcut: Lasterbidea
