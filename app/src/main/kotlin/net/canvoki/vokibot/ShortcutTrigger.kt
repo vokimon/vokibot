@@ -54,8 +54,8 @@ data class ShortcutTrigger(
         val shortcut =
             ShortcutInfoCompat
                 .Builder(context, id)
-                .setShortLabel(title.take(25))
-                .setLongLabel(title)
+                .setShortLabel(title.take(10))
+                .setLongLabel(title.take(25))
                 .setIcon(IconCompat.createWithResource(context, homeScreenIconRes))
                 .setIntent(intent)
                 .build()
@@ -66,8 +66,8 @@ data class ShortcutTrigger(
         val shortcut =
             ShortcutInfoCompat
                 .Builder(context, id)
-                .setShortLabel(title.take(25))
-                .setLongLabel(title)
+                .setShortLabel(title.take(10))
+                .setLongLabel(title.take(25))
                 .setIcon(IconCompat.createWithResource(context, homeScreenIconRes))
                 .build()
         ShortcutManagerCompat.updateShortcuts(context, listOf(shortcut))
