@@ -101,3 +101,4 @@ automation_discard_cancel: Отмена
 automation_done: Готово
 automation_hint_trigger: Выберите триггер для продолжения
 automation_hint_commands: Добавьте хотя бы одну команду
+triggerlist_option_widget: Виджет

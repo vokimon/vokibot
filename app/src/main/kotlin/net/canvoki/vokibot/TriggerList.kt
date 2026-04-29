@@ -152,19 +152,20 @@ fun TriggerList(
         ChooserDialog(
             title = stringResource(R.string.triggerlist_create_title),
             options =
-                listOf(
-                    ChooserOption(value = "nfc", label = stringResource(R.string.triggerlist_option_nfc)),
-                ),
+                Trigger.getRegisteredTypes().map {
+                    ChooserOption(value = it.typeKey, label = stringResource(it.labelRes))
+                },
             selectedValue = "",
             onConfirm = { triggerType ->
                 showTypeChooser = false
-                if (triggerType == "nfc") {
-                    nav.push(NfcTriggerEditor) { refreshCounter++ }
+                // Push the corresponding editor screen based on typeKey
+                when (triggerType) {
+                    NfcTrigger.TYPE -> nav.push(NfcTriggerEditor) { refreshCounter++ }
+                    //WidgetTrigger.TYPE -> nav.push(WidgetTriggerEditor) { refreshCounter++ }
+                    else -> log("Unknown trigger type selected: $triggerType")
                 }
             },
-            onDismiss = {
-                showTypeChooser = false
-            },
+            onDismiss = { showTypeChooser = false },
         )
     }
 }

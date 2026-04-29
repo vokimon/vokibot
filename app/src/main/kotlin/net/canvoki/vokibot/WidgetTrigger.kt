@@ -15,10 +15,16 @@ data class WidgetTrigger(
     val displayName: String,
     val widgetId: Int,
 ) : Trigger() {
+    override val type = TYPE
+    override val id: String get() = toFileSystemId("widget_$widgetId")
+    override val title: String get() = displayName
+    override val description: String get() = "Widget ID: $widgetId"
+    override val iconRes: Int get() = R.drawable.ic_brand
+
+    override fun toJson(): String = Companion.json.encodeToString(serializer(), this)
+
     companion object {
         const val TYPE = "trigger_widget"
-
-        fun safeId(id: String) = id
 
         private val json =
             Json {
@@ -28,17 +34,13 @@ data class WidgetTrigger(
             }
 
         fun register() {
-            Trigger.register(TYPE) { jsonString -> fromJson(jsonString) }
+            Trigger.register(
+                typeKey = TYPE,
+                labelRes = R.string.triggerlist_option_widget,
+                iconRes = R.drawable.ic_brand,
+            ) { jsonString -> fromJson(jsonString) }
         }
 
         fun fromJson(jsonString: String): WidgetTrigger = json.decodeFromString(serializer(), jsonString)
     }
-
-    override val type = TYPE
-    override val id: String get() = toFileSystemId("widget_$widgetId")
-    override val title: String get() = displayName
-    override val description: String get() = "Widget ID: $widgetId"
-    override val iconRes: Int get() = R.drawable.ic_brand
-
-    override fun toJson(): String = Companion.json.encodeToString(serializer(), this)
 }

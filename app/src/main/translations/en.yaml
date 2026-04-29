@@ -66,6 +66,7 @@ triggerlist_not_found: No triggers configured
 triggerlist_create_fab_desc: Create trigger
 triggerlist_create_title: Create Trigger
 triggerlist_option_nfc: NFC Tag
+triggerlist_option_widget: Widget
 trigger_group_nfc: NFC Tag
 triggerlist_options_desc: Options
 triggerlist_delete: Delete

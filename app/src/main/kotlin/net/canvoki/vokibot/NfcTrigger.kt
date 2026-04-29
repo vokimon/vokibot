@@ -3,7 +3,6 @@ package net.canvoki.vokibot
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
-import net.canvoki.shared.log
 
 /**
  * Represents an NFC tag trigger.
@@ -17,20 +16,11 @@ data class NfcTrigger(
     val displayName: String,
     val uid: String,
 ) : Trigger() {
-    // TODO: Hack for non-polymorphic serialization
     override val type = NfcTrigger.TYPE
-
-    override val id: String
-        get() = toFileSystemId(uid)
-
-    override val title: String
-        get() = displayName
-
-    override val description: String
-        get() = uid
-
-    override val iconRes: Int
-        get() = R.drawable.ic_nfc
+    override val id: String get() = toFileSystemId(uid)
+    override val title: String get() = displayName
+    override val description: String get() = uid
+    override val iconRes: Int get() = R.drawable.ic_nfc
 
     override fun toJson(): String = Companion.json.encodeToString(serializer(), this)
 
@@ -47,7 +37,11 @@ data class NfcTrigger(
             }
 
         fun register() {
-            Trigger.register(TYPE) { jsonString -> fromJson(jsonString) }
+            Trigger.register(
+                typeKey = TYPE,
+                labelRes = R.string.triggerlist_option_nfc,
+                iconRes = R.drawable.ic_nfc,
+            ) { jsonString -> fromJson(jsonString) }
         }
 
         fun fromJson(jsonString: String): NfcTrigger = json.decodeFromString(serializer(), jsonString)

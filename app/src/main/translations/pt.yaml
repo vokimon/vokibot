@@ -101,3 +101,4 @@ automation_discard_cancel: Cancelar
 automation_done: Concluído
 automation_hint_trigger: Selecione um acionador para continuar
 automation_hint_commands: Adicione pelo menos um comando
+triggerlist_option_widget: Widget

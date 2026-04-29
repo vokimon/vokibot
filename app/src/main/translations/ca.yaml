@@ -101,3 +101,4 @@ automation_discard_cancel: Cancel·la
 automation_done: Fet
 automation_hint_trigger: Selecciona un disparador per continuar
 automation_hint_commands: Afegeix almenys una ordre
+triggerlist_option_widget: Widget

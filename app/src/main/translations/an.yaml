@@ -101,3 +101,4 @@ automation_discard_cancel: Cancelar
 automation_done: Heito
 automation_hint_trigger: Selecciona un disparador pa continar
 automation_hint_commands: Anyade a lo menos una orden
+triggerlist_option_widget: Widget
