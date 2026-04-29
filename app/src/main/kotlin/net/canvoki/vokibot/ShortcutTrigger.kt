@@ -16,7 +16,6 @@ import java.util.UUID
 data class ShortcutTrigger(
     override val id: String = "${UUID.randomUUID()}",
     val displayName: String,
-    val homeScreenIconRes: Int = R.drawable.ic_brand,
 ) : Trigger() {
     companion object {
         const val MAX_SHORT_LABEL_LENGTH = 10
@@ -44,6 +43,7 @@ data class ShortcutTrigger(
     override val title: String get() = displayName
     override val description: String get() = "ID: ${id.takeLast(6)}"
     override val iconRes: Int get() = R.drawable.ic_shortcut
+    val homeScreenIconRes: Int = R.drawable.ic_brand
 
     override fun toJson(): String = Companion.json.encodeToString(serializer(), this)
 
