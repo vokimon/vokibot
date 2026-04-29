@@ -42,6 +42,9 @@ data object TriggerList : StackedScreen<Pair<String, String>>() {
     override fun Screen(nav: StackNavigatorState) {
         TriggerList(nav)
     }
+    init {
+        NfcTrigger::class
+    }
 }
 
 @Composable
@@ -53,14 +56,14 @@ fun TriggerList(
     val repository = remember { FileDataRepository.fromContext(context) }
     var showTypeChooser by remember { mutableStateOf(false) }
     var refreshCounter by remember { mutableIntStateOf(0) }
-    var triggerToDelete by remember { mutableStateOf<NfcTrigger?>(null) }
+    var triggerToDelete by remember { mutableStateOf<Trigger?>(null) }
 
     Box(modifier = modifier.fillMaxSize()) {
         AsyncList(
             refreshKeys = listOf(refreshCounter),
-            loader = { repository.nfcTrigger.all() },
+            loader = { repository.trigger.all() },
             itemKey = { it.id },
-            groupBy = { "nfc" },
+            groupBy = { it.type },
             headerContent = { key -> TriggerGroupHeader(key) },
             notFoundMessage = stringResource(R.string.triggerlist_not_found),
         ) { trigger ->
@@ -72,14 +75,14 @@ fun TriggerList(
                 leadingContent = {
                     Icon(
                         painter = painterResource(trigger.iconRes),
-                        contentDescription = null, //stringResource(R.string.trigger_type_nfc),
+                        contentDescription = null,
                         modifier = Modifier.size(40.dp),
                         tint = MaterialTheme.colorScheme.primary,
                     )
                 },
                 modifier =
                     Modifier.clickable {
-                        nav.pop(Pair("nfc", trigger.id))
+                        nav.pop(Pair(trigger.type, trigger.id))
                     },
                 trailingContent = {
                     IconButton(onClick = { menuExpanded = true }) {
@@ -131,7 +134,7 @@ fun TriggerList(
                 TextButton(
                     onClick = {
                         triggerToDelete?.let { t ->
-                            repository.nfcTrigger.remove(t.id)
+                            repository.trigger.remove(t.id)
                             refreshCounter++
                             triggerToDelete = null
                         }

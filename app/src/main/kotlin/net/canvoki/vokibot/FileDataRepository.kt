@@ -32,6 +32,10 @@ class FileDataRepository(
         DataSet(directory, "command_", ApplicationCommand::fromJson)
     }
 
+    val trigger: DataSet<Trigger> by lazy {
+        DataSet(directory, "trigger_", Trigger::fromJson)
+    }
+
     val nfcTrigger: DataSet<NfcTrigger> by lazy {
         DataSet(directory, "trigger_nfc_", NfcTrigger::fromJson)
     }
