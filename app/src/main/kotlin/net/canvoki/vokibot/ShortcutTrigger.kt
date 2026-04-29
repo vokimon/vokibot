@@ -2,6 +2,7 @@ package net.canvoki.vokibot
 
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import androidx.core.content.pm.ShortcutInfoCompat
 import androidx.core.content.pm.ShortcutManagerCompat
 import androidx.core.graphics.drawable.IconCompat
@@ -45,6 +46,13 @@ data class ShortcutTrigger(
     override val iconRes: Int get() = R.drawable.ic_shortcut
 
     override fun toJson(): String = Companion.json.encodeToString(serializer(), this)
+
+    fun isPinned(context: Context): Boolean {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) return false
+        return ShortcutManagerCompat
+            .getShortcuts(context, ShortcutManagerCompat.FLAG_MATCH_PINNED)
+            .any { it.id == id }
+    }
 
     fun pin(context: Context) {
         val intent =
