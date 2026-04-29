@@ -18,6 +18,8 @@ data class ShortcutTrigger(
     val homeScreenIconRes: Int = R.drawable.ic_brand,
 ) : Trigger() {
     companion object {
+        const val MAX_SHORT_LABEL_LENGTH = 10
+        const val MAX_LONG_LABEL_LENGTH = 25
         const val TYPE = "trigger_shortcut"
         private val json =
             Json {
@@ -54,8 +56,8 @@ data class ShortcutTrigger(
         val shortcut =
             ShortcutInfoCompat
                 .Builder(context, id)
-                .setShortLabel(title.take(10))
-                .setLongLabel(title.take(25))
+                .setShortLabel(title.take(MAX_SHORT_LABEL_LENGTH))
+                .setLongLabel(title.take(MAX_LONG_LABEL_LENGTH))
                 .setIcon(IconCompat.createWithResource(context, homeScreenIconRes))
                 .setIntent(intent)
                 .build()
@@ -66,8 +68,8 @@ data class ShortcutTrigger(
         val shortcut =
             ShortcutInfoCompat
                 .Builder(context, id)
-                .setShortLabel(title.take(10))
-                .setLongLabel(title.take(25))
+                .setShortLabel(title.take(MAX_SHORT_LABEL_LENGTH))
+                .setLongLabel(title.take(MAX_LONG_LABEL_LENGTH))
                 .setIcon(IconCompat.createWithResource(context, homeScreenIconRes))
                 .build()
         ShortcutManagerCompat.updateShortcuts(context, listOf(shortcut))
@@ -77,9 +79,3 @@ data class ShortcutTrigger(
         ShortcutManagerCompat.disableShortcuts(context, listOf(id), null)
     }
 }
-/*
- * Consider those
-removeDynamicShortcuts(context, listofIds) Delete dynamic shortcuts by ID.
-removeLongLivedShortcuts(context, listofIds) Delete long lived shortcuts by ID.
-
-*/
