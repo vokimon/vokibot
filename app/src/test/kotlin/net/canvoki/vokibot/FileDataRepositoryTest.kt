@@ -341,6 +341,35 @@ class FileDataRepositoryTest {
         assertDataEqual(data1, loaded.firstOrNull())
         assertDataEqual(data2, loaded.lastOrNull())
     }
+
+    @Test
+    fun loadAllTriggers() {
+        val repo = FileDataRepository(testDir)
+        val data1 = buildNfc("tag1", "10:01")
+        val data2 = buildNfc("tag2", "20:02")
+        repo.saveNfcTrigger(data1)
+        repo.saveNfcTrigger(data2)
+
+        val loaded = repo.trigger.all()
+        assertDataEqual(data1, loaded.firstOrNull())
+        assertDataEqual(data2, loaded.lastOrNull())
+    }
+
+    @Test
+    fun loadTrigger_appendsTypePrefix() {
+        val repo = FileDataRepository(testDir)
+        val data1 = buildNfc("tag1", "10:01")
+        val data2 = buildNfc("tag2", "20:02")
+        repo.saveNfcTrigger(data1)
+        repo.saveNfcTrigger(data2)
+
+        val loaded1 = repo.trigger.load("nfc_10_01")
+        assertDataEqual(data1, loaded1)
+        val loaded2 = repo.trigger.load("nfc_20_02")
+        assertDataEqual(data2, loaded2)
+        val missing = repo.trigger.load("missing")
+        assertDataEqual(null, missing)
+    }
 }
 
 fun <T : StorableEntity> assertDataEqual(

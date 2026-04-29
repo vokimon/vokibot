@@ -42,9 +42,6 @@ data object TriggerList : StackedScreen<Pair<String, String>>() {
     override fun Screen(nav: StackNavigatorState) {
         TriggerList(nav)
     }
-    init {
-        NfcTrigger::class
-    }
 }
 
 @Composable

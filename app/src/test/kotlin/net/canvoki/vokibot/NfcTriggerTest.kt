@@ -24,7 +24,7 @@ class NfcTriggerTest {
     fun nfcTriggerJson() =
         """
         {
-          "type": "nfc_trigger",
+          "type": "trigger_nfc",
           "displayName": "My ID Card",
           "uid": "01:23:45:67:AB:CD:EF"
         }

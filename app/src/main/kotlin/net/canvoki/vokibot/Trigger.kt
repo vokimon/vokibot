@@ -28,15 +28,23 @@ abstract class Trigger : StorableEntity {
 
         /** Deserialize any registered Trigger from JSON */
         fun fromJson(jsonString: String): Trigger {
-            val preview = json.decodeFromString<UnknownTrigger>(jsonString)
+            val preview = json.decodeFromString<PreviewTrigger>(jsonString)
             val factory = factories[preview.type]
             if (factory == null) {
                 log("Unknown trigger type: ${preview.type}")
-                return preview
+                return UnknownTrigger(type = preview.type, json=jsonString)
             }
             return factory(jsonString)
         }
+
+        init {
+            NfcTrigger.register()
+            WidgetTrigger.register()
+        }
+
     }
+
+    @Serializable data class PreviewTrigger(val type: String)
 }
 
 /**
@@ -44,9 +52,10 @@ abstract class Trigger : StorableEntity {
  */
 @Serializable
 data class UnknownTrigger(
+    val json: String,
     override val type: String,
 ) : Trigger() {
-    override val id: String = ""
+    override val id: String = "unknown_${type}_${json.hashCode()}"
 
     override val title: String = "Unsupported Trigger"
 
@@ -54,6 +63,6 @@ data class UnknownTrigger(
 
     override val iconRes: Int = android.R.drawable.ic_menu_help
 
-    override fun toJson(): String = "{}"
+    override fun toJson(): String = json
 }
 

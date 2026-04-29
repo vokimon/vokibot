@@ -46,8 +46,7 @@ data class NfcTrigger(
                 classDiscriminator = "type"
             }
 
-        init {
-            log("VOKI: Registering $TYPE")
+        fun register() {
             Trigger.register(TYPE) { jsonString -> fromJson(jsonString) }
         }
 
