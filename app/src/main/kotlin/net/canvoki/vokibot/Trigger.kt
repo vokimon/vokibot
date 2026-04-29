@@ -9,4 +9,5 @@ import kotlinx.serialization.Serializable
 abstract class Trigger : StorableEntity {
     abstract val title: String
     abstract val description: String
+    abstract val iconRes: Int
 }

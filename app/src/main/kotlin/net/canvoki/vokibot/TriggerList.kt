@@ -71,7 +71,7 @@ fun TriggerList(
                 supportingContent = { Text(trigger.description) },
                 leadingContent = {
                     Icon(
-                        painter = painterResource(R.drawable.ic_nfc),
+                        painter = painterResource(trigger.iconRes),
                         contentDescription = null, //stringResource(R.string.trigger_type_nfc),
                         modifier = Modifier.size(40.dp),
                         tint = MaterialTheme.colorScheme.primary,

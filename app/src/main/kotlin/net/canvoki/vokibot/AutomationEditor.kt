@@ -1,6 +1,5 @@
 package net.canvoki.vokibot
 
-import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -166,7 +165,7 @@ data class AutomationEditor(
                             }
                         }
                     Icon(
-                        painterResource(R.drawable.ic_flash_on),
+                        painterResource(triggerInfo?.iconRes ?: R.drawable.ic_flash_on),
                         contentDescription = null,
                         tint = MaterialTheme.colorScheme.primary,
                         modifier = Modifier.size(24.dp),

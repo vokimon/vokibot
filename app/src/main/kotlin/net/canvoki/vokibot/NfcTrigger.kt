@@ -28,6 +28,9 @@ data class NfcTrigger(
     override val description: String
         get() = uid
 
+    override val iconRes: Int
+        get() = R.drawable.ic_nfc
+
     override fun toJson(): String = Companion.json.encodeToString(serializer(), this)
 
     companion object {
