@@ -158,7 +158,8 @@ data class AutomationEditor(
                 ) {
                     val triggerInfo =
                         remember(triggerId, triggerType) {
-                            if (triggerType == "nfc" && triggerId.isNotBlank()) {
+                            log("AutomationEditor: remember $triggerId $triggerType")
+                            if (triggerType == "trigger_nfc" && triggerId.isNotBlank()) {
                                 repository.nfcTrigger.load(triggerId)
                             } else {
                                 null
