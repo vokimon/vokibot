@@ -5,7 +5,6 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import net.canvoki.shared.log
 
-
 /**
  * Represents an NFC tag trigger.
  * @param id Stable identifier used for filename and internal references
@@ -37,6 +36,7 @@ data class NfcTrigger(
 
     companion object {
         const val TYPE = "trigger_nfc"
+
         fun safeId(id: String) = id
 
         private val json =

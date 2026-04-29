@@ -16,13 +16,17 @@ abstract class Trigger : StorableEntity {
     companion object {
         private val factories = mutableMapOf<String, (String) -> Trigger>()
 
-        private val json = Json {
-            ignoreUnknownKeys = true
-            classDiscriminator = "type"
-        }
+        private val json =
+            Json {
+                ignoreUnknownKeys = true
+                classDiscriminator = "type"
+            }
 
         /** Register a trigger type factory for polymorphic deserialization */
-        fun register(typeKey: String, factory: (String) -> Trigger) {
+        fun register(
+            typeKey: String,
+            factory: (String) -> Trigger,
+        ) {
             factories[typeKey] = factory
         }
 
@@ -32,7 +36,7 @@ abstract class Trigger : StorableEntity {
             val factory = factories[preview.type]
             if (factory == null) {
                 log("Unknown trigger type: ${preview.type}")
-                return UnknownTrigger(type = preview.type, json=jsonString)
+                return UnknownTrigger(type = preview.type, json = jsonString)
             }
             return factory(jsonString)
         }
@@ -41,10 +45,11 @@ abstract class Trigger : StorableEntity {
             NfcTrigger.register()
             WidgetTrigger.register()
         }
-
     }
 
-    @Serializable data class PreviewTrigger(val type: String)
+    @Serializable data class PreviewTrigger(
+        val type: String,
+    )
 }
 
 /**
@@ -65,4 +70,3 @@ data class UnknownTrigger(
 
     override fun toJson(): String = json
 }
-
