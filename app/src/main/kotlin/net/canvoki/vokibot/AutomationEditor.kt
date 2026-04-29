@@ -174,12 +174,12 @@ data class AutomationEditor(
                     Spacer(Modifier.width(12.dp))
                     Column(Modifier.weight(1f)) {
                         Text(
-                            text = triggerInfo?.displayName ?: stringResource(R.string.automation_trigger_placeholder),
+                            text = triggerInfo?.title ?: stringResource(R.string.automation_trigger_placeholder),
                             style = MaterialTheme.typography.bodyLarge,
                             color = MaterialTheme.colorScheme.primary,
                         )
                         Text(
-                            text = triggerInfo?.uid ?: stringResource(R.string.automation_trigger_hint),
+                            text = triggerInfo?.description ?: stringResource(R.string.automation_trigger_hint),
                             style = MaterialTheme.typography.labelSmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                         )

@@ -67,8 +67,8 @@ fun TriggerList(
             var menuExpanded by remember { mutableStateOf(false) }
 
             ListItem(
-                headlineContent = { Text(trigger.displayName) },
-                supportingContent = { Text(trigger.uid) },
+                headlineContent = { Text(trigger.title) },
+                supportingContent = { Text(trigger.description) },
                 leadingContent = {
                     Icon(
                         painter = painterResource(R.drawable.ic_nfc),
