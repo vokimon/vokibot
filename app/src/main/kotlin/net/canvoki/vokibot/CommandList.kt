@@ -45,21 +45,13 @@ import net.canvoki.shared.component.StackedScreen
 data object CommandList : StackedScreen<String>() {
     @Composable
     override fun Screen(nav: StackNavigatorState) {
-        CommandList(
-            onLaunchAppSelected = {
-                nav.push(AppList)
-            },
-            onCommandSelected = { commandId ->
-                nav.pop(commandId)
-            },
-        )
+        CommandList(nav)
     }
 }
 
 @Composable
 fun CommandList(
-    onLaunchAppSelected: () -> Unit,
-    onCommandSelected: (String) -> Unit,
+    nav: StackNavigatorState,
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
@@ -106,7 +98,7 @@ fun CommandList(
                         maxLines = 1,
                     )
                 },
-                modifier = Modifier.clickable { onCommandSelected(command.id) },
+                modifier = Modifier.clickable { nav.pop(command.id) },
                 leadingContent = {
                     componentIcon?.let { icon ->
                         Image(
@@ -221,7 +213,7 @@ fun CommandList(
             selectedValue = "",
             onConfirm = { value ->
                 showTypeChooser = false
-                if (value == "application") onLaunchAppSelected()
+                if (value == "application") nav.push(AppList) { refreshCounter++ }
             },
             onDismiss = { showTypeChooser = false },
         )
