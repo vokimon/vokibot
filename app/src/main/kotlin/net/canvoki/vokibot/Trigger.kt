@@ -2,6 +2,8 @@ package net.canvoki.vokibot
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 
@@ -51,6 +53,18 @@ abstract class Trigger : StorableEntity {
             }
             return factory(jsonString)
         }
+
+        /**
+         * Composable helper to get a localized, human-readable label for a trigger type.
+         * Returns the raw typeKey if the type is not registered (e.g. orphaned data).
+         *
+         * Usage: Text(Trigger.typeLabel(trigger.type))
+         */
+        @Composable
+        fun typeLabel(type: String): String =
+            typeInfos[type]?.let {
+                stringResource(it.labelRes)
+            } ?: type
 
         init {
             NfcTrigger.register()

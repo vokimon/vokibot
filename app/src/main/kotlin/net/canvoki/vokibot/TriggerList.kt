@@ -173,7 +173,7 @@ fun TriggerList(
 @Composable
 private fun TriggerGroupHeader(groupKey: String) {
     Text(
-        text = stringResource(R.string.trigger_group_nfc),
+        text = Trigger.typeLabel(groupKey),
         style = MaterialTheme.typography.titleSmall,
         color = MaterialTheme.colorScheme.primary,
         modifier =
