@@ -66,8 +66,7 @@ triggerlist_not_found: Nenhum gatilho configurado
 triggerlist_create_fab_desc: Criar gatilho
 triggerlist_create_title: Criar gatilho
 triggerlist_option_nfc: Etiqueta NFC
-triggerlist_option_widget: Widget
-trigger_group_nfc: Etiqueta NFC
+triggerlist_option_shortcut: Atalho
 triggerlist_options_desc: Opções
 triggerlist_delete: Excluir
 triggerlist_delete_title: Excluir etiqueta?
@@ -102,9 +101,11 @@ automation_discard_cancel: Cancelar
 automation_done: Concluído
 automation_hint_trigger: Selecione um acionador para continuar
 automation_hint_commands: Adicione pelo menos um comando
-shortcut_editor_create_title: Criar atalho
-shortcut_editor_edit_title: Editar atalho
+shortcut_editor_title: Atalho
+shortcut_editor_save: Guardar
+shortcut_editor_discard_title: Descartar alterações?
+shortcut_editor_discard_message: Queres descartar as alterações feitas?
+shortcut_editor_discard_confirm: Descartar
+shortcut_editor_discard_cancel: Cancelar
 shortcut_editor_name_label: Nome
-shortcut_editor_create: Criar e fixar
-shortcut_editor_save: Guardar e atualizar
-triggerlist_option_shortcut: Atalho
+shortcut_editor_name_placeholder: "Ex: Casa, Trabalho, Carro…"

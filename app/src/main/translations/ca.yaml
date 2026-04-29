@@ -66,8 +66,7 @@ triggerlist_not_found: No hi ha cap disparador configurat
 triggerlist_create_fab_desc: Crea un disparador
 triggerlist_create_title: Crea un disparador
 triggerlist_option_nfc: Etiqueta NFC
-triggerlist_option_widget: Widget
-trigger_group_nfc: Etiqueta NFC
+triggerlist_option_shortcut: Drecera
 triggerlist_options_desc: Opcions
 triggerlist_delete: Suprimeix
 triggerlist_delete_title: Suprimir l'etiqueta?
@@ -102,9 +101,11 @@ automation_discard_cancel: Cancel·la
 automation_done: Fet
 automation_hint_trigger: Selecciona un disparador per continuar
 automation_hint_commands: Afegeix almenys una ordre
-shortcut_editor_create_title: Crea una drecera
-shortcut_editor_edit_title: Edita la drecera
+shortcut_editor_title: Drecera
+shortcut_editor_save: Desa
+shortcut_editor_discard_title: Descartar canvis?
+shortcut_editor_discard_message: Vols descartar els canvis fets?
+shortcut_editor_discard_confirm: Descarta
+shortcut_editor_discard_cancel: Cancel·la
 shortcut_editor_name_label: Nom
-shortcut_editor_create: Crea i fixa
-shortcut_editor_save: Desa i actualitza
-triggerlist_option_shortcut: Drecera
+shortcut_editor_name_placeholder: "Ex: Casa, Feina, Cotxe…"

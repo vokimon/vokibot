@@ -66,8 +66,7 @@ triggerlist_not_found: Aucun déclencheur configuré
 triggerlist_create_fab_desc: Créer un déclencheur
 triggerlist_create_title: Créer un déclencheur
 triggerlist_option_nfc: Étiquette NFC
-triggerlist_option_widget: Widget
-trigger_group_nfc: Étiquette NFC
+triggerlist_option_shortcut: Raccourci
 triggerlist_options_desc: Options
 triggerlist_delete: Supprimer
 triggerlist_delete_title: Supprimer l'étiquette ?
@@ -102,9 +101,11 @@ automation_discard_cancel: Annuler
 automation_done: Terminé
 automation_hint_trigger: Sélectionnez un déclencheur pour continuer
 automation_hint_commands: Ajoutez au moins une commande
-shortcut_editor_create_title: Créer un raccourci
-shortcut_editor_edit_title: Modifier le raccourci
+shortcut_editor_title: Raccourci
+shortcut_editor_save: Enregistrer
+shortcut_editor_discard_title: Annuler les modifications ?
+shortcut_editor_discard_message: Voulez-vous annuler les modifications apportées ?
+shortcut_editor_discard_confirm: Annuler
+shortcut_editor_discard_cancel: Annuler
 shortcut_editor_name_label: Nom
-shortcut_editor_create: Créer et épingler
-shortcut_editor_save: Enregistrer et mettre à jour
-triggerlist_option_shortcut: Raccourci
+shortcut_editor_name_placeholder: "Ex : Maison, Travail, Voiture…"

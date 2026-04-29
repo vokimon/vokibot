@@ -66,8 +66,7 @@ triggerlist_not_found: Non hai disparadores configurados
 triggerlist_create_fab_desc: Crear disparador
 triggerlist_create_title: Crear disparador
 triggerlist_option_nfc: Etiqueta NFC
-triggerlist_option_widget: Widget
-trigger_group_nfc: Etiqueta NFC
+triggerlist_option_shortcut: Atallo
 triggerlist_options_desc: Opcións
 triggerlist_delete: Eliminar
 triggerlist_delete_title: Eliminar etiqueta?
@@ -102,9 +101,11 @@ automation_discard_cancel: Cancelar
 automation_done: Feito
 automation_hint_trigger: Selecciona un disparador para continuar
 automation_hint_commands: Engade polo menos unha orde
-shortcut_editor_create_title: Crear atallo
-shortcut_editor_edit_title: Editar atallo
+shortcut_editor_title: Atallo
+shortcut_editor_save: Gardar
+shortcut_editor_discard_title: Descartar cambios?
+shortcut_editor_discard_message: Queres descartar os cambios realizados?
+shortcut_editor_discard_confirm: Descartar
+shortcut_editor_discard_cancel: Cancelar
 shortcut_editor_name_label: Nome
-shortcut_editor_create: Crear e fixar
-shortcut_editor_save: Gardar e actualizar
-triggerlist_option_shortcut: Atallo
+shortcut_editor_name_placeholder: "Ex: Casa, Traballo, Coche…"

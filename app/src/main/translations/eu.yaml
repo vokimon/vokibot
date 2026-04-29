@@ -66,8 +66,7 @@ triggerlist_not_found: Ez dago abiarazlerik konfiguratuta
 triggerlist_create_fab_desc: Abiarazlea sortu
 triggerlist_create_title: Abiarazlea sortu
 triggerlist_option_nfc: NFC etiketa
-triggerlist_option_widget: Widgeta
-trigger_group_nfc: NFC etiketa
+triggerlist_option_shortcut: Lasterbidea
 triggerlist_options_desc: Aukerak
 triggerlist_delete: Ezabatu
 triggerlist_delete_title: Etiketa ezabatu?
@@ -102,9 +101,11 @@ automation_discard_cancel: Utzi
 automation_done: Eginda
 automation_hint_trigger: Hautatu trigger bat jarraitzeko
 automation_hint_commands: Gehitu gutxienez komando bat
-shortcut_editor_create_title: Sortu lasterbidea
-shortcut_editor_edit_title: Editatu lasterbidea
+shortcut_editor_title: Lasterbidea
+shortcut_editor_save: Gorde
+shortcut_editor_discard_title: Baztertu aldaketak?
+shortcut_editor_discard_message: Egindako aldaketak baztertu nahi dituzu?
+shortcut_editor_discard_confirm: Baztertu
+shortcut_editor_discard_cancel: Utzi
 shortcut_editor_name_label: Izena
-shortcut_editor_create: Sortu eta ainguratu
-shortcut_editor_save: Gorde eta eguneratu
-triggerlist_option_shortcut: Lasterbidea
+shortcut_editor_name_placeholder: "Adib.: Etxea, Lana, Autoa…"

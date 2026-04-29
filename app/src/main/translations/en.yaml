@@ -101,8 +101,11 @@ automation_discard_cancel: Cancel
 automation_done: Done
 automation_hint_trigger: Select a trigger to continue
 automation_hint_commands: Add at least one command
-shortcut_editor_create_title: Create Shortcut
-shortcut_editor_edit_title: Edit Shortcut
+shortcut_editor_title: Shortcut
+shortcut_editor_save: Save
+shortcut_editor_discard_title: Discard Changes?
+shortcut_editor_discard_message: Do you want to discard the changes you made?
+shortcut_editor_discard_confirm: Discard
+shortcut_editor_discard_cancel: Cancel
 shortcut_editor_name_label: Name
-shortcut_editor_create: Create & Pin
-shortcut_editor_save: Save & Update
+shortcut_editor_name_placeholder: "Ex: Home, Work, Car…"

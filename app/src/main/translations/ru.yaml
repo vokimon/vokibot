@@ -66,8 +66,7 @@ triggerlist_not_found: Триггеры не настроены
 triggerlist_create_fab_desc: Создать триггер
 triggerlist_create_title: Создать триггер
 triggerlist_option_nfc: NFC-метка
-triggerlist_option_widget: Виджет
-trigger_group_nfc: NFC-метка
+triggerlist_option_shortcut: Ярлык
 triggerlist_options_desc: Параметры
 triggerlist_delete: Удалить
 triggerlist_delete_title: Удалить метку?
@@ -102,9 +101,11 @@ automation_discard_cancel: Отмена
 automation_done: Готово
 automation_hint_trigger: Выберите триггер для продолжения
 automation_hint_commands: Добавьте хотя бы одну команду
-shortcut_editor_create_title: Создать ярлык
-shortcut_editor_edit_title: Редактировать ярлык
+shortcut_editor_title: Ярлык
+shortcut_editor_save: Сохранить
+shortcut_editor_discard_title: Отменить изменения?
+shortcut_editor_discard_message: Отменить внесённые изменения?
+shortcut_editor_discard_confirm: Отменить
+shortcut_editor_discard_cancel: Отмена
 shortcut_editor_name_label: Имя
-shortcut_editor_create: Создать и закрепить
-shortcut_editor_save: Сохранить и обновить
-triggerlist_option_shortcut: Ярлык
+shortcut_editor_name_placeholder: "Пример: Дом, Работа, Машина…"

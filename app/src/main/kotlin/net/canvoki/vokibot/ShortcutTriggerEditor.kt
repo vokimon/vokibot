@@ -2,12 +2,13 @@ package net.canvoki.vokibot
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -17,11 +18,13 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import kotlinx.serialization.Serializable
 import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
+import net.canvoki.vokibot.common.EditorHeader
 
 @Serializable
 data class ShortcutTriggerEditor(
@@ -33,63 +36,88 @@ data class ShortcutTriggerEditor(
         val repository = remember { FileDataRepository.fromContext(context) }
 
         var name by rememberSaveable { mutableStateOf("") }
+        var isDirty by remember { mutableStateOf(false) }
         var isProcessing by remember { mutableStateOf(false) }
-        var existingTrigger by remember { mutableStateOf<ShortcutTrigger?>(null) }
+        var showDiscardDialog by remember { mutableStateOf(false) }
+        var hasLoaded by remember { mutableStateOf(false) }
 
         LaunchedEffect(triggerId) {
-            if (triggerId != null) {
-                existingTrigger = repository.trigger.all().find { it.id == triggerId } as? ShortcutTrigger
+            if (triggerId != null && !hasLoaded) {
+                val existingTrigger = repository.trigger.all().find { it.id == triggerId } as? ShortcutTrigger
                 existingTrigger?.let { name = it.displayName }
+                hasLoaded = true
             }
         }
 
+        LaunchedEffect(isDirty) {
+            nav.onBack(this@ShortcutTriggerEditor, enabled = isDirty) {
+                showDiscardDialog = true
+            }
+        }
+
+        if (showDiscardDialog) {
+            AlertDialog(
+                onDismissRequest = { showDiscardDialog = false },
+                title = { Text(stringResource(R.string.shortcut_editor_discard_title)) },
+                text = { Text(stringResource(R.string.shortcut_editor_discard_message)) },
+                confirmButton = {
+                    TextButton(onClick = {
+                        showDiscardDialog = false
+                        nav.pop()
+                    }) { Text(stringResource(R.string.shortcut_editor_discard_confirm)) }
+                },
+                dismissButton = {
+                    TextButton(onClick = { showDiscardDialog = false }) {
+                        Text(stringResource(R.string.shortcut_editor_discard_cancel))
+                    }
+                },
+            )
+        }
+
         Column(
-            modifier = Modifier.padding(16.dp),
+            modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
-            Text(
-                text =
-                    stringResource(
-                        if (triggerId == null) {
-                            R.string.shortcut_editor_create_title
+            EditorHeader(
+                title = stringResource(R.string.shortcut_editor_title),
+                icon = painterResource(R.drawable.ic_shortcut),
+                actionText = stringResource(R.string.shortcut_editor_save),
+                action = {
+                    if (name.isBlank()) return@EditorHeader
+                    isProcessing = true
+                    val trigger =
+                        if (triggerId != null) {
+                            ShortcutTrigger(
+                                id = triggerId,
+                                displayName = name.trim(),
+                            )
                         } else {
-                            R.string.shortcut_editor_edit_title
-                        },
-                    ),
-                style = MaterialTheme.typography.titleLarge,
+                            ShortcutTrigger(
+                                displayName = name.trim(),
+                            )
+                        }
+                    repository.trigger.save(trigger)
+
+                    if (trigger.isPinned(context)) {
+                        trigger.update(context)
+                    } else {
+                        trigger.pin(context)
+                    }
+
+                    isProcessing = false
+                    nav.pop()
+                },
+                actionEnabled = name.isNotBlank() && !isProcessing,
             )
+
             OutlinedTextField(
                 value = name,
                 onValueChange = { name = it },
                 label = { Text(stringResource(R.string.shortcut_editor_name_label)) },
+                placeholder = { Text(stringResource(R.string.shortcut_editor_name_placeholder)) },
                 modifier = Modifier.fillMaxWidth(),
+                singleLine = true,
             )
-            Button(
-                onClick = {
-                    if (name.isBlank()) return@Button
-                    isProcessing = true
-                    if (triggerId != null && existingTrigger != null) {
-                        val updated = existingTrigger!!.copy(displayName = name.trim())
-                        repository.trigger.save(updated)
-                        updated.update(context)
-                    } else {
-                        val new = ShortcutTrigger(displayName = name.trim())
-                        repository.trigger.save(new)
-                        new.pin(context)
-                    }
-                    isProcessing = false
-                    nav.pop()
-                },
-                enabled = name.isNotBlank() && !isProcessing,
-                modifier = Modifier.fillMaxWidth(),
-            ) {
-                Text(
-                    text =
-                        stringResource(
-                            if (triggerId == null) R.string.shortcut_editor_create else R.string.shortcut_editor_save,
-                        ),
-                )
-            }
         }
     }
 }

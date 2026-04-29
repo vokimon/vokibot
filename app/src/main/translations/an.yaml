@@ -66,8 +66,7 @@ triggerlist_not_found: No i ha garra disparador configurau
 triggerlist_create_fab_desc: Crear disparador
 triggerlist_create_title: Crear disparador
 triggerlist_option_nfc: Etiqueta NFC
-triggerlist_option_widget: Widget
-trigger_group_nfc: Etiqueta NFC
+triggerlist_option_shortcut: Drecera
 triggerlist_options_desc: Opcions
 triggerlist_delete: Borrar
 triggerlist_delete_title: Borrar etiqueta?
@@ -102,9 +101,11 @@ automation_discard_cancel: Cancelar
 automation_done: Heito
 automation_hint_trigger: Selecciona un disparador pa continar
 automation_hint_commands: Anyade a lo menos una orden
-shortcut_editor_create_title: Crear drecera
-shortcut_editor_edit_title: Editar drecera
+shortcut_editor_title: Drecera
+shortcut_editor_save: Gardar
+shortcut_editor_discard_title: Descartar cambeos?
+shortcut_editor_discard_message: Quers descartar os cambeos feitos?
+shortcut_editor_discard_confirm: Descartar
+shortcut_editor_discard_cancel: Cancelar
 shortcut_editor_name_label: Nombre
-shortcut_editor_create: Crea y fixa
-shortcut_editor_save: Desa y actualiza
-triggerlist_option_shortcut: Drecera
+shortcut_editor_name_placeholder: "Ex: Casa, Treballo, Coche…"
