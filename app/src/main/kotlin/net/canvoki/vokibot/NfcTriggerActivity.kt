@@ -1,5 +1,6 @@
 package net.canvoki.vokibot
 
+import android.content.Context
 import android.content.Intent
 import android.nfc.NfcAdapter
 import android.nfc.Tag
@@ -55,12 +56,7 @@ class NfcTriggerActivity : ComponentActivity() {
                 intent = intent,
                 onAutomationExecuted = { finish() },
                 onCreateAutomation = { triggerId, triggerType ->
-                    val editorIntent =
-                        Intent(this, AutomationEditorActivity::class.java).apply {
-                            putExtra("trigger_type", triggerType)
-                            putExtra("trigger_id", triggerId)
-                        }
-                    startActivity(editorIntent)
+                    editAutomationForTrigger(context = this, triggerType, triggerId)
                     finish()
                 },
             )
@@ -104,7 +100,7 @@ private fun NfcActivityScreen(
         val automations =
             repository.automation
                 .all()
-                .filter { it.triggerType == "nfc" && it.triggerId == trigger.id }
+                .filter { it.triggerType == NfcTrigger.TYPE && it.triggerId == trigger.id }
 
         if (automations.isEmpty()) {
             executionState = ExecutionState.NoAutomation
@@ -303,6 +299,19 @@ private fun extractUidFromIntent(intent: Intent): String? =
     } else {
         null
     }
+
+fun editAutomationForTrigger(
+    context: Context,
+    triggerType: String,
+    triggerId: String,
+) {
+    val editorIntent =
+        Intent(context, AutomationEditorActivity::class.java).apply {
+            putExtra("trigger_type", triggerType)
+            putExtra("trigger_id", triggerId)
+        }
+    context.startActivity(editorIntent)
+}
 
 private sealed class ExecutionState {
     data object Idle : ExecutionState()
