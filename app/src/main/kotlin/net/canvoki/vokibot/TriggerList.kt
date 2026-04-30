@@ -105,6 +105,23 @@ fun TriggerList(
                                 triggerToDelete = trigger
                             },
                         )
+                        DropdownMenuItem(
+                            text = { Text("Edit") },
+                            leadingIcon = {
+                                Icon(
+                                    painter = painterResource(R.drawable.ic_edit),
+                                    contentDescription = null,
+                                )
+                            },
+                            onClick = {
+                                menuExpanded = false
+                                when (trigger.type) {
+                                    NfcTrigger.TYPE -> nav.push(NfcTriggerEditor(trigger.id)) { refreshCounter++ }
+                                    ShortcutTrigger.TYPE -> nav.push(ShortcutTriggerEditor(trigger.id)) { refreshCounter++ }
+                                    else -> log("Unknown trigger type selected: $trigger.type")
+                                }
+                            },
+                        )
                     }
                 },
             )
@@ -160,7 +177,7 @@ fun TriggerList(
                 showTypeChooser = false
                 // Push the corresponding editor screen based on typeKey
                 when (triggerType) {
-                    NfcTrigger.TYPE -> nav.push(NfcTriggerEditor) { refreshCounter++ }
+                    NfcTrigger.TYPE -> nav.push(NfcTriggerEditor(null)) { refreshCounter++ }
                     ShortcutTrigger.TYPE -> nav.push(ShortcutTriggerEditor(null)) { refreshCounter++ }
                     else -> log("Unknown trigger type selected: $triggerType")
                 }

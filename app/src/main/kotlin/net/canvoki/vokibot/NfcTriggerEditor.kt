@@ -45,7 +45,9 @@ import net.canvoki.shared.component.StackedScreen
 import net.canvoki.vokibot.common.EditorHeader
 
 @Serializable
-data object NfcTriggerEditor : StackedScreen<Unit>() {
+data class NfcTriggerEditor(
+    val editingId: String? = null,
+) : StackedScreen<Unit>() {
     @Composable
     override fun Screen(nav: StackNavigatorState) {
         val scope = rememberCoroutineScope()
@@ -56,17 +58,19 @@ data object NfcTriggerEditor : StackedScreen<Unit>() {
 
         var displayName by rememberSaveable { mutableStateOf("") }
         var uid by rememberSaveable { mutableStateOf("") }
+        var initialUid by rememberSaveable { mutableStateOf("") }
         var scanSuccess by remember { mutableStateOf(false) }
         var isNfcAvailable by rememberSaveable { mutableStateOf(true) }
         var isNfcEnabled by rememberSaveable { mutableStateOf(true) }
         var isSaving by rememberSaveable { mutableStateOf(false) }
+        var hasLoaded by rememberSaveable { mutableStateOf(false) }
 
         fun checkNfcState() {
             isNfcAvailable = nfcAdapter != null
             isNfcEnabled = nfcAdapter?.isEnabled == true
         }
 
-        // Initial check + periodic polling to sync with system settings
+        // Initial NFC state check + periodic polling
         LaunchedEffect(Unit) {
             checkNfcState()
             while (true) {
@@ -75,8 +79,22 @@ data object NfcTriggerEditor : StackedScreen<Unit>() {
             }
         }
 
+        // Load existing trigger if editingId provided (only once)
+        LaunchedEffect(editingId) {
+            if (editingId != null && !hasLoaded) {
+                val existing = repository.nfcTrigger.all().find { it.id == editingId }
+                existing?.let {
+                    displayName = it.displayName
+                    uid = it.uid
+                    initialUid = it.uid
+                }
+                hasLoaded = true
+            }
+        }
+
+        // Update displayName when uid changes (but only if user hasn't edited it manually)
         LaunchedEffect(uid) {
-            if (uid.isNotBlank()) {
+            if (uid.isNotBlank() && !hasLoaded) {
                 val existing = repository.nfcTrigger.load(uid)
                 if (existing != null && displayName.isBlank()) {
                     displayName = existing.displayName
@@ -86,7 +104,7 @@ data object NfcTriggerEditor : StackedScreen<Unit>() {
             }
         }
 
-        // Enable reader mode only when hardware is present and enabled
+        // NFC reader mode: updates uid state when a tag is scanned
         DisposableEffect(isNfcEnabled, isNfcAvailable, nfcAdapter) {
             val callback =
                 NfcAdapter.ReaderCallback { tag ->

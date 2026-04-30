@@ -54,7 +54,7 @@ data class ShortcutTrigger(
             .any { it.id == id }
     }
 
-    fun pin(context: Context) {
+    private fun buildShortcutInfo(context: Context): ShortcutInfoCompat {
         val intent =
             Intent(context, ShortcutDispatchActivity::class.java).apply {
                 action = ShortcutDispatchActivity.ACTION_TRIGGER
@@ -69,19 +69,20 @@ data class ShortcutTrigger(
                 .setIcon(IconCompat.createWithResource(context, homeScreenIconRes))
                 .setIntent(intent)
                 .build()
+        return shortcut
+
+    }
+
+    fun pin(context: Context) {
+        val shortcut = buildShortcutInfo(context)
         ShortcutManagerCompat.requestPinShortcut(context, shortcut, null)
     }
 
     fun update(context: Context) {
-        val shortcut =
-            ShortcutInfoCompat
-                .Builder(context, id)
-                .setShortLabel(title.take(MAX_SHORT_LABEL_LENGTH))
-                .setLongLabel(title.take(MAX_LONG_LABEL_LENGTH))
-                .setIcon(IconCompat.createWithResource(context, homeScreenIconRes))
-                .build()
+        val shortcut = buildShortcutInfo(context)
         ShortcutManagerCompat.updateShortcuts(context, listOf(shortcut))
     }
+
 
     fun disable(context: Context) {
         ShortcutManagerCompat.disableShortcuts(context, listOf(id), null)
