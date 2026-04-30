@@ -82,8 +82,4 @@ data class ShortcutTrigger(
         val shortcut = buildShortcutInfo(context)
         ShortcutManagerCompat.updateShortcuts(context, listOf(shortcut))
     }
-
-    fun disable(context: Context) {
-        ShortcutManagerCompat.disableShortcuts(context, listOf(id), null)
-    }
 }
