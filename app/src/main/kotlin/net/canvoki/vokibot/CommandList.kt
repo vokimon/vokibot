@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.FloatingActionButton
@@ -174,31 +173,23 @@ fun CommandList(
         }
     }
 
-    if (commandToDelete != null) {
-        AlertDialog(
-            onDismissRequest = { commandToDelete = null },
-            title = { Text(stringResource(R.string.commandlist_delete_title)) },
-            text = { Text(stringResource(R.string.commandlist_delete_message)) },
-            confirmButton = {
-                TextButton(
-                    onClick = {
-                        commandToDelete?.let { id ->
-                            repository.removeCommand(id)
-                            refreshCounter++
-                            commandToDelete = null
-                        }
-                    },
-                ) {
-                    Text(stringResource(R.string.commandlist_delete), color = MaterialTheme.colorScheme.error)
-                }
-            },
-            dismissButton = {
-                TextButton(onClick = { commandToDelete = null }) {
-                    Text(stringResource(R.string.commandlist_cancel))
-                }
-            },
-        )
-    }
+    ConfirmDialog(
+        show = commandToDelete != null,
+        title = stringResource(R.string.commandlist_delete_title),
+        text = stringResource(R.string.commandlist_delete_message),
+        confirmText = stringResource(R.string.commandlist_delete),
+        dismissText = stringResource(R.string.commandlist_cancel),
+        onDismiss = {
+            commandToDelete = null
+        },
+        onConfirm = {
+            commandToDelete?.let { id ->
+                repository.removeCommand(id)
+                refreshCounter++
+                commandToDelete = null
+            }
+        },
+    )
 
     if (showTypeChooser) {
         ChooserDialog(

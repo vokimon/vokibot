@@ -5,10 +5,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -54,28 +52,23 @@ data class ShortcutTriggerEditor(
                 showDiscardDialog = true
             }
         }
-
-        if (showDiscardDialog) {
-            AlertDialog(
-                onDismissRequest = { showDiscardDialog = false },
-                title = { Text(stringResource(R.string.shortcut_editor_discard_title)) },
-                text = { Text(stringResource(R.string.shortcut_editor_discard_message)) },
-                confirmButton = {
-                    TextButton(onClick = {
-                        showDiscardDialog = false
-                        nav.pop()
-                    }) { Text(stringResource(R.string.shortcut_editor_discard_confirm)) }
-                },
-                dismissButton = {
-                    TextButton(onClick = { showDiscardDialog = false }) {
-                        Text(stringResource(R.string.shortcut_editor_discard_cancel))
-                    }
-                },
-            )
-        }
+        ConfirmDialog(
+            show = showDiscardDialog,
+            title = stringResource(R.string.shortcut_editor_discard_title),
+            text = stringResource(R.string.shortcut_editor_discard_message),
+            confirmText = stringResource(R.string.shortcut_editor_discard_confirm),
+            dismissText = stringResource(R.string.shortcut_editor_discard_cancel),
+            onDismiss = {
+                showDiscardDialog = false
+            },
+            onConfirm = {
+                showDiscardDialog = false
+                nav.pop()
+            },
+        )
 
         Column(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier.fillMaxSize().padding(8.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             EditorHeader(

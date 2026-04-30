@@ -14,7 +14,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
@@ -254,7 +253,7 @@ private fun NfcUidDisplayScreen(
                     )
                 repository.nfcTrigger.save(trigger)
                 showNameDialog = false
-                onCreateAutomation(trigger.id, "nfc")
+                onCreateAutomation(trigger.id, NfcTrigger.TYPE)
             }
         },
     )

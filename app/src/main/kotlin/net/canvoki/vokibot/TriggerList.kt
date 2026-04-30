@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.FloatingActionButton
@@ -141,31 +140,23 @@ fun TriggerList(
     }
 
     // Delete confirmation dialog
-    if (triggerToDelete != null) {
-        AlertDialog(
-            onDismissRequest = { triggerToDelete = null },
-            title = { Text(stringResource(R.string.triggerlist_delete_title)) },
-            text = { Text(stringResource(R.string.triggerlist_delete_message)) },
-            confirmButton = {
-                TextButton(
-                    onClick = {
-                        triggerToDelete?.let { t ->
-                            repository.trigger.remove(t.id)
-                            refreshCounter++
-                            triggerToDelete = null
-                        }
-                    },
-                ) {
-                    Text(stringResource(R.string.triggerlist_delete), color = MaterialTheme.colorScheme.error)
-                }
-            },
-            dismissButton = {
-                TextButton(onClick = { triggerToDelete = null }) {
-                    Text(stringResource(R.string.triggerlist_cancel))
-                }
-            },
-        )
-    }
+    ConfirmDialog(
+        show = triggerToDelete != null,
+        title = stringResource(R.string.triggerlist_delete_title),
+        text = stringResource(R.string.triggerlist_delete_message),
+        confirmText = stringResource(R.string.triggerlist_delete),
+        dismissText = stringResource(R.string.triggerlist_cancel),
+        onDismiss = {
+            triggerToDelete = null
+        },
+        onConfirm = {
+            triggerToDelete?.let { t ->
+                repository.trigger.remove(t.id)
+                refreshCounter++
+                triggerToDelete = null
+            }
+        },
+    )
 
     if (showTypeChooser) {
         ChooserDialog(
