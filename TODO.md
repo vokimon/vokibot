@@ -1,14 +1,20 @@
 # Change log
 
+- [ ] TriggerList delete does not work for NFC (it does for shortcuts)
+- [ ] AutomationEditor: Renaming existing should rename, not duplicate
+- [x] TriggerList: Make type separator label, type dependant (now Nfc for all types)
+- [ ] TriggerList: Chooser: add type icon
+- [ ] TriggerList: Chooser: remove radiobutton
+
 - [x] First screen at the begining with no slide animation
 - [x] On push, previous screen slide out left (not fully which is not a problem if the next work)
-- [ ] On push, previous screen fades out -> No the screen is still visible!!!
+- [x] On push, previous screen fades out -> No the screen is still visible!!!
 - [x] On push, new screen slides left in
-- [-] On push, new screen slides fades in (not sure if it is happening, i would say yes)
-- [ ] On back, discarded screen slides right out (No, it just disappears instantly)
-- [ ] On back, discarded screen fades out (No, it just disappears instantly)
+- [x] On push, new screen slides fades in
+- [x] On back, discarded screen slides right out
+- [x] On back, discarded screen fades out
 - [x] On back, recovered screen slides right in
-- [-] On back, recovered screen fades in (not sure since it does not starts from zero)
+- [x] On back, recovered screen fades in
 
 
 - [x] Push the retrieved PublicComponent to the IntentEditor
@@ -37,27 +43,8 @@
 - [ ] IntentEditor: Add custom Extras (choose name and type)
 - [ ] IntentEditor: Delete Extra
 - [ ] IntentEditor: On change action, remove empty extras, keep filled
-
-
-
-- [ ] Main view
-    - [ ] List of automations (On Even, Command)
-    - [ ] Button to add a new one
-    - [ ] Automation item menu to edit
-    - [ ] Automation item menu to delete
-- [ ] Package component view
-    - [ ] Components: Translated plural section names (Activity -> Activitats)
-- [ ] Automation edit
-    - [ ] Event section
-        - [ ] Event Item
-    - [ ] Command section
-        - [ ] Command Item
-    
-    
-    - [ ] Automations and `+` button to add.
-    - [ ] Saved Commands: List splitted by types, every type `+` to add a new command
-    - [ ] Application Command type: List application
-    - [ ] On 
+- [ ] Saved Commands: List splitted by types, every type `+` to add a new command
+- [ ] Application Command type: List application
 
 
 - [x] Llista d'applicacions
@@ -77,6 +64,27 @@
     - pm.resolveContentProvider(authority, 0)
 
 
+- More commands:
+    - [ ] Open settings page: <https://developer.android.com/reference/android/provider/Settings#ACTION_APPLICATION_DEVELOPMENT_SETTINGS>
+- More triggers:
+    - [ ] Widget
+    - [ ] On broadcast received
+    - [ ] On notification received
+    - [ ] Date/Day of Week/Time/Timer
+    - [ ] Calendar events
+    - [ ] Call received
+    - [ ] Location
+    - [ ] SMS received
+    - [ ] Batery level
+    - [ ] Power status
+    - [ ] Connected Bluetooth
+    - [ ] Bluetooth Enabled
+    - [ ] NFC Enabled
+    - [ ] Connectivity type
+    - [ ] Headset
+    - [ ] Screen status
+    - [ ] Wifi enabled
+    - [ ] Wifi connection
 
 
 
