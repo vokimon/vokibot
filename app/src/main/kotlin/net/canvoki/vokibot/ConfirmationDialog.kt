@@ -17,6 +17,7 @@ fun ConfirmDialog(
     onDismiss: () -> Unit,
 ) {
     if (!show) return
+
     AlertDialog(
         onDismissRequest = { onDismiss },
         title = { Text(title) },

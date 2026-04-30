@@ -14,14 +14,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -35,7 +33,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -240,48 +237,27 @@ private fun NfcUidDisplayScreen(
             }
         }
     }
-    if (showNameDialog) {
-        AlertDialog(
-            onDismissRequest = { showNameDialog = false },
-            title = { Text(stringResource(R.string.nfc_trigger_name_dialog_title)) },
-            text = {
-                Column {
-                    OutlinedTextField(
-                        value = triggerNameInput,
-                        onValueChange = { triggerNameInput = it },
-                        label = { Text(stringResource(R.string.nfc_editor_name_label)) },
-                        placeholder = { Text(stringResource(R.string.nfc_editor_name_placeholder)) },
-                        singleLine = true,
-                        keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Words),
+    InputDialog(
+        show = showNameDialog,
+        title = stringResource(R.string.nfc_trigger_name_dialog_title),
+        label = stringResource(R.string.nfc_editor_name_label),
+        placeholder = stringResource(R.string.nfc_editor_name_placeholder),
+        confirmText = stringResource(R.string.nfc_trigger_name_dialog_confirm),
+        dismissText = stringResource(R.string.nfc_trigger_name_dialog_cancel),
+        onDismiss = { showNameDialog = false },
+        onConfirm = { value ->
+            if (uid != null) {
+                val trigger =
+                    NfcTrigger(
+                        displayName = value,
+                        uid = uid,
                     )
-                }
-            },
-            confirmButton = {
-                TextButton(
-                    onClick = {
-                        if (uid != null) {
-                            val trigger =
-                                NfcTrigger(
-                                    displayName = triggerNameInput,
-                                    uid = uid,
-                                )
-                            repository.nfcTrigger.save(trigger)
-                            showNameDialog = false
-                            onCreateAutomation(trigger.id, "nfc")
-                        }
-                    },
-                    enabled = triggerNameInput.isNotBlank(),
-                ) {
-                    Text(stringResource(R.string.nfc_trigger_name_dialog_confirm))
-                }
-            },
-            dismissButton = {
-                TextButton(onClick = { showNameDialog = false }) {
-                    Text(stringResource(R.string.nfc_trigger_name_dialog_cancel))
-                }
-            },
-        )
-    }
+                repository.nfcTrigger.save(trigger)
+                showNameDialog = false
+                onCreateAutomation(trigger.id, "nfc")
+            }
+        },
+    )
 }
 
 private fun extractUidFromIntent(intent: Intent): String? =
