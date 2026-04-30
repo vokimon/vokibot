@@ -58,6 +58,7 @@ abstract class Trigger : StorableEntity {
 
         /** Deserialize any registered Trigger from JSON */
         fun fromJson(jsonString: String): Trigger {
+            TriggerBootstrap.ensure()
             val preview = json.decodeFromString<PreviewTrigger>(jsonString)
             val factory = factories[preview.type]
             if (factory == null) {
@@ -78,17 +79,26 @@ abstract class Trigger : StorableEntity {
             typeInfos[type]?.let {
                 stringResource(it.labelRes)
             } ?: type
-
-        init {
-            NfcTrigger.register()
-            ShortcutTrigger.register()
-        }
     }
 
     @Serializable
     data class PreviewTrigger(
         val type: String,
     )
+}
+
+object TriggerBootstrap {
+    // Avoid to be optimized away
+    private var touched = false
+
+    fun ensure() {
+        touched = true
+    }
+
+    init {
+        NfcTrigger.register()
+        ShortcutTrigger.register()
+    }
 }
 
 /**
