@@ -3,6 +3,9 @@ package net.canvoki.vokibot
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import net.canvoki.shared.log
 
 class ShortcutDispatchActivity : ComponentActivity() {
@@ -48,9 +51,18 @@ class ShortcutDispatchActivity : ComponentActivity() {
                 return
             }
 
+            val self = this
             log("ShortcutDispatchActivity: Dispatching ${automations.size} automation(s) for '${trigger.title}'")
-            // TODO: connect to your execution pipeline
-            // AutomationDispatcher.execute(this, automations)
+            CoroutineScope(Dispatchers.IO).launch {
+                automations.forEach { automation ->
+                    automation.commandIds.forEach { cmdId ->
+                        repo.command.load(cmdId)?.execute(self)
+                    }
+                }
+                runOnUiThread {
+                    self.finish()
+                }
+            }
         } catch (e: Exception) {
             log("ShortcutDispatchActivity: Failed to process trigger $triggerId: $e")
         }
