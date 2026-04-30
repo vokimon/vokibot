@@ -41,6 +41,7 @@ data class NfcTrigger(
                 typeKey = TYPE,
                 labelRes = R.string.triggerlist_option_nfc,
                 iconRes = R.drawable.ic_nfc,
+                editorFactory = { triggerId -> NfcTriggerEditor(triggerId) },
             ) { jsonString -> fromJson(jsonString) }
         }
 

@@ -93,6 +93,22 @@ fun TriggerList(
                         onDismissRequest = { menuExpanded = false },
                     ) {
                         DropdownMenuItem(
+                            text = { Text(stringResource(R.string.triggerlist_edit)) },
+                            leadingIcon = {
+                                Icon(
+                                    painter = painterResource(R.drawable.ic_edit),
+                                    contentDescription = null,
+                                )
+                            },
+                            onClick = {
+                                menuExpanded = false
+                                val editorScreen = Trigger.getEditorScreen(trigger.type, trigger.id)
+                                editorScreen?.let {
+                                    nav.push(it) { refreshCounter++ }
+                                }
+                            },
+                        )
+                        DropdownMenuItem(
                             text = { Text(stringResource(R.string.triggerlist_delete)) },
                             leadingIcon = {
                                 Icon(
@@ -103,23 +119,6 @@ fun TriggerList(
                             onClick = {
                                 menuExpanded = false
                                 triggerToDelete = trigger
-                            },
-                        )
-                        DropdownMenuItem(
-                            text = { Text("Edit") },
-                            leadingIcon = {
-                                Icon(
-                                    painter = painterResource(R.drawable.ic_edit),
-                                    contentDescription = null,
-                                )
-                            },
-                            onClick = {
-                                menuExpanded = false
-                                when (trigger.type) {
-                                    NfcTrigger.TYPE -> nav.push(NfcTriggerEditor(trigger.id)) { refreshCounter++ }
-                                    ShortcutTrigger.TYPE -> nav.push(ShortcutTriggerEditor(trigger.id)) { refreshCounter++ }
-                                    else -> log("Unknown trigger type selected: $trigger.type")
-                                }
                             },
                         )
                     }
@@ -175,11 +174,9 @@ fun TriggerList(
             selectedValue = "",
             onConfirm = { triggerType ->
                 showTypeChooser = false
-                // Push the corresponding editor screen based on typeKey
-                when (triggerType) {
-                    NfcTrigger.TYPE -> nav.push(NfcTriggerEditor(null)) { refreshCounter++ }
-                    ShortcutTrigger.TYPE -> nav.push(ShortcutTriggerEditor(null)) { refreshCounter++ }
-                    else -> log("Unknown trigger type selected: $triggerType")
+                val editorScreen = Trigger.getEditorScreen(triggerType, null)
+                editorScreen?.let {
+                    nav.push(it) { refreshCounter++ }
                 }
             },
             onDismiss = { showTypeChooser = false },

@@ -6,6 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
+import net.canvoki.shared.component.StackedScreen
 
 /**
  * Abstract base for all automation triggers.
@@ -34,14 +35,26 @@ abstract class Trigger : StorableEntity {
             typeKey: String,
             @StringRes labelRes: Int,
             @DrawableRes iconRes: Int,
+            editorFactory: (triggerId: String?) -> StackedScreen<Unit>,
             factory: (String) -> Trigger,
         ) {
             factories[typeKey] = factory
-            typeInfos[typeKey] = TriggerTypeInfo(typeKey, labelRes, iconRes)
+            typeInfos[typeKey] = TriggerTypeInfo(typeKey, labelRes, iconRes, editorFactory)
         }
 
         /** Get all registered trigger types for UI listing */
         fun getRegisteredTypes(): List<TriggerTypeInfo> = typeInfos.values.toList()
+
+        /** Get the editor screen for a given trigger type and optional id */
+        fun getEditorScreen(
+            typeKey: String,
+            triggerId: String?,
+        ): StackedScreen<Unit>? =
+            typeInfos[typeKey]?.editorFactory?.invoke(triggerId)
+                ?: run {
+                    log("Unknown trigger type selected: $typeKey")
+                    null
+                }
 
         /** Deserialize any registered Trigger from JSON */
         fun fromJson(jsonString: String): Trigger {
@@ -85,6 +98,7 @@ data class TriggerTypeInfo(
     val typeKey: String,
     @field:StringRes val labelRes: Int,
     @field:DrawableRes val iconRes: Int,
+    val editorFactory: (triggerId: String?) -> StackedScreen<Unit>,
 )
 
 /**

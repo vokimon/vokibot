@@ -68,6 +68,7 @@ triggerlist_create_title: Create Trigger
 triggerlist_option_nfc: NFC Tag
 triggerlist_option_shortcut: Shortcut
 triggerlist_options_desc: Options
+triggerlist_edit: Edit
 triggerlist_delete: Delete
 triggerlist_delete_title: Delete tag?
 triggerlist_delete_message: This action cannot be undone.

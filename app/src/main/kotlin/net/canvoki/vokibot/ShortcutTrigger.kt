@@ -33,6 +33,7 @@ data class ShortcutTrigger(
                 typeKey = TYPE,
                 labelRes = R.string.triggerlist_option_shortcut,
                 iconRes = R.drawable.ic_shortcut,
+                editorFactory = { triggerId -> ShortcutTriggerEditor(triggerId) },
             ) { jsonString -> fromJson(jsonString) }
         }
 
@@ -70,7 +71,6 @@ data class ShortcutTrigger(
                 .setIntent(intent)
                 .build()
         return shortcut
-
     }
 
     fun pin(context: Context) {
@@ -82,7 +82,6 @@ data class ShortcutTrigger(
         val shortcut = buildShortcutInfo(context)
         ShortcutManagerCompat.updateShortcuts(context, listOf(shortcut))
     }
-
 
     fun disable(context: Context) {
         ShortcutManagerCompat.disableShortcuts(context, listOf(id), null)
