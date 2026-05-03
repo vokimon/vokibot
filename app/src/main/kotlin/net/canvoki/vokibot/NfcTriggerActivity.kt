@@ -144,7 +144,6 @@ private fun NfcUidDisplayScreen(
 ) {
     val context = LocalContext.current
     var showNameDialog by remember { mutableStateOf(false) }
-    var triggerNameInput by remember { mutableStateOf("") }
     val repository = remember { FileDataRepository.fromContext(context) }
 
     Column(
@@ -193,7 +192,6 @@ private fun NfcUidDisplayScreen(
                 Spacer(modifier = Modifier.height(16.dp))
                 Button(onClick = {
                     showNameDialog = true
-                    triggerNameInput = ""
                 }) {
                     Text(stringResource(R.string.nfc_trigger_create_automation))
                 }
