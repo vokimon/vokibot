@@ -204,11 +204,8 @@ fun IntentEditor(
     var extrasState by remember { mutableStateOf<Map<String, Any?>>(emptyMap()) }
     var showNameDialog by remember { mutableStateOf(false) }
     var proposedName by remember { mutableStateOf(component.label) }
+    var pendingCommand by remember { mutableStateOf<LaunchActivityCommand?>(null) }
     var showOverwriteDialog by remember { mutableStateOf(false) }
-
-    val commandSavedMsg = stringResource(R.string.intent_editor_command_saved, proposedName)
-    val commandOverwrittenMsg = stringResource(R.string.intent_editor_command_overwritten, proposedName)
-    val overwriteMsg = stringResource(R.string.intent_editor_overwrite_message, proposedName)
 
     fun buildCommand(displayName: String): LaunchActivityCommand {
         val actionStr = selectedAction?.action ?: customAction.takeIf { it.isNotBlank() }
@@ -375,10 +372,11 @@ fun IntentEditor(
         onConfirm = { name ->
             val command = buildCommand(name)
             if (repository.existsCommand(command.id)) {
+                pendingCommand = command
                 showOverwriteDialog = true
             } else {
                 repository.saveCommand(command)
-                UserMessage.Info(commandSavedMsg).post()
+                UserMessage.Info(context.getString(R.string.intent_editor_command_saved, name)).post()
             }
             showNameDialog = false
         },
@@ -387,16 +385,20 @@ fun IntentEditor(
     ConfirmDialog(
         show = showOverwriteDialog,
         title = stringResource(R.string.intent_editor_overwrite_title),
-        text = stringResource(R.string.intent_editor_overwrite_message, proposedName),
+        text = stringResource(R.string.intent_editor_overwrite_message, pendingCommand?.displayName ?: ""),
         confirmText = stringResource(R.string.intent_editor_replace),
         dismissText = stringResource(R.string.intent_editor_cancel),
         onConfirm = {
-            repository.saveCommand(buildCommand(proposedName))
-            UserMessage.Info(commandOverwrittenMsg).post()
+            pendingCommand?.let {
+                repository.saveCommand(it)
+                UserMessage.Info(context.getString(R.string.intent_editor_command_overwritten, it.displayName)).post()
+            }
             showOverwriteDialog = false
+            pendingCommand = null
         },
         onDismiss = {
             showOverwriteDialog = false
+            pendingCommand = null
         },
     )
 }
