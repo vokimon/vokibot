@@ -15,7 +15,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
@@ -365,42 +364,25 @@ fun IntentEditor(
         }
     }
 
-    if (showNameDialog) {
-        AlertDialog(
-            onDismissRequest = { showNameDialog = false },
-            title = { Text(stringResource(R.string.intent_editor_save_command_title)) },
-            text = {
-                OutlinedTextField(
-                    value = proposedName,
-                    onValueChange = { proposedName = it },
-                    label = { Text(stringResource(R.string.intent_editor_command_name_label)) },
-                    modifier = Modifier.fillMaxWidth(),
-                    singleLine = true,
-                )
-            },
-            confirmButton = {
-                Button(
-                    onClick = {
-                        val command = buildCommand(proposedName)
-                        if (repository.existsCommand(command.id)) {
-                            showOverwriteDialog = true
-                        } else {
-                            repository.saveCommand(command)
-                            UserMessage.Info(commandSavedMsg).post()
-                        }
-                        showNameDialog = false
-                    },
-                ) {
-                    Text(stringResource(R.string.intent_editor_save))
-                }
-            },
-            dismissButton = {
-                TextButton(onClick = { showNameDialog = false }) {
-                    Text(stringResource(R.string.intent_editor_cancel))
-                }
-            },
-        )
-    }
+    InputDialog(
+        show = showNameDialog,
+        title = stringResource(R.string.intent_editor_save_command_title),
+        label = stringResource(R.string.intent_editor_command_name_label),
+        value = proposedName,
+        confirmText = stringResource(R.string.intent_editor_save),
+        dismissText = stringResource(R.string.intent_editor_cancel),
+        onDismiss = { showNameDialog = false },
+        onConfirm = { name ->
+            val command = buildCommand(name)
+            if (repository.existsCommand(command.id)) {
+                showOverwriteDialog = true
+            } else {
+                repository.saveCommand(command)
+                UserMessage.Info(commandSavedMsg).post()
+            }
+            showNameDialog = false
+        },
+    )
 
     ConfirmDialog(
         show = showOverwriteDialog,
