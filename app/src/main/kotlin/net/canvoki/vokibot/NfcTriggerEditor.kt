@@ -97,11 +97,12 @@ data class NfcTriggerEditor(
             if (uid.isBlank()) return@LaunchedEffect
             val triggerId = NfcTrigger.idFromUid(uid)
             val existing = repository.trigger.load(triggerId) as? NfcTrigger
-            displayName = if (existing != null) {
-                existing.displayName
-            } else {
-                "NFC $uid"
-            }
+            displayName =
+                if (existing != null) {
+                    existing.displayName
+                } else {
+                    "NFC $uid"
+                }
         }
 
         // NFC reader mode: updates uid state when a tag is scanned

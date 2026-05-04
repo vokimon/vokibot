@@ -64,9 +64,10 @@ class FileDataRepository(
 
     fun existsNfcTrigger(uid: String) = trigger.exists(NfcTrigger.idFromUid(uid))
 
-    fun listNfcTriggers() = trigger.listIds().map{ it ->
-        it.removePrefix("nfc_").replace("_", ":")
-    }
+    fun listNfcTriggers() =
+        trigger.listIds().map { it ->
+            it.removePrefix("nfc_").replace("_", ":")
+        }
 
     fun loadAllNfcTriggers() = trigger.all()
 
