@@ -1,7 +1,6 @@
 package net.canvoki.vokibot
 
 import android.content.Context
-import android.content.Intent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -206,6 +205,32 @@ fun IntentEditor(
     var proposedName by remember { mutableStateOf(component.label) }
     var pendingCommand by remember { mutableStateOf<LaunchActivityCommand?>(null) }
     var showOverwriteDialog by remember { mutableStateOf(false) }
+    var confirmName by remember { mutableStateOf<String?>(null) }
+
+    val confirmMsg =
+        confirmName?.let {
+            stringResource(R.string.intent_editor_command_saved, it)
+        }
+
+    val overwriteMsg =
+        pendingCommand?.let {
+            stringResource(R.string.intent_editor_command_overwritten, it.displayName)
+        }
+
+    LaunchedEffect(confirmMsg) {
+        confirmMsg?.let {
+            UserMessage.Info(it).post()
+            confirmName = null
+        }
+    }
+
+    LaunchedEffect(overwriteMsg) {
+        overwriteMsg?.let {
+            UserMessage.Info(it).post()
+            showOverwriteDialog = false
+            pendingCommand = null
+        }
+    }
 
     fun buildCommand(displayName: String): LaunchActivityCommand {
         val actionStr = selectedAction?.action ?: customAction.takeIf { it.isNotBlank() }
@@ -376,7 +401,7 @@ fun IntentEditor(
                 showOverwriteDialog = true
             } else {
                 repository.saveCommand(command)
-                UserMessage.Info(context.getString(R.string.intent_editor_command_saved, name)).post()
+                confirmName = name
             }
             showNameDialog = false
         },
@@ -389,12 +414,7 @@ fun IntentEditor(
         confirmText = stringResource(R.string.intent_editor_replace),
         dismissText = stringResource(R.string.intent_editor_cancel),
         onConfirm = {
-            pendingCommand?.let {
-                repository.saveCommand(it)
-                UserMessage.Info(context.getString(R.string.intent_editor_command_overwritten, it.displayName)).post()
-            }
-            showOverwriteDialog = false
-            pendingCommand = null
+            pendingCommand?.let { repository.saveCommand(it) }
         },
         onDismiss = {
             showOverwriteDialog = false
