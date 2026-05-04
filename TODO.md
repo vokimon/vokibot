@@ -2,33 +2,9 @@
 
 - [ ] TriggerList delete does not work for NFC (it does for shortcuts)
 - [ ] AutomationEditor: Renaming existing should rename, not duplicate
-- [x] TriggerList: Make type separator label, type dependant (now Nfc for all types)
 - [ ] TriggerList: Chooser: add type icon
 - [ ] TriggerList: Chooser: remove radiobutton
 
-- [x] First screen at the begining with no slide animation
-- [x] On push, previous screen slide out left (not fully which is not a problem if the next work)
-- [x] On push, previous screen fades out -> No the screen is still visible!!!
-- [x] On push, new screen slides left in
-- [x] On push, new screen slides fades in
-- [x] On back, discarded screen slides right out
-- [x] On back, discarded screen fades out
-- [x] On back, recovered screen slides right in
-- [x] On back, recovered screen fades in
-
-
-- [x] Push the retrieved PublicComponent to the IntentEditor
-- [x] IntentEditor: Use data from the PublicComponent
-- [x] Remove the old data retrieval in IntentEditor
-
-- [x] Use ApplicationCommand to try (only Activity, only currently edited fields)
-- [x] Build a data repository to store among other things, actions by assigning and opaque id and a display name.
-- [x] Implement the save button
-- [x] Add new top level screen Command picker
-- [x] Add button to add action -> Show a menu of kind (only application by now) -> got to current app list
-- [x] List saved commands
-- [x] Command Menu: "Run"
-- [x] Command Menu: "Delete"
 - [ ] Complete the dialog for Activities
 - [ ] Extract as composables the parts of the dialog that might be reused
 - [ ] Conditionally choose the Activity or no dialog depending of the kind
@@ -47,10 +23,6 @@
 - [ ] Application Command type: List application
 
 
-- [x] Llista d'applicacions
-- [x] Llista d'activitats
-- [x] Llençar activitat
-- [x] Detectar accions
 - [ ] List actionable Services 
     - PackageInfo.services
     - pm.queryIntentServices(intent, 0)
@@ -67,7 +39,6 @@
 - More commands:
     - [ ] Open settings page: <https://developer.android.com/reference/android/provider/Settings#ACTION_APPLICATION_DEVELOPMENT_SETTINGS>
 - More triggers:
-    - [ ] Widget
     - [ ] On broadcast received
     - [ ] On notification received
     - [ ] Date/Day of Week/Time/Timer
@@ -87,4 +58,36 @@
     - [ ] Wifi connection
 
 
+
+ ## Done
+
+ 
+- [x] New Trigger: Shortcut
+- [x] New Trigger: Nfc Tag
+- [x] Push the retrieved PublicComponent to the IntentEditor
+- [x] IntentEditor: Use data from the PublicComponent
+- [x] Remove the old data retrieval in IntentEditor
+- [x] Use ApplicationCommand to try (only Activity, only currently edited fields)
+- [x] Build a data repository to store among other things, actions by assigning and opaque id and a display name.
+- [x] Implement the save button
+- [x] Add new top level screen Command picker
+- [x] Add button to add action -> Show a menu of kind (only application by now) -> got to current app list
+- [x] List saved commands
+- [x] Command Menu: "Run"
+- [x] Command Menu: "Delete"
+- [x] Llista d'applicacions
+- [x] Llista d'activitats
+- [x] Llençar activitat
+- [x] Detectar accions
+- [x] TriggerList: Make type separator label, type dependant (now Nfc for all types)
+- [x] StackNavigator: First screen at the begining with no slide animation
+- [x] StackNavigator: On push, previous screen slide out left (not fully which is not a problem if the next work)
+- [x] StackNavigator: On push, previous screen fades out -> No the screen is still visible!!!
+- [x] StackNavigator: On push, new screen slides left in
+- [x] StackNavigator: On push, new screen slides fades in
+- [x] StackNavigator: On pop, discarded screen slides right out
+- [x] StackNavigator: On pop, discarded screen fades out
+- [x] StackNavigator: On pop, recovered screen slides right in
+- [x] StackNavigator: On pop, recovered screen fades in
+- [x] StackNavigator: return value from pop to the pusher
 

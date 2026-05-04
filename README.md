@@ -10,17 +10,20 @@
 
 Android automation tool
 
-Start any application on approaching the device to an NFC tag.
+Start any application on approaching the device to an NFC tag or
+running a home screen shortcut.
 
-This project aims to be a "on any trigger do anything",
+This project aims to be "on any trigger do anything",
 but let's start humble.
 
 ## Features
 
+- Automations: Relate triggers to commands
 - Triggers:
-    - NFC tags
+    - NFC tags (configure by tapping)
+    - Shortcuts (launcher icons)
 - Commands:
-    - Launch application
+    - Run applications
 - License: AGPLv3+
 - Theming: Material3 light and dark
 - Languages: an, ar, ca, de, en, es, eu, fr, gl, pt, ru, andaluh (no iso yet)

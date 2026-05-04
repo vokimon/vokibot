@@ -1,16 +1,13 @@
 # Change log
 
-## 0.0.1 (2026-04-19)
+## 0.0.1 (unreleased)
 
-- 🏗️ First release.
-- ✨ Interface to relate automations with triggers and commands
-- ✨ NFC Trigger: Launch automation on approaching an NFC
-- ✨ When detecting a new NFC, quick path to automate it
-- ✨ Application Commands: explore available application components
-- ✨ Application Commands: Run Activities (limited to those not requiring additional info)
-- 💄 Carburoid inherited: Color schemes and Scalfolding
-- 🌐 Carburoid inherited: Multilanguage support
-- 🌐 Crude translations AI based: an, and, ar, ca, de, en, es, eu, fr, gl, pt, ru
-
-
-
+- ✨ Automations: Relate triggers to commands
+- ✨ NfcTrigger: Runs a command when approaching an NFC tag
+- ✨ NfcTrigger: Autodetect NFC tags for quick setup
+- ✨ ShortcutTrigger: Run a command from a home screen shortcut
+- ✨ ShortcutTrigger: On creation also creates the Shortcuts in the Launcher
+- ✨ ApplicationCommand: Launches an Application
+- ✨ ApplicationCommand: Configure by browsing installed applications and their components
+- 🌐 Translations: an, ar, ca, de, en, es, eu, fr, gl, pt, ru, andaluh
+- 💄 Material3 theming (light and dark)
