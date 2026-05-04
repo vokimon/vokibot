@@ -113,7 +113,13 @@ data class AutomationEditor(
                 icon = painterResource(R.drawable.ic_brand),
                 actionText = stringResource(R.string.automation_done),
                 action = {
-                    val automation = Automation(name.trim(), triggerType, triggerId, commandIds)
+                    val automation = Automation(
+                        name = name.trim(),
+                        triggerType = triggerType,
+                        triggerId = triggerId,
+                        commandIds = commandIds,
+                        id = editingId,
+                    )
                     repository.automation.save(automation)
                     isDirty = false
                     nav.pop()
