@@ -93,13 +93,14 @@ class AutomationTest {
         val original = automationBase(name = "Old Name", id = "original-id")
         dataset.save(original)
 
-        val edited = Automation(
-            id = original.id,
-            name = "New Name",
-            triggerType = original.triggerType,
-            triggerId = original.triggerId,
-            commandIds = original.commandIds,
-        )
+        val edited =
+            Automation(
+                id = original.id,
+                name = "New Name",
+                triggerType = original.triggerType,
+                triggerId = original.triggerId,
+                commandIds = original.commandIds,
+            )
         dataset.save(edited)
 
         val loaded = dataset.load("original-id")
