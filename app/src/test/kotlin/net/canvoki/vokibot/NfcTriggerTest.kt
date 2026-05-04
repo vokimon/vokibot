@@ -44,6 +44,6 @@ class NfcTriggerTest {
     @Test
     fun `NfcTrigger id`() {
         val nfc = nfcTriggerBase()
-        assertEquals(nfc.id, "01_23_45_67_AB_CD_EF")
+        assertEquals(nfc.id, "nfc_01_23_45_67_AB_CD_EF")
     }
 }

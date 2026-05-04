@@ -54,11 +54,8 @@ data object AutomationList : StackedScreen<Unit>() {
 
                 val triggerDisplayName =
                     remember(automation.triggerType, automation.triggerId) {
-                        if (automation.triggerType == "nfc") {
-                            repository.nfcTrigger.load(automation.triggerId)?.displayName
-                        } else {
-                            null
-                        }
+                        val id = automation.run { triggerType + triggerId }
+                        repository.trigger.load(automation.triggerId)?.title
                     }
 
                 ListItem(
@@ -67,7 +64,7 @@ data object AutomationList : StackedScreen<Unit>() {
                         Text(
                             text =
                                 buildString {
-                                    triggerDisplayName?.let { append("$it • ") }
+                                    append("$triggerDisplayName • ")
                                     append("${automation.commandIds.size} command(s)")
                                 },
                             maxLines = 1,

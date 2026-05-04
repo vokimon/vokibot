@@ -82,7 +82,7 @@ data class NfcTriggerEditor(
         // Load existing trigger if editingId provided (only once)
         LaunchedEffect(editingId) {
             if (editingId != null && !hasLoaded) {
-                val existing = repository.nfcTrigger.all().find { it.id == editingId }
+                val existing = repository.trigger.load(editingId) as? NfcTrigger
                 existing?.let {
                     displayName = it.displayName
                     uid = it.uid
@@ -92,15 +92,15 @@ data class NfcTriggerEditor(
             }
         }
 
-        // Update displayName when uid changes (but only if user hasn't edited it manually)
+        // Update displayName when uid changes
         LaunchedEffect(uid) {
-            if (uid.isNotBlank() && !hasLoaded) {
-                val existing = repository.nfcTrigger.load(uid)
-                if (existing != null && displayName.isBlank()) {
-                    displayName = existing.displayName
-                } else {
-                    displayName = "NFC $uid"
-                }
+            if (uid.isBlank()) return@LaunchedEffect
+            val triggerId = NfcTrigger.idFromUid(uid)
+            val existing = repository.trigger.load(triggerId) as? NfcTrigger
+            displayName = if (existing != null) {
+                existing.displayName
+            } else {
+                "NFC $uid"
             }
         }
 
@@ -161,7 +161,7 @@ data class NfcTriggerEditor(
                                 displayName = displayName.trim(),
                                 uid = uid.trim(),
                             )
-                        repository.nfcTrigger.save(trigger)
+                        repository.trigger.save(trigger)
                         isSaving = false
                         nav.pop()
                     }

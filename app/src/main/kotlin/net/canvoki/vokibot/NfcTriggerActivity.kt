@@ -85,7 +85,7 @@ private fun NfcActivityScreen(
 
         executionState = ExecutionState.Searching
 
-        val trigger = repository.nfcTrigger.load(uid)
+        val trigger = repository.loadNfcTrigger(uid = uid)
         registeredTrigger = trigger
 
         if (trigger == null) {
@@ -249,7 +249,7 @@ private fun NfcUidDisplayScreen(
                         displayName = value,
                         uid = uid,
                     )
-                repository.nfcTrigger.save(trigger)
+                repository.trigger.save(trigger)
                 showNameDialog = false
                 onCreateAutomation(trigger.id, NfcTrigger.TYPE)
             }

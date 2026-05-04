@@ -17,7 +17,7 @@ data class NfcTrigger(
     val uid: String,
 ) : Trigger() {
     override val type = NfcTrigger.TYPE
-    override val id: String get() = toFileSystemId(uid)
+    override val id: String get() = idFromUid(uid)
     override val title: String get() = displayName
     override val description: String get() = uid
     override val iconRes: Int get() = R.drawable.ic_nfc
@@ -26,8 +26,11 @@ data class NfcTrigger(
 
     companion object {
         const val TYPE = "trigger_nfc"
+        const val ID_PREFIX = "nfc_"
 
         fun safeId(id: String) = id
+
+        fun idFromUid(uid: String) = "$ID_PREFIX${toFileSystemId(uid)}"
 
         private val json =
             Json {

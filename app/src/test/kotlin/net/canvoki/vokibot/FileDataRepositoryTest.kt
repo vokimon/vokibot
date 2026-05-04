@@ -281,7 +281,7 @@ class FileDataRepositoryTest {
         repo.saveNfcTrigger(trigger)
 
         val list = repo.listNfcTriggers()
-        assertEquals(listOf("10_01"), list)
+        assertEquals(listOf("10:01"), list)
     }
 
     @Test
@@ -298,7 +298,7 @@ class FileDataRepositoryTest {
         repo.saveNfcTrigger(buildNfc("tag2", "20:02"))
 
         val list = repo.listNfcTriggers()
-        assertEquals(listOf("10_01", "20_02"), list.sorted())
+        assertEquals(listOf("10:01", "20:02"), list.sorted())
     }
 
     @Test
@@ -307,7 +307,7 @@ class FileDataRepositoryTest {
         repo.saveNfcTrigger(buildNfc("tag", "10:01"))
         File(testDir, "log.json").writeText("{}")
 
-        assertEquals(listOf("10_01"), repo.listNfcTriggers())
+        assertEquals(listOf("10:01"), repo.listNfcTriggers())
     }
 
     @Test
@@ -316,7 +316,7 @@ class FileDataRepositoryTest {
         repo.saveNfcTrigger(buildNfc("tag", "10:01"))
         File(testDir, "trigger_nfc_log.txt").writeText("{}")
 
-        assertEquals(listOf("10_01"), repo.listNfcTriggers())
+        assertEquals(listOf("10:01"), repo.listNfcTriggers())
     }
 
     @Test
@@ -370,6 +370,22 @@ class FileDataRepositoryTest {
         val missing = repo.trigger.load("missing")
         assertDataEqual(null, missing)
     }
+
+    @Test
+    fun loadTrigger_polymorphic() {
+        val repo = FileDataRepository(testDir)
+        val data1 = buildNfc("tag1", "10:01")
+        val data2 = buildShortcut("shortcut1", "010A")
+        repo.saveNfcTrigger(data1)
+        repo.trigger.save(data2)
+
+        val loaded1 = repo.trigger.load("nfc_10_01")
+        assertDataEqual(data1, loaded1)
+        val loaded2 = repo.trigger.load("010A")
+        assertDataEqual(data2, loaded2)
+        val missing = repo.trigger.load("missing")
+        assertDataEqual(null, missing)
+    }
 }
 
 fun <T : StorableEntity> assertDataEqual(
@@ -396,4 +412,13 @@ private fun buildNfc(
     NfcTrigger(
         displayName = name,
         uid = uid,
+    )
+
+private fun buildShortcut(
+    name: String,
+    id: String,
+): ShortcutTrigger =
+    ShortcutTrigger(
+        displayName = name,
+        id = id,
     )

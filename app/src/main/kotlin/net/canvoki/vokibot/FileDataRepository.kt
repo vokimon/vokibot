@@ -36,10 +36,6 @@ class FileDataRepository(
         DataSet(directory, "trigger_", Trigger::fromJson)
     }
 
-    val nfcTrigger: DataSet<NfcTrigger> by lazy {
-        DataSet(directory, "trigger_nfc_", NfcTrigger::fromJson)
-    }
-
     val automation: DataSet<Automation> by lazy {
         DataSet(directory, "automation_", Automation::fromJson)
     }
@@ -60,17 +56,19 @@ class FileDataRepository(
 
     fun loadAllCommands() = command.all()
 
-    fun saveNfcTrigger(trigger: NfcTrigger) = nfcTrigger.save(trigger)
+    fun saveNfcTrigger(trigger: NfcTrigger) = this.trigger.save(trigger)
 
-    fun loadNfcTrigger(id: String) = nfcTrigger.load(id)
+    fun loadNfcTrigger(uid: String) = trigger.load(NfcTrigger.idFromUid(uid)) as? NfcTrigger
 
-    fun removeNfcTrigger(id: String) = nfcTrigger.remove(id)
+    fun removeNfcTrigger(uid: String) = trigger.remove(NfcTrigger.idFromUid(uid))
 
-    fun existsNfcTrigger(id: String) = nfcTrigger.exists(id)
+    fun existsNfcTrigger(uid: String) = trigger.exists(NfcTrigger.idFromUid(uid))
 
-    fun listNfcTriggers() = nfcTrigger.listIds()
+    fun listNfcTriggers() = trigger.listIds().map{ it ->
+        it.removePrefix("nfc_").replace("_", ":")
+    }
 
-    fun loadAllNfcTriggers() = nfcTrigger.all()
+    fun loadAllNfcTriggers() = trigger.all()
 
     fun saveAutomation(auto: Automation) = automation.save(auto)
 
