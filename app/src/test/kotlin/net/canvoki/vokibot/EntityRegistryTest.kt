@@ -81,7 +81,7 @@ class EntityRegistryTest {
 
         val json = """{"type":"trigger_nfc","displayName":"Test NFC","uid":"04:AB:12:CD:56:78:90"}"""
 
-        val result = registry.fromJson<NfcTrigger>(json)
+        val result = registry.fromJson(json, NfcTrigger::class)
 
         assertDataEqual(NfcTrigger.fromJson(json), result)
     }
@@ -94,7 +94,7 @@ class EntityRegistryTest {
 
         val json = """{"type":"trigger_nfc","displayName":"Test NFC","uid":"04:AB:12:CD:56:78:90"}"""
 
-        val result = registry.fromJson<Trigger>(json)
+        val result = registry.fromJson(json, Trigger::class)
 
         assertDataEqual(NfcTrigger.fromJson(json), result)
     }
@@ -107,7 +107,7 @@ class EntityRegistryTest {
 
         val json = """{"type":"trigger_nfc","displayName":"Test NFC","uid":"04:AB:12:CD:56:78:90"}"""
 
-        val result = registry.fromJson<ShortcutTrigger>(json)
+        val result = registry.fromJson(json, ShortcutTrigger::class)
 
         assertDataEqual(null, result)
     }
@@ -120,7 +120,7 @@ class EntityRegistryTest {
 
         val json = """{"type":"trigger_nfc","displayName":"Test NFC","uid":"04:AB:12:CD:56:78:90"}"""
 
-        val result = registry.fromJson<NfcTrigger>(json)
+        val result = registry.fromJson(json, NfcTrigger::class)
 
         assertDataEqual(null, result)
     }
