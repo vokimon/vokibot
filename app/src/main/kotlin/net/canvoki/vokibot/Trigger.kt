@@ -33,20 +33,10 @@ abstract class Trigger : StorableEntity {
 
         private fun ensureInitialized() = EntityBootstrap.ensure()
 
-        /** Register a trigger type factory for polymorphic deserialization */
-        fun register(
-            typeKey: String,
-            entityClass: KClass<out Trigger>,
-            @StringRes labelRes: Int,
-            @DrawableRes iconRes: Int,
-            editorFactory: (triggerId: String?) -> StackedScreen<Unit>,
-            factory: (String) -> Trigger,
-        ) {
-            val typeInfo = EntityTypeInfo(typeKey, entityClass, labelRes, iconRes, editorFactory)
-            register(typeInfo, factory)
-        }
-
-        /** Register using pre-built EntityTypeInfo */
+        /**
+         * Registers a trigger type with its metadata and JSON factory.
+         * The type info must be pre-built and stored in the trigger's companion object.
+         */
         fun register(
             typeInfo: EntityTypeInfo,
             factory: (String) -> Trigger,
