@@ -1,5 +1,7 @@
 package net.canvoki.vokibot
 
+import kotlin.reflect.KClass
+
 /**
  * Registry for entity types.
  */
@@ -10,5 +12,6 @@ class EntityRegistry {
         typeInfos[typeInfo.typeKey] = typeInfo
     }
 
-    fun getRegisteredTypes(): List<EntityTypeInfo> = typeInfos.values.toList()
+    fun getRegisteredTypes(baseClass: KClass<out StorableEntity> = StorableEntity::class): List<EntityTypeInfo> =
+        typeInfos.values.toList().filter { baseClass == StorableEntity::class || baseClass == it.entityClass }
 }

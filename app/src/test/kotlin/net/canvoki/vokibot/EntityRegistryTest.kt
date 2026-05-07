@@ -10,6 +10,7 @@ fun assertRegisteredTypes(expected: String, actual: List<EntityTypeInfo>) {
 
 fun typeInfoShortcut() = EntityTypeInfo(
     typeKey = ShortcutTrigger.TYPE,
+    entityClass = ShortcutTrigger::class,
     labelRes = R.string.triggerlist_option_shortcut,
     iconRes = R.drawable.ic_shortcut,
     editorFactory = { triggerId -> ShortcutTriggerEditor(triggerId) }
@@ -17,6 +18,7 @@ fun typeInfoShortcut() = EntityTypeInfo(
 
 fun typeInfoNfc() = EntityTypeInfo(
     typeKey = NfcTrigger.TYPE,
+    entityClass = NfcTrigger::class,
     labelRes = R.string.triggerlist_option_nfc,
     iconRes = R.drawable.ic_nfc,
     editorFactory = { triggerId -> NfcTriggerEditor(triggerId) }
@@ -42,5 +44,13 @@ class EntityRegistryTest {
         registry.register(typeInfoShortcut())
         registry.register(typeInfoNfc())
         assertRegisteredTypes("trigger_nfc\ntrigger_shortcut", registry.getRegisteredTypes())
+    }
+
+    @Test
+    fun `registry filters by same type`() {
+        val registry = EntityRegistry()
+        registry.register(typeInfoShortcut())
+        registry.register(typeInfoNfc())
+        assertRegisteredTypes("trigger_nfc", registry.getRegisteredTypes(NfcTrigger::class))
     }
 }

@@ -31,6 +31,7 @@ data class ShortcutTrigger(
         fun register() {
             Trigger.register(
                 typeKey = TYPE,
+                entityClass = ShortcutTrigger::class,
                 labelRes = R.string.triggerlist_option_shortcut,
                 iconRes = R.drawable.ic_shortcut,
                 editorFactory = { triggerId -> ShortcutTriggerEditor(triggerId) },

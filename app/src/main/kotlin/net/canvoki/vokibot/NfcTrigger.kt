@@ -42,6 +42,7 @@ data class NfcTrigger(
         fun register() {
             Trigger.register(
                 typeKey = TYPE,
+                entityClass = NfcTrigger::class,
                 labelRes = R.string.triggerlist_option_nfc,
                 iconRes = R.drawable.ic_nfc,
                 editorFactory = { triggerId -> NfcTriggerEditor(triggerId) },

@@ -4,6 +4,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
+import kotlin.reflect.KClass
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import net.canvoki.shared.component.StackedScreen
@@ -35,13 +36,14 @@ abstract class Trigger : StorableEntity {
         /** Register a trigger type factory for polymorphic deserialization */
         fun register(
             typeKey: String,
+            entityClass: KClass<out Trigger>,
             @StringRes labelRes: Int,
             @DrawableRes iconRes: Int,
             editorFactory: (triggerId: String?) -> StackedScreen<Unit>,
             factory: (String) -> Trigger,
         ) {
             factories[typeKey] = factory
-            typeInfos[typeKey] = EntityTypeInfo(typeKey, labelRes, iconRes, editorFactory)
+            typeInfos[typeKey] = EntityTypeInfo(typeKey, entityClass, labelRes, iconRes, editorFactory)
         }
 
         /** Get all registered trigger types for UI listing */
