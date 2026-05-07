@@ -1,17 +1,20 @@
 package net.canvoki.vokibot
 
-import net.canvoki.shared.component.StackedScreen
+import androidx.compose.runtime.Composable
 import net.canvoki.shared.component.StackNavigatorState
+import net.canvoki.shared.component.StackedScreen
 import net.canvoki.shared.test.assertEquals
 import org.junit.Test
-import androidx.compose.runtime.Composable
 
 object DummyScreen : StackedScreen<Unit>() {
     @Composable
     override fun Screen(nav: StackNavigatorState) {}
 }
 
-fun assertRegisteredTypes(expected: String, actual: List<EntityTypeInfo>) {
+fun assertRegisteredTypes(
+    expected: String,
+    actual: List<EntityTypeInfo>,
+) {
     val actualString = actual.map { it.typeKey }.sorted().joinToString("\n")
     assertEquals(expected, actualString)
 }
@@ -20,13 +23,14 @@ fun typeInfoShortcut() = ShortcutTrigger.TYPE_INFO
 
 fun typeInfoNfc() = NfcTrigger.TYPE_INFO
 
-fun typeInfoAutomation() = EntityTypeInfo(
-    typeKey = "automation",
-    entityClass = Automation::class,
-    labelRes = 0,
-    iconRes = 0,
-    editorFactory = { DummyScreen },
-)
+fun typeInfoAutomation() =
+    EntityTypeInfo(
+        typeKey = "automation",
+        entityClass = Automation::class,
+        labelRes = 0,
+        iconRes = 0,
+        editorFactory = { DummyScreen },
+    )
 
 class EntityRegistryTest {
     @Test

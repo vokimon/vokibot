@@ -28,14 +28,15 @@ data class NfcTrigger(
         const val TYPE = "trigger_nfc"
         const val ID_PREFIX = "nfc_"
 
-        val TYPE_INFO = EntityTypeInfo(
-            typeKey = TYPE,
-            entityClass = NfcTrigger::class,
-            labelRes = R.string.triggerlist_option_nfc,
-            iconRes = R.drawable.ic_nfc,
-            editorFactory = { triggerId -> NfcTriggerEditor(triggerId) },
-            deserializer = { jsonString -> fromJson(jsonString) }
-        )
+        val TYPE_INFO =
+            EntityTypeInfo(
+                typeKey = TYPE,
+                entityClass = NfcTrigger::class,
+                labelRes = R.string.triggerlist_option_nfc,
+                iconRes = R.drawable.ic_nfc,
+                editorFactory = { triggerId -> NfcTriggerEditor(triggerId) },
+                deserializer = { jsonString -> fromJson(jsonString) },
+            )
 
         fun safeId(id: String) = id
 
@@ -51,7 +52,7 @@ data class NfcTrigger(
         fun register() {
             Trigger.register(
                 typeInfo = TYPE_INFO,
-                factory = { jsonString -> fromJson(jsonString) }
+                factory = { jsonString -> fromJson(jsonString) },
             )
         }
 

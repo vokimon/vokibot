@@ -2,8 +2,8 @@ package net.canvoki.vokibot
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
-import kotlin.reflect.KClass
 import net.canvoki.shared.component.StackedScreen
+import kotlin.reflect.KClass
 
 /**
  * Base interface for repository entities.

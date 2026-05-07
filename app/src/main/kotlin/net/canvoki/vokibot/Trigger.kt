@@ -4,10 +4,10 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
-import kotlin.reflect.KClass
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import net.canvoki.shared.component.StackedScreen
+import kotlin.reflect.KClass
 
 /**
  * Abstract base for all automation triggers.

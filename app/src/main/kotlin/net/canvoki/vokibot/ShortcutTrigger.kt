@@ -22,14 +22,15 @@ data class ShortcutTrigger(
         const val MAX_LONG_LABEL_LENGTH = 25
         const val TYPE = "trigger_shortcut"
 
-        val TYPE_INFO = EntityTypeInfo(
-            typeKey = TYPE,
-            entityClass = ShortcutTrigger::class,
-            labelRes = R.string.triggerlist_option_shortcut,
-            iconRes = R.drawable.ic_shortcut,
-            editorFactory = { triggerId -> ShortcutTriggerEditor(triggerId) },
-            deserializer = { jsonString -> fromJson(jsonString) }
-        )
+        val TYPE_INFO =
+            EntityTypeInfo(
+                typeKey = TYPE,
+                entityClass = ShortcutTrigger::class,
+                labelRes = R.string.triggerlist_option_shortcut,
+                iconRes = R.drawable.ic_shortcut,
+                editorFactory = { triggerId -> ShortcutTriggerEditor(triggerId) },
+                deserializer = { jsonString -> fromJson(jsonString) },
+            )
 
         private val json =
             Json {
@@ -41,7 +42,7 @@ data class ShortcutTrigger(
         fun register() {
             Trigger.register(
                 typeInfo = TYPE_INFO,
-                factory = { jsonString -> fromJson(jsonString) }
+                factory = { jsonString -> fromJson(jsonString) },
             )
         }
 
