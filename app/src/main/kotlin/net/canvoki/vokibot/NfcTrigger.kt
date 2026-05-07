@@ -50,10 +50,7 @@ data class NfcTrigger(
             }
 
         fun register() {
-            Trigger.register(
-                typeInfo = TYPE_INFO,
-                factory = { jsonString -> fromJson(jsonString) },
-            )
+            Trigger.register(TYPE_INFO)
         }
 
         fun fromJson(jsonString: String): NfcTrigger = json.decodeFromString(serializer(), jsonString)

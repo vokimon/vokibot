@@ -36,10 +36,7 @@ abstract class Trigger : StorableEntity {
          * Registers a trigger type with its metadata and JSON factory.
          * The type info must be pre-built and stored in the trigger's companion object.
          */
-        fun register(
-            typeInfo: EntityTypeInfo,
-            factory: (String) -> Trigger,
-        ) {
+        fun register(typeInfo: EntityTypeInfo) {
             typeInfos[typeInfo.typeKey] = typeInfo
         }
 
