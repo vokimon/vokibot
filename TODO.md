@@ -1,9 +1,11 @@
 # Change log
 
+- [ ] Registry: Move serialization to the type info
 - [ ] TriggerList delete does not work for NFC (it does for shortcuts)
 - [ ] AutomationEditor: Renaming existing should rename, not duplicate
 - [ ] TriggerList: Chooser: add type icon
 - [ ] TriggerList: Chooser: remove radiobutton
+- [ ] Shortcut: Fix: Renaming does not rename Shortcut yet
 
 - [ ] Complete the dialog for Activities
 - [ ] Extract as composables the parts of the dialog that might be reused
