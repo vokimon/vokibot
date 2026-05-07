@@ -1,5 +1,7 @@
 package net.canvoki.vokibot
 
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
@@ -72,4 +74,10 @@ class EntityRegistry {
             }
         return typeInfo.editorFactory(entityId)
     }
+
+    @Composable
+    fun label(type: String): String =
+        typeInfos[type]?.let {
+            stringResource(it.labelRes)
+        } ?: type
 }

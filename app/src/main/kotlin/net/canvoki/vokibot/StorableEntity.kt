@@ -2,6 +2,7 @@ package net.canvoki.vokibot
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import androidx.compose.runtime.Composable
 import net.canvoki.shared.component.StackedScreen
 import kotlin.reflect.KClass
 

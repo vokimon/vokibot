@@ -22,7 +22,6 @@ abstract class Trigger : StorableEntity {
     abstract val type: String
 
     companion object {
-        private val typeInfos = mutableMapOf<String, EntityTypeInfo>()
 
         private val json =
             Json {
@@ -37,7 +36,6 @@ abstract class Trigger : StorableEntity {
          * The type info must be pre-built and stored in the trigger's companion object.
          */
         fun register(typeInfo: EntityTypeInfo) {
-            typeInfos[typeInfo.typeKey] = typeInfo
             StorableEntity.registry.register(typeInfo)
         }
 
@@ -76,9 +74,7 @@ abstract class Trigger : StorableEntity {
         @Composable
         fun typeLabel(type: String): String {
             ensureInitialized()
-            return typeInfos[type]?.let {
-                stringResource(it.labelRes)
-            } ?: type
+            return StorableEntity.registry.label(type)
         }
     }
 
