@@ -102,16 +102,6 @@ object TriggerBootstrap {
 }
 
 /**
- * Metadata for a registered entity type, used for UI generation.
- */
-data class EntityTypeInfo(
-    val typeKey: String,
-    @field:StringRes val labelRes: Int,
-    @field:DrawableRes val iconRes: Int,
-    val editorFactory: (entityId: String?) -> StackedScreen<Unit>,
-)
-
-/**
  * Special trigger type for proving trigger types and report missing ones.
  */
 @Serializable
