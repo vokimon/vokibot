@@ -16,21 +16,9 @@ fun assertRegisteredTypes(expected: String, actual: List<EntityTypeInfo>) {
     assertEquals(expected, actualString)
 }
 
-fun typeInfoShortcut() = EntityTypeInfo(
-    typeKey = ShortcutTrigger.TYPE,
-    entityClass = ShortcutTrigger::class,
-    labelRes = R.string.triggerlist_option_shortcut,
-    iconRes = R.drawable.ic_shortcut,
-    editorFactory = { triggerId -> ShortcutTriggerEditor(triggerId) }
-)
+fun typeInfoShortcut() = ShortcutTrigger.TYPE_INFO
 
-fun typeInfoNfc() = EntityTypeInfo(
-    typeKey = NfcTrigger.TYPE,
-    entityClass = NfcTrigger::class,
-    labelRes = R.string.triggerlist_option_nfc,
-    iconRes = R.drawable.ic_nfc,
-    editorFactory = { triggerId -> NfcTriggerEditor(triggerId) }
-)
+fun typeInfoNfc() = NfcTrigger.TYPE_INFO
 
 fun typeInfoAutomation() = EntityTypeInfo(
     typeKey = "automation",
