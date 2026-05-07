@@ -15,6 +15,13 @@ fun typeInfoShortcut() = EntityTypeInfo(
     editorFactory = { triggerId -> ShortcutTriggerEditor(triggerId) }
 )
 
+fun typeInfoNfc() = EntityTypeInfo(
+    typeKey = NfcTrigger.TYPE,
+    labelRes = R.string.triggerlist_option_nfc,
+    iconRes = R.drawable.ic_nfc,
+    editorFactory = { triggerId -> NfcTriggerEditor(triggerId) }
+)
+
 class EntityRegistryTest {
     @Test
     fun `empty registry returns empty`() {
@@ -25,8 +32,15 @@ class EntityRegistryTest {
     @Test
     fun `registry with one item`() {
         val registry = EntityRegistry()
-        val typeInfo = typeInfoShortcut()
-        registry.register(typeInfo)
+        registry.register(typeInfoShortcut())
         assertRegisteredTypes("trigger_shortcut", registry.getRegisteredTypes())
+    }
+
+    @Test
+    fun `registry with many items`() {
+        val registry = EntityRegistry()
+        registry.register(typeInfoShortcut())
+        registry.register(typeInfoNfc())
+        assertRegisteredTypes("trigger_nfc\ntrigger_shortcut", registry.getRegisteredTypes())
     }
 }

@@ -4,12 +4,11 @@ package net.canvoki.vokibot
  * Registry for entity types.
  */
 class EntityRegistry {
-    private var registeredType: EntityTypeInfo? = null
+    private val typeInfos = mutableMapOf<String, EntityTypeInfo>()
 
     fun register(typeInfo: EntityTypeInfo) {
-        registeredType = typeInfo
+        typeInfos[typeInfo.typeKey] = typeInfo
     }
 
-    fun getRegisteredTypes(): List<EntityTypeInfo> =
-        if (registeredType != null) listOf(registeredType) else emptyList()
+    fun getRegisteredTypes(): List<EntityTypeInfo> = typeInfos.values.toList()
 }
