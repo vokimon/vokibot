@@ -38,6 +38,7 @@ abstract class Trigger : StorableEntity {
          */
         fun register(typeInfo: EntityTypeInfo) {
             typeInfos[typeInfo.typeKey] = typeInfo
+            StorableEntity.registry.register(typeInfo)
         }
 
         /** Get all registered trigger types for UI listing */
