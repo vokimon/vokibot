@@ -25,7 +25,7 @@ fun typeInfoAutomation() = EntityTypeInfo(
     entityClass = Automation::class,
     labelRes = 0,
     iconRes = 0,
-    editorFactory = { DummyScreen }
+    editorFactory = { DummyScreen },
 )
 
 class EntityRegistryTest {

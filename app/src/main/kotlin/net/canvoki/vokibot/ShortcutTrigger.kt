@@ -27,7 +27,8 @@ data class ShortcutTrigger(
             entityClass = ShortcutTrigger::class,
             labelRes = R.string.triggerlist_option_shortcut,
             iconRes = R.drawable.ic_shortcut,
-            editorFactory = { triggerId -> ShortcutTriggerEditor(triggerId) }
+            editorFactory = { triggerId -> ShortcutTriggerEditor(triggerId) },
+            deserializer = { jsonString -> fromJson(jsonString) }
         )
 
         private val json =

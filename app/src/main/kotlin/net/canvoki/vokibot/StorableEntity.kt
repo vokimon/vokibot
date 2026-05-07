@@ -28,6 +28,7 @@ data class EntityTypeInfo(
     @field:StringRes val labelRes: Int,
     @field:DrawableRes val iconRes: Int,
     val editorFactory: (entityId: String?) -> StackedScreen<Unit>,
+    val deserializer: ((String) -> StorableEntity)? = null,
 )
 
 object EntityBootstrap {

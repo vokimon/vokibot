@@ -33,7 +33,8 @@ data class NfcTrigger(
             entityClass = NfcTrigger::class,
             labelRes = R.string.triggerlist_option_nfc,
             iconRes = R.drawable.ic_nfc,
-            editorFactory = { triggerId -> NfcTriggerEditor(triggerId) }
+            editorFactory = { triggerId -> NfcTriggerEditor(triggerId) },
+            deserializer = { jsonString -> fromJson(jsonString) }
         )
 
         fun safeId(id: String) = id
