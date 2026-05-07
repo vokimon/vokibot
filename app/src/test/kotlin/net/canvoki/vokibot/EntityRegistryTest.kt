@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
 import net.canvoki.shared.test.assertEquals
+import net.canvoki.shared.test.assertJsonEqual
 import org.junit.Test
 
 object DummyScreen : StackedScreen<Unit>() {
@@ -70,5 +71,57 @@ class EntityRegistryTest {
         registry.register(typeInfoAutomation())
         // Should include both Trigger subclasses, exclude Automation
         assertRegisteredTypes("trigger_nfc\ntrigger_shortcut", registry.getRegisteredTypes(Trigger::class))
+    }
+
+    @Test
+    fun `fromJson same type returns the object`() {
+        val registry = EntityRegistry()
+        registry.register(typeInfoNfc())
+        registry.register(typeInfoShortcut())
+
+        val json = """{"type":"trigger_nfc","displayName":"Test NFC","uid":"04:AB:12:CD:56:78:90"}"""
+
+        val result = registry.fromJson<NfcTrigger>(json)
+
+        assertDataEqual(NfcTrigger.fromJson(json), result)
+    }
+
+    @Test
+    fun `fromJson supertype returns the object`() {
+        val registry = EntityRegistry()
+        registry.register(typeInfoNfc())
+        registry.register(typeInfoShortcut())
+
+        val json = """{"type":"trigger_nfc","displayName":"Test NFC","uid":"04:AB:12:CD:56:78:90"}"""
+
+        val result = registry.fromJson<Trigger>(json)
+
+        assertDataEqual(NfcTrigger.fromJson(json), result)
+    }
+
+    @Test
+    fun `fromJson bad type returns null`() {
+        val registry = EntityRegistry()
+        registry.register(typeInfoNfc())
+        registry.register(typeInfoShortcut())
+
+        val json = """{"type":"trigger_nfc","displayName":"Test NFC","uid":"04:AB:12:CD:56:78:90"}"""
+
+        val result = registry.fromJson<ShortcutTrigger>(json)
+
+        assertDataEqual(null, result)
+    }
+
+    @Test
+    fun `fromJson non registered returns null`() {
+        val registry = EntityRegistry()
+        //registry.register(typeInfoNfc()) // Not registered
+        registry.register(typeInfoShortcut())
+
+        val json = """{"type":"trigger_nfc","displayName":"Test NFC","uid":"04:AB:12:CD:56:78:90"}"""
+
+        val result = registry.fromJson<NfcTrigger>(json)
+
+        assertDataEqual(null, result)
     }
 }
