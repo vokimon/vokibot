@@ -23,12 +23,6 @@ abstract class Trigger : StorableEntity {
 
     companion object {
 
-        private val json =
-            Json {
-                ignoreUnknownKeys = true
-                classDiscriminator = "type"
-            }
-
         private fun ensureInitialized() = EntityBootstrap.ensure()
 
         /**
@@ -77,11 +71,6 @@ abstract class Trigger : StorableEntity {
             return StorableEntity.registry.label(type)
         }
     }
-
-    @Serializable
-    data class PreviewTrigger(
-        val type: String,
-    )
 }
 
 /**
