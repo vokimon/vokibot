@@ -124,4 +124,40 @@ class EntityRegistryTest {
 
         assertDataEqual(null, result)
     }
+
+    @Test
+    fun `fromJson non object returns null`() {
+        val registry = EntityRegistry()
+        registry.register(typeInfoNfc())
+
+        val json = """[{"type":"trigger_nfc"}]"""
+
+        val result = registry.fromJson(json, NfcTrigger::class)
+
+        assertDataEqual(null, result)
+    }
+
+    @Test
+    fun `fromJson missing type returns null`() {
+        val registry = EntityRegistry()
+        registry.register(typeInfoNfc())
+
+        val json = """{"displayName":"Test NFC"}"""
+
+        val result = registry.fromJson(json, NfcTrigger::class)
+
+        assertDataEqual(null, result)
+    }
+
+    @Test
+    fun `fromJson type not string returns null`() {
+        val registry = EntityRegistry()
+        registry.register(typeInfoNfc())
+
+        val json = """{"type":123}"""
+
+        val result = registry.fromJson(json, NfcTrigger::class)
+
+        assertDataEqual(null, result)
+    }
 }
