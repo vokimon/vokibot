@@ -22,7 +22,7 @@ abstract class Trigger : StorableEntity {
 
     companion object {
         private val factories = mutableMapOf<String, (String) -> Trigger>()
-        private val typeInfos = mutableMapOf<String, TriggerTypeInfo>()
+        private val typeInfos = mutableMapOf<String, EntityTypeInfo>()
 
         private val json =
             Json {
@@ -39,11 +39,11 @@ abstract class Trigger : StorableEntity {
             factory: (String) -> Trigger,
         ) {
             factories[typeKey] = factory
-            typeInfos[typeKey] = TriggerTypeInfo(typeKey, labelRes, iconRes, editorFactory)
+            typeInfos[typeKey] = EntityTypeInfo(typeKey, labelRes, iconRes, editorFactory)
         }
 
         /** Get all registered trigger types for UI listing */
-        fun getRegisteredTypes(): List<TriggerTypeInfo> = typeInfos.values.toList()
+        fun getRegisteredTypes(): List<EntityTypeInfo> = typeInfos.values.toList()
 
         /** Get the editor screen for a given trigger type and optional id */
         fun getEditorScreen(
@@ -102,13 +102,13 @@ object TriggerBootstrap {
 }
 
 /**
- * Metadata for a registered trigger type, used for UI generation.
+ * Metadata for a registered entity type, used for UI generation.
  */
-data class TriggerTypeInfo(
+data class EntityTypeInfo(
     val typeKey: String,
     @field:StringRes val labelRes: Int,
     @field:DrawableRes val iconRes: Int,
-    val editorFactory: (triggerId: String?) -> StackedScreen<Unit>,
+    val editorFactory: (entityId: String?) -> StackedScreen<Unit>,
 )
 
 /**
