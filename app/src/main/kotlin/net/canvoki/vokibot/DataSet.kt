@@ -3,16 +3,6 @@ package net.canvoki.vokibot
 import java.io.File
 
 /**
- * Base interface for repository entities.
- * Guarantees stable `id` and self-serialization.
- */
-interface StorableEntity {
-    val id: String
-
-    fun toJson(): String
-}
-
-/**
  * Typed dataset that delegates serialization to the entity itself.
  * No serializers, no Json config passed in — just `toJson()` and a decoder lambda.
  */
