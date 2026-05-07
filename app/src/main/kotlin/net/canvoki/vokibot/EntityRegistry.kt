@@ -24,18 +24,31 @@ class EntityRegistry {
         typeInfos.values.filter { baseClass.java.isAssignableFrom(it.entityClass.java) }
 
     fun <T : StorableEntity> fromJson(jsonString: String, clazz: KClass<T>): T? {
-        val jsonObject = json.parseToJsonElement(jsonString) as? JsonObject ?: return null
-        val type = jsonObject["type"]?.jsonPrimitive?.content ?: return null
-        val typeInfo = typeInfos[type] ?: return null
-        val result = typeInfo.deserializer?.invoke(jsonString) ?: return null
-        return clazz.safeCast(result)
+        val jsonObject = json.parseToJsonElement(jsonString) as? JsonObject ?: run {
+            log("Invalid JSON object for fromJson")
+            return null
+        }
+        val type = jsonObject["type"]?.jsonPrimitive?.content ?: run {
+            log("Missing 'type' field in JSON")
+            return null
+        }
+        val typeInfo = typeInfos[type] ?: run {
+            log("Unknown entity type: $type")
+            return null
+        }
+        val result = typeInfo.deserializer?.invoke(jsonString) ?: run {
+            log("No deserializer for type: $type")
+            return null
+        }
+        if (!clazz.isInstance(result)) {
+            log("Expected ${clazz.simpleName}, got ${result::class.simpleName}")
+            return null
+        }
+        return clazz.java.cast(result)
     }
 
     fun extractType(jsonString: String): String? {
         val jsonObject = json.parseToJsonElement(jsonString) as? JsonObject ?: return null
         return jsonObject["type"]?.jsonPrimitive?.content
     }
-
-    private fun <T : StorableEntity> KClass<T>.safeCast(entity: StorableEntity): T? =
-        if (this.isInstance(entity)) this.java.cast(entity) else null
 }
