@@ -53,11 +53,7 @@ abstract class Trigger : StorableEntity {
             triggerId: String?,
         ): StackedScreen<Unit>? {
             ensureInitialized()
-            return typeInfos[typeKey]?.editorFactory?.invoke(triggerId)
-                ?: run {
-                    log("Unknown trigger type selected: $typeKey")
-                    null
-                }
+            return StorableEntity.registry.getEditorScreen(typeKey, triggerId)
         }
 
         /** Deserialize any registered Trigger from JSON */
