@@ -30,6 +30,8 @@ abstract class Trigger : StorableEntity {
                 classDiscriminator = "type"
             }
 
+        private fun ensureInitialized() = TriggerBootstrap.ensure()
+
         /** Register a trigger type factory for polymorphic deserialization */
         fun register(
             typeKey: String,
@@ -43,22 +45,27 @@ abstract class Trigger : StorableEntity {
         }
 
         /** Get all registered trigger types for UI listing */
-        fun getRegisteredTypes(): List<EntityTypeInfo> = typeInfos.values.toList()
+        fun getRegisteredTypes(): List<EntityTypeInfo> {
+            ensureInitialized()
+            return typeInfos.values.toList()
+        }
 
         /** Get the editor screen for a given trigger type and optional id */
         fun getEditorScreen(
             typeKey: String,
             triggerId: String?,
-        ): StackedScreen<Unit>? =
-            typeInfos[typeKey]?.editorFactory?.invoke(triggerId)
+        ): StackedScreen<Unit>? {
+            ensureInitialized()
+            return typeInfos[typeKey]?.editorFactory?.invoke(triggerId)
                 ?: run {
                     log("Unknown trigger type selected: $typeKey")
                     null
                 }
+        }
 
         /** Deserialize any registered Trigger from JSON */
         fun fromJson(jsonString: String): Trigger {
-            TriggerBootstrap.ensure()
+            ensureInitialized()
             val preview = json.decodeFromString<PreviewTrigger>(jsonString)
             val factory = factories[preview.type]
             if (factory == null) {
@@ -75,10 +82,12 @@ abstract class Trigger : StorableEntity {
          * Usage: Text(Trigger.typeLabel(trigger.type))
          */
         @Composable
-        fun typeLabel(type: String): String =
-            typeInfos[type]?.let {
+        fun typeLabel(type: String): String {
+            ensureInitialized()
+            return typeInfos[type]?.let {
                 stringResource(it.labelRes)
             } ?: type
+        }
     }
 
     @Serializable
