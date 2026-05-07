@@ -68,12 +68,19 @@ abstract class Trigger : StorableEntity {
         fun fromJson(jsonString: String): Trigger {
             ensureInitialized()
             val preview = json.decodeFromString<PreviewTrigger>(jsonString)
-            val factory = factories[preview.type]
+            val factory = typeInfos[preview.type]?.deserializer
             if (factory == null) {
                 log("Unknown trigger type: ${preview.type}")
                 return UnknownTrigger(type = preview.type, json = jsonString)
             }
-            return factory(jsonString)
+            val result = factory(jsonString)
+            when (result) {
+                is Trigger -> return result
+                else -> {
+                    log("Expected a Trigger, got: ${preview.type}")
+                    return UnknownTrigger(type = preview.type, json = jsonString)
+                }
+            }
         }
 
         /**
