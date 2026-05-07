@@ -1,7 +1,15 @@
 package net.canvoki.vokibot
 
+import net.canvoki.shared.component.StackedScreen
+import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.test.assertEquals
 import org.junit.Test
+import androidx.compose.runtime.Composable
+
+object DummyScreen : StackedScreen<Unit>() {
+    @Composable
+    override fun Screen(nav: StackNavigatorState) {}
+}
 
 fun assertRegisteredTypes(expected: String, actual: List<EntityTypeInfo>) {
     val actualString = actual.map { it.typeKey }.sorted().joinToString("\n")
@@ -22,6 +30,14 @@ fun typeInfoNfc() = EntityTypeInfo(
     labelRes = R.string.triggerlist_option_nfc,
     iconRes = R.drawable.ic_nfc,
     editorFactory = { triggerId -> NfcTriggerEditor(triggerId) }
+)
+
+fun typeInfoAutomation() = EntityTypeInfo(
+    typeKey = "automation",
+    entityClass = Automation::class,
+    labelRes = 0,
+    iconRes = 0,
+    editorFactory = { DummyScreen }
 )
 
 class EntityRegistryTest {
@@ -52,5 +68,15 @@ class EntityRegistryTest {
         registry.register(typeInfoShortcut())
         registry.register(typeInfoNfc())
         assertRegisteredTypes("trigger_nfc", registry.getRegisteredTypes(NfcTrigger::class))
+    }
+
+    @Test
+    fun `registry filters by super class`() {
+        val registry = EntityRegistry()
+        registry.register(typeInfoShortcut())
+        registry.register(typeInfoNfc())
+        registry.register(typeInfoAutomation())
+        // Should include both Trigger subclasses, exclude Automation
+        assertRegisteredTypes("trigger_nfc\ntrigger_shortcut", registry.getRegisteredTypes(Trigger::class))
     }
 }

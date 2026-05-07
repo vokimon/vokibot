@@ -13,5 +13,5 @@ class EntityRegistry {
     }
 
     fun getRegisteredTypes(baseClass: KClass<out StorableEntity> = StorableEntity::class): List<EntityTypeInfo> =
-        typeInfos.values.toList().filter { baseClass == StorableEntity::class || baseClass == it.entityClass }
+        typeInfos.values.filter { baseClass.java.isAssignableFrom(it.entityClass.java) }
 }
