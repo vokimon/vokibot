@@ -44,7 +44,7 @@ abstract class Trigger : StorableEntity {
         /** Get all registered trigger types for UI listing */
         fun getRegisteredTypes(): List<EntityTypeInfo> {
             ensureInitialized()
-            return typeInfos.values.toList()
+            return StorableEntity.registry.getRegisteredTypes(Trigger::class)
         }
 
         /** Get the editor screen for a given trigger type and optional id */
