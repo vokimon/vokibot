@@ -22,7 +22,6 @@ abstract class Trigger : StorableEntity {
     abstract val type: String
 
     companion object {
-        private val factories = mutableMapOf<String, (String) -> Trigger>()
         private val typeInfos = mutableMapOf<String, EntityTypeInfo>()
 
         private val json =
@@ -41,7 +40,6 @@ abstract class Trigger : StorableEntity {
             typeInfo: EntityTypeInfo,
             factory: (String) -> Trigger,
         ) {
-            factories[typeInfo.typeKey] = factory
             typeInfos[typeInfo.typeKey] = typeInfo
         }
 
