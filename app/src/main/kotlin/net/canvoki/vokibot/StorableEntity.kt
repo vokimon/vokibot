@@ -13,6 +13,10 @@ interface StorableEntity {
     val id: String
 
     fun toJson(): String
+
+    companion object {
+        val registry = EntityRegistry()
+    }
 }
 
 /**
