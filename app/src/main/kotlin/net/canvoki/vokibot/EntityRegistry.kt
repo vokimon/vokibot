@@ -1,5 +1,7 @@
 package net.canvoki.vokibot
 
+import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import kotlinx.serialization.Serializable
@@ -8,6 +10,18 @@ import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.jsonPrimitive
 import net.canvoki.shared.component.StackedScreen
 import kotlin.reflect.KClass
+
+/**
+ * Metadata for a registered entity type, used for UI generation.
+ */
+data class EntityTypeInfo(
+    val typeKey: String,
+    val entityClass: KClass<out StorableEntity>,
+    @field:StringRes val labelRes: Int,
+    @field:DrawableRes val iconRes: Int,
+    val editorFactory: (entityId: String?) -> StackedScreen<Unit>,
+    val deserializer: ((String) -> StorableEntity)? = null,
+)
 
 /**
  * Registry for entity types.
@@ -81,3 +95,4 @@ class EntityRegistry {
             stringResource(it.labelRes)
         } ?: type
 }
+
