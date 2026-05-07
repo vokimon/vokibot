@@ -31,6 +31,11 @@ class EntityRegistry {
         return clazz.safeCast(result)
     }
 
+    fun extractType(jsonString: String): String? {
+        val jsonObject = json.parseToJsonElement(jsonString) as? JsonObject ?: return null
+        return jsonObject["type"]?.jsonPrimitive?.content
+    }
+
     private fun <T : StorableEntity> KClass<T>.safeCast(entity: StorableEntity): T? =
         if (this.isInstance(entity)) this.java.cast(entity) else null
 }
