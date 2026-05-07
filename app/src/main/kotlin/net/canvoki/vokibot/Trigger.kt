@@ -96,20 +96,6 @@ abstract class Trigger : StorableEntity {
     )
 }
 
-object EntityBootstrap {
-    // Avoid to be optimized away
-    private var touched = false
-
-    fun ensure() {
-        touched = true
-    }
-
-    init {
-        NfcTrigger.register()
-        ShortcutTrigger.register()
-    }
-}
-
 /**
  * Special trigger type for proving trigger types and report missing ones.
  */

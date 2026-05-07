@@ -23,3 +23,17 @@ data class EntityTypeInfo(
     @field:DrawableRes val iconRes: Int,
     val editorFactory: (entityId: String?) -> StackedScreen<Unit>,
 )
+
+object EntityBootstrap {
+    // Avoid to be optimized away
+    private var touched = false
+
+    fun ensure() {
+        touched = true
+    }
+
+    init {
+        NfcTrigger.register()
+        ShortcutTrigger.register()
+    }
+}
