@@ -42,8 +42,17 @@ abstract class Trigger : StorableEntity {
             editorFactory: (triggerId: String?) -> StackedScreen<Unit>,
             factory: (String) -> Trigger,
         ) {
-            factories[typeKey] = factory
-            typeInfos[typeKey] = EntityTypeInfo(typeKey, entityClass, labelRes, iconRes, editorFactory)
+            val typeInfo = EntityTypeInfo(typeKey, entityClass, labelRes, iconRes, editorFactory)
+            register(typeInfo, factory)
+        }
+
+        /** Register using pre-built EntityTypeInfo */
+        fun register(
+            typeInfo: EntityTypeInfo,
+            factory: (String) -> Trigger,
+        ) {
+            factories[typeInfo.typeKey] = factory
+            typeInfos[typeInfo.typeKey] = typeInfo
         }
 
         /** Get all registered trigger types for UI listing */
