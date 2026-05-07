@@ -4,6 +4,7 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.jsonPrimitive
+import net.canvoki.shared.component.StackedScreen
 import kotlin.reflect.KClass
 
 /**
@@ -50,5 +51,17 @@ class EntityRegistry {
     fun extractType(jsonString: String): String? {
         val jsonObject = json.parseToJsonElement(jsonString) as? JsonObject ?: return null
         return jsonObject["type"]?.jsonPrimitive?.content
+    }
+
+    fun getEditorScreen(
+        typeKey: String,
+        entityId: String?,
+    ): StackedScreen<Unit>? {
+        val typeInfo =
+            typeInfos[typeKey] ?: run {
+                log("Unknown entity type selected: $typeKey")
+                return null
+            }
+        return typeInfo.editorFactory(entityId)
     }
 }

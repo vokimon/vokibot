@@ -24,9 +24,9 @@ fun typeInfoShortcut() = ShortcutTrigger.TYPE_INFO
 
 fun typeInfoNfc() = NfcTrigger.TYPE_INFO
 
-fun typeInfoAutomation() =
+fun typeInfoAutomation(typeKey: String = "automation") =
     EntityTypeInfo(
-        typeKey = "automation",
+        typeKey = typeKey,
         entityClass = Automation::class,
         labelRes = 0,
         iconRes = 0,
@@ -159,5 +159,47 @@ class EntityRegistryTest {
         val result = registry.fromJson(json, NfcTrigger::class)
 
         assertDataEqual(null, result)
+    }
+
+    @Test
+    fun `getEditorScreen with null id`() {
+        val registry = EntityRegistry()
+        registry.register(typeInfoNfc())
+
+        val result = registry.getEditorScreen("trigger_nfc", null)
+
+        assertEquals(NfcTriggerEditor(editingId = null), result)
+    }
+
+    @Test
+    fun `getEditorScreen with an id`() {
+        val registry = EntityRegistry()
+        registry.register(typeInfoNfc())
+        val testId = "test_trigger_123"
+
+        val result = registry.getEditorScreen("trigger_nfc", testId)
+
+        assertEquals(NfcTriggerEditor(editingId = testId), result)
+    }
+
+    @Test
+    fun `getEditorScreen with a different type`() {
+        val registry = EntityRegistry()
+        registry.register(typeInfoShortcut())
+        registry.register(typeInfoNfc())
+
+        val result = registry.getEditorScreen("trigger_shortcut", null)
+
+        assertEquals(ShortcutTriggerEditor(), result)
+    }
+
+    @Test
+    fun `getEditorScreen returns null for unregistered type`() {
+        val registry = EntityRegistry()
+        registry.register(typeInfoShortcut()) // Only register shortcut
+
+        val result = registry.getEditorScreen("trigger_nfc", null) // Ask for NFC
+
+        assertEquals(null, result)
     }
 }
