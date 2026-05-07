@@ -12,10 +12,11 @@ import kotlin.reflect.KClass
  */
 class EntityRegistry {
     private val typeInfos = mutableMapOf<String, EntityTypeInfo>()
-    private val json = Json {
-        ignoreUnknownKeys = true
-        classDiscriminator = "type"
-    }
+    private val json =
+        Json {
+            ignoreUnknownKeys = true
+            classDiscriminator = "type"
+        }
 
     fun register(typeInfo: EntityTypeInfo) {
         typeInfos[typeInfo.typeKey] = typeInfo
@@ -24,23 +25,30 @@ class EntityRegistry {
     fun getRegisteredTypes(baseClass: KClass<out StorableEntity> = StorableEntity::class): List<EntityTypeInfo> =
         typeInfos.values.filter { baseClass.java.isAssignableFrom(it.entityClass.java) }
 
-    fun <T : StorableEntity> fromJson(jsonString: String, clazz: KClass<T>): T? {
-        val jsonObject = json.parseToJsonElement(jsonString) as? JsonObject ?: run {
-            log("Invalid JSON object for fromJson")
-            return null
-        }
-        val type = jsonObject["type"]?.jsonPrimitive?.content ?: run {
-            log("Missing 'type' field in JSON")
-            return null
-        }
-        val typeInfo = typeInfos[type] ?: run {
-            log("Unknown entity type: $type")
-            return null
-        }
-        val result = typeInfo.deserializer?.invoke(jsonString) ?: run {
-            log("No deserializer for type: $type")
-            return null
-        }
+    fun <T : StorableEntity> fromJson(
+        jsonString: String,
+        clazz: KClass<T>,
+    ): T? {
+        val jsonObject =
+            json.parseToJsonElement(jsonString) as? JsonObject ?: run {
+                log("Invalid JSON object for fromJson")
+                return null
+            }
+        val type =
+            jsonObject["type"]?.jsonPrimitive?.content ?: run {
+                log("Missing 'type' field in JSON")
+                return null
+            }
+        val typeInfo =
+            typeInfos[type] ?: run {
+                log("Unknown entity type: $type")
+                return null
+            }
+        val result =
+            typeInfo.deserializer?.invoke(jsonString) ?: run {
+                log("No deserializer for type: $type")
+                return null
+            }
         if (!clazz.isInstance(result)) {
             log("Expected ${clazz.simpleName}, got ${result::class.simpleName}")
             return null
