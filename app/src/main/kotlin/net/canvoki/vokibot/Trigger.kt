@@ -30,7 +30,7 @@ abstract class Trigger : StorableEntity {
                 classDiscriminator = "type"
             }
 
-        private fun ensureInitialized() = TriggerBootstrap.ensure()
+        private fun ensureInitialized() = EntityBootstrap.ensure()
 
         /** Register a trigger type factory for polymorphic deserialization */
         fun register(
@@ -96,7 +96,7 @@ abstract class Trigger : StorableEntity {
     )
 }
 
-object TriggerBootstrap {
+object EntityBootstrap {
     // Avoid to be optimized away
     private var touched = false
 
