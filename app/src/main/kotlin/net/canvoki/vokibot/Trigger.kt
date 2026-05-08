@@ -30,7 +30,7 @@ abstract class Trigger : StorableEntity {
          * The type info must be pre-built and stored in the trigger's companion object.
          */
         fun register(typeInfo: EntityTypeInfo) {
-            StorableEntity.registry.register(typeInfo)
+            StorableEntity.register(typeInfo)
         }
 
         /** Get all registered trigger types for UI listing */
@@ -41,11 +41,11 @@ abstract class Trigger : StorableEntity {
 
         /** Get the editor screen for a given trigger type and optional id */
         fun getEditorScreen(
-            typeKey: String,
-            triggerId: String?,
+            type: String,
+            id: String?,
         ): StackedScreen<Unit>? {
             ensureInitialized()
-            return StorableEntity.registry.getEditorScreen(typeKey, triggerId)
+            return StorableEntity.getEditorScreen(type, id)
         }
 
         /** Deserialize any registered Trigger from JSON */
