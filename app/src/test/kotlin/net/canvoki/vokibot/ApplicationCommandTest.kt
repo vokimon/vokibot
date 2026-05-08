@@ -1,19 +1,11 @@
 package net.canvoki.vokibot
 
-import kotlinx.serialization.json.Json
 import net.canvoki.shared.test.assertEquals
 import net.canvoki.shared.test.assertJsonEqual
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class ApplicationCommandTest {
-    private val json =
-        Json {
-            explicitNulls = false
-            encodeDefaults = true
-            classDiscriminator = "type"
-        }
-
     // ---------- LaunchActivityCommand ----------
     fun launchActivityCommandBase() =
         LaunchActivityCommand(
@@ -197,14 +189,14 @@ class ApplicationCommandTest {
                 "flt" to ExtraValue.FloatValue(3.14f),
             )
 
-        val serialized = json.encodeToString(extras)
+        val serialized = JsonConfig.encodeToString(extras)
         assertTrue(serialized.contains("\"string\""))
         assertTrue(serialized.contains("\"int\""))
         assertTrue(serialized.contains("\"long\""))
         assertTrue(serialized.contains("\"boolean\""))
         assertTrue(serialized.contains("\"float\""))
 
-        val deserialized = json.decodeFromString<Map<String, ExtraValue>>(serialized)
+        val deserialized = JsonConfig.decodeFromString<Map<String, ExtraValue>>(serialized)
         assertEquals(
             (extras["str"] as ExtraValue.StringValue).value,
             (deserialized["str"] as ExtraValue.StringValue).value,

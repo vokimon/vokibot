@@ -22,7 +22,7 @@ data class NfcTrigger(
     override val description: String get() = uid
     override val iconRes: Int get() = R.drawable.ic_nfc
 
-    override fun toJson(): String = Companion.json.encodeToString(serializer(), this)
+    override fun toJson(): String = JsonConfig.encodeToString(serializer(), this)
 
     companion object {
         const val TYPE = "trigger_nfc"
@@ -42,17 +42,10 @@ data class NfcTrigger(
 
         fun idFromUid(uid: String) = "$ID_PREFIX${toFileSystemId(uid)}"
 
-        private val json =
-            Json {
-                explicitNulls = false
-                encodeDefaults = true
-                classDiscriminator = "type"
-            }
-
         fun register() {
             StorableEntity.register(TYPE_INFO)
         }
 
-        fun fromJson(jsonString: String): NfcTrigger = json.decodeFromString(serializer(), jsonString)
+        fun fromJson(jsonString: String): NfcTrigger = JsonConfig.decodeFromString(serializer(), jsonString)
     }
 }

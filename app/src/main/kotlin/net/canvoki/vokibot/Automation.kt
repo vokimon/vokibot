@@ -24,7 +24,7 @@ data class Automation(
         id: String? = null,
     ) : this(id ?: UUID.randomUUID().toString(), name, triggerType, triggerId, commandIds)
 
-    override fun toJson(): String = Companion.json.encodeToString(serializer(), this)
+    override fun toJson(): String = JsonConfig.encodeToString(serializer(), this)
 
     override val title: String
         get() = name
@@ -37,13 +37,6 @@ data class Automation(
         get() = R.drawable.ic_check_circle
 
     companion object {
-        private val json =
-            Json {
-                explicitNulls = false
-                encodeDefaults = true
-                classDiscriminator = "type"
-            }
-
-        fun fromJson(jsonString: String): Automation = json.decodeFromString(serializer(), jsonString)
+        fun fromJson(jsonString: String): Automation = JsonConfig.decodeFromString(serializer(), jsonString)
     }
 }

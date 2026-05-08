@@ -8,7 +8,6 @@ import androidx.annotation.StringRes
 import androidx.core.net.toUri
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.Json
 
 fun toFileSystemId(id: String): String =
     id
@@ -128,15 +127,9 @@ sealed class ApplicationCommand : Command() {
      * Serialize this command to JSON.
      * Instance method because you already have the object.
      */
-    override fun toJson(): String = Companion.json.encodeToString(serializer(), this)
+    override fun toJson(): String = JsonConfig.encodeToString(serializer(), this)
 
     companion object {
-        private val json =
-            Json {
-                explicitNulls = false
-                encodeDefaults = true
-                classDiscriminator = "type"
-            }
 
         /**
          * Deserialize a command from JSON.
@@ -197,17 +190,10 @@ data class LaunchActivityCommand(
         context.startActivity(intent)
     }
 
-    override fun toJson(): String = Companion.json.encodeToString(serializer(), this)
+    override fun toJson(): String = JsonConfig.encodeToString(serializer(), this)
 
     companion object {
         const val TYPE = "launch_activity"
-
-        private val json =
-            Json {
-                explicitNulls = false
-                encodeDefaults = true
-                classDiscriminator = "type"
-            }
 
         val TYPE_INFO =
             EntityTypeInfo(
@@ -220,7 +206,7 @@ data class LaunchActivityCommand(
             )
 
         fun fromJson(jsonString: String): LaunchActivityCommand =
-            json.decodeFromString(serializer(), jsonString)
+            JsonConfig.decodeFromString(serializer(), jsonString)
 
         fun register() = StorableEntity.register(TYPE_INFO)
     }
@@ -260,17 +246,10 @@ data class SendBroadcastCommand(
         }
     }
 
-    override fun toJson(): String = Companion.json.encodeToString(serializer(), this)
+    override fun toJson(): String = JsonConfig.encodeToString(serializer(), this)
 
     companion object {
         const val TYPE = "send_broadcast"
-
-        private val json =
-            Json {
-                explicitNulls = false
-                encodeDefaults = true
-                classDiscriminator = "type"
-            }
 
         val TYPE_INFO =
             EntityTypeInfo(
@@ -283,7 +262,7 @@ data class SendBroadcastCommand(
             )
 
         fun fromJson(jsonString: String): SendBroadcastCommand =
-            json.decodeFromString(serializer(), jsonString)
+            JsonConfig.decodeFromString(serializer(), jsonString)
 
         fun register() = StorableEntity.register(TYPE_INFO)
     }
@@ -322,17 +301,10 @@ data class StartServiceCommand(
         }
     }
 
-    override fun toJson(): String = Companion.json.encodeToString(serializer(), this)
+    override fun toJson(): String = JsonConfig.encodeToString(serializer(), this)
 
     companion object {
         const val TYPE = "start_service"
-
-        private val json =
-            Json {
-                explicitNulls = false
-                encodeDefaults = true
-                classDiscriminator = "type"
-            }
 
         val TYPE_INFO =
             EntityTypeInfo(
@@ -345,7 +317,7 @@ data class StartServiceCommand(
             )
 
         fun fromJson(jsonString: String): StartServiceCommand =
-            json.decodeFromString(serializer(), jsonString)
+            JsonConfig.decodeFromString(serializer(), jsonString)
 
         fun register() = StorableEntity.register(TYPE_INFO)
     }
@@ -393,17 +365,10 @@ data class AccessProviderCommand(
         return path?.let { Uri.withAppendedPath(baseUri, it) } ?: baseUri
     }
 
-    override fun toJson(): String = Companion.json.encodeToString(serializer(), this)
+    override fun toJson(): String = JsonConfig.encodeToString(serializer(), this)
 
     companion object {
         const val TYPE = "access_provider"
-
-        private val json =
-            Json {
-                explicitNulls = false
-                encodeDefaults = true
-                classDiscriminator = "type"
-            }
 
         val TYPE_INFO =
             EntityTypeInfo(
@@ -416,7 +381,7 @@ data class AccessProviderCommand(
             )
 
         fun fromJson(jsonString: String): AccessProviderCommand =
-            json.decodeFromString(serializer(), jsonString)
+            JsonConfig.decodeFromString(serializer(), jsonString)
 
         fun register() = StorableEntity.register(TYPE_INFO)
     }

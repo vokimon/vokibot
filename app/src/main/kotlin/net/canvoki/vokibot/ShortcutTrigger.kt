@@ -32,18 +32,11 @@ data class ShortcutTrigger(
                 deserializer = { jsonString -> fromJson(jsonString) },
             )
 
-        private val json =
-            Json {
-                explicitNulls = false
-                encodeDefaults = true
-                classDiscriminator = "type"
-            }
-
         fun register() {
             StorableEntity.register(TYPE_INFO)
         }
 
-        fun fromJson(jsonString: String): ShortcutTrigger = json.decodeFromString(serializer(), jsonString)
+        fun fromJson(jsonString: String): ShortcutTrigger = JsonConfig.decodeFromString(serializer(), jsonString)
     }
 
     override val type = TYPE
@@ -52,7 +45,7 @@ data class ShortcutTrigger(
     override val iconRes: Int get() = R.drawable.ic_shortcut
     val homeScreenIconRes: Int = R.drawable.ic_brand
 
-    override fun toJson(): String = Companion.json.encodeToString(serializer(), this)
+    override fun toJson(): String = JsonConfig.encodeToString(serializer(), this)
 
     fun isPinned(context: Context): Boolean {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) return false

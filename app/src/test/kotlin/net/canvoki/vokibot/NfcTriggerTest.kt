@@ -1,19 +1,11 @@
 package net.canvoki.vokibot
 
-import kotlinx.serialization.json.Json
 import net.canvoki.shared.test.assertEquals
 import net.canvoki.shared.test.assertJsonEqual
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class NfcTriggerTest {
-    private val json =
-        Json {
-            explicitNulls = false
-            encodeDefaults = true
-            classDiscriminator = "type"
-        }
-
     // ---------- LaunchActivityCommand ----------
     fun nfcTriggerBase() =
         NfcTrigger(

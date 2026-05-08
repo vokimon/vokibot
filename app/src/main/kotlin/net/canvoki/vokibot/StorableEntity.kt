@@ -2,8 +2,15 @@ package net.canvoki.vokibot
 
 import androidx.annotation.DrawableRes
 import androidx.compose.runtime.Composable
+import kotlinx.serialization.json.Json
 import net.canvoki.shared.component.StackedScreen
 import kotlin.reflect.KClass
+
+val JsonConfig = Json {
+    explicitNulls = false
+    encodeDefaults = true
+    classDiscriminator = "type"
+}
 
 /**
  * Base interface for repository entities.
