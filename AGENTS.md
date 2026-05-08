@@ -100,4 +100,6 @@ When using TDD (Beck/Fowler methodology):
 - `meta/translations/<isoCode>.yaml` - format: id -> text
 - English is reference; Andalusian auto-generated from Spanish
 - Block scalars for multiline strings
-- For AI translations in "id -> lang -> text" format, use the `distribute` subcommand of yaml-translations script
+- Avoid quotes if not needed
+- Use place holders `{varname}`, escaped `{{`. In code, they will be positional by their order in the reference language.
+- Whenever a multilanguage translation is needed, generate `lala.yaml` with `id->lang->text` format, user will use `yaml-translations distribute` to update the translations once reviewed.
