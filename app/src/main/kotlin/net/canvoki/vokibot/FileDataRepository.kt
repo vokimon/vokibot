@@ -28,8 +28,8 @@ class FileDataRepository(
     // Typed DataSets (single source of truth for file logic)
     // ─────────────────────────────────────────────────────────────
 
-    val command: DataSet<ApplicationCommand> by lazy {
-        DataSet(directory, "command_", ApplicationCommand::fromJson)
+    val command: DataSet<Command> by lazy {
+        DataSet(directory, "command_", Command::fromJson)
     }
 
     val trigger: DataSet<Trigger> by lazy {
@@ -44,7 +44,7 @@ class FileDataRepository(
     // Backward-compatible delegates (keep old tests passing)
     // ─────────────────────────────────────────────────────────────
 
-    fun saveCommand(cmd: ApplicationCommand) = command.save(cmd)
+    fun saveCommand(cmd: Command) = command.save(cmd)
 
     fun loadCommand(id: String) = command.load(id)
 
