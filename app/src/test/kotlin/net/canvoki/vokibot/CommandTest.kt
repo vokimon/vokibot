@@ -38,4 +38,36 @@ class CommandTest {
         val result = Command.fromJson(json)
         assertEquals(true, result is UnknownCommand)
     }
+
+    @Test
+    fun `polymorphic deserialization identifies launch_activity`() {
+        val json = """{"type":"launch_activity","displayName":"T",""" +
+            """"packageName":"p","className":"c"}"""
+        val result = Command.fromJson(json)
+        assertEquals(true, result is LaunchActivityCommand)
+    }
+
+    @Test
+    fun `polymorphic deserialization identifies send_broadcast`() {
+        val json = """{"type":"send_broadcast","displayName":"T",""" +
+            """"packageName":"p","action":"a"}"""
+        val result = Command.fromJson(json)
+        assertEquals(true, result is SendBroadcastCommand)
+    }
+
+    @Test
+    fun `polymorphic deserialization identifies start_service`() {
+        val json = """{"type":"start_service","displayName":"T",""" +
+            """"packageName":"p","className":"c"}"""
+        val result = Command.fromJson(json)
+        assertEquals(true, result is StartServiceCommand)
+    }
+
+    @Test
+    fun `polymorphic deserialization identifies access_provider`() {
+        val json = """{"type":"access_provider","displayName":"T",""" +
+            """"packageName":"p","authority":"a","operation":"QUERY"}"""
+        val result = Command.fromJson(json)
+        assertEquals(true, result is AccessProviderCommand)
+    }
 }
