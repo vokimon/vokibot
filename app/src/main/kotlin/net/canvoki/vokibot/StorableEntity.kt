@@ -34,14 +34,11 @@ interface StorableEntity {
          */
         fun register(typeinfo: EntityTypeInfo) = uninitializedRegistry.register(typeinfo)
 
-
         /** Get the editor screen for a given entity type and optional id */
         fun getEditorScreen(
             type: String,
             id: String?,
-        ): StackedScreen<Unit>? {
-            return registry.getEditorScreen(type, id)
-        }
+        ): StackedScreen<Unit>? = registry.getEditorScreen(type, id)
 
         /**
          * Composable helper to get a localized, human-readable label for a storable type.
@@ -50,24 +47,20 @@ interface StorableEntity {
          * Usage: Text(StorableEntity.typeLabel(storable.type))
          */
         @Composable
-        fun label(type: String): String {
-            return registry.label(type)
-        }
+        fun label(type: String): String = registry.label(type)
 
         /** Get all registered storable types for UI listing */
-        fun getRegisteredTypes(baseClass: KClass<out StorableEntity> = StorableEntity::class): List<EntityTypeInfo> {
-            return registry.getRegisteredTypes(baseClass)
-        }
+        fun getRegisteredTypes(baseClass: KClass<out StorableEntity> = StorableEntity::class): List<EntityTypeInfo> =
+            registry.getRegisteredTypes(baseClass)
 
         /** Deserialize any registered StorableEntity from JSON */
-        fun fromJson(jsonString: String): StorableEntity? {
-            return registry.fromJson(jsonString, StorableEntity::class)
-        }
+        fun fromJson(jsonString: String): StorableEntity? = registry.fromJson(jsonString, StorableEntity::class)
 
         /** Deserialize any registered StorableEntity inheriting baseClass from JSON */
-        fun <T: StorableEntity>fromJson(jsonString: String, baseClass: KClass<T>): T? {
-            return registry.fromJson(jsonString, baseClass)
-        }
+        fun <T : StorableEntity> fromJson(
+            jsonString: String,
+            baseClass: KClass<T>,
+        ): T? = registry.fromJson(jsonString, baseClass)
 
         /** Extract the type attribute of a json object string */
         fun extractType(jsonString: String) = registry.extractType(jsonString) ?: "unknown"
