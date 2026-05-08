@@ -3,6 +3,7 @@ package net.canvoki.vokibot
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.core.net.toUri
 import kotlinx.serialization.SerialName
@@ -110,6 +111,18 @@ sealed class ApplicationCommand : StorableEntity {
 
     override val id: String
         get() = toFileSystemId(displayName)
+
+    override val title: String
+        get() = displayName
+
+    // TODO: Make description composable to show "$packageName/$className" per type
+    override val description: String
+        get() = packageName
+
+    // TODO: Make iconRes composable to load dynamic icon from package manager
+    @get:DrawableRes
+    override val iconRes: Int
+        get() = R.drawable.ic_brand
 
     /**
      * Execute this command when the trigger condition is met.

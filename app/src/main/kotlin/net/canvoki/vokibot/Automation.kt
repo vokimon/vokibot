@@ -1,5 +1,6 @@
 package net.canvoki.vokibot
 
+import androidx.annotation.DrawableRes
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
@@ -23,6 +24,16 @@ data class Automation(
     ) : this(id ?: UUID.randomUUID().toString(), name, triggerType, triggerId, commandIds)
 
     override fun toJson(): String = Companion.json.encodeToString(serializer(), this)
+
+    override val title: String
+        get() = name
+
+    override val description: String
+        get() = "$triggerType • ${commandIds.size} command(s)"
+
+    @get:DrawableRes
+    override val iconRes: Int
+        get() = R.drawable.ic_check_circle
 
     companion object {
         private val json =

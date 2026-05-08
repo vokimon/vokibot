@@ -1,5 +1,6 @@
 package net.canvoki.vokibot
 
+import androidx.annotation.DrawableRes
 import androidx.compose.runtime.Composable
 import net.canvoki.shared.component.StackedScreen
 import kotlin.reflect.KClass
@@ -10,6 +11,13 @@ import kotlin.reflect.KClass
  */
 interface StorableEntity {
     val id: String
+
+    val title: String
+
+    val description: String
+
+    @get:DrawableRes
+    val iconRes: Int
 
     fun toJson(): String
 

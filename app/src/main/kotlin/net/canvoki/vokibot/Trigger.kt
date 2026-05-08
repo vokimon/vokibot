@@ -14,16 +14,9 @@ import kotlin.reflect.KClass
  */
 @Serializable
 abstract class Trigger : StorableEntity {
-    abstract val title: String
-    abstract val description: String
-
-    @get:DrawableRes
-    abstract val iconRes: Int
     abstract val type: String
 
     companion object {
-        private fun ensureInitialized() = EntityBootstrap.ensure()
-
         /** Get all registered trigger types for UI listing */
         fun getRegisteredTypes(): List<EntityTypeInfo> {
             return StorableEntity.registry.getRegisteredTypes(Trigger::class)
