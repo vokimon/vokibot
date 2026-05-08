@@ -191,6 +191,21 @@ data class LaunchActivityCommand(
         }
         context.startActivity(intent)
     }
+
+    companion object {
+        const val TYPE = "launch_activity"
+
+        val TYPE_INFO = EntityTypeInfo(
+            typeKey = TYPE,
+            entityClass = LaunchActivityCommand::class,
+            labelRes = R.string.command_type_launch_activity,
+            iconRes = R.drawable.ic_brand,
+            editorFactory = { NotYetImplementedEditor },
+            deserializer = { jsonString -> fromJson(jsonString) },
+        )
+
+        fun register() = StorableEntity.register(TYPE_INFO)
+    }
 }
 
 /**
@@ -224,6 +239,21 @@ data class SendBroadcastCommand(
             context.sendBroadcast(intent)
         }
     }
+
+    companion object {
+        const val TYPE = "send_broadcast"
+
+        val TYPE_INFO = EntityTypeInfo(
+            typeKey = TYPE,
+            entityClass = SendBroadcastCommand::class,
+            labelRes = R.string.command_type_send_broadcast,
+            iconRes = R.drawable.ic_brand,
+            editorFactory = { NotYetImplementedEditor },
+            deserializer = { jsonString -> fromJson(jsonString) },
+        )
+
+        fun register() = StorableEntity.register(TYPE_INFO)
+    }
 }
 
 /**
@@ -255,6 +285,21 @@ data class StartServiceCommand(
         } catch (e: Exception) {
             context.startService(intent)
         }
+    }
+
+    companion object {
+        const val TYPE = "start_service"
+
+        val TYPE_INFO = EntityTypeInfo(
+            typeKey = TYPE,
+            entityClass = StartServiceCommand::class,
+            labelRes = R.string.command_type_start_service,
+            iconRes = R.drawable.ic_brand,
+            editorFactory = { NotYetImplementedEditor },
+            deserializer = { jsonString -> fromJson(jsonString) },
+        )
+
+        fun register() = StorableEntity.register(TYPE_INFO)
     }
 }
 
@@ -296,6 +341,21 @@ data class AccessProviderCommand(
     private fun buildUri(): Uri {
         val baseUri = "content://$authority".toUri()
         return path?.let { Uri.withAppendedPath(baseUri, it) } ?: baseUri
+    }
+
+    companion object {
+        const val TYPE = "access_provider"
+
+        val TYPE_INFO = EntityTypeInfo(
+            typeKey = TYPE,
+            entityClass = AccessProviderCommand::class,
+            labelRes = R.string.command_type_access_provider,
+            iconRes = R.drawable.ic_brand,
+            editorFactory = { NotYetImplementedEditor },
+            deserializer = { jsonString -> fromJson(jsonString) },
+        )
+
+        fun register() = StorableEntity.register(TYPE_INFO)
     }
 }
 
