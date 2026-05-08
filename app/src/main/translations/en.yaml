@@ -110,3 +110,4 @@ shortcut_editor_discard_confirm: Discard
 shortcut_editor_discard_cancel: Cancel
 shortcut_editor_name_label: Name
 shortcut_editor_name_placeholder: "Ex: Home, Work, Car…"
+not_yet_implemented: "Not yet implemented"
