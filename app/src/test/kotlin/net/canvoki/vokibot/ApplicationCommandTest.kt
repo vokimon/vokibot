@@ -66,11 +66,12 @@ class ApplicationCommandTest {
 
     @Test
     fun `LaunchActivityCommand description when className shares package prefix returns shortened`() {
-        val cmd = LaunchActivityCommand(
-            displayName = "Open Maps",
-            packageName = "com.google.android.apps.maps",
-            className = "com.google.android.apps.maps.MapsActivity",
-        )
+        val cmd =
+            LaunchActivityCommand(
+                displayName = "Open Maps",
+                packageName = "com.google.android.apps.maps",
+                className = "com.google.android.apps.maps.MapsActivity",
+            )
         assertEquals("com.google.android.apps.maps/.MapsActivity", cmd.description)
     }
 
@@ -172,11 +173,12 @@ class ApplicationCommandTest {
 
     @Test
     fun `StartServiceCommand description when className shares package prefix returns shortened`() {
-        val cmd = StartServiceCommand(
-            displayName = "Sync Data",
-            packageName = "com.example.app",
-            className = "com.example.app.SyncService",
-        )
+        val cmd =
+            StartServiceCommand(
+                displayName = "Sync Data",
+                packageName = "com.example.app",
+                className = "com.example.app.SyncService",
+            )
         assertEquals("com.example.app/.SyncService", cmd.description)
     }
 
