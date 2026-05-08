@@ -119,6 +119,13 @@ sealed class ApplicationCommand : Command() {
     override val description: String
         get() = packageName
 
+    protected fun descriptionWithClassName(className: String): String =
+        if (className.startsWith(packageName)) {
+            "$packageName/${className.removePrefix(packageName)}"
+        } else {
+            "$packageName/$className"
+        }
+
     // TODO: Make iconRes composable to load dynamic icon from package manager
     @get:DrawableRes
     override val iconRes: Int
@@ -162,7 +169,7 @@ data class LaunchActivityCommand(
     override val typeLabelRes: Int = R.string.command_type_launch_activity
 
     override val description: String
-        get() = "$packageName/$className"
+        get() = descriptionWithClassName(className)
 
     override fun loadIcon(context: Context): Drawable? = getAppIcon(context, packageName, className)
 
@@ -294,7 +301,7 @@ data class StartServiceCommand(
     override val typeLabelRes: Int = R.string.command_type_start_service
 
     override val description: String
-        get() = "$packageName/$className"
+        get() = descriptionWithClassName(className)
 
     override fun loadIcon(context: Context): Drawable? = getAppIcon(context, packageName, className)
 

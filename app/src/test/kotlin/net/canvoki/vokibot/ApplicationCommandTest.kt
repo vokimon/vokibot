@@ -11,7 +11,7 @@ class ApplicationCommandTest {
         LaunchActivityCommand(
             displayName = "Open Maps",
             packageName = "com.google.android.apps.maps",
-            className = "com.google.android.apps.maps.MapsActivity",
+            className = "com.android.gl.maps.MainActivity",
             action = "android.intent.action.VIEW",
             dataUri = "geo:0,0?q=Madrid",
             extras =
@@ -29,7 +29,7 @@ class ApplicationCommandTest {
           "type": "launch_activity",
           "displayName": "Open Maps",
           "packageName": "com.google.android.apps.maps",
-          "className": "com.google.android.apps.maps.MapsActivity",
+          "className": "com.android.gl.maps.MainActivity",
           "action": "android.intent.action.VIEW",
           "dataUri": "geo:0,0?q=Madrid",
           "extras": {
@@ -61,7 +61,17 @@ class ApplicationCommandTest {
     @Test
     fun `LaunchActivityCommand description returns packageName className`() {
         val cmd = launchActivityCommandBase()
-        assertEquals("com.google.android.apps.maps/com.google.android.apps.maps.MapsActivity", cmd.description)
+        assertEquals("com.google.android.apps.maps/com.android.gl.maps.MainActivity", cmd.description)
+    }
+
+    @Test
+    fun `LaunchActivityCommand description when className shares package prefix returns shortened`() {
+        val cmd = LaunchActivityCommand(
+            displayName = "Open Maps",
+            packageName = "com.google.android.apps.maps",
+            className = "com.google.android.apps.maps.MapsActivity",
+        )
+        assertEquals("com.google.android.apps.maps/.MapsActivity", cmd.description)
     }
 
     // ---------- SendBroadcastCommand ----------
@@ -118,7 +128,7 @@ class ApplicationCommandTest {
         StartServiceCommand(
             displayName = "Sync Data",
             packageName = "com.example.app",
-            className = "com.example.app.SyncService",
+            className = "com.android.sync.SyncWorker",
             action = "com.example.ACTION_SYNC",
             extras = mapOf("force" to ExtraValue.BooleanValue(true)),
         )
@@ -129,7 +139,7 @@ class ApplicationCommandTest {
           "type": "start_service",
           "displayName": "Sync Data",
           "packageName": "com.example.app",
-          "className": "com.example.app.SyncService",
+          "className": "com.android.sync.SyncWorker",
           "action": "com.example.ACTION_SYNC",
           "extras": {
             "force": {"type": "boolean", "value": true}
@@ -157,7 +167,17 @@ class ApplicationCommandTest {
     @Test
     fun `StartServiceCommand description returns packageName className`() {
         val cmd = startServiceCommandBase()
-        assertEquals("com.example.app/com.example.app.SyncService", cmd.description)
+        assertEquals("com.example.app/com.android.sync.SyncWorker", cmd.description)
+    }
+
+    @Test
+    fun `StartServiceCommand description when className shares package prefix returns shortened`() {
+        val cmd = StartServiceCommand(
+            displayName = "Sync Data",
+            packageName = "com.example.app",
+            className = "com.example.app.SyncService",
+        )
+        assertEquals("com.example.app/.SyncService", cmd.description)
     }
 
     // ---------- AccessProviderCommand ----------
