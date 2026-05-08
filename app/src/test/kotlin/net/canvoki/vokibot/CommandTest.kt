@@ -16,14 +16,18 @@ class CommandTest {
 
     @Test
     fun `fromJson deserializes LaunchActivityCommand`() {
-        val json = """{"type":"launch_activity","displayName":"Test","packageName":"com.test","className":"MainActivity"}"""
+        val json =
+            """{"type":"launch_activity","displayName":"Test",""" +
+                """"packageName":"com.test","className":"MainActivity"}"""
         val result = Command.fromJson(json)
         assertEquals(true, result is LaunchActivityCommand)
     }
 
     @Test
     fun `fromJson deserializes SendBroadcastCommand`() {
-        val json = """{"type":"send_broadcast","displayName":"Test","packageName":"com.test","action":"android.intent.action.MAIN"}"""
+        val json =
+            """{"type":"send_broadcast","displayName":"Test",""" +
+                """"packageName":"com.test","action":"android.intent.action.MAIN"}"""
         val result = Command.fromJson(json)
         assertEquals(true, result is SendBroadcastCommand)
     }
