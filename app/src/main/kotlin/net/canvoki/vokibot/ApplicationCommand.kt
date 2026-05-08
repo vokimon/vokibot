@@ -2,6 +2,7 @@ package net.canvoki.vokibot
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
@@ -163,6 +164,8 @@ data class LaunchActivityCommand(
     override val description: String
         get() = "$packageName/$className"
 
+    override fun loadIcon(context: Context): Drawable? = getAppIcon(context, packageName, className)
+
     override suspend fun execute(context: Context) {
         val intent = Intent()
         intent.setClassName(packageName, className)
@@ -234,6 +237,8 @@ data class SendBroadcastCommand(
     override val description: String
         get() = "$packageName/$action"
 
+    override fun loadIcon(context: Context): Drawable? = getAppIcon(context, packageName)
+
     override suspend fun execute(context: Context) {
         val intent = Intent(action)
         intent.setPackage(packageName)
@@ -290,6 +295,8 @@ data class StartServiceCommand(
 
     override val description: String
         get() = "$packageName/$className"
+
+    override fun loadIcon(context: Context): Drawable? = getAppIcon(context, packageName, className)
 
     override suspend fun execute(context: Context) {
         val intent = Intent()
@@ -349,6 +356,8 @@ data class AccessProviderCommand(
 
     override val description: String
         get() = "$packageName/$authority"
+
+    override fun loadIcon(context: Context): Drawable? = getAppIcon(context, packageName)
 
     override suspend fun execute(context: Context) {
         val uri = buildUri()

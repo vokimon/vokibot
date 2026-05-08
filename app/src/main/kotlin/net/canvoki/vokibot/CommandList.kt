@@ -1,6 +1,5 @@
 package net.canvoki.vokibot
 
-import android.content.ComponentName
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -73,20 +72,7 @@ fun CommandList(
         ) { command ->
             var menuExpanded by remember { mutableStateOf(false) }
 
-            // Get component icon (only for LaunchActivityCommand)
-            val componentIcon =
-                remember(command.packageName) {
-                    runCatching {
-                        val pm = context.packageManager
-                        val className = (command as? LaunchActivityCommand)?.className
-                        if (className != null) {
-                            val componentName = ComponentName(command.packageName, className)
-                            pm.getActivityIcon(componentName)
-                        } else {
-                            pm.getApplicationIcon(command.packageName)
-                        }
-                    }.getOrNull()
-                }
+            val componentIcon = remember(command.id) { command.loadIcon(context) }
 
             ListItem(
                 headlineContent = { Text(command.title) },

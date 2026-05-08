@@ -12,6 +12,19 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import net.canvoki.shared.log as sharedlog
 
+fun getAppIcon(
+    context: Context,
+    packageName: String,
+    className: String? = null,
+): Drawable? {
+    val pm = context.packageManager
+    if (className != null) {
+        runCatching { return pm.getActivityIcon(ComponentName(packageName, className)) }
+    }
+    runCatching { return pm.getApplicationIcon(packageName) }
+    return null
+}
+
 enum class ComponentType(
     val displayName: String,
 ) {

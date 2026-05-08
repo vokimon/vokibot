@@ -1,6 +1,7 @@
 package net.canvoki.vokibot
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -9,6 +10,12 @@ abstract class Command : StorableEntity {
      * Execute this command.
      */
     abstract suspend fun execute(context: Context)
+
+    /**
+     * Load an icon representing this command.
+     * Default returns null (use iconRes instead).
+     */
+    open fun loadIcon(context: Context): Drawable? = null
 
     companion object {
         fun getRegisteredTypes(): List<EntityTypeInfo> = StorableEntity.registry.getRegisteredTypes(Command::class)
