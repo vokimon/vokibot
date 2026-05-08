@@ -9,7 +9,7 @@ class CommandTest {
         val types = Command.getRegisteredTypes()
         val typeKeys = types.map { it.typeKey }.sorted().joinToString("\n")
         assertEquals(
-            "access_provider\nlaunch_activity\nsend_broadcast\nstart_service",
+            "access_provider\nlaunch_activity\nsend_broadcast\nsettings_page\nstart_service",
             typeKeys,
         )
     }

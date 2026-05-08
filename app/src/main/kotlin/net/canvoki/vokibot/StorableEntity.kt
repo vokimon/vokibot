@@ -92,5 +92,6 @@ object EntityBootstrap {
         SendBroadcastCommand.register()
         StartServiceCommand.register()
         AccessProviderCommand.register()
+        SettingsPageCommand.register()
     }
 }

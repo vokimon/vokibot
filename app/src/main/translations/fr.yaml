@@ -111,3 +111,6 @@ shortcut_editor_name_label: Nom
 shortcut_editor_name_placeholder: "Ex : Maison, Travail, Voiture…"
 triggerlist_edit: Modifier
 not_yet_implemented: "Pas encore implémenté"
+settings_page_header: "Ouvrir une page de paramètres"
+settings_page_done: "Terminé"
+command_type_settings_page: "Page de paramètres"

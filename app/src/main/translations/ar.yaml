@@ -111,3 +111,6 @@ shortcut_editor_name_label: الاسم
 shortcut_editor_name_placeholder: "مثال: المنزل، العمل، السيارة…"
 triggerlist_edit: تحرير
 not_yet_implemented: "غير منفذة بعد"
+settings_page_header: "افتح صفحة الإعدادات"
+settings_page_done: "تم"
+command_type_settings_page: "صفحة الإعدادات"

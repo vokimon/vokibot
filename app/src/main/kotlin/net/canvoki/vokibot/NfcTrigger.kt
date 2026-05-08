@@ -38,8 +38,6 @@ data class NfcTrigger(
                 deserializer = { jsonString -> fromJson(jsonString) },
             )
 
-        fun safeId(id: String) = id
-
         fun idFromUid(uid: String) = "$ID_PREFIX${toFileSystemId(uid)}"
 
         fun register() {

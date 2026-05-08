@@ -111,3 +111,6 @@ shortcut_editor_discard_cancel: Cancel
 shortcut_editor_name_label: Name
 shortcut_editor_name_placeholder: "Ex: Home, Work, Car…"
 not_yet_implemented: "Not yet implemented"
+settings_page_header: "Open a settings page"
+settings_page_done: "Done"
+command_type_settings_page: "Settings page"

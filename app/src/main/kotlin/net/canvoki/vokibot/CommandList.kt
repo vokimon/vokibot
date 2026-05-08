@@ -186,11 +186,22 @@ fun CommandList(
                         value = "application",
                         label = stringResource(R.string.commandlist_launch_app_option),
                     ),
-                ),
+                ) + Command.getRegisteredTypes().map { type ->
+                    ChooserOption(
+                        value = type.typeKey,
+                        label = stringResource(type.labelRes),
+                    )
+                },
             selectedValue = "",
             onConfirm = { value ->
                 showTypeChooser = false
-                if (value == "application") nav.push(AppList) { refreshCounter++ }
+                when (value) {
+                    "application" -> nav.push(AppList) { refreshCounter++ }
+                    else -> {
+                        val editor = StorableEntity.getEditorScreen(value, null)
+                        editor?.let { nav.push(it) { refreshCounter++ } }
+                    }
+                }
             },
             onDismiss = { showTypeChooser = false },
         )

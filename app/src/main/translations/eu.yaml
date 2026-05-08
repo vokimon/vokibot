@@ -111,3 +111,6 @@ shortcut_editor_name_label: Izena
 shortcut_editor_name_placeholder: "Adib.: Etxea, Lana, Autoa…"
 triggerlist_edit: Editatu
 not_yet_implemented: "Oraindik ez da inplementatua"
+settings_page_header: "Ezarpen orria ireki"
+settings_page_done: "Eginda"
+command_type_settings_page: "Ezarpen orria"

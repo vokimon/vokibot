@@ -111,3 +111,6 @@ shortcut_editor_name_label: Nom
 shortcut_editor_name_placeholder: "Ex: Casa, Feina, Cotxe…"
 triggerlist_edit: Edita
 not_yet_implemented: "Encara no s'ha implementat"
+settings_page_header: "Obre una pàgina d'ajustos"
+settings_page_done: "Fet"
+command_type_settings_page: "Pàgina d'ajustos"
