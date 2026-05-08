@@ -130,14 +130,13 @@ sealed class ApplicationCommand : Command() {
     override fun toJson(): String = JsonConfig.encodeToString(serializer(), this)
 
     companion object {
-
         /**
          * Deserialize a command from JSON.
          */
         fun fromJson(jsonString: String): ApplicationCommand =
             StorableEntity.fromJson(jsonString, ApplicationCommand::class)
                 ?: throw kotlinx.serialization.SerializationException(
-                    "Failed to deserialize command"
+                    "Failed to deserialize command",
                 )
     }
 }
@@ -208,8 +207,7 @@ data class LaunchActivityCommand(
                 deserializer = { jsonString -> fromJson(jsonString) },
             )
 
-        fun fromJson(jsonString: String): LaunchActivityCommand =
-            JsonConfig.decodeFromString(serializer(), jsonString)
+        fun fromJson(jsonString: String): LaunchActivityCommand = JsonConfig.decodeFromString(serializer(), jsonString)
 
         fun register() = StorableEntity.register(TYPE_INFO)
     }
@@ -267,8 +265,7 @@ data class SendBroadcastCommand(
                 deserializer = { jsonString -> fromJson(jsonString) },
             )
 
-        fun fromJson(jsonString: String): SendBroadcastCommand =
-            JsonConfig.decodeFromString(serializer(), jsonString)
+        fun fromJson(jsonString: String): SendBroadcastCommand = JsonConfig.decodeFromString(serializer(), jsonString)
 
         fun register() = StorableEntity.register(TYPE_INFO)
     }
@@ -325,8 +322,7 @@ data class StartServiceCommand(
                 deserializer = { jsonString -> fromJson(jsonString) },
             )
 
-        fun fromJson(jsonString: String): StartServiceCommand =
-            JsonConfig.decodeFromString(serializer(), jsonString)
+        fun fromJson(jsonString: String): StartServiceCommand = JsonConfig.decodeFromString(serializer(), jsonString)
 
         fun register() = StorableEntity.register(TYPE_INFO)
     }
@@ -392,8 +388,7 @@ data class AccessProviderCommand(
                 deserializer = { jsonString -> fromJson(jsonString) },
             )
 
-        fun fromJson(jsonString: String): AccessProviderCommand =
-            JsonConfig.decodeFromString(serializer(), jsonString)
+        fun fromJson(jsonString: String): AccessProviderCommand = JsonConfig.decodeFromString(serializer(), jsonString)
 
         fun register() = StorableEntity.register(TYPE_INFO)
     }

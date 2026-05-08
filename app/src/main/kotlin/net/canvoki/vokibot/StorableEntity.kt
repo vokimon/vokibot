@@ -6,11 +6,12 @@ import kotlinx.serialization.json.Json
 import net.canvoki.shared.component.StackedScreen
 import kotlin.reflect.KClass
 
-val JsonConfig = Json {
-    explicitNulls = false
-    encodeDefaults = true
-    classDiscriminator = "type"
-}
+val JsonConfig =
+    Json {
+        explicitNulls = false
+        encodeDefaults = true
+        classDiscriminator = "type"
+    }
 
 /**
  * Base interface for repository entities.

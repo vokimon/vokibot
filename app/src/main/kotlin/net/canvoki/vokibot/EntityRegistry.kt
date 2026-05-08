@@ -28,6 +28,7 @@ data class EntityTypeInfo(
  */
 class EntityRegistry {
     private val typeInfos = mutableMapOf<String, EntityTypeInfo>()
+
     // Just to peek the type attribute ignoring anything else
     private val json =
         Json {
