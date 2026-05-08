@@ -98,7 +98,7 @@ sealed class ExtraValue {
  * Base class for automation commands that interact with other applications.
  */
 @Serializable
-sealed class ApplicationCommand : StorableEntity {
+sealed class ApplicationCommand : Command() {
     abstract val displayName: String
     abstract val packageName: String
 
@@ -123,11 +123,6 @@ sealed class ApplicationCommand : StorableEntity {
     @get:DrawableRes
     override val iconRes: Int
         get() = R.drawable.ic_brand
-
-    /**
-     * Execute this command when the trigger condition is met.
-     */
-    abstract suspend fun execute(context: Context)
 
     /**
      * Serialize this command to JSON.
