@@ -6,7 +6,6 @@
 - Modules: `app`, `puppet`, `shared` (git submodule)
 - Stack: Jetpack Compose, Material3, serialization, coroutines
 - SDK: compileSdk/targetSdk 36, minSdk 26
-- 12 languages (an, ar, ca, de, en, es, eu, fr, gl, pt, ru, andaluh)
 
 ## Developer Commands
 
@@ -97,9 +96,11 @@ When using TDD (Beck/Fowler methodology):
 
 ## Translation Files
 
-- `meta/translations/<isoCode>.yaml` - format: id -> text
+- 12 languages: an (aragonese), ar (arabic), ca, de, en, es, eu, fr, gl, pt, ru, and (andaluh, hijacked ISO)
 - English is reference; Andalusian auto-generated from Spanish
-- Block scalars for multiline strings
+- `meta/translations/<isoCode>.yaml` - format: `id->text`, agents do not edit them directly.
+- Agents propose new strings by generating a proposal.yaml which is `id->lang->text`.
+- User reviews and applies `proposal.yaml` with `yaml-translations distribute`
+- Use block scalars for multiline strings
 - Avoid quotes if not needed
-- Use place holders `{varname}`, escaped `{{`. In code, they will be positional by their order in the reference language.
-- Whenever a multilanguage translation is needed, generate `lala.yaml` with `id->lang->text` format, user will use `yaml-translations distribute` to update the translations once reviewed.
+- Use interpolation `{varname}`, escaped `{{`. In code, they will be positional by their order in the reference language.
