@@ -24,7 +24,7 @@ abstract class Command : StorableEntity {
 @Serializable
 data class UnknownCommand(
     val json: String,
-    val type: String,
+    override val type: String,
 ) : Command() {
     override val id: String = "unknown_${type}_${json.hashCode()}"
     override val title: String = "Unsupported Command"

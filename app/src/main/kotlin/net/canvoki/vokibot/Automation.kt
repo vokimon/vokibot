@@ -15,6 +15,7 @@ data class Automation(
     val triggerId: String,
     val commandIds: List<String>,
 ) : StorableEntity {
+    override val type: String = "automation"
     constructor(
         name: String,
         triggerType: String,

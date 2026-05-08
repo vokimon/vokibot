@@ -140,9 +140,12 @@ sealed class ApplicationCommand : Command() {
 
         /**
          * Deserialize a command from JSON.
-         * Companion method because you don't have an instance yet.
          */
-        fun fromJson(jsonString: String): ApplicationCommand = json.decodeFromString(serializer(), jsonString)
+        fun fromJson(jsonString: String): ApplicationCommand =
+            StorableEntity.fromJson(jsonString, ApplicationCommand::class)
+                ?: throw kotlinx.serialization.SerializationException(
+                    "Failed to deserialize command"
+                )
     }
 }
 
@@ -160,6 +163,8 @@ data class LaunchActivityCommand(
     val extras: Map<String, ExtraValue> = emptyMap(),
     val flagList: List<String> = emptyList(),
 ) : ApplicationCommand() {
+    override val type: String = "launch_activity"
+
     @kotlinx.serialization.Transient
     override val typeLabelRes: Int = R.string.command_type_launch_activity
 
@@ -192,8 +197,17 @@ data class LaunchActivityCommand(
         context.startActivity(intent)
     }
 
+    override fun toJson(): String = Companion.json.encodeToString(serializer(), this)
+
     companion object {
         const val TYPE = "launch_activity"
+
+        private val json =
+            Json {
+                explicitNulls = false
+                encodeDefaults = true
+                classDiscriminator = "type"
+            }
 
         val TYPE_INFO =
             EntityTypeInfo(
@@ -204,6 +218,9 @@ data class LaunchActivityCommand(
                 editorFactory = { NotYetImplementedEditor },
                 deserializer = { jsonString -> fromJson(jsonString) },
             )
+
+        fun fromJson(jsonString: String): LaunchActivityCommand =
+            json.decodeFromString(serializer(), jsonString)
 
         fun register() = StorableEntity.register(TYPE_INFO)
     }
@@ -222,6 +239,8 @@ data class SendBroadcastCommand(
     val extras: Map<String, ExtraValue> = emptyMap(),
     val permission: String? = null,
 ) : ApplicationCommand() {
+    override val type: String = "send_broadcast"
+
     @kotlinx.serialization.Transient
     override val typeLabelRes: Int = R.string.command_type_send_broadcast
 
@@ -241,8 +260,17 @@ data class SendBroadcastCommand(
         }
     }
 
+    override fun toJson(): String = Companion.json.encodeToString(serializer(), this)
+
     companion object {
         const val TYPE = "send_broadcast"
+
+        private val json =
+            Json {
+                explicitNulls = false
+                encodeDefaults = true
+                classDiscriminator = "type"
+            }
 
         val TYPE_INFO =
             EntityTypeInfo(
@@ -253,6 +281,9 @@ data class SendBroadcastCommand(
                 editorFactory = { NotYetImplementedEditor },
                 deserializer = { jsonString -> fromJson(jsonString) },
             )
+
+        fun fromJson(jsonString: String): SendBroadcastCommand =
+            json.decodeFromString(serializer(), jsonString)
 
         fun register() = StorableEntity.register(TYPE_INFO)
     }
@@ -270,6 +301,8 @@ data class StartServiceCommand(
     val action: String? = null,
     val extras: Map<String, ExtraValue> = emptyMap(),
 ) : ApplicationCommand() {
+    override val type: String = "start_service"
+
     @kotlinx.serialization.Transient
     override val typeLabelRes: Int = R.string.command_type_start_service
 
@@ -289,8 +322,17 @@ data class StartServiceCommand(
         }
     }
 
+    override fun toJson(): String = Companion.json.encodeToString(serializer(), this)
+
     companion object {
         const val TYPE = "start_service"
+
+        private val json =
+            Json {
+                explicitNulls = false
+                encodeDefaults = true
+                classDiscriminator = "type"
+            }
 
         val TYPE_INFO =
             EntityTypeInfo(
@@ -301,6 +343,9 @@ data class StartServiceCommand(
                 editorFactory = { NotYetImplementedEditor },
                 deserializer = { jsonString -> fromJson(jsonString) },
             )
+
+        fun fromJson(jsonString: String): StartServiceCommand =
+            json.decodeFromString(serializer(), jsonString)
 
         fun register() = StorableEntity.register(TYPE_INFO)
     }
@@ -320,6 +365,8 @@ data class AccessProviderCommand(
     val mimeType: String? = null,
     val extras: Map<String, ExtraValue> = emptyMap(),
 ) : ApplicationCommand() {
+    override val type: String = "access_provider"
+
     @kotlinx.serialization.Transient
     override val typeLabelRes: Int = R.string.command_type_access_provider
 
@@ -346,8 +393,17 @@ data class AccessProviderCommand(
         return path?.let { Uri.withAppendedPath(baseUri, it) } ?: baseUri
     }
 
+    override fun toJson(): String = Companion.json.encodeToString(serializer(), this)
+
     companion object {
         const val TYPE = "access_provider"
+
+        private val json =
+            Json {
+                explicitNulls = false
+                encodeDefaults = true
+                classDiscriminator = "type"
+            }
 
         val TYPE_INFO =
             EntityTypeInfo(
@@ -358,6 +414,9 @@ data class AccessProviderCommand(
                 editorFactory = { NotYetImplementedEditor },
                 deserializer = { jsonString -> fromJson(jsonString) },
             )
+
+        fun fromJson(jsonString: String): AccessProviderCommand =
+            json.decodeFromString(serializer(), jsonString)
 
         fun register() = StorableEntity.register(TYPE_INFO)
     }

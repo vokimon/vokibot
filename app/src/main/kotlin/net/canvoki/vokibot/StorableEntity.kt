@@ -12,6 +12,8 @@ import kotlin.reflect.KClass
 interface StorableEntity {
     val id: String
 
+    val type: String
+
     val title: String
 
     val description: String
