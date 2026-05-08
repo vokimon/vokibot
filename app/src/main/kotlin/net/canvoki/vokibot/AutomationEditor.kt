@@ -1,5 +1,6 @@
 package net.canvoki.vokibot
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -229,11 +230,11 @@ data class AutomationEditor(
                 )
             } else {
                 Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                    val commandNames =
+                    val commands =
                         remember(commandIds) {
-                            commandIds.map { id -> repository.command.load(id)?.displayName ?: id }
+                            commandIds.mapNotNull { id -> repository.command.load(id) }
                         }
-                    commandNames.forEachIndexed { index, cmdName ->
+                    commands.forEachIndexed { index, command ->
                         Card(
                             modifier = Modifier.fillMaxWidth(),
                             colors =
@@ -246,11 +247,39 @@ data class AutomationEditor(
                                 horizontalArrangement = Arrangement.SpaceBetween,
                                 verticalAlignment = Alignment.CenterVertically,
                             ) {
-                                Text(
-                                    cmdName,
-                                    style = MaterialTheme.typography.bodyMedium,
+                                Row(
                                     modifier = Modifier.weight(1f),
-                                )
+                                    verticalAlignment = Alignment.CenterVertically,
+                                    horizontalArrangement = Arrangement.spacedBy(12.dp),
+                                ) {
+                                    val icon = remember(command.id) { command.loadIcon(context) }
+                                    if (icon != null) {
+                                        Image(
+                                            painter = drawableToPainter(icon),
+                                            contentDescription = null,
+                                            modifier = Modifier.size(40.dp),
+                                        )
+                                    } else {
+                                        Icon(
+                                            painterResource(command.iconRes),
+                                            contentDescription = null,
+                                            modifier = Modifier.size(40.dp),
+                                            tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                                        )
+                                    }
+                                    Column {
+                                        Text(
+                                            command.title,
+                                            style = MaterialTheme.typography.bodyMedium,
+                                        )
+                                        Text(
+                                            command.description,
+                                            style = MaterialTheme.typography.bodySmall,
+                                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                            maxLines = 1,
+                                        )
+                                    }
+                                }
                                 IconButton(onClick = {
                                     commandIds = commandIds.filterIndexed { i, _ -> i != index }
                                     isDirty = true
