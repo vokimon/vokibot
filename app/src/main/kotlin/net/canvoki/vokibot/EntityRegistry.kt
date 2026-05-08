@@ -95,4 +95,3 @@ class EntityRegistry {
             stringResource(it.labelRes)
         } ?: type
 }
-

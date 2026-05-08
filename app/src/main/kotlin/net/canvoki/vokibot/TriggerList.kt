@@ -104,7 +104,7 @@ fun TriggerList(
                             },
                             onClick = {
                                 menuExpanded = false
-                                val editorScreen = Trigger.getEditorScreen(trigger.type, trigger.id)
+                                val editorScreen = StorableEntity.getEditorScreen(trigger.type, trigger.id)
                                 editorScreen?.let {
                                     nav.push(it) { refreshCounter++ }
                                 }
@@ -168,7 +168,7 @@ fun TriggerList(
             selectedValue = "",
             onConfirm = { triggerType ->
                 showTypeChooser = false
-                val editorScreen = Trigger.getEditorScreen(triggerType, null)
+                val editorScreen = StorableEntity.getEditorScreen(triggerType, null)
                 editorScreen?.let {
                     nav.push(it) { refreshCounter++ }
                 }
@@ -181,7 +181,7 @@ fun TriggerList(
 @Composable
 private fun TriggerGroupHeader(groupKey: String) {
     Text(
-        text = Trigger.typeLabel(groupKey),
+        text = StorableEntity.label(groupKey),
         style = MaterialTheme.typography.titleSmall,
         color = MaterialTheme.colorScheme.primary,
         modifier =

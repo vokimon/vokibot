@@ -40,7 +40,7 @@ data class ShortcutTrigger(
             }
 
         fun register() {
-            Trigger.register(TYPE_INFO)
+            StorableEntity.register(TYPE_INFO)
         }
 
         fun fromJson(jsonString: String): ShortcutTrigger = json.decodeFromString(serializer(), jsonString)
