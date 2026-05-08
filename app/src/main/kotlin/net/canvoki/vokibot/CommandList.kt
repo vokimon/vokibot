@@ -89,10 +89,10 @@ fun CommandList(
                 }
 
             ListItem(
-                headlineContent = { Text(command.displayName) },
+                headlineContent = { Text(command.title) },
                 supportingContent = {
                     Text(
-                        text = "${command.packageName}/${(command as? LaunchActivityCommand)?.className ?: ""}",
+                        text = command.description,
                         style = MaterialTheme.typography.bodySmall,
                         maxLines = 1,
                     )
