@@ -65,7 +65,7 @@ fun CommandList(
             refreshKeys = listOf(refreshCounter),
             loader = { repository.loadAllCommands() },
             itemKey = { it.id },
-            groupBy = { command -> command.typeLabelRes.toString() },
+            groupBy = { command -> command.type },
             headerContent = { key: String ->
                 CommandGroupHeader(key)
             },
@@ -213,13 +213,12 @@ fun CommandList(
 
 /**
  * Renders a translated, styled header for a command type group.
- * Converts the string key back to Int @StringRes for translation.
+ * Uses StorableEntity.label to get localized type name from registry.
  */
 @Composable
 private fun CommandGroupHeader(key: String) {
-    val resId = key.toInt()
     Text(
-        text = stringResource(resId),
+        text = StorableEntity.label(key),
         style = MaterialTheme.typography.titleSmall,
         color = MaterialTheme.colorScheme.primary,
         modifier =
