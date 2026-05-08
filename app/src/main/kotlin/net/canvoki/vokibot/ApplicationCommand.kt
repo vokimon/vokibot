@@ -161,6 +161,9 @@ data class LaunchActivityCommand(
     @kotlinx.serialization.Transient
     override val typeLabelRes: Int = R.string.command_type_launch_activity
 
+    override val description: String
+        get() = "$packageName/$className"
+
     override suspend fun execute(context: Context) {
         val intent = Intent()
         intent.setClassName(packageName, className)
@@ -230,6 +233,9 @@ data class SendBroadcastCommand(
     @kotlinx.serialization.Transient
     override val typeLabelRes: Int = R.string.command_type_send_broadcast
 
+    override val description: String
+        get() = "$packageName/$action"
+
     override suspend fun execute(context: Context) {
         val intent = Intent(action)
         intent.setPackage(packageName)
@@ -284,6 +290,9 @@ data class StartServiceCommand(
 
     @kotlinx.serialization.Transient
     override val typeLabelRes: Int = R.string.command_type_start_service
+
+    override val description: String
+        get() = "$packageName/$className"
 
     override suspend fun execute(context: Context) {
         val intent = Intent()
@@ -341,6 +350,9 @@ data class AccessProviderCommand(
 
     @kotlinx.serialization.Transient
     override val typeLabelRes: Int = R.string.command_type_access_provider
+
+    override val description: String
+        get() = "$packageName/$authority"
 
     override suspend fun execute(context: Context) {
         val uri = buildUri()

@@ -52,6 +52,18 @@ class ApplicationCommandTest {
         assertEquals(launchActivityCommandBase().toString(), deserialized.toString())
     }
 
+    @Test
+    fun `LaunchActivityCommand title returns displayName`() {
+        val cmd = launchActivityCommandBase()
+        assertEquals(cmd.displayName, cmd.title)
+    }
+
+    @Test
+    fun `LaunchActivityCommand description returns packageName className`() {
+        val cmd = launchActivityCommandBase()
+        assertEquals("com.google.android.apps.maps/com.google.android.apps.maps.MapsActivity", cmd.description)
+    }
+
     // ---------- SendBroadcastCommand ----------
     fun sendBroadcastCommandBase() =
         SendBroadcastCommand(
@@ -89,6 +101,18 @@ class ApplicationCommandTest {
         assertEquals(sendBroadcastCommandBase().toString(), deserialized.toString())
     }
 
+    @Test
+    fun `SendBroadcastCommand title returns displayName`() {
+        val cmd = sendBroadcastCommandBase()
+        assertEquals(cmd.displayName, cmd.title)
+    }
+
+    @Test
+    fun `SendBroadcastCommand description returns packageName action`() {
+        val cmd = sendBroadcastCommandBase()
+        assertEquals("com.android.messaging/android.intent.action.SENDTO", cmd.description)
+    }
+
     // ---------- StartServiceCommand ----------
     fun startServiceCommandBase() =
         StartServiceCommand(
@@ -122,6 +146,18 @@ class ApplicationCommandTest {
     fun `StartServiceCommand fromJson`() {
         val deserialized = ApplicationCommand.fromJson(startServiceCommandJson())
         assertEquals(startServiceCommandBase().toString(), deserialized.toString())
+    }
+
+    @Test
+    fun `StartServiceCommand title returns displayName`() {
+        val cmd = startServiceCommandBase()
+        assertEquals(cmd.displayName, cmd.title)
+    }
+
+    @Test
+    fun `StartServiceCommand description returns packageName className`() {
+        val cmd = startServiceCommandBase()
+        assertEquals("com.example.app/com.example.app.SyncService", cmd.description)
     }
 
     // ---------- AccessProviderCommand ----------
@@ -159,6 +195,18 @@ class ApplicationCommandTest {
     fun `AccessProviderCommand fromJson`() {
         val deserialized = ApplicationCommand.fromJson(accessProviderCommandJson())
         assertEquals(accessProviderCommandBase().toString(), deserialized.toString())
+    }
+
+    @Test
+    fun `AccessProviderCommand title returns displayName`() {
+        val cmd = accessProviderCommandBase()
+        assertEquals(cmd.displayName, cmd.title)
+    }
+
+    @Test
+    fun `AccessProviderCommand description returns packageName authority`() {
+        val cmd = accessProviderCommandBase()
+        assertEquals("com.android.contacts/com.android.contacts", cmd.description)
     }
 
     // ---------- Polymorphic & Edge Cases ----------
