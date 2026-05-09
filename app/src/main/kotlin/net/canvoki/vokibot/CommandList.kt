@@ -92,7 +92,7 @@ fun CommandList(
                             modifier = Modifier.size(40.dp),
                         )
                     } ?: Icon(
-                        painter = painterResource(R.drawable.ic_brand),
+                        painter = painterResource(command.iconRes),
                         contentDescription = null,
                         modifier = Modifier.size(40.dp),
                         tint = MaterialTheme.colorScheme.onSurfaceVariant,
