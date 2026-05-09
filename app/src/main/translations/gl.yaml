@@ -1,11 +1,11 @@
 app_name: Vokibot
-applist_not_found: Non se atoparon aplicacións
+applist_not_found: "Non se atoparon apps"
 activitylist_not_found: Non se atoparon actividades
 app_list_filter_fab_cd: Filtrar
 app_list_filter_title: Filtros
 app_list_filter_search_label: Buscar
 app_list_filter_clear_cd: Limpar
-app_list_filter_show_system: Mostrar aplicacións do sistema
+app_list_filter_show_system: Mostrar apps do sistema
 app_list_filter_categories_title: Categorías
 app_list_filter_category_game: Xogos
 app_list_filter_category_maps: Mapas
@@ -30,7 +30,7 @@ intent_editor_command_overwritten: "Comando sobrescrito: {commandName}"
 commandlist_not_found: Non hai comandos gardados
 commandlist_create_fab_desc: Crear comando
 commandlist_create_command_title: Crear comando
-commandlist_launch_app_option: Executar unha aplicación
+commandlist_launch_app_option: Executar unha app
 commandlist_run: Executar
 commandlist_remove: Eliminar
 commandlist_options_desc: Opcións
@@ -38,10 +38,10 @@ commandlist_delete_title: Eliminar comando?
 commandlist_delete_message: Esta acción non se pode desfacer.
 commandlist_delete: Eliminar
 commandlist_cancel: Cancelar
-command_type_launch_activity: "Abrir unha aplicación"
-command_type_send_broadcast: "Notificar unha app"
-command_type_start_service: "Iniciar/deter un servizo"
-command_type_access_provider: "Acceder a datos de aplicación"
+command_type_launch_activity: Abrir unha app
+command_type_send_broadcast: Notificar unha app
+command_type_start_service: Iniciar/deter un servizo
+command_type_access_provider: Acceder a datos de app
 nfc_editor_header: Etiqueta NFC
 nfc_editor_save: Gardar
 nfc_editor_name_label: Nome da etiqueta
@@ -68,6 +68,7 @@ triggerlist_create_title: Crear disparador
 triggerlist_option_nfc: Etiqueta NFC
 triggerlist_option_shortcut: Atallo
 triggerlist_options_desc: Opcións
+triggerlist_edit: Editar
 triggerlist_delete: Eliminar
 triggerlist_delete_title: Eliminar etiqueta?
 triggerlist_delete_message: Esta acción non se pode desfacer.
@@ -109,8 +110,7 @@ shortcut_editor_discard_confirm: Descartar
 shortcut_editor_discard_cancel: Cancelar
 shortcut_editor_name_label: Nome
 shortcut_editor_name_placeholder: "Ex: Casa, Traballo, Coche…"
-triggerlist_edit: Editar
-not_yet_implemented: "Aínda non implementado"
-settings_page_header: "Abrir unha páxina de axustes"
-settings_page_done: "Feito"
-command_type_settings_page: "Páxina de axustes"
+not_yet_implemented: Aínda non implementado
+command_type_settings_page: Páxina de axustes
+settings_page_header: Abrir unha páxina de axustes
+settings_page_done: Feito

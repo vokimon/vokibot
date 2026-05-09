@@ -1,5 +1,5 @@
 app_name: Vokibot
-applist_not_found: No applications found
+applist_not_found: "No apps found"
 activitylist_not_found: No activities found
 app_list_filter_fab_cd: Filter
 app_list_filter_title: Filters
@@ -30,7 +30,7 @@ intent_editor_command_overwritten: "Command overwritten: {commandName}"
 commandlist_not_found: No saved commands
 commandlist_create_fab_desc: Create command
 commandlist_create_command_title: Create Command
-commandlist_launch_app_option: Launch an Application
+commandlist_launch_app_option: Launch an app
 commandlist_run: Run
 commandlist_remove: Remove
 commandlist_options_desc: Options
@@ -38,10 +38,10 @@ commandlist_delete_title: Delete Command?
 commandlist_delete_message: This action cannot be undone.
 commandlist_delete: Delete
 commandlist_cancel: Cancel
-command_type_launch_activity: "Open an app"
-command_type_send_broadcast: "Notify an app"
-command_type_start_service: "Start/stop a service"
-command_type_access_provider: "Access app data"
+command_type_launch_activity: Open an app
+command_type_send_broadcast: Notify an app
+command_type_start_service: Start/stop a service
+command_type_access_provider: Access app data
 nfc_editor_header: NFC Tag
 nfc_editor_save: Save
 nfc_editor_name_label: Tag name
@@ -110,7 +110,7 @@ shortcut_editor_discard_confirm: Discard
 shortcut_editor_discard_cancel: Cancel
 shortcut_editor_name_label: Name
 shortcut_editor_name_placeholder: "Ex: Home, Work, Car…"
-not_yet_implemented: "Not yet implemented"
-settings_page_header: "Open a settings page"
-settings_page_done: "Done"
-command_type_settings_page: "Settings page"
+not_yet_implemented: Not yet implemented
+command_type_settings_page: Settings page
+settings_page_header: Open a settings page
+settings_page_done: Done

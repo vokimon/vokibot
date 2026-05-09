@@ -1,5 +1,5 @@
 app_name: Vokibot
-applist_not_found: Ez da aplikaziorik aurkitu
+applist_not_found: "Ez da aplikaziorik aurkitu"
 activitylist_not_found: Ez da aktibitaterik aurkitu
 app_list_filter_fab_cd: Iragazi
 app_list_filter_title: Iragazkiak
@@ -38,10 +38,10 @@ commandlist_delete_title: Komandoa ezabatu?
 commandlist_delete_message: Ekintza hau ezin da desegin.
 commandlist_delete: Ezabatu
 commandlist_cancel: Utzi
-command_type_launch_activity: "Aplikazio bat ireki"
-command_type_send_broadcast: "Aplikazio bati jakinarazi"
-command_type_start_service: "Zerbitzu bat hasi/gelditu"
-command_type_access_provider: "Aplikazio-datuak atzitu"
+command_type_launch_activity: Aplikazio bat ireki
+command_type_send_broadcast: Aplikazio bati jakinarazi
+command_type_start_service: Zerbitzu bat hasi/gelditu
+command_type_access_provider: Aplikazio-datuak atzitu
 nfc_editor_header: NFC Etiketa
 nfc_editor_save: Gorde
 nfc_editor_name_label: Etiketaren izena
@@ -68,6 +68,7 @@ triggerlist_create_title: Abiarazlea sortu
 triggerlist_option_nfc: NFC etiketa
 triggerlist_option_shortcut: Lasterbidea
 triggerlist_options_desc: Aukerak
+triggerlist_edit: Editatu
 triggerlist_delete: Ezabatu
 triggerlist_delete_title: Etiketa ezabatu?
 triggerlist_delete_message: Ekintza hau ezin da desegin.
@@ -109,8 +110,7 @@ shortcut_editor_discard_confirm: Baztertu
 shortcut_editor_discard_cancel: Utzi
 shortcut_editor_name_label: Izena
 shortcut_editor_name_placeholder: "Adib.: Etxea, Lana, Autoa…"
-triggerlist_edit: Editatu
-not_yet_implemented: "Oraindik ez da inplementatua"
-settings_page_header: "Ezarpen orria ireki"
-settings_page_done: "Eginda"
-command_type_settings_page: "Ezarpen orria"
+not_yet_implemented: Oraindik ez da inplementatua
+command_type_settings_page: Ezarpen orria
+settings_page_header: Ezarpen orria ireki
+settings_page_done: Eginda

@@ -1,11 +1,11 @@
 app_name: Vokibot
-applist_not_found: No s'ha trobat cap aplicacion
+applist_not_found: "No s'ha trobat cap app"
 activitylist_not_found: No s'ha trobat cap activitat
 app_list_filter_fab_cd: Filtrar
 app_list_filter_title: Filtros
 app_list_filter_search_label: Buscar
 app_list_filter_clear_cd: Limpiar
-app_list_filter_show_system: Amostrar aplicacions d'o sistema
+app_list_filter_show_system: Amostrar apps d'o sistema
 app_list_filter_categories_title: Categorías
 app_list_filter_category_game: Chuegos
 app_list_filter_category_maps: Mapas
@@ -30,7 +30,7 @@ intent_editor_command_overwritten: "Orden sobrescrita: {commandName}"
 commandlist_not_found: No i ha órdenes alzadas
 commandlist_create_fab_desc: Crear orden
 commandlist_create_command_title: Crear orden
-commandlist_launch_app_option: Executar una aplicación
+commandlist_launch_app_option: Executar una app
 commandlist_run: Executar
 commandlist_remove: Borrar
 commandlist_options_desc: Opcions
@@ -38,10 +38,10 @@ commandlist_delete_title: Borrar orden?
 commandlist_delete_message: Esta acción no se puede desfer.
 commandlist_delete: Borrar
 commandlist_cancel: Cancelar
-command_type_launch_activity: "Ubrir una aplicazión"
-command_type_send_broadcast: "Notificar a una app"
-command_type_start_service: "Inzar/aturar un serbizio"
-command_type_access_provider: "Acceder a datos d'aplicazión"
+command_type_launch_activity: Ubrir una app
+command_type_send_broadcast: Notificar a una app
+command_type_start_service: Inzar/aturar un serbizio
+command_type_access_provider: Acceder a datos d'app
 nfc_editor_header: Etiqueta NFC
 nfc_editor_save: Guardar
 nfc_editor_name_label: Nombre pa l'etiqueta
@@ -68,6 +68,7 @@ triggerlist_create_title: Crear disparador
 triggerlist_option_nfc: Etiqueta NFC
 triggerlist_option_shortcut: Drecera
 triggerlist_options_desc: Opcions
+triggerlist_edit: Editar
 triggerlist_delete: Borrar
 triggerlist_delete_title: Borrar etiqueta?
 triggerlist_delete_message: Esta acción no se puede desfer.
@@ -109,8 +110,7 @@ shortcut_editor_discard_confirm: Descartar
 shortcut_editor_discard_cancel: Cancelar
 shortcut_editor_name_label: Nombre
 shortcut_editor_name_placeholder: "Ex: Casa, Treballo, Coche…"
-triggerlist_edit: Editar
-not_yet_implemented: "Encara no s'ha implementau"
-settings_page_header: "Aber una pachina d'aldu"
-settings_page_done: "Faito"
-command_type_settings_page: "Pachina d'aldu"
+not_yet_implemented: Encara no s'ha implementau
+command_type_settings_page: Pachina d'aldu
+settings_page_header: Aber una pachina d'aldu
+settings_page_done: Faito

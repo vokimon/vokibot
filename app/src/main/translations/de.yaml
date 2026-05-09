@@ -1,5 +1,5 @@
 app_name: Vokibot
-applist_not_found: Keine Anwendungen gefunden
+applist_not_found: "Keine Apps gefunden"
 activitylist_not_found: Keine Aktivitäten gefunden
 app_list_filter_fab_cd: Filtern
 app_list_filter_title: Filter
@@ -30,7 +30,7 @@ intent_editor_command_overwritten: "Befehl überschrieben: {commandName}"
 commandlist_not_found: Keine gespeicherten Befehle
 commandlist_create_fab_desc: Befehl erstellen
 commandlist_create_command_title: Befehl erstellen
-commandlist_launch_app_option: Anwendung starten
+commandlist_launch_app_option: App starten
 commandlist_run: Ausführen
 commandlist_remove: Entfernen
 commandlist_options_desc: Optionen
@@ -38,10 +38,10 @@ commandlist_delete_title: Befehl löschen?
 commandlist_delete_message: Diese Aktion kann nicht rückgängig gemacht werden.
 commandlist_delete: Löschen
 commandlist_cancel: Abbrechen
-command_type_launch_activity: "App öffnen"
-command_type_send_broadcast: "App benachrichtigen"
-command_type_start_service: "Dienst starten/stoppen"
-command_type_access_provider: "Auf App-Daten zugreifen"
+command_type_launch_activity: App öffnen
+command_type_send_broadcast: App benachrichtigen
+command_type_start_service: Dienst starten/stoppen
+command_type_access_provider: Auf App-Daten zugreifen
 nfc_editor_header: NFC-Tag
 nfc_editor_save: Speichern
 nfc_editor_name_label: Tag-Name
@@ -68,6 +68,7 @@ triggerlist_create_title: Trigger erstellen
 triggerlist_option_nfc: NFC-Tag
 triggerlist_option_shortcut: Kurztaste
 triggerlist_options_desc: Optionen
+triggerlist_edit: Bearbeiten
 triggerlist_delete: Löschen
 triggerlist_delete_title: Tag löschen?
 triggerlist_delete_message: Diese Aktion kann nicht rückgängig gemacht werden.
@@ -109,8 +110,7 @@ shortcut_editor_discard_confirm: Verwerfen
 shortcut_editor_discard_cancel: Abbrechen
 shortcut_editor_name_label: Name
 shortcut_editor_name_placeholder: "Bsp.: Zuhause, Arbeit, Auto…"
-triggerlist_edit: Bearbeiten
-not_yet_implemented: "Noch nicht implementiert"
-settings_page_header: "Einstellungsseite öffnen"
-settings_page_done: "Fertig"
-command_type_settings_page: "Einstellungsseite"
+not_yet_implemented: Noch nicht implementiert
+command_type_settings_page: Einstellungsseite
+settings_page_header: Einstellungsseite öffnen
+settings_page_done: Fertig

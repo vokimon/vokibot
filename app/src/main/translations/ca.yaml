@@ -1,11 +1,11 @@
 app_name: Vokibot
-applist_not_found: No s'ha trobat cap aplicació
+applist_not_found: "No s'ha trobat cap app"
 activitylist_not_found: No s'ha trobat cap activitat
 app_list_filter_fab_cd: Filtra
 app_list_filter_title: Filtres
 app_list_filter_search_label: Cerca
 app_list_filter_clear_cd: Neteja
-app_list_filter_show_system: Mostra les aplicacions del sistema
+app_list_filter_show_system: Mostra les apps del sistema
 app_list_filter_categories_title: Categories
 app_list_filter_category_game: Jocs
 app_list_filter_category_maps: Mapes
@@ -30,7 +30,7 @@ intent_editor_command_overwritten: "Ordre sobreescrita: {commandName}"
 commandlist_not_found: No hi ha ordres desades
 commandlist_create_fab_desc: Crea una ordre
 commandlist_create_command_title: Crea una ordre
-commandlist_launch_app_option: Executa una aplicació
+commandlist_launch_app_option: Executa una app
 commandlist_run: Executa
 commandlist_remove: Suprimeix
 commandlist_options_desc: Opcions
@@ -38,10 +38,10 @@ commandlist_delete_title: Realment vols suprimir l'ordre?
 commandlist_delete_message: Aquesta acció no es pot desfer.
 commandlist_delete: Suprimir
 commandlist_cancel: Cancel·la
-command_type_launch_activity: "Obrir una aplicació"
-command_type_send_broadcast: "Notificar una app"
-command_type_start_service: "Iniciar/aturar un servei"
-command_type_access_provider: "Accedir a dades de l'aplicació"
+command_type_launch_activity: Obrir una app
+command_type_send_broadcast: Notificar una app
+command_type_start_service: Iniciar/aturar un servei
+command_type_access_provider: Accedir a dades de l'app
 nfc_editor_header: Etiqueta NFC
 nfc_editor_save: Desa
 nfc_editor_name_label: Nom per a l'etiqueta
@@ -68,6 +68,7 @@ triggerlist_create_title: Crea un disparador
 triggerlist_option_nfc: Etiqueta NFC
 triggerlist_option_shortcut: Drecera
 triggerlist_options_desc: Opcions
+triggerlist_edit: Edita
 triggerlist_delete: Suprimeix
 triggerlist_delete_title: Suprimir l'etiqueta?
 triggerlist_delete_message: Aquesta acció no es pot desfer.
@@ -109,8 +110,7 @@ shortcut_editor_discard_confirm: Descarta
 shortcut_editor_discard_cancel: Cancel·la
 shortcut_editor_name_label: Nom
 shortcut_editor_name_placeholder: "Ex: Casa, Feina, Cotxe…"
-triggerlist_edit: Edita
-not_yet_implemented: "Encara no s'ha implementat"
-settings_page_header: "Obre una pàgina d'ajustos"
-settings_page_done: "Fet"
-command_type_settings_page: "Pàgina d'ajustos"
+not_yet_implemented: Encara no s'ha implementat
+command_type_settings_page: Pàgina d'ajustos
+settings_page_header: Obre una pàgina d'ajustos
+settings_page_done: Fet

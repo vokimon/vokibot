@@ -1,11 +1,11 @@
 app_name: Vokibot
-applist_not_found: Aucune application trouvée
+applist_not_found: "Aucune app trouvée"
 activitylist_not_found: Aucune activité trouvée
 app_list_filter_fab_cd: Filtrer
 app_list_filter_title: Filtres
 app_list_filter_search_label: Rechercher
 app_list_filter_clear_cd: Effacer
-app_list_filter_show_system: Afficher les applications système
+app_list_filter_show_system: Afficher les apps système
 app_list_filter_categories_title: Catégories
 app_list_filter_category_game: Jeux
 app_list_filter_category_maps: Cartes
@@ -30,7 +30,7 @@ intent_editor_command_overwritten: "Commande écrasée : {commandName}"
 commandlist_not_found: Aucune commande enregistrée
 commandlist_create_fab_desc: Créer une commande
 commandlist_create_command_title: Créer une commande
-commandlist_launch_app_option: Lancer une application
+commandlist_launch_app_option: Lancer une app
 commandlist_run: Exécuter
 commandlist_remove: Supprimer
 commandlist_options_desc: Options
@@ -38,10 +38,10 @@ commandlist_delete_title: Supprimer la commande ?
 commandlist_delete_message: Cette action est irréversible.
 commandlist_delete: Supprimer
 commandlist_cancel: Annuler
-command_type_launch_activity: "Ouvrir une application"
-command_type_send_broadcast: "Notifier une app"
-command_type_start_service: "Démarrer/arrêter un service"
-command_type_access_provider: "Accéder aux données de l'application"
+command_type_launch_activity: Ouvrir une app
+command_type_send_broadcast: Notifier une app
+command_type_start_service: Démarrer/arrêter un service
+command_type_access_provider: Accéder aux données de l'app
 nfc_editor_header: Étiquette NFC
 nfc_editor_save: Enregistrer
 nfc_editor_name_label: Nom de l'étiquette
@@ -68,6 +68,7 @@ triggerlist_create_title: Créer un déclencheur
 triggerlist_option_nfc: Étiquette NFC
 triggerlist_option_shortcut: Raccourci
 triggerlist_options_desc: Options
+triggerlist_edit: Modifier
 triggerlist_delete: Supprimer
 triggerlist_delete_title: Supprimer l'étiquette ?
 triggerlist_delete_message: Cette action est irréversible.
@@ -109,8 +110,7 @@ shortcut_editor_discard_confirm: Annuler
 shortcut_editor_discard_cancel: Annuler
 shortcut_editor_name_label: Nom
 shortcut_editor_name_placeholder: "Ex : Maison, Travail, Voiture…"
-triggerlist_edit: Modifier
-not_yet_implemented: "Pas encore implémenté"
-settings_page_header: "Ouvrir une page de paramètres"
-settings_page_done: "Terminé"
-command_type_settings_page: "Page de paramètres"
+not_yet_implemented: Pas encore implémenté
+command_type_settings_page: Page de paramètres
+settings_page_header: Ouvrir une page de paramètres
+settings_page_done: Terminé

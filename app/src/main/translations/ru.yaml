@@ -1,5 +1,5 @@
 app_name: Vokibot
-applist_not_found: Приложения не найдены
+applist_not_found: "Приложения не найдены"
 activitylist_not_found: Действия не найдены
 app_list_filter_fab_cd: Фильтр
 app_list_filter_title: Фильтры
@@ -38,10 +38,10 @@ commandlist_delete_title: Удалить команду?
 commandlist_delete_message: Это действие нельзя отменить.
 commandlist_delete: Удалить
 commandlist_cancel: Отмена
-command_type_launch_activity: "Открыть приложение"
-command_type_send_broadcast: "Уведомить приложение"
-command_type_start_service: "Запустить/остановить службу"
-command_type_access_provider: "Доступ к данным приложения"
+command_type_launch_activity: Открыть приложение
+command_type_send_broadcast: Уведомить приложение
+command_type_start_service: Запустить/остановить службу
+command_type_access_provider: Доступ к данным приложения
 nfc_editor_header: Метка NFC
 nfc_editor_save: Сохранить
 nfc_editor_name_label: Имя для метки
@@ -68,6 +68,7 @@ triggerlist_create_title: Создать триггер
 triggerlist_option_nfc: NFC-метка
 triggerlist_option_shortcut: Ярлык
 triggerlist_options_desc: Параметры
+triggerlist_edit: Редактировать
 triggerlist_delete: Удалить
 triggerlist_delete_title: Удалить метку?
 triggerlist_delete_message: Это действие нельзя отменить.
@@ -109,8 +110,7 @@ shortcut_editor_discard_confirm: Отменить
 shortcut_editor_discard_cancel: Отмена
 shortcut_editor_name_label: Имя
 shortcut_editor_name_placeholder: "Пример: Дом, Работа, Машина…"
-triggerlist_edit: Редактировать
-not_yet_implemented: "Еще не реализовано"
-settings_page_header: "Открыть страницу настроек"
-settings_page_done: "Готово"
-command_type_settings_page: "Страница настроек"
+not_yet_implemented: Еще не реализовано
+command_type_settings_page: Страница настроек
+settings_page_header: Открыть страницу настроек
+settings_page_done: Готово
