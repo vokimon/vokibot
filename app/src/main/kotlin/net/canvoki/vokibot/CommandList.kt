@@ -186,12 +186,13 @@ fun CommandList(
                         value = "application",
                         label = stringResource(R.string.commandlist_launch_app_option),
                     ),
-                ) + Command.getRegisteredTypes().map { type ->
-                    ChooserOption(
-                        value = type.typeKey,
-                        label = stringResource(type.labelRes),
-                    )
-                },
+                ) +
+                    Command.getRegisteredTypes().map { type ->
+                        ChooserOption(
+                            value = type.typeKey,
+                            label = stringResource(type.labelRes),
+                        )
+                    },
             selectedValue = "",
             onConfirm = { value ->
                 showTypeChooser = false

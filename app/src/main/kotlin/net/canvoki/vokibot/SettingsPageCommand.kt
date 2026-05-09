@@ -52,5 +52,4 @@ data class SettingsPageCommand(
     override suspend fun execute(context: Context) {
         context.startActivity(Intent(pageId))
     }
-
 }
