@@ -38,10 +38,10 @@ commandlist_delete_title: Komandoa ezabatu?
 commandlist_delete_message: Ekintza hau ezin da desegin.
 commandlist_delete: Ezabatu
 commandlist_cancel: Utzi
-command_type_launch_activity: "Aplikazioa: Pantaila ireki"
-command_type_send_broadcast: "Aplikazioa: Jakinarazpena bidali"
-command_type_start_service: "Aplikazioa: Prozesua abiarazi"
-command_type_access_provider: "Aplikazioa: Datuetara sartu"
+command_type_launch_activity: "Aplikazio bat ireki"
+command_type_send_broadcast: "Aplikazio bati jakinarazi"
+command_type_start_service: "Zerbitzu bat hasi/gelditu"
+command_type_access_provider: "Aplikazio-datuak atzitu"
 nfc_editor_header: NFC Etiketa
 nfc_editor_save: Gorde
 nfc_editor_name_label: Etiketaren izena

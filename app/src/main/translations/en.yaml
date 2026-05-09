@@ -38,10 +38,10 @@ commandlist_delete_title: Delete Command?
 commandlist_delete_message: This action cannot be undone.
 commandlist_delete: Delete
 commandlist_cancel: Cancel
-command_type_launch_activity: "Application: Open screen"
-command_type_send_broadcast: "Application: Send notification"
-command_type_start_service: "Application: Start process"
-command_type_access_provider: "Application: Access data"
+command_type_launch_activity: "Open an app"
+command_type_send_broadcast: "Notify an app"
+command_type_start_service: "Start/stop a service"
+command_type_access_provider: "Access app data"
 nfc_editor_header: NFC Tag
 nfc_editor_save: Save
 nfc_editor_name_label: Tag name

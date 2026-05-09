@@ -38,10 +38,10 @@ commandlist_delete_title: Eliminar comando?
 commandlist_delete_message: Esta acción non se pode desfacer.
 commandlist_delete: Eliminar
 commandlist_cancel: Cancelar
-command_type_launch_activity: "Aplicación: Abrir pantalla"
-command_type_send_broadcast: "Aplicación: Enviar notificación"
-command_type_start_service: "Aplicación: Iniciar proceso"
-command_type_access_provider: "Aplicación: Acceder a datos"
+command_type_launch_activity: "Abrir unha aplicación"
+command_type_send_broadcast: "Notificar unha app"
+command_type_start_service: "Iniciar/deter un servizo"
+command_type_access_provider: "Acceder a datos de aplicación"
 nfc_editor_header: Etiqueta NFC
 nfc_editor_save: Gardar
 nfc_editor_name_label: Nome da etiqueta

@@ -38,10 +38,10 @@ commandlist_delete_title: Удалить команду?
 commandlist_delete_message: Это действие нельзя отменить.
 commandlist_delete: Удалить
 commandlist_cancel: Отмена
-command_type_launch_activity: "Приложение: Открыть экран"
-command_type_send_broadcast: "Приложение: Отправить уведомление"
-command_type_start_service: "Приложение: Запустить процесс"
-command_type_access_provider: "Приложение: Доступ к данным"
+command_type_launch_activity: "Открыть приложение"
+command_type_send_broadcast: "Уведомить приложение"
+command_type_start_service: "Запустить/остановить службу"
+command_type_access_provider: "Доступ к данным приложения"
 nfc_editor_header: Метка NFC
 nfc_editor_save: Сохранить
 nfc_editor_name_label: Имя для метки

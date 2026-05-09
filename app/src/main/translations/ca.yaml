@@ -38,10 +38,10 @@ commandlist_delete_title: Realment vols suprimir l'ordre?
 commandlist_delete_message: Aquesta acció no es pot desfer.
 commandlist_delete: Suprimir
 commandlist_cancel: Cancel·la
-command_type_launch_activity: "Aplicació: Obrir pantalla"
-command_type_send_broadcast: "Aplicació: Enviar una notificació"
-command_type_start_service: "Aplicació: Iniciar procés"
-command_type_access_provider: "Aplicació: Accedir a dades"
+command_type_launch_activity: "Obrir una aplicació"
+command_type_send_broadcast: "Notificar una app"
+command_type_start_service: "Iniciar/aturar un servei"
+command_type_access_provider: "Accedir a dades de l'aplicació"
 nfc_editor_header: Etiqueta NFC
 nfc_editor_save: Desa
 nfc_editor_name_label: Nom per a l'etiqueta

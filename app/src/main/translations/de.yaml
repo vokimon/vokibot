@@ -38,10 +38,10 @@ commandlist_delete_title: Befehl löschen?
 commandlist_delete_message: Diese Aktion kann nicht rückgängig gemacht werden.
 commandlist_delete: Löschen
 commandlist_cancel: Abbrechen
-command_type_launch_activity: "App: Bildschirm öffnen"
-command_type_send_broadcast: "App: Benachrichtigung senden"
-command_type_start_service: "App: Prozess starten"
-command_type_access_provider: "App: Auf Daten zugreifen"
+command_type_launch_activity: "App öffnen"
+command_type_send_broadcast: "App benachrichtigen"
+command_type_start_service: "Dienst starten/stoppen"
+command_type_access_provider: "Auf App-Daten zugreifen"
 nfc_editor_header: NFC-Tag
 nfc_editor_save: Speichern
 nfc_editor_name_label: Tag-Name
