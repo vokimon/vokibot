@@ -58,7 +58,44 @@
     - [ ] Screen status
     - [ ] Wifi enabled
     - [ ] Wifi connection
+- [ ] Services: https://developer.android.com/develop/background-work/services
+    - [ ] Start/stop the service (few allow it, even if they publish it)
+    - [ ] Bound services long lasting communication Through a IBinder (Maybe  too low level and too app specific)
+- [ ] System Broadcast: As trigger to vokibot, system sends broadcasts to any listening app
+    - List of system broadcasts: <https://github.com/flyskywhy/android-sdk/blob/master/platforms/android-10/data/broadcast_actions.txt>
+- [ ] Broadcasts: Send a shot and forget message https://developer.android.com/develop/background-work/background-tasks/broadcasts
+    - [ ] Puppet: Add broadcast to the manifest
+    - [ ] Puppet: Required permissions to receive
+    - [ ] Puppet: onReceive https://developer.android.com/reference/android/content/BroadcastReceiver
+    - [ ] What permissions are required to interact
+    - [ ] try with val canDeliver = context.packageManager.queryBroadcastReceivers(intent, 0).isNotEmpty()
 
+        val intent = Intent().apply {
+            // Option 1: Explicit (recommended)
+            setClassName("com.target.app", "com.target.app.MyBroadcastReceiver")
+            setAction("com.target.app.ACTION_DO_SOMETHING")
+
+            // Option 2: Package-scoped (lets system find matching receiver)
+            setPackage("com.target.app")
+            action = "com.target.app.ACTION_DO_SOMETHING"
+
+            // Optional extras
+            putExtra("param_key", "value")
+            putExtra("flag", true)
+        }
+
+        // Validate before saving/executing
+        val canDeliver = context.packageManager.queryBroadcastReceivers(intent, 0).isNotEmpty()
+
+        // Execute
+        try {
+            context.sendBroadcast(intent)
+            // Log: "Broadcast dispatched to $intent"
+        } catch (e: SecurityException) {
+            // Log: "Permission denied or receiver not exported"
+        } catch (e: Exception) {
+            // Log: "Broadcast dispatch failed: $e"
+        }
 
 
  ## Done
