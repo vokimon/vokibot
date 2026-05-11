@@ -1,10 +1,7 @@
 package net.canvoki.vokibot
 
-import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
-import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.jsonPrimitive
@@ -23,19 +20,6 @@ interface EntityMetadata {
     val deserializer: ((String) -> StorableEntity)?
     val helpRes: Int
 }
-
-/**
- * Metadata for a registered entity type, used for UI generation.
- */
-data class EntityTypeInfo(
-    override val typeKey: String,
-    override val entityClass: KClass<out StorableEntity>,
-    @field:StringRes override val labelRes: Int,
-    @field:DrawableRes override val iconRes: Int,
-    override val editorFactory: (entityId: String?) -> StackedScreen<Unit>,
-    override val deserializer: ((String) -> StorableEntity)? = null,
-    @field:StringRes override val helpRes: Int = 0,
-) : EntityMetadata
 
 /**
  * Registry for entity types.

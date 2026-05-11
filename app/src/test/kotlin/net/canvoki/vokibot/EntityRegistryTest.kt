@@ -24,14 +24,16 @@ fun typeInfoShortcut(): EntityMetadata = ShortcutTrigger
 
 fun typeInfoNfc(): EntityMetadata = NfcTrigger
 
-fun typeInfoAutomation(typeKey: String = "automation") =
-    EntityTypeInfo(
-        typeKey = typeKey,
-        entityClass = Automation::class,
-        labelRes = 0,
-        iconRes = 0,
-        editorFactory = { DummyScreen },
-    )
+fun typeInfoAutomation(typeKey: String = "automation"): EntityMetadata =
+    object : EntityMetadata {
+        override val typeKey = typeKey
+        override val entityClass = Automation::class
+        override val labelRes = 0
+        override val iconRes = 0
+        override val editorFactory: (id: String?) -> StackedScreen<Unit> = { DummyScreen }
+        override val deserializer: ((String) -> StorableEntity)? = null
+        override val helpRes = 0
+    }
 
 class EntityRegistryTest {
     @Test
