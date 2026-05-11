@@ -72,6 +72,39 @@ When using TDD (Beck/Fowler methodology):
 - Implement only what is needed to pass the test, no more
 - Each step should compile and pass tests
 
+### Long refactorings workflow (Duppe, Fill, Rely, Cleanup)
+
+To keep larger refactors in small stable commits,
+Agent should split the code proposals in commitable stages following the methodology explained here.
+Most refactors replace an old artifact (file, class, method, attribute, data source...) with a new one.
+If both artifacts have not split queries (getters) and updates (setters) of the state,
+which is required for this methodology,
+Agent should spot the case to the user and ask how to proceed.
+
+The stages are:
+
+1. Duppe (Duplicate):
+Create a new artifact (file, class, method, attribute, data source)
+that will hold the target code, without removing the existing one.
+Both old and new coexist.
+
+2. Fill (Keep in sync):
+Ensure the new artifact mirrors the state of the old one by
+updating the new artifact whenever the old one is modified
+This step can be split by each state update strategically thinking what needs to be done first.
+
+3. Rely (Switch to new):
+Once the new artifact faithfully represents the old one,
+switch to using it in the code.
+Replace remaining uses of the old artifact with use of the new one.
+This step can also be split by each state query.
+
+4. Cleanup:
+Remove the original artifact and any remaining state-setting code.
+
+Since all the steps are stable, we could stop an ongoing refactor and focus on TDD some missing stuff in the new artifact.
+
+
 ## Style
 
 - Prefer early exits
