@@ -107,7 +107,7 @@ data class SettingsPageCommandEditor(
                                     SettingsPageCommand(pageId = page.id),
                                 )
                                 nav.pop()
-                            }.padding(vertical = 8.dp, horizontal = 4.dp),
+                            }.padding(start = 16.dp, top = 8.dp, bottom = 8.dp, end = 4.dp),
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
