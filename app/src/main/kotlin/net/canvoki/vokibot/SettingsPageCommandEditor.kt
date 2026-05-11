@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -68,16 +69,20 @@ data class SettingsPageCommandEditor(
                 title = stringResource(R.string.settings_page_header),
             )
 
-            Row(
+            Card(
                 modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically,
             ) {
-                Text("Show all pages", style = MaterialTheme.typography.bodyMedium)
-                Switch(
-                    checked = showAll,
-                    onCheckedChange = { showAll = it },
-                )
+                Row(
+                    modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 12.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Text("Show all pages", style = MaterialTheme.typography.bodyMedium)
+                    Switch(
+                        checked = showAll,
+                        onCheckedChange = { showAll = it },
+                    )
+                }
             }
 
             val displayedPages =
@@ -107,7 +112,7 @@ data class SettingsPageCommandEditor(
                                     SettingsPageCommand(pageId = page.id),
                                 )
                                 nav.pop()
-                            }.padding(start = 16.dp, top = 8.dp, bottom = 8.dp, end = 4.dp),
+                            }.padding(start = 16.dp, top = 4.dp, bottom = 4.dp, end = 4.dp),
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
