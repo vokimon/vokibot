@@ -27,6 +27,9 @@ androidx-test-runner = "1.7.0"
 kotlinx-coroutines-bom = "1.10.2"
 kotlinx-serialization-bom = "1.11.0"
 
+# Markdown
+jetbrains-markdown = "0.7.3"
+
 # Testing
 junit = "4.13.2"
 java-diff-utils = "4.16"
@@ -64,6 +67,9 @@ androidx-test-core = { group = "androidx.test", name = "core", version.ref = "an
 androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-ext-junit" }
 androidx-test-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "androidx-test-espresso-core" }
 androidx-test-runner = { group = "androidx.test", name = "runner", version.ref = "androidx-test-runner" }
+
+# Markdown
+jetbrains-markdown = { group = "org.jetbrains", name = "markdown", version.ref = "jetbrains-markdown" }
 
 # Testing libs
 junit = { group = "junit", name = "junit", version.ref = "junit" }
