@@ -222,7 +222,6 @@ data class LaunchActivityCommand(
  * Send a Broadcast to a Receiver.
  */
 @Serializable
-@SerialName("send_broadcast")
 data class SendBroadcastCommand(
     override val displayName: String,
     override val packageName: String,
@@ -259,23 +258,18 @@ data class SendBroadcastCommand(
 
     override fun toJson(): String = JsonConfig.encodeToString(serializer(), this)
 
-    companion object {
-        const val TYPE = "send_broadcast"
-
-        val TYPE_INFO =
-            EntityTypeInfo(
-                typeKey = TYPE,
-                entityClass = SendBroadcastCommand::class,
-                labelRes = R.string.command_type_send_broadcast,
-                iconRes = R.drawable.ic_brand,
-                editorFactory = { NotYetImplementedEditor },
-                deserializer = { jsonString -> fromJson(jsonString) },
-                helpRes = R.string.command_send_broadcast_help,
-            )
+    companion object : EntityMetadata {
+        override val typeKey = "send_broadcast"
+        override val entityClass = SendBroadcastCommand::class
+        override val labelRes = R.string.command_type_send_broadcast
+        override val iconRes = R.drawable.ic_brand
+        override val editorFactory = { _: String? -> NotYetImplementedEditor }
+        override val deserializer = { jsonString: String -> fromJson(jsonString) }
+        override val helpRes = R.string.command_send_broadcast_help
 
         fun fromJson(jsonString: String): SendBroadcastCommand = JsonConfig.decodeFromString(serializer(), jsonString)
 
-        fun register() = StorableEntity.register(TYPE_INFO)
+        fun register() = StorableEntity.register(this)
     }
 }
 
@@ -283,7 +277,6 @@ data class SendBroadcastCommand(
  * Start a Service.
  */
 @Serializable
-@SerialName("start_service")
 data class StartServiceCommand(
     override val displayName: String,
     override val packageName: String,
@@ -343,7 +336,6 @@ data class StartServiceCommand(
  * Access a ContentProvider (read/write data).
  */
 @Serializable
-@SerialName("access_provider")
 data class AccessProviderCommand(
     override val displayName: String,
     override val packageName: String,
