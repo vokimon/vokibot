@@ -6,7 +6,6 @@ import android.os.Build
 import androidx.core.content.pm.ShortcutInfoCompat
 import androidx.core.content.pm.ShortcutManagerCompat
 import androidx.core.graphics.drawable.IconCompat
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import java.util.UUID
@@ -17,38 +16,29 @@ import java.util.UUID
  * @param displayName Visible text of the shortcut
  */
 @Serializable
-@SerialName(ShortcutTrigger.TYPE)
 data class ShortcutTrigger(
     override val id: String = "${UUID.randomUUID()}",
     val displayName: String,
 ) : Trigger() {
-    companion object {
-        const val TYPE = "trigger_shortcut"
-        const val ICON = R.drawable.ic_shortcut
-
-        val TYPE_INFO =
-            EntityTypeInfo(
-                typeKey = TYPE,
-                entityClass = ShortcutTrigger::class,
-                labelRes = R.string.triggerlist_option_shortcut,
-                iconRes = ICON,
-                editorFactory = { triggerId -> ShortcutTriggerEditor(triggerId) },
-                deserializer = { jsonString -> fromJson(jsonString) },
-                helpRes = R.string.trigger_shortcut_help,
-            )
-
+    companion object : EntityMetadata {
         const val MAX_SHORT_LABEL_LENGTH = 10
         const val MAX_LONG_LABEL_LENGTH = 25
 
-        fun register() {
-            StorableEntity.register(TYPE_INFO)
-        }
+        override val typeKey = "trigger_shortcut"
+        override val entityClass = ShortcutTrigger::class
+        override val labelRes = R.string.triggerlist_option_shortcut
+        override val iconRes = R.drawable.ic_shortcut
+        override val editorFactory = { triggerId: String? -> ShortcutTriggerEditor(triggerId) }
+        override val deserializer = { jsonString: String -> fromJson(jsonString) }
+        override val helpRes = R.string.trigger_shortcut_help
+
+        fun register() = StorableEntity.register(this)
 
         fun fromJson(jsonString: String): ShortcutTrigger = JsonConfig.decodeFromString(serializer(), jsonString)
     }
 
-    override val type = TYPE
-    override val iconRes get() = ICON
+    override val type = ShortcutTrigger.typeKey
+    override val iconRes get() = ShortcutTrigger.iconRes
     override val title get() = displayName
     override val description get() = "ID: ${id.takeLast(6)}"
 

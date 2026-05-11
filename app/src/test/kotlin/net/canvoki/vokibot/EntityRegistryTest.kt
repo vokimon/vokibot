@@ -20,7 +20,7 @@ fun assertRegisteredTypes(
     assertEquals(expected, actualString)
 }
 
-fun typeInfoShortcut() = ShortcutTrigger.TYPE_INFO
+fun typeInfoShortcut(): EntityMetadata = ShortcutTrigger
 
 fun typeInfoNfc(): EntityMetadata = NfcTrigger
 
