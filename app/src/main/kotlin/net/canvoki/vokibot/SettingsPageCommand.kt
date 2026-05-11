@@ -3,7 +3,6 @@ package net.canvoki.vokibot
 import android.content.Context
 import android.content.Intent
 import android.provider.Settings
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 /**
@@ -11,32 +10,25 @@ import kotlinx.serialization.Serializable
  * @param pageId the id of the page
  */
 @Serializable
-@SerialName(SettingsPageCommand.TYPE)
 data class SettingsPageCommand(
     val pageId: String,
 ) : Command() {
-    companion object {
-        const val TYPE = "settings_page"
-        const val ICON = R.drawable.ic_settings
+    companion object : EntityMetadata {
+        override val typeKey = "settings_page"
+        override val entityClass = SettingsPageCommand::class
+        override val labelRes = R.string.command_type_settings_page
+        override val iconRes = R.drawable.ic_settings
+        override val editorFactory = { pageId: String? -> SettingsPageCommandEditor(pageId) }
+        override val deserializer = { jsonString: String -> fromJson(jsonString) }
+        override val helpRes = R.string.command_settings_page_help
 
-        val TYPE_INFO =
-            EntityTypeInfo(
-                entityClass = SettingsPageCommand::class,
-                typeKey = TYPE,
-                iconRes = ICON,
-                labelRes = R.string.command_type_settings_page,
-                editorFactory = { SettingsPageCommandEditor(it) },
-                deserializer = { jsonString -> fromJson(jsonString) },
-                helpRes = R.string.command_settings_page_help,
-            )
-
-        fun register() = StorableEntity.register(TYPE_INFO)
+        fun register() = StorableEntity.register(this)
 
         fun fromJson(jsonString: String): Command = JsonConfig.decodeFromString(serializer(), jsonString)
     }
 
-    override val type: String = TYPE
-    override val iconRes: Int = ICON
+    override val type = SettingsPageCommand.typeKey
+    override val iconRes = SettingsPageCommand.iconRes
     override val id: String get() = "${type}_${toFileSystemId(pageId)}"
     override val title: String get() = pageName
     override val description: String get() = pageId
