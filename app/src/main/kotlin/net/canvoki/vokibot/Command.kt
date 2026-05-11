@@ -4,6 +4,9 @@ import android.content.Context
 import android.graphics.drawable.Drawable
 import kotlinx.serialization.Serializable
 
+/**
+ * Abstract class for all the actions you can perform as response to a trigger
+ */
 @Serializable
 abstract class Command : StorableEntity {
     /**

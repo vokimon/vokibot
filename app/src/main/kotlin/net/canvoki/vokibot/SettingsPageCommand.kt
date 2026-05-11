@@ -27,6 +27,7 @@ data class SettingsPageCommand(
                 labelRes = R.string.command_type_settings_page,
                 editorFactory = { SettingsPageCommandEditor(it) },
                 deserializer = { jsonString -> fromJson(jsonString) },
+                helpRes = R.string.command_settings_page_help,
             )
 
         fun register() = StorableEntity.register(TYPE_INFO)

@@ -59,6 +59,9 @@ interface StorableEntity {
         @Composable
         fun label(type: String): String = registry.label(type)
 
+        /** Returns the help text resource ID for a type, or 0 if not defined */
+        fun helpResId(type: String): Int = registry.helpResId(type)
+
         /** Get all registered storable types for UI listing */
         fun getRegisteredTypes(baseClass: KClass<out StorableEntity> = StorableEntity::class): List<EntityTypeInfo> =
             registry.getRegisteredTypes(baseClass)

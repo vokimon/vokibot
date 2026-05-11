@@ -215,6 +215,7 @@ data class LaunchActivityCommand(
                 iconRes = R.drawable.ic_brand,
                 editorFactory = { NotYetImplementedEditor },
                 deserializer = { jsonString -> fromJson(jsonString) },
+                helpRes = R.string.command_launch_activity_help,
             )
 
         fun fromJson(jsonString: String): LaunchActivityCommand = JsonConfig.decodeFromString(serializer(), jsonString)
@@ -275,6 +276,7 @@ data class SendBroadcastCommand(
                 iconRes = R.drawable.ic_brand,
                 editorFactory = { NotYetImplementedEditor },
                 deserializer = { jsonString -> fromJson(jsonString) },
+                helpRes = R.string.command_send_broadcast_help,
             )
 
         fun fromJson(jsonString: String): SendBroadcastCommand = JsonConfig.decodeFromString(serializer(), jsonString)
@@ -334,6 +336,7 @@ data class StartServiceCommand(
                 iconRes = R.drawable.ic_brand,
                 editorFactory = { NotYetImplementedEditor },
                 deserializer = { jsonString -> fromJson(jsonString) },
+                helpRes = R.string.command_control_service_help,
             )
 
         fun fromJson(jsonString: String): StartServiceCommand = JsonConfig.decodeFromString(serializer(), jsonString)
@@ -402,6 +405,7 @@ data class AccessProviderCommand(
                 iconRes = R.drawable.ic_brand,
                 editorFactory = { NotYetImplementedEditor },
                 deserializer = { jsonString -> fromJson(jsonString) },
+                helpRes = R.string.command_access_provider_help,
             )
 
         fun fromJson(jsonString: String): AccessProviderCommand = JsonConfig.decodeFromString(serializer(), jsonString)

@@ -21,6 +21,7 @@ data class EntityTypeInfo(
     @field:DrawableRes val iconRes: Int,
     val editorFactory: (entityId: String?) -> StackedScreen<Unit>,
     val deserializer: ((String) -> StorableEntity)? = null,
+    @field:StringRes val helpRes: Int = 0,
 )
 
 /**
@@ -95,4 +96,8 @@ class EntityRegistry {
         typeInfos[type]?.let {
             stringResource(it.labelRes)
         } ?: type
+
+    /** Returns the help text resource ID for a type, or 0 if not defined */
+    fun helpResId(type: String): Int =
+        typeInfos[type]?.helpRes ?: 0
 }

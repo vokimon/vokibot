@@ -34,6 +34,7 @@ data class ShortcutTrigger(
                 iconRes = ICON,
                 editorFactory = { triggerId -> ShortcutTriggerEditor(triggerId) },
                 deserializer = { jsonString -> fromJson(jsonString) },
+                helpRes = R.string.trigger_shortcut_help,
             )
 
         const val MAX_SHORT_LABEL_LENGTH = 10

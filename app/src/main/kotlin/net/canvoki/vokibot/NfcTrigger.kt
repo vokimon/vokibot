@@ -29,6 +29,7 @@ data class NfcTrigger(
                 iconRes = ICON,
                 editorFactory = { triggerId -> NfcTriggerEditor(triggerId) },
                 deserializer = { jsonString -> fromJson(jsonString) },
+                helpRes = R.string.trigger_nfc_help,
             )
 
         fun idFromUid(uid: String) = "$ID_PREFIX${toFileSystemId(uid)}"
