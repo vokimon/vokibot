@@ -117,7 +117,9 @@ settings_page_done: Fet
 trigger_nfc_help: |
   Dispara automatitzacions quan el dispositiu toca una etiqueta NFC.
 
-  Pots utilitzar la majoria d'objectes sense contacte, com ara targetes de transport, de crèdit, polseres d'esdeveniments o d'accés. L'etiqueta només s'identifica; no es llegeix ni modifica cap dada.
+  Pots utilitzar la majoria d'objectes sense contacte, com ara
+  targetes de transport, de crèdit, polseres d'esdeveniments o d'accés.
+  L'etiqueta només s'identifica; no es llegeix ni modifica cap dada.
 trigger_shortcut_help: |
   Crea una drecera a la pantalla d'inici que dispara automatitzacions quan s'obre.
 command_settings_page_help: |
@@ -129,10 +131,10 @@ command_launch_activity_help: |
 command_send_broadcast_help: |
   Envía un senyal a una app que suporta difusions personalitzades.
 
-  Compatible amb reproductors multimèdia o eines d'automatització.
+  Sol ser el cas de reproductors multimèdia o eines d'automatització.
 command_control_service_help: |
   Inicia o atura un procés en segon pla d'una altra app.
 command_access_provider_help: |
   Llegeix o escriu dades compartides exposades per altres apps.
 
-  Inclou contactes, calendaris o fitxers multimèdia.
+  Aquestes dades solen ser contactes, calendaris o fitxers multimèdia.

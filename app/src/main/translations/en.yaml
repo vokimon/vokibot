@@ -117,7 +117,9 @@ settings_page_done: Done
 trigger_nfc_help: |
   Triggers automations when the device taps an NFC tag.
 
-  You can use most contactless objects, such as transport cards, credit cards, event wristbands, or access cards. The tag is only identified; no data is read or modified.
+  You can use most contactless objects, such as
+  transport cards, credit cards, event wristbands, or access cards.
+  The tag is only identified; no data is read or modified.
 trigger_shortcut_help: |
   Creates a shortcut on your Home screen that triggers automations when opened.
 command_settings_page_help: |
@@ -129,10 +131,10 @@ command_launch_activity_help: |
 command_send_broadcast_help: |
   Sends a signal to an app that supports custom broadcasts.
 
-  Works with media players, automation tools, and other compatible apps.
+  This is usually the case for media players or automation tools.
 command_control_service_help: |
   Starts or stops a background process in another app.
 command_access_provider_help: |
   Reads or writes shared data exposed by other apps.
 
-  Includes contacts, calendars, or media files.
+  This typically refers to contacts, calendars, or media files.

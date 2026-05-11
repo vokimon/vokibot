@@ -117,7 +117,9 @@ settings_page_done: Faito
 trigger_nfc_help: |
   Dispara automatizacions quan o dispositivo toca una etiqueta NFC.
 
-  Puetz fer servir a mayoría d'obchectos sin contacto, como tarxetas de transporte, de credito, pulseras d'esdevenimientos u d'acceso. L'etiqueta nomás s'identifica; no se leye ni se modifica garra dato.
+  Puetz fer servir a mayoría d'obchectos sin contacto, como
+  tarxetas de transporte, de credito, pulseras d'esdevenimientos u d'acceso.
+  L'etiqueta nomás s'identifica; no se leye ni se modifica garra dato.
 trigger_shortcut_help: |
   Crea una drecera en a pantalla d'inicio que dispara automatizacions quan s'ubre.
 command_settings_page_help: |
@@ -129,10 +131,10 @@ command_launch_activity_help: |
 command_send_broadcast_help: |
   Envía una sinyal a una app que soporta emisiones personalizadas.
 
-  Funciona con reproductors multimedia u ferramientas d'automatización.
+  Suele ser el caso de reproductors multimedia u ferramientas d'automatización.
 command_control_service_help: |
   Encieta u atura un proceso en segundo plano d'atra app.
 command_access_provider_help: |
   Le u escribe datos compartius exposaus por atras apps.
 
-  Incluye contactos, calendarios u fichers multimedia.
+  Estos datos suelen ser contactos, calendarios u fichers multimedia.

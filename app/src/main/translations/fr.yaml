@@ -117,7 +117,9 @@ settings_page_done: Terminé
 trigger_nfc_help: |
   Déclenche des automatisations lorsque l'appareil touche une étiquette NFC.
 
-  Vous pouvez utiliser la plupart des objets sans contact, comme les cartes de transport, les cartes bancaires, les bracelets d'événements ou les badges d'accès. L'étiquette est uniquement identifiée ; aucune donnée n'est lue ou modifiée.
+  Vous pouvez utiliser la plupart des objets sans contact, comme
+  les cartes de transport, les cartes bancaires, les bracelets d'événements ou les badges d'accès.
+  L'étiquette est uniquement identifiée ; aucune donnée n'est lue ou modifiée.
 trigger_shortcut_help: |
   Crée un raccourci sur l'écran d'accueil qui déclenche des automatisations à l'ouverture.
 command_settings_page_help: |
@@ -129,10 +131,10 @@ command_launch_activity_help: |
 command_send_broadcast_help: |
   Envoie un signal à une application prenant en charge les diffusions personnalisées.
 
-  Compatible avec les lecteurs multimédias ou les outils d'automatisation.
+  C'est généralement le cas pour les lecteurs multimédias ou les outils d'automatisation.
 command_control_service_help: |
   Démarre ou arrête un processus en arrière-plan dans une autre application.
 command_access_provider_help: |
   Lit ou écrit des données partagées exposées par d'autres applications.
 
-  Inclut les contacts, les calendriers ou les fichiers multimédias.
+  Il s'agit généralement de contacts, de calendriers ou de fichiers multimédias.

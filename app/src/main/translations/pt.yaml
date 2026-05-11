@@ -117,7 +117,9 @@ settings_page_done: Concluído
 trigger_nfc_help: |
   Aciona automações quando o dispositivo toca numa etiqueta NFC.
 
-  Podes usar a maioria dos objetos sem contacto, como cartões de transporte, de crédito, pulseiras de eventos ou de acesso. A etiqueta é apenas identificada; nenhum dado é lido ou modificado.
+  Podes usar a maioria dos objetos sem contacto, como
+  cartões de transporte, de crédito, pulseiras de eventos ou de acesso.
+  A etiqueta é apenas identificada; nenhum dado é lido ou modificado.
 trigger_shortcut_help: |
   Cria um atalho no ecrã inicial que aciona automações quando aberto.
 command_settings_page_help: |
@@ -129,10 +131,10 @@ command_launch_activity_help: |
 command_send_broadcast_help: |
   Envia um sinal a uma app que suporta difusões personalizadas.
 
-  Funciona com leitores multimédia ou ferramentas de automação.
+  É normalmente o caso de leitores multimédia ou ferramentas de automação.
 command_control_service_help: |
   Inicia ou para um processo em segundo plano de outra app.
 command_access_provider_help: |
   Lê ou escreve dados partilhados expostos por outras apps.
 
-  Inclui contactos, calendários ou ficheiros multimédia.
+  Estes dados são normalmente contactos, calendários ou ficheiros multimédia.
