@@ -153,7 +153,6 @@ sealed class ApplicationCommand : Command() {
  * Launch an Activity (with optional action, data URI, and extras).
  */
 @Serializable
-@SerialName("launch_activity")
 data class LaunchActivityCommand(
     override val displayName: String,
     override val packageName: String,
@@ -204,23 +203,18 @@ data class LaunchActivityCommand(
 
     override fun toJson(): String = JsonConfig.encodeToString(serializer(), this)
 
-    companion object {
-        const val TYPE = "launch_activity"
-
-        val TYPE_INFO =
-            EntityTypeInfo(
-                typeKey = TYPE,
-                entityClass = LaunchActivityCommand::class,
-                labelRes = R.string.command_type_launch_activity,
-                iconRes = R.drawable.ic_brand,
-                editorFactory = { NotYetImplementedEditor },
-                deserializer = { jsonString -> fromJson(jsonString) },
-                helpRes = R.string.command_launch_activity_help,
-            )
+    companion object : EntityMetadata {
+        override val typeKey = "launch_activity"
+        override val entityClass = LaunchActivityCommand::class
+        override val labelRes = R.string.command_type_launch_activity
+        override val iconRes = R.drawable.ic_brand
+        override val editorFactory = { _: String? -> NotYetImplementedEditor }
+        override val deserializer = { jsonString: String -> fromJson(jsonString) }
+        override val helpRes = R.string.command_launch_activity_help
 
         fun fromJson(jsonString: String): LaunchActivityCommand = JsonConfig.decodeFromString(serializer(), jsonString)
 
-        fun register() = StorableEntity.register(TYPE_INFO)
+        fun register() = StorableEntity.register(this)
     }
 }
 
