@@ -22,7 +22,7 @@ fun assertRegisteredTypes(
 
 fun typeInfoShortcut() = ShortcutTrigger.TYPE_INFO
 
-fun typeInfoNfc() = NfcTrigger.TYPE_INFO
+fun typeInfoNfc(): EntityMetadata = NfcTrigger
 
 fun typeInfoAutomation(typeKey: String = "automation") =
     EntityTypeInfo(

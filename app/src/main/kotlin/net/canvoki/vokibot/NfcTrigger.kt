@@ -2,7 +2,6 @@ package net.canvoki.vokibot
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.Json
 
 /**
  * Triggers when an NFC tag aproaches the device
@@ -16,25 +15,22 @@ data class NfcTrigger(
     val displayName: String,
     val uid: String,
 ) : Trigger() {
-    companion object {
+    companion object : EntityMetadata {
         const val TYPE = "trigger_nfc"
         const val ICON = R.drawable.ic_nfc
         const val ID_PREFIX = "nfc_"
 
-        val TYPE_INFO =
-            EntityTypeInfo(
-                typeKey = TYPE,
-                entityClass = NfcTrigger::class,
-                labelRes = R.string.triggerlist_option_nfc,
-                iconRes = ICON,
-                editorFactory = { triggerId -> NfcTriggerEditor(triggerId) },
-                deserializer = { jsonString -> fromJson(jsonString) },
-                helpRes = R.string.trigger_nfc_help,
-            )
+        override val typeKey = TYPE
+        override val entityClass = NfcTrigger::class
+        override val labelRes = R.string.triggerlist_option_nfc
+        override val iconRes = ICON
+        override val editorFactory = { triggerId: String? -> NfcTriggerEditor(triggerId) }
+        override val deserializer = { jsonString: String -> fromJson(jsonString) }
+        override val helpRes = R.string.trigger_nfc_help
 
         fun idFromUid(uid: String) = "$ID_PREFIX${toFileSystemId(uid)}"
 
-        fun register() = StorableEntity.register(TYPE_INFO)
+        fun register() = StorableEntity.register(this)
 
         fun fromJson(jsonString: String): NfcTrigger = JsonConfig.decodeFromString(serializer(), jsonString)
     }
