@@ -114,3 +114,25 @@ not_yet_implemented: No implementao aún
 command_type_settings_page: Páhina de ahûttê
 settings_page_header: Abrîh páhina de ahûttê
 settings_page_done: Exo
+trigger_nfc_help: |
+  Dîppara automatiçaçionê cuando er dîppoçitibo toca una etiqueta NFC.
+
+  Puedê uçâh la mayoría de ôhhetô çin contâtto, como tarhetâ de trâpporte, de crédito, purçerâ de ebentô o de âççeço. La etiqueta çolo çe identifica; no çe lee ni modifica ningún dato.
+trigger_shortcut_help: |
+  Crea un âççeço dirêtto en la pantaya de iniçio que dîppara automatiçaçionê al abrirçe.
+command_settings_page_help: |
+  Abre una páhina êppeçífica de la configuraçión de Androîh.
+
+  Omite lô menûh y te yeba dirêttamente a la páhina deçeá.
+command_launch_activity_help: |
+  Abre una âpp o çarta dirêttamente a una pantaya êppeçífica dentro de eya.
+command_send_broadcast_help: |
+  Embía una çeñâh a una âpp que çoporta emiçionê perçonaliçâh.
+
+  Funçiona con reprodûttorê murtimedia o erramientâ de automatiçaçión.
+command_control_service_help: |
+  Iniçia o detiene un proçeço en çegundo plano de otra âpp.
+command_access_provider_help: |
+  Lee o êccribe datô compartíô êppuêttô por otrâ âpps.
+
+  Incluye contâttô, calendariô o arxibô murtimedia.

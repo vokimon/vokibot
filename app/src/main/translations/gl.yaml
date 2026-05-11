@@ -116,21 +116,23 @@ settings_page_header: Abrir unha páxina de axustes
 settings_page_done: Feito
 trigger_nfc_help: |
   Dispara automatizacións cando o dispositivo toca unha etiqueta NFC.
-  Podes usar a maioría de obxectos sen contacto, como
-  tarxetas de transporte, de crédito, pulseiras de eventos ou de acceso.
-  A etiqueta só se identifica; non se le nin modifica ningún dato.
+
+  Podes usar a maioría de obxectos sen contacto, como tarxetas de transporte, de crédito, pulseiras de eventos ou de acceso. A etiqueta só se identifica; non se le nin modifica ningún dato.
 trigger_shortcut_help: |
   Crea un atallo na pantalla de inicio que dispara automatizacións ao abrilo.
 command_settings_page_help: |
   Abre unha páxina específica da configuración de Android.
+
   Omite os menús e lévache directamente á páxina obxectivo.
 command_launch_activity_help: |
   Abre unha app ou salta directamente a unha pantalla específica dentro dela.
 command_send_broadcast_help: |
-  Envía un sinal a unha app que soporta emisións personalizadas,
-  como reprodutores multimedia ou ferramentas de automatización.
+  Envía un sinal a unha app que soporta emisións personalizadas.
+
+  Funciona con reprodutores multimedia ou ferramentas de automatización.
 command_control_service_help: |
   Inicia ou detén un proceso en segundo plano doutra app.
 command_access_provider_help: |
-  Le ou escribe datos compartidos expostos por outras apps,
-  como contactos, calendarios ou ficheiros multimedia.
+  Le ou escribe datos compartidos expostos por outras apps.
+
+  Inclúe contactos, calendarios ou ficheiros multimedia.

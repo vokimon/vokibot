@@ -116,21 +116,23 @@ settings_page_header: Einstellungsseite öffnen
 settings_page_done: Fertig
 trigger_nfc_help: |
   Startet Automatisierungen, wenn das Gerät ein NFC-Tag berührt.
-  Du kannst die meisten kontaktlosen Objekte nutzen, wie
-  Verkehrskarten, Kreditkarten, Event-Armbänder oder Zugangskarten.
-  Das Tag wird nur identifiziert; es werden keine Daten gelesen oder geändert.
+
+  Du kannst die meisten kontaktlosen Objekte nutzen, wie Verkehrskarten, Kreditkarten, Event-Armbänder oder Zugangskarten. Das Tag wird nur identifiziert; es werden keine Daten gelesen oder geändert.
 trigger_shortcut_help: |
   Erstellt eine Verknüpfung auf dem Startbildschirm, die Automatisierungen beim Öffnen auslöst.
 command_settings_page_help: |
   Öffnet eine bestimmte Android-Einstellungsseite.
+
   Überspringt Menüs und führt dich direkt zur Zielseite.
 command_launch_activity_help: |
   Öffnet eine App oder springt direkt zu einem bestimmten Bildschirm darin.
 command_send_broadcast_help: |
-  Sendet ein Signal an eine App, die benutzerdefinierte Broadcasts unterstützt,
-  wie Mediaplayer oder Automatisierungstools.
+  Sendet ein Signal an eine App, die benutzerdefinierte Broadcasts unterstützt.
+
+  Funktioniert mit Mediaplayern oder Automatisierungstools.
 command_control_service_help: |
   Startet oder stoppt einen Hintergrundprozess einer anderen App.
 command_access_provider_help: |
-  Liest oder schreibt freigegebene Daten, die von anderen Apps bereitgestellt werden,
-  wie Kontakte, Kalender oder Mediendateien.
+  Liest oder schreibt freigegebene Daten, die von anderen Apps bereitgestellt werden.
+
+  Umfasst Kontakte, Kalender oder Mediendateien.

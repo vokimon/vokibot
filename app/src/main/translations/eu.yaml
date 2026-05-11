@@ -116,21 +116,23 @@ settings_page_header: Ezarpen orria ireki
 settings_page_done: Eginda
 trigger_nfc_help: |
   Automatizazioak abiarazten ditu gailuak NFC etiketa bat ukitzen duenean.
-  Kontakturik gabeko objektu gehienak erabil ditzakezu, hala nola
-  garraio txartelak, kreditu txartelak, ekitaldietako eskumuturrekoak edo sarbide txartelak.
-  Etiketa identifikatu besterik ez da egiten; ez da daturik irakurtzen edo aldatzen.
+
+  Kontakturik gabeko objektu gehienak erabil ditzakezu, hala nola garraio txartelak, kreditu txartelak, ekitaldietako eskumuturrekoak edo sarbide txartelak. Etiketa identifikatu besterik ez da egiten; ez da daturik irakurtzen edo aldatzen.
 trigger_shortcut_help: |
   Hasierako pantailan automatizazioak abiarazten dituen lasterbide bat sortzen du, irekitzean.
 command_settings_page_help: |
   Androiden ezarpen-orri zehatz bat irekitzen du.
+
   Menuak saltatu eta helburuko orrialdera zuzenean eramaten zaitu.
 command_launch_activity_help: |
   Aplikazio bat irekitzen du edo bertako pantaila zehatz batera zuzenean jauzi egiten du.
 command_send_broadcast_help: |
-  Difusio pertsonalizatuak onartzen dituen aplikazio bati seinale bat bidaltzen dio,
-  multimedia erreproduzitzaileak edo automatizazio tresnak adibidez.
+  Difusio pertsonalizatuak onartzen dituen aplikazio bati seinale bat bidaltzen dio.
+
+  Multimedia erreproduzitzaile edo automatizazio tresnekin funtzionatzen du.
 command_control_service_help: |
   Beste aplikazio bateko atzeko planoeko prozesu bat abiarazi edo gelditzen du.
 command_access_provider_help: |
-  Beste aplikazio batzuek partekatutako datuak irakurtzen edo idazten ditu,
-  kontaktuak, egutegiak edo multimedia fitxategiak adibidez.
+  Beste aplikazio batzuek partekatutako datuak irakurtzen edo idazten ditu.
+
+  Kontaktuen, egutegien edo multimedia fitxategien datuak barne.

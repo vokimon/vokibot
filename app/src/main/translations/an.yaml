@@ -114,3 +114,25 @@ not_yet_implemented: Encara no s'ha implementau
 command_type_settings_page: Pachina d'aldu
 settings_page_header: Aber una pachina d'aldu
 settings_page_done: Faito
+trigger_nfc_help: |
+  Dispara automatizacions quan o dispositivo toca una etiqueta NFC.
+
+  Puetz fer servir a mayoría d'obchectos sin contacto, como tarxetas de transporte, de credito, pulseras d'esdevenimientos u d'acceso. L'etiqueta nomás s'identifica; no se leye ni se modifica garra dato.
+trigger_shortcut_help: |
+  Crea una drecera en a pantalla d'inicio que dispara automatizacions quan s'ubre.
+command_settings_page_help: |
+  Ubre una pachina especifica d'a configuración d'Android.
+
+  Salta os menús y te leva directament ta la pachina destín.
+command_launch_activity_help: |
+  Ubre una app u salta directament ta una pantalla especifica dentro d'ella.
+command_send_broadcast_help: |
+  Envía una sinyal a una app que soporta emisiones personalizadas.
+
+  Funciona con reproductors multimedia u ferramientas d'automatización.
+command_control_service_help: |
+  Encieta u atura un proceso en segundo plano d'atra app.
+command_access_provider_help: |
+  Le u escribe datos compartius exposaus por atras apps.
+
+  Incluye contactos, calendarios u fichers multimedia.
