@@ -98,6 +98,5 @@ class EntityRegistry {
         } ?: type
 
     /** Returns the help text resource ID for a type, or 0 if not defined */
-    fun helpResId(type: String): Int =
-        typeInfos[type]?.helpRes ?: 0
+    fun helpResId(type: String): Int = typeInfos[type]?.helpRes ?: 0
 }

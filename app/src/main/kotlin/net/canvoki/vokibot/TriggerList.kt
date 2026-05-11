@@ -185,17 +185,19 @@ private fun TriggerGroupHeader(groupKey: String) {
     val verticalPadding = 8.dp
     val helpResId = StorableEntity.helpResId(groupKey)
     Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(MaterialTheme.colorScheme.surface),
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .background(MaterialTheme.colorScheme.surface),
     ) {
         Text(
             text = StorableEntity.label(groupKey),
             style = MaterialTheme.typography.titleSmall,
             color = MaterialTheme.colorScheme.primary,
-            modifier = Modifier
-                .weight(1f)
-                .padding(vertical = verticalPadding),
+            modifier =
+                Modifier
+                    .weight(1f)
+                    .padding(vertical = verticalPadding),
         )
         if (helpResId != 0) {
             ContextualHelpButton(
