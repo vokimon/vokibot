@@ -12,17 +12,30 @@ import net.canvoki.shared.component.StackedScreen
 import kotlin.reflect.KClass
 
 /**
+ * Interface for entity type metadata, used for UI generation.
+ */
+interface EntityMetadata {
+    val typeKey: String
+    val entityClass: KClass<out StorableEntity>
+    val labelRes: Int
+    val iconRes: Int
+    val editorFactory: (entityId: String?) -> StackedScreen<Unit>
+    val deserializer: ((String) -> StorableEntity)?
+    val helpRes: Int
+}
+
+/**
  * Metadata for a registered entity type, used for UI generation.
  */
 data class EntityTypeInfo(
-    val typeKey: String,
-    val entityClass: KClass<out StorableEntity>,
-    @field:StringRes val labelRes: Int,
-    @field:DrawableRes val iconRes: Int,
-    val editorFactory: (entityId: String?) -> StackedScreen<Unit>,
-    val deserializer: ((String) -> StorableEntity)? = null,
-    @field:StringRes val helpRes: Int = 0,
-)
+    override val typeKey: String,
+    override val entityClass: KClass<out StorableEntity>,
+    @field:StringRes override val labelRes: Int,
+    @field:DrawableRes override val iconRes: Int,
+    override val editorFactory: (entityId: String?) -> StackedScreen<Unit>,
+    override val deserializer: ((String) -> StorableEntity)? = null,
+    @field:StringRes override val helpRes: Int = 0,
+) : EntityMetadata
 
 /**
  * Registry for entity types.
