@@ -312,23 +312,18 @@ data class StartServiceCommand(
 
     override fun toJson(): String = JsonConfig.encodeToString(serializer(), this)
 
-    companion object {
-        const val TYPE = "start_service"
-
-        val TYPE_INFO =
-            EntityTypeInfo(
-                typeKey = TYPE,
-                entityClass = StartServiceCommand::class,
-                labelRes = R.string.command_type_start_service,
-                iconRes = R.drawable.ic_brand,
-                editorFactory = { NotYetImplementedEditor },
-                deserializer = { jsonString -> fromJson(jsonString) },
-                helpRes = R.string.command_control_service_help,
-            )
+    companion object : EntityMetadata {
+        override val typeKey = "start_service"
+        override val entityClass = StartServiceCommand::class
+        override val labelRes = R.string.command_type_start_service
+        override val iconRes = R.drawable.ic_brand
+        override val editorFactory = { _: String? -> NotYetImplementedEditor }
+        override val deserializer = { jsonString: String -> fromJson(jsonString) }
+        override val helpRes = R.string.command_control_service_help
 
         fun fromJson(jsonString: String): StartServiceCommand = JsonConfig.decodeFromString(serializer(), jsonString)
 
-        fun register() = StorableEntity.register(TYPE_INFO)
+        fun register() = StorableEntity.register(this)
     }
 }
 
@@ -380,23 +375,18 @@ data class AccessProviderCommand(
 
     override fun toJson(): String = JsonConfig.encodeToString(serializer(), this)
 
-    companion object {
-        const val TYPE = "access_provider"
-
-        val TYPE_INFO =
-            EntityTypeInfo(
-                typeKey = TYPE,
-                entityClass = AccessProviderCommand::class,
-                labelRes = R.string.command_type_access_provider,
-                iconRes = R.drawable.ic_brand,
-                editorFactory = { NotYetImplementedEditor },
-                deserializer = { jsonString -> fromJson(jsonString) },
-                helpRes = R.string.command_access_provider_help,
-            )
+    companion object : EntityMetadata {
+        override val typeKey = "access_provider"
+        override val entityClass = AccessProviderCommand::class
+        override val labelRes = R.string.command_type_access_provider
+        override val iconRes = R.drawable.ic_brand
+        override val editorFactory = { _: String? -> NotYetImplementedEditor }
+        override val deserializer = { jsonString: String -> fromJson(jsonString) }
+        override val helpRes = R.string.command_access_provider_help
 
         fun fromJson(jsonString: String): AccessProviderCommand = JsonConfig.decodeFromString(serializer(), jsonString)
 
-        fun register() = StorableEntity.register(TYPE_INFO)
+        fun register() = StorableEntity.register(this)
     }
 }
 
