@@ -66,9 +66,6 @@ data class SettingsPageCommandEditor(
             EditorHeader(
                 icon = painterResource(R.drawable.ic_settings),
                 title = stringResource(R.string.settings_page_header),
-                actionText = stringResource(R.string.settings_page_done),
-                action = { nav.pop() },
-                actionEnabled = selectedPageId.isNotEmpty(),
             )
 
             Row(

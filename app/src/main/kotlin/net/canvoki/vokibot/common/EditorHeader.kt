@@ -22,8 +22,8 @@ import androidx.compose.ui.unit.dp
 fun EditorHeader(
     icon: Painter,
     title: String,
-    actionText: String,
-    action: () -> Unit,
+    actionText: String? = null,
+    action: (() -> Unit)? = null,
     actionEnabled: Boolean = true,
     actionIsRunning: Boolean = false,
 ) {
@@ -45,22 +45,24 @@ fun EditorHeader(
                 style = MaterialTheme.typography.titleLarge,
             )
         }
-        TextButton(
-            onClick = action,
-            enabled = actionEnabled,
-            colors =
-                ButtonDefaults.textButtonColors(
-                    contentColor = MaterialTheme.colorScheme.primary,
-                    disabledContentColor = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.38f),
-                ),
-        ) {
-            if (actionIsRunning) {
-                CircularProgressIndicator(
-                    modifier = Modifier.size(20.dp),
-                    color = MaterialTheme.colorScheme.onSurface,
-                )
-            } else {
-                Text(text = actionText)
+        if (actionText != null && action != null) {
+            TextButton(
+                onClick = action,
+                enabled = actionEnabled,
+                colors =
+                    ButtonDefaults.textButtonColors(
+                        contentColor = MaterialTheme.colorScheme.primary,
+                        disabledContentColor = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.38f),
+                    ),
+            ) {
+                if (actionIsRunning) {
+                    CircularProgressIndicator(
+                        modifier = Modifier.size(20.dp),
+                        color = MaterialTheme.colorScheme.onSurface,
+                    )
+                } else {
+                    Text(text = actionText)
+                }
             }
         }
     }
