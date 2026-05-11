@@ -41,7 +41,7 @@ data class EntityTypeInfo(
  * Registry for entity types.
  */
 class EntityRegistry {
-    private val typeInfos = mutableMapOf<String, EntityTypeInfo>()
+    private val typeInfos = mutableMapOf<String, EntityMetadata>()
 
     // Just to peek the type attribute ignoring anything else
     private val json =
@@ -49,11 +49,11 @@ class EntityRegistry {
             ignoreUnknownKeys = true
         }
 
-    fun register(typeInfo: EntityTypeInfo) {
-        typeInfos[typeInfo.typeKey] = typeInfo
+    fun register(metadata: EntityMetadata) {
+        typeInfos[metadata.typeKey] = metadata
     }
 
-    fun getRegisteredTypes(baseClass: KClass<out StorableEntity> = StorableEntity::class): List<EntityTypeInfo> =
+    fun getRegisteredTypes(baseClass: KClass<out StorableEntity> = StorableEntity::class): List<EntityMetadata> =
         typeInfos.values.filter { baseClass.java.isAssignableFrom(it.entityClass.java) }
 
     fun <T : StorableEntity> fromJson(

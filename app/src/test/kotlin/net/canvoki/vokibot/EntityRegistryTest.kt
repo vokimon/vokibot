@@ -14,7 +14,7 @@ object DummyScreen : StackedScreen<Unit>() {
 
 fun assertRegisteredTypes(
     expected: String,
-    actual: List<EntityTypeInfo>,
+    actual: List<EntityMetadata>,
 ) {
     val actualString = actual.map { it.typeKey }.sorted().joinToString("\n")
     assertEquals(expected, actualString)

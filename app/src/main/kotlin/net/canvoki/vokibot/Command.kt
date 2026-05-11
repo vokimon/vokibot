@@ -21,7 +21,7 @@ abstract class Command : StorableEntity {
     open fun loadIcon(context: Context): Drawable? = null
 
     companion object {
-        fun getRegisteredTypes(): List<EntityTypeInfo> = StorableEntity.registry.getRegisteredTypes(Command::class)
+        fun getRegisteredTypes(): List<EntityMetadata> = StorableEntity.registry.getRegisteredTypes(Command::class)
 
         fun fromJson(jsonString: String): Command {
             StorableEntity.fromJson(jsonString, Command::class)?.let { return it }

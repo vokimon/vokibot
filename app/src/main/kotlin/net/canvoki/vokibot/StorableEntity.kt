@@ -42,7 +42,7 @@ interface StorableEntity {
         /**
          * Registers an entity type with its metadata and JSON factory.
          */
-        fun register(typeinfo: EntityTypeInfo) = uninitializedRegistry.register(typeinfo)
+        fun register(metadata: EntityMetadata) = uninitializedRegistry.register(metadata)
 
         /** Get the editor screen for a given entity type and optional id */
         fun getEditorScreen(
@@ -63,7 +63,7 @@ interface StorableEntity {
         fun helpResId(type: String): Int = registry.helpResId(type)
 
         /** Get all registered storable types for UI listing */
-        fun getRegisteredTypes(baseClass: KClass<out StorableEntity> = StorableEntity::class): List<EntityTypeInfo> =
+        fun getRegisteredTypes(baseClass: KClass<out StorableEntity> = StorableEntity::class): List<EntityMetadata> =
             registry.getRegisteredTypes(baseClass)
 
         /** Deserialize any registered StorableEntity from JSON */

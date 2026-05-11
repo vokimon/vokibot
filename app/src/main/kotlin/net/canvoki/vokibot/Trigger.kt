@@ -16,7 +16,7 @@ import kotlin.reflect.KClass
 abstract class Trigger : StorableEntity {
     companion object {
         /** Get all registered trigger types for UI listing */
-        fun getRegisteredTypes(): List<EntityTypeInfo> = StorableEntity.registry.getRegisteredTypes(Trigger::class)
+        fun getRegisteredTypes(): List<EntityMetadata> = StorableEntity.registry.getRegisteredTypes(Trigger::class)
 
         /** Deserialize any registered Trigger from JSON */
         fun fromJson(jsonString: String): Trigger {
