@@ -1,13 +1,11 @@
 package net.canvoki.vokibot
 
 import androidx.annotation.DrawableRes
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import java.util.UUID
 
 @Serializable
-@SerialName("automation")
 data class Automation(
     override val id: String,
     val name: String,
