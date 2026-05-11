@@ -96,7 +96,7 @@ private fun NfcActivityScreen(
         val automations =
             repository.automation
                 .all()
-                .filter { it.triggerType == NfcTrigger.TYPE && it.triggerId == trigger.id }
+                .filter { it.triggerType == NfcTrigger.typeKey && it.triggerId == trigger.id }
 
         if (automations.isEmpty()) {
             executionState = ExecutionState.NoAutomation
@@ -251,7 +251,7 @@ private fun NfcUidDisplayScreen(
                     )
                 repository.trigger.save(trigger)
                 showNameDialog = false
-                onCreateAutomation(trigger.id, NfcTrigger.TYPE)
+                onCreateAutomation(trigger.id, NfcTrigger.typeKey)
             }
         },
     )
