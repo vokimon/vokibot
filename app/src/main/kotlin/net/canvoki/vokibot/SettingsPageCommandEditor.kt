@@ -1,26 +1,36 @@
 package net.canvoki.vokibot
 
-import android.provider.Settings
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
+import net.canvoki.shared.component.AsyncList
+import net.canvoki.shared.component.ContextualHelpButton
 import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
 import net.canvoki.vokibot.common.EditorHeader
@@ -33,32 +43,122 @@ data class SettingsPageCommandEditor(
     override fun Screen(nav: StackNavigatorState) {
         val context = LocalContext.current
         val repository = remember { FileDataRepository.fromContext(context) }
+
+        val existingCommand =
+            remember {
+                editingId?.let { repository.command.load(it) as? SettingsPageCommand }
+            }
+
+        var selectedPageId by rememberSaveable {
+            mutableStateOf(existingCommand?.pageId ?: "")
+        }
+        var showMainOnly by rememberSaveable { mutableStateOf(true) }
+        val scope = rememberCoroutineScope()
+
+        LaunchedEffect(editingId) {
+            existingCommand?.let { selectedPageId = it.pageId }
+        }
+
         Column(
-            modifier =
-                Modifier
-                    .fillMaxSize()
-                    .verticalScroll(rememberScrollState()),
-            verticalArrangement = Arrangement.spacedBy(16.dp),
+            modifier = Modifier.fillMaxSize().padding(horizontal = 16.dp),
         ) {
             EditorHeader(
-                title = stringResource(R.string.settings_page_header),
                 icon = painterResource(R.drawable.ic_settings),
+                title = stringResource(R.string.settings_page_header),
                 actionText = stringResource(R.string.settings_page_done),
-                action = {
-                    val command =
-                        SettingsPageCommand(
-                            pageId = Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS,
-                        )
-                    repository.command.save(command)
-                    nav.pop()
-                },
-                actionEnabled = true,
+                action = { nav.pop() },
+                actionEnabled = selectedPageId.isNotEmpty(),
             )
 
-            Text(
-                text = "TODO: Add settings selection UI",
-                style = MaterialTheme.typography.bodySmall,
-            )
+            Row(
+                modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Text("Show main only", style = MaterialTheme.typography.bodyMedium)
+                Switch(
+                    checked = showMainOnly,
+                    onCheckedChange = { showMainOnly = it },
+                )
+            }
+
+            val displayedPages =
+                remember(showMainOnly) {
+                    if (showMainOnly) {
+                        SETTINGS_PAGES.filter { it.isMain }
+                    } else {
+                        SETTINGS_PAGES
+                    }
+                }
+
+            AsyncList(
+                refreshKeys = listOf(showMainOnly),
+                loader = { displayedPages },
+                itemKey = { it.id },
+                groupBy = { it.category },
+                headerContent = { groupKey -> SettingsPageGroupHeader(groupKey) },
+                notFoundMessage = "No pages available",
+            ) { page ->
+                Row(
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .clickable {
+                                selectedPageId = page.id
+                                repository.command.save(
+                                    SettingsPageCommand(pageId = page.id),
+                                )
+                                nav.pop()
+                            }.padding(vertical = 8.dp, horizontal = 4.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Text(
+                        text = page.name,
+                        style = MaterialTheme.typography.bodyLarge,
+                        color =
+                            if (page.id == selectedPageId) {
+                                MaterialTheme.colorScheme.primary
+                            } else {
+                                MaterialTheme.colorScheme.onSurface
+                            },
+                        modifier = Modifier.weight(1f),
+                    )
+                    IconButton(
+                        onClick = {
+                            scope.launch {
+                                SettingsPageCommand(pageId = page.id).execute(context)
+                            }
+                        },
+                    ) {
+                        Icon(
+                            painter = painterResource(R.drawable.ic_play_arrow),
+                            contentDescription = "Try",
+                            tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
+                    }
+                }
+            }
         }
+    }
+}
+
+@Composable
+private fun SettingsPageGroupHeader(groupKey: String) {
+    Row(
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .background(MaterialTheme.colorScheme.surface),
+    ) {
+        Text(
+            text = groupKey,
+            style = MaterialTheme.typography.titleSmall,
+            color = MaterialTheme.colorScheme.primary,
+            modifier =
+                Modifier
+                    .weight(1f)
+                    .padding(vertical = 8.dp),
+        )
     }
 }
