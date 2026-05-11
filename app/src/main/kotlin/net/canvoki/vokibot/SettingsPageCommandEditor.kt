@@ -33,6 +33,7 @@ import net.canvoki.shared.component.AsyncList
 import net.canvoki.shared.component.ContextualHelpButton
 import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
+import net.canvoki.shared.component.preferences.rememberMutablePreference
 import net.canvoki.vokibot.common.EditorHeader
 
 @Serializable
@@ -52,7 +53,7 @@ data class SettingsPageCommandEditor(
         var selectedPageId by rememberSaveable {
             mutableStateOf(existingCommand?.pageId ?: "")
         }
-        var showMainOnly by rememberSaveable { mutableStateOf(true) }
+        var showAll by rememberMutablePreference("settigs_page_editor_show_all", false)
         val scope = rememberCoroutineScope()
 
         LaunchedEffect(editingId) {
@@ -75,24 +76,24 @@ data class SettingsPageCommandEditor(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-                Text("Show main only", style = MaterialTheme.typography.bodyMedium)
+                Text("Show all pages", style = MaterialTheme.typography.bodyMedium)
                 Switch(
-                    checked = showMainOnly,
-                    onCheckedChange = { showMainOnly = it },
+                    checked = showAll,
+                    onCheckedChange = { showAll = it },
                 )
             }
 
             val displayedPages =
-                remember(showMainOnly) {
-                    if (showMainOnly) {
-                        SETTINGS_PAGES.filter { it.isMain }
-                    } else {
+                remember(showAll) {
+                    if (showAll) {
                         SETTINGS_PAGES
+                    } else {
+                        SETTINGS_PAGES.filter { it.isMain }
                     }
                 }
 
             AsyncList(
-                refreshKeys = listOf(showMainOnly),
+                refreshKeys = listOf(showAll),
                 loader = { displayedPages },
                 itemKey = { it.id },
                 groupBy = { it.category },
