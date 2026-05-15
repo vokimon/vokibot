@@ -49,6 +49,7 @@ import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
 import net.canvoki.shared.component.preferences.rememberMutablePreference
 import net.canvoki.vokibot.R
+import net.canvoki.vokibot.common.toPainter
 
 data class AppInfo(
     val packageName: String,
@@ -70,23 +71,6 @@ data class AppInfo(
             )
     }
 }
-
-private fun Drawable.toPainter(): Painter =
-    when (this) {
-        is BitmapDrawable -> BitmapPainter(bitmap.asImageBitmap())
-        else -> {
-            val bitmap =
-                android.graphics.Bitmap.createBitmap(
-                    intrinsicWidth.coerceAtLeast(48),
-                    intrinsicHeight.coerceAtLeast(48),
-                    android.graphics.Bitmap.Config.ARGB_8888,
-                )
-            val canvas = android.graphics.Canvas(bitmap)
-            setBounds(0, 0, canvas.width, canvas.height)
-            draw(canvas)
-            BitmapPainter(bitmap.asImageBitmap())
-        }
-    }
 
 @Serializable
 data object AppList : StackedScreen<Unit>() {
