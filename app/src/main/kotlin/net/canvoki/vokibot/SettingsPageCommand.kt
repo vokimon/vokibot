@@ -2,6 +2,7 @@ package net.canvoki.vokibot
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.provider.Settings
 import kotlinx.serialization.Serializable
 
@@ -41,6 +42,9 @@ data class SettingsPageCommand(
     override suspend fun execute(context: Context) {
         context.startActivity(Intent(pageId))
     }
+
+    override fun loadIcon(context: Context): Drawable =
+        resolveIntentIcon(context, Intent(pageId)) ?: context.getDrawable(iconRes)!!
 }
 
 data class SettingsPage(

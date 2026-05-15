@@ -170,7 +170,8 @@ data class LaunchActivityCommand(
     override val description: String
         get() = descriptionWithClassName(className)
 
-    override fun loadIcon(context: Context): Drawable? = getAppIcon(context, packageName, className)
+    override fun loadIcon(context: Context): Drawable =
+        getAppIcon(context, packageName, className) ?: context.getDrawable(iconRes)!!
 
     override suspend fun execute(context: Context) {
         val intent = Intent()
@@ -238,7 +239,8 @@ data class SendBroadcastCommand(
     override val description: String
         get() = "$packageName/$action"
 
-    override fun loadIcon(context: Context): Drawable? = getAppIcon(context, packageName)
+    override fun loadIcon(context: Context): Drawable =
+        getAppIcon(context, packageName) ?: context.getDrawable(iconRes)!!
 
     override suspend fun execute(context: Context) {
         val intent = Intent(action)
@@ -292,7 +294,8 @@ data class StartServiceCommand(
     override val description: String
         get() = descriptionWithClassName(className)
 
-    override fun loadIcon(context: Context): Drawable? = getAppIcon(context, packageName, className)
+    override fun loadIcon(context: Context): Drawable =
+        getAppIcon(context, packageName, className) ?: context.getDrawable(iconRes)!!
 
     override suspend fun execute(context: Context) {
         val intent = Intent()
@@ -348,7 +351,8 @@ data class AccessProviderCommand(
     override val description: String
         get() = "$packageName/$authority"
 
-    override fun loadIcon(context: Context): Drawable? = getAppIcon(context, packageName)
+    override fun loadIcon(context: Context): Drawable =
+        getAppIcon(context, packageName) ?: context.getDrawable(iconRes)!!
 
     override suspend fun execute(context: Context) {
         val uri = buildUri()

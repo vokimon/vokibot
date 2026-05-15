@@ -40,6 +40,7 @@ import net.canvoki.shared.component.ChooserOption
 import net.canvoki.shared.component.ContextualHelpButton
 import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
+import net.canvoki.vokibot.common.toPainter
 
 @Serializable
 data object CommandList : StackedScreen<String>() {
@@ -75,6 +76,7 @@ fun CommandList(
             var menuExpanded by remember { mutableStateOf(false) }
 
             val componentIcon = remember(command.id) { command.loadIcon(context) }
+            val iconPainter = remember(componentIcon) { componentIcon.toPainter() }
 
             ListItem(
                 headlineContent = { Text(command.title) },
@@ -87,17 +89,10 @@ fun CommandList(
                 },
                 modifier = Modifier.clickable { nav.pop(command.id) },
                 leadingContent = {
-                    componentIcon?.let { icon ->
-                        Image(
-                            painter = drawableToPainter(icon),
-                            contentDescription = null,
-                            modifier = Modifier.size(40.dp),
-                        )
-                    } ?: Icon(
-                        painter = painterResource(command.iconRes),
+                    Image(
+                        painter = iconPainter,
                         contentDescription = null,
                         modifier = Modifier.size(40.dp),
-                        tint = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
                 },
                 trailingContent = {

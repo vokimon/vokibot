@@ -14,11 +14,11 @@ abstract class Command : StorableEntity {
      */
     abstract suspend fun execute(context: Context)
 
-    /**
+/**
      * Load an icon representing this command.
-     * Default returns null (use iconRes instead).
+     * Default uses iconRes as fallback.
      */
-    open fun loadIcon(context: Context): Drawable? = null
+    open fun loadIcon(context: Context): Drawable = context.getDrawable(iconRes)!!
 
     companion object {
         fun getRegisteredTypes(): List<EntityMetadata> = StorableEntity.registry.getRegisteredTypes(Command::class)

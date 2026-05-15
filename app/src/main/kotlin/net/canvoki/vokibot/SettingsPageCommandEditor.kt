@@ -1,13 +1,17 @@
 package net.canvoki.vokibot
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -36,6 +40,7 @@ import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
 import net.canvoki.shared.component.preferences.rememberMutablePreference
 import net.canvoki.vokibot.common.EditorHeader
+import net.canvoki.vokibot.common.toPainter
 
 @Serializable
 data class SettingsPageCommandEditor(
@@ -102,6 +107,8 @@ data class SettingsPageCommandEditor(
                 headerContent = { groupKey -> SettingsPageGroupHeader(groupKey) },
                 notFoundMessage = "No pages available",
             ) { page ->
+                val command = remember(page.id) { SettingsPageCommand(pageId = page.id) }
+                val icon = remember(command) { command.loadIcon(context) }
                 Row(
                     modifier =
                         Modifier
@@ -116,21 +123,31 @@ data class SettingsPageCommandEditor(
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
-                    Text(
-                        text = page.name,
-                        style = MaterialTheme.typography.bodyLarge,
-                        color =
-                            if (page.id == selectedPageId) {
-                                MaterialTheme.colorScheme.primary
-                            } else {
-                                MaterialTheme.colorScheme.onSurface
-                            },
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
                         modifier = Modifier.weight(1f),
-                    )
+                    ) {
+                        Image(
+                            painter = icon.toPainter(),
+                            contentDescription = null,
+                            modifier = Modifier.size(24.dp),
+                        )
+                        Spacer(modifier = Modifier.width(12.dp))
+                        Text(
+                            text = page.name,
+                            style = MaterialTheme.typography.bodyLarge,
+                            color =
+                                if (page.id == selectedPageId) {
+                                    MaterialTheme.colorScheme.primary
+                                } else {
+                                    MaterialTheme.colorScheme.onSurface
+                                },
+                        )
+                    }
                     IconButton(
                         onClick = {
                             scope.launch {
-                                SettingsPageCommand(pageId = page.id).execute(context)
+                                command.execute(context)
                             }
                         },
                     ) {

@@ -25,6 +25,14 @@ fun getAppIcon(
     return null
 }
 
+fun resolveIntentIcon(
+    context: Context,
+    intent: Intent,
+): Drawable? =
+    context.packageManager
+        .resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY)
+        ?.loadIcon(context.packageManager)
+
 enum class ComponentType(
     val displayName: String,
 ) {
