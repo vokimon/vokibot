@@ -26,6 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import kotlinx.serialization.Serializable
 import net.canvoki.shared.component.AsyncList
@@ -51,23 +52,34 @@ data object AutomationList : StackedScreen<Unit>() {
                 notFoundMessage = stringResource(R.string.automationlist_not_found),
             ) { automation ->
                 var menuExpanded by remember { mutableStateOf(false) }
+                var automationDescription =
+                    remember(automation.triggerId, automation.commandIds) {
+                        buildString {
+                            append(repository.trigger.load(automation.triggerId)?.title)
+                            append(" » ")
+                            automation.commandIds.map { id ->
+                                append(repository.command.load(id)?.title)
+                            }
+                        }
+                    }
 
                 val triggerDisplayName =
                     remember(automation.triggerType, automation.triggerId) {
-                        val id = automation.run { triggerType + triggerId }
                         repository.trigger.load(automation.triggerId)?.title
                     }
 
                 ListItem(
-                    headlineContent = { Text(automation.name) },
+                    headlineContent = {
+                        Text(
+                            text = automation.title,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
+                        )
+                    },
                     supportingContent = {
                         Text(
-                            text =
-                                buildString {
-                                    append("$triggerDisplayName • ")
-                                    append("${automation.commandIds.size} command(s)")
-                                },
-                            maxLines = 1,
+                            text = automationDescription,
+                            maxLines = 2,
                         )
                     },
                     leadingContent = {
