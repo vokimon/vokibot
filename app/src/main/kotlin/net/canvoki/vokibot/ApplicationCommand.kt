@@ -209,7 +209,7 @@ data class LaunchActivityCommand(
         override val entityClass = LaunchActivityCommand::class
         override val labelRes = R.string.command_type_launch_activity
         override val iconRes = R.drawable.ic_brand
-        override val editorFactory = { _: String? -> NotYetImplementedEditor }
+        override val editorFactory = { _: String? -> AppList }
         override val deserializer = { jsonString: String -> fromJson(jsonString) }
         override val helpRes = R.string.command_launch_activity_help
 

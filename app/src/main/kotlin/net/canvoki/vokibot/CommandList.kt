@@ -178,28 +178,17 @@ fun CommandList(
         ChooserDialog(
             title = stringResource(R.string.commandlist_create_command_title),
             options =
-                listOf(
+                Command.getRegisteredTypes().map { type ->
                     ChooserOption(
-                        value = "application",
-                        label = stringResource(R.string.commandlist_launch_app_option),
-                    ),
-                ) +
-                    Command.getRegisteredTypes().map { type ->
-                        ChooserOption(
-                            value = type.typeKey,
-                            label = stringResource(type.labelRes),
-                        )
-                    },
+                        value = type.typeKey,
+                        label = stringResource(type.labelRes),
+                    )
+                },
             selectedValue = "",
             onConfirm = { value ->
                 showTypeChooser = false
-                when (value) {
-                    "application" -> nav.push(AppList) { refreshCounter++ }
-                    else -> {
-                        val editor = StorableEntity.getEditorScreen(value, null)
-                        editor?.let { nav.push(it) { refreshCounter++ } }
-                    }
-                }
+                val editor = StorableEntity.getEditorScreen(value, null)
+                editor?.let { nav.push(it) { refreshCounter++ } }
             },
             onDismiss = { showTypeChooser = false },
         )
