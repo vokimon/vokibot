@@ -84,7 +84,11 @@ fun EntityTypePicker(
                             .clickable {
                                 StorableEntity
                                     .getEditorScreen(type.typeKey, null)
-                                    ?.let { nav.push(it) { } }
+                                    ?.let {
+                                        nav.push(it) {
+                                            nav.pop()
+                                        }
+                                    }
                             },
                 )
                 HorizontalDivider()
