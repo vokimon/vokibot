@@ -16,6 +16,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -34,9 +35,7 @@ fun EntityTypePicker(
         modifier = modifier,
     ) {
         EditorHeader(
-            icon =
-                androidx.compose.ui.res
-                    .painterResource(android.R.drawable.ic_menu_add),
+            icon = painterResource(android.R.drawable.ic_menu_add),
             title = title,
         )
 
@@ -67,9 +66,7 @@ fun EntityTypePicker(
                     },
                     leadingContent = {
                         Icon(
-                            painter =
-                                androidx.compose.ui.res
-                                    .painterResource(type.iconRes),
+                            painter = painterResource(type.iconRes),
                             contentDescription = null,
                             modifier = Modifier.size(40.dp),
                             tint = MaterialTheme.colorScheme.primary,
