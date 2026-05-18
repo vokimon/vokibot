@@ -54,7 +54,6 @@ fun TriggerList(
 ) {
     val context = LocalContext.current
     val repository = remember { FileDataRepository.fromContext(context) }
-    var showTypeChooser by remember { mutableStateOf(false) }
     var refreshCounter by remember { mutableIntStateOf(0) }
     var triggerToDelete by remember { mutableStateOf<Trigger?>(null) }
 
@@ -131,7 +130,7 @@ fun TriggerList(
         }
 
         FloatingActionButton(
-            onClick = { showTypeChooser = true },
+            onClick = { nav.push(TriggerTypePicker) { refreshCounter++ } },
             modifier = Modifier.align(Alignment.BottomEnd).padding(16.dp),
         ) {
             Icon(
@@ -159,25 +158,6 @@ fun TriggerList(
             }
         },
     )
-
-    if (showTypeChooser) {
-        ChooserDialog(
-            title = stringResource(R.string.triggerlist_create_title),
-            options =
-                Trigger.getRegisteredTypes().map {
-                    ChooserOption(value = it.typeKey, label = stringResource(it.labelRes))
-                },
-            selectedValue = "",
-            onConfirm = { triggerType ->
-                showTypeChooser = false
-                val editorScreen = StorableEntity.getEditorScreen(triggerType, null)
-                editorScreen?.let {
-                    nav.push(it) { refreshCounter++ }
-                }
-            },
-            onDismiss = { showTypeChooser = false },
-        )
-    }
 }
 
 @Composable

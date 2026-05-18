@@ -1,0 +1,21 @@
+package net.canvoki.vokibot
+
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import kotlinx.serialization.Serializable
+import net.canvoki.shared.component.StackNavigatorState
+import net.canvoki.shared.component.StackedScreen
+
+@Serializable
+data object CommandTypePicker : StackedScreen<Unit>() {
+    @Composable
+    override fun Screen(nav: StackNavigatorState) {
+        EntityTypePicker(
+            types = Command.getRegisteredTypes(),
+            nav = nav,
+            title = "Choose command type",
+            modifier = Modifier.fillMaxSize(),
+        )
+    }
+}

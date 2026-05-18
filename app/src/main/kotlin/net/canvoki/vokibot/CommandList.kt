@@ -58,7 +58,6 @@ fun CommandList(
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
     val repository = remember { FileDataRepository.fromContext(context) }
-    var showTypeChooser by remember { mutableStateOf(false) }
     var refreshCounter by remember { mutableIntStateOf(0) }
     var commandToDelete by remember { mutableStateOf<String?>(null) }
 
@@ -146,7 +145,7 @@ fun CommandList(
         }
 
         FloatingActionButton(
-            onClick = { showTypeChooser = true },
+            onClick = { nav.push(CommandTypePicker) { refreshCounter++ } },
             modifier = Modifier.align(Alignment.BottomEnd).padding(16.dp),
         ) {
             Icon(
@@ -173,26 +172,6 @@ fun CommandList(
             }
         },
     )
-
-    if (showTypeChooser) {
-        ChooserDialog(
-            title = stringResource(R.string.commandlist_create_command_title),
-            options =
-                Command.getRegisteredTypes().map { type ->
-                    ChooserOption(
-                        value = type.typeKey,
-                        label = stringResource(type.labelRes),
-                    )
-                },
-            selectedValue = "",
-            onConfirm = { value ->
-                showTypeChooser = false
-                val editor = StorableEntity.getEditorScreen(value, null)
-                editor?.let { nav.push(it) { refreshCounter++ } }
-            },
-            onDismiss = { showTypeChooser = false },
-        )
-    }
 }
 
 /**
