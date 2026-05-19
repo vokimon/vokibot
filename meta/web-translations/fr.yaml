@@ -2,23 +2,19 @@ LANGUAGE_NAME: Français
 MOTTO: Exécutez n'importe quelle action avec n'importe quel déclencheur
 DESCRIPTION: Outil d'automatisation pour Android
 KEYWORDS: android, automatisation, nfc, raccourci, déclencheur, floss, foss, open source, logiciel libre
-FEATURE_OFFICIAL_DATA_TITLE: Données officielles
-FEATURE_OFFICIAL_DATA_DESCRIPTION: |
-  Nous utilisons des données officielles envoyées par les stations‑service aux régulateurs.
-  Actuellement, nous couvrons l'Espagne, la France et le Portugal.
-FEATURE_OFFICIAL_DATA_ACTION_ADD_COUNTRY: Ajouter mon pays
-FEATURE_RELEVANT_STATIONS_TITLE: Stations pertinentes uniquement
-FEATURE_RELEVANT_STATIONS_DESCRIPTION: |
-  Carburoid élimine les stations qui n’améliorent pas le prix des plus proches.
-  Cela réduit la liste des candidats de milliers à quelques dizaines.
-FEATURE_YOUR_CHOICE_TITLE: Votre choix
-FEATURE_YOUR_CHOICE_DESCRIPTION: |
-  Les prix s’améliorent au fur et à mesure que vous descendez dans la liste, mais les distances augmentent aussi.
-  C’est à vous de décider jusqu’où il vaut la peine d’aller pour économiser.
-FEATURE_ROUND_TRIP_DETOUR_MODES_TITLE: Aller‑retour ou itinéraire avec détour
-FEATURE_ROUND_TRIP_DETOUR_MODES_DESCRIPTION: |
-  Le mode “Aller‑retour” ne prend en compte que la distance entre votre position et la station.
-  En définissant une destination, on calcule la distance incluant le détour.
+FEATURE_MULTIPLE_TRIGGERS_TITLE: Choisissez un déclencheur
+FEATURE_MULTIPLE_TRIGGERS_DESCRIPTION: |
+  Vous pouvez utiliser des <b>balises NFC</b> et des <b>raccourcis sur l'écran d'accueil</b> comme déclencheurs pour vos automatisations.
+  Conçu pour être <b>extensible</b>,
+  avec d'autres déclencheurs prévus à l'avenir tels que
+  les événements système, les gestes, la détection Wi-Fi/Bluetooth…
+FEATURE_MULTIPLE_COMMANDS_TITLE: Choisissez quoi exécuter
+FEATURE_MULTIPLE_COMMANDS_DESCRIPTION: |
+  Que pouvez-vous automatiser ?
+  Actuellement, vous pouvez <b>ouvrir n'importe quelle application</b>
+  ou accéder directement à un écran spécifique à l'intérieur.
+  Vous pouvez également accéder directement à une <b>page de paramètres système</b> spécifique.
+  Extensions futures : Basculer les paramètres, exécuter des scripts ADB, exécuter des scripts Python…
 FEATURE_FREEDOM_AS_FEATURE_TITLE: La liberté comme fonctionnalité
 FEATURE_FREEDOM_AS_FEATURE_DESCRIPTION: |
   L'AGPLv3 protège vos libertés en tant qu'utilisateur.
@@ -38,16 +34,3 @@ ACTION_SOCIAL: Suivez-nous
 ACTION_GOOGLE_PLAY: Google Play
 ACTION_APP_STORE: App Store
 COOKIE_NOTICE: Ce site n'utilise pas de cookies. Nous respectons vraiment votre vie privée.
-FEATURE_MULTIPLE_TRIGGERS_TITLE: Choisissez un déclencheur
-FEATURE_MULTIPLE_TRIGGERS_DESCRIPTION: |
-  Vous pouvez utiliser des <b>balises NFC</b> et des <b>raccourcis sur l'écran d'accueil</b> comme déclencheurs pour vos automatisations.
-  Conçu pour être <b>extensible</b>,
-  avec d'autres déclencheurs prévus à l'avenir tels que
-  les événements système, les gestes, la détection Wi-Fi/Bluetooth…
-FEATURE_MULTIPLE_COMMANDS_TITLE: Choisissez quoi exécuter
-FEATURE_MULTIPLE_COMMANDS_DESCRIPTION: |
-  Que pouvez-vous automatiser ?
-  Actuellement, vous pouvez <b>ouvrir n'importe quelle application</b>
-  ou accéder directement à un écran spécifique à l'intérieur.
-  Vous pouvez également accéder directement à une <b>page de paramètres système</b> spécifique.
-  Extensions futures : Basculer les paramètres, exécuter des scripts ADB, exécuter des scripts Python…

@@ -2,23 +2,19 @@ LANGUAGE_NAME: Euskara
 MOTTO: Exekutatu edozein ekintza edozein abiarazlerekin
 DESCRIPTION: Androiderako automatizazio tresna
 KEYWORDS: android, automatizazioa, nfc, lasterbidea, abiarazlea, floss, foss, kode irekia, software librea
-FEATURE_OFFICIAL_DATA_TITLE: Datu ofizialak
-FEATURE_OFFICIAL_DATA_DESCRIPTION: |
-  Gasolindegiek araudi‑erakundeei bidalitako datu ofizialak erabiltzen ditugu.
-  Une honetan Espainia, Frantzia eta Portugal estaltzen ditugu.
-FEATURE_OFFICIAL_DATA_ACTION_ADD_COUNTRY: Nire herrialdea gehitu
-FEATURE_RELEVANT_STATIONS_TITLE: Soilik egokiak diren estazioak
-FEATURE_RELEVANT_STATIONS_DESCRIPTION: |
-  Carburoid‑ek ez ditu kontuan hartzen hurbilen dagoen prezioa hobetu ez duten gasolindegiak.
-  Horrek hautagaien zerrenda mila batetik dozena batetara murrizten du.
-FEATURE_YOUR_CHOICE_TITLE: Zure hautua
-FEATURE_YOUR_CHOICE_DESCRIPTION: |
-  Prezioak hobetzen dira zerrendan behera egiten duzun heinean, baina distantziak ere handitzen dira.
-  Zure esku dago aurrezkiak merezi duen distantzia zehaztea.
-FEATURE_ROUND_TRIP_DETOUR_MODES_TITLE: Itzulingurua edo bidegabeko ibilbidea
-FEATURE_ROUND_TRIP_DETOUR_MODES_DESCRIPTION: |
-  “Itzulingurua” moduak zure kokapenetik gasolindegiraino dagoen distantzia bakarrik kontuan hartzen du.
-  Helmuga puntua ezarriz gero, bidegabeko ibilbidearekin batera kalkulatzen da.
+FEATURE_MULTIPLE_TRIGGERS_TITLE: Aukeratu abiarazle bat
+FEATURE_MULTIPLE_TRIGGERS_DESCRIPTION: |
+  <b>NFC etiketak</b> eta <b>hasierako pantailako lasterbideak</b> erabil ditzakezu zure automatizazioetarako abiarazle gisa.
+  <b>Hedagarria</b> izateko diseinatuta,
+  etorkizunerako abiarazle gehiago aurreikusita, hala nola
+  sistemako gertaerak, keinuak, Wi-Fi/Bluetooth detekzioa…
+FEATURE_MULTIPLE_COMMANDS_TITLE: Aukeratu zer exekutatu
+FEATURE_MULTIPLE_COMMANDS_DESCRIPTION: |
+  Zer automatiza dezakezu?
+  Une honetan, <b>edozein aplikazio ireki</b> dezakezu
+  edo bertako pantaila zehatz batera zuzenean jauzi egin.
+  Sistemako ezarpen-orri zehatz batera ere zuzenean jauzi egin dezakezu.
+  Etorkizuneko hedapenak: Ezarpenak aldatu, ADB scriptak exekutatu, Python scriptak exekutatu…
 FEATURE_FREEDOM_AS_FEATURE_TITLE: Askatasuna ezaugarri gisa
 FEATURE_FREEDOM_AS_FEATURE_DESCRIPTION: |
   AGPLv3 lizentziak zure askatasunak babesten ditu erabiltzaile gisa.
@@ -38,16 +34,3 @@ ACTION_SOCIAL: Jarrai gaitzazu
 ACTION_GOOGLE_PLAY: Google Play
 ACTION_APP_STORE: App Store
 COOKIE_NOTICE: Gune honek ez du cookie-rik erabiltzen. Zure pribatutasuna oso axola zaigu.
-FEATURE_MULTIPLE_TRIGGERS_TITLE: Aukeratu abiarazle bat
-FEATURE_MULTIPLE_TRIGGERS_DESCRIPTION: |
-  <b>NFC etiketak</b> eta <b>hasierako pantailako lasterbideak</b> erabil ditzakezu zure automatizazioetarako abiarazle gisa.
-  <b>Hedagarria</b> izateko diseinatuta,
-  etorkizunerako abiarazle gehiago aurreikusita, hala nola
-  sistemako gertaerak, keinuak, Wi-Fi/Bluetooth detekzioa…
-FEATURE_MULTIPLE_COMMANDS_TITLE: Aukeratu zer exekutatu
-FEATURE_MULTIPLE_COMMANDS_DESCRIPTION: |
-  Zer automatiza dezakezu?
-  Une honetan, <b>edozein aplikazio ireki</b> dezakezu
-  edo bertako pantaila zehatz batera zuzenean jauzi egin.
-  Sistemako ezarpen-orri zehatz batera ere zuzenean jauzi egin dezakezu.
-  Etorkizuneko hedapenak: Ezarpenak aldatu, ADB scriptak exekutatu, Python scriptak exekutatu…

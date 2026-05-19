@@ -1,44 +1,36 @@
 LANGUAGE_NAME: Andalûh
-MOTTO: Yena mâh barato, mâh çerca
-DESCRIPTION: Aplicaçión libre pa Android pa encontrâh gaçolinerâ baratâ
-KEYWORDS: gaçolinera, êttaçión de çerbiçio, combûttible, gaçoîh, diéçê, gaçolina, Android
-FEATURE_OFFICIAL_DATA_TITLE: Datô ofiçialê
-FEATURE_OFFICIAL_DATA_DESCRIPTION: |
-  Uçamô datô ofiçialê que embían lâ gaçolinerâ a lô reguladorê.
-  Âttuarmente cubrimô Êppaña, Françia y Portugâh.
-FEATURE_OFFICIAL_DATA_ACTION_ADD_COUNTRY: Añadîh mi paîh
-FEATURE_RELEVANT_STATIONS_TITLE: Çolo êttaçionê relebantê
-FEATURE_RELEVANT_STATIONS_DESCRIPTION: |
-  Carburoîh dêccarta lâ êttaçionê que no mehoran er preçio de otrâ mâh çercanâ.
-  Êtto reduçe la lîtta de candidatô de milê a unâ pocâ deçenâ.
-FEATURE_YOUR_CHOICE_TITLE: Tú deçidê
-FEATURE_YOUR_CHOICE_DESCRIPTION: |
-  Lô preçiô mehoran conforme bahâ en la lîtta, pero la dîttançia también aumenta.
-  Tú deçidê âtta dónde combiene îh pa aorrâh.
-FEATURE_ROUND_TRIP_DETOUR_MODES_TITLE: Ida y buerta o ruta con dêbbío
-FEATURE_ROUND_TRIP_DETOUR_MODES_DESCRIPTION: |
-  Er modo “Ida y buerta” çolo conçidera la dîttançia entre tu ubicaçión y la gaçolinera.
-  Çi fihâ un punto de dêttino, çe carcula la dîttançia incluyendo er dêbbío.
-FEATURE_FREEDOM_AS_FEATURE_TITLE: Libertá como funçionalidá
+MOTTO: Ehecuta cuarquiêh âççión con cuarquiêh dîpparadôh
+DESCRIPTION: Erramienta de automatiçaçión pa Androîh
+KEYWORDS: androîh, automatiçaçión, nfc, âççeço dirêtto, dîpparadôh, floss, foss, código abierto, çôttware libre
+FEATURE_MULTIPLE_TRIGGERS_TITLE: Elihe un dîpparadôh
+FEATURE_MULTIPLE_TRIGGERS_DESCRIPTION: |
+  Puedê uçâh <b>etiquetâ NFC</b> y <b>âççeçô dirêttô en la pantaya de iniçio</b> como dîpparadorê pa tû automatiçaçionê.
+  Diçeñao pa çêh <b>êttençible</b>,
+  con mâh dîpparadorê planeáô pa er futuro como
+  ebentô der çîttema, hêttô, detêççión Wi-Fi/Bluetooth…
+FEATURE_MULTIPLE_COMMANDS_TITLE: Elihe qué ehecutâh
+FEATURE_MULTIPLE_COMMANDS_DESCRIPTION: |
+  ¿Qué puedê automatiçâh?
+  Âttuarmente, puedê <b>abrîh cuarquiêh aplicaçión</b>
+  o çartâh dirêttamente a una pantaya êppeçífica dentro de eya.
+  También puedê çartâh dirêttamente a una <b>páhina de ahûttê der çîttema</b> êppeçífica.
+  Êttençionê futurâ: Cambiâh ahûttê, ehecutâh scrîtts ADB, ehecutâh scrîtts Python…
+FEATURE_FREEDOM_AS_FEATURE_TITLE: Libertá como carâtteríttica
 FEATURE_FREEDOM_AS_FEATURE_DESCRIPTION: |
-  La liçençia AGPL3 protehe tu libertá como uçuaria.
-  Er código lo mantiene la comunidá y cuarquiêh perçona puede auditâl-lo.
-  Çin êppíâ. Çin recolêççión de datô. Çin promoçión pagá de gaçolinerâ.
-  F‑Droid garantiça que lô binariô probienen der código fuente tar como çe publicó.
+  ÂPPRb3 protehe tû libertadê como uçuario.
+  Er código êh mantenío por la comunidá y cuarquiera puede auditâl-lo.
+  Çin spyware. Çin recopilaçión de datô. Çin publiçidá encubierta.
+  F-Droid açegura que lô binariô çe heneran únicamente dêdde er código fuente publicao çin adiçionê ocurtâ.
 FEATURE_FREEDOM_AS_FEATURE_ACTION_GITHUB: Código fuente
-FEATURE_FREEDOM_AS_FEATURE_ACTION_LICENSE: GNU Âffero AGPLv3 o pôtteriôh
+FEATURE_FREEDOM_AS_FEATURE_ACTION_LICENSE: GNU Âffero GPLv3 o pôtteriôh
 FEATURE_TRANSLATIONS_TITLE: Tradûççionê
 FEATURE_TRANSLATIONS_DESCRIPTION: |
-  Prêttamô êppeçiâh atençión al apoyo de lenguâ minoritariâ.
-  Êh un êffuerço comunitario — traduçe tu lengua con Weblate.
+  Çe prêtta êppeçiâh atençión ar çoporte de lenguâ minoritariâ y rehionalê.
+  Êtte êh un êffuerço comunitario; traduçe tu idioma con Weblate.
 FEATURE_TRANSLATIONS_ACTION_WEBLATE: Traduçîh
-ACTION_FDROID: Dîpponible en F‑Droid
-ACTION_DONATE: Âh una donaçión
+ACTION_FDROID: Conçígelo en F-Droid
+ACTION_DONATE: Donâh
 ACTION_SOCIAL: Çígenô
 ACTION_GOOGLE_PLAY: Google Play
-ACTION_APP_STORE: Âpp Store
-COOKIE_NOTICE: Êtte çitio no uça cookiê. Tu pribaçidá çí que nô importa de berdá.
-FEATURE_MULTIPLE_TRIGGERS_TITLE: Elihe un dîpparadôh
-FEATURE_MULTIPLE_TRIGGERS_DESCRIPTION: "Puedê uçâh <b>etiquetâ NFC</b> y <b>âççeçô dirêttô en la pantaya de iniçio</b> como dîpparadorê pa tû automatiçaçionê.\nDiçeñao pa çêh <b>êttençible</b>,\ncon mâh dîpparadorê planeáô pa er futuro como\nebentô der çîttema, hêttô, detêççión Wi-Fi/Bluetoôh…\n"
-FEATURE_MULTIPLE_COMMANDS_TITLE: Elihe qué ehecutâh
-FEATURE_MULTIPLE_COMMANDS_DESCRIPTION: "¿Qué puedê automatiçâh?\nÂttuarmente, puedê <b>abrîh cuarquiêh aplicaçión</b>\no çartâh dirêttamente a una pantaya êppeçífica dentro de eya.\nTambién puedê çartâh dirêttamente a una <b>páhina de ahûttê der çîttema</b> êppeçífica.\nÊttençionê futurâ: Cambiâh ahûttê, ehecutâh scrîtts ÂBB, ehecutâh scrîtts Pyton…\n"
+ACTION_APP_STORE: App Store
+COOKIE_NOTICE: Êtte çitio no uça cookiê. Nô importa muxo tu pribaçidá.
