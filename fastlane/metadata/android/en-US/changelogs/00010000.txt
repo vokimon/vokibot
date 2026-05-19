@@ -1,5 +1,3 @@
-# Change log
-
 ## 0.1.0 (2026-05-19)
 
 - ✨ Automations: Relate triggers to commands
@@ -12,3 +10,4 @@
 - ✨ SettingsPageCommand: Opens a system configuration page
 - 🌐 Translations: an, ar, ca, de, en, es, eu, fr, gl, pt, ru, andaluh
 - 💄 Material3 theming (light and dark)
+

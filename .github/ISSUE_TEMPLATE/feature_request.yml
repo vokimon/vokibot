@@ -1,0 +1,30 @@
+name: "✨ Feature request"
+description: Suggest an idea for VokiBot
+title: "✨ Feature: [brief description]"
+labels: [enhancement]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for your suggestion! Please fill out the form below.
+        Be as specific as possible—this helps us evaluate and implement your idea.
+
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Motivation
+      description: |
+        Describe the situation motivating this request
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution(s)
+      description: |
+        Explain in detail which solution(s) you propose to enhance VokiBot in such a situation.
+    validations:
+      required: true
+

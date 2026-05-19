@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" width="1024" height="500" viewBox="0 0 1024 500" version="1.1" id="svg1" sodipodi:docname="splash.svg" inkscape:version="1.4.2 (ebf0e940d0, 2025-05-08)">
+  <defs id="defs1"/>
+  <sodipodi:namedview id="namedview1" pagecolor="#505050" bordercolor="#ffffff" borderopacity="1" inkscape:showpageshadow="0" inkscape:pageopacity="0" inkscape:pagecheckerboard="1" inkscape:deskcolor="#d1d1d1" inkscape:zoom="0.706" inkscape:cx="379.6034" inkscape:cy="86.402266" inkscape:window-width="1829" inkscape:window-height="957" inkscape:window-x="0" inkscape:window-y="0" inkscape:window-maximized="1" inkscape:current-layer="svg1"/>
+  <!-- Background -->
+  <rect width="1024" height="500" fill="#111" id="rect1"/>
+  <!-- Icon: large, on the left -->
+  <path fill="#aa2233" d="m 253.03509,184.72494 v -20.56815 c 0,-11.3125 -9.25567,-20.56817 -20.56816,-20.56817 h -30.85225 c 0,-17.07158 -13.78067,-30.85225 -30.85225,-30.85225 -17.07157,0 -30.85225,13.78067 -30.85225,30.85225 h -30.85223 c -11.312492,0 -20.568167,9.25567 -20.568167,20.56817 v 20.56815 c -17.071576,0 -30.852246,13.78068 -30.852246,30.85225 0,17.07158 13.78067,30.85225 30.852246,30.85225 v 41.13633 c 0,11.31249 9.255675,20.56816 20.568167,20.56816 h 123.40898 c 11.31249,0 20.56816,-9.25567 20.56816,-20.56816 v -41.13633 c 17.07158,0 30.85225,-13.78067 30.85225,-30.85225 0,-17.07157 -13.78067,-30.85225 -30.85225,-30.85225 z m -128.55103,25.71021 c 0,-8.53578 6.89034,-15.42612 15.42612,-15.42612 8.5358,0 15.42613,6.89034 15.42613,15.42612 0,8.53579 -6.89033,15.42612 -15.42613,15.42612 -8.53578,0 -15.42612,-6.89033 -15.42612,-15.42612 z m 87.4147,56.56245 H 129.6261 v -20.56816 h 82.27266 z m -10.28408,-41.13633 c -8.53579,0 -15.42612,-6.89033 -15.42612,-15.42612 0,-8.53578 6.89033,-15.42612 15.42612,-15.42612 8.53578,0 15.42613,6.89034 15.42613,15.42612 0,8.53579 -6.89035,15.42612 -15.42613,15.42612 z" id="path1" style="stroke-width:1"/>
+  <!-- App Name -->
+  <text x="310" y="220" id="appname" font-family="'Google Sans', 'Helvetica Neue', sans-serif" font-size="64px" font-weight="700" fill="#aa2233" text-anchor="start">VokiBot</text>
+  <!-- Version -->
+  <text x="660" y="220" id="version" font-family="Google Sans, Helvetica Neue, sans-serif" font-size="52" font-weight="500" fill="#f0e0dd" text-anchor="start">0.1.0</text>
+  <!-- Motto -->
+  <text x="310" y="290" id="motto" font-family="Google Sans, Helvetica Neue, sans-serif" font-size="36" fill="#aa66aa" fill-opacity="0.7" text-anchor="start">
+    Run anything using any trigger
+  </text>
+</svg>

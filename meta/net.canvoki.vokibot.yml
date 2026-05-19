@@ -1,0 +1,30 @@
+Categories:
+- Navigation
+License: AGPL-3.0-or-later
+AuthorName: David García Garzón
+AuthorEmail: fdroid@canvoki.net
+AuthorWebSite: https://canvoki.net/coder
+SourceCode: https://github.com/vokimon/vokibot
+IssueTracker: https://github.com/vokimon/vokibot/issues
+Changelog: https://github.com/vokimon/vokibot/blob/HEAD/CHANGES.md
+
+AutoName: Voki Bot
+
+RepoType: git
+Repo: https://github.com/vokimon/vokibot.git
+Binaries: https://github.com/vokimon/vokibot/releases/download/vokibot-%v/net.canvoki.vokibot-%v-release.apk
+
+Builds:
+- versionName: 0.1.0
+  versionCode: 10000
+  commit: vokibot-0.1.0
+  subdir: .
+  submodules: true
+  gradle: true
+
+AllowedAPKSigningKeys: 9754033f7e40da57540f9bc23ea5a359368f502501fa7d122544899bc8d3c1f1
+
+AutoUpdateMode: Version
+UpdateCheckMode: Tags
+CurrentVersion: 0.1.0
+CurrentVersionCode: 10000

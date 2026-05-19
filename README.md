@@ -4,7 +4,7 @@
 <!--[![Get it on F-Droid](https://img.shields.io/f-droid/v/net.canvoki.vokibot.svg?logo=F-Droid)](https://f-droid.org/packages/net.canvoki.vokibot)-->
 <!--![GitHub Downloads](https://img.shields.io/github/downloads/vokimon/vokibot/total?logo=github)-->
 <!--<a rel="me" href="https://masto.es/@vokibot"><img alt="Mastodon" src="https://img.shields.io/mastodon/follow/116250870368086238?domain=masto.es"></a>-->
-![Voki Bot. On any trigger, run whatever](media/promo/banner.svg)
+![Voki Bot. On any trigger, run whatever](media/promo/splash.svg)
 
 # Voki Bot
 

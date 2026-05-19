@@ -11,3 +11,4 @@ app/debug/
 *.p12
 .env
 .*.sw?
+.kotlin
