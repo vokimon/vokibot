@@ -175,7 +175,7 @@ data class AutomationEditor(
                             }
                         }
                     Icon(
-                        painterResource(triggerInfo?.iconRes ?: R.drawable.ic_flash_on),
+                        painterResource(triggerInfo?.iconRes ?: Trigger.iconRes),
                         contentDescription = null,
                         tint = MaterialTheme.colorScheme.primary,
                         modifier = Modifier.size(24.dp),
