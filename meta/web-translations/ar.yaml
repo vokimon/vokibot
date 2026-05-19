@@ -1,0 +1,53 @@
+LANGUAGE_NAME: العربية
+MOTTO: شغّل أي إجراء باستخدام أي مُطلِق
+DESCRIPTION: أداة أتمتة لأندرويد
+KEYWORDS: أندرويد, أتمتة, NFC, اختصار, مُطلِق, برمجيات حرة, مفتوح المصدر
+FEATURE_OFFICIAL_DATA_TITLE: بيانات رسمية
+FEATURE_OFFICIAL_DATA_DESCRIPTION: |
+  نستخدم البيانات الرسمية التي ترسلها محطات الوقود إلى الجهات المنظمة.
+  نحن ندعم حاليًا إسبانيا وفرنسا والبرتغال.
+FEATURE_OFFICIAL_DATA_ACTION_ADD_COUNTRY: أضف بلدي
+FEATURE_RELEVANT_STATIONS_TITLE: المحطات المهمة فقط
+FEATURE_RELEVANT_STATIONS_DESCRIPTION: |
+  يقوم Carburoid باستبعاد المحطات التي لا تحسن السعر مقارنة بالأقرب.
+  هذا يقلل قائمة المرشحين من آلاف إلى بضع عشرات.
+FEATURE_YOUR_CHOICE_TITLE: اختيارك
+FEATURE_YOUR_CHOICE_DESCRIPTION: |
+  تتحسن الأسعار كلما انتقلت لأسفل القائمة، لكنها تزيد أيضًا المسافة.
+  الخيار لك في تحديد مدى الجدوى للمسافة مقابل التوفير.
+FEATURE_ROUND_TRIP_DETOUR_MODES_TITLE: وضع الذهاب والإياب أو طريق التحويل
+FEATURE_ROUND_TRIP_DETOUR_MODES_DESCRIPTION: |
+  وضع “الذهاب والإياب” يأخذ فقط في الاعتبار المسافة بين موقعك ومحطة الوقود.
+  عند تحديد نقطة وصول، يتم احتساب المسافة بما في ذلك التحويل إلى المحطة.
+FEATURE_FREEDOM_AS_FEATURE_TITLE: الحرية كميزة
+FEATURE_FREEDOM_AS_FEATURE_DESCRIPTION: |
+  تحمي رخصة AGPLv3 حرياتك كمستخدم.
+  يتم صيانة الكود من قبل المجتمع ويمكن لأي شخص مراجعته.
+  لا برامج تجسس. لا جمع للبيانات. لا إعلانات خفية.
+  تضمن F-Droid أن الملفات الثنائية تُولد فقط من المصدر المنشور دون إضافات مخفية.
+FEATURE_FREEDOM_AS_FEATURE_ACTION_GITHUB: الكود المصدري
+FEATURE_FREEDOM_AS_FEATURE_ACTION_LICENSE: GNU Affero GPLv3 أو أحدث
+FEATURE_TRANSLATIONS_TITLE: الترجمات
+FEATURE_TRANSLATIONS_DESCRIPTION: |
+  نولي عناية خاصة لدعم اللغات الأقلية والإقليمية.
+  هذا جهد مجتمعي؛ ترجم لغتك الخاصة باستخدام Weblate.
+FEATURE_TRANSLATIONS_ACTION_WEBLATE: ترجم
+ACTION_FDROID: احصل عليه من F-Droid
+ACTION_DONATE: تبرع
+ACTION_SOCIAL: تابعنا
+ACTION_GOOGLE_PLAY: Google Play
+ACTION_APP_STORE: App Store
+COOKIE_NOTICE: هذا الموقع لا يستخدم ملفات تعريف الارتباط (الكوكيز). نحن نهتم حقاً بخصوصيتك.
+FEATURE_MULTIPLE_TRIGGERS_TITLE: اختر مُطلِقًا
+FEATURE_MULTIPLE_TRIGGERS_DESCRIPTION: |
+  يمكنك استخدام <b>علامات NFC</b> و<b>اختصارات الشاشة الرئيسية</b> كمُطلِقات لأتمتتك.
+  مصمم ليكون <b>قابلاً للتوسع</b>،
+  مع خطط لإضافة مُطلِقات أخرى في المستقبل مثل
+  أحداث النظام، الإيماءات، وكشف الواي فاي/البلوتوث…
+FEATURE_MULTIPLE_COMMANDS_TITLE: اختر ما تريد تشغيله
+FEATURE_MULTIPLE_COMMANDS_DESCRIPTION: |
+  ماذا يمكنك أتمتة؟
+  حالياً، يمكنك <b>فتح أي تطبيق</b>
+  أو الانتقال مباشرة إلى شاشة محددة داخله.
+  يمكنك أيضاً الانتقال مباشرة إلى <b>صفحة إعدادات نظام</b> محددة.
+  امتدادات مستقبلية: تبديل الإعدادات، تشغيل نصوص ADB، تشغيل نصوص Python…

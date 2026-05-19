@@ -1,0 +1,53 @@
+LANGUAGE_NAME: Aragonés
+MOTTO: Executa qualsiquier acción con qualsiquier disparador
+DESCRIPTION: Ferramienta d'automatización ta Android
+KEYWORDS: android, automatización, nfc, drecera, disparador, floss, foss, codigo ubierto, software libre
+FEATURE_OFFICIAL_DATA_TITLE: Datos oficiales
+FEATURE_OFFICIAL_DATA_DESCRIPTION: |
+  Usamos datos oficiales que as benzineras remiten a os reguladors.
+  Agora mismo cubrimos España, Francia y Portugal.
+FEATURE_OFFICIAL_DATA_ACTION_ADD_COUNTRY: Afigir o mio país
+FEATURE_RELEVANT_STATIONS_TITLE: Solo benzineras rellevants
+FEATURE_RELEVANT_STATIONS_DESCRIPTION: |
+  Carburoid descarta as benzineras que no mejoran o precio d’otras más cercanas.
+  Esto reduce a lista de candidatas de millares a decenas.
+FEATURE_YOUR_CHOICE_TITLE: Tú decides
+FEATURE_YOUR_CHOICE_DESCRIPTION: |
+  Os precios mejoran conforme bajas por a lista, pero tamién crece a distancia.
+  Tú decides hasta qué punto ye faena d’anar por o ahorro.
+FEATURE_ROUND_TRIP_DETOUR_MODES_TITLE: Anada y tornada u ruta con desvío
+FEATURE_ROUND_TRIP_DETOUR_MODES_DESCRIPTION: |
+  O modo “Anada y tornada” solo considera a distancia entre a tuya ubicación y a benzinería.
+  Si fijas un punto destino, se calcula a distancia que implica o desvío ta a benzinería.
+FEATURE_FREEDOM_AS_FEATURE_TITLE: Libertat como característica
+FEATURE_FREEDOM_AS_FEATURE_DESCRIPTION: |
+  AGPLv3 protege as tuyas libertats como usuario.
+  O codigo ye manteniu por a comunidat y cualsiquier puede auditar-lo.
+  Sin spyware. Sin recolección de datos. Sin publicidat encubierta.
+  F-Droid asegura que os binarios se cheneran nomás dende o codigo fuente publicau sin adicions amagadas.
+FEATURE_FREEDOM_AS_FEATURE_ACTION_GITHUB: Codigo fuente
+FEATURE_FREEDOM_AS_FEATURE_ACTION_LICENSE: GNU Affero GPLv3 u posterior
+FEATURE_TRANSLATIONS_TITLE: Traduccions
+FEATURE_TRANSLATIONS_DESCRIPTION: |
+  Se presta especial atención a lo soporte de luengas minoritarias y rechionals.
+  Iste ye un esfuerzo comunitario; traduce a la tuya luenga con Weblate.
+FEATURE_TRANSLATIONS_ACTION_WEBLATE: Traducir
+ACTION_FDROID: Descargar en F-Droid
+ACTION_DONATE: Donar
+ACTION_SOCIAL: Sigue-nos
+ACTION_GOOGLE_PLAY: Google Play
+ACTION_APP_STORE: App Store
+COOKIE_NOTICE: Iste sitio no fa servir cookies. Nos importan muito as tuyas privacidat.
+FEATURE_MULTIPLE_TRIGGERS_TITLE: Esculle un disparador
+FEATURE_MULTIPLE_TRIGGERS_DESCRIPTION: |
+  Puetz fer servir <b>etiquetas NFC</b> y <b>dreceras d'a pantalla d'inicio</b> como disparadors ta las tuyas automatizacions.
+  Disenyau ta estar <b>extensible</b>,
+  con más disparadors planiaus ta o futuro como
+  eventos d'o sistema, chestos, detección Wi-Fi/Bluetooth…
+FEATURE_MULTIPLE_COMMANDS_TITLE: Esculle qué executar
+FEATURE_MULTIPLE_COMMANDS_DESCRIPTION: |
+  Qué puetz automatizar?
+  Actualment, puetz <b>ubrir qualsiquier aplicación</b>
+  u ir directament ta una pantalla especifica dentro d'ella.
+  Tamién puetz ir directament ta una <b>pachina d'ajustes d'o sistema</b> especifica.
+  Extensions futuras: Cambiar ajustes, executar scripts ADB, executar scripts Python…

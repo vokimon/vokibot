@@ -1,0 +1,53 @@
+LANGUAGE_NAME: Deutsch
+MOTTO: Jede Aktion mit jedem Auslöser starten
+DESCRIPTION: Android-Automatisierungstool
+KEYWORDS: android, automatisierung, nfc, kurztaste, auslöser, floss, foss, open source, freie software
+FEATURE_OFFICIAL_DATA_TITLE: Offizielle Daten
+FEATURE_OFFICIAL_DATA_DESCRIPTION: |
+  Wir verwenden offizielle Daten, die von Tankstellen an die Regulierungsbehörden gesendet werden.
+  Derzeit decken wir Spanien, Frankreich und Portugal ab.
+FEATURE_OFFICIAL_DATA_ACTION_ADD_COUNTRY: Mein Land hinzufügen
+FEATURE_RELEVANT_STATIONS_TITLE: Nur relevante Tankstellen
+FEATURE_RELEVANT_STATIONS_DESCRIPTION: |
+  Carburoid verwirft Tankstellen, die den Preis der nächstgelegenen nicht verbessern.
+  Dadurch wird die Kandidatenliste von Tausenden auf einige Dutzend reduziert.
+FEATURE_YOUR_CHOICE_TITLE: Deine Wahl
+FEATURE_YOUR_CHOICE_DESCRIPTION: |
+  Die Preise verbessern sich, je weiter du in der Liste nach unten gehst, aber die Entfernungen nehmen auch zu.
+  Du entscheidest, wie weit sich eine Fahrt für die Ersparnis lohnt.
+FEATURE_ROUND_TRIP_DETOUR_MODES_TITLE: Hin‑ und Rückfahrt oder Route mit Umweg
+FEATURE_ROUND_TRIP_DETOUR_MODES_DESCRIPTION: |
+  Der Modus “Hin‑ und Rückfahrt” berücksichtigt nur die Entfernung zwischen deinem Standort und der Tankstelle.
+  Bei Festlegung eines Ziels wird die Entfernung einschließlich des Umwegs berechnet.
+FEATURE_FREEDOM_AS_FEATURE_TITLE: Freiheit als Feature
+FEATURE_FREEDOM_AS_FEATURE_DESCRIPTION: |
+  AGPLv3 schützt deine Freiheiten als Nutzer.
+  Der Code wird von der Community gepflegt und jeder kann ihn auditieren.
+  Keine Spyware. Keine Datenerfassung. Keine versteckte Werbung.
+  F-Droid stellt sicher, dass Binärdateien nur aus dem veröffentlichten Quellcode ohne versteckte Zusätze erzeugt werden.
+FEATURE_FREEDOM_AS_FEATURE_ACTION_GITHUB: Quellcode
+FEATURE_FREEDOM_AS_FEATURE_ACTION_LICENSE: GNU Affero GPLv3 oder später
+FEATURE_TRANSLATIONS_TITLE: Übersetzungen
+FEATURE_TRANSLATIONS_DESCRIPTION: |
+  Minderheiten- und Regionalsprachen werden besonders unterstützt.
+  Dies ist ein Gemeinschaftsprojekt; übersetze deine Sprache mit Weblate.
+FEATURE_TRANSLATIONS_ACTION_WEBLATE: Übersetzen
+ACTION_FDROID: Bei F-Droid holen
+ACTION_DONATE: Spenden
+ACTION_SOCIAL: Folge uns
+ACTION_GOOGLE_PLAY: Google Play
+ACTION_APP_STORE: App Store
+COOKIE_NOTICE: Diese Website verwendet keine Cookies. Wir kümmern uns sehr um Ihre Privatsphäre.
+FEATURE_MULTIPLE_TRIGGERS_TITLE: Wähle einen Auslöser
+FEATURE_MULTIPLE_TRIGGERS_DESCRIPTION: |
+  Du kannst <b>NFC-Tags</b> und <b>Startbildschirm-Verknüpfungen</b> als Auslöser für deine Automatisierungen verwenden.
+  Entwickelt, um <b>erweiterbar</b> zu sein,
+  mit weiteren geplanten Auslösern wie
+  Systemereignissen, Gesten, Wi-Fi/Bluetooth-Erkennung…
+FEATURE_MULTIPLE_COMMANDS_TITLE: Wähle, was ausgeführt werden soll
+FEATURE_MULTIPLE_COMMANDS_DESCRIPTION: |
+  Was kannst du automatisieren?
+  Derzeit kannst du <b>jede Anwendung öffnen</b>
+  oder direkt zu einem bestimmten Bildschirm darin springen.
+  Du kannst auch direkt zu einer bestimmten <b>Systemeinstellungsseite</b> springen.
+  Zukünftige Erweiterungen: Einstellungen umschalten, ADB-Skripte ausführen, Python-Skripte ausführen…

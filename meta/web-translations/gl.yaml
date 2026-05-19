@@ -1,0 +1,53 @@
+LANGUAGE_NAME: Galego
+MOTTO: Executa calquera acción con calquera disparador
+DESCRIPTION: Ferramenta de automatización para Android
+KEYWORDS: android, automatización, nfc, atallo, disparador, floss, foss, código aberto, software libre
+FEATURE_OFFICIAL_DATA_TITLE: Datos oficiais
+FEATURE_OFFICIAL_DATA_DESCRIPTION: |
+  Usamos datos oficiais que envían as estacións de servizo aos reguladores.
+  Actualmente cubrimos España, Francia e Portugal.
+FEATURE_OFFICIAL_DATA_ACTION_ADD_COUNTRY: Engadir o meu país
+FEATURE_RELEVANT_STATIONS_TITLE: Só estacións relevantes
+FEATURE_RELEVANT_STATIONS_DESCRIPTION: |
+  Carburoid descarta estacións que non melloran o prezo das máis próximas.
+  Isto reduce a lista de candidatas de miles a unhas poucas decenas.
+FEATURE_YOUR_CHOICE_TITLE: Ti decides
+FEATURE_YOUR_CHOICE_DESCRIPTION: |
+  Os prezos melloran conforme baixas na lista, pero tamén aumentan as distancias.
+  Ti decides ata onde paga a pena ir polo aforro.
+FEATURE_ROUND_TRIP_DETOUR_MODES_TITLE: Ida e volta ou ruta con desvío
+FEATURE_ROUND_TRIP_DETOUR_MODES_DESCRIPTION: |
+  O modo “Ida e volta” só considera a distancia entre a túa posición e a estación.
+  Se marcas un punto de destino, calcúlase a distancia incluíndo o desvío.
+FEATURE_FREEDOM_AS_FEATURE_TITLE: Liberdade como característica
+FEATURE_FREEDOM_AS_FEATURE_DESCRIPTION: |
+  AGPLv3 protexe as túas liberdades como usuario.
+  O código é mantido pola comunidade e calquera pode auditalo.
+  Sen spyware. Sen recollida de datos. Sen publicidade encuberta.
+  F-Droid asegura que os binarios se xeran só dende o código fonte publicado sen adicións ocultas.
+FEATURE_FREEDOM_AS_FEATURE_ACTION_GITHUB: Código fonte
+FEATURE_FREEDOM_AS_FEATURE_ACTION_LICENSE: GNU Affero GPLv3 ou posterior
+FEATURE_TRANSLATIONS_TITLE: Traducións
+FEATURE_TRANSLATIONS_DESCRIPTION: |
+  Prestase especial atención ao soporte de linguas minoritarias e rexionais.
+  Este é un esforzo comunitario; traduce o teu idioma con Weblate.
+FEATURE_TRANSLATIONS_ACTION_WEBLATE: Traducir
+ACTION_FDROID: Descárgao en F-Droid
+ACTION_DONATE: Doar
+ACTION_SOCIAL: Sígue nos
+ACTION_GOOGLE_PLAY: Google Play
+ACTION_APP_STORE: App Store
+COOKIE_NOTICE: Este sitio non usa cookies. Impórtanos moito a túa privacidade.
+FEATURE_MULTIPLE_TRIGGERS_TITLE: Elixe un disparador
+FEATURE_MULTIPLE_TRIGGERS_DESCRIPTION: |
+  Podes usar <b>etiquetas NFC</b> e <b>atallos na pantalla de inicio</b> como disparadores para as túas automatizacións.
+  Deseñado para ser <b>extensible</b>,
+  con máis disparadores previstos para o futuro como
+  eventos do sistema, xestos, detección Wi-Fi/Bluetooth…
+FEATURE_MULTIPLE_COMMANDS_TITLE: Elixe qué executar
+FEATURE_MULTIPLE_COMMANDS_DESCRIPTION: |
+  Que podes automatizar?
+  Actualmente, podes <b>abrir calquera aplicación</b>
+  ou saltar directamente a unha pantalla específica dentro dela.
+  Tamén podes saltar directamente a unha <b>páxina de axustes do sistema</b> específica.
+  Extensións futuras: Cambiar axustes, executar scripts ADB, executar scripts Python…
