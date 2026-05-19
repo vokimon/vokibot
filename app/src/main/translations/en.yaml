@@ -143,8 +143,4 @@ entity_picker_command_type: Type of the new command
 settings_page_show_all: Show all pages
 settings_page_no_pages: No pages available
 settings_page_try: Try
-entity_picker_trigger_type: Type of the new trigger
-entity_picker_command_type: Type of the new command
-settings_page_show_all: Show all pages
-settings_page_no_pages: No pages available
-settings_page_try: Try
+automation_help: Bind commands to run when a trigger fires

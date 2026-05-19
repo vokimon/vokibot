@@ -143,3 +143,4 @@ entity_picker_command_type: Type de la nouvelle commande
 settings_page_show_all: Afficher toutes les pages
 settings_page_no_pages: Aucune page disponible
 settings_page_try: Essayer
+automation_help: Liez des commandes à exécuter lorsqu'un déclencheur s'active

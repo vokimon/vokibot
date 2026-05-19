@@ -143,3 +143,4 @@ entity_picker_command_type: نوع الإجراء الجديد
 settings_page_show_all: إظهار جميع الصفحات
 settings_page_no_pages: لا توجد صفحات متاحة
 settings_page_try: جرب
+automation_help: اربط الأوامر لتشغيلها عند إطلاق مُطلِق

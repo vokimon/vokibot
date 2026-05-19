@@ -129,7 +129,7 @@ sealed class ApplicationCommand : Command() {
     // TODO: Make iconRes composable to load dynamic icon from package manager
     @get:DrawableRes
     override val iconRes: Int
-        get() = R.drawable.ic_brand
+        get() = R.drawable.ic_apps
 
     /**
      * Serialize this command to JSON.
@@ -208,7 +208,7 @@ data class LaunchActivityCommand(
         override val typeKey = "launch_activity"
         override val entityClass = LaunchActivityCommand::class
         override val labelRes = R.string.command_type_launch_activity
-        override val iconRes = R.drawable.ic_brand
+        override val iconRes = R.drawable.ic_apps
         override val editorFactory = { _: String? -> AppList }
         override val deserializer = { jsonString: String -> fromJson(jsonString) }
         override val helpRes = R.string.command_launch_activity_help
@@ -264,7 +264,7 @@ data class SendBroadcastCommand(
         override val typeKey = "send_broadcast"
         override val entityClass = SendBroadcastCommand::class
         override val labelRes = R.string.command_type_send_broadcast
-        override val iconRes = R.drawable.ic_brand
+        override val iconRes = R.drawable.ic_apps
         override val editorFactory = { _: String? -> NotYetImplementedEditor }
         override val deserializer = { jsonString: String -> fromJson(jsonString) }
         override val helpRes = R.string.command_send_broadcast_help
@@ -319,7 +319,7 @@ data class StartServiceCommand(
         override val typeKey = "start_service"
         override val entityClass = StartServiceCommand::class
         override val labelRes = R.string.command_type_start_service
-        override val iconRes = R.drawable.ic_brand
+        override val iconRes = R.drawable.ic_apps
         override val editorFactory = { _: String? -> NotYetImplementedEditor }
         override val deserializer = { jsonString: String -> fromJson(jsonString) }
         override val helpRes = R.string.command_control_service_help
@@ -383,7 +383,7 @@ data class AccessProviderCommand(
         override val typeKey = "access_provider"
         override val entityClass = AccessProviderCommand::class
         override val labelRes = R.string.command_type_access_provider
-        override val iconRes = R.drawable.ic_brand
+        override val iconRes = R.drawable.ic_apps
         override val editorFactory = { _: String? -> NotYetImplementedEditor }
         override val deserializer = { jsonString: String -> fromJson(jsonString) }
         override val helpRes = R.string.command_access_provider_help

@@ -84,7 +84,7 @@ data object AutomationList : StackedScreen<Unit>() {
                     },
                     leadingContent = {
                         Icon(
-                            painter = painterResource(R.drawable.ic_check_circle),
+                            painter = painterResource(Automation.iconRes),
                             contentDescription = stringResource(R.string.automation_type_automation),
                             modifier = Modifier.size(40.dp),
                             tint = MaterialTheme.colorScheme.primary,

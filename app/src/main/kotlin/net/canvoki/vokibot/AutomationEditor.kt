@@ -112,7 +112,7 @@ data class AutomationEditor(
         ) {
             EditorHeader(
                 title = stringResource(R.string.automation_header),
-                icon = painterResource(R.drawable.ic_brand),
+                icon = painterResource(Automation.iconRes),
                 actionText = stringResource(R.string.automation_done),
                 action = {
                     val automation =

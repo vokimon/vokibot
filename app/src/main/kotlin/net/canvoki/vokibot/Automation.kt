@@ -31,10 +31,17 @@ data class Automation(
         get() = "$triggerType • ${commandIds.size} command(s)"
 
     @get:DrawableRes
-    override val iconRes: Int
-        get() = R.drawable.ic_check_circle
+    override val iconRes: Int get() = Companion.iconRes
 
-    companion object {
+    companion object : EntityMetadata {
+        override val typeKey = "automation"
+        override val entityClass = Automation::class
+        override val labelRes = R.string.automation_type_automation
+        override val iconRes = R.drawable.ic_smart_toy
+        override val editorFactory = { id: String? -> AutomationEditor(id) }
+        override val deserializer = { jsonString: String -> fromJson(jsonString) }
+        override val helpRes = R.string.automation_help
+
         fun fromJson(jsonString: String): Automation = JsonConfig.decodeFromString(serializer(), jsonString)
     }
 }
