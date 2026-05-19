@@ -144,3 +144,5 @@ settings_page_show_all: Alle Seiten anzeigen
 settings_page_no_pages: Keine Seiten verfügbar
 settings_page_try: Testen
 automation_help: Verknüpfe Aktionen, die ausgeführt werden, wenn ein Auslöser feuert
+triggerlist_header: Gespeicherte Auslöser
+commandlist_header: Gespeicherte Aktionen

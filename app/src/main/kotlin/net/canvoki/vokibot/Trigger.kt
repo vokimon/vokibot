@@ -15,6 +15,8 @@ import kotlin.reflect.KClass
 @Serializable
 abstract class Trigger : StorableEntity {
     companion object {
+        val iconRes = R.drawable.ic_flash_on
+
         /** Get all registered trigger types for UI listing */
         fun getRegisteredTypes(): List<EntityMetadata> = StorableEntity.registry.getRegisteredTypes(Trigger::class)
 

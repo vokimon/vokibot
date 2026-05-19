@@ -144,3 +144,5 @@ settings_page_show_all: Afficher toutes les pages
 settings_page_no_pages: Aucune page disponible
 settings_page_try: Essayer
 automation_help: Liez des commandes à exécuter lorsqu'un déclencheur s'active
+triggerlist_header: Déclencheurs enregistrés
+commandlist_header: Commandes enregistrées

@@ -144,3 +144,5 @@ settings_page_show_all: Mostra totes les pàgines
 settings_page_no_pages: No hi ha pàgines disponibles
 settings_page_try: Prova
 automation_help: Vincula accions per executar-les quan es dispara un disparador
+triggerlist_header: Disparadors desats
+commandlist_header: Accions desades

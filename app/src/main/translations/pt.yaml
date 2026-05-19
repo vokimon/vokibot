@@ -144,3 +144,5 @@ settings_page_show_all: Mostrar todas as páginas
 settings_page_no_pages: Nenhuma página disponível
 settings_page_try: Experimentar
 automation_help: Vincula comandos para executar quando um acionador é ativado
+triggerlist_header: Acionadores guardados
+commandlist_header: Comandos guardados

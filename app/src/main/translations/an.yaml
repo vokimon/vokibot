@@ -144,3 +144,5 @@ settings_page_show_all: Amostrar todas as pachinas
 settings_page_no_pages: No i ha pachinas disponibles
 settings_page_try: Prebar
 automation_help: Vincula accions ta executar-se quan se dispara un trigger
+triggerlist_header: Disparadors alzacaus
+commandlist_header: Accions alzacadas

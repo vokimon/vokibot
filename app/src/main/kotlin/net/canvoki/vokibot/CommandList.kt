@@ -3,7 +3,9 @@ package net.canvoki.vokibot
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -40,6 +42,7 @@ import net.canvoki.shared.component.ChooserOption
 import net.canvoki.shared.component.ContextualHelpButton
 import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
+import net.canvoki.vokibot.common.EditorHeader
 import net.canvoki.vokibot.common.toPainter
 
 @Serializable
@@ -62,86 +65,95 @@ fun CommandList(
     var commandToDelete by remember { mutableStateOf<String?>(null) }
 
     Box(modifier = modifier.fillMaxSize()) {
-        AsyncList(
-            refreshKeys = listOf(refreshCounter),
-            loader = { repository.loadAllCommands() },
-            itemKey = { it.id },
-            groupBy = { command -> command.type },
-            headerContent = { key: String ->
-                CommandGroupHeader(key)
-            },
-            notFoundMessage = stringResource(R.string.commandlist_not_found),
-        ) { command ->
-            var menuExpanded by remember { mutableStateOf(false) }
-
-            val componentIcon = remember(command.id) { command.loadIcon(context) }
-            val iconPainter = remember(componentIcon) { componentIcon.toPainter() }
-
-            ListItem(
-                headlineContent = { Text(command.title) },
-                supportingContent = {
-                    Text(
-                        text = command.description,
-                        style = MaterialTheme.typography.bodySmall,
-                        maxLines = 1,
-                    )
-                },
-                modifier = Modifier.clickable { nav.pop(command.id) },
-                leadingContent = {
-                    Image(
-                        painter = iconPainter,
-                        contentDescription = null,
-                        modifier = Modifier.size(40.dp),
-                    )
-                },
-                trailingContent = {
-                    IconButton(onClick = { menuExpanded = true }) {
-                        Icon(
-                            painter = painterResource(R.drawable.ic_more_vert),
-                            contentDescription = stringResource(R.string.commandlist_options_desc),
-                        )
-                    }
-                    DropdownMenu(
-                        expanded = menuExpanded,
-                        onDismissRequest = { menuExpanded = false },
-                    ) {
-                        DropdownMenuItem(
-                            text = {
-                                Text(stringResource(R.string.commandlist_run))
-                            },
-                            leadingIcon = {
-                                Icon(
-                                    painter = painterResource(R.drawable.ic_play_arrow),
-                                    contentDescription = null,
-                                )
-                            },
-                            onClick = {
-                                menuExpanded = false
-                                scope.launch {
-                                    try {
-                                        command.execute(context)
-                                    } catch (e: Exception) {
-                                        e.printStackTrace()
-                                    }
-                                }
-                            },
-                        )
-                        DropdownMenuItem(
-                            text = { Text(stringResource(R.string.commandlist_remove)) },
-                            leadingIcon = {
-                                Icon(
-                                    painter = painterResource(R.drawable.ic_delete),
-                                    contentDescription = null,
-                                )
-                            },
-                            onClick = {
-                                menuExpanded = false
-                                commandToDelete = command.id
-                            },
-                        )
-                    }
-                },
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.spacedBy(16.dp),
+        ) {
+            EditorHeader(
+                icon = painterResource(Command.iconRes),
+                title = stringResource(R.string.commandlist_header),
             )
+            AsyncList(
+                refreshKeys = listOf(refreshCounter),
+                loader = { repository.loadAllCommands() },
+                itemKey = { it.id },
+                groupBy = { command -> command.type },
+                headerContent = { key: String ->
+                    CommandGroupHeader(key)
+                },
+                notFoundMessage = stringResource(R.string.commandlist_not_found),
+            ) { command ->
+                var menuExpanded by remember { mutableStateOf(false) }
+
+                val componentIcon = remember(command.id) { command.loadIcon(context) }
+                val iconPainter = remember(componentIcon) { componentIcon.toPainter() }
+
+                ListItem(
+                    headlineContent = { Text(command.title) },
+                    supportingContent = {
+                        Text(
+                            text = command.description,
+                            style = MaterialTheme.typography.bodySmall,
+                            maxLines = 1,
+                        )
+                    },
+                    modifier = Modifier.clickable { nav.pop(command.id) },
+                    leadingContent = {
+                        Image(
+                            painter = iconPainter,
+                            contentDescription = null,
+                            modifier = Modifier.size(40.dp),
+                        )
+                    },
+                    trailingContent = {
+                        IconButton(onClick = { menuExpanded = true }) {
+                            Icon(
+                                painter = painterResource(R.drawable.ic_more_vert),
+                                contentDescription = stringResource(R.string.commandlist_options_desc),
+                            )
+                        }
+                        DropdownMenu(
+                            expanded = menuExpanded,
+                            onDismissRequest = { menuExpanded = false },
+                        ) {
+                            DropdownMenuItem(
+                                text = {
+                                    Text(stringResource(R.string.commandlist_run))
+                                },
+                                leadingIcon = {
+                                    Icon(
+                                        painter = painterResource(R.drawable.ic_play_arrow),
+                                        contentDescription = null,
+                                    )
+                                },
+                                onClick = {
+                                    menuExpanded = false
+                                    scope.launch {
+                                        try {
+                                            command.execute(context)
+                                        } catch (e: Exception) {
+                                            e.printStackTrace()
+                                        }
+                                    }
+                                },
+                            )
+                            DropdownMenuItem(
+                                text = { Text(stringResource(R.string.commandlist_remove)) },
+                                leadingIcon = {
+                                    Icon(
+                                        painter = painterResource(R.drawable.ic_delete),
+                                        contentDescription = null,
+                                    )
+                                },
+                                onClick = {
+                                    menuExpanded = false
+                                    commandToDelete = command.id
+                                },
+                            )
+                        }
+                    },
+                )
+            }
         }
 
         FloatingActionButton(

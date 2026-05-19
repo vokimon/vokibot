@@ -144,3 +144,5 @@ settings_page_show_all: Mostrar todas as páxinas
 settings_page_no_pages: Non hai páxinas dispoñibles
 settings_page_try: Probar
 automation_help: Vincula accións para executalas cando se dispara un disparador
+triggerlist_header: Disparadores gardados
+commandlist_header: Accións gardadas

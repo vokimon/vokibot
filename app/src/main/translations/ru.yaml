@@ -144,3 +144,5 @@ settings_page_show_all: Показать все страницы
 settings_page_no_pages: Нет доступных страниц
 settings_page_try: Попробовать
 automation_help: Привяжите команды для запуска при срабатывании триггера
+triggerlist_header: Сохранённые триггеры
+commandlist_header: Сохранённые команды

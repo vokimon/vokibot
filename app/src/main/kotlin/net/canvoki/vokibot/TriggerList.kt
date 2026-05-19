@@ -2,7 +2,9 @@ package net.canvoki.vokibot
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -38,6 +40,7 @@ import net.canvoki.shared.component.ChooserOption
 import net.canvoki.shared.component.ContextualHelpButton
 import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
+import net.canvoki.vokibot.common.EditorHeader
 
 @Serializable
 data object TriggerList : StackedScreen<Pair<String, String>>() {
@@ -58,75 +61,84 @@ fun TriggerList(
     var triggerToDelete by remember { mutableStateOf<Trigger?>(null) }
 
     Box(modifier = modifier.fillMaxSize()) {
-        AsyncList(
-            refreshKeys = listOf(refreshCounter),
-            loader = { repository.trigger.all() },
-            itemKey = { it.id },
-            groupBy = { it.type },
-            headerContent = { key -> TriggerGroupHeader(key) },
-            notFoundMessage = stringResource(R.string.triggerlist_not_found),
-        ) { trigger ->
-            var menuExpanded by remember { mutableStateOf(false) }
-
-            ListItem(
-                headlineContent = { Text(trigger.title) },
-                supportingContent = { Text(trigger.description) },
-                leadingContent = {
-                    Icon(
-                        painter = painterResource(trigger.iconRes),
-                        contentDescription = null,
-                        modifier = Modifier.size(40.dp),
-                        tint = MaterialTheme.colorScheme.primary,
-                    )
-                },
-                colors = ListItemDefaults.colors(containerColor = Color.Transparent),
-                modifier =
-                    Modifier.clickable {
-                        nav.pop(Pair(trigger.type, trigger.id))
-                    },
-                trailingContent = {
-                    IconButton(onClick = { menuExpanded = true }) {
-                        Icon(
-                            painter = painterResource(R.drawable.ic_more_vert),
-                            contentDescription = stringResource(R.string.triggerlist_options_desc),
-                        )
-                    }
-                    DropdownMenu(
-                        expanded = menuExpanded,
-                        onDismissRequest = { menuExpanded = false },
-                    ) {
-                        DropdownMenuItem(
-                            text = { Text(stringResource(R.string.triggerlist_edit)) },
-                            leadingIcon = {
-                                Icon(
-                                    painter = painterResource(R.drawable.ic_edit),
-                                    contentDescription = null,
-                                )
-                            },
-                            onClick = {
-                                menuExpanded = false
-                                val editorScreen = StorableEntity.getEditorScreen(trigger.type, trigger.id)
-                                editorScreen?.let {
-                                    nav.push(it) { refreshCounter++ }
-                                }
-                            },
-                        )
-                        DropdownMenuItem(
-                            text = { Text(stringResource(R.string.triggerlist_delete)) },
-                            leadingIcon = {
-                                Icon(
-                                    painter = painterResource(R.drawable.ic_delete),
-                                    contentDescription = null,
-                                )
-                            },
-                            onClick = {
-                                menuExpanded = false
-                                triggerToDelete = trigger
-                            },
-                        )
-                    }
-                },
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.spacedBy(16.dp),
+        ) {
+            EditorHeader(
+                icon = painterResource(Trigger.iconRes),
+                title = stringResource(R.string.triggerlist_header),
             )
+            AsyncList(
+                refreshKeys = listOf(refreshCounter),
+                loader = { repository.trigger.all() },
+                itemKey = { it.id },
+                groupBy = { it.type },
+                headerContent = { key -> TriggerGroupHeader(key) },
+                notFoundMessage = stringResource(R.string.triggerlist_not_found),
+            ) { trigger ->
+                var menuExpanded by remember { mutableStateOf(false) }
+
+                ListItem(
+                    headlineContent = { Text(trigger.title) },
+                    supportingContent = { Text(trigger.description) },
+                    leadingContent = {
+                        Icon(
+                            painter = painterResource(trigger.iconRes),
+                            contentDescription = null,
+                            modifier = Modifier.size(40.dp),
+                            tint = MaterialTheme.colorScheme.primary,
+                        )
+                    },
+                    colors = ListItemDefaults.colors(containerColor = Color.Transparent),
+                    modifier =
+                        Modifier.clickable {
+                            nav.pop(Pair(trigger.type, trigger.id))
+                        },
+                    trailingContent = {
+                        IconButton(onClick = { menuExpanded = true }) {
+                            Icon(
+                                painter = painterResource(R.drawable.ic_more_vert),
+                                contentDescription = stringResource(R.string.triggerlist_options_desc),
+                            )
+                        }
+                        DropdownMenu(
+                            expanded = menuExpanded,
+                            onDismissRequest = { menuExpanded = false },
+                        ) {
+                            DropdownMenuItem(
+                                text = { Text(stringResource(R.string.triggerlist_edit)) },
+                                leadingIcon = {
+                                    Icon(
+                                        painter = painterResource(R.drawable.ic_edit),
+                                        contentDescription = null,
+                                    )
+                                },
+                                onClick = {
+                                    menuExpanded = false
+                                    val editorScreen = StorableEntity.getEditorScreen(trigger.type, trigger.id)
+                                    editorScreen?.let {
+                                        nav.push(it) { refreshCounter++ }
+                                    }
+                                },
+                            )
+                            DropdownMenuItem(
+                                text = { Text(stringResource(R.string.triggerlist_delete)) },
+                                leadingIcon = {
+                                    Icon(
+                                        painter = painterResource(R.drawable.ic_delete),
+                                        contentDescription = null,
+                                    )
+                                },
+                                onClick = {
+                                    menuExpanded = false
+                                    triggerToDelete = trigger
+                                },
+                            )
+                        }
+                    },
+                )
+            }
         }
 
         FloatingActionButton(

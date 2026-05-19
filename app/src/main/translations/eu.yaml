@@ -144,3 +144,5 @@ settings_page_show_all: Erakutsi orri guztiak
 settings_page_no_pages: Ez dago orririk eskuragarri
 settings_page_try: Saiatu
 automation_help: Lotu ekintzak abiarazle bat aktibatzen denean exekutatzeko
+triggerlist_header: Gordetako abiarazleak
+commandlist_header: Gordetako ekintzak

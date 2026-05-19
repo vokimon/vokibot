@@ -21,6 +21,8 @@ abstract class Command : StorableEntity {
     open fun loadIcon(context: Context): Drawable = context.getDrawable(iconRes)!!
 
     companion object {
+        val iconRes = R.drawable.ic_task_alt
+
         fun getRegisteredTypes(): List<EntityMetadata> = StorableEntity.registry.getRegisteredTypes(Command::class)
 
         fun fromJson(jsonString: String): Command {
