@@ -17,9 +17,12 @@ branding:
   tertiary_color: "#f0e0dd"
   background_color: "#171117"
 actions:
-  - label: ACTION_FDROID
-    link: "https://f-droid.org/packages/net.canvoki.vokibot/"
-    icon: "../assets/fdroid.svg"
+  - link: https://github.com/vokimon/vokibot/releases
+    label: ACTION_GITHUB_DOWNLOAD
+    icon: ../assets/github.svg
+#  - label: ACTION_FDROID
+#    link: "https://f-droid.org/packages/net.canvoki.vokibot/"
+#    icon: "../assets/fdroid.svg"
 #  - label: ACTION_DONATE
 #    link: "https://patreon.com/miappgenial"
 #    icon: "../assets/patreon.svg"
