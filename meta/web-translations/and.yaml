@@ -1,6 +1,6 @@
 LANGUAGE_NAME: Andalûh
 MOTTO: Ehecuta cuarquiêh âççión con cuarquiêh dîpparadôh
-DESCRIPTION: Erramienta de automatiçaçión pa Androîh
+DESCRIPTION: Erramienta de automatiçaçión pa Android
 KEYWORDS: androîh, automatiçaçión, nfc, âççeço dirêtto, dîpparadôh, floss, foss, código abierto, çôttware libre
 FEATURE_MULTIPLE_TRIGGERS_TITLE: Elihe un dîpparadôh
 FEATURE_MULTIPLE_TRIGGERS_DESCRIPTION: |
@@ -22,7 +22,7 @@ FEATURE_FREEDOM_AS_FEATURE_DESCRIPTION: |
   Çin spyware. Çin recopilaçión de datô. Çin publiçidá encubierta.
   F-Droid açegura que lô binariô çe heneran únicamente dêdde er código fuente publicao çin adiçionê ocurtâ.
 FEATURE_FREEDOM_AS_FEATURE_ACTION_GITHUB: Código fuente
-FEATURE_FREEDOM_AS_FEATURE_ACTION_LICENSE: GNU Âffero GPLv3 o pôtteriôh
+FEATURE_FREEDOM_AS_FEATURE_ACTION_LICENSE: GNU Affero GPLv3 o pôtteriôh
 FEATURE_TRANSLATIONS_TITLE: Tradûççionê
 FEATURE_TRANSLATIONS_DESCRIPTION: |
   Çe prêtta êppeçiâh atençión ar çoporte de lenguâ minoritariâ y rehionalê.
