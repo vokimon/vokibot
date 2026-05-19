@@ -138,3 +138,8 @@ command_access_provider_help: |
   Lee o escribe datos compartidos expuestos por otras apps.
 
   Estos datos suelen ser contactos, calendarios o archivos multimedia.
+entity_picker_trigger_type: Tipo del nuevo disparador
+entity_picker_command_type: Tipo de la nueva acción
+settings_page_show_all: Mostrar todas las páginas
+settings_page_no_pages: No hay páginas disponibles
+settings_page_try: Probar

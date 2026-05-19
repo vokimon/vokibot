@@ -138,3 +138,13 @@ command_access_provider_help: |
   Reads or writes shared data exposed by other apps.
 
   This typically refers to contacts, calendars, or media files.
+entity_picker_trigger_type: Type of the new trigger
+entity_picker_command_type: Type of the new command
+settings_page_show_all: Show all pages
+settings_page_no_pages: No pages available
+settings_page_try: Try
+entity_picker_trigger_type: Type of the new trigger
+entity_picker_command_type: Type of the new command
+settings_page_show_all: Show all pages
+settings_page_no_pages: No pages available
+settings_page_try: Try

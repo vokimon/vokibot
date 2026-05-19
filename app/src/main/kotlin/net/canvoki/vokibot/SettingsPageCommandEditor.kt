@@ -82,7 +82,7 @@ data class SettingsPageCommandEditor(
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
-                    Text("Show all pages", style = MaterialTheme.typography.bodyMedium)
+                    Text(stringResource(R.string.settings_page_show_all), style = MaterialTheme.typography.bodyMedium)
                     Switch(
                         checked = showAll,
                         onCheckedChange = { showAll = it },
@@ -105,7 +105,7 @@ data class SettingsPageCommandEditor(
                 itemKey = { it.id },
                 groupBy = { it.category },
                 headerContent = { groupKey -> SettingsPageGroupHeader(groupKey) },
-                notFoundMessage = "No pages available",
+                notFoundMessage = stringResource(R.string.settings_page_no_pages),
             ) { page ->
                 val command = remember(page.id) { SettingsPageCommand(pageId = page.id) }
                 val icon = remember(command) { command.loadIcon(context) }
@@ -153,7 +153,7 @@ data class SettingsPageCommandEditor(
                     ) {
                         Icon(
                             painter = painterResource(R.drawable.ic_play_arrow),
-                            contentDescription = "Try",
+                            contentDescription = stringResource(R.string.settings_page_try),
                             tint = MaterialTheme.colorScheme.onSurfaceVariant,
                         )
                     }

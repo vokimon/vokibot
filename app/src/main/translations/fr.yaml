@@ -138,3 +138,8 @@ command_access_provider_help: |
   Lit ou écrit des données partagées exposées par d'autres applications.
 
   Il s'agit généralement de contacts, de calendriers ou de fichiers multimédias.
+entity_picker_trigger_type: Type du nouveau déclencheur
+entity_picker_command_type: Type de la nouvelle commande
+settings_page_show_all: Afficher toutes les pages
+settings_page_no_pages: Aucune page disponible
+settings_page_try: Essayer

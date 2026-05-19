@@ -138,3 +138,8 @@ command_access_provider_help: |
   Le u escribe datos compartius exposaus por atras apps.
 
   Estos datos suelen ser contactos, calendarios u fichers multimedia.
+entity_picker_trigger_type: Tipo d'o nuevo disparador
+entity_picker_command_type: Tipo d'a nueva acción
+settings_page_show_all: Amostrar todas as pachinas
+settings_page_no_pages: No i ha pachinas disponibles
+settings_page_try: Prebar

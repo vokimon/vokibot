@@ -138,3 +138,8 @@ command_access_provider_help: |
   يقرأ أو يكتب بيانات مشتركة تشاركها تطبيقات أخرى.
 
   تشمل عادةً جهات الاتصال أو التقويمات أو ملفات الوسائط.
+entity_picker_trigger_type: نوع المُطلِق الجديد
+entity_picker_command_type: نوع الإجراء الجديد
+settings_page_show_all: إظهار جميع الصفحات
+settings_page_no_pages: لا توجد صفحات متاحة
+settings_page_try: جرب
