@@ -38,3 +38,7 @@ ACTION_SOCIAL: Çígenô
 ACTION_GOOGLE_PLAY: Google Play
 ACTION_APP_STORE: Âpp Store
 COOKIE_NOTICE: Êtte çitio no uça cookiê. Tu pribaçidá çí que nô importa de berdá.
+FEATURE_MULTIPLE_TRIGGERS_TITLE: Elihe un dîpparadôh
+FEATURE_MULTIPLE_TRIGGERS_DESCRIPTION: "Puedê uçâh <b>etiquetâ NFC</b> y <b>âççeçô dirêttô en la pantaya de iniçio</b> como dîpparadorê pa tû automatiçaçionê.\nDiçeñao pa çêh <b>êttençible</b>,\ncon mâh dîpparadorê planeáô pa er futuro como\nebentô der çîttema, hêttô, detêççión Wi-Fi/Bluetoôh…\n"
+FEATURE_MULTIPLE_COMMANDS_TITLE: Elihe qué ehecutâh
+FEATURE_MULTIPLE_COMMANDS_DESCRIPTION: "¿Qué puedê automatiçâh?\nÂttuarmente, puedê <b>abrîh cuarquiêh aplicaçión</b>\no çartâh dirêttamente a una pantaya êppeçífica dentro de eya.\nTambién puedê çartâh dirêttamente a una <b>páhina de ahûttê der çîttema</b> êppeçífica.\nÊttençionê futurâ: Cambiâh ahûttê, ehecutâh scrîtts ÂBB, ehecutâh scrîtts Pyton…\n"
