@@ -1,45 +1,40 @@
 # Change log
 
-- [ ] Registry: Move serialization to the type info
-- [ ] TriggerList delete does not work for NFC (it does for shortcuts)
-- [ ] AutomationEditor: Renaming existing should rename, not duplicate
-- [ ] TriggerList: Chooser: add type icon
-- [ ] TriggerList: Chooser: remove radiobutton
-- [ ] Shortcut: Fix: Renaming does not rename Shortcut yet
-
-- [ ] Complete the dialog for Activities
-- [ ] Extract as composables the parts of the dialog that might be reused
-- [ ] Conditionally choose the Activity or no dialog depending of the kind
+- [ ] Add EditorHeader to Trigger/CommandList "Saved Triggers/Commands"
+- [ ] Complete the editor for ActivityLaunchCommand
+    - [ ] IntentEditor: Action select with icons
+    - [ ] IntentEditor: Action select in a dialog with scroll
+    - [ ] IntentEditor: Add custom Extras (choose name and type)
+    - [ ] IntentEditor: Delete Extra
+    - [ ] IntentEditor: On change action, remove empty extras, keep filled
+    - [ ] Extract as composables the parts of the editor that might be reused
 - [ ] Progressively, one component kind at a time, add the dialog of that kind of App component, reusing parts of Activity and composing its ApplicationCommand.
 - [ ] Command Menu: "Edit"
-- [ ] Use UserMessage for Try errors
+- [ ] Magic naming: icon button to assign a default name from content in the name editor. Show when empty instead of delete button.
+- [ ] Use UserMessage for "Try" button errors
 - [ ] ApplicationCommand: Overwrite dialog: if not confirm, back to ask the name not full cancell
 - [ ] Save dialog: smarter default naming, not just the app name
 - [ ] AppList: Filter sheet gets cropped on landscape
-- [ ] IntentEditor: Action select with icons
-- [ ] IntentEditor: Action select in a dialog with scroll
-- [ ] IntentEditor: Add custom Extras (choose name and type)
-- [ ] IntentEditor: Delete Extra
-- [ ] IntentEditor: On change action, remove empty extras, keep filled
 - [ ] Saved Commands: List splitted by types, every type `+` to add a new command
 - [ ] Application Command type: List application
 
-
-- [ ] List actionable Services 
-    - PackageInfo.services
-    - pm.queryIntentServices(intent, 0)
-    - background capabilites
-- [ ] List actionable Receivers
-    - PackageInfo.receivers
-    - pm.queryBroadcastReceivers(intent, 0)
-    - not that interesting, maybe we could inverse engineer custom app events we could also subscribe
-- [ ] List providers
-    - PackageInfo.providers
-    - pm.resolveContentProvider(authority, 0)
-
+- [ ] System discoverability
+    - [ ] List actionable Services 
+        - PackageInfo.services
+        - pm.queryIntentServices(intent, 0)
+        - background capabilites
+    - [ ] List actionable Receivers
+        - PackageInfo.receivers
+        - pm.queryBroadcastReceivers(intent, 0)
+        - not that interesting, maybe we could inverse engineer custom app events we could also subscribe
+    - [ ] List providers
+        - PackageInfo.providers
+        - pm.resolveContentProvider(authority, 0)
 
 - More commands:
-    - [ ] Open settings page: <https://developer.android.com/reference/android/provider/Settings#ACTION_APPLICATION_DEVELOPMENT_SETTINGS>
+    - [ ] Airplaine mode on/off
+    - [ ] Enable/Disable/Connect Bluetooth 
+    - [ ] Enable/Disable/Connect Wi-Fi
 - More triggers:
     - [ ] On broadcast received
     - [ ] On notification received
@@ -98,9 +93,18 @@
         }
 
 
- ## Done
+## Done
 
  
+## Done 0.1.0
+
+- [x] TriggerList delete does not work for NFC (it does for shortcuts)
+- [x] AutomationEditor: Renaming existing should rename, not duplicate
+- [x] TriggerList: Chooser: add type icon
+- [x] TriggerList: Chooser: remove radiobutton
+- [x] Shortcut: Fix: Renaming does not rename Shortcut yet
+- [x] Registry: Move serialization to the type info
+- [x] Open settings page: <https://developer.android.com/reference/android/provider/Settings#ACTION_APPLICATION_DEVELOPMENT_SETTINGS>
 - [x] New Trigger: Shortcut
 - [x] New Trigger: Nfc Tag
 - [x] Push the retrieved PublicComponent to the IntentEditor
