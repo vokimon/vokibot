@@ -254,20 +254,11 @@ data class AutomationEditor(
                                     horizontalArrangement = Arrangement.spacedBy(12.dp),
                                 ) {
                                     val icon = remember(command.id) { command.loadIcon(context) }
-                                    if (icon != null) {
-                                        Image(
-                                            painter = drawableToPainter(icon),
-                                            contentDescription = null,
-                                            modifier = Modifier.size(40.dp),
-                                        )
-                                    } else {
-                                        Icon(
-                                            painterResource(command.iconRes),
-                                            contentDescription = null,
-                                            modifier = Modifier.size(40.dp),
-                                            tint = MaterialTheme.colorScheme.onSurfaceVariant,
-                                        )
-                                    }
+                                    Image(
+                                        painter = drawableToPainter(icon),
+                                        contentDescription = null,
+                                        modifier = Modifier.size(40.dp),
+                                    )
                                     Column {
                                         Text(
                                             command.title,
