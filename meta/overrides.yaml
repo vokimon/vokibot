@@ -1,0 +1,15 @@
+license: AGPL-3.0-or-later # or-later not autodetected
+version_tag_prefix: vokibot-
+motto: Run any action using any trigger
+keywords:
+- automation
+- nfc
+- timer
+- shortcut
+fdroid_categories:
+- Navigation
+submodules: true
+fdroid_fields:
+  AuthorEmail: fdroid@canvoki.net
+  AuthorName: David García Garzón
+  AuthorWebSite: https://canvoki.net/coder

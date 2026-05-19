@@ -33,6 +33,7 @@ fun EntityTypePicker(
 ) {
     Column(
         modifier = modifier,
+        verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         EditorHeader(
             icon = painterResource(android.R.drawable.ic_menu_add),
