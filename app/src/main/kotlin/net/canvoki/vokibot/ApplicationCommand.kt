@@ -209,7 +209,13 @@ data class LaunchActivityCommand(
         override val entityClass = LaunchActivityCommand::class
         override val labelRes = R.string.command_type_launch_activity
         override val iconRes = R.drawable.ic_apps
-        override val editorFactory = { _: String? -> AppList }
+        override val editorFactory = { id: String? ->
+            if (FeatureFlag.enableDirectActivitySelection) {
+                ActivityLaunchCommandEditor
+            } else {
+                AppList
+            }
+        }
         override val deserializer = { jsonString: String -> fromJson(jsonString) }
         override val helpRes = R.string.command_launch_activity_help
 
