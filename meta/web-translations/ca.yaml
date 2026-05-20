@@ -15,7 +15,7 @@ FEATURE_MULTIPLE_COMMANDS_DESCRIPTION: |
   o saltar directament a una pantalla específica dins d'ella.
   També pots saltar directament a una <b>pàgina de configuració del sistema</b> específica.
   Extensions futures: Canviar configuracions, executar scripts ADB, executar scripts Python…
-FEATURE_FREEDOM_AS_FEATURE_TITLE: Llibertat com a funcionalitat
+FEATURE_FREEDOM_AS_FEATURE_TITLE: La llibertat com a funcionalitat
 FEATURE_FREEDOM_AS_FEATURE_DESCRIPTION: |
   L'AGPLv3 protegeix les teves llibertats com a usuari.
   El codi és mantingut per la comunitat i qualsevol pot auditar-lo.
