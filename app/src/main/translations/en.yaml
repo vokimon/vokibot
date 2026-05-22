@@ -14,6 +14,7 @@ app_list_filter_category_video: Video
 app_list_filter_category_social: Social
 app_list_filter_category_productivity: Productivity
 app_list_filter_category_other: Other
+intent_editor_select_app_and_screen: Select app and screen
 intent_editor_action_label: Action
 intent_editor_custom_or_none: Custom or none
 intent_editor_action_string_optional: Action string (optional)
@@ -74,6 +75,7 @@ triggerlist_delete_title: Delete tag?
 triggerlist_delete_message: This action cannot be undone.
 triggerlist_cancel: Cancel
 automation_header: Automation
+automation_help: Bind commands to run when a trigger fires
 automation_name_label: Automation name
 automation_name_placeholder: e.g. Morning routine, Leave home
 automation_trigger_label: Trigger
@@ -145,4 +147,3 @@ settings_page_no_pages: No pages available
 settings_page_try: Try
 triggerlist_header: Saved Triggers
 commandlist_header: Saved Commands
-automation_help: Bind commands to run when a trigger fires

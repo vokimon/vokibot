@@ -53,7 +53,7 @@ fun ActivityHeader(
             modifier = Modifier.size(48.dp),
         )
 
-        Spacer(modifier = Modifier.size(12.dp))
+        Spacer(modifier = Modifier.size(16.dp))
 
         Column {
             Text(component.label)

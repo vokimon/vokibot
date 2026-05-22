@@ -146,3 +146,4 @@ settings_page_try: Prebar
 automation_help: Vincula accions ta executar-se quan se dispara un trigger
 triggerlist_header: Disparadors alzacaus
 commandlist_header: Accions alzacadas
+intent_editor_select_app_and_screen: Esculle app y pantalla

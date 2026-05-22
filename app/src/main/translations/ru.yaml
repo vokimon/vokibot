@@ -146,3 +146,4 @@ settings_page_try: Попробовать
 automation_help: Привяжите команды для запуска при срабатывании триггера
 triggerlist_header: Сохранённые триггеры
 commandlist_header: Сохранённые команды
+intent_editor_select_app_and_screen: Выберите приложение и экран

@@ -146,3 +146,4 @@ settings_page_try: Prova
 automation_help: Vincula accions per executar-les quan es dispara un disparador
 triggerlist_header: Disparadors desats
 commandlist_header: Accions desades
+intent_editor_select_app_and_screen: Tria l'app i la pantalla

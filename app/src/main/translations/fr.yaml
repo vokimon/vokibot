@@ -146,3 +146,4 @@ settings_page_try: Essayer
 automation_help: Liez des commandes à exécuter lorsqu'un déclencheur s'active
 triggerlist_header: Déclencheurs enregistrés
 commandlist_header: Commandes enregistrées
+intent_editor_select_app_and_screen: Sélectionner l'app et l'écran

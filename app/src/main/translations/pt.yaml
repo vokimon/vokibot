@@ -146,3 +146,4 @@ settings_page_try: Experimentar
 automation_help: Vincula comandos para executar quando um acionador é ativado
 triggerlist_header: Acionadores guardados
 commandlist_header: Comandos guardados
+intent_editor_select_app_and_screen: Selecionar app e ecrã

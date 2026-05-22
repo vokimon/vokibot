@@ -146,3 +146,4 @@ settings_page_try: جرب
 automation_help: اربط الأوامر لتشغيلها عند إطلاق مُطلِق
 triggerlist_header: المُطلِقات المحفوظة
 commandlist_header: الإجراءات المحفوظة
+intent_editor_select_app_and_screen: اختر التطبيق والشاشة

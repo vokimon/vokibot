@@ -146,3 +146,4 @@ settings_page_try: Testen
 automation_help: Verknüpfe Aktionen, die ausgeführt werden, wenn ein Auslöser feuert
 triggerlist_header: Gespeicherte Auslöser
 commandlist_header: Gespeicherte Aktionen
+intent_editor_select_app_and_screen: App und Bildschirm auswählen

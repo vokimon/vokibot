@@ -146,3 +146,4 @@ settings_page_try: Probar
 automation_help: Vincula acciones para ejecutarse cuando se dispara un trigger
 triggerlist_header: Disparadores guardados
 commandlist_header: Acciones guardadas
+intent_editor_select_app_and_screen: Elige app y pantalla
