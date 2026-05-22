@@ -217,15 +217,21 @@ data class LaunchActivityCommand(
 
         fun register() = StorableEntity.register(this)
 
-        fun registerAsV2() = if (FeatureFlag.enableDirectActivitySelection) StorableEntity.register(object : EntityMetadata {
-            override val typeKey = "launch_activity_v2"
-            override val entityClass = LaunchActivityCommand::class
-            override val labelRes = R.string.command_type_launch_activity
-            override val iconRes = R.drawable.ic_apps
-            override val editorFactory = { id: String? -> ActivityLaunchCommandEditor }
-            override val deserializer = { jsonString: String -> fromJson(jsonString) }
-            override val helpRes = R.string.command_launch_activity_help
-        }) else {}
+        fun registerAsV2() =
+            if (FeatureFlag.enableDirectActivitySelection) {
+                StorableEntity.register(
+                    object : EntityMetadata {
+                        override val typeKey = "launch_activity_v2"
+                        override val entityClass = LaunchActivityCommand::class
+                        override val labelRes = R.string.command_type_launch_activity
+                        override val iconRes = R.drawable.ic_apps
+                        override val editorFactory = { id: String? -> ActivityLaunchCommandEditor }
+                        override val deserializer = { jsonString: String -> fromJson(jsonString) }
+                        override val helpRes = R.string.command_launch_activity_help
+                    },
+                )
+            } else {
+            }
     }
 }
 
