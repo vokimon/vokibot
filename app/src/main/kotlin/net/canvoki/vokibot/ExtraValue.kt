@@ -347,3 +347,9 @@ fun computeNewCustomSpecs(
         .filterValues { !it.isDefault() }
         .map { (k, v) -> ExtraSpec(k, v.toExtraType()) }
 }
+
+fun rebuildExtras(
+    values: Map<String, ExtraValue>,
+    actionSpecs: List<ExtraSpec>,
+    customSpecs: List<ExtraSpec>,
+): Map<String, ExtraValue> = emptyMap()

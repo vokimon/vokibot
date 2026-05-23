@@ -305,4 +305,30 @@ class ExtraValueTest {
             ),
         )
     }
+
+    // ---------- rebuildExtras ----------
+
+    private fun assertRebuiltExtras(
+        values: Map<String, ExtraValue>,
+        actionSpecs: List<ExtraSpec>,
+        customSpecs: List<ExtraSpec>,
+        expected: String,
+    ) {
+        val result = rebuildExtras(
+            values = values,
+            actionSpecs = actionSpecs,
+            customSpecs = customSpecs,
+        )
+        assertJsonEqual(expected, JsonConfig.encodeToString(result))
+    }
+
+    @Test
+    fun `rebuildExtras with empty specs returns empty`() {
+        assertRebuiltExtras(
+            values = emptyMap(),
+            actionSpecs = emptyList(),
+            customSpecs = emptyList(),
+            expected = "{}",
+        )
+    }
 }
