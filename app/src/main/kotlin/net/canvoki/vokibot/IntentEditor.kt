@@ -17,9 +17,9 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.ExposedDropdownMenuDefaults
-import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
@@ -203,7 +203,9 @@ fun IntentEditor(
 
     var selectedAction by remember { mutableStateOf<ActionDefinition?>(null) }
     var customAction by remember { mutableStateOf("") }
-    var extrasState by rememberSaveable(stateSaver = ExtraValueMapSaver) { mutableStateOf(emptyMap<String, ExtraValue>()) }
+    var extrasState by rememberSaveable(
+        stateSaver = ExtraValueMapSaver,
+    ) { mutableStateOf(emptyMap<String, ExtraValue>()) }
     var showNameDialog by remember { mutableStateOf(false) }
     var proposedName by remember { mutableStateOf(component.label) }
     var pendingCommand by remember { mutableStateOf<LaunchActivityCommand?>(null) }
@@ -316,7 +318,11 @@ fun IntentEditor(
                                     onValueChange = {},
                                     readOnly = true,
                                     label = { Text("Type") },
-                                    trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = typeExpanded) },
+                                    trailingIcon = {
+                                        ExposedDropdownMenuDefaults.TrailingIcon(
+                                            expanded = typeExpanded,
+                                        )
+                                    },
                                     modifier = Modifier.menuAnchor().fillMaxWidth(),
                                 )
                                 ExposedDropdownMenu(
@@ -326,7 +332,10 @@ fun IntentEditor(
                                     ExtraType.entries.forEach { type ->
                                         DropdownMenuItem(
                                             text = { Text(type.displayName) },
-                                            onClick = { newType = type; typeExpanded = false },
+                                            onClick = {
+                                                newType = type
+                                                typeExpanded = false
+                                            },
                                         )
                                     }
                                 }
