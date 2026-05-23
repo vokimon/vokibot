@@ -441,9 +441,7 @@ class ExtraValueTest {
                     ExtraSpec("extra1", ExtraType.INT),
                 ),
             customSpecs = emptyList(),
-            expected =
-                """{"extra1": {"type": "int", "value": 0}}""",
+            expected = """{"extra1": {"type": "int", "value": 0}}""",
         )
     }
-
 }

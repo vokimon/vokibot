@@ -21,6 +21,7 @@ import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -66,6 +67,16 @@ fun ActivityHeader(
 }
 
 @Composable
+fun SectionHeader(title: String) {
+    Text(
+        text = title,
+        color = MaterialTheme.colorScheme.tertiary,
+        style = MaterialTheme.typography.titleSmall,
+    )
+}
+
+
+@Composable
 fun IntentActionSelector(
     supportedActions: List<ActionDefinition>,
     onSelected: (ActionDefinition?) -> Unit,
@@ -91,7 +102,7 @@ fun IntentActionSelector(
     }
 
     Column {
-        Text(stringResource(R.string.intent_editor_action_label))
+        SectionHeader(stringResource(R.string.intent_editor_action_label))
 
         Spacer(modifier = Modifier.height(8.dp))
 

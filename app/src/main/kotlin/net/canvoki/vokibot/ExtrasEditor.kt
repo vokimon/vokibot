@@ -31,6 +31,7 @@ fun ExtrasSection(
     modifier: Modifier = Modifier,
 ) {
     Column(modifier = modifier) {
+        SectionHeader("Extra parameters")
         specs.forEach { spec ->
             val value = extras[spec.key] ?: spec.defaultValue()
             value.Editor(
