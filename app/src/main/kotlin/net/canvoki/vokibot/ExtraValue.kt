@@ -355,7 +355,7 @@ fun rebuildExtras(
     actionSpecs: List<ExtraSpec>,
     customSpecs: List<ExtraSpec>,
 ): Map<String, ExtraValue> =
-    actionSpecs
+    (actionSpecs + customSpecs)
         .map {
             it.key to (values[it.key] ?: it.defaultValue())
         }.toMap()

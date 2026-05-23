@@ -387,4 +387,17 @@ class ExtraValueTest {
             expected = """{"extra1": {"type": "string", "value": ""}}""",
         )
     }
+
+    @Test
+    fun `rebuildExtras uses custom specs as it uses action specs`() {
+        assertRebuiltExtras(
+            values = emptyMap(),
+            actionSpecs = emptyList(),
+            customSpecs =
+                listOf(
+                    ExtraSpec("extra1", ExtraType.STRING),
+                ),
+            expected = """{"extra1": {"type": "string", "value": ""}}""",
+        )
+    }
 }
