@@ -41,7 +41,7 @@ val ExtraSpecListSaver: Saver<List<ExtraSpec>, String> =
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ExtrasSection(
+fun ExtrasEditor(
     specs: List<ExtraSpec>,
     extras: Map<String, ExtraValue>,
     onExtraChanged: (key: String, value: ExtraValue) -> Unit,

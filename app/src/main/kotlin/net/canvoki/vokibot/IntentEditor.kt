@@ -285,7 +285,7 @@ fun IntentEditor(
             )
 
             Spacer(modifier = Modifier.height(16.dp))
-            ExtrasSection(
+            ExtrasEditor(
                 specs = allSpecs,
                 extras = extrasState,
                 onExtraChanged = { key, value -> extrasState = extrasState + (key to value) },
