@@ -249,10 +249,24 @@ class ExtraValueTest {
     )
 
     @Test
-    fun `computeNewCustomSpecs with empty extras and empty action specs returns empty list`() {
+    fun `computeNewCustomSpecs no data, returns empty list`() {
         assertSpecs(
             expected = "",
-            actual = computeNewCustomSpecs(emptyMap(), emptyList()),
+            actual = computeNewCustomSpecs(
+                extrasState = emptyMap(),
+                newActionExtras = emptyList(),
+            ),
+        )
+    }
+
+    @Test
+    fun `computeNewCustomSpecs with non-default not in command extras, returns it`() {
+        assertSpecs(
+            expected = "k: STRING",
+            actual = computeNewCustomSpecs(
+                extrasState = mapOf("k" to ExtraValue.StringValue("hello")),
+                newActionExtras = emptyList(),
+            ),
         )
     }
 }

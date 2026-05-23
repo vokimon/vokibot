@@ -340,4 +340,5 @@ fun ExtraValue.toExtraType(): ExtraType = when (this) {
 fun computeNewCustomSpecs(
     extrasState: Map<String, ExtraValue>,
     newActionExtras: List<ExtraSpec>,
-): List<ExtraSpec> = emptyList()
+): List<ExtraSpec> = extrasState
+    .map { (k, v) -> ExtraSpec(k, v.toExtraType()) }
