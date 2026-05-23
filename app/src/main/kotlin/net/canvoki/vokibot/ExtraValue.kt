@@ -336,3 +336,8 @@ fun ExtraValue.toExtraType(): ExtraType = when (this) {
     is ExtraValue.StringArrayValue -> ExtraType.STRING_ARRAY
     is ExtraValue.UriListValue -> ExtraType.URI_LIST
 }
+
+fun computeNewCustomSpecs(
+    extrasState: Map<String, ExtraValue>,
+    newActionExtras: List<ExtraSpec>,
+): List<ExtraSpec> = emptyList()

@@ -237,4 +237,22 @@ class ExtraValueTest {
     fun `UriListValue toExtraType is URI_LIST`() {
         checkExtraType(ExtraValue.UriListValue(emptyList()), ExtraType.URI_LIST)
     }
+
+    // ---------- computeNewCustomSpecs ----------
+
+    private fun assertSpecs(
+        expected: String,
+        actual: List<ExtraSpec>,
+    ) = assertEquals(
+        expected,
+        actual.joinToString("\n") { "${it.key}: ${it.type}" },
+    )
+
+    @Test
+    fun `computeNewCustomSpecs with empty extras and empty action specs returns empty list`() {
+        assertSpecs(
+            expected = "",
+            actual = computeNewCustomSpecs(emptyMap(), emptyList()),
+        )
+    }
 }
