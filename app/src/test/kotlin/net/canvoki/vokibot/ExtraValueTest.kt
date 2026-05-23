@@ -370,8 +370,21 @@ class ExtraValueTest {
                 ),
             customSpecs = emptyList(),
             expected =
-                """{"extra1": {"type": "string", "value": "value1"},"""+
+                """{"extra1": {"type": "string", "value": "value1"},""" +
                     """ "extra2": {"type": "int", "value": 666}}""",
+        )
+    }
+
+    @Test
+    fun `rebuildExtras action specs not in values get default values`() {
+        assertRebuiltExtras(
+            values = emptyMap(),
+            actionSpecs =
+                listOf(
+                    ExtraSpec("extra1", ExtraType.STRING),
+                ),
+            customSpecs = emptyList(),
+            expected = """{"extra1": {"type": "string", "value": ""}}""",
         )
     }
 }
