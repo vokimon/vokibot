@@ -428,4 +428,22 @@ class ExtraValueTest {
             expected = """{"extra1": {"type": "int", "value": 0}}""",
         )
     }
+
+    @Test
+    fun `rebuildExtras when values does not match spec type, reset to default`() {
+        assertRebuiltExtras(
+            values =
+                mapOf(
+                    "extra1" to ExtraValue.StringValue("value1"),
+                ),
+            actionSpecs =
+                listOf(
+                    ExtraSpec("extra1", ExtraType.INT),
+                ),
+            customSpecs = emptyList(),
+            expected =
+                """{"extra1": {"type": "int", "value": 0}}""",
+        )
+    }
+
 }
