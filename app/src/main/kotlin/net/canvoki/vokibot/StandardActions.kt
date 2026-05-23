@@ -13,6 +13,15 @@ enum class ExtraType {
     URI_LIST,
 }
 
+val ExtraType.displayName: String get() = when (this) {
+    ExtraType.STRING -> "Text"
+    ExtraType.URI -> "URI"
+    ExtraType.INT -> "Number"
+    ExtraType.BOOLEAN -> "Boolean"
+    ExtraType.STRING_ARRAY -> "Text list"
+    ExtraType.URI_LIST -> "URI list"
+}
+
 data class ExtraSpec(
     val key: String,
     val type: ExtraType,
