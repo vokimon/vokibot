@@ -331,4 +331,18 @@ class ExtraValueTest {
             expected = "{}",
         )
     }
+
+    @Test
+    fun `rebuildExtras keys in action spec are preserved`() {
+        assertRebuiltExtras(
+            values = mapOf(
+                "extra1" to ExtraValue.StringValue("value1"),
+            ),
+            actionSpecs = listOf(
+                ExtraSpec("extra1", ExtraType.STRING),
+            ),
+            customSpecs = emptyList(),
+            expected = """{"extra1": {"type": "string", "value": "value1"}}""",
+        )
+    }
 }

@@ -352,4 +352,4 @@ fun rebuildExtras(
     values: Map<String, ExtraValue>,
     actionSpecs: List<ExtraSpec>,
     customSpecs: List<ExtraSpec>,
-): Map<String, ExtraValue> = emptyMap()
+): Map<String, ExtraValue> = values
