@@ -260,7 +260,7 @@ class ExtraValueTest {
     }
 
     @Test
-    fun `computeNewCustomSpecs with non-default not in command extras, returns it`() {
+    fun `computeNewCustomSpecs not in command, include it`() {
         assertSpecs(
             expected = "k: STRING",
             actual = computeNewCustomSpecs(
@@ -271,12 +271,23 @@ class ExtraValueTest {
     }
 
     @Test
-    fun `computeNewCustomSpecs same key in command extras, returns empty`() {
+    fun `computeNewCustomSpecs already in command, exclude it`() {
         assertSpecs(
             expected = "",
             actual = computeNewCustomSpecs(
                 extrasState = mapOf("k" to ExtraValue.StringValue("hello")),
                 newActionExtras = listOf(ExtraSpec("k", ExtraType.STRING)),
+            ),
+        )
+    }
+
+    @Test
+    fun `computeNewCustomSpecs not in command but default value, exclude it`() {
+        assertSpecs(
+            expected = "",
+            actual = computeNewCustomSpecs(
+                extrasState = mapOf("k" to ExtraValue.StringValue("")),
+                newActionExtras = emptyList(),
             ),
         )
     }

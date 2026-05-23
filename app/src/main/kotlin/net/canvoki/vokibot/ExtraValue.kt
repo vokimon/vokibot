@@ -344,5 +344,6 @@ fun computeNewCustomSpecs(
     val actionKeys = newActionExtras.map { it.key }.toSet()
     return extrasState
         .filterKeys { it !in actionKeys }
+        .filterValues { !it.isDefault() }
         .map { (k, v) -> ExtraSpec(k, v.toExtraType()) }
 }
