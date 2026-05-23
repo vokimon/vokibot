@@ -389,6 +389,16 @@ class ExtraValueTest {
     }
 
     @Test
+    fun `rebuildExtras default is type aware`() {
+        assertRebuiltExtras(
+            values = emptyMap(),
+            actionSpecs = listOf(ExtraSpec("extra1", ExtraType.INT)),
+            customSpecs = emptyList(),
+            expected = """{"extra1": {"type": "int", "value": 0}}""",
+        )
+    }
+
+    @Test
     fun `rebuildExtras uses custom specs as it uses action specs`() {
         assertRebuiltExtras(
             values = emptyMap(),
@@ -398,6 +408,24 @@ class ExtraValueTest {
                     ExtraSpec("extra1", ExtraType.STRING),
                 ),
             expected = """{"extra1": {"type": "string", "value": ""}}""",
+        )
+    }
+
+    @Test
+    fun `rebuildExtras conflicting action and custom specs, custom is taken`() {
+        // This behaviour is not specified, just tested to document what it does.
+        // computeNewCustomSpecs ensures both specs are disjoint.
+        assertRebuiltExtras(
+            values = emptyMap(),
+            actionSpecs =
+                listOf(
+                    ExtraSpec("extra1", ExtraType.STRING),
+                ),
+            customSpecs =
+                listOf(
+                    ExtraSpec("extra1", ExtraType.INT),
+                ),
+            expected = """{"extra1": {"type": "int", "value": 0}}""",
         )
     }
 }
