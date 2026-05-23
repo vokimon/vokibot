@@ -243,3 +243,12 @@ object StandardActions {
 
     fun probeStrategy(action: String?): ProbeStrategy = get(action)?.probeStrategy ?: ProbeStrategy.ACTION_ONLY
 }
+
+fun ExtraSpec.defaultValue(): ExtraValue = when (type) {
+    ExtraType.STRING -> ExtraValue.StringValue("")
+    ExtraType.URI -> ExtraValue.UriValue("")
+    ExtraType.INT -> ExtraValue.IntValue(0)
+    ExtraType.BOOLEAN -> ExtraValue.BooleanValue(false)
+    ExtraType.STRING_ARRAY -> ExtraValue.StringArrayValue(emptyList())
+    ExtraType.URI_LIST -> ExtraValue.UriListValue(emptyList())
+}

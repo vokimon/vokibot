@@ -92,6 +92,45 @@ sealed class ExtraValue {
             intent.putExtra(key, value)
         }
     }
+
+    @Serializable
+    @SerialName("uri")
+    data class UriValue(
+        val value: String,
+    ) : ExtraValue() {
+        override fun addToIntent(
+            intent: Intent,
+            key: String,
+        ) {
+            intent.putExtra(key, value.toUri())
+        }
+    }
+
+    @Serializable
+    @SerialName("string_array")
+    data class StringArrayValue(
+        val values: List<String>,
+    ) : ExtraValue() {
+        override fun addToIntent(
+            intent: Intent,
+            key: String,
+        ) {
+            intent.putExtra(key, values.toTypedArray())
+        }
+    }
+
+    @Serializable
+    @SerialName("uri_list")
+    data class UriListValue(
+        val values: List<String>,
+    ) : ExtraValue() {
+        override fun addToIntent(
+            intent: Intent,
+            key: String,
+        ) {
+            intent.putParcelableArrayListExtra(key, ArrayList(values.map { it.toUri() }))
+        }
+    }
 }
 
 /**

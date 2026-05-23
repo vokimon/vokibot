@@ -4,6 +4,7 @@ import net.canvoki.shared.test.assertEquals
 import net.canvoki.shared.test.assertJsonEqual
 import org.junit.Assert.assertTrue
 import org.junit.Test
+import kotlin.reflect.KClass
 
 class ApplicationCommandTest {
     // ---------- LaunchActivityCommand ----------
@@ -303,5 +304,90 @@ class ApplicationCommandTest {
             assertEquals(original.displayName, restored.displayName)
             assertEquals(original.packageName, restored.packageName)
         }
+    }
+
+    // ---------- ExtraValue type mapping ----------
+
+    private fun checkDefaultValue(
+        spec: ExtraSpec,
+        expectedClass: KClass<*>,
+    ) = assertEquals(expectedClass, spec.defaultValue()::class)
+
+    @Test
+    fun `defaultValue for URI returns UriValue`() {
+        checkDefaultValue(ExtraSpec("k", ExtraType.URI), ExtraValue.UriValue::class)
+    }
+
+    @Test
+    fun `defaultValue for STRING returns StringValue`() {
+        checkDefaultValue(ExtraSpec("k", ExtraType.STRING), ExtraValue.StringValue::class)
+    }
+
+    @Test
+    fun `defaultValue for INT returns IntValue`() {
+        checkDefaultValue(ExtraSpec("k", ExtraType.INT), ExtraValue.IntValue::class)
+    }
+
+    @Test
+    fun `defaultValue for BOOLEAN returns BooleanValue`() {
+        checkDefaultValue(ExtraSpec("k", ExtraType.BOOLEAN), ExtraValue.BooleanValue::class)
+    }
+
+    @Test
+    fun `defaultValue for STRING_ARRAY returns StringArrayValue`() {
+        checkDefaultValue(ExtraSpec("k", ExtraType.STRING_ARRAY), ExtraValue.StringArrayValue::class)
+    }
+
+    @Test
+    fun `defaultValue for URI_LIST returns UriListValue`() {
+        checkDefaultValue(ExtraSpec("k", ExtraType.URI_LIST), ExtraValue.UriListValue::class)
+    }
+
+    @Test
+    fun `StringValue serializes with string discriminator`() {
+        val json = JsonConfig.encodeToString(ExtraValue.StringValue("hello") as ExtraValue)
+        assertJsonEqual("""{"type": "string", "value": "hello"}""", json)
+    }
+
+    @Test
+    fun `IntValue serializes with int discriminator`() {
+        val json = JsonConfig.encodeToString(ExtraValue.IntValue(42) as ExtraValue)
+        assertJsonEqual("""{"type": "int", "value": 42}""", json)
+    }
+
+    @Test
+    fun `LongValue serializes with long discriminator`() {
+        val json = JsonConfig.encodeToString(ExtraValue.LongValue(123L) as ExtraValue)
+        assertJsonEqual("""{"type": "long", "value": 123}""", json)
+    }
+
+    @Test
+    fun `BooleanValue serializes with boolean discriminator`() {
+        val json = JsonConfig.encodeToString(ExtraValue.BooleanValue(true) as ExtraValue)
+        assertJsonEqual("""{"type": "boolean", "value": true}""", json)
+    }
+
+    @Test
+    fun `FloatValue serializes with float discriminator`() {
+        val json = JsonConfig.encodeToString(ExtraValue.FloatValue(3.14f) as ExtraValue)
+        assertJsonEqual("""{"type": "float", "value": 3.14}""", json)
+    }
+
+    @Test
+    fun `UriValue serializes with uri discriminator`() {
+        val json = JsonConfig.encodeToString(ExtraValue.UriValue("geo:0,0") as ExtraValue)
+        assertJsonEqual("""{"type": "uri", "value": "geo:0,0"}""", json)
+    }
+
+    @Test
+    fun `StringArrayValue serializes with string_array discriminator`() {
+        val json = JsonConfig.encodeToString(ExtraValue.StringArrayValue(listOf("a")) as ExtraValue)
+        assertJsonEqual("""{"type": "string_array", "values": ["a"]}""", json)
+    }
+
+    @Test
+    fun `UriListValue serializes with uri_list discriminator`() {
+        val json = JsonConfig.encodeToString(ExtraValue.UriListValue(listOf("geo:0,0")) as ExtraValue)
+        assertJsonEqual("""{"type": "uri_list", "values": ["geo:0,0"]}""", json)
     }
 }
