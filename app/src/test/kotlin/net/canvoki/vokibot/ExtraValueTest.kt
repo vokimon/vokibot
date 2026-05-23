@@ -291,4 +291,18 @@ class ExtraValueTest {
             ),
         )
     }
+
+    @Test
+    fun `computeNewCustomSpecs multiple orphans not in command, include all`() {
+        assertSpecs(
+            expected = "a: STRING\nb: INT",
+            actual = computeNewCustomSpecs(
+                extrasState = mapOf(
+                    "a" to ExtraValue.StringValue("hello"),
+                    "b" to ExtraValue.IntValue(42),
+                ),
+                newActionExtras = emptyList(),
+            ),
+        )
+    }
 }
