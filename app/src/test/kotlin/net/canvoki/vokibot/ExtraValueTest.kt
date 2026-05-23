@@ -262,9 +262,9 @@ class ExtraValueTest {
     @Test
     fun `computeNewCustomSpecs not in command, include it`() {
         assertSpecs(
-            expected = "k: STRING",
+            expected = "extra1: STRING",
             actual = computeNewCustomSpecs(
-                extrasState = mapOf("k" to ExtraValue.StringValue("hello")),
+                extrasState = mapOf("extra1" to ExtraValue.StringValue("value1")),
                 newActionExtras = emptyList(),
             ),
         )
@@ -275,8 +275,8 @@ class ExtraValueTest {
         assertSpecs(
             expected = "",
             actual = computeNewCustomSpecs(
-                extrasState = mapOf("k" to ExtraValue.StringValue("hello")),
-                newActionExtras = listOf(ExtraSpec("k", ExtraType.STRING)),
+                extrasState = mapOf("extra1" to ExtraValue.StringValue("value1")),
+                newActionExtras = listOf(ExtraSpec("extra1", ExtraType.STRING)),
             ),
         )
     }
@@ -286,7 +286,7 @@ class ExtraValueTest {
         assertSpecs(
             expected = "",
             actual = computeNewCustomSpecs(
-                extrasState = mapOf("k" to ExtraValue.StringValue("")),
+                extrasState = mapOf("extra1" to ExtraValue.StringValue("")),
                 newActionExtras = emptyList(),
             ),
         )
@@ -295,11 +295,11 @@ class ExtraValueTest {
     @Test
     fun `computeNewCustomSpecs multiple orphans not in command, include all`() {
         assertSpecs(
-            expected = "a: STRING\nb: INT",
+            expected = "extra1: STRING\nextra2: INT",
             actual = computeNewCustomSpecs(
                 extrasState = mapOf(
-                    "a" to ExtraValue.StringValue("hello"),
-                    "b" to ExtraValue.IntValue(42),
+                    "extra1" to ExtraValue.StringValue("value1"),
+                    "extra2" to ExtraValue.IntValue(42),
                 ),
                 newActionExtras = emptyList(),
             ),
