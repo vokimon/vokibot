@@ -354,4 +354,4 @@ fun rebuildExtras(
     values: Map<String, ExtraValue>,
     actionSpecs: List<ExtraSpec>,
     customSpecs: List<ExtraSpec>,
-): Map<String, ExtraValue> = values.entries.take(1).associate { it.key to it.value}
+): Map<String, ExtraValue> = values

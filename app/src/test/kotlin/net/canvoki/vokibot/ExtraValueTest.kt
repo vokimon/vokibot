@@ -354,4 +354,24 @@ class ExtraValueTest {
             expected = """{"extra1": {"type": "string", "value": "value1"}}""",
         )
     }
+
+    @Test
+    fun `rebuildExtras multiple existing keys are preserved`() {
+        assertRebuiltExtras(
+            values =
+                mapOf(
+                    "extra1" to ExtraValue.StringValue("value1"),
+                    "extra2" to ExtraValue.IntValue(666),
+                ),
+            actionSpecs =
+                listOf(
+                    ExtraSpec("extra1", ExtraType.STRING),
+                    ExtraSpec("extra2", ExtraType.INT),
+                ),
+            customSpecs = emptyList(),
+            expected =
+                """{"extra1": {"type": "string", "value": "value1"},"""+
+                    """ "extra2": {"type": "int", "value": 666}}""",
+        )
+    }
 }
