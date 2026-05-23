@@ -20,7 +20,6 @@ import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -29,6 +28,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -200,7 +200,7 @@ fun IntentEditor(
 
     var selectedAction by remember { mutableStateOf<ActionDefinition?>(null) }
     var customAction by remember { mutableStateOf("") }
-    var extrasState by remember { mutableStateOf<Map<String, Any?>>(emptyMap()) }
+    var extrasState by rememberSaveable(stateSaver = ExtraValueMapSaver) { mutableStateOf(emptyMap<String, ExtraValue>()) }
     var showNameDialog by remember { mutableStateOf(false) }
     var proposedName by remember { mutableStateOf(component.label) }
     var pendingCommand by remember { mutableStateOf<LaunchActivityCommand?>(null) }
@@ -234,21 +234,12 @@ fun IntentEditor(
 
     fun buildCommand(displayName: String): LaunchActivityCommand {
         val actionStr = selectedAction?.action ?: customAction.takeIf { it.isNotBlank() }
-        val typedExtras =
-            extrasState.mapValues { (_, v) ->
-                when (v) {
-                    is String -> ExtraValue.StringValue(v)
-                    is Int -> ExtraValue.IntValue(v)
-                    is Boolean -> ExtraValue.BooleanValue(v)
-                    else -> ExtraValue.StringValue(v?.toString() ?: "")
-                }
-            }
         return LaunchActivityCommand(
             displayName = displayName,
             packageName = packageName,
             className = component.name,
             action = actionStr,
-            extras = typedExtras,
+            extras = extrasState,
         )
     }
 
@@ -273,83 +264,12 @@ fun IntentEditor(
             )
 
             selectedAction?.let { action ->
-
                 Spacer(modifier = Modifier.height(16.dp))
-
-                action.extras.forEach { spec ->
-
-                    when (spec.type) {
-                        ExtraType.STRING -> {
-                            val value = extrasState[spec.key] as? String ?: ""
-
-                            OutlinedTextField(
-                                value = value,
-                                onValueChange = {
-                                    extrasState = extrasState + (spec.key to it)
-                                },
-                                label = { Text(spec.label) },
-                                modifier = Modifier.fillMaxWidth(),
-                            )
-                        }
-
-                        ExtraType.INT -> {
-                            val value = (extrasState[spec.key] as? Int)?.toString() ?: ""
-
-                            OutlinedTextField(
-                                value = value,
-                                onValueChange = {
-                                    extrasState = extrasState + (spec.key to it.toIntOrNull())
-                                },
-                                label = { Text(spec.label) },
-                                modifier = Modifier.fillMaxWidth(),
-                            )
-                        }
-
-                        ExtraType.BOOLEAN -> {
-                            val value = extrasState[spec.key] as? Boolean ?: false
-
-                            Row {
-                                Text(spec.label, modifier = Modifier.weight(1f))
-                                Switch(
-                                    checked = value,
-                                    onCheckedChange = {
-                                        extrasState = extrasState + (spec.key to it)
-                                    },
-                                )
-                            }
-                        }
-
-                        ExtraType.STRING_ARRAY -> {
-                            val value = extrasState[spec.key] as? String ?: ""
-
-                            OutlinedTextField(
-                                value = value,
-                                onValueChange = {
-                                    extrasState = extrasState + (spec.key to it)
-                                },
-                                label = { Text("${spec.label} (comma separated)") },
-                                modifier = Modifier.fillMaxWidth(),
-                            )
-                        }
-
-                        ExtraType.URI,
-                        ExtraType.URI_LIST,
-                        -> {
-                            val value = extrasState[spec.key] as? String ?: ""
-
-                            OutlinedTextField(
-                                value = value,
-                                onValueChange = {
-                                    extrasState = extrasState + (spec.key to it)
-                                },
-                                label = { Text(spec.label) },
-                                modifier = Modifier.fillMaxWidth(),
-                            )
-                        }
-                    }
-
-                    Spacer(modifier = Modifier.height(8.dp))
-                }
+                ExtrasSection(
+                    specs = action.extras,
+                    extras = extrasState,
+                    onExtraChanged = { key, value -> extrasState = extrasState + (key to value) },
+                )
             }
         }
 
