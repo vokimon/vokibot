@@ -24,6 +24,7 @@ but let's start humble.
     - Shortcuts (launcher icons)
 - Commands:
     - Run applications
+    - Open system configuration pages
 - License: AGPLv3+
 - Theming: Material3 light and dark
 - Languages: an, ar, ca, de, en, es, eu, fr, gl, pt, ru, andaluh (no iso yet)

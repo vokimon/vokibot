@@ -65,6 +65,7 @@ When using TDD (Beck/Fowler methodology):
 - Avoid multiple asserts in a single test
 - When asserting multiple parts of a structure, build a helper that dumps the structure as string and assert against expected output using `net.canvoki.shared.test.assertEquals` (supports colored multiline diff)
 - When testing multiple cases with the same logic, create a separate test method for each case; extract common code to a helper method with discriminant features as parameters
+- Asserting large structures, often became fragile. Concentrating in a helper the definition of the unrelevant parts of the structure, and parametrizing the relevant one, makes updating those irrelevan parts more easy
 - For setup objects, encapsulate common setup in a helper with parameters for what varies between cases; this makes each test case show only what differs
 
 **Rules**:

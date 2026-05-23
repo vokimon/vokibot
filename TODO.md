@@ -1,6 +1,6 @@
 # Change log
 
-- [ ] Add EditorHeader to Trigger/CommandList "Saved Triggers/Commands"
+- [x] Add EditorHeader to Trigger/CommandList "Saved Triggers/Commands"
 - [ ] Complete the editor for ActivityLaunchCommand
     - [ ] IntentEditor: Action select with icons
     - [ ] IntentEditor: Action select in a dialog with scroll
@@ -15,7 +15,6 @@
 - [ ] ApplicationCommand: Overwrite dialog: if not confirm, back to ask the name not full cancell
 - [ ] Save dialog: smarter default naming, not just the app name
 - [ ] AppList: Filter sheet gets cropped on landscape
-- [ ] Saved Commands: List splitted by types, every type `+` to add a new command
 - [ ] Application Command type: List application
 
 - [ ] System discoverability
