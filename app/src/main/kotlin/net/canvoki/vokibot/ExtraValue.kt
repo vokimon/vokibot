@@ -340,5 +340,9 @@ fun ExtraValue.toExtraType(): ExtraType = when (this) {
 fun computeNewCustomSpecs(
     extrasState: Map<String, ExtraValue>,
     newActionExtras: List<ExtraSpec>,
-): List<ExtraSpec> = extrasState
-    .map { (k, v) -> ExtraSpec(k, v.toExtraType()) }
+): List<ExtraSpec> {
+    val actionKeys = newActionExtras.map { it.key }.toSet()
+    return extrasState
+        .filterKeys { it !in actionKeys }
+        .map { (k, v) -> ExtraSpec(k, v.toExtraType()) }
+}

@@ -269,4 +269,15 @@ class ExtraValueTest {
             ),
         )
     }
+
+    @Test
+    fun `computeNewCustomSpecs same key in command extras, returns empty`() {
+        assertSpecs(
+            expected = "",
+            actual = computeNewCustomSpecs(
+                extrasState = mapOf("k" to ExtraValue.StringValue("hello")),
+                newActionExtras = listOf(ExtraSpec("k", ExtraType.STRING)),
+            ),
+        )
+    }
 }
