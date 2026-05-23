@@ -278,23 +278,21 @@ fun IntentEditor(
                 onCustomChanged = { customAction = it },
             )
 
-            selectedAction?.let { action ->
-                Spacer(modifier = Modifier.height(16.dp))
-                ExtrasSection(
-                    specs = allSpecs,
-                    extras = extrasState,
-                    onExtraChanged = { key, value -> extrasState = extrasState + (key to value) },
-                )
+            Spacer(modifier = Modifier.height(16.dp))
+            ExtrasSection(
+                specs = allSpecs,
+                extras = extrasState,
+                onExtraChanged = { key, value -> extrasState = extrasState + (key to value) },
+            )
 
-                Spacer(modifier = Modifier.height(8.dp))
-                OutlinedButton(
-                    onClick = { showAddExtraDialog = true },
-                    modifier = Modifier.fillMaxWidth(),
-                ) {
-                    Icon(painterResource(R.drawable.ic_add), contentDescription = null)
-                    Spacer(Modifier.size(4.dp))
-                    Text("Add extra parameter")
-                }
+            Spacer(modifier = Modifier.height(8.dp))
+            OutlinedButton(
+                onClick = { showAddExtraDialog = true },
+                modifier = Modifier.fillMaxWidth(),
+            ) {
+                Icon(painterResource(R.drawable.ic_add), contentDescription = null)
+                Spacer(Modifier.size(4.dp))
+                Text("Add extra parameter")
             }
 
             if (showAddExtraDialog) {
