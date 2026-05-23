@@ -3,7 +3,9 @@ package net.canvoki.vokibot
 import android.content.Intent
 import android.provider.MediaStore
 import android.speech.RecognizerIntent
+import kotlinx.serialization.Serializable
 
+@Serializable
 enum class ExtraType {
     STRING,
     URI,
@@ -22,6 +24,7 @@ val ExtraType.displayName: String get() = when (this) {
     ExtraType.URI_LIST -> "URI list"
 }
 
+@Serializable
 data class ExtraSpec(
     val key: String,
     val type: ExtraType,

@@ -17,6 +17,12 @@ val ExtraValueMapSaver: Saver<Map<String, ExtraValue>, String> =
         restore = { JsonConfig.decodeFromString(MapSerializer(serializer(), serializer()), it) },
     )
 
+val ExtraSpecListSaver: Saver<List<ExtraSpec>, String> =
+    Saver(
+        save = { JsonConfig.encodeToString(it) },
+        restore = { JsonConfig.decodeFromString(it) },
+    )
+
 @Composable
 fun ExtrasSection(
     specs: List<ExtraSpec>,

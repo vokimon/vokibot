@@ -210,6 +210,9 @@ fun IntentEditor(
     var showOverwriteDialog by remember { mutableStateOf(false) }
     var confirmName by remember { mutableStateOf<String?>(null) }
     var showAddExtraDialog by remember { mutableStateOf(false) }
+    var customExtraSpecs by rememberSaveable(stateSaver = ExtraSpecListSaver) { mutableStateOf(listOf<ExtraSpec>()) }
+
+    val allSpecs = (selectedAction?.extras ?: emptyList()) + customExtraSpecs
 
     val confirmMsg =
         confirmName?.let {
@@ -270,7 +273,7 @@ fun IntentEditor(
             selectedAction?.let { action ->
                 Spacer(modifier = Modifier.height(16.dp))
                 ExtrasSection(
-                    specs = action.extras,
+                    specs = allSpecs,
                     extras = extrasState,
                     onExtraChanged = { key, value -> extrasState = extrasState + (key to value) },
                 )
@@ -330,7 +333,17 @@ fun IntentEditor(
                             }
                         }
                     },
-                    confirmButton = { TextButton(onClick = { showAddExtraDialog = false }, enabled = newKey.isNotBlank()) { Text("Add") } },
+                    confirmButton = {
+                        TextButton(
+                            onClick = {
+                                val spec = ExtraSpec(key = newKey, type = newType, label = newKey)
+                                customExtraSpecs = customExtraSpecs + spec
+                                extrasState = extrasState + (newKey to spec.defaultValue())
+                                showAddExtraDialog = false
+                            },
+                            enabled = newKey.isNotBlank(),
+                        ) { Text("Add") }
+                    },
                     dismissButton = { TextButton(onClick = { showAddExtraDialog = false }) { Text("Cancel") } },
                 )
             }
