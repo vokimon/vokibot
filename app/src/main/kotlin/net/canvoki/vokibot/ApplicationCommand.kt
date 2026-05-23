@@ -6,6 +6,21 @@ import android.graphics.drawable.Drawable
 import android.net.Uri
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Switch
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -28,6 +43,13 @@ sealed class ExtraValue {
         key: String,
     )
 
+    @Composable
+    open fun Editor(
+        spec: ExtraSpec,
+        onChanged: (ExtraValue) -> Unit,
+    ) {
+    }
+
     @Serializable
     @SerialName("string")
     data class StringValue(
@@ -38,6 +60,24 @@ sealed class ExtraValue {
             key: String,
         ) {
             intent.putExtra(key, value)
+        }
+
+        @Composable
+        override fun Editor(
+            spec: ExtraSpec,
+            onChanged: (ExtraValue) -> Unit,
+        ) {
+            var text by remember { mutableStateOf(value) }
+            LaunchedEffect(value) { text = value }
+            OutlinedTextField(
+                value = text,
+                onValueChange = {
+                    text = it
+                    onChanged(copy(value = it))
+                },
+                label = { Text(spec.label) },
+                modifier = Modifier.fillMaxWidth(),
+            )
         }
     }
 
@@ -52,6 +92,24 @@ sealed class ExtraValue {
         ) {
             intent.putExtra(key, value)
         }
+
+        @Composable
+        override fun Editor(
+            spec: ExtraSpec,
+            onChanged: (ExtraValue) -> Unit,
+        ) {
+            var text by remember { mutableStateOf(value.toString()) }
+            LaunchedEffect(value) { text = value.toString() }
+            OutlinedTextField(
+                value = text,
+                onValueChange = {
+                    text = it
+                    it.toIntOrNull()?.let { v -> onChanged(copy(value = v)) }
+                },
+                label = { Text(spec.label) },
+                modifier = Modifier.fillMaxWidth(),
+            )
+        }
     }
 
     @Serializable
@@ -64,6 +122,24 @@ sealed class ExtraValue {
             key: String,
         ) {
             intent.putExtra(key, value)
+        }
+
+        @Composable
+        override fun Editor(
+            spec: ExtraSpec,
+            onChanged: (ExtraValue) -> Unit,
+        ) {
+            var text by remember { mutableStateOf(value.toString()) }
+            LaunchedEffect(value) { text = value.toString() }
+            OutlinedTextField(
+                value = text,
+                onValueChange = {
+                    text = it
+                    it.toLongOrNull()?.let { v -> onChanged(copy(value = v)) }
+                },
+                label = { Text(spec.label) },
+                modifier = Modifier.fillMaxWidth(),
+            )
         }
     }
 
@@ -78,6 +154,17 @@ sealed class ExtraValue {
         ) {
             intent.putExtra(key, value)
         }
+
+        @Composable
+        override fun Editor(
+            spec: ExtraSpec,
+            onChanged: (ExtraValue) -> Unit,
+        ) {
+            Row {
+                Text(spec.label, modifier = Modifier.weight(1f))
+                Switch(checked = value, onCheckedChange = { onChanged(copy(value = it)) })
+            }
+        }
     }
 
     @Serializable
@@ -90,6 +177,24 @@ sealed class ExtraValue {
             key: String,
         ) {
             intent.putExtra(key, value)
+        }
+
+        @Composable
+        override fun Editor(
+            spec: ExtraSpec,
+            onChanged: (ExtraValue) -> Unit,
+        ) {
+            var text by remember { mutableStateOf(value.toString()) }
+            LaunchedEffect(value) { text = value.toString() }
+            OutlinedTextField(
+                value = text,
+                onValueChange = {
+                    text = it
+                    it.toFloatOrNull()?.let { v -> onChanged(copy(value = v)) }
+                },
+                label = { Text(spec.label) },
+                modifier = Modifier.fillMaxWidth(),
+            )
         }
     }
 
@@ -104,6 +209,24 @@ sealed class ExtraValue {
         ) {
             intent.putExtra(key, value.toUri())
         }
+
+        @Composable
+        override fun Editor(
+            spec: ExtraSpec,
+            onChanged: (ExtraValue) -> Unit,
+        ) {
+            var text by remember { mutableStateOf(value) }
+            LaunchedEffect(value) { text = value }
+            OutlinedTextField(
+                value = text,
+                onValueChange = {
+                    text = it
+                    onChanged(copy(value = it))
+                },
+                label = { Text(spec.label) },
+                modifier = Modifier.fillMaxWidth(),
+            )
+        }
     }
 
     @Serializable
@@ -117,6 +240,24 @@ sealed class ExtraValue {
         ) {
             intent.putExtra(key, values.toTypedArray())
         }
+
+        @Composable
+        override fun Editor(
+            spec: ExtraSpec,
+            onChanged: (ExtraValue) -> Unit,
+        ) {
+            var text by remember { mutableStateOf(values.joinToString(", ")) }
+            LaunchedEffect(values) { text = values.joinToString(", ") }
+            OutlinedTextField(
+                value = text,
+                onValueChange = {
+                    text = it
+                    onChanged(copy(values = it.split(",").map { it.trim() }.filter { it.isNotEmpty() }))
+                },
+                label = { Text("${spec.label} (comma separated)") },
+                modifier = Modifier.fillMaxWidth(),
+            )
+        }
     }
 
     @Serializable
@@ -129,6 +270,24 @@ sealed class ExtraValue {
             key: String,
         ) {
             intent.putParcelableArrayListExtra(key, ArrayList(values.map { it.toUri() }))
+        }
+
+        @Composable
+        override fun Editor(
+            spec: ExtraSpec,
+            onChanged: (ExtraValue) -> Unit,
+        ) {
+            var text by remember { mutableStateOf(values.joinToString(", ")) }
+            LaunchedEffect(values) { text = values.joinToString(", ") }
+            OutlinedTextField(
+                value = text,
+                onValueChange = {
+                    text = it
+                    onChanged(copy(values = it.split(",").map { it.trim() }.filter { it.isNotEmpty() }))
+                },
+                label = { Text("${spec.label} (comma separated)") },
+                modifier = Modifier.fillMaxWidth(),
+            )
         }
     }
 }
