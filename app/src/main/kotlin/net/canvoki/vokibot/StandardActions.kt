@@ -3,35 +3,6 @@ package net.canvoki.vokibot
 import android.content.Intent
 import android.provider.MediaStore
 import android.speech.RecognizerIntent
-import kotlinx.serialization.Serializable
-
-@Serializable
-enum class ExtraType {
-    STRING,
-    URI,
-    INT,
-    BOOLEAN,
-    STRING_ARRAY,
-    URI_LIST,
-}
-
-val ExtraType.displayName: String get() =
-    when (this) {
-        ExtraType.STRING -> "Text"
-        ExtraType.URI -> "URI"
-        ExtraType.INT -> "Number"
-        ExtraType.BOOLEAN -> "Boolean"
-        ExtraType.STRING_ARRAY -> "Text list"
-        ExtraType.URI_LIST -> "URI list"
-    }
-
-@Serializable
-data class ExtraSpec(
-    val key: String,
-    val type: ExtraType,
-    val required: Boolean = false,
-    val label: String = key,
-)
 
 /**
  * Strategy for probing whether a component accepts an action.
@@ -256,13 +227,3 @@ object StandardActions {
 
     fun probeStrategy(action: String?): ProbeStrategy = get(action)?.probeStrategy ?: ProbeStrategy.ACTION_ONLY
 }
-
-fun ExtraSpec.defaultValue(): ExtraValue =
-    when (type) {
-        ExtraType.STRING -> ExtraValue.StringValue("")
-        ExtraType.URI -> ExtraValue.UriValue("")
-        ExtraType.INT -> ExtraValue.IntValue(0)
-        ExtraType.BOOLEAN -> ExtraValue.BooleanValue(false)
-        ExtraType.STRING_ARRAY -> ExtraValue.StringArrayValue(emptyList())
-        ExtraType.URI_LIST -> ExtraValue.UriListValue(emptyList())
-    }
