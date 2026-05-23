@@ -252,10 +252,11 @@ class ExtraValueTest {
     fun `computeNewCustomSpecs no data, returns empty list`() {
         assertSpecs(
             expected = "",
-            actual = computeNewCustomSpecs(
-                extrasState = emptyMap(),
-                newActionExtras = emptyList(),
-            ),
+            actual =
+                computeNewCustomSpecs(
+                    extrasState = emptyMap(),
+                    newActionExtras = emptyList(),
+                ),
         )
     }
 
@@ -263,10 +264,11 @@ class ExtraValueTest {
     fun `computeNewCustomSpecs not in command, include it`() {
         assertSpecs(
             expected = "extra1: STRING",
-            actual = computeNewCustomSpecs(
-                extrasState = mapOf("extra1" to ExtraValue.StringValue("value1")),
-                newActionExtras = emptyList(),
-            ),
+            actual =
+                computeNewCustomSpecs(
+                    extrasState = mapOf("extra1" to ExtraValue.StringValue("value1")),
+                    newActionExtras = emptyList(),
+                ),
         )
     }
 
@@ -274,10 +276,11 @@ class ExtraValueTest {
     fun `computeNewCustomSpecs already in command, exclude it`() {
         assertSpecs(
             expected = "",
-            actual = computeNewCustomSpecs(
-                extrasState = mapOf("extra1" to ExtraValue.StringValue("value1")),
-                newActionExtras = listOf(ExtraSpec("extra1", ExtraType.STRING)),
-            ),
+            actual =
+                computeNewCustomSpecs(
+                    extrasState = mapOf("extra1" to ExtraValue.StringValue("value1")),
+                    newActionExtras = listOf(ExtraSpec("extra1", ExtraType.STRING)),
+                ),
         )
     }
 
@@ -285,10 +288,11 @@ class ExtraValueTest {
     fun `computeNewCustomSpecs not in command but default value, exclude it`() {
         assertSpecs(
             expected = "",
-            actual = computeNewCustomSpecs(
-                extrasState = mapOf("extra1" to ExtraValue.StringValue("")),
-                newActionExtras = emptyList(),
-            ),
+            actual =
+                computeNewCustomSpecs(
+                    extrasState = mapOf("extra1" to ExtraValue.StringValue("")),
+                    newActionExtras = emptyList(),
+                ),
         )
     }
 
@@ -296,13 +300,15 @@ class ExtraValueTest {
     fun `computeNewCustomSpecs multiple orphans not in command, include all`() {
         assertSpecs(
             expected = "extra1: STRING\nextra2: INT",
-            actual = computeNewCustomSpecs(
-                extrasState = mapOf(
-                    "extra1" to ExtraValue.StringValue("value1"),
-                    "extra2" to ExtraValue.IntValue(42),
+            actual =
+                computeNewCustomSpecs(
+                    extrasState =
+                        mapOf(
+                            "extra1" to ExtraValue.StringValue("value1"),
+                            "extra2" to ExtraValue.IntValue(42),
+                        ),
+                    newActionExtras = emptyList(),
                 ),
-                newActionExtras = emptyList(),
-            ),
         )
     }
 
@@ -314,11 +320,12 @@ class ExtraValueTest {
         customSpecs: List<ExtraSpec>,
         expected: String,
     ) {
-        val result = rebuildExtras(
-            values = values,
-            actionSpecs = actionSpecs,
-            customSpecs = customSpecs,
-        )
+        val result =
+            rebuildExtras(
+                values = values,
+                actionSpecs = actionSpecs,
+                customSpecs = customSpecs,
+            )
         assertJsonEqual(expected, JsonConfig.encodeToString(result))
     }
 
@@ -335,12 +342,14 @@ class ExtraValueTest {
     @Test
     fun `rebuildExtras keys in action spec are preserved`() {
         assertRebuiltExtras(
-            values = mapOf(
-                "extra1" to ExtraValue.StringValue("value1"),
-            ),
-            actionSpecs = listOf(
-                ExtraSpec("extra1", ExtraType.STRING),
-            ),
+            values =
+                mapOf(
+                    "extra1" to ExtraValue.StringValue("value1"),
+                ),
+            actionSpecs =
+                listOf(
+                    ExtraSpec("extra1", ExtraType.STRING),
+                ),
             customSpecs = emptyList(),
             expected = """{"extra1": {"type": "string", "value": "value1"}}""",
         )

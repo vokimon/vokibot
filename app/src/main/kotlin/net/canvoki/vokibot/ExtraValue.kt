@@ -316,26 +316,28 @@ sealed class ExtraValue {
     }
 }
 
-fun ExtraValue.isDefault(): Boolean = when (this) {
-    is ExtraValue.StringValue -> value.isEmpty()
-    is ExtraValue.IntValue -> value == 0
-    is ExtraValue.LongValue -> value == 0L
-    is ExtraValue.BooleanValue -> !value
-    is ExtraValue.FloatValue -> value == 0f
-    is ExtraValue.UriValue -> value.isEmpty()
-    is ExtraValue.StringArrayValue -> values.isEmpty()
-    is ExtraValue.UriListValue -> values.isEmpty()
-}
+fun ExtraValue.isDefault(): Boolean =
+    when (this) {
+        is ExtraValue.StringValue -> value.isEmpty()
+        is ExtraValue.IntValue -> value == 0
+        is ExtraValue.LongValue -> value == 0L
+        is ExtraValue.BooleanValue -> !value
+        is ExtraValue.FloatValue -> value == 0f
+        is ExtraValue.UriValue -> value.isEmpty()
+        is ExtraValue.StringArrayValue -> values.isEmpty()
+        is ExtraValue.UriListValue -> values.isEmpty()
+    }
 
-fun ExtraValue.toExtraType(): ExtraType = when (this) {
-    is ExtraValue.StringValue -> ExtraType.STRING
-    is ExtraValue.IntValue, is ExtraValue.LongValue -> ExtraType.INT
-    is ExtraValue.BooleanValue -> ExtraType.BOOLEAN
-    is ExtraValue.FloatValue -> ExtraType.STRING
-    is ExtraValue.UriValue -> ExtraType.URI
-    is ExtraValue.StringArrayValue -> ExtraType.STRING_ARRAY
-    is ExtraValue.UriListValue -> ExtraType.URI_LIST
-}
+fun ExtraValue.toExtraType(): ExtraType =
+    when (this) {
+        is ExtraValue.StringValue -> ExtraType.STRING
+        is ExtraValue.IntValue, is ExtraValue.LongValue -> ExtraType.INT
+        is ExtraValue.BooleanValue -> ExtraType.BOOLEAN
+        is ExtraValue.FloatValue -> ExtraType.STRING
+        is ExtraValue.UriValue -> ExtraType.URI
+        is ExtraValue.StringArrayValue -> ExtraType.STRING_ARRAY
+        is ExtraValue.UriListValue -> ExtraType.URI_LIST
+    }
 
 fun computeNewCustomSpecs(
     extrasState: Map<String, ExtraValue>,
