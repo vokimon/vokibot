@@ -14,18 +14,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
-import androidx.compose.material3.ExposedDropdownMenuBox
-import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -222,7 +218,6 @@ fun IntentEditor(
     var pendingCommand by remember { mutableStateOf<LaunchActivityCommand?>(null) }
     var showOverwriteDialog by remember { mutableStateOf(false) }
     var confirmName by remember { mutableStateOf<String?>(null) }
-    var showAddExtraDialog by remember { mutableStateOf(false) }
     var customExtraSpecs by rememberSaveable(stateSaver = ExtraSpecListSaver) { mutableStateOf(listOf<ExtraSpec>()) }
 
     val allSpecs = (selectedAction?.extras ?: emptyList()) + customExtraSpecs
@@ -294,83 +289,11 @@ fun IntentEditor(
                 specs = allSpecs,
                 extras = extrasState,
                 onExtraChanged = { key, value -> extrasState = extrasState + (key to value) },
+                onAddExtra = { spec ->
+                    customExtraSpecs = customExtraSpecs + spec
+                    extrasState = extrasState + (spec.key to spec.defaultValue())
+                },
             )
-
-            Spacer(modifier = Modifier.height(8.dp))
-            OutlinedButton(
-                onClick = { showAddExtraDialog = true },
-                modifier = Modifier.fillMaxWidth(),
-            ) {
-                Icon(painterResource(R.drawable.ic_add), contentDescription = null)
-                Spacer(Modifier.size(4.dp))
-                Text("Add extra parameter")
-            }
-
-            if (showAddExtraDialog) {
-                var newKey by remember { mutableStateOf("") }
-                var newType by remember { mutableStateOf(ExtraType.STRING) }
-                var typeExpanded by remember { mutableStateOf(false) }
-
-                AlertDialog(
-                    onDismissRequest = { showAddExtraDialog = false },
-                    title = { Text("Add extra parameter") },
-                    text = {
-                        Column {
-                            OutlinedTextField(
-                                value = newKey,
-                                onValueChange = { newKey = it },
-                                label = { Text("Name") },
-                                modifier = Modifier.fillMaxWidth(),
-                            )
-                            Spacer(Modifier.height(8.dp))
-                            @OptIn(androidx.compose.material3.ExperimentalMaterial3Api::class)
-                            ExposedDropdownMenuBox(
-                                expanded = typeExpanded,
-                                onExpandedChange = { typeExpanded = it },
-                            ) {
-                                OutlinedTextField(
-                                    value = newType.displayName,
-                                    onValueChange = {},
-                                    readOnly = true,
-                                    label = { Text("Type") },
-                                    trailingIcon = {
-                                        ExposedDropdownMenuDefaults.TrailingIcon(
-                                            expanded = typeExpanded,
-                                        )
-                                    },
-                                    modifier = Modifier.menuAnchor().fillMaxWidth(),
-                                )
-                                ExposedDropdownMenu(
-                                    expanded = typeExpanded,
-                                    onDismissRequest = { typeExpanded = false },
-                                ) {
-                                    ExtraType.entries.forEach { type ->
-                                        DropdownMenuItem(
-                                            text = { Text(type.displayName) },
-                                            onClick = {
-                                                newType = type
-                                                typeExpanded = false
-                                            },
-                                        )
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    confirmButton = {
-                        TextButton(
-                            onClick = {
-                                val spec = ExtraSpec(key = newKey, type = newType, label = newKey)
-                                customExtraSpecs = customExtraSpecs + spec
-                                extrasState = extrasState + (newKey to spec.defaultValue())
-                                showAddExtraDialog = false
-                            },
-                            enabled = newKey.isNotBlank(),
-                        ) { Text("Add") }
-                    },
-                    dismissButton = { TextButton(onClick = { showAddExtraDialog = false }) { Text("Cancel") } },
-                )
-            }
         }
 
         Row(
