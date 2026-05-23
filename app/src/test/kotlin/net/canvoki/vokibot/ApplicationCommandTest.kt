@@ -390,4 +390,118 @@ class ApplicationCommandTest {
         val json = JsonConfig.encodeToString(ExtraValue.UriListValue(listOf("geo:0,0")) as ExtraValue)
         assertJsonEqual("""{"type": "uri_list", "values": ["geo:0,0"]}""", json)
     }
+
+    // ---------- isDefault ----------
+
+    private fun checkDefault(
+        value: ExtraValue,
+        expectDefault: Boolean,
+    ) = assertEquals(expectDefault, value.isDefault())
+
+    @Test
+    fun `StringValue with empty string is default`() {
+        checkDefault(ExtraValue.StringValue(""), true)
+    }
+
+    @Test
+    fun `StringValue with non-empty string is not default`() {
+        checkDefault(ExtraValue.StringValue("hello"), false)
+    }
+
+    @Test
+    fun `IntValue with zero is default`() {
+        checkDefault(ExtraValue.IntValue(0), true)
+    }
+
+    @Test
+    fun `IntValue with non-zero is not default`() {
+        checkDefault(ExtraValue.IntValue(42), false)
+    }
+
+    @Test
+    fun `BooleanValue with false is default`() {
+        checkDefault(ExtraValue.BooleanValue(false), true)
+    }
+
+    @Test
+    fun `BooleanValue with true is not default`() {
+        checkDefault(ExtraValue.BooleanValue(true), false)
+    }
+
+    @Test
+    fun `UriValue with empty string is default`() {
+        checkDefault(ExtraValue.UriValue(""), true)
+    }
+
+    @Test
+    fun `UriValue with non-empty string is not default`() {
+        checkDefault(ExtraValue.UriValue("geo:0,0"), false)
+    }
+
+    @Test
+    fun `StringArrayValue with empty list is default`() {
+        checkDefault(ExtraValue.StringArrayValue(emptyList()), true)
+    }
+
+    @Test
+    fun `StringArrayValue with non-empty list is not default`() {
+        checkDefault(ExtraValue.StringArrayValue(listOf("a")), false)
+    }
+
+    @Test
+    fun `UriListValue with empty list is default`() {
+        checkDefault(ExtraValue.UriListValue(emptyList()), true)
+    }
+
+    @Test
+    fun `UriListValue with non-empty list is not default`() {
+        checkDefault(ExtraValue.UriListValue(listOf("geo:0,0")), false)
+    }
+
+    // ---------- toExtraType ----------
+
+    private fun checkExtraType(
+        value: ExtraValue,
+        expected: ExtraType,
+    ) = assertEquals(expected, value.toExtraType())
+
+    @Test
+    fun `StringValue toExtraType is STRING`() {
+        checkExtraType(ExtraValue.StringValue(""), ExtraType.STRING)
+    }
+
+    @Test
+    fun `IntValue toExtraType is INT`() {
+        checkExtraType(ExtraValue.IntValue(0), ExtraType.INT)
+    }
+
+    @Test
+    fun `LongValue toExtraType is INT`() {
+        checkExtraType(ExtraValue.LongValue(0L), ExtraType.INT)
+    }
+
+    @Test
+    fun `BooleanValue toExtraType is BOOLEAN`() {
+        checkExtraType(ExtraValue.BooleanValue(false), ExtraType.BOOLEAN)
+    }
+
+    @Test
+    fun `FloatValue toExtraType is STRING`() {
+        checkExtraType(ExtraValue.FloatValue(0f), ExtraType.STRING)
+    }
+
+    @Test
+    fun `UriValue toExtraType is URI`() {
+        checkExtraType(ExtraValue.UriValue(""), ExtraType.URI)
+    }
+
+    @Test
+    fun `StringArrayValue toExtraType is STRING_ARRAY`() {
+        checkExtraType(ExtraValue.StringArrayValue(emptyList()), ExtraType.STRING_ARRAY)
+    }
+
+    @Test
+    fun `UriListValue toExtraType is URI_LIST`() {
+        checkExtraType(ExtraValue.UriListValue(emptyList()), ExtraType.URI_LIST)
+    }
 }

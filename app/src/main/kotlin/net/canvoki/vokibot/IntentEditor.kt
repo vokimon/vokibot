@@ -241,6 +241,28 @@ fun IntentEditor(
         }
     }
 
+    LaunchedEffect(selectedAction) {
+        val action = selectedAction ?: return@LaunchedEffect
+        val actionKeys = action.extras.map { it.key }.toSet()
+        val customKeys = customExtraSpecs.map { it.key }.toSet()
+        val knownKeys = actionKeys + customKeys
+
+        val orphans = extrasState.filterKeys { it !in knownKeys }
+        if (orphans.isEmpty()) return@LaunchedEffect
+
+        var newExtras = extrasState
+        var newCustoms = customExtraSpecs
+        orphans.forEach { (key, value) ->
+            newExtras = newExtras - key
+            if (!value.isDefault()) {
+                val spec = ExtraSpec(key = key, type = value.toExtraType())
+                newCustoms = newCustoms + spec
+            }
+        }
+        customExtraSpecs = newCustoms
+        extrasState = newExtras
+    }
+
     fun buildCommand(displayName: String): LaunchActivityCommand {
         val actionStr = selectedAction?.action ?: customAction.takeIf { it.isNotBlank() }
         return LaunchActivityCommand(
