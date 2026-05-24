@@ -4,11 +4,12 @@
 - [ ] Complete the editor for ActivityLaunchCommand
     - [ ] IntentExtraEditor: Delete Extra
     - [ ] IntentDataEditor: Paste icon button
-    - [ ] IntentDataEditor: Single line? Summary?
     - [ ] ActivityLaunchCommandEditor: Extract component selector as reusable composable
     - [ ] ActivityLaunchCommandEditor: Click on app/component actually open AppList
     - [ ] ActivityLaunchCommandEditor: Done button actually saves entity
-    - [ ] UriField: When file picked show the file name instead of the uri and make it readonly for typing
+    - [ ] UriField: Single line? Summary?
+    - [x] UriField: When file picked show the file name instead of the uri and make it readonly for typing
+    - [x] UrlField: reuse for extras
     - [x] ActivityLaunchCommandEditor: Try button
     - [x] IntentDataEditor: Pick file icon button
     - [x] IntentDataEditor: Pick file icon button sets mime

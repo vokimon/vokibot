@@ -1,6 +1,8 @@
 package net.canvoki.vokibot.common
 
+import android.content.Context
 import android.net.Uri
+import android.provider.OpenableColumns
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardOptions
@@ -18,6 +20,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.KeyboardType
@@ -55,14 +58,26 @@ fun UriField(
         }
 
     val pickFile = rememberFileUriPicker()
+    val context = LocalContext.current
+    var resolvedName by remember { mutableStateOf<String?>(null) }
 
+    val textToShow = resolvedName ?: uri.orEmpty()
     var fieldValue by remember { mutableStateOf(TextFieldValue("")) }
-    LaunchedEffect(uri) {
-        val newText = uri.orEmpty()
+    LaunchedEffect(uri, resolvedName) {
+        val newText = textToShow
         if (newText != fieldValue.text) {
             fieldValue = TextFieldValue(newText, TextRange(newText.length))
         }
     }
+
+    LaunchedEffect(uri) {
+        resolvedName = null
+        if (uri?.startsWith("content://") == true) {
+            resolvedName = resolveDisplayName(context, Uri.parse(uri))
+        }
+    }
+
+    val isReadOnly = resolvedName != null
 
     var expanded by remember { mutableStateOf(false) }
     val suggestions =
@@ -76,10 +91,13 @@ fun UriField(
         onExpandedChange = { expanded = it },
     ) {
         OutlinedTextField(
+            readOnly = isReadOnly,
             value = fieldValue,
             onValueChange = {
-                fieldValue = it
-                onUriChanged(it.text.ifBlank { null })
+                if (!isReadOnly) {
+                    fieldValue = it
+                    onUriChanged(it.text.ifBlank { null })
+                }
             },
             label = { Text(label) },
             keyboardOptions = KeyboardOptions(keyboardType = keyboardType),
@@ -90,7 +108,6 @@ fun UriField(
                             pickFile(arrayOf("*/*")) { pickedUri ->
                                 if (pickedUri != null) {
                                     val uriString = pickedUri.toString()
-                                    fieldValue = TextFieldValue(uriString, TextRange(uriString.length))
                                     onUriChanged(uriString)
                                     onFilePicked?.invoke(pickedUri)
                                 }
@@ -100,7 +117,10 @@ fun UriField(
                         }
                     }
                     if (uri != null) {
-                        IconButton(onClick = { onUriChanged(null) }) {
+                        IconButton(onClick = {
+                            resolvedName = null
+                            onUriChanged(null)
+                        }) {
                             Icon(painterResource(R.drawable.ic_close), contentDescription = null)
                         }
                     }
@@ -122,6 +142,20 @@ fun UriField(
                     },
                 )
             }
+        }
+    }
+}
+
+private fun resolveDisplayName(
+    context: Context,
+    uri: Uri,
+): String? {
+    return context.contentResolver.query(uri, null, null, null, null)?.use { cursor ->
+        if (cursor.moveToFirst()) {
+            val nameIdx = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)
+            if (nameIdx >= 0) cursor.getString(nameIdx) else null
+        } else {
+            null
         }
     }
 }
