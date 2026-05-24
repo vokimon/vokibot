@@ -19,13 +19,14 @@ fun IntentDataEditor(
     onDataChanged: (String?) -> Unit,
     onMimeChanged: (String?) -> Unit,
 ) {
-    val keyboardType = when {
-        dataUri?.startsWith("tel:") == true -> KeyboardType.Phone
-        dataUri?.startsWith("smsto:") == true -> KeyboardType.Phone
-        dataUri?.startsWith("mailto:") == true -> KeyboardType.Email
-        dataUri?.startsWith("geo:") == true -> KeyboardType.Decimal
-        else -> KeyboardType.Uri
-    }
+    val keyboardType =
+        when {
+            dataUri?.startsWith("tel:") == true -> KeyboardType.Phone
+            dataUri?.startsWith("smsto:") == true -> KeyboardType.Phone
+            dataUri?.startsWith("mailto:") == true -> KeyboardType.Email
+            dataUri?.startsWith("geo:") == true -> KeyboardType.Decimal
+            else -> KeyboardType.Uri
+        }
 
     Column {
         SectionHeader("Data")

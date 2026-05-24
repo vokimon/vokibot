@@ -71,7 +71,6 @@ fun SectionHeader(title: String) {
     )
 }
 
-
 @Composable
 fun IntentActionSelector(
     supportedActions: List<ActionDefinition>,
