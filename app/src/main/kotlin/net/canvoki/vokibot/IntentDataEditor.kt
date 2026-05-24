@@ -1,6 +1,7 @@
 package net.canvoki.vokibot
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -24,6 +25,7 @@ import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
+import net.canvoki.shared.storage.rememberFileUriPicker
 
 private val schemes =
     listOf(
@@ -65,6 +67,8 @@ fun IntentDataEditor(
             dataUri?.startsWith("geo:") == true -> KeyboardType.Decimal
             else -> KeyboardType.Uri
         }
+
+    val pickFile = rememberFileUriPicker()
 
     // Use TextFieldValue to preserve cursor position during typing.
     // The LaunchedEffect only syncs when the external dataUri changes
@@ -128,9 +132,22 @@ fun IntentDataEditor(
                 label = { Text("URI") },
                 keyboardOptions = KeyboardOptions(keyboardType = keyboardType),
                 trailingIcon = {
-                    if (dataUri != null) {
-                        IconButton(onClick = { onDataChanged(null) }) {
-                            Icon(painterResource(R.drawable.ic_close), contentDescription = null)
+                    Row {
+                        IconButton(onClick = {
+                            pickFile(arrayOf("*/*")) { uri ->
+                                if (uri != null) {
+                                    val uriString = uri.toString()
+                                    uriFieldValue = TextFieldValue(uriString, TextRange(uriString.length))
+                                    onDataChanged(uriString)
+                                }
+                            }
+                        }) {
+                            Icon(painterResource(R.drawable.ic_folder), contentDescription = null)
+                        }
+                        if (dataUri != null) {
+                            IconButton(onClick = { onDataChanged(null) }) {
+                                Icon(painterResource(R.drawable.ic_close), contentDescription = null)
+                            }
                         }
                     }
                 },
