@@ -13,7 +13,6 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -66,37 +65,31 @@ fun IntentDataEditor(
 
     var uriExpanded by remember { mutableStateOf(false) }
     val uriText = dataUri ?: ""
-    val uriFiltered =
+    val uriSuggestions =
         remember(uriText) {
-            if (uriText.isEmpty()) emptyList()
-            else schemes.filter { it.startsWith(uriText, ignoreCase = true) && it != uriText }
+            schemes.filter { it.startsWith(uriText, ignoreCase = true) }
         }
-    LaunchedEffect(uriFiltered) { uriExpanded = uriFiltered.isNotEmpty() }
 
     var mimeExpanded by remember { mutableStateOf(false) }
     val mimeText = mimeType ?: ""
-    val mimeFiltered =
+    val mimeSuggestions =
         remember(mimeText) {
-            if (mimeText.isEmpty()) emptyList()
-            else {
-                val slash = mimeText.indexOf('/')
-                if (slash == -1) {
-                    mimeDefinitions
-                        .map { it.first }
-                        .filter { it.startsWith(mimeText, ignoreCase = true) && it != mimeText }
-                } else {
-                    val group = mimeText.substring(0, slash + 1)
-                    val subtype = mimeText.substring(slash + 1)
-                    mimeDefinitions
-                        .firstOrNull { it.first.equals(group, ignoreCase = true) }
-                        ?.second
-                        ?.filter { it.startsWith(subtype, ignoreCase = true) && it != subtype }
-                        ?.map { group + it }
-                        ?: emptyList()
-                }
+            val slash = mimeText.indexOf('/')
+            if (slash == -1) {
+                mimeDefinitions
+                    .map { it.first }
+                    .filter { it.startsWith(mimeText, ignoreCase = true) }
+            } else {
+                val group = mimeText.substring(0, slash + 1)
+                val subtype = mimeText.substring(slash + 1)
+                mimeDefinitions
+                    .firstOrNull { it.first.equals(group, ignoreCase = true) }
+                    ?.second
+                    ?.filter { it.startsWith(subtype, ignoreCase = true) }
+                    ?.map { group + it }
+                    ?: emptyList()
+            }
         }
-    }
-    LaunchedEffect(mimeFiltered) { mimeExpanded = mimeFiltered.isNotEmpty() }
 
     Column {
         SectionHeader("Data")
@@ -124,7 +117,7 @@ fun IntentDataEditor(
                 expanded = uriExpanded,
                 onDismissRequest = { uriExpanded = false },
             ) {
-                uriFiltered.forEach { suggestion ->
+                uriSuggestions.forEach { suggestion ->
                     DropdownMenuItem(
                         text = { Text(suggestion) },
                         onClick = {
@@ -159,7 +152,7 @@ fun IntentDataEditor(
                 expanded = mimeExpanded,
                 onDismissRequest = { mimeExpanded = false },
             ) {
-                mimeFiltered.forEach { suggestion ->
+                mimeSuggestions.forEach { suggestion ->
                     DropdownMenuItem(
                         text = { Text(suggestion) },
                         onClick = {
