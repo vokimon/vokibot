@@ -22,6 +22,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -66,6 +67,21 @@ data object ActivityLaunchCommandEditor : StackedScreen<Unit>() {
                 if (mapped.isNotEmpty()) mapped else StandardActions.all()
             }
 
+        var extrasState by rememberSaveable(stateSaver = ExtraValueMapSaver) {
+            mutableStateOf(emptyMap<String, ExtraValue>())
+        }
+        var customExtraSpecs by rememberSaveable(stateSaver = ExtraSpecListSaver) {
+            mutableStateOf(listOf<ExtraSpec>())
+        }
+
+        val allSpecs = (selectedAction?.extras ?: emptyList()) + customExtraSpecs
+
+        LaunchedEffect(selectedAction) {
+            val actionExtras = selectedAction?.extras ?: emptyList()
+            customExtraSpecs = computeNewCustomSpecs(extrasState, actionExtras)
+            extrasState = rebuildExtras(extrasState, actionExtras, customExtraSpecs)
+        }
+
         Column(
             modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.spacedBy(16.dp),
@@ -86,6 +102,15 @@ data object ActivityLaunchCommandEditor : StackedScreen<Unit>() {
                     supportedActions = actionsToShow,
                     onSelected = { selectedAction = it },
                     onCustomChanged = { customAction = it },
+                )
+                ExtrasEditor(
+                    specs = allSpecs,
+                    extras = extrasState,
+                    onExtraChanged = { key, value -> extrasState = extrasState + (key to value) },
+                    onAddExtra = { spec ->
+                        customExtraSpecs = customExtraSpecs + spec
+                        extrasState = extrasState + (spec.key to spec.defaultValue())
+                    },
                 )
             } ?: Button(
                 onClick = {
