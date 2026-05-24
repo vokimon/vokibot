@@ -2,12 +2,20 @@
 
 - [x] Add EditorHeader to Trigger/CommandList "Saved Triggers/Commands"
 - [ ] Complete the editor for ActivityLaunchCommand
-    - [ ] IntentEditor: Action select with icons
-    - [ ] IntentEditor: Action select in a dialog with scroll
-    - [ ] IntentEditor: Add custom Extras (choose name and type)
-    - [ ] IntentEditor: Delete Extra
-    - [ ] IntentEditor: On change action, remove empty extras, keep filled
-    - [ ] Extract as composables the parts of the editor that might be reused
+    - [ ] IntentExtraEditor: Delete Extra
+    - [ ] IntentDataEditor: Paste icon button
+    - [ ] ActivityLaunchCommandEditor: Extract component selector as reusable composable
+    - [ ] ActivityLaunchCommandEditor: Click on app/component actually open AppList
+    - [ ] ActivityLaunchCommandEditor: Done button actually saves entity
+    - [x] ActivityLaunchCommandEditor: Try button
+    - [x] IntentDataEditor: Pick file icon button
+    - [x] IntentDataEditor: Pick file icon button sets mime
+    - [x] IntentDataEditor: Autocomplete mime type
+    - [x] IntentEditor: Action select in a dialog with scroll -> Material version is better
+    - [x] IntentEditor: Action select with icons
+    - [x] IntentEditor: Add custom Extras (choose name and type)
+    - [x] IntentEditor: On change action, remove empty extras, keep filled
+    - [x] Extract as composables the parts of the editor that might be reused
 - [ ] Progressively, one component kind at a time, add the dialog of that kind of App component, reusing parts of Activity and composing its ApplicationCommand.
 - [ ] Command Menu: "Edit"
 - [ ] Magic naming: icon button to assign a default name from content in the name editor. Show when empty instead of delete button.

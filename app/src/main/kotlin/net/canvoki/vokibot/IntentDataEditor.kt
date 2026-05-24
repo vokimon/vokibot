@@ -20,6 +20,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.KeyboardType
@@ -69,6 +70,7 @@ fun IntentDataEditor(
         }
 
     val pickFile = rememberFileUriPicker()
+    val context = LocalContext.current
 
     // Use TextFieldValue to preserve cursor position during typing.
     // The LaunchedEffect only syncs when the external dataUri changes
@@ -139,6 +141,7 @@ fun IntentDataEditor(
                                     val uriString = uri.toString()
                                     uriFieldValue = TextFieldValue(uriString, TextRange(uriString.length))
                                     onDataChanged(uriString)
+                                    context.contentResolver.getType(uri)?.let { onMimeChanged(it) }
                                 }
                             }
                         }) {
