@@ -100,41 +100,44 @@ data object ActivityLaunchCommandEditor : StackedScreen<Unit>() {
                 modifier = Modifier.verticalScroll(rememberScrollState()).weight(1f),
                 verticalArrangement = Arrangement.spacedBy(16.dp),
             ) {
-                currentComponent?.let {
+                val component = currentComponent
+                if (component != null) {
                     ActivityHeader(
                         packageName = packageName!!,
-                        component = it,
+                        component = component,
                     )
-                    IntentActionSelector(
-                        supportedActions = actionsToShow,
-                        onSelected = { selectedAction = it },
-                        onCustomChanged = { customAction = it },
-                    )
-                    IntentDataEditor(
-                        dataUri = intentData,
-                        mimeType = intentMime,
-                        onDataChanged = { intentData = it },
-                        onMimeChanged = { intentMime = it },
-                    )
-                    ExtrasEditor(
-                        specs = allSpecs,
-                        extras = extrasState,
-                        onExtraChanged = { key, value -> extrasState = extrasState + (key to value) },
-                        onAddExtra = { spec ->
-                            customExtraSpecs = customExtraSpecs + spec
-                            extrasState = extrasState + (spec.key to spec.defaultValue())
+                } else {
+                    Button(
+                        onClick = {
+                            // TODO: push AppList and take it from there
+                            packageName = "net.canvoki.carburoid"
+                            componentName = "net.canvoki.carburoid.MainActivity"
                         },
-                    )
-                } ?: Button(
-                    onClick = {
-                        // TODO: push AppList and take it from there
-                        packageName = "net.canvoki.carburoid"
-                        componentName = "net.canvoki.carburoid.MainActivity"
-                    },
-                ) {
-                    Icon(painterResource(R.drawable.ic_add), null)
-                    Text(stringResource(R.string.intent_editor_select_app_and_screen))
+                    ) {
+                        Icon(painterResource(R.drawable.ic_add), null)
+                        Text(stringResource(R.string.intent_editor_select_app_and_screen))
+                    }
                 }
+                IntentActionSelector(
+                    supportedActions = actionsToShow,
+                    onSelected = { selectedAction = it },
+                    onCustomChanged = { customAction = it },
+                )
+                IntentDataEditor(
+                    dataUri = intentData,
+                    mimeType = intentMime,
+                    onDataChanged = { intentData = it },
+                    onMimeChanged = { intentMime = it },
+                )
+                ExtrasEditor(
+                    specs = allSpecs,
+                    extras = extrasState,
+                    onExtraChanged = { key, value -> extrasState = extrasState + (key to value) },
+                    onAddExtra = { spec ->
+                        customExtraSpecs = customExtraSpecs + spec
+                        extrasState = extrasState + (spec.key to spec.defaultValue())
+                    },
+                )
             }
         }
     }
