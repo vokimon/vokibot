@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import net.canvoki.vokibot.common.UriField
 
 @Serializable
 enum class ExtraType {
@@ -239,16 +240,10 @@ sealed class ExtraValue {
             spec: ExtraSpec,
             onChanged: (ExtraValue) -> Unit,
         ) {
-            var text by remember { mutableStateOf(value) }
-            LaunchedEffect(value) { text = value }
-            OutlinedTextField(
-                value = text,
-                onValueChange = {
-                    text = it
-                    onChanged(copy(value = it))
-                },
-                label = { Text(spec.label) },
-                modifier = Modifier.fillMaxWidth(),
+            UriField(
+                uri = value.ifBlank { null },
+                onUriChanged = { onChanged(copy(value = it.orEmpty())) },
+                label = spec.label,
             )
         }
     }

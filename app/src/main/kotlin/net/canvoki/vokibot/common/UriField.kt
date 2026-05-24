@@ -41,7 +41,7 @@ private val schemes =
 fun UriField(
     uri: String?,
     onUriChanged: (String?) -> Unit,
-    required: Boolean = false,
+    label: String = "URI",
     showPicker: Boolean = true,
     onFilePicked: ((Uri) -> Unit)? = null,
 ) {
@@ -77,8 +77,11 @@ fun UriField(
     ) {
         OutlinedTextField(
             value = fieldValue,
-            onValueChange = { fieldValue = it; onUriChanged(it.text.ifBlank { null }) },
-            label = { Text(if (required) "URI (required)" else "URI") },
+            onValueChange = {
+                fieldValue = it
+                onUriChanged(it.text.ifBlank { null })
+            },
+            label = { Text(label) },
             keyboardOptions = KeyboardOptions(keyboardType = keyboardType),
             trailingIcon = {
                 Row {

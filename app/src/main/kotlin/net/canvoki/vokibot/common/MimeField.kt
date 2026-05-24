@@ -73,7 +73,10 @@ fun MimeField(
     ) {
         OutlinedTextField(
             value = fieldValue,
-            onValueChange = { fieldValue = it; onMimeChanged(it.text.ifBlank { null }) },
+            onValueChange = {
+                fieldValue = it
+                onMimeChanged(it.text.ifBlank { null })
+            },
             label = { Text("MIME type") },
             trailingIcon = {
                 if (mimeType != null) {
