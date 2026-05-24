@@ -35,6 +35,19 @@ private val schemes =
         "market://",
     )
 
+private val mimeDefinitions =
+    listOf(
+        "image/" to listOf("jpeg", "png", "gif", "webp", "svg+xml", "bmp", "x-icon"),
+        "video/" to listOf("mp4", "mpeg", "webm", "ogg", "3gpp", "x-matroska"),
+        "audio/" to listOf("mpeg", "ogg", "wav", "webm", "aac", "flac"),
+        "text/" to listOf("plain", "html", "css", "javascript", "csv", "xml", "markdown"),
+        "application/" to listOf("json", "xml", "pdf", "zip", "octet-stream"),
+        "multipart/" to listOf("form-data", "mixed", "alternative"),
+        "message/" to listOf("rfc822"),
+        "model/" to listOf("gltf+json", "obj"),
+        "font/" to listOf("ttf", "otf", "woff", "woff2"),
+    )
+
 @Composable
 fun IntentDataEditor(
     dataUri: String?,
@@ -53,11 +66,37 @@ fun IntentDataEditor(
 
     var uriExpanded by remember { mutableStateOf(false) }
     val uriText = dataUri ?: ""
-    val filtered =
+    val uriFiltered =
         remember(uriText) {
-            schemes.filter { it.startsWith(uriText, ignoreCase = true) && it != uriText }
+            if (uriText.isEmpty()) emptyList()
+            else schemes.filter { it.startsWith(uriText, ignoreCase = true) && it != uriText }
         }
-    LaunchedEffect(filtered) { uriExpanded = filtered.isNotEmpty() }
+    LaunchedEffect(uriFiltered) { uriExpanded = uriFiltered.isNotEmpty() }
+
+    var mimeExpanded by remember { mutableStateOf(false) }
+    val mimeText = mimeType ?: ""
+    val mimeFiltered =
+        remember(mimeText) {
+            if (mimeText.isEmpty()) emptyList()
+            else {
+                val slash = mimeText.indexOf('/')
+                if (slash == -1) {
+                    mimeDefinitions
+                        .map { it.first }
+                        .filter { it.startsWith(mimeText, ignoreCase = true) && it != mimeText }
+                } else {
+                    val group = mimeText.substring(0, slash + 1)
+                    val subtype = mimeText.substring(slash + 1)
+                    mimeDefinitions
+                        .firstOrNull { it.first.equals(group, ignoreCase = true) }
+                        ?.second
+                        ?.filter { it.startsWith(subtype, ignoreCase = true) && it != subtype }
+                        ?.map { group + it }
+                        ?: emptyList()
+                }
+        }
+    }
+    LaunchedEffect(mimeFiltered) { mimeExpanded = mimeFiltered.isNotEmpty() }
 
     Column {
         SectionHeader("Data")
@@ -85,7 +124,7 @@ fun IntentDataEditor(
                 expanded = uriExpanded,
                 onDismissRequest = { uriExpanded = false },
             ) {
-                filtered.forEach { suggestion ->
+                uriFiltered.forEach { suggestion ->
                     DropdownMenuItem(
                         text = { Text(suggestion) },
                         onClick = {
@@ -97,18 +136,39 @@ fun IntentDataEditor(
             }
         }
         Spacer(Modifier.height(8.dp))
-        OutlinedTextField(
-            value = mimeType ?: "",
-            onValueChange = { onMimeChanged(it.ifBlank { null }) },
-            label = { Text("MIME type") },
-            trailingIcon = {
-                if (mimeType != null) {
-                    IconButton(onClick = { onMimeChanged(null) }) {
-                        Icon(painterResource(R.drawable.ic_close), contentDescription = null)
+
+        @OptIn(ExperimentalMaterial3Api::class)
+        ExposedDropdownMenuBox(
+            expanded = mimeExpanded,
+            onExpandedChange = { mimeExpanded = it },
+        ) {
+            OutlinedTextField(
+                value = mimeText,
+                onValueChange = { onMimeChanged(it.ifBlank { null }) },
+                label = { Text("MIME type") },
+                trailingIcon = {
+                    if (mimeType != null) {
+                        IconButton(onClick = { onMimeChanged(null) }) {
+                            Icon(painterResource(R.drawable.ic_close), contentDescription = null)
+                        }
                     }
+                },
+                modifier = Modifier.menuAnchor().fillMaxWidth(),
+            )
+            ExposedDropdownMenu(
+                expanded = mimeExpanded,
+                onDismissRequest = { mimeExpanded = false },
+            ) {
+                mimeFiltered.forEach { suggestion ->
+                    DropdownMenuItem(
+                        text = { Text(suggestion) },
+                        onClick = {
+                            onMimeChanged(suggestion)
+                            mimeExpanded = false
+                        },
+                    )
                 }
-            },
-            modifier = Modifier.fillMaxWidth(),
-        )
+            }
+        }
     }
 }
