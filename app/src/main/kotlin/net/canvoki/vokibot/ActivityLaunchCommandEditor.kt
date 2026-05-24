@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -86,7 +88,6 @@ data object ActivityLaunchCommandEditor : StackedScreen<Unit>() {
 
         Column(
             modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             EditorHeader(
                 icon = painterResource(LaunchActivityCommand.iconRes),
@@ -95,40 +96,45 @@ data object ActivityLaunchCommandEditor : StackedScreen<Unit>() {
                 action = { nav.pop() },
             )
 
-            currentComponent?.let {
-                ActivityHeader(
-                    packageName = packageName!!,
-                    component = it,
-                )
-                IntentActionSelector(
-                    supportedActions = actionsToShow,
-                    onSelected = { selectedAction = it },
-                    onCustomChanged = { customAction = it },
-                )
-                IntentDataEditor(
-                    dataUri = intentData,
-                    mimeType = intentMime,
-                    onDataChanged = { intentData = it },
-                    onMimeChanged = { intentMime = it },
-                )
-                ExtrasEditor(
-                    specs = allSpecs,
-                    extras = extrasState,
-                    onExtraChanged = { key, value -> extrasState = extrasState + (key to value) },
-                    onAddExtra = { spec ->
-                        customExtraSpecs = customExtraSpecs + spec
-                        extrasState = extrasState + (spec.key to spec.defaultValue())
-                    },
-                )
-            } ?: Button(
-                onClick = {
-                    // TODO: push AppList and take it from there
-                    packageName = "net.canvoki.carburoid"
-                    componentName = "net.canvoki.carburoid.MainActivity"
-                },
+            Column(
+                modifier = Modifier.verticalScroll(rememberScrollState()).weight(1f),
+                verticalArrangement = Arrangement.spacedBy(16.dp),
             ) {
-                Icon(painterResource(R.drawable.ic_add), null)
-                Text(stringResource(R.string.intent_editor_select_app_and_screen))
+                currentComponent?.let {
+                    ActivityHeader(
+                        packageName = packageName!!,
+                        component = it,
+                    )
+                    IntentActionSelector(
+                        supportedActions = actionsToShow,
+                        onSelected = { selectedAction = it },
+                        onCustomChanged = { customAction = it },
+                    )
+                    IntentDataEditor(
+                        dataUri = intentData,
+                        mimeType = intentMime,
+                        onDataChanged = { intentData = it },
+                        onMimeChanged = { intentMime = it },
+                    )
+                    ExtrasEditor(
+                        specs = allSpecs,
+                        extras = extrasState,
+                        onExtraChanged = { key, value -> extrasState = extrasState + (key to value) },
+                        onAddExtra = { spec ->
+                            customExtraSpecs = customExtraSpecs + spec
+                            extrasState = extrasState + (spec.key to spec.defaultValue())
+                        },
+                    )
+                } ?: Button(
+                    onClick = {
+                        // TODO: push AppList and take it from there
+                        packageName = "net.canvoki.carburoid"
+                        componentName = "net.canvoki.carburoid.MainActivity"
+                    },
+                ) {
+                    Icon(painterResource(R.drawable.ic_add), null)
+                    Text(stringResource(R.string.intent_editor_select_app_and_screen))
+                }
             }
         }
     }
