@@ -103,8 +103,13 @@ data class LaunchActivityCommand(
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
 
         action?.let { intent.action = it }
-        dataUri?.let { intent.data = it.toUri() }
-        dataMimeType?.let { intent.type = it }
+        val data = dataUri?.toUri()
+        if (data != null && dataMimeType != null) {
+            intent.setDataAndType(data, dataMimeType)
+        } else {
+            data?.let { intent.data = it }
+            dataMimeType?.let { intent.type = it }
+        }
 
         extras.entries.forEach { (key, value) ->
             value.addToIntent(intent, key)
