@@ -34,6 +34,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
 import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
@@ -89,6 +90,19 @@ data object ActivityLaunchCommandEditor : StackedScreen<Unit>() {
             extrasState = rebuildExtras(extrasState, actionExtras, customExtraSpecs)
         }
 
+        fun buildCommand(component: PublicComponent): LaunchActivityCommand {
+            val actionStr = selectedAction?.action ?: customAction.takeIf { it.isNotBlank() }
+            return LaunchActivityCommand(
+                displayName = component.label,
+                packageName = packageName!!,
+                className = component.name,
+                action = actionStr,
+                dataUri = intentData,
+                dataMimeType = intentMime,
+                extras = extrasState,
+            )
+        }
+
         Column(
             modifier = Modifier.fillMaxSize(),
         ) {
@@ -114,8 +128,8 @@ data object ActivityLaunchCommandEditor : StackedScreen<Unit>() {
                         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
                         modifier = Modifier.fillMaxWidth().clickable {
                             // TODO: push AppList and take it from there
-                            packageName = "net.canvoki.carburoid"
-                            componentName = "net.canvoki.carburoid.MainActivity"
+                            packageName = "net.canvoki.puppet"
+                            componentName = "net.canvoki.puppet.UnfilteredActivity"
                         },
                     ) {
                         Row(
@@ -136,6 +150,23 @@ data object ActivityLaunchCommandEditor : StackedScreen<Unit>() {
                             )
                         }
                     }
+                }
+                OutlinedButton(
+                    onClick = {
+                        scope.launch {
+                            component?.let {
+                                try {
+                                    buildCommand(it).execute(context)
+                                } catch (e: Exception) {
+                                    e.printStackTrace()
+                                }
+                            }
+                        }
+                    },
+                    enabled = component != null,
+                    modifier = Modifier.fillMaxWidth(),
+                ) {
+                    Text(stringResource(R.string.intent_editor_try))
                 }
                 IntentActionSelector(
                     supportedActions = actionsToShow,
