@@ -45,6 +45,7 @@ fun UriField(
     uri: String?,
     onUriChanged: (String?) -> Unit,
     label: String = "URI",
+    allowedSchemes: List<String>? = null,
     showPicker: Boolean = true,
     onFilePicked: ((Uri) -> Unit)? = null,
 ) {
@@ -79,10 +80,14 @@ fun UriField(
 
     val isReadOnly = resolvedName != null
 
+    val effectiveSchemes = allowedSchemes?.let { allowed ->
+        schemes.filter { scheme -> allowed.any { scheme.startsWith(it) } }
+    } ?: schemes
+
     var expanded by remember { mutableStateOf(false) }
     val suggestions =
-        remember(fieldValue.text) {
-            schemes.filter { it.startsWith(fieldValue.text, ignoreCase = true) }
+        remember(fieldValue.text, effectiveSchemes) {
+            effectiveSchemes.filter { it.startsWith(fieldValue.text, ignoreCase = true) }
         }
 
     @OptIn(ExperimentalMaterial3Api::class)
@@ -149,8 +154,8 @@ fun UriField(
 private fun resolveDisplayName(
     context: Context,
     uri: Uri,
-): String? {
-    return context.contentResolver.query(uri, null, null, null, null)?.use { cursor ->
+): String? =
+    context.contentResolver.query(uri, null, null, null, null)?.use { cursor ->
         if (cursor.moveToFirst()) {
             val nameIdx = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)
             if (nameIdx >= 0) cursor.getString(nameIdx) else null
@@ -158,4 +163,3 @@ private fun resolveDisplayName(
             null
         }
     }
-}

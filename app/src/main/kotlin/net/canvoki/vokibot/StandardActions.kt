@@ -25,6 +25,7 @@ data class ActionDefinition(
     val iconRes: Int,
     val probeStrategy: ProbeStrategy = ProbeStrategy.ACTION_ONLY,
     val extras: List<ExtraSpec> = emptyList(),
+    val allowedSchemes: List<String>? = null,
 )
 
 object StandardActions {
@@ -79,6 +80,7 @@ object StandardActions {
                 label = "Send To",
                 iconRes = R.drawable.ic_mail,
                 probeStrategy = ProbeStrategy.REQUIRES_URI,
+                allowedSchemes = listOf("mailto", "smsto"),
                 extras =
                     listOf(
                         ExtraSpec(Intent.EXTRA_SUBJECT, ExtraType.STRING, label = "Subject"),
@@ -90,24 +92,28 @@ object StandardActions {
                 label = "Dial",
                 iconRes = R.drawable.ic_call,
                 probeStrategy = ProbeStrategy.REQUIRES_URI,
+                allowedSchemes = listOf("tel"),
             ),
             ActionDefinition(
                 action = Intent.ACTION_CALL,
                 label = "Call",
                 iconRes = R.drawable.ic_phone,
                 probeStrategy = ProbeStrategy.REQUIRES_URI,
+                allowedSchemes = listOf("tel"),
             ),
             ActionDefinition(
                 action = Intent.ACTION_EDIT,
                 label = "Edit",
                 iconRes = R.drawable.ic_edit,
                 probeStrategy = ProbeStrategy.REQUIRES_URI,
+                allowedSchemes = listOf("content"),
             ),
             ActionDefinition(
                 action = Intent.ACTION_PICK,
                 label = "Pick",
                 iconRes = R.drawable.ic_photo_library,
                 probeStrategy = ProbeStrategy.REQUIRES_URI,
+                allowedSchemes = listOf("content"),
             ),
             ActionDefinition(
                 action = Intent.ACTION_GET_CONTENT,
@@ -191,4 +197,6 @@ object StandardActions {
     fun extras(action: String?): List<ExtraSpec> = get(action)?.extras ?: emptyList()
 
     fun probeStrategy(action: String?): ProbeStrategy = get(action)?.probeStrategy ?: ProbeStrategy.ACTION_ONLY
+
+    fun allowedSchemes(action: String?): List<String>? = get(action)?.allowedSchemes
 }

@@ -164,6 +164,7 @@ data object ActivityLaunchCommandEditor : StackedScreen<Unit>() {
                     onDataChanged = { intentData = it },
                     onMimeChanged = { intentMime = it },
                     dataUriRequired = dataUriRequired,
+                    allowedSchemes = selectedAction?.allowedSchemes,
                 )
                 ExtrasEditor(
                     specs = allSpecs,

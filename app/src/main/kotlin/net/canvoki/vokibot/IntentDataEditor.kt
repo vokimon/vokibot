@@ -17,6 +17,7 @@ fun IntentDataEditor(
     onDataChanged: (String?) -> Unit,
     onMimeChanged: (String?) -> Unit,
     dataUriRequired: Boolean = false,
+    allowedSchemes: List<String>? = null,
 ) {
     val context = LocalContext.current
     Column {
@@ -25,6 +26,7 @@ fun IntentDataEditor(
             uri = dataUri,
             onUriChanged = onDataChanged,
             label = if (dataUriRequired) "URI (required)" else "URI",
+            allowedSchemes = allowedSchemes,
             onFilePicked = { uri ->
                 context.contentResolver.getType(uri)?.let { onMimeChanged(it) }
             },
