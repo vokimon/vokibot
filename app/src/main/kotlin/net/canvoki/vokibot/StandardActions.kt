@@ -40,15 +40,6 @@ object StandardActions {
                 label = "View",
                 iconRes = R.drawable.ic_visibility,
                 probeStrategy = ProbeStrategy.REQUIRES_URI,
-                extras =
-                    listOf(
-                        ExtraSpec(
-                            key = "data",
-                            type = ExtraType.URI,
-                            required = true,
-                            label = "URI",
-                        ),
-                    ),
             ),
             ActionDefinition(
                 action = Intent.ACTION_SEND,
@@ -87,6 +78,7 @@ object StandardActions {
                 action = Intent.ACTION_SENDTO,
                 label = "Send To",
                 iconRes = R.drawable.ic_mail,
+                probeStrategy = ProbeStrategy.REQUIRES_URI,
                 extras =
                     listOf(
                         ExtraSpec(Intent.EXTRA_SUBJECT, ExtraType.STRING, label = "Subject"),
@@ -98,30 +90,12 @@ object StandardActions {
                 label = "Dial",
                 iconRes = R.drawable.ic_call,
                 probeStrategy = ProbeStrategy.REQUIRES_URI,
-                extras =
-                    listOf(
-                        ExtraSpec(
-                            key = "data",
-                            type = ExtraType.URI,
-                            required = true,
-                            label = "Phone number",
-                        ),
-                    ),
             ),
             ActionDefinition(
                 action = Intent.ACTION_CALL,
                 label = "Call",
                 iconRes = R.drawable.ic_phone,
                 probeStrategy = ProbeStrategy.REQUIRES_URI,
-                extras =
-                    listOf(
-                        ExtraSpec(
-                            key = "data",
-                            type = ExtraType.URI,
-                            required = true,
-                            label = "Phone number",
-                        ),
-                    ),
             ),
             ActionDefinition(
                 action = Intent.ACTION_EDIT,
@@ -134,15 +108,6 @@ object StandardActions {
                 label = "Pick",
                 iconRes = R.drawable.ic_photo_library,
                 probeStrategy = ProbeStrategy.REQUIRES_URI,
-                extras =
-                    listOf(
-                        ExtraSpec(
-                            key = "data",
-                            type = ExtraType.URI,
-                            required = true,
-                            label = "Content URI",
-                        ),
-                    ),
             ),
             ActionDefinition(
                 action = Intent.ACTION_GET_CONTENT,

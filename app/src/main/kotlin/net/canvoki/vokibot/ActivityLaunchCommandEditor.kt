@@ -157,11 +157,13 @@ data object ActivityLaunchCommandEditor : StackedScreen<Unit>() {
                     onSelected = { selectedAction = it },
                     onCustomChanged = { customAction = it },
                 )
+                val dataUriRequired = selectedAction?.probeStrategy == ProbeStrategy.REQUIRES_URI
                 IntentDataEditor(
                     dataUri = intentData,
                     mimeType = intentMime,
                     onDataChanged = { intentData = it },
                     onMimeChanged = { intentMime = it },
+                    dataUriRequired = dataUriRequired,
                 )
                 ExtrasEditor(
                     specs = allSpecs,

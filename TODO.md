@@ -7,7 +7,11 @@
     - [ ] ActivityLaunchCommandEditor: Extract component selector as reusable composable
     - [ ] ActivityLaunchCommandEditor: Click on app/component actually open AppList
     - [ ] ActivityLaunchCommandEditor: Done button actually saves entity
+    - [x] ActivityLaunchCommandEditor: Fix: 'data' extra in command specs is not extra but data in most cases
+    - [ ] ActivityLaunchCommandEditor: Fix: data required by command specs should be protocol restricted in some cases
     - [ ] UriField: Single line? Summary?
+    - [ ] UriField: Only show the file picker if the field is empty
+    - [ ] UriField: When the protocol as for it, provide button to browse contacts.
     - [x] UriField: When file picked show the file name instead of the uri and make it readonly for typing
     - [x] UrlField: reuse for extras
     - [x] ActivityLaunchCommandEditor: Try button
