@@ -13,13 +13,16 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 
 private val schemes =
@@ -63,25 +66,45 @@ fun IntentDataEditor(
             else -> KeyboardType.Uri
         }
 
+    // Use TextFieldValue to preserve cursor position during typing.
+    // The LaunchedEffect only syncs when the external dataUri changes
+    // (e.g. clear button resets to null -> "").
+    // When the user types, dataUri already matches the text, so the effect is a no-op
+    // and the cursor stays where the user put it.
+    var uriFieldValue by remember { mutableStateOf(TextFieldValue("")) }
+    LaunchedEffect(dataUri) {
+        val newText = dataUri.orEmpty()
+        if (newText != uriFieldValue.text) {
+            uriFieldValue = TextFieldValue(newText, TextRange(newText.length))
+        }
+    }
+
     var uriExpanded by remember { mutableStateOf(false) }
-    val uriText = dataUri ?: ""
     val uriSuggestions =
-        remember(uriText) {
-            schemes.filter { it.startsWith(uriText, ignoreCase = true) }
+        remember(uriFieldValue.text) {
+            schemes.filter { it.startsWith(uriFieldValue.text, ignoreCase = true) }
         }
 
+    // Same pattern for MIME type.
+    var mimeFieldValue by remember { mutableStateOf(TextFieldValue("")) }
+    LaunchedEffect(mimeType) {
+        val newText = mimeType.orEmpty()
+        if (newText != mimeFieldValue.text) {
+            mimeFieldValue = TextFieldValue(newText, TextRange(newText.length))
+        }
+    }
+
     var mimeExpanded by remember { mutableStateOf(false) }
-    val mimeText = mimeType ?: ""
     val mimeSuggestions =
-        remember(mimeText) {
-            val slash = mimeText.indexOf('/')
+        remember(mimeFieldValue.text) {
+            val slash = mimeFieldValue.text.indexOf('/')
             if (slash == -1) {
                 mimeDefinitions
                     .map { it.first }
-                    .filter { it.startsWith(mimeText, ignoreCase = true) }
+                    .filter { it.startsWith(mimeFieldValue.text, ignoreCase = true) }
             } else {
-                val group = mimeText.substring(0, slash + 1)
-                val subtype = mimeText.substring(slash + 1)
+                val group = mimeFieldValue.text.substring(0, slash + 1)
+                val subtype = mimeFieldValue.text.substring(slash + 1)
                 mimeDefinitions
                     .firstOrNull { it.first.equals(group, ignoreCase = true) }
                     ?.second
@@ -100,8 +123,8 @@ fun IntentDataEditor(
             onExpandedChange = { uriExpanded = it },
         ) {
             OutlinedTextField(
-                value = uriText,
-                onValueChange = { onDataChanged(it.ifBlank { null }) },
+                value = uriFieldValue,
+                onValueChange = { uriFieldValue = it; onDataChanged(it.text.ifBlank { null }) },
                 label = { Text("URI") },
                 keyboardOptions = KeyboardOptions(keyboardType = keyboardType),
                 trailingIcon = {
@@ -121,6 +144,8 @@ fun IntentDataEditor(
                     DropdownMenuItem(
                         text = { Text(suggestion) },
                         onClick = {
+                            // Move cursor to end after autocompletion so the user can keep typing.
+                            uriFieldValue = TextFieldValue(suggestion, TextRange(suggestion.length))
                             onDataChanged(suggestion)
                             uriExpanded = false
                         },
@@ -136,8 +161,8 @@ fun IntentDataEditor(
             onExpandedChange = { mimeExpanded = it },
         ) {
             OutlinedTextField(
-                value = mimeText,
-                onValueChange = { onMimeChanged(it.ifBlank { null }) },
+                value = mimeFieldValue,
+                onValueChange = { mimeFieldValue = it; onMimeChanged(it.text.ifBlank { null }) },
                 label = { Text("MIME type") },
                 trailingIcon = {
                     if (mimeType != null) {
@@ -156,6 +181,7 @@ fun IntentDataEditor(
                     DropdownMenuItem(
                         text = { Text(suggestion) },
                         onClick = {
+                            mimeFieldValue = TextFieldValue(suggestion, TextRange(suggestion.length))
                             onMimeChanged(suggestion)
                             mimeExpanded = false
                         },
