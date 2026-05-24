@@ -1,5 +1,9 @@
 # Change log
 
+## unreleased
+
+- ✨ ActivityLaunch: Complete extra parameters editor
+
 ## 0.1.0 (2026-05-19)
 
 - ✨ Automations: Relate triggers to commands
