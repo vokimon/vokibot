@@ -73,6 +73,8 @@ data object ActivityLaunchCommandEditor : StackedScreen<Unit>() {
         var customExtraSpecs by rememberSaveable(stateSaver = ExtraSpecListSaver) {
             mutableStateOf(listOf<ExtraSpec>())
         }
+        var intentData by remember { mutableStateOf<String?>(null) }
+        var intentMime by remember { mutableStateOf<String?>(null) }
 
         val allSpecs = (selectedAction?.extras ?: emptyList()) + customExtraSpecs
 
@@ -102,6 +104,12 @@ data object ActivityLaunchCommandEditor : StackedScreen<Unit>() {
                     supportedActions = actionsToShow,
                     onSelected = { selectedAction = it },
                     onCustomChanged = { customAction = it },
+                )
+                IntentDataEditor(
+                    dataUri = intentData,
+                    mimeType = intentMime,
+                    onDataChanged = { intentData = it },
+                    onMimeChanged = { intentMime = it },
                 )
                 ExtrasEditor(
                     specs = allSpecs,
