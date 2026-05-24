@@ -82,6 +82,7 @@ data class LaunchActivityCommand(
     val className: String,
     val action: String? = null,
     val dataUri: String? = null,
+    val dataMimeType: String? = null,
     val extras: Map<String, ExtraValue> = emptyMap(),
     val flagList: List<String> = emptyList(),
 ) : ApplicationCommand() {
@@ -103,6 +104,7 @@ data class LaunchActivityCommand(
 
         action?.let { intent.action = it }
         dataUri?.let { intent.data = it.toUri() }
+        dataMimeType?.let { intent.type = it }
 
         extras.entries.forEach { (key, value) ->
             value.addToIntent(intent, key)
