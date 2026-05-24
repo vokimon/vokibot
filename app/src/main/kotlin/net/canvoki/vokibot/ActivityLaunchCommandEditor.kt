@@ -151,23 +151,6 @@ data object ActivityLaunchCommandEditor : StackedScreen<Unit>() {
                         }
                     }
                 }
-                OutlinedButton(
-                    onClick = {
-                        scope.launch {
-                            component?.let {
-                                try {
-                                    buildCommand(it).execute(context)
-                                } catch (e: Exception) {
-                                    e.printStackTrace()
-                                }
-                            }
-                        }
-                    },
-                    enabled = component != null,
-                    modifier = Modifier.fillMaxWidth(),
-                ) {
-                    Text(stringResource(R.string.intent_editor_try))
-                }
                 IntentActionSelector(
                     supportedActions = actionsToShow,
                     onSelected = { selectedAction = it },
@@ -188,6 +171,23 @@ data object ActivityLaunchCommandEditor : StackedScreen<Unit>() {
                         extrasState = extrasState + (spec.key to spec.defaultValue())
                     },
                 )
+                OutlinedButton(
+                    onClick = {
+                        scope.launch {
+                            component?.let {
+                                try {
+                                    buildCommand(it).execute(context)
+                                } catch (e: Exception) {
+                                    e.printStackTrace()
+                                }
+                            }
+                        }
+                    },
+                    enabled = component != null,
+                    modifier = Modifier.fillMaxWidth(),
+                ) {
+                    Text(stringResource(R.string.intent_editor_try))
+                }
             }
         }
     }
