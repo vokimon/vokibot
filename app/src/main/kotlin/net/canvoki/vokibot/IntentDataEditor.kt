@@ -8,6 +8,8 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -17,6 +19,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 
@@ -69,6 +72,13 @@ fun IntentDataEditor(
                 onValueChange = { onDataChanged(it.ifBlank { null }) },
                 label = { Text("URI") },
                 keyboardOptions = KeyboardOptions(keyboardType = keyboardType),
+                trailingIcon = {
+                    if (dataUri != null) {
+                        IconButton(onClick = { onDataChanged(null) }) {
+                            Icon(painterResource(R.drawable.ic_close), contentDescription = null)
+                        }
+                    }
+                },
                 modifier = Modifier.menuAnchor().fillMaxWidth(),
             )
             ExposedDropdownMenu(
@@ -91,6 +101,13 @@ fun IntentDataEditor(
             value = mimeType ?: "",
             onValueChange = { onMimeChanged(it.ifBlank { null }) },
             label = { Text("MIME type") },
+            trailingIcon = {
+                if (mimeType != null) {
+                    IconButton(onClick = { onMimeChanged(null) }) {
+                        Icon(painterResource(R.drawable.ic_close), contentDescription = null)
+                    }
+                }
+            },
             modifier = Modifier.fillMaxWidth(),
         )
     }
