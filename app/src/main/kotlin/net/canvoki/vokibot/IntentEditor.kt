@@ -122,6 +122,8 @@ fun IntentEditor(
     var showOverwriteDialog by remember { mutableStateOf(false) }
     var confirmName by remember { mutableStateOf<String?>(null) }
     var customExtraSpecs by rememberSaveable(stateSaver = ExtraSpecListSaver) { mutableStateOf(listOf<ExtraSpec>()) }
+    var intentData by remember { mutableStateOf<String?>(null) }
+    var intentMime by remember { mutableStateOf<String?>(null) }
 
     val allSpecs = (selectedAction?.extras ?: emptyList()) + customExtraSpecs
 
@@ -163,6 +165,8 @@ fun IntentEditor(
             packageName = packageName,
             className = component.name,
             action = actionStr,
+            dataUri = intentData,
+            dataMimeType = intentMime,
             extras = extrasState,
         )
     }
@@ -187,6 +191,16 @@ fun IntentEditor(
                 onCustomChanged = { customAction = it },
             )
 
+            Spacer(modifier = Modifier.height(16.dp))
+            val dataUriRequired = selectedAction?.probeStrategy == ProbeStrategy.REQUIRES_URI
+            IntentDataEditor(
+                dataUri = intentData,
+                mimeType = intentMime,
+                onDataChanged = { intentData = it },
+                onMimeChanged = { intentMime = it },
+                dataUriRequired = dataUriRequired,
+                allowedSchemes = selectedAction?.allowedSchemes,
+            )
             Spacer(modifier = Modifier.height(16.dp))
             ExtrasEditor(
                 specs = allSpecs,
