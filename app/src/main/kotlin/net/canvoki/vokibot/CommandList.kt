@@ -117,6 +117,18 @@ fun CommandList(
                             onDismissRequest = { menuExpanded = false },
                         ) {
                             DropdownMenuItem(
+                                text = { Text("Edit") },
+                                leadingIcon = {
+                                    Icon(painter = painterResource(R.drawable.ic_edit), contentDescription = null)
+                                },
+                                onClick = {
+                                    menuExpanded = false
+                                    StorableEntity.getEditorScreen(command.type, command.id)?.let {
+                                        nav.push(it) { refreshCounter++ }
+                                    }
+                                },
+                            )
+                            DropdownMenuItem(
                                 text = {
                                     Text(stringResource(R.string.commandlist_run))
                                 },

@@ -41,7 +41,9 @@ import net.canvoki.shared.component.StackedScreen
 import net.canvoki.vokibot.common.EditorHeader
 
 @Serializable
-data object ActivityLaunchCommandEditor : StackedScreen<Unit>() {
+data class ActivityLaunchCommandEditor(
+    val commandId: String? = null,
+) : StackedScreen<Unit>() {
     @Composable
     override fun Screen(nav: StackNavigatorState) {
         var packageName by remember { mutableStateOf<String?>(null) }
@@ -52,6 +54,36 @@ data object ActivityLaunchCommandEditor : StackedScreen<Unit>() {
         val context = LocalContext.current
         val scope = rememberCoroutineScope()
         val repository = remember { FileDataRepository.fromContext(context) }
+        var extrasState by rememberSaveable(stateSaver = ExtraValueMapSaver) {
+            mutableStateOf(emptyMap<String, ExtraValue>())
+        }
+        var customExtraSpecs by rememberSaveable(stateSaver = ExtraSpecListSaver) {
+            mutableStateOf(listOf<ExtraSpec>())
+        }
+        var intentData by remember { mutableStateOf<String?>(null) }
+        var intentMime by remember { mutableStateOf<String?>(null) }
+
+        val allSpecs = (selectedAction?.extras ?: emptyList()) + customExtraSpecs
+
+        LaunchedEffect(commandId) {
+            if (commandId != null) {
+                val saved = repository.loadCommand(commandId) as? LaunchActivityCommand
+                saved?.let {
+                    packageName = it.packageName
+                    componentName = it.className
+                    intentData = it.dataUri
+                    intentMime = it.dataMimeType
+                    extrasState = it.extras
+                    it.action?.let { action ->
+                        StandardActions
+                            .all()
+                            .find { a -> a.action == action }
+                            ?.let { selectedAction = it }
+                            ?: run { customAction = action }
+                    }
+                }
+            }
+        }
 
         LaunchedEffect(packageName, componentName) {
             if (packageName != null && componentName != null) {
@@ -74,17 +106,6 @@ data object ActivityLaunchCommandEditor : StackedScreen<Unit>() {
                 if (mapped.isNotEmpty()) mapped else StandardActions.all()
             }
 
-        var extrasState by rememberSaveable(stateSaver = ExtraValueMapSaver) {
-            mutableStateOf(emptyMap<String, ExtraValue>())
-        }
-        var customExtraSpecs by rememberSaveable(stateSaver = ExtraSpecListSaver) {
-            mutableStateOf(listOf<ExtraSpec>())
-        }
-        var intentData by remember { mutableStateOf<String?>(null) }
-        var intentMime by remember { mutableStateOf<String?>(null) }
-
-        val allSpecs = (selectedAction?.extras ?: emptyList()) + customExtraSpecs
-
         LaunchedEffect(selectedAction) {
             val actionExtras = selectedAction?.extras ?: emptyList()
             customExtraSpecs = computeNewCustomSpecs(extrasState, actionExtras)
@@ -94,6 +115,7 @@ data object ActivityLaunchCommandEditor : StackedScreen<Unit>() {
         fun buildCommand(component: PublicComponent): LaunchActivityCommand {
             val actionStr = selectedAction?.action ?: customAction.takeIf { it.isNotBlank() }
             return LaunchActivityCommand(
+                id = ApplicationCommand.resolveId(commandId),
                 displayName = component.label,
                 packageName = packageName!!,
                 className = component.name,

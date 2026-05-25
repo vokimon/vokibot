@@ -14,7 +14,7 @@ class CommandTest {
                 "launch_activity",
                 // TODO: Remove this when transition ends
                 if (FeatureFlag.enableDirectActivitySelection) {
-                    "launch_activity_v2"
+                    "launch_activity_old"
                 } else {
                     null
                 },

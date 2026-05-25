@@ -62,6 +62,8 @@ sealed class ApplicationCommand : Command() {
         /**
          * Deserialize a command from JSON.
          */
+        fun resolveId(id: String?): String = id ?: UUID.randomUUID().toString()
+
         fun fromJson(jsonString: String): ApplicationCommand =
             StorableEntity.fromJson(jsonString, ApplicationCommand::class)
                 ?: throw kotlinx.serialization.SerializationException(
@@ -138,7 +140,7 @@ data class LaunchActivityCommand(
         override val entityClass = LaunchActivityCommand::class
         override val labelRes = R.string.command_type_launch_activity
         override val iconRes = R.drawable.ic_apps
-        override val editorFactory = { _: String? -> AppList }
+        override val editorFactory = { id: String? -> ActivityLaunchCommandEditor(id) }
         override val deserializer = { jsonString: String -> fromJson(jsonString) }
         override val helpRes = R.string.command_launch_activity_help
 
@@ -150,11 +152,11 @@ data class LaunchActivityCommand(
             if (FeatureFlag.enableDirectActivitySelection) {
                 StorableEntity.register(
                     object : EntityMetadata {
-                        override val typeKey = "launch_activity_v2"
+                        override val typeKey = "launch_activity_old"
                         override val entityClass = LaunchActivityCommand::class
                         override val labelRes = R.string.command_type_launch_activity
                         override val iconRes = R.drawable.ic_apps
-                        override val editorFactory = { id: String? -> ActivityLaunchCommandEditor }
+                        override val editorFactory = { _: String? -> AppList }
                         override val deserializer = { jsonString: String -> fromJson(jsonString) }
                         override val helpRes = R.string.command_launch_activity_help
                     },
