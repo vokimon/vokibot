@@ -6,26 +6,57 @@ digraph BuilderScreens {
     AutomationList [label="AutomationList"];
     AutomationEditor [label="AutomationEditor\n\neditingId: String?"];
     TriggerList [label="TriggerList"];
-    NfcTriggerEditor [label="NfcTriggerEditor"];
+    TriggerTypePicker [label="TriggerTypePicker"];
+    ShortcutTriggerEditor [label="ShortcutTriggerEditor\n\ntriggerId: String?"];
+    NfcTriggerEditor [label="NfcTriggerEditor\n\neditingId: String?"];
     CommandList [label="CommandList"];
-    AppList [label="AppList"];
-    ComponentList [label="ComponentList\n\npackageName: String"];
+    CommandTypePicker [label="CommandTypePicker"];
+    ActivityLaunchCommandEditor [label="ActivityLaunchCommandEditor\n\ncommandId: String?"];
+    AppSelector [label="AppSelector"];
+    AppComponentSelector [label="AppComponentSelector\n\npackageName: String"];
+    AppList [label="AppList\n\n(V1 / debug-only)"];
+    AppComponentList [label="AppComponentList\n\npackageName: String"];
     IntentEditor [label="IntentEditor\n\npackageName: String\ncomponentName: String"];
+    SettingsPageCommandEditor [label="SettingsPageCommandEditor\n\neditingId: String?"];
+    NotYetImplementedEditor [label="NotYetImplementedEditor\n\n(placeholder)"];
 
     // Pushes (solid)
     AutomationList -> AutomationEditor [label="editingId=null"];
     AutomationList -> AutomationEditor [label="editingId=id"];
     AutomationEditor -> TriggerList [label=""];
-    TriggerList -> NfcTriggerEditor [label="[type=\"nfc\"]"];
     AutomationEditor -> CommandList [label=""];
-    CommandList -> AppList [label=""];
-    AppList -> ComponentList [label="packageName"];
-    ComponentList -> IntentEditor [label="packageName, componentName"];
+    TriggerList -> TriggerTypePicker [label=""];
+    TriggerTypePicker -> ShortcutTriggerEditor [label="[type=\"shortcut\"]"];
+    TriggerTypePicker -> NfcTriggerEditor [label="[type=\"nfc\"]"];
+    TriggerList -> ShortcutTriggerEditor [label="edit [type=\"shortcut\"]"];
+    TriggerList -> NfcTriggerEditor [label="edit [type=\"nfc\"]"];
+    CommandList -> CommandTypePicker [label=""];
+    CommandTypePicker -> ActivityLaunchCommandEditor [label="[type=\"launch_activity\"]"];
+    CommandTypePicker -> AppList [label="[type=\"launch_activity_old\"]"];
+    CommandTypePicker -> SettingsPageCommandEditor [label="[type=\"settings_page\"]"];
+    CommandTypePicker -> NotYetImplementedEditor [label="[type=\"send_broadcast\"]\n[start_service]\n[access_provider]"];
+    CommandList -> ActivityLaunchCommandEditor [label="edit [type=\"launch_activity\"]"];
+    CommandList -> AppList [label="edit [type=\"launch_activity_old\"]"];
+    CommandList -> SettingsPageCommandEditor [label="edit [type=\"settings_page\"]"];
+    CommandList -> NotYetImplementedEditor [label="edit (others)"];
+    ActivityLaunchCommandEditor -> AppSelector [label=""];
+    AppSelector -> AppComponentSelector [label="packageName"];
+    AppList -> AppComponentList [label="packageName"];
+    AppComponentList -> IntentEditor [label="packageName, componentName"];
 
     // Returns (dashed)
+    AppComponentSelector -> AppSelector [label=":ComponentSelection", style=dashed, color=gray];
+    AppSelector -> ActivityLaunchCommandEditor [label="", style=dashed, color=gray];
+    IntentEditor -> AppComponentList [label="", style=dashed, color=gray];
+    ShortcutTriggerEditor -> TriggerList [label="", style=dashed, color=gray];
     NfcTriggerEditor -> TriggerList [label="", style=dashed, color=gray];
-    TriggerList -> AutomationEditor [label=":type, id", style=dashed, color=gray];
+    TriggerTypePicker -> TriggerList [label="", style=dashed, color=gray];
+    TriggerList -> AutomationEditor [label=":triggerType, triggerId", style=dashed, color=gray];
+    ActivityLaunchCommandEditor -> CommandList [label="", style=dashed, color=gray];
+    AppList -> CommandList [label="", style=dashed, color=gray];
+    SettingsPageCommandEditor -> CommandList [label="", style=dashed, color=gray];
+    NotYetImplementedEditor -> CommandList [label="", style=dashed, color=gray];
+    CommandTypePicker -> CommandList [label="", style=dashed, color=gray];
     CommandList -> AutomationEditor [label=":commandId", style=dashed, color=gray];
     AutomationEditor -> AutomationList [label="", style=dashed, color=gray];
 }
-
