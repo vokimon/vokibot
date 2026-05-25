@@ -135,9 +135,12 @@ data object ActivityLaunchCommandEditor : StackedScreen<Unit>() {
                         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
                         modifier =
                             Modifier.fillMaxWidth().clickable {
-                                // TODO: push AppList and take it from there
-                                packageName = "net.canvoki.puppet"
-                                componentName = "net.canvoki.puppet.UnfilteredActivity"
+                                nav.push(AppSelector) { selection ->
+                                    selection?.let {
+                                        packageName = it.packageName
+                                        componentName = it.componentName
+                                    }
+                                }
                             },
                     ) {
                         Row(
