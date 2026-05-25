@@ -38,26 +38,33 @@ import net.canvoki.shared.component.StackedScreen
 ) : StackedScreen<Unit>() {
     @Composable
     override fun Screen(nav: StackNavigatorState) {
-        val context = LocalContext.current
-        AsyncList(
-            refreshKeys = listOf(packageName),
-            loader = {
-                queryPublicComponents(context, packageName, exportedOnly = true)
-                    .components
-                    .sortedWith(compareBy({ it.type }, { !it.exported }, { it.name }))
-            },
-            itemKey = { it.name },
-            groupBy = { it.type.name },
-            headerContent = { groupKey: String ->
-                ComponentGroupHeader(groupKey)
-            },
-            notFoundMessage = stringResource(R.string.activitylist_not_found),
-        ) { component ->
-            ComponentRow(packageName, component) {
-                nav.push(IntentEditor(packageName, component.name)) {
-                }
-            }
+        ComponentListContent(packageName = packageName) {
+            nav.push(IntentEditor(packageName, it.name)) { }
         }
+    }
+}
+
+@Composable
+fun ComponentListContent(
+    packageName: String,
+    onComponentSelected: (PublicComponent) -> Unit,
+) {
+    val context = LocalContext.current
+    AsyncList(
+        refreshKeys = listOf(packageName),
+        loader = {
+            queryPublicComponents(context, packageName, exportedOnly = true)
+                .components
+                .sortedWith(compareBy({ it.type }, { !it.exported }, { it.name }))
+        },
+        itemKey = { it.name },
+        groupBy = { it.type.name },
+        headerContent = { groupKey: String ->
+            ComponentGroupHeader(groupKey)
+        },
+        notFoundMessage = stringResource(R.string.activitylist_not_found),
+    ) { component ->
+        ComponentRow(packageName, component) { onComponentSelected(component) }
     }
 }
 
