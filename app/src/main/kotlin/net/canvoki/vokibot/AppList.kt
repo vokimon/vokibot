@@ -1,5 +1,6 @@
 package net.canvoki.vokibot
 
+import android.content.ComponentName
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.graphics.drawable.BitmapDrawable
@@ -82,6 +83,29 @@ data object AppList : StackedScreen<Unit>() {
             listState = listState,
             onSelected = { app ->
                 nav.push(AppComponentList(app.packageName)) { result: Unit? -> }
+            },
+        )
+    }
+}
+
+@Serializable
+data class ComponentSelection(
+    val packageName: String,
+    val componentName: String,
+)
+
+@Serializable
+data object AppSelector : StackedScreen<ComponentSelection>() {
+    @Composable
+    override fun Screen(nav: StackNavigatorState) {
+        val listState = rememberSaveable(saver = LazyListState.Saver) { LazyListState() }
+
+        AppList(
+            listState = listState,
+            onSelected = { app ->
+                nav.push(AppComponentSelector(app.packageName)) { selection ->
+                    if (selection != null) nav.pop(selection)
+                }
             },
         )
     }

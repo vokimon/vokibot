@@ -44,6 +44,18 @@ import net.canvoki.shared.component.StackedScreen
     }
 }
 
+@Serializable
+data class AppComponentSelector(
+    val packageName: String,
+) : StackedScreen<ComponentSelection>() {
+    @Composable
+    override fun Screen(nav: StackNavigatorState) {
+        ComponentListContent(packageName = packageName) {
+            nav.pop(ComponentSelection(packageName, it.name))
+        }
+    }
+}
+
 @Composable
 fun ComponentListContent(
     packageName: String,
