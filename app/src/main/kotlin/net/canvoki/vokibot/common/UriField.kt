@@ -80,9 +80,10 @@ fun UriField(
 
     val isReadOnly = resolvedName != null
 
-    val effectiveSchemes = allowedSchemes?.let { allowed ->
-        schemes.filter { scheme -> allowed.any { scheme.startsWith(it) } }
-    } ?: schemes
+    val effectiveSchemes =
+        allowedSchemes?.let { allowed ->
+            schemes.filter { scheme -> allowed.any { scheme.startsWith(it) } }
+        } ?: schemes
 
     var expanded by remember { mutableStateOf(false) }
     val suggestions =

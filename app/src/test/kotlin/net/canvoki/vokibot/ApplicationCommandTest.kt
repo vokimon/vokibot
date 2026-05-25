@@ -270,10 +270,20 @@ class ApplicationCommandTest {
     fun `toJson and fromJson are inverses for all command types`() {
         val commands =
             listOf<ApplicationCommand>(
-                LaunchActivityCommand(displayName = "A", packageName = "p", className = "c", flagList = listOf("NEW_TASK")),
+                LaunchActivityCommand(
+                    displayName = "A",
+                    packageName = "p",
+                    className = "c",
+                    flagList = listOf("NEW_TASK"),
+                ),
                 SendBroadcastCommand(displayName = "B", packageName = "p", action = "act"),
                 StartServiceCommand(displayName = "C", packageName = "p", className = "c"),
-                AccessProviderCommand(displayName = "D", packageName = "p", authority = "auth", operation = ProviderOperation.QUERY),
+                AccessProviderCommand(
+                    displayName = "D",
+                    packageName = "p",
+                    authority = "auth",
+                    operation = ProviderOperation.QUERY,
+                ),
             )
         commands.forEach { original ->
             val restored = ApplicationCommand.fromJson(original.toJson())
