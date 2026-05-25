@@ -2,8 +2,14 @@
 
 ## unreleased
 
-- ✨ ActivityLaunch: Data editor
-- ✨ ActivityLaunch: Extra parameters editor
+- ✨ ApplicationCommand: Edit existing application commands
+- ✨ ApplicationCommand: Adding intent data (uri and/or mime)
+- ✨ ApplicationCommand: Adding intent extra parameters
+- 🚸 ApplicationCommand: Component selection button.
+    Now the first you see is the intent editor, not the app list,
+    providing context of what you are doing when selecting the app
+- 🚸 ApplicationCommand: Pick file button for Uri fields
+- 🚸 ApplicationCommand: Autocompletion for Uri protocols and Mime fields
 
 ## 0.1.0 (2026-05-19)
 

@@ -3,16 +3,18 @@
 - [x] Add EditorHeader to Trigger/CommandList "Saved Triggers/Commands"
 - [ ] Complete the editor for ActivityLaunchCommand
     - [ ] IntentExtraEditor: Delete Extra
+    - [ ] IntentExtraEditor: Specific editor for string list 
+    - [ ] IntentExtraEditor: Specific editor for uri list 
     - [ ] IntentDataEditor: Paste icon button
+    - [ ] UriField: Fix: Expands multiple lines. Limit single line? Summary?
+    - [ ] UriField: Only show the file picker if the field is empty (or content://)
+    - [ ] UriField: When the protocol ask for it, provide button to browse contacts.
     - [ ] ActivityLaunchCommandEditor: Extract component selector as reusable composable
-    - [ ] ActivityLaunchCommandEditor: Click on app/component actually open AppList
-    - [ ] ActivityLaunchCommandEditor: Done button actually saves entity
+    - [x] ActivityLaunchCommandEditor: Click on app/component actually open AppList
+    - [x] ActivityLaunchCommandEditor: Done button actually saves entity
     - [x] ActivityLaunchCommandEditor: Fix: 'data' extra in command specs is not extra but data in most cases
-    - [ ] ActivityLaunchCommandEditor: Fix: data required by command specs should be protocol restricted in some cases
-    - [ ] UriField: Single line? Summary?
-    - [ ] UriField: Only show the file picker if the field is empty
-    - [ ] UriField: When the protocol as for it, provide button to browse contacts.
-    - [ ] ActivityLaunchCommandEditor: Edit mode
+    - [x] ActivityLaunchCommandEditor: Fix: data required by command specs should be protocol restricted in some cases
+    - [x] ActivityLaunchCommandEditor: Edit mode
     - [x] UriField: When file picked show the file name instead of the uri and make it readonly for typing
     - [x] UrlField: reuse for extras
     - [x] ActivityLaunchCommandEditor: Try button
@@ -25,7 +27,6 @@
     - [x] IntentEditor: On change action, remove empty extras, keep filled
     - [x] Extract as composables the parts of the editor that might be reused
 - [ ] Progressively, one component kind at a time, add the dialog of that kind of App component, reusing parts of Activity and composing its ApplicationCommand.
-- [ ] Command Menu: "Edit"
 - [ ] Magic naming: icon button to assign a default name from content in the name editor. Show when empty instead of delete button.
 - [ ] Use UserMessage for "Try" button errors
 - [ ] ApplicationCommand: Overwrite dialog: if not confirm, back to ask the name not full cancell
