@@ -400,6 +400,7 @@ fun <T : StorableEntity> assertDataEqual(
 
 private fun buildCommand(displayName: String = "Test Command"): ApplicationCommand =
     LaunchActivityCommand(
+        id = displayName,
         displayName = displayName,
         packageName = "com.test.pkg",
         className = "com.test.pkg.MainActivity",

@@ -8,6 +8,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.core.net.toUri
 import kotlinx.serialization.Serializable
+import java.util.UUID
 
 fun toFileSystemId(id: String): String =
     id
@@ -31,9 +32,6 @@ sealed class ApplicationCommand : Command() {
      */
     @get:StringRes
     abstract val typeLabelRes: Int
-
-    override val id: String
-        get() = toFileSystemId(displayName)
 
     override val title: String
         get() = displayName
@@ -77,6 +75,7 @@ sealed class ApplicationCommand : Command() {
  */
 @Serializable
 data class LaunchActivityCommand(
+    override val id: String = UUID.randomUUID().toString(),
     override val displayName: String,
     override val packageName: String,
     val className: String,
@@ -170,6 +169,7 @@ data class LaunchActivityCommand(
  */
 @Serializable
 data class SendBroadcastCommand(
+    override val id: String = UUID.randomUUID().toString(),
     override val displayName: String,
     override val packageName: String,
     val action: String,
@@ -226,6 +226,7 @@ data class SendBroadcastCommand(
  */
 @Serializable
 data class StartServiceCommand(
+    override val id: String = UUID.randomUUID().toString(),
     override val displayName: String,
     override val packageName: String,
     val className: String,
@@ -281,6 +282,7 @@ data class StartServiceCommand(
  */
 @Serializable
 data class AccessProviderCommand(
+    override val id: String = UUID.randomUUID().toString(),
     override val displayName: String,
     override val packageName: String,
     val authority: String,

@@ -9,6 +9,7 @@ class ApplicationCommandTest {
     // ---------- LaunchActivityCommand ----------
     fun launchActivityCommandBase() =
         LaunchActivityCommand(
+            id = "test-launch-id",
             displayName = "Open Maps",
             packageName = "com.google.android.apps.maps",
             className = "com.android.gl.maps.MainActivity",
@@ -27,6 +28,7 @@ class ApplicationCommandTest {
         """
         {
           "type": "launch_activity",
+          "id": "test-launch-id",
           "displayName": "Open Maps",
           "packageName": "com.google.android.apps.maps",
           "className": "com.android.gl.maps.MainActivity",
@@ -78,6 +80,7 @@ class ApplicationCommandTest {
     // ---------- SendBroadcastCommand ----------
     fun sendBroadcastCommandBase() =
         SendBroadcastCommand(
+            id = "test-send-id",
             displayName = "Send SMS",
             packageName = "com.android.messaging",
             action = "android.intent.action.SENDTO",
@@ -90,6 +93,7 @@ class ApplicationCommandTest {
         """
         {
           "type": "send_broadcast",
+          "id": "test-send-id",
           "displayName": "Send SMS",
           "packageName": "com.android.messaging",
           "action": "android.intent.action.SENDTO",
@@ -127,6 +131,7 @@ class ApplicationCommandTest {
     // ---------- StartServiceCommand ----------
     fun startServiceCommandBase() =
         StartServiceCommand(
+            id = "test-start-id",
             displayName = "Sync Data",
             packageName = "com.example.app",
             className = "com.android.sync.SyncWorker",
@@ -138,6 +143,7 @@ class ApplicationCommandTest {
         """
         {
           "type": "start_service",
+          "id": "test-start-id",
           "displayName": "Sync Data",
           "packageName": "com.example.app",
           "className": "com.android.sync.SyncWorker",
@@ -185,6 +191,7 @@ class ApplicationCommandTest {
     // ---------- AccessProviderCommand ----------
     fun accessProviderCommandBase() =
         AccessProviderCommand(
+            id = "test-access-id",
             displayName = "Read Contacts",
             packageName = "com.android.contacts",
             authority = "com.android.contacts",
@@ -197,6 +204,7 @@ class ApplicationCommandTest {
         """
         {
           "type": "access_provider",
+          "id": "test-access-id",
           "displayName": "Read Contacts",
           "packageName": "com.android.contacts",
           "authority": "com.android.contacts",
@@ -262,10 +270,10 @@ class ApplicationCommandTest {
     fun `toJson and fromJson are inverses for all command types`() {
         val commands =
             listOf<ApplicationCommand>(
-                LaunchActivityCommand("A", "p", "c", flagList = listOf("NEW_TASK")),
-                SendBroadcastCommand("B", "p", "act"),
-                StartServiceCommand("C", "p", "c"),
-                AccessProviderCommand("D", "p", "auth", ProviderOperation.QUERY),
+                LaunchActivityCommand(displayName = "A", packageName = "p", className = "c", flagList = listOf("NEW_TASK")),
+                SendBroadcastCommand(displayName = "B", packageName = "p", action = "act"),
+                StartServiceCommand(displayName = "C", packageName = "p", className = "c"),
+                AccessProviderCommand(displayName = "D", packageName = "p", authority = "auth", operation = ProviderOperation.QUERY),
             )
         commands.forEach { original ->
             val restored = ApplicationCommand.fromJson(original.toJson())
