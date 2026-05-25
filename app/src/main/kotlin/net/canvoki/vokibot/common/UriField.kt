@@ -46,9 +46,9 @@ fun UriField(
     onUriChanged: (String?) -> Unit,
     label: String = "URI",
     allowedSchemes: List<String>? = null,
-    showPicker: Boolean = true,
     onFilePicked: ((Uri) -> Unit)? = null,
 ) {
+    val showPicker = uri.isNullOrBlank()
     val keyboardType =
         when {
             uri?.startsWith("tel:") == true -> KeyboardType.Phone

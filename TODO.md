@@ -7,7 +7,7 @@
     - [ ] IntentExtraEditor: Specific editor for uri list 
     - [ ] IntentDataEditor: Paste icon button
     - [ ] UriField: Fix: Expands multiple lines. Limit single line? Summary?
-    - [ ] UriField: Only show the file picker if the field is empty (or content://)
+    - [x] UriField: Only show the file picker if the field is empty (or content://)
     - [ ] UriField: When the protocol ask for it, provide button to browse contacts.
     - [ ] ActivityLaunchCommandEditor: Extract component selector as reusable composable
     - [x] ActivityLaunchCommandEditor: Click on app/component actually open AppList

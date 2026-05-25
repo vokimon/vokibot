@@ -7,7 +7,7 @@
 - ✨ ApplicationCommand: Adding intent extra parameters
 - 🚸 ApplicationCommand: Component selection button.
     Now the first you see is the intent editor, not the app list,
-    providing context of what you are doing when selecting the app
+    providing context of what you are doing when selecting the app.
 - 🚸 ApplicationCommand: Pick file button for Uri fields
 - 🚸 ApplicationCommand: Autocompletion for Uri protocols and Mime fields
 
