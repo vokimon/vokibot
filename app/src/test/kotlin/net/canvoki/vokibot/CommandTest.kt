@@ -8,8 +8,20 @@ class CommandTest {
     fun `getRegisteredTypes returns all registered commands`() {
         val types = Command.getRegisteredTypes()
         val typeKeys = types.map { it.typeKey }.sorted().joinToString("\n")
+        val expectedTypes = listOfNotNull(
+            "access_provider",
+            "launch_activity",
+            // TODO: Remove this when transition ends
+            if (FeatureFlag.enableDirectActivitySelection)
+                "launch_activity_v2"
+            else null,
+            "send_broadcast",
+            "settings_page",
+            "start_service",
+        )
+
         assertEquals(
-            "access_provider\nlaunch_activity\nsend_broadcast\nsettings_page\nstart_service",
+            expectedTypes.joinToString("\n"),
             typeKeys,
         )
     }
