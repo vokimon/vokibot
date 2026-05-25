@@ -51,6 +51,7 @@ data object ActivityLaunchCommandEditor : StackedScreen<Unit>() {
         var currentComponent by remember { mutableStateOf<PublicComponent?>(null) }
         val context = LocalContext.current
         val scope = rememberCoroutineScope()
+        val repository = remember { FileDataRepository.fromContext(context) }
 
         LaunchedEffect(packageName, componentName) {
             if (packageName != null && componentName != null) {
@@ -110,7 +111,13 @@ data object ActivityLaunchCommandEditor : StackedScreen<Unit>() {
                 icon = painterResource(LaunchActivityCommand.iconRes),
                 title = stringResource(LaunchActivityCommand.labelRes),
                 actionText = stringResource(R.string.automation_done),
-                action = { nav.pop() },
+                action = {
+                    currentComponent?.let {
+                        val command = buildCommand(it)
+                        repository.saveCommand(command)
+                        nav.pop()
+                    }
+                },
             )
 
             Column(
@@ -179,8 +186,9 @@ data object ActivityLaunchCommandEditor : StackedScreen<Unit>() {
                     onClick = {
                         scope.launch {
                             component?.let {
+                                val command = buildCommand(it)
                                 try {
-                                    buildCommand(it).execute(context)
+                                    command.execute(context)
                                 } catch (e: Exception) {
                                     e.printStackTrace()
                                 }

@@ -12,6 +12,7 @@
     - [ ] UriField: Single line? Summary?
     - [ ] UriField: Only show the file picker if the field is empty
     - [ ] UriField: When the protocol as for it, provide button to browse contacts.
+    - [ ] ActivityLaunchCommandEditor: Edit mode
     - [x] UriField: When file picked show the file name instead of the uri and make it readonly for typing
     - [x] UrlField: reuse for extras
     - [x] ActivityLaunchCommandEditor: Try button
