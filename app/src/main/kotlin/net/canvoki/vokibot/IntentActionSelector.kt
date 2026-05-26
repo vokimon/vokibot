@@ -28,7 +28,6 @@ fun IntentActionSelector(
     onCustomChanged: (String) -> Unit,
 ) {
     var expanded by remember { mutableStateOf(false) }
-
     var selected by remember(selectedAction) { mutableStateOf(selectedAction) }
     var custom by remember { mutableStateOf("") }
 
