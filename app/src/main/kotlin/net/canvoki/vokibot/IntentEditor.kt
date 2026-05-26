@@ -111,8 +111,7 @@ fun IntentEditor(
             if (mapped.isNotEmpty()) mapped else StandardActions.all()
         }
 
-    var selectedAction by remember { mutableStateOf<ActionDefinition?>(null) }
-    var customAction by remember { mutableStateOf("") }
+    var actionStr by remember { mutableStateOf(actionsToShow.firstOrNull()?.action) }
     var extrasState by rememberSaveable(
         stateSaver = ExtraValueMapSaver,
     ) { mutableStateOf(emptyMap<String, ExtraValue>()) }
@@ -125,7 +124,7 @@ fun IntentEditor(
     var intentData by remember { mutableStateOf<String?>(null) }
     var intentMime by remember { mutableStateOf<String?>(null) }
 
-    val allSpecs = (selectedAction?.extras ?: emptyList()) + customExtraSpecs
+    val allSpecs = (StandardActions.get(actionStr)?.extras ?: emptyList()) + customExtraSpecs
 
     val confirmMsg =
         confirmName?.let {
@@ -152,15 +151,15 @@ fun IntentEditor(
         }
     }
 
-    LaunchedEffect(selectedAction) {
-        val actionExtras = selectedAction?.extras ?: emptyList()
+    LaunchedEffect(actionStr) {
+        val actionDef = StandardActions.get(actionStr)
+        val actionExtras = actionDef?.extras ?: emptyList()
         customExtraSpecs = computeNewCustomSpecs(extrasState, actionExtras)
         extrasState = rebuildExtras(extrasState, actionExtras, customExtraSpecs)
     }
 
-    fun buildCommand(displayName: String): LaunchActivityCommand {
-        val actionStr = selectedAction?.action ?: customAction.takeIf { it.isNotBlank() }
-        return LaunchActivityCommand(
+    fun buildCommand(displayName: String): LaunchActivityCommand =
+        LaunchActivityCommand(
             displayName = displayName,
             packageName = packageName,
             className = component.name,
@@ -169,7 +168,6 @@ fun IntentEditor(
             dataMimeType = intentMime,
             extras = extrasState,
         )
-    }
 
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -187,19 +185,19 @@ fun IntentEditor(
 
             IntentActionSelector(
                 supportedActions = actionsToShow,
-                onSelected = { selectedAction = it },
-                onCustomChanged = { customAction = it },
+                action = actionStr?.takeIf { it.isNotBlank() },
+                onActionChanged = { actionStr = it },
             )
 
             Spacer(modifier = Modifier.height(16.dp))
-            val dataUriRequired = selectedAction?.probeStrategy == ProbeStrategy.REQUIRES_URI
+            val dataUriRequired = StandardActions.get(actionStr)?.probeStrategy == ProbeStrategy.REQUIRES_URI
             IntentDataEditor(
                 dataUri = intentData,
                 mimeType = intentMime,
                 onDataChanged = { intentData = it },
                 onMimeChanged = { intentMime = it },
                 dataUriRequired = dataUriRequired,
-                allowedSchemes = selectedAction?.allowedSchemes,
+                allowedSchemes = StandardActions.get(actionStr)?.allowedSchemes,
             )
             Spacer(modifier = Modifier.height(16.dp))
             ExtrasEditor(

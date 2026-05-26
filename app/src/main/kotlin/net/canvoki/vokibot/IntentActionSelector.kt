@@ -11,7 +11,6 @@ import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -23,13 +22,10 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun IntentActionSelector(
     supportedActions: List<ActionDefinition>,
-    selectedAction: ActionDefinition? = null,
-    onSelected: (ActionDefinition?) -> Unit,
-    onCustomChanged: (String) -> Unit,
+    action: String?,
+    onActionChanged: (String?) -> Unit,
 ) {
     var expanded by remember { mutableStateOf(false) }
-    var selected by remember(selectedAction) { mutableStateOf(selectedAction) }
-    var custom by remember { mutableStateOf("") }
 
     val actionsToShow =
         if (supportedActions.isNotEmpty()) {
@@ -38,12 +34,7 @@ fun IntentActionSelector(
             StandardActions.all()
         }
 
-    LaunchedEffect(actionsToShow) {
-        if (selected == null) {
-            selected = actionsToShow.firstOrNull()
-            onSelected(selected)
-        }
-    }
+    val selected = actionsToShow.find { it.action == action }
 
     Column {
         SectionHeader(stringResource(R.string.intent_editor_action_label))
@@ -67,22 +58,20 @@ fun IntentActionSelector(
                 expanded = expanded,
                 onDismissRequest = { expanded = false },
             ) {
-                actionsToShow.forEach { action ->
+                actionsToShow.forEach { actionDef ->
                     DropdownMenuItem(
-                        text = { Text(action.label) },
+                        text = { Text(actionDef.label) },
                         onClick = {
-                            selected = action
                             expanded = false
-                            onSelected(action)
+                            onActionChanged(actionDef.action)
                         },
                     )
                 }
                 DropdownMenuItem(
                     text = { Text(stringResource(R.string.intent_editor_custom_or_none)) },
                     onClick = {
-                        selected = null
                         expanded = false
-                        onSelected(null)
+                        onActionChanged(null)
                     },
                 )
             }
@@ -92,10 +81,9 @@ fun IntentActionSelector(
             Spacer(modifier = Modifier.height(8.dp))
 
             OutlinedTextField(
-                value = custom,
+                value = action ?: "",
                 onValueChange = {
-                    custom = it
-                    onCustomChanged(it)
+                    onActionChanged(it)
                 },
                 label = { Text(stringResource(R.string.intent_editor_action_string_optional)) },
                 modifier = Modifier.fillMaxWidth(),

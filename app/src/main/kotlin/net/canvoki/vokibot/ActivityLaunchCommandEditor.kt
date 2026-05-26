@@ -50,8 +50,7 @@ data class ActivityLaunchCommandEditor(
         var showDiscardDialog by remember { mutableStateOf(false) }
         var packageName by remember { mutableStateOf<String?>(null) }
         var componentName by remember { mutableStateOf<String?>(null) }
-        var selectedAction by remember { mutableStateOf<ActionDefinition?>(null) }
-        var customAction by remember { mutableStateOf("") }
+        var actionStr by remember { mutableStateOf<String?>(null) }
         var currentComponent by remember { mutableStateOf<PublicComponent?>(null) }
         val context = LocalContext.current
         val scope = rememberCoroutineScope()
@@ -65,7 +64,7 @@ data class ActivityLaunchCommandEditor(
         var intentData by remember { mutableStateOf<String?>(null) }
         var intentMime by remember { mutableStateOf<String?>(null) }
 
-        val allSpecs = (selectedAction?.extras ?: emptyList()) + customExtraSpecs
+        val allSpecs = (StandardActions.get(actionStr)?.extras ?: emptyList()) + customExtraSpecs
 
         LaunchedEffect(commandId) {
             if (commandId != null) {
@@ -73,16 +72,10 @@ data class ActivityLaunchCommandEditor(
                 saved?.let {
                     packageName = it.packageName
                     componentName = it.className
+                    actionStr = it.action
                     intentData = it.dataUri
                     intentMime = it.dataMimeType
                     extrasState = it.extras
-                    it.action?.let { action ->
-                        StandardActions
-                            .all()
-                            .find { a -> a.action == action }
-                            ?.let { selectedAction = it }
-                            ?: run { customAction = action }
-                    }
                 }
             }
         }
@@ -101,12 +94,18 @@ data class ActivityLaunchCommandEditor(
                 val mapped =
                     currentComponent?.let {
                         it.actions.mapNotNull { actionStr ->
-                            StandardActions.all().find { it.action == actionStr }
+                            StandardActions.all().find { a -> a.action == actionStr }
                         }
                     } ?: emptyList<ActionDefinition>()
 
                 if (mapped.isNotEmpty()) mapped else StandardActions.all()
             }
+
+        LaunchedEffect(currentComponent) {
+            if (currentComponent != null && commandId == null && actionStr == null) {
+                actionStr = actionsToShow.firstOrNull()?.action
+            }
+        }
 
         LaunchedEffect(isDirty) {
             nav.onBack(this@ActivityLaunchCommandEditor, enabled = isDirty) {
@@ -130,15 +129,15 @@ data class ActivityLaunchCommandEditor(
             },
         )
 
-        LaunchedEffect(selectedAction) {
-            val actionExtras = selectedAction?.extras ?: emptyList()
+        LaunchedEffect(actionStr) {
+            val actionDef = StandardActions.get(actionStr)
+            val actionExtras = actionDef?.extras ?: emptyList()
             customExtraSpecs = computeNewCustomSpecs(extrasState, actionExtras)
             extrasState = rebuildExtras(extrasState, actionExtras, customExtraSpecs)
         }
 
-        fun buildCommand(component: PublicComponent): LaunchActivityCommand {
-            val actionStr = selectedAction?.action ?: customAction.takeIf { it.isNotBlank() }
-            return LaunchActivityCommand(
+        fun buildCommand(component: PublicComponent): LaunchActivityCommand =
+            LaunchActivityCommand(
                 id = ApplicationCommand.resolveId(commandId),
                 displayName = component.label,
                 packageName = packageName!!,
@@ -148,7 +147,6 @@ data class ActivityLaunchCommandEditor(
                 dataMimeType = intentMime,
                 extras = extrasState,
             )
-        }
 
         Column(
             modifier = Modifier.fillMaxSize(),
@@ -211,19 +209,13 @@ data class ActivityLaunchCommandEditor(
                 }
                 IntentActionSelector(
                     supportedActions = actionsToShow,
-                    selectedAction = selectedAction,
-                    onSelected = { action ->
-                        if (action != selectedAction) {
-                            isDirty = true
-                        }
-                        selectedAction = action
-                    },
-                    onCustomChanged = {
-                        customAction = it
+                    action = actionStr,
+                    onActionChanged = {
+                        actionStr = it
                         isDirty = true
                     },
                 )
-                val dataUriRequired = selectedAction?.probeStrategy == ProbeStrategy.REQUIRES_URI
+                val dataUriRequired = StandardActions.get(actionStr)?.probeStrategy == ProbeStrategy.REQUIRES_URI
                 IntentDataEditor(
                     dataUri = intentData,
                     mimeType = intentMime,
@@ -236,7 +228,7 @@ data class ActivityLaunchCommandEditor(
                         isDirty = true
                     },
                     dataUriRequired = dataUriRequired,
-                    allowedSchemes = selectedAction?.allowedSchemes,
+                    allowedSchemes = StandardActions.get(actionStr)?.allowedSchemes,
                 )
                 ExtrasEditor(
                     specs = allSpecs,
