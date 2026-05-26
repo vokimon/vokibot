@@ -67,6 +67,12 @@ class ApplicationCommandTest {
     }
 
     @Test
+    fun `Null and empty fields are handled correctly`() {
+        val command = LaunchActivityCommand(displayName = "Minimal", packageName = "pkg", className = "cls")
+        val deserialized = ApplicationCommand.fromJson(command.toJson())
+        assertEquals(command, deserialized)
+    }
+    @Test
     fun `LaunchActivityCommand description when className shares package prefix returns shortened`() {
         val cmd =
             LaunchActivityCommand(
@@ -259,11 +265,4 @@ class ApplicationCommandTest {
         assertIs<AccessProviderCommand>(Command.fromJson(accessProviderCommandJson()))
     }
 
-    // ---------- Null and empty fields ----------
-    @Test
-    fun `Null and empty fields are handled correctly`() {
-        val command = LaunchActivityCommand(displayName = "Minimal", packageName = "pkg", className = "cls")
-        val deserialized = ApplicationCommand.fromJson(command.toJson())
-        assertEquals(command, deserialized)
-    }
 }
