@@ -72,6 +72,7 @@ class ApplicationCommandTest {
         val deserialized = ApplicationCommand.fromJson(command.toJson())
         assertEquals(command, deserialized)
     }
+
     @Test
     fun `LaunchActivityCommand description when className shares package prefix returns shortened`() {
         val cmd =
@@ -264,5 +265,4 @@ class ApplicationCommandTest {
     fun `AccessProviderCommand polymorphic load`() {
         assertIs<AccessProviderCommand>(Command.fromJson(accessProviderCommandJson()))
     }
-
 }
