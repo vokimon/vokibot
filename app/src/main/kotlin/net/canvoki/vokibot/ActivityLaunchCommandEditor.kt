@@ -69,14 +69,39 @@ data class ActivityLaunchCommandEditor(
 
         LaunchedEffect(commandId) {
             if (commandId != null) {
-                val saved = repository.loadCommand(commandId) as? LaunchActivityCommand
-                saved?.let {
-                    packageName = it.packageName
-                    componentName = it.className
-                    actionStr = it.action
-                    intentData = it.dataUri
-                    intentMime = it.dataMimeType
-                    extrasState = it.extras
+                when (val saved = repository.loadCommand(commandId)) {
+                    is LaunchActivityCommand -> {
+                        componentType = ComponentType.ACTIVITY
+                        packageName = saved.packageName
+                        componentName = saved.className
+                        actionStr = saved.action
+                        intentData = saved.dataUri
+                        intentMime = saved.dataMimeType
+                        extrasState = saved.extras
+                    }
+                    is SendBroadcastCommand -> {
+                        componentType = ComponentType.RECEIVER
+                        packageName = saved.packageName
+                        componentName = saved.className
+                        actionStr = saved.action
+                        intentData = saved.dataUri
+                        extrasState = saved.extras
+                    }
+                    is StartServiceCommand -> {
+                        componentType = ComponentType.SERVICE
+                        packageName = saved.packageName
+                        componentName = saved.className
+                        actionStr = saved.action
+                        extrasState = saved.extras
+                    }
+                    is AccessProviderCommand -> {
+                        componentType = ComponentType.PROVIDER
+                        packageName = saved.packageName
+                        intentData = saved.path
+                        intentMime = saved.mimeType
+                        extrasState = saved.extras
+                    }
+                    else -> {}
                 }
             }
         }
@@ -138,17 +163,50 @@ data class ActivityLaunchCommandEditor(
             extrasState = rebuildExtras(extrasState, actionExtras, customExtraSpecs)
         }
 
-        fun buildCommand(component: PublicComponent): LaunchActivityCommand =
-            LaunchActivityCommand(
-                id = ApplicationCommand.resolveId(commandId),
-                displayName = component.label,
-                packageName = packageName!!,
-                className = component.name,
-                action = actionStr,
-                dataUri = intentData,
-                dataMimeType = intentMime,
-                extras = extrasState,
-            )
+        fun buildCommand(component: PublicComponent): ApplicationCommand =
+            when (componentType) {
+                ComponentType.ACTIVITY ->
+                    LaunchActivityCommand(
+                        id = ApplicationCommand.resolveId(commandId),
+                        displayName = component.label,
+                        packageName = packageName!!,
+                        className = component.name,
+                        action = actionStr,
+                        dataUri = intentData,
+                        dataMimeType = intentMime,
+                        extras = extrasState,
+                    )
+                ComponentType.RECEIVER ->
+                    SendBroadcastCommand(
+                        id = ApplicationCommand.resolveId(commandId),
+                        displayName = component.label,
+                        packageName = packageName!!,
+                        className = component.name,
+                        action = actionStr ?: "",
+                        dataUri = intentData,
+                        extras = extrasState,
+                    )
+                ComponentType.SERVICE ->
+                    StartServiceCommand(
+                        id = ApplicationCommand.resolveId(commandId),
+                        displayName = component.label,
+                        packageName = packageName!!,
+                        className = component.name,
+                        action = actionStr,
+                        extras = extrasState,
+                    )
+                ComponentType.PROVIDER ->
+                    AccessProviderCommand(
+                        id = ApplicationCommand.resolveId(commandId),
+                        displayName = component.label,
+                        packageName = packageName!!,
+                        authority = component.authorities.firstOrNull() ?: "",
+                        operation = ProviderOperation.QUERY,
+                        path = intentData,
+                        mimeType = intentMime,
+                        extras = extrasState,
+                    )
+            }
 
         Column(
             modifier = Modifier.fillMaxSize(),
