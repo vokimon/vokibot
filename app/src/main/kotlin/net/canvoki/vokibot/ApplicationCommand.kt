@@ -168,6 +168,9 @@ data class LaunchActivityCommand(
 
 /**
  * Send a Broadcast to a Receiver.
+ *
+ * Note: we omit specifying permission because the sender-side
+ * permission filter is redundant when targeting a specific receiver class.
  */
 @Serializable
 data class SendBroadcastCommand(
@@ -178,7 +181,6 @@ data class SendBroadcastCommand(
     val action: String,
     val dataUri: String? = null,
     val extras: Map<String, ExtraValue> = emptyMap(),
-    val permission: String? = null,
 ) : ApplicationCommand() {
     override val type: String = "send_broadcast"
 
@@ -204,11 +206,7 @@ data class SendBroadcastCommand(
             value.addToIntent(intent, key)
         }
 
-        if (permission != null) {
-            context.sendBroadcast(intent, permission)
-        } else {
-            context.sendBroadcast(intent)
-        }
+        context.sendBroadcast(intent)
     }
 
     override fun toJson(): String = JsonConfig.encodeToString(serializer(), this)

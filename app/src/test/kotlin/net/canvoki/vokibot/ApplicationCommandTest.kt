@@ -87,7 +87,6 @@ class ApplicationCommandTest {
             action = "android.intent.action.SENDTO",
             dataUri = "smsto:+1234567890",
             extras = mapOf("sms_body" to ExtraValue.StringValue("Hello")),
-            permission = "android.permission.SEND_SMS",
         )
 
     fun sendBroadcastCommandJson() =
@@ -102,8 +101,7 @@ class ApplicationCommandTest {
           "dataUri": "smsto:+1234567890",
           "extras": {
             "sms_body": {"type": "string", "value": "Hello"}
-          },
-          "permission": "android.permission.SEND_SMS"
+          }
         }
         """.trimIndent()
 
