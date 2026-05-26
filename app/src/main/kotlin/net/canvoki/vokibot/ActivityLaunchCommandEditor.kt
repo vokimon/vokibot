@@ -46,6 +46,8 @@ data class ActivityLaunchCommandEditor(
 ) : StackedScreen<Unit>() {
     @Composable
     override fun Screen(nav: StackNavigatorState) {
+        var isDirty by remember { mutableStateOf(false) }
+        var showDiscardDialog by remember { mutableStateOf(false) }
         var packageName by remember { mutableStateOf<String?>(null) }
         var componentName by remember { mutableStateOf<String?>(null) }
         var selectedAction by remember { mutableStateOf<ActionDefinition?>(null) }
@@ -106,6 +108,28 @@ data class ActivityLaunchCommandEditor(
                 if (mapped.isNotEmpty()) mapped else StandardActions.all()
             }
 
+        LaunchedEffect(isDirty) {
+            nav.onBack(this@ActivityLaunchCommandEditor, enabled = isDirty) {
+                showDiscardDialog = true
+            }
+        }
+
+        ConfirmDialog(
+            show = showDiscardDialog,
+            title = stringResource(R.string.automation_discard_title),
+            text = stringResource(R.string.automation_discard_message),
+            confirmText = stringResource(R.string.automation_discard_confirm),
+            dismissText = stringResource(R.string.automation_discard_cancel),
+            onConfirm = {
+                isDirty = false
+                showDiscardDialog = false
+                nav.pop()
+            },
+            onDismiss = {
+                showDiscardDialog = false
+            },
+        )
+
         LaunchedEffect(selectedAction) {
             val actionExtras = selectedAction?.extras ?: emptyList()
             customExtraSpecs = computeNewCustomSpecs(extrasState, actionExtras)
@@ -159,6 +183,7 @@ data class ActivityLaunchCommandEditor(
                             Modifier.fillMaxWidth().clickable {
                                 nav.push(AppSelector) { selection ->
                                     selection?.let {
+                                        isDirty = true
                                         packageName = it.packageName
                                         componentName = it.componentName
                                     }
@@ -187,23 +212,41 @@ data class ActivityLaunchCommandEditor(
                 IntentActionSelector(
                     supportedActions = actionsToShow,
                     selectedAction = selectedAction,
-                    onSelected = { selectedAction = it },
-                    onCustomChanged = { customAction = it },
+                    onSelected = { action ->
+                        if (action != selectedAction) {
+                            isDirty = true
+                        }
+                        selectedAction = action
+                    },
+                    onCustomChanged = {
+                        customAction = it
+                        isDirty = true
+                    },
                 )
                 val dataUriRequired = selectedAction?.probeStrategy == ProbeStrategy.REQUIRES_URI
                 IntentDataEditor(
                     dataUri = intentData,
                     mimeType = intentMime,
-                    onDataChanged = { intentData = it },
-                    onMimeChanged = { intentMime = it },
+                    onDataChanged = {
+                        intentData = it
+                        isDirty = true
+                    },
+                    onMimeChanged = {
+                        intentMime = it
+                        isDirty = true
+                    },
                     dataUriRequired = dataUriRequired,
                     allowedSchemes = selectedAction?.allowedSchemes,
                 )
                 ExtrasEditor(
                     specs = allSpecs,
                     extras = extrasState,
-                    onExtraChanged = { key, value -> extrasState = extrasState + (key to value) },
+                    onExtraChanged = { key, value ->
+                        extrasState = extrasState + (key to value)
+                        isDirty = true
+                    },
                     onAddExtra = { spec ->
+                        isDirty = true
                         customExtraSpecs = customExtraSpecs + spec
                         extrasState = extrasState + (spec.key to spec.defaultValue())
                     },
