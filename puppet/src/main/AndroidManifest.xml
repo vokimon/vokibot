@@ -35,6 +35,7 @@
         <receiver
             android:name=".PuppetReceiver"
             android:label="Puppet Receiver"
+            android:icon="@android:drawable/ic_menu_share"
             android:exported="true">
             <intent-filter>
                 <action android:name="net.canvoki.test.ACTION_TEST" />
@@ -44,6 +45,7 @@
         <service
             android:name=".PuppetService"
             android:label="Puppet Service"
+            android:icon="@android:drawable/ic_menu_manage"
             android:exported="true">
             <intent-filter>
                 <action android:name="net.canvoki.test.ACTION_SERVICE" />
