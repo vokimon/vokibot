@@ -6,6 +6,12 @@ that other applications (clients) may interact with.
 This document explains the four component types from both perspectives:
 how to define them in a host, and how to invoke them from a client.
 
+Client can invoke components:
+
+- **Explicitly** by specifying both app (`packageName`) and component (`className`)
+- **Implicitly** by not specifying neither app or component and let the system to resolve the best match or the user to choose.
+- **Scopedly** by specifying just the app and letting the system choose the best matching component or all.
+
 ## Activity: Open an app screen
 
 ### Purpose
@@ -25,11 +31,12 @@ The intent objects carries all the information the Activity receives (see below)
 
 An Activity can be launched by:
 
-- **Implicit intent**: Not specifying the target application or component classname.
-  In this case the intent-filters are used to determine which components
-  of which apps are candidates to receive the intent based on its content.
-- **Explicit intent**: Target a specific component by package +
-  component class name. Works regardless of intent filters.
+- **Implicit**: System resolves via intent filters across all apps.
+  May show a chooser if multiple apps match.
+- **Explicit**: Direct to component (`packageName` + `className`).
+  Intent filters are ignored.
+- **Scoped**: Target an app only. System picks the best Activity
+  within that app.
 
 An intent may contain:
 
@@ -96,10 +103,6 @@ pass data with it.
 The client entry point is `sendBroadcast(intent)`.
 The intent is delivered to all matching receivers.
 
-Targeting a specific package (via `intent.setPackage()`) is
-recommended for controlled interactions, to avoid accidental
-delivery to unrelated receivers.
-
 A broadcast intent can specify:
 
 - **Action**: A string identifying the event.
@@ -107,9 +110,8 @@ A broadcast intent can specify:
 - **Extras**: Key-value pairs of typed data, same as Activity.
 - **Permission**: A permission string that receivers must hold.
 
-Broadcasts are usually fired with implicit intents (action only),
-but can also target a specific receiver class for directed
-delivery.
+Implicit broadcasts are **restricted** on Android 14+.
+Use scoped or explicit targeting.
 
 ### Host implementation
 
@@ -119,8 +121,8 @@ delivery.
     android:exported="true" />
 ```
 
-Like activities, `intent-filters` are usually added
-to capture untargeted/implicit broadcasts.
+Like activities, `intent-filters` declare which broadcast actions
+the receiver handles.
 
 Then implement it like:
 
@@ -160,6 +162,8 @@ The client entry point is `startForegroundService(intent)`, which
 starts the Service and requires it to post a notification within a
 few seconds. If the notification is not posted, the system kills
 the Service.
+
+Services use explicit targeting only (both app and component).
 
 A Service intent can specify:
 
