@@ -6,10 +6,6 @@ import org.junit.Test
 import kotlin.test.assertIs
 
 class ApplicationCommandTest {
-    private inline fun <reified T : ApplicationCommand> assertJsonDeserializesTo(json: String) {
-        assertIs<T>(ApplicationCommand.fromJson(json))
-    }
-
     private fun assertRoundtrip(command: ApplicationCommand) {
         val restored = ApplicationCommand.fromJson(command.toJson())
         assertEquals(command, restored)
@@ -86,6 +82,11 @@ class ApplicationCommandTest {
         assertEquals("com.google.android.apps.maps/.MapsActivity", cmd.description)
     }
 
+    @Test
+    fun `LaunchActivityCommand polymorphic load`() {
+        assertIs<LaunchActivityCommand>(Command.fromJson(launchActivityCommandJson()))
+    }
+
     // ---------- SendBroadcastCommand ----------
     fun sendBroadcastCommandBase() =
         SendBroadcastCommand(
@@ -135,6 +136,11 @@ class ApplicationCommandTest {
     fun `SendBroadcastCommand description returns packageName action`() {
         val cmd = sendBroadcastCommandBase()
         assertEquals("com.android.messaging/.services.SmsReceiver", cmd.description)
+    }
+
+    @Test
+    fun `SendBroadcastCommand polymorphic load`() {
+        assertIs<SendBroadcastCommand>(Command.fromJson(sendBroadcastCommandJson()))
     }
 
     // ---------- StartServiceCommand ----------
@@ -197,6 +203,11 @@ class ApplicationCommandTest {
         assertEquals("com.example.app/.SyncService", cmd.description)
     }
 
+    @Test
+    fun `StartServiceCommand polymorphic load`() {
+        assertIs<StartServiceCommand>(Command.fromJson(startServiceCommandJson()))
+    }
+
     // ---------- AccessProviderCommand ----------
     fun accessProviderCommandBase() =
         AccessProviderCommand(
@@ -248,63 +259,9 @@ class ApplicationCommandTest {
         assertEquals("com.android.contacts/com.android.contacts", cmd.description)
     }
 
-    // ---------- Type discriminator ----------
     @Test
-    fun `type discriminator launch_activity maps to LaunchActivityCommand`() {
-        assertJsonDeserializesTo<LaunchActivityCommand>(
-            """
-            {
-              "type": "launch_activity",
-              "displayName": "My Activity",
-              "packageName": "com.mypackage",
-              "className": "com.mypackage.MyActivity"
-            }
-            """.trimIndent(),
-        )
-    }
-
-    @Test
-    fun `type discriminator send_broadcast maps to SendBroadcastCommand`() {
-        assertJsonDeserializesTo<SendBroadcastCommand>(
-            """
-            {
-              "type": "send_broadcast",
-              "displayName": "My Broadcast",
-              "packageName": "com.mypackage",
-              "className": "com.mypackage.MyReceiver",
-              "action": "com.mypackage.ACTION_TEST"
-            }
-            """.trimIndent(),
-        )
-    }
-
-    @Test
-    fun `type discriminator start_service maps to StartServiceCommand`() {
-        assertJsonDeserializesTo<StartServiceCommand>(
-            """
-            {
-              "type": "start_service",
-              "displayName": "My Service",
-              "packageName": "com.mypackage",
-              "className": "com.mypackage.MyService"
-            }
-            """.trimIndent(),
-        )
-    }
-
-    @Test
-    fun `type discriminator access_provider maps to AccessProviderCommand`() {
-        assertJsonDeserializesTo<AccessProviderCommand>(
-            """
-            {
-              "type": "access_provider",
-              "displayName": "My Provider",
-              "packageName": "com.mypackage",
-              "authority": "com.mypackage",
-              "operation": "QUERY"
-            }
-            """.trimIndent(),
-        )
+    fun `AccessProviderCommand polymorphic load`() {
+        assertIs<AccessProviderCommand>(Command.fromJson(accessProviderCommandJson()))
     }
 
     // ---------- Null and empty fields ----------
