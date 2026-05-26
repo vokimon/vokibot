@@ -23,12 +23,13 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun IntentActionSelector(
     supportedActions: List<ActionDefinition>,
+    selectedAction: ActionDefinition? = null,
     onSelected: (ActionDefinition?) -> Unit,
     onCustomChanged: (String) -> Unit,
 ) {
     var expanded by remember { mutableStateOf(false) }
 
-    var selected by remember { mutableStateOf<ActionDefinition?>(null) }
+    var selected by remember(selectedAction) { mutableStateOf(selectedAction) }
     var custom by remember { mutableStateOf("") }
 
     val actionsToShow =

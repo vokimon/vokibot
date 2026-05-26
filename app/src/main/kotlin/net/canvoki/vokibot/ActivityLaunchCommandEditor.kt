@@ -186,6 +186,7 @@ data class ActivityLaunchCommandEditor(
                 }
                 IntentActionSelector(
                     supportedActions = actionsToShow,
+                    selectedAction = selectedAction,
                     onSelected = { selectedAction = it },
                     onCustomChanged = { customAction = it },
                 )
