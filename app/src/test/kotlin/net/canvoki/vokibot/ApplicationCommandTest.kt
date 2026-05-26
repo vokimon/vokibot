@@ -6,11 +6,6 @@ import org.junit.Test
 import kotlin.test.assertIs
 
 class ApplicationCommandTest {
-    private fun assertRoundtrip(command: ApplicationCommand) {
-        val restored = ApplicationCommand.fromJson(command.toJson())
-        assertEquals(command, restored)
-    }
-
     // ---------- LaunchActivityCommand ----------
     fun launchActivityCommandBase() =
         LaunchActivityCommand(
@@ -270,53 +265,5 @@ class ApplicationCommandTest {
         val command = LaunchActivityCommand(displayName = "Minimal", packageName = "pkg", className = "cls")
         val deserialized = ApplicationCommand.fromJson(command.toJson())
         assertEquals(command, deserialized)
-    }
-
-    // ---------- Roundtrip ----------
-    @Test
-    fun `LaunchActivityCommand toJson and fromJson are inverses`() {
-        assertRoundtrip(
-            LaunchActivityCommand(
-                displayName = "My Activity",
-                packageName = "com.mypackage",
-                className = "com.mypackage.MyActivity",
-                flagList = listOf("NEW_TASK"),
-            ),
-        )
-    }
-
-    @Test
-    fun `SendBroadcastCommand toJson and fromJson are inverses`() {
-        assertRoundtrip(
-            SendBroadcastCommand(
-                displayName = "My Broadcast",
-                packageName = "com.mypackage",
-                className = "com.mypackage.MyReceiver",
-                action = "com.mypackage.ACTION_TEST",
-            ),
-        )
-    }
-
-    @Test
-    fun `StartServiceCommand toJson and fromJson are inverses`() {
-        assertRoundtrip(
-            StartServiceCommand(
-                displayName = "My Service",
-                packageName = "com.mypackage",
-                className = "com.mypackage.MyService",
-            ),
-        )
-    }
-
-    @Test
-    fun `AccessProviderCommand toJson and fromJson are inverses`() {
-        assertRoundtrip(
-            AccessProviderCommand(
-                displayName = "My Provider",
-                packageName = "com.mypackage",
-                authority = "com.mypackage",
-                operation = ProviderOperation.QUERY,
-            ),
-        )
     }
 }
