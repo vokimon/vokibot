@@ -2,10 +2,19 @@ package net.canvoki.vokibot
 
 import net.canvoki.shared.test.assertEquals
 import net.canvoki.shared.test.assertJsonEqual
-import org.junit.Assert.assertTrue
 import org.junit.Test
+import kotlin.test.assertIs
 
 class ApplicationCommandTest {
+    private inline fun <reified T : ApplicationCommand> assertJsonDeserializesTo(json: String) {
+        assertIs<T>(ApplicationCommand.fromJson(json))
+    }
+
+    private fun assertRoundtrip(command: ApplicationCommand) {
+        val restored = ApplicationCommand.fromJson(command.toJson())
+        assertEquals(command, restored)
+    }
+
     // ---------- LaunchActivityCommand ----------
     fun launchActivityCommandBase() =
         LaunchActivityCommand(
@@ -239,10 +248,10 @@ class ApplicationCommandTest {
         assertEquals("com.android.contacts/com.android.contacts", cmd.description)
     }
 
-    // ---------- Polymorphic & Edge Cases ----------
+    // ---------- Type discriminator ----------
     @Test
-    fun `Polymorphic deserialization uses type discriminator`() {
-        val activity =
+    fun `type discriminator launch_activity maps to LaunchActivityCommand`() {
+        assertJsonDeserializesTo<LaunchActivityCommand>(
             """
             {
               "type": "launch_activity",
@@ -250,8 +259,13 @@ class ApplicationCommandTest {
               "packageName": "com.mypackage",
               "className": "com.mypackage.MyActivity"
             }
-            """.trimIndent()
-        val broadcast =
+            """.trimIndent(),
+        )
+    }
+
+    @Test
+    fun `type discriminator send_broadcast maps to SendBroadcastCommand`() {
+        assertJsonDeserializesTo<SendBroadcastCommand>(
             """
             {
               "type": "send_broadcast",
@@ -260,8 +274,13 @@ class ApplicationCommandTest {
               "className": "com.mypackage.MyReceiver",
               "action": "com.mypackage.ACTION_TEST"
             }
-            """.trimIndent()
-        val service =
+            """.trimIndent(),
+        )
+    }
+
+    @Test
+    fun `type discriminator start_service maps to StartServiceCommand`() {
+        assertJsonDeserializesTo<StartServiceCommand>(
             """
             {
               "type": "start_service",
@@ -269,8 +288,13 @@ class ApplicationCommandTest {
               "packageName": "com.mypackage",
               "className": "com.mypackage.MyService"
             }
-            """.trimIndent()
-        val provider =
+            """.trimIndent(),
+        )
+    }
+
+    @Test
+    fun `type discriminator access_provider maps to AccessProviderCommand`() {
+        assertJsonDeserializesTo<AccessProviderCommand>(
             """
             {
               "type": "access_provider",
@@ -279,57 +303,63 @@ class ApplicationCommandTest {
               "authority": "com.mypackage",
               "operation": "QUERY"
             }
-            """.trimIndent()
-
-        assertTrue(ApplicationCommand.fromJson(activity) is LaunchActivityCommand)
-        assertTrue(ApplicationCommand.fromJson(broadcast) is SendBroadcastCommand)
-        assertTrue(ApplicationCommand.fromJson(service) is StartServiceCommand)
-        assertTrue(ApplicationCommand.fromJson(provider) is AccessProviderCommand)
+            """.trimIndent(),
+        )
     }
 
+    // ---------- Null and empty fields ----------
     @Test
     fun `Null and empty fields are handled correctly`() {
         val command = LaunchActivityCommand(displayName = "Minimal", packageName = "pkg", className = "cls")
-        val deserialized = ApplicationCommand.fromJson(command.toJson()) as LaunchActivityCommand
-        assertEquals(null, deserialized.action)
-        assertEquals(null, deserialized.dataUri)
-        assertTrue(deserialized.extras.isEmpty())
-        assertTrue(deserialized.flagList.isEmpty())
+        val deserialized = ApplicationCommand.fromJson(command.toJson())
+        assertEquals(command, deserialized)
+    }
+
+    // ---------- Roundtrip ----------
+    @Test
+    fun `LaunchActivityCommand toJson and fromJson are inverses`() {
+        assertRoundtrip(
+            LaunchActivityCommand(
+                displayName = "My Activity",
+                packageName = "com.mypackage",
+                className = "com.mypackage.MyActivity",
+                flagList = listOf("NEW_TASK"),
+            ),
+        )
     }
 
     @Test
-    fun `toJson and fromJson are inverses for all command types`() {
-        val commands =
-            listOf<ApplicationCommand>(
-                LaunchActivityCommand(
-                    displayName = "My Activity",
-                    packageName = "com.mypackage",
-                    className = "com.mypackage.MyActivity",
-                    flagList = listOf("NEW_TASK"),
-                ),
-                SendBroadcastCommand(
-                    displayName = "My Broadcast",
-                    packageName = "com.mypackage",
-                    className = "com.mypackage.MyReceiver",
-                    action = "com.mypackage.ACTION_TEST",
-                ),
-                StartServiceCommand(
-                    displayName = "My Service",
-                    packageName = "com.mypackage",
-                    className = "com.mypackage.MyService",
-                ),
-                AccessProviderCommand(
-                    displayName = "My Provider",
-                    packageName = "com.mypackage",
-                    authority = "com.mypackage",
-                    operation = ProviderOperation.QUERY,
-                ),
-            )
-        commands.forEach { original ->
-            val restored = ApplicationCommand.fromJson(original.toJson())
-            assertEquals(original::class, restored::class)
-            assertEquals(original.displayName, restored.displayName)
-            assertEquals(original.packageName, restored.packageName)
-        }
+    fun `SendBroadcastCommand toJson and fromJson are inverses`() {
+        assertRoundtrip(
+            SendBroadcastCommand(
+                displayName = "My Broadcast",
+                packageName = "com.mypackage",
+                className = "com.mypackage.MyReceiver",
+                action = "com.mypackage.ACTION_TEST",
+            ),
+        )
+    }
+
+    @Test
+    fun `StartServiceCommand toJson and fromJson are inverses`() {
+        assertRoundtrip(
+            StartServiceCommand(
+                displayName = "My Service",
+                packageName = "com.mypackage",
+                className = "com.mypackage.MyService",
+            ),
+        )
+    }
+
+    @Test
+    fun `AccessProviderCommand toJson and fromJson are inverses`() {
+        assertRoundtrip(
+            AccessProviderCommand(
+                displayName = "My Provider",
+                packageName = "com.mypackage",
+                authority = "com.mypackage",
+                operation = ProviderOperation.QUERY,
+            ),
+        )
     }
 }
