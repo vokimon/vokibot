@@ -242,18 +242,49 @@ class ApplicationCommandTest {
     // ---------- Polymorphic & Edge Cases ----------
     @Test
     fun `Polymorphic deserialization uses type discriminator`() {
-        val jsonStrings =
-            listOf(
-                """{"type":"launch_activity","displayName":"Test","packageName":"pkg","className":"cls"}""",
-                """{"type":"send_broadcast","displayName":"Test","packageName":"pkg","action":"act"}""",
-                """{"type":"start_service","displayName":"Test","packageName":"pkg","className":"cls"}""",
-                """{"type":"access_provider","displayName":"Test","packageName":"pkg","authority":"auth","operation":"QUERY"}""",
-            )
+        val activity =
+            """
+            {
+              "type": "launch_activity",
+              "displayName": "My Activity",
+              "packageName": "com.mypackage",
+              "className": "com.mypackage.MyActivity"
+            }
+            """.trimIndent()
+        val broadcast =
+            """
+            {
+              "type": "send_broadcast",
+              "displayName": "My Broadcast",
+              "packageName": "com.mypackage",
+              "className": "com.mypackage.MyReceiver",
+              "action": "com.mypackage.ACTION_TEST"
+            }
+            """.trimIndent()
+        val service =
+            """
+            {
+              "type": "start_service",
+              "displayName": "My Service",
+              "packageName": "com.mypackage",
+              "className": "com.mypackage.MyService"
+            }
+            """.trimIndent()
+        val provider =
+            """
+            {
+              "type": "access_provider",
+              "displayName": "My Provider",
+              "packageName": "com.mypackage",
+              "authority": "com.mypackage",
+              "operation": "QUERY"
+            }
+            """.trimIndent()
 
-        assertTrue(ApplicationCommand.fromJson(jsonStrings[0]) is LaunchActivityCommand)
-        assertTrue(ApplicationCommand.fromJson(jsonStrings[1]) is SendBroadcastCommand)
-        assertTrue(ApplicationCommand.fromJson(jsonStrings[2]) is StartServiceCommand)
-        assertTrue(ApplicationCommand.fromJson(jsonStrings[3]) is AccessProviderCommand)
+        assertTrue(ApplicationCommand.fromJson(activity) is LaunchActivityCommand)
+        assertTrue(ApplicationCommand.fromJson(broadcast) is SendBroadcastCommand)
+        assertTrue(ApplicationCommand.fromJson(service) is StartServiceCommand)
+        assertTrue(ApplicationCommand.fromJson(provider) is AccessProviderCommand)
     }
 
     @Test
@@ -271,17 +302,26 @@ class ApplicationCommandTest {
         val commands =
             listOf<ApplicationCommand>(
                 LaunchActivityCommand(
-                    displayName = "A",
-                    packageName = "p",
-                    className = "c",
+                    displayName = "My Activity",
+                    packageName = "com.mypackage",
+                    className = "com.mypackage.MyActivity",
                     flagList = listOf("NEW_TASK"),
                 ),
-                SendBroadcastCommand(displayName = "B", packageName = "p", className = null, action = "act"),
-                StartServiceCommand(displayName = "C", packageName = "p", className = "c"),
+                SendBroadcastCommand(
+                    displayName = "My Broadcast",
+                    packageName = "com.mypackage",
+                    className = "com.mypackage.MyReceiver",
+                    action = "com.mypackage.ACTION_TEST",
+                ),
+                StartServiceCommand(
+                    displayName = "My Service",
+                    packageName = "com.mypackage",
+                    className = "com.mypackage.MyService",
+                ),
                 AccessProviderCommand(
-                    displayName = "D",
-                    packageName = "p",
-                    authority = "auth",
+                    displayName = "My Provider",
+                    packageName = "com.mypackage",
+                    authority = "com.mypackage",
                     operation = ProviderOperation.QUERY,
                 ),
             )
