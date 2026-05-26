@@ -51,6 +51,7 @@ data class ActivityLaunchCommandEditor(
         var packageName by remember { mutableStateOf<String?>(null) }
         var componentName by remember { mutableStateOf<String?>(null) }
         var actionStr by remember { mutableStateOf<String?>(null) }
+        var componentType by remember { mutableStateOf(ComponentType.ACTIVITY) }
         var currentComponent by remember { mutableStateOf<PublicComponent?>(null) }
         val context = LocalContext.current
         val scope = rememberCoroutineScope()
@@ -86,6 +87,7 @@ data class ActivityLaunchCommandEditor(
                     queryPublicComponents(context, packageName!!)
                         .components
                         .find { it.name == componentName }
+                componentType = currentComponent?.type ?: ComponentType.ACTIVITY
             }
         }
 
@@ -151,9 +153,16 @@ data class ActivityLaunchCommandEditor(
         Column(
             modifier = Modifier.fillMaxSize(),
         ) {
+            val commandTypeMeta =
+                when (componentType) {
+                    ComponentType.ACTIVITY -> LaunchActivityCommand
+                    ComponentType.RECEIVER -> SendBroadcastCommand
+                    ComponentType.SERVICE -> StartServiceCommand
+                    ComponentType.PROVIDER -> LaunchActivityCommand
+                }
             EditorHeader(
-                icon = painterResource(LaunchActivityCommand.iconRes),
-                title = stringResource(LaunchActivityCommand.labelRes),
+                icon = painterResource(commandTypeMeta.iconRes),
+                title = stringResource(commandTypeMeta.labelRes),
                 actionText = stringResource(R.string.automation_done),
                 action = {
                     currentComponent?.let {
