@@ -176,12 +176,23 @@ suspend fun queryPublicComponents(
 
         packageInfo.services?.forEach { info ->
             val data = discoveryResult[info.name]
+            val icon =
+                try {
+                    val componentName = ComponentName(packageName, info.name)
+
+                    @Suppress("DEPRECATION")
+                    val serviceInfo = packageManager.getServiceInfo(componentName, 0)
+                    serviceInfo.loadIcon(packageManager)
+                } catch (e: Exception) {
+                    null
+                }
             components.add(
                 PublicComponent(
                     type = ComponentType.SERVICE,
                     name = info.name,
                     exported = info.exported,
                     label = info.loadLabel(packageManager).toString(),
+                    icon = icon,
                     permissions = listOfNotNull(info.permission),
                     actions = data?.actions ?: emptyList(),
                     actionFilterType = data?.filterType ?: ActionFilterType.UNKNOWN,
@@ -192,12 +203,23 @@ suspend fun queryPublicComponents(
 
         packageInfo.receivers?.forEach { info ->
             val data = discoveryResult[info.name]
+            val icon =
+                try {
+                    val componentName = ComponentName(packageName, info.name)
+
+                    @Suppress("DEPRECATION")
+                    val receiverInfo = packageManager.getReceiverInfo(componentName, 0)
+                    receiverInfo.loadIcon(packageManager)
+                } catch (e: Exception) {
+                    null
+                }
             components.add(
                 PublicComponent(
                     type = ComponentType.RECEIVER,
                     name = info.name,
                     exported = info.exported,
                     label = info.loadLabel(packageManager).toString(),
+                    icon = icon,
                     permissions = listOfNotNull(info.permission),
                     actions = data?.actions ?: emptyList(),
                     actionFilterType = data?.filterType ?: ActionFilterType.UNKNOWN,
@@ -207,12 +229,23 @@ suspend fun queryPublicComponents(
         }
 
         packageInfo.providers?.forEach { info ->
+            val icon =
+                try {
+                    val componentName = ComponentName(packageName, info.name)
+
+                    @Suppress("DEPRECATION")
+                    val providerInfo = packageManager.getProviderInfo(componentName, 0)
+                    providerInfo.loadIcon(packageManager)
+                } catch (e: Exception) {
+                    null
+                }
             components.add(
                 PublicComponent(
                     type = ComponentType.PROVIDER,
                     name = info.name,
                     exported = info.exported,
                     label = info.loadLabel(packageManager).toString(),
+                    icon = icon,
                     authorities = listOfNotNull(info.authority),
                     permissions = listOfNotNull(info.readPermission, info.writePermission),
                 ),
