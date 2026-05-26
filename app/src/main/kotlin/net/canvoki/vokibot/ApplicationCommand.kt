@@ -174,6 +174,7 @@ data class SendBroadcastCommand(
     override val id: String = UUID.randomUUID().toString(),
     override val displayName: String,
     override val packageName: String,
+    val className: String?,
     val action: String,
     val dataUri: String? = null,
     val extras: Map<String, ExtraValue> = emptyMap(),
@@ -185,14 +186,18 @@ data class SendBroadcastCommand(
     override val typeLabelRes: Int = R.string.command_type_send_broadcast
 
     override val description: String
-        get() = "$packageName/$action"
+        get() = className?.let { descriptionWithClassName(it) } ?: "$packageName/$action"
 
     override fun loadIcon(context: Context): Drawable =
         getAppIcon(context, packageName) ?: context.getDrawable(iconRes)!!
 
     override suspend fun execute(context: Context) {
         val intent = Intent(action)
-        intent.setPackage(packageName)
+        if (className != null) {
+            intent.setClassName(packageName, className)
+        } else {
+            intent.setPackage(packageName)
+        }
         dataUri?.let { intent.data = it.toUri() }
 
         extras.entries.forEach { (key, value) ->

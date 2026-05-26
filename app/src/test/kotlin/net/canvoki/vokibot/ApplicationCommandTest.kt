@@ -83,6 +83,7 @@ class ApplicationCommandTest {
             id = "test-send-id",
             displayName = "Send SMS",
             packageName = "com.android.messaging",
+            className = "com.android.messaging.services.SmsReceiver",
             action = "android.intent.action.SENDTO",
             dataUri = "smsto:+1234567890",
             extras = mapOf("sms_body" to ExtraValue.StringValue("Hello")),
@@ -96,6 +97,7 @@ class ApplicationCommandTest {
           "id": "test-send-id",
           "displayName": "Send SMS",
           "packageName": "com.android.messaging",
+          "className": "com.android.messaging.services.SmsReceiver",
           "action": "android.intent.action.SENDTO",
           "dataUri": "smsto:+1234567890",
           "extras": {
@@ -125,7 +127,7 @@ class ApplicationCommandTest {
     @Test
     fun `SendBroadcastCommand description returns packageName action`() {
         val cmd = sendBroadcastCommandBase()
-        assertEquals("com.android.messaging/android.intent.action.SENDTO", cmd.description)
+        assertEquals("com.android.messaging/.services.SmsReceiver", cmd.description)
     }
 
     // ---------- StartServiceCommand ----------
@@ -276,7 +278,7 @@ class ApplicationCommandTest {
                     className = "c",
                     flagList = listOf("NEW_TASK"),
                 ),
-                SendBroadcastCommand(displayName = "B", packageName = "p", action = "act"),
+                SendBroadcastCommand(displayName = "B", packageName = "p", className = null, action = "act"),
                 StartServiceCommand(displayName = "C", packageName = "p", className = "c"),
                 AccessProviderCommand(
                     displayName = "D",
