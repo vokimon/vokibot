@@ -13,17 +13,20 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import net.canvoki.shared.component.AppScaffold
 
+internal const val DISPATCH_SOURCE = "dispatch_source"
+
 @Composable
-fun IntentReport(activityName: String, intent: Intent) {
+fun IntentReport(componentLabel: String, intent: Intent) {
+    val source = intent.getStringExtra(DISPATCH_SOURCE) ?: componentLabel
     AppScaffold {
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(16.dp)
-                .verticalScroll(rememberScrollState())
+                .verticalScroll(rememberScrollState()),
         ) {
             Text("Intent Received", style = MaterialTheme.typography.headlineMedium)
-            Text("Responding Actiity: ${activityName}")
+            Text("Responding Component: $source")
             Text("Action: ${intent.action ?: "null"}")
             Text("Package: ${intent.`package` ?: "null"}")
             Text("Component: ${intent.component?.flattenToShortString() ?: "null"}")
@@ -35,6 +38,7 @@ fun IntentReport(activityName: String, intent: Intent) {
             val extras = intent.extras
             if (extras != null && !extras.isEmpty) {
                 for (key in extras.keySet()) {
+                    if (key == DISPATCH_SOURCE) continue
                     @Suppress("DEPRECATION")
                     val value = intent.extras?.get(key)
                     val valueString = value?.toString() ?: "null"

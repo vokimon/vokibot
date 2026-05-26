@@ -31,5 +31,23 @@
             android:label="Unfiltered"
             android:exported="true">
         </activity>
+
+        <receiver
+            android:name=".PuppetReceiver"
+            android:label="Puppet Receiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="net.canvoki.test.ACTION_TEST" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name=".PuppetService"
+            android:label="Puppet Service"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="net.canvoki.test.ACTION_SERVICE" />
+            </intent-filter>
+        </service>
     </application>
 </manifest>
