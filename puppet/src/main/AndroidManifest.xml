@@ -47,7 +47,7 @@
 
         <service
             android:name=".PuppetForegroundService"
-            android:label="Puppet Service"
+            android:label="Puppet Foreground Service"
             android:foregroundServiceType="dataSync"
             android:icon="@android:drawable/ic_menu_manage"
             android:exported="true">
