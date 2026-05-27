@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.provider.Settings
+import androidx.annotation.StringRes
 import kotlinx.serialization.Serializable
 
 /**
@@ -52,6 +53,8 @@ data class SettingsPage(
     val name: String,
     val category: String,
     val isMain: Boolean,
+    @get:StringRes val nameRes: Int = 0,
+    @get:StringRes val categoryRes: Int = 0,
 )
 
 val SETTINGS_PAGES: List<SettingsPage> =
