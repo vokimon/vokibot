@@ -328,6 +328,11 @@ data class ApplicationCommandEditor(
                     enabled = component != null,
                     modifier = Modifier.fillMaxWidth(),
                 ) {
+                    Icon(
+                        painter = painterResource(R.drawable.ic_play_arrow),
+                        contentDescription = null,
+                    )
+                    Spacer(Modifier.width(8.dp))
                     Text(stringResource(R.string.intent_editor_try))
                 }
             }
