@@ -42,6 +42,7 @@ import net.canvoki.shared.component.ChooserOption
 import net.canvoki.shared.component.ContextualHelpButton
 import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
+import net.canvoki.shared.usermessage.UserMessage
 import net.canvoki.vokibot.common.EditorHeader
 import net.canvoki.vokibot.common.toPainter
 
@@ -145,6 +146,7 @@ fun CommandList(
                                             command.execute(context)
                                         } catch (e: Exception) {
                                             e.printStackTrace()
+                                            UserMessage.Info(e.message ?: "Command execution failed").post()
                                         }
                                     }
                                 },
