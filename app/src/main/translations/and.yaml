@@ -14,6 +14,7 @@ app_list_filter_category_video: Bídeô
 app_list_filter_category_social: Çoçiâh
 app_list_filter_category_productivity: Prodûttibidá
 app_list_filter_category_other: Otrâ
+intent_editor_select_app_and_screen: Elihe âpp y pantaya
 intent_editor_action_label: Âççión
 intent_editor_custom_or_none: Perçonaliçá o ninguna
 intent_editor_action_string_optional: Cadena de âççión (ôççionâh)
@@ -74,6 +75,7 @@ triggerlist_delete_title: ¿Eliminâh etiqueta?
 triggerlist_delete_message: Êtta âççión no çe puede deçaçêh.
 triggerlist_cancel: Cançelâh
 automation_header: Automatiçaçión
+automation_help: Bincula âççionê pa ehecutarçe cuando çe dîppara un trîhhêh
 automation_name_label: Nombre de la automatiçaçión
 automation_name_placeholder: ej. Rutina mañana, Çargo de caça
 automation_trigger_label: Dîpparadôh
@@ -141,10 +143,8 @@ entity_picker_command_type: Tipo de la nueba âççión
 settings_page_show_all: Môttrâh toâ lâ páhinâ
 settings_page_no_pages: No ay páhinâ dîpponiblê
 settings_page_try: Probâh
-automation_help: Bincula âççionê pa ehecutarçe cuando çe dîppara un trîhhêh
 triggerlist_header: Dîpparadorê guardáô
 commandlist_header: Âççionê guardâh
-intent_editor_select_app_and_screen: Elihe âpp y pantaya
 commandlist_item_menu_edit: Editâh
 command_run_error_fallback: Fayó la ehecuçión der comando
 intent_data_editor_data_header: Datô
@@ -241,8 +241,6 @@ settings_page_name_battery: Batería
 settings_page_name_notifications: Notificaçionê
 settings_page_name_all_settings: Tôh lô ahûttê
 settings_page_name_quick_launch: Iniçio rápido
-unknown_command_title: 'Comando no çoportao'
-unknown_trigger_title: 'Deencadenante no çoportao'
-automation_name_auto_format: Al {triggerType} {triggerId}
+automation_name_auto_format: "Al {triggerType} {triggerId}"
 common_notice_title: Abiço
 common_experimental_title: Funçión êpperimentâh

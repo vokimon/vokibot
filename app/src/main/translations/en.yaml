@@ -243,8 +243,6 @@ settings_page_name_battery: Battery
 settings_page_name_notifications: Notifications
 settings_page_name_all_settings: All settings
 settings_page_name_quick_launch: Quick launch
-unknown_command_title: "Unsupported Command"
-unknown_trigger_title: "Unsupported Trigger"
 automation_name_auto_format: "On {triggerType} {triggerId}"
 common_notice_title: Notice
 common_experimental_title: Experimental feature

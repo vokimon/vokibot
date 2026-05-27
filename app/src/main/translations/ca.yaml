@@ -14,6 +14,7 @@ app_list_filter_category_video: Vídeos
 app_list_filter_category_social: Social
 app_list_filter_category_productivity: Productivitat
 app_list_filter_category_other: Altres
+intent_editor_select_app_and_screen: Tria l'app i la pantalla
 intent_editor_action_label: Acció
 intent_editor_custom_or_none: Personalitzada o cap
 intent_editor_action_string_optional: Cadena d'acció (opcional)
@@ -74,6 +75,7 @@ triggerlist_delete_title: Suprimir l'etiqueta?
 triggerlist_delete_message: Aquesta acció no es pot desfer.
 triggerlist_cancel: Cancel·la
 automation_header: Automatització
+automation_help: Vincula accions per executar-les quan es dispara un disparador
 automation_name_label: Nom de l'automatització
 automation_name_placeholder: p. ex. Rutina matí, Marxo de casa
 automation_trigger_label: Disparador
@@ -143,10 +145,8 @@ entity_picker_command_type: Tipus de la nova acció
 settings_page_show_all: Mostra totes les pàgines
 settings_page_no_pages: No hi ha pàgines disponibles
 settings_page_try: Prova
-automation_help: Vincula accions per executar-les quan es dispara un disparador
 triggerlist_header: Disparadors desats
 commandlist_header: Accions desades
-intent_editor_select_app_and_screen: Tria l'app i la pantalla
 commandlist_item_menu_edit: Edita
 command_run_error_fallback: Ha fallat l'execució de la comanda
 intent_data_editor_data_header: Dades
@@ -243,8 +243,6 @@ settings_page_name_battery: Bateria
 settings_page_name_notifications: Notificacions
 settings_page_name_all_settings: Tots els ajustos
 settings_page_name_quick_launch: Inici ràpid
-unknown_command_title: "Comandament no suportat"
-unknown_trigger_title: "Disparament no suportat"
 automation_name_auto_format: "Quan {triggerType} {triggerId}"
 common_notice_title: Avís
 common_experimental_title: Funcionalitat experimental

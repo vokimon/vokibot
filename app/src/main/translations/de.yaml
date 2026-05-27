@@ -14,6 +14,7 @@ app_list_filter_category_video: Videos
 app_list_filter_category_social: Sozial
 app_list_filter_category_productivity: Produktivität
 app_list_filter_category_other: Andere
+intent_editor_select_app_and_screen: App und Bildschirm auswählen
 intent_editor_action_label: Aktion
 intent_editor_custom_or_none: Benutzerdefiniert oder keine
 intent_editor_action_string_optional: Aktionszeichenfolge (optional)
@@ -74,6 +75,7 @@ triggerlist_delete_title: Tag löschen?
 triggerlist_delete_message: Diese Aktion kann nicht rückgängig gemacht werden.
 triggerlist_cancel: Abbrechen
 automation_header: Automatisierung
+automation_help: Verknüpfe Aktionen, die ausgeführt werden, wenn ein Auslöser feuert
 automation_name_label: Automatisierungsname
 automation_name_placeholder: z.B. Morgenroutine, Haus verlassen
 automation_trigger_label: Trigger
@@ -143,10 +145,8 @@ entity_picker_command_type: Typ der neuen Aktion
 settings_page_show_all: Alle Seiten anzeigen
 settings_page_no_pages: Keine Seiten verfügbar
 settings_page_try: Testen
-automation_help: Verknüpfe Aktionen, die ausgeführt werden, wenn ein Auslöser feuert
 triggerlist_header: Gespeicherte Auslöser
 commandlist_header: Gespeicherte Aktionen
-intent_editor_select_app_and_screen: App und Bildschirm auswählen
 commandlist_item_menu_edit: Bearbeiten
 command_run_error_fallback: Befehlsausführung fehlgeschlagen
 intent_data_editor_data_header: Daten
@@ -243,8 +243,6 @@ settings_page_name_battery: Akku
 settings_page_name_notifications: Benachrichtigungen
 settings_page_name_all_settings: Alle Einstellungen
 settings_page_name_quick_launch: Schnellstart
-unknown_command_title: "Nicht unterstützter Befehl"
-unknown_trigger_title: "Nicht unterstützter Auslöser"
 automation_name_auto_format: "Bei {triggerType} {triggerId}"
 common_notice_title: Hinweis
 common_experimental_title: Experimentelle Funktion

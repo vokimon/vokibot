@@ -14,6 +14,7 @@ app_list_filter_category_video: Videos
 app_list_filter_category_social: Social
 app_list_filter_category_productivity: Productividat
 app_list_filter_category_other: Atros
+intent_editor_select_app_and_screen: Esculle app y pantalla
 intent_editor_action_label: Aición
 intent_editor_custom_or_none: Personalizada u garra
 intent_editor_action_string_optional: Cadena d'acción (opcional)
@@ -74,6 +75,7 @@ triggerlist_delete_title: Borrar etiqueta?
 triggerlist_delete_message: Esta acción no se puede desfer.
 triggerlist_cancel: Cancelar
 automation_header: Automatización
+automation_help: Vincula accions ta executar-se quan se dispara un trigger
 automation_name_label: Nombre d'a automatización
 automation_name_placeholder: eix. Rutina matin, M'en vaiga de casa
 automation_trigger_label: Disparador
@@ -143,10 +145,8 @@ entity_picker_command_type: Tipo d'a nueva acción
 settings_page_show_all: Amostrar todas as pachinas
 settings_page_no_pages: No i ha pachinas disponibles
 settings_page_try: Prebar
-automation_help: Vincula accions ta executar-se quan se dispara un trigger
 triggerlist_header: Disparadors alzacaus
 commandlist_header: Accions alzacadas
-intent_editor_select_app_and_screen: Esculle app y pantalla
 commandlist_item_menu_edit: Editar
 command_run_error_fallback: Ha fallau l'execución d'a comando
 intent_data_editor_data_header: Datos
@@ -243,8 +243,6 @@ settings_page_name_battery: Batería
 settings_page_name_notifications: Notificazions
 settings_page_name_all_settings: Totz os achustes
 settings_page_name_quick_launch: Inicio rapido
-unknown_command_title: "Comando no suportau"
-unknown_trigger_title: "Desencadenant no suportau"
 automation_name_auto_format: "Quan {triggerType} {triggerId}"
 common_notice_title: Aviso
 common_experimental_title: Funcionalidat experimental

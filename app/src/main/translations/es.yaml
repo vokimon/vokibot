@@ -14,6 +14,7 @@ app_list_filter_category_video: Vídeos
 app_list_filter_category_social: Social
 app_list_filter_category_productivity: Productividad
 app_list_filter_category_other: Otras
+intent_editor_select_app_and_screen: Elige app y pantalla
 intent_editor_action_label: Acción
 intent_editor_custom_or_none: Personalizada o ninguna
 intent_editor_action_string_optional: Cadena de acción (opcional)
@@ -74,6 +75,7 @@ triggerlist_delete_title: ¿Eliminar etiqueta?
 triggerlist_delete_message: Esta acción no se puede deshacer.
 triggerlist_cancel: Cancelar
 automation_header: Automatización
+automation_help: Vincula acciones para ejecutarse cuando se dispara un trigger
 automation_name_label: Nombre de la automatización
 automation_name_placeholder: ej. Rutina mañana, Salgo de casa
 automation_trigger_label: Disparador
@@ -143,10 +145,8 @@ entity_picker_command_type: Tipo de la nueva acción
 settings_page_show_all: Mostrar todas las páginas
 settings_page_no_pages: No hay páginas disponibles
 settings_page_try: Probar
-automation_help: Vincula acciones para ejecutarse cuando se dispara un trigger
 triggerlist_header: Disparadores guardados
 commandlist_header: Acciones guardadas
-intent_editor_select_app_and_screen: Elige app y pantalla
 commandlist_item_menu_edit: Editar
 command_run_error_fallback: Falló la ejecución del comando
 intent_data_editor_data_header: Datos
@@ -243,8 +243,6 @@ settings_page_name_battery: Batería
 settings_page_name_notifications: Notificaciones
 settings_page_name_all_settings: Todos los ajustes
 settings_page_name_quick_launch: Inicio rápido
-unknown_command_title: "Comando no soportado"
-unknown_trigger_title: "Desencadenante no soportado"
 automation_name_auto_format: "Al {triggerType} {triggerId}"
 common_notice_title: Aviso
 common_experimental_title: Función experimental

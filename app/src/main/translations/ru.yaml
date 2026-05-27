@@ -14,6 +14,7 @@ app_list_filter_category_video: Видео
 app_list_filter_category_social: Социальные
 app_list_filter_category_productivity: Продуктивность
 app_list_filter_category_other: Другие
+intent_editor_select_app_and_screen: Выберите приложение и экран
 intent_editor_action_label: Действие
 intent_editor_custom_or_none: Пользовательское или нет
 intent_editor_action_string_optional: Строка действия (необязательно)
@@ -74,6 +75,7 @@ triggerlist_delete_title: Удалить метку?
 triggerlist_delete_message: Это действие нельзя отменить.
 triggerlist_cancel: Отмена
 automation_header: Автоматизация
+automation_help: Привяжите команды для запуска при срабатывании триггера
 automation_name_label: Название автоматизации
 automation_name_placeholder: напр. Утренний ритуал, Выход из дома
 automation_trigger_label: Триггер
@@ -143,10 +145,8 @@ entity_picker_command_type: Тип новой команды
 settings_page_show_all: Показать все страницы
 settings_page_no_pages: Нет доступных страниц
 settings_page_try: Попробовать
-automation_help: Привяжите команды для запуска при срабатывании триггера
 triggerlist_header: Сохранённые триггеры
 commandlist_header: Сохранённые команды
-intent_editor_select_app_and_screen: Выберите приложение и экран
 commandlist_item_menu_edit: Изменить
 command_run_error_fallback: Не удалось выполнить команду
 intent_data_editor_data_header: Данные
@@ -243,8 +243,6 @@ settings_page_name_battery: Батарея
 settings_page_name_notifications: Уведомления
 settings_page_name_all_settings: Все настройки
 settings_page_name_quick_launch: Быстрый запуск
-unknown_command_title: "Команда не поддерживается"
-unknown_trigger_title: "Триггер не поддерживается"
 automation_name_auto_format: "При {triggerType} {triggerId}"
 common_notice_title: Внимание
 common_experimental_title: Экспериментальная функция

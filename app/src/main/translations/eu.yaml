@@ -14,6 +14,7 @@ app_list_filter_category_video: Bideoak
 app_list_filter_category_social: Sozialak
 app_list_filter_category_productivity: Produktibitatea
 app_list_filter_category_other: Besteak
+intent_editor_select_app_and_screen: Aukeratu app-a eta pantaila
 intent_editor_action_label: Ekintza
 intent_editor_custom_or_none: Pertsonalizatua edo bat ere ez
 intent_editor_action_string_optional: Ekintza-katea (auzokoa)
@@ -74,6 +75,7 @@ triggerlist_delete_title: Etiketa ezabatu?
 triggerlist_delete_message: Ekintza hau ezin da desegin.
 triggerlist_cancel: Utzi
 automation_header: Automatizazio
+automation_help: Lotu ekintzak abiarazle bat aktibatzen denean exekutatzeko
 automation_name_label: Automatizazioaren izena
 automation_name_placeholder: adib. Goiz errutina, Etxetik atera
 automation_trigger_label: Abiarazlea
@@ -143,10 +145,8 @@ entity_picker_command_type: Ekintza berri mota
 settings_page_show_all: Erakutsi orri guztiak
 settings_page_no_pages: Ez dago orririk eskuragarri
 settings_page_try: Saiatu
-automation_help: Lotu ekintzak abiarazle bat aktibatzen denean exekutatzeko
 triggerlist_header: Gordetako abiarazleak
 commandlist_header: Gordetako ekintzak
-intent_editor_select_app_and_screen: Aukeratu app-a eta pantaila
 commandlist_item_menu_edit: Editatu
 command_run_error_fallback: Komandoaren exekuzioak huts egin du
 intent_data_editor_data_header: Datuak
@@ -243,8 +243,6 @@ settings_page_name_battery: Bateria
 settings_page_name_notifications: Jakinarazpenak
 settings_page_name_all_settings: Ezarpen guztiak
 settings_page_name_quick_launch: Abiarazte azkarra
-unknown_command_title: "Komandoa ez da onartzen"
-unknown_trigger_title: "Abiarazlea ez da onartzen"
 automation_name_auto_format: "{triggerType} {triggerId} gertatzean"
 common_notice_title: Oharra
 common_experimental_title: Funtsio esperimentala
