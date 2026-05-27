@@ -6,7 +6,7 @@ that other applications (clients) may interact with.
 This document explains the four component types from both perspectives:
 how to define them in a host, and how to invoke them from a client.
 
-Client can invoke components:
+A client can invoke components:
 
 - **Explicitly** by specifying both app (`packageName`) and component (`className`)
 - **Implicitly** by not specifying neither app or component and let the system to resolve the best match or the user to choose.
@@ -150,30 +150,95 @@ labeled as a broadcast response.
 
 ### Purpose
 
-A Service performs background work without a user interface. It
-continues running even if the user switches to another app.
+A Service performs background work without user interface.
+It continues active even if the user switches to another app.
+It has a lifecycle like an Activity but no ui attached.
 
 A client application can request a host to start a background
 task and optionally pass data to it.
 
+There are three modes:
+
+- **Background service**:
+    `startService(intent)`
+    Launch and forget unnoticed by the user.
+    Not commonly used since API 26.
+
+- **Foreground service**:
+    `startForegroundService(intent): ComponentName?`
+    Launch and forget displaying a notification while running.
+    This is the modern way introduced in API 26 to replace background service.
+    They declare their purpose by type:
+    `dataSync`, `location`, `mediaPlayback`, `connectedDevice`, `camera`, `microphone`, `health`...
+    <https://developer.android.com/develop/background-work/services/fgs/service-types>
+
+- **Bound service**:
+    `bindService()`
+    Supports ongoing interaction or IPC between the client and the host.
+
+
 ### Client interaction
 
-The client entry point is `startForegroundService(intent)`, which
-starts the Service and requires it to post a notification within a
-few seconds. If the notification is not posted, the system kills
-the Service.
+On modern Android (API 26+),
+for batery life concern,
+services can only be started from a foreground app,
+that is having a foreground service,
+or having an active activity,
+with a grace period of few seconds after it becomes inactive,
+
+There are tree kinds of service, started in different ways:
+
+**Background service:** (`startService(intent)`
+
+- Runs without the user noticing it.
+- Because its nature by security it cannot be run from 
+
+- This is the modern way. Introduced in API 26.
+- Requires the host to define the foregroundServiceType as one of
+    `dataSync`, `location`, `mediaPlayback`, `connectedDevice`,
+    `camera`, `microphone`...
+    <https://developer.android.com/develop/background-work/services/fgs/service-types>
+- Requires the host having permisions `FOREGROUND_SERVICE` and `FOREGROUND_SERVICE_*` where `*` is the type like `DATA_SYNC`.
+- Since API 31 the caller must be visible  when calling it or at least having been visible recently.
+- Requires setting a notification channel.
+
+**`startService(intent)`** 
+
+- The deprecated, seldomly used way.
+- No notification required. No type definition.
+- As API 26 it must be called stritly from a foreground client.
 
 Services use explicit targeting only (both app and component).
-
-A Service intent can specify:
+A service intent can carry:
 
 - **Action**: A string identifying the work to perform.
 - **Extras**: Key-value pairs with parameters for the work.
 
-Services can also be bound via `bindService()` for ongoing
-interaction, but the simpler start-only model is used here.
+Services can also be bound via `bindService()`,
+for a continuous comunication between client and host.
+
 
 ### Host implementation
+
+**Regular service (no notification):**
+
+```xml
+<service
+    android:name=".MyService"
+    android:exported="true" />
+```
+
+```kotlin
+class MyService : Service() {
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        // inspect intent.action, intent.extras, etc.
+        return START_NOT_STICKY
+    }
+    override fun onBind(intent: Intent?): IBinder? = null
+}
+```
+
+**Foreground service (persistent notification):**
 
 ```xml
 <service
@@ -182,26 +247,15 @@ interaction, but the simpler start-only model is used here.
     android:foregroundServiceType="dataSync" />
 ```
 
-Add `<intent-filter>` elements for implicit intent delivery
-(same matching rules as Activity, see above).
-
-The `foregroundServiceType` must match the actual work the
-Service performs. Common values: `dataSync`, `location`,
-`mediaPlayback`, `connectedDevice`.
-
-Also requires the permission
-`android.permission.FOREGROUND_SERVICE` and the specific
-sub-permission for the service type (e.g.
+Requires `android.permission.FOREGROUND_SERVICE` plus a
+type-specific sub-permission (e.g.
 `android.permission.FOREGROUND_SERVICE_DATA_SYNC`).
-
-Then the implementation:
 
 ```kotlin
 class MyService : Service() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         val notification = NotificationCompat.Builder(this, CHANNEL_ID)
-            .setContentTitle("Service Started")
-            .setContentText(intent?.action ?: "no action")
+            .setContentTitle("Service title")
             .setSmallIcon(android.R.drawable.ic_menu_info)
             .build()
         startForeground(NOTIFICATION_ID, notification)
@@ -211,11 +265,6 @@ class MyService : Service() {
     override fun onBind(intent: Intent?): IBinder? = null
 }
 ```
-
-A notification channel must be created before posting the
-notification (required on API 26+). For testing, the notification
-body can display the intent action and extras so the user can
-verify them from the notification shade.
 
 ---
 

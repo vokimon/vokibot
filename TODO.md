@@ -8,6 +8,8 @@
     - [ ] IntentDataEditor: Paste icon button
     - [ ] UriField: Fix: Expands multiple lines. Limit single line? Summary?
     - [x] UriField: Only show the file picker if the field is empty (or content://)
+    - [ ] Play icon to the 'Try' button
+    - [ ] Move error handling inside execute()
     - [ ] UriField: When the protocol ask for it, provide button to browse contacts.
     - [ ] ActivityLaunchCommandEditor: Extract component selector as reusable composable
     - [x] ActivityLaunchCommandEditor: Click on app/component actually open AppList
