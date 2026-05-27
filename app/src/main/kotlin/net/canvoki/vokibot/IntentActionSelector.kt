@@ -47,7 +47,9 @@ fun IntentActionSelector(
             onExpandedChange = { expanded = it },
         ) {
             OutlinedTextField(
-                value = selected?.label ?: stringResource(R.string.intent_editor_custom_or_none),
+                value =
+                    selected?.let { stringResource(it.labelRes) }
+                        ?: stringResource(R.string.intent_editor_custom_or_none),
                 onValueChange = {},
                 readOnly = true,
                 label = { Text(stringResource(R.string.intent_editor_action_label)) },
@@ -60,7 +62,7 @@ fun IntentActionSelector(
             ) {
                 actionsToShow.forEach { actionDef ->
                     DropdownMenuItem(
-                        text = { Text(actionDef.label) },
+                        text = { Text(stringResource(actionDef.labelRes)) },
                         onClick = {
                             expanded = false
                             onActionChanged(actionDef.action)

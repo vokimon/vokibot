@@ -3,6 +3,7 @@ package net.canvoki.vokibot
 import android.content.Intent
 import android.provider.MediaStore
 import android.speech.RecognizerIntent
+import androidx.annotation.StringRes
 
 /**
  * Strategy for probing whether a component accepts an action.
@@ -21,7 +22,7 @@ enum class ProbeStrategy {
 
 data class ActionDefinition(
     val action: String,
-    val label: String,
+    @get:StringRes val labelRes: Int,
     val iconRes: Int,
     val probeStrategy: ProbeStrategy = ProbeStrategy.ACTION_ONLY,
     val extras: List<ExtraSpec> = emptyList(),
@@ -33,18 +34,18 @@ object StandardActions {
         listOf(
             ActionDefinition(
                 action = Intent.ACTION_MAIN,
-                label = "Main",
+                labelRes = R.string.standard_action_main,
                 iconRes = R.drawable.ic_apps,
             ),
             ActionDefinition(
                 action = Intent.ACTION_VIEW,
-                label = "View",
+                labelRes = R.string.standard_action_view,
                 iconRes = R.drawable.ic_visibility,
                 probeStrategy = ProbeStrategy.REQUIRES_URI,
             ),
             ActionDefinition(
                 action = Intent.ACTION_SEND,
-                label = "Send",
+                labelRes = R.string.standard_action_send,
                 iconRes = R.drawable.ic_send,
                 extras =
                     listOf(
@@ -58,7 +59,7 @@ object StandardActions {
             ),
             ActionDefinition(
                 action = Intent.ACTION_SEND_MULTIPLE,
-                label = "Send Multiple",
+                labelRes = R.string.standard_action_send_multiple,
                 iconRes = R.drawable.ic_send,
                 extras =
                     listOf(
@@ -77,7 +78,7 @@ object StandardActions {
             ),
             ActionDefinition(
                 action = Intent.ACTION_SENDTO,
-                label = "Send To",
+                labelRes = R.string.standard_action_send_to,
                 iconRes = R.drawable.ic_mail,
                 probeStrategy = ProbeStrategy.REQUIRES_URI,
                 allowedSchemes = listOf("mailto", "smsto"),
@@ -89,40 +90,40 @@ object StandardActions {
             ),
             ActionDefinition(
                 action = Intent.ACTION_DIAL,
-                label = "Dial",
+                labelRes = R.string.standard_action_dial,
                 iconRes = R.drawable.ic_call,
                 probeStrategy = ProbeStrategy.REQUIRES_URI,
                 allowedSchemes = listOf("tel"),
             ),
             ActionDefinition(
                 action = Intent.ACTION_CALL,
-                label = "Call",
+                labelRes = R.string.standard_action_call,
                 iconRes = R.drawable.ic_phone,
                 probeStrategy = ProbeStrategy.REQUIRES_URI,
                 allowedSchemes = listOf("tel"),
             ),
             ActionDefinition(
                 action = Intent.ACTION_EDIT,
-                label = "Edit",
+                labelRes = R.string.standard_action_edit,
                 iconRes = R.drawable.ic_edit,
                 probeStrategy = ProbeStrategy.REQUIRES_URI,
                 allowedSchemes = listOf("content"),
             ),
             ActionDefinition(
                 action = Intent.ACTION_PICK,
-                label = "Pick",
+                labelRes = R.string.standard_action_pick,
                 iconRes = R.drawable.ic_photo_library,
                 probeStrategy = ProbeStrategy.REQUIRES_URI,
                 allowedSchemes = listOf("content"),
             ),
             ActionDefinition(
                 action = Intent.ACTION_GET_CONTENT,
-                label = "Get Content",
+                labelRes = R.string.standard_action_get_content,
                 iconRes = R.drawable.ic_folder,
             ),
             ActionDefinition(
                 action = MediaStore.ACTION_IMAGE_CAPTURE,
-                label = "Take Photo",
+                labelRes = R.string.standard_action_take_photo,
                 iconRes = R.drawable.ic_photo_camera,
                 probeStrategy = ProbeStrategy.REQUIRES_EXTRAS,
                 extras =
@@ -137,7 +138,7 @@ object StandardActions {
             ),
             ActionDefinition(
                 action = MediaStore.ACTION_VIDEO_CAPTURE,
-                label = "Record Video",
+                labelRes = R.string.standard_action_record_video,
                 iconRes = R.drawable.ic_videocam,
                 probeStrategy = ProbeStrategy.REQUIRES_EXTRAS,
                 extras =
@@ -161,7 +162,7 @@ object StandardActions {
             ),
             ActionDefinition(
                 action = RecognizerIntent.ACTION_RECOGNIZE_SPEECH,
-                label = "Speech Recognition",
+                labelRes = R.string.standard_action_speech_recognition,
                 iconRes = R.drawable.ic_mic,
                 probeStrategy = ProbeStrategy.REQUIRES_EXTRAS,
                 extras =
@@ -191,8 +192,6 @@ object StandardActions {
     fun get(action: String?): ActionDefinition? = action?.let { registry[it] }
 
     fun icon(action: String?): Int = get(action)?.iconRes ?: R.drawable.ic_brand
-
-    fun label(action: String?): String? = get(action)?.label
 
     fun extras(action: String?): List<ExtraSpec> = get(action)?.extras ?: emptyList()
 
