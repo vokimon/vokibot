@@ -108,3 +108,20 @@ class PuppetForegroundService : Service() {
         Log.d(TAG, "Puppet Service destroyed")
     }
 }
+
+class PuppetBackgroundService : Service() {
+    override fun onStartCommand(
+        intent: Intent?,
+        flags: Int,
+        startId: Int,
+    ): Int {
+        Log.d(TAG, "Background Service: action=${intent?.action}, extras=${intent?.extras}")
+        return START_NOT_STICKY
+    }
+
+    override fun onBind(intent: Intent?): IBinder? = null
+
+    override fun onDestroy() {
+        Log.d(TAG, "Puppet Background Service destroyed")
+    }
+}

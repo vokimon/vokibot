@@ -55,5 +55,14 @@
                 <action android:name="net.canvoki.test.ACTION_SERVICE" />
             </intent-filter>
         </service>
+        <service
+            android:name=".PuppetBackgroundService"
+            android:label="Puppet Background Service"
+            android:icon="@android:drawable/ic_menu_gallery"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="net.canvoki.test.ACTION_BACKGROUND_SERVICE" />
+            </intent-filter>
+        </service>
     </application>
 </manifest>
