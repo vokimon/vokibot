@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+
     <application
         android:label="0_Puppet"
         android:icon="@android:drawable/sym_def_app_icon"
@@ -43,8 +46,9 @@
         </receiver>
 
         <service
-            android:name=".PuppetService"
+            android:name=".PuppetForegroundService"
             android:label="Puppet Service"
+            android:foregroundServiceType="dataSync"
             android:icon="@android:drawable/ic_menu_manage"
             android:exported="true">
             <intent-filter>

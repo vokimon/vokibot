@@ -38,6 +38,7 @@ import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
 import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
+import net.canvoki.shared.usermessage.UserMessage
 import net.canvoki.vokibot.common.EditorHeader
 
 @Serializable
@@ -319,6 +320,7 @@ data class ActivityLaunchCommandEditor(
                                     command.execute(context)
                                 } catch (e: Exception) {
                                     e.printStackTrace()
+                                    UserMessage.Info(e.message ?: "Command execution failed").post()
                                 }
                             }
                         }

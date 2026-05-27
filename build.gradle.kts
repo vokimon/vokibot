@@ -23,6 +23,7 @@ spotless {
         target(
             "app/src/**/*.kt",
             "shared/src/**/*.kt",
+            "puppet/src/**/*.kt",
             "buildSrc/src/**/*.kt",
         )
         ktlint("1.7.1")

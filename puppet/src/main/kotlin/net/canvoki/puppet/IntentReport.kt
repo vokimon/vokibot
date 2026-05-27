@@ -1,32 +1,33 @@
 package net.canvoki.puppet
 
 import android.content.Intent
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import net.canvoki.shared.component.AppScaffold
 
-internal const val DISPATCH_SOURCE = "dispatch_source"
-
 @Composable
-fun IntentReport(componentLabel: String, intent: Intent) {
-    val source = intent.getStringExtra(DISPATCH_SOURCE) ?: componentLabel
+fun IntentReport(
+    componentLabel: String,
+    intent: Intent,
+) {
     AppScaffold {
         Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp)
-                .verticalScroll(rememberScrollState()),
+            modifier =
+                Modifier
+                    .fillMaxSize()
+                    .padding(16.dp)
+                    .verticalScroll(rememberScrollState()),
         ) {
             Text("Intent Received", style = MaterialTheme.typography.headlineMedium)
-            Text("Responding Component: $source")
+            Text("Responding Component: $componentLabel")
             Text("Action: ${intent.action ?: "null"}")
             Text("Package: ${intent.`package` ?: "null"}")
             Text("Component: ${intent.component?.flattenToShortString() ?: "null"}")
@@ -38,12 +39,11 @@ fun IntentReport(componentLabel: String, intent: Intent) {
             val extras = intent.extras
             if (extras != null && !extras.isEmpty) {
                 for (key in extras.keySet()) {
-                    if (key == DISPATCH_SOURCE) continue
                     @Suppress("DEPRECATION")
                     val value = intent.extras?.get(key)
                     val valueString = value?.toString() ?: "null"
                     val type = value?.javaClass?.simpleName
-                    Text("  $key (${type}) = $valueString")
+                    Text("  $key ($type) = $valueString")
                 }
             } else {
                 Text("  (none)")
