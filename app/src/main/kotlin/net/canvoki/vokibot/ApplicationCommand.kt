@@ -216,7 +216,7 @@ data class SendBroadcastCommand(
         override val entityClass = SendBroadcastCommand::class
         override val labelRes = R.string.command_type_send_broadcast
         override val iconRes = R.drawable.ic_apps
-        override val editorFactory = { _: String? -> NotYetImplementedEditor }
+        override val editorFactory = { id: String? -> ApplicationCommandEditor(id) }
         override val deserializer = { jsonString: String -> fromJson(jsonString) }
         override val helpRes = R.string.command_send_broadcast_help
 
@@ -272,7 +272,7 @@ data class StartServiceCommand(
         override val entityClass = StartServiceCommand::class
         override val labelRes = R.string.command_type_start_service
         override val iconRes = R.drawable.ic_apps
-        override val editorFactory = { _: String? -> NotYetImplementedEditor }
+        override val editorFactory = { id: String? -> ApplicationCommandEditor(id) }
         override val deserializer = { jsonString: String -> fromJson(jsonString) }
         override val helpRes = R.string.command_control_service_help
 
