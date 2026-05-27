@@ -42,7 +42,7 @@ import net.canvoki.shared.usermessage.UserMessage
 import net.canvoki.vokibot.common.EditorHeader
 
 @Serializable
-data class ActivityLaunchCommandEditor(
+data class ApplicationCommandEditor(
     val commandId: String? = null,
 ) : StackedScreen<Unit>() {
     @Composable
@@ -136,7 +136,7 @@ data class ActivityLaunchCommandEditor(
         }
 
         LaunchedEffect(isDirty) {
-            nav.onBack(this@ActivityLaunchCommandEditor, enabled = isDirty) {
+            nav.onBack(this@ApplicationCommandEditor, enabled = isDirty) {
                 showDiscardDialog = true
             }
         }
