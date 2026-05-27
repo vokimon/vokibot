@@ -42,8 +42,7 @@ data class UnknownTrigger(
     override val id: String = "unknown_${type}_${json.hashCode()}"
 
     override val title: String = "Unsupported Trigger"
-
-    override val description: String = "`$type` not supported"
+    override val description: String = type
 
     override val iconRes: Int = android.R.drawable.ic_menu_help
 

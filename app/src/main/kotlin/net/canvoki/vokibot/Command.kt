@@ -40,7 +40,7 @@ data class UnknownCommand(
 ) : Command() {
     override val id: String = "unknown_${type}_${json.hashCode()}"
     override val title: String = "Unsupported Command"
-    override val description: String = "`$type` not supported"
+    override val description: String = type
     override val iconRes: Int = android.R.drawable.ic_menu_help
 
     override fun toJson(): String = json

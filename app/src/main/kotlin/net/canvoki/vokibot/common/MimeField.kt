@@ -16,6 +16,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.TextFieldValue
 import net.canvoki.vokibot.R
@@ -77,7 +78,7 @@ fun MimeField(
                 fieldValue = it
                 onMimeChanged(it.text.ifBlank { null })
             },
-            label = { Text("MIME type") },
+            label = { Text(stringResource(R.string.intent_item_editor_mime_type)) },
             trailingIcon = {
                 if (mimeType != null) {
                     IconButton(onClick = { onMimeChanged(null) }) {

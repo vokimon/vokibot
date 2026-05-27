@@ -145,3 +145,104 @@ automation_help: Bincula âççionê pa ehecutarçe cuando çe dîppara un trîh
 triggerlist_header: Dîpparadorê guardáô
 commandlist_header: Âççionê guardâh
 intent_editor_select_app_and_screen: Elihe âpp y pantaya
+commandlist_item_menu_edit: Editâh
+command_run_error_fallback: Fayó la ehecuçión der comando
+intent_data_editor_data_header: Datô
+intent_data_editor_data_uri: URI
+intent_data_editor_data_uri_required: URI (requerío)
+intent_item_editor_mime_type: Tipo MIME
+intent_extras_editor_header: Parámetrô êttra
+intent_extras_editor_add_button: Añadîh parámetro êttra
+intent_extras_editor_add_title: Añadîh parámetro êttra
+intent_extras_editor_add_name: Nombre
+intent_extras_editor_add_type: Tipo
+intent_extras_editor_add_confirm: Añadîh
+intent_extras_editor_add_cancel: Cançelâh
+intent_extras_editor_comma_separated: (çeparao por comâ)
+component_type_activity: Âttibidá
+component_type_service: Çerbiçio
+component_type_receiver: Reçêttôh
+component_type_provider: Probeedôh
+standard_action_main: Prinçipâh
+standard_action_view: Bêh
+standard_action_send: Embiâh
+standard_action_send_multiple: Embiâh múrtiplê
+standard_action_send_to: Embiâh a
+standard_action_dial: Marcâh
+standard_action_call: Yamâh
+standard_action_edit: Editâh
+standard_action_pick: Elehîh
+standard_action_get_content: Ôttenêh contenío
+standard_action_take_photo: Açêh una foto
+standard_action_record_video: Grabâh bídeo
+standard_action_speech_recognition: Reconoçimiento de bôh
+standard_extra_text: Têtto
+standard_extra_subject: Açunto
+standard_extra_attachment: Âhhunto
+standard_extra_attachments: Âhhuntô
+standard_extra_to: Pa
+standard_extra_cc: CC
+standard_extra_bcc: CCO
+standard_extra_body: Cuerpo
+standard_extra_output_uri: URI de çalida
+standard_extra_max_duration: Duraçión máççima (çegundô)
+standard_extra_quality: Calidá (0 baha / 1 arta)
+standard_extra_language_model: Modelo de lenguahe
+standard_extra_prompt: Îttrûççión
+standard_extra_max_results: Reçurtáô máççimô
+settings_page_category_network: Ré
+settings_page_category_display: Pantaya
+settings_page_category_sound: Çonido
+settings_page_category_apps: Aplicaçionê
+settings_page_category_security: Çeguridá
+settings_page_category_personal: Perçonâh
+settings_page_category_system: Çîttema
+settings_page_name_wifi: Wi-Fi
+settings_page_name_bluetooth: Bluetoôh
+settings_page_name_nfc: NFC
+settings_page_name_mobile_networks: Redê móbilê
+settings_page_name_internet: Intênnêh
+settings_page_name_airplane_mode: Modo abión
+settings_page_name_data_usage: Uço de datô
+settings_page_name_apn: ÂNN
+settings_page_name_display: Pantaya
+settings_page_name_night_light: Lûh nôttûnna
+settings_page_name_dark_theme: Tema ôccuro
+settings_page_name_auto_rotate: Rotaçión automática
+settings_page_name_font_size: Tamaño de fuente
+settings_page_name_wallpaper: Fondo de pantaya
+settings_page_name_display_color_temperature: Temperatura de colôh de la pantaya
+settings_page_name_sound: Çonido
+settings_page_name_do_not_disturb: No molêttâh
+settings_page_name_zen_mode: Modo çen
+settings_page_name_apps: Aplicaçionê
+settings_page_name_app_notifications: Notificaçionê de aplicaçionê
+settings_page_name_app_permissions: Permiçô de aplicaçionê
+settings_page_name_all_apps: Toâ lâ aplicaçionê
+settings_page_name_installed_apps: Aplicaçionê îttalâh
+settings_page_name_developer_options: Ôççionê de deçarroyadôh
+settings_page_name_security: Çeguridá
+settings_page_name_location: Ubicaçión
+settings_page_name_lock_screen: Pantaya de bloqueo
+settings_page_name_privacy: Pribaçidá
+settings_page_name_credentials: Credençialê
+settings_page_name_trusted_certificates: Çertificáô de confiança
+settings_page_name_date_time: Fexa y ora
+settings_page_name_language: Idioma
+settings_page_name_users: Uçuariô
+settings_page_name_accounts: Cuentâ
+settings_page_name_sync: Çincroniçaçión
+settings_page_name_voice_input: Entrá de bôh
+settings_page_name_accessibility: Âççeçibilidá
+settings_page_name_about_device: Açerca der dîppoçitibo
+settings_page_name_storage: Armaçenamiento
+settings_page_name_internal_storage: Armaçenamiento intênno
+settings_page_name_battery: Batería
+settings_page_name_notifications: Notificaçionê
+settings_page_name_all_settings: Tôh lô ahûttê
+settings_page_name_quick_launch: Iniçio rápido
+unknown_command_title: 'Comando no çoportao'
+unknown_trigger_title: 'Deencadenante no çoportao'
+automation_name_auto_format: Al {triggerType} {triggerId}
+common_notice_title: Abiço
+common_experimental_title: Funçión êpperimentâh

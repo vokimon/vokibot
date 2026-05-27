@@ -14,6 +14,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
 import kotlinx.serialization.SerialName
@@ -273,7 +274,7 @@ sealed class ExtraValue {
                     text = it
                     onChanged(copy(values = it.split(",").map { it.trim() }.filter { it.isNotEmpty() }))
                 },
-                label = { Text("${spec.label} (comma separated)") },
+                label = { Text("${spec.label} ${stringResource(R.string.intent_extras_editor_comma_separated)}") },
                 modifier = Modifier.fillMaxWidth(),
             )
         }
@@ -304,7 +305,7 @@ sealed class ExtraValue {
                     text = it
                     onChanged(copy(values = it.split(",").map { it.trim() }.filter { it.isNotEmpty() }))
                 },
-                label = { Text("${spec.label} (comma separated)") },
+                label = { Text("${spec.label} ${stringResource(R.string.intent_extras_editor_comma_separated)}") },
                 modifier = Modifier.fillMaxWidth(),
             )
         }

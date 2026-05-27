@@ -147,3 +147,104 @@ automation_help: Verknüpfe Aktionen, die ausgeführt werden, wenn ein Auslöser
 triggerlist_header: Gespeicherte Auslöser
 commandlist_header: Gespeicherte Aktionen
 intent_editor_select_app_and_screen: App und Bildschirm auswählen
+commandlist_item_menu_edit: Bearbeiten
+command_run_error_fallback: Befehlsausführung fehlgeschlagen
+intent_data_editor_data_header: Daten
+intent_data_editor_data_uri: URI
+intent_data_editor_data_uri_required: URI (erforderlich)
+intent_item_editor_mime_type: MIME-Typ
+intent_extras_editor_header: Zusätzliche Parameter
+intent_extras_editor_add_button: Zusatzparameter hinzufügen
+intent_extras_editor_add_title: Zusatzparameter hinzufügen
+intent_extras_editor_add_name: Name
+intent_extras_editor_add_type: Typ
+intent_extras_editor_add_confirm: Hinzufügen
+intent_extras_editor_add_cancel: Abbrechen
+intent_extras_editor_comma_separated: (durch Kommas getrennt)
+component_type_activity: Aktivität
+component_type_service: Dienst
+component_type_receiver: Empfänger
+component_type_provider: Anbieter
+standard_action_main: Haupt
+standard_action_view: Anzeigen
+standard_action_send: Senden
+standard_action_send_multiple: Mehrere senden
+standard_action_send_to: Senden an
+standard_action_dial: Wählen
+standard_action_call: Anrufen
+standard_action_edit: Bearbeiten
+standard_action_pick: Auswählen
+standard_action_get_content: Inhalt abrufen
+standard_action_take_photo: Foto aufnehmen
+standard_action_record_video: Video aufnehmen
+standard_action_speech_recognition: Spracherkennung
+standard_extra_text: Text
+standard_extra_subject: Betreff
+standard_extra_attachment: Anhang
+standard_extra_attachments: Anhänge
+standard_extra_to: An
+standard_extra_cc: CC
+standard_extra_bcc: BCC
+standard_extra_body: Inhalt
+standard_extra_output_uri: Ausgabe-URI
+standard_extra_max_duration: Max. Dauer (Sekunden)
+standard_extra_quality: Qualität (0 niedrig / 1 hoch)
+standard_extra_language_model: Sprachmodell
+standard_extra_prompt: Eingabeaufforderung
+standard_extra_max_results: Max. Ergebnisse
+settings_page_category_network: Netzwerk
+settings_page_category_display: Anzeige
+settings_page_category_sound: Ton
+settings_page_category_apps: Apps
+settings_page_category_security: Sicherheit
+settings_page_category_personal: Persönlich
+settings_page_category_system: System
+settings_page_name_wifi: WLAN
+settings_page_name_bluetooth: Bluetooth
+settings_page_name_nfc: NFC
+settings_page_name_mobile_networks: Mobile Netzwerke
+settings_page_name_internet: Internet
+settings_page_name_airplane_mode: Flugmodus
+settings_page_name_data_usage: Datennutzung
+settings_page_name_apn: APN
+settings_page_name_display: Anzeige
+settings_page_name_night_light: Nachtlicht
+settings_page_name_dark_theme: Dunkles Design
+settings_page_name_auto_rotate: Automatische Drehung
+settings_page_name_font_size: Schriftgröße
+settings_page_name_wallpaper: Hintergrundbild
+settings_page_name_display_color_temperature: Farbtemperatur der Anzeige
+settings_page_name_sound: Ton
+settings_page_name_do_not_disturb: Nicht stören
+settings_page_name_zen_mode: Zen-Modus
+settings_page_name_apps: Apps
+settings_page_name_app_notifications: App-Benachrichtigungen
+settings_page_name_app_permissions: App-Berechtigungen
+settings_page_name_all_apps: Alle Apps
+settings_page_name_installed_apps: Installierte Apps
+settings_page_name_developer_options: Entwickleroptionen
+settings_page_name_security: Sicherheit
+settings_page_name_location: Standort
+settings_page_name_lock_screen: Sperrbildschirm
+settings_page_name_privacy: Datenschutz
+settings_page_name_credentials: Anmeldedaten
+settings_page_name_trusted_certificates: Vertrauenswürdige Zertifikate
+settings_page_name_date_time: Datum und Uhrzeit
+settings_page_name_language: Sprache
+settings_page_name_users: Benutzer
+settings_page_name_accounts: Konten
+settings_page_name_sync: Synchronisierung
+settings_page_name_voice_input: Spracheingabe
+settings_page_name_accessibility: Barrierefreiheit
+settings_page_name_about_device: Über das Gerät
+settings_page_name_storage: Speicher
+settings_page_name_internal_storage: Interner Speicher
+settings_page_name_battery: Akku
+settings_page_name_notifications: Benachrichtigungen
+settings_page_name_all_settings: Alle Einstellungen
+settings_page_name_quick_launch: Schnellstart
+unknown_command_title: "Nicht unterstützter Befehl"
+unknown_trigger_title: "Nicht unterstützter Auslöser"
+automation_name_auto_format: "Bei {triggerType} {triggerId}"
+common_notice_title: Hinweis
+common_experimental_title: Experimentelle Funktion

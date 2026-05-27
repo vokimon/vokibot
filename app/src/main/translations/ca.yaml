@@ -147,3 +147,104 @@ automation_help: Vincula accions per executar-les quan es dispara un disparador
 triggerlist_header: Disparadors desats
 commandlist_header: Accions desades
 intent_editor_select_app_and_screen: Tria l'app i la pantalla
+commandlist_item_menu_edit: Edita
+command_run_error_fallback: Ha fallat l'execució de la comanda
+intent_data_editor_data_header: Dades
+intent_data_editor_data_uri: URI
+intent_data_editor_data_uri_required: URI (obligatori)
+intent_item_editor_mime_type: Tipus MIME
+intent_extras_editor_header: Paràmetres extres
+intent_extras_editor_add_button: Afegeix un paràmetre extra
+intent_extras_editor_add_title: Afegeix un paràmetre extra
+intent_extras_editor_add_name: Nom
+intent_extras_editor_add_type: Tipus
+intent_extras_editor_add_confirm: Afegeix
+intent_extras_editor_add_cancel: Cancel·la
+intent_extras_editor_comma_separated: (separat per comes)
+component_type_activity: Activitat
+component_type_service: Servei
+component_type_receiver: Receptor
+component_type_provider: Proveïdor
+standard_action_main: Principal
+standard_action_view: Visualitza
+standard_action_send: Envia
+standard_action_send_multiple: Envia múltiples
+standard_action_send_to: Envia a
+standard_action_dial: Marca
+standard_action_call: Truca
+standard_action_edit: Edita
+standard_action_pick: Tria
+standard_action_get_content: Obtén contingut
+standard_action_take_photo: Fes una foto
+standard_action_record_video: Grava vídeo
+standard_action_speech_recognition: Reconeixement de veu
+standard_extra_text: Text
+standard_extra_subject: Assumpte
+standard_extra_attachment: Adjunt
+standard_extra_attachments: Adjunts
+standard_extra_to: A
+standard_extra_cc: CC
+standard_extra_bcc: CCO
+standard_extra_body: Cos
+standard_extra_output_uri: URI de sortida
+standard_extra_max_duration: Durada màxima (segons)
+standard_extra_quality: Qualitat (0 baixa / 1 alta)
+standard_extra_language_model: Model de llenguatge
+standard_extra_prompt: Instrucció
+standard_extra_max_results: Resultats màxims
+settings_page_category_network: Xarxa
+settings_page_category_display: Pantalla
+settings_page_category_sound: So
+settings_page_category_apps: Aplicacions
+settings_page_category_security: Seguretat
+settings_page_category_personal: Personal
+settings_page_category_system: Sistema
+settings_page_name_wifi: Wi-Fi
+settings_page_name_bluetooth: Bluetooth
+settings_page_name_nfc: NFC
+settings_page_name_mobile_networks: Xarxes mòbils
+settings_page_name_internet: Internet
+settings_page_name_airplane_mode: Mode avió
+settings_page_name_data_usage: Ús de dades
+settings_page_name_apn: APN
+settings_page_name_display: Pantalla
+settings_page_name_night_light: Llum nocturna
+settings_page_name_dark_theme: Tema fosc
+settings_page_name_auto_rotate: Rotació automàtica
+settings_page_name_font_size: Mida de la font
+settings_page_name_wallpaper: Fons de pantalla
+settings_page_name_display_color_temperature: Temperatura de color de la pantalla
+settings_page_name_sound: So
+settings_page_name_do_not_disturb: No molestar
+settings_page_name_zen_mode: Mode zen
+settings_page_name_apps: Aplicacions
+settings_page_name_app_notifications: Notificacions d'aplicacions
+settings_page_name_app_permissions: Permisos d'aplicacions
+settings_page_name_all_apps: Totes les aplicacions
+settings_page_name_installed_apps: Aplicacions instal·lades
+settings_page_name_developer_options: Opcions de desenvolupador
+settings_page_name_security: Seguretat
+settings_page_name_location: Ubicació
+settings_page_name_lock_screen: Pantalla de bloqueig
+settings_page_name_privacy: Privadesa
+settings_page_name_credentials: Credencials
+settings_page_name_trusted_certificates: Certificats de confiança
+settings_page_name_date_time: Data i hora
+settings_page_name_language: Idioma
+settings_page_name_users: Usuaris
+settings_page_name_accounts: Comptes
+settings_page_name_sync: Sincronització
+settings_page_name_voice_input: Entrada de veu
+settings_page_name_accessibility: Accessibilitat
+settings_page_name_about_device: Quant al dispositiu
+settings_page_name_storage: Emmagatzematge
+settings_page_name_internal_storage: Emmagatzematge intern
+settings_page_name_battery: Bateria
+settings_page_name_notifications: Notificacions
+settings_page_name_all_settings: Tots els ajustos
+settings_page_name_quick_launch: Inici ràpid
+unknown_command_title: "Comandament no suportat"
+unknown_trigger_title: "Disparament no suportat"
+automation_name_auto_format: "Quan {triggerType} {triggerId}"
+common_notice_title: Avís
+common_experimental_title: Funcionalitat experimental

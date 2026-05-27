@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import net.canvoki.vokibot.common.MimeField
 import net.canvoki.vokibot.common.UriField
@@ -21,11 +22,18 @@ fun IntentDataEditor(
 ) {
     val context = LocalContext.current
     Column {
-        SectionHeader("Data")
+        SectionHeader(stringResource(R.string.intent_data_editor_data_header))
         UriField(
             uri = dataUri,
             onUriChanged = onDataChanged,
-            label = if (dataUriRequired) "URI (required)" else "URI",
+            label =
+                if (dataUriRequired) {
+                    stringResource(
+                        R.string.intent_data_editor_data_uri_required,
+                    )
+                } else {
+                    stringResource(R.string.intent_data_editor_data_uri)
+                },
             allowedSchemes = allowedSchemes,
             onFilePicked = { uri ->
                 context.contentResolver.getType(uri)?.let { onMimeChanged(it) }

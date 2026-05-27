@@ -65,6 +65,8 @@ fun CommandList(
     var refreshCounter by remember { mutableIntStateOf(0) }
     var commandToDelete by remember { mutableStateOf<String?>(null) }
 
+    val fallbacErrorMessage = stringResource(R.string.command_run_error_fallback)
+
     Box(modifier = modifier.fillMaxSize()) {
         Column(
             modifier = Modifier.fillMaxSize(),
@@ -118,7 +120,7 @@ fun CommandList(
                             onDismissRequest = { menuExpanded = false },
                         ) {
                             DropdownMenuItem(
-                                text = { Text("Edit") },
+                                text = { Text(stringResource(R.string.commandlist_item_menu_edit)) },
                                 leadingIcon = {
                                     Icon(painter = painterResource(R.drawable.ic_edit), contentDescription = null)
                                 },
@@ -146,7 +148,7 @@ fun CommandList(
                                             command.execute(context)
                                         } catch (e: Exception) {
                                             e.printStackTrace()
-                                            UserMessage.Info(e.message ?: "Command execution failed").post()
+                                            UserMessage.Info(e.message ?: fallbacErrorMessage).post()
                                         }
                                     }
                                 },

@@ -67,6 +67,7 @@ data class ApplicationCommandEditor(
         var intentMime by remember { mutableStateOf<String?>(null) }
 
         val allSpecs = (StandardActions.get(actionStr)?.extras ?: emptyList()) + customExtraSpecs
+        val runErrorFallback = stringResource(R.string.command_run_error_fallback)
 
         LaunchedEffect(commandId) {
             if (commandId != null) {
@@ -320,7 +321,7 @@ data class ApplicationCommandEditor(
                                     command.execute(context)
                                 } catch (e: Exception) {
                                     e.printStackTrace()
-                                    UserMessage.Info(e.message ?: "Command execution failed").post()
+                                    UserMessage.Info(e.message ?: runErrorFallback).post()
                                 }
                             }
                         }

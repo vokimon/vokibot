@@ -147,3 +147,104 @@ automation_help: Vincula accions ta executar-se quan se dispara un trigger
 triggerlist_header: Disparadors alzacaus
 commandlist_header: Accions alzacadas
 intent_editor_select_app_and_screen: Esculle app y pantalla
+commandlist_item_menu_edit: Editar
+command_run_error_fallback: Ha fallau l'execución d'a comando
+intent_data_editor_data_header: Datos
+intent_data_editor_data_uri: URI
+intent_data_editor_data_uri_required: URI (requisito)
+intent_item_editor_mime_type: Tipo MIME
+intent_extras_editor_header: Parametros extras
+intent_extras_editor_add_button: Anyadir parametro extra
+intent_extras_editor_add_title: Anyadir parametro extra
+intent_extras_editor_add_name: Nombre
+intent_extras_editor_add_type: Tipo
+intent_extras_editor_add_confirm: Anyadir
+intent_extras_editor_add_cancel: Cancelar
+intent_extras_editor_comma_separated: (deseparau por comas)
+component_type_activity: Actividat
+component_type_service: Serbizio
+component_type_receiver: Receptor
+component_type_provider: Proveedor
+standard_action_main: Prencipal
+standard_action_view: Veyer
+standard_action_send: Ninviar
+standard_action_send_multiple: Ninviar multiples
+standard_action_send_to: Ninviar ta
+standard_action_dial: Marcar
+standard_action_call: Clamar
+standard_action_edit: Editar
+standard_action_pick: Escullir
+standard_action_get_content: Obtenner contenido
+standard_action_take_photo: Fer una foto
+standard_action_record_video: Gravar video
+standard_action_speech_recognition: Reconoximiento de voz
+standard_extra_text: Texto
+standard_extra_subject: Asunto
+standard_extra_attachment: Achunto
+standard_extra_attachments: Achuntos
+standard_extra_to: Ta
+standard_extra_cc: CC
+standard_extra_bcc: BCC
+standard_extra_body: Cuerpo
+standard_extra_output_uri: URI de salida
+standard_extra_max_duration: Durada maxima (segundos)
+standard_extra_quality: Calidat (0 baixa / 1 alta)
+standard_extra_language_model: Modelo de luengache
+standard_extra_prompt: Instrucción
+standard_extra_max_results: Resultaus maximos
+settings_page_category_network: Ret
+settings_page_category_display: Pantalla
+settings_page_category_sound: Soniu
+settings_page_category_apps: Aplicazions
+settings_page_category_security: Seguridat
+settings_page_category_personal: Personal
+settings_page_category_system: Sistema
+settings_page_name_wifi: Wi-Fi
+settings_page_name_bluetooth: Bluetooth
+settings_page_name_nfc: NFC
+settings_page_name_mobile_networks: Retz mobils
+settings_page_name_internet: Internet
+settings_page_name_airplane_mode: Modo avión
+settings_page_name_data_usage: Uso de datos
+settings_page_name_apn: APN
+settings_page_name_display: Pantalla
+settings_page_name_night_light: Luz nueiturna
+settings_page_name_dark_theme: Tema escuro
+settings_page_name_auto_rotate: Rotación automatica
+settings_page_name_font_size: Grandaria d'a fuent
+settings_page_name_wallpaper: Fondo de pantalla
+settings_page_name_display_color_temperature: Temperatura de color d'a pantalla
+settings_page_name_sound: Soniu
+settings_page_name_do_not_disturb: No molestar
+settings_page_name_zen_mode: Modo zen
+settings_page_name_apps: Aplicazions
+settings_page_name_app_notifications: Notificazions d'aplicazions
+settings_page_name_app_permissions: Permisos d'aplicazions
+settings_page_name_all_apps: Todas as aplicazions
+settings_page_name_installed_apps: Aplicazions instaladas
+settings_page_name_developer_options: Opcions de desembolique
+settings_page_name_security: Seguridat
+settings_page_name_location: Ubicazión
+settings_page_name_lock_screen: Pantalla de blocaje
+settings_page_name_privacy: Privacidat
+settings_page_name_credentials: Credencials
+settings_page_name_trusted_certificates: Certificaus de confianza
+settings_page_name_date_time: Calendario y hora
+settings_page_name_language: Luengache
+settings_page_name_users: Usuarios
+settings_page_name_accounts: Contas
+settings_page_name_sync: Sincronizazión
+settings_page_name_voice_input: Entrada de voz
+settings_page_name_accessibility: Aksesibilidat
+settings_page_name_about_device: Arredol d'o dispositivo
+settings_page_name_storage: Almacenache
+settings_page_name_internal_storage: Almacenache interno
+settings_page_name_battery: Batería
+settings_page_name_notifications: Notificazions
+settings_page_name_all_settings: Totz os achustes
+settings_page_name_quick_launch: Inicio rapido
+unknown_command_title: "Comando no suportau"
+unknown_trigger_title: "Desencadenant no suportau"
+automation_name_auto_format: "Quan {triggerType} {triggerId}"
+common_notice_title: Aviso
+common_experimental_title: Funcionalidat experimental

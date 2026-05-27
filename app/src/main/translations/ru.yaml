@@ -147,3 +147,104 @@ automation_help: Привяжите команды для запуска при 
 triggerlist_header: Сохранённые триггеры
 commandlist_header: Сохранённые команды
 intent_editor_select_app_and_screen: Выберите приложение и экран
+commandlist_item_menu_edit: Изменить
+command_run_error_fallback: Не удалось выполнить команду
+intent_data_editor_data_header: Данные
+intent_data_editor_data_uri: URI
+intent_data_editor_data_uri_required: URI (обязательно)
+intent_item_editor_mime_type: Тип MIME
+intent_extras_editor_header: Дополнительные параметры
+intent_extras_editor_add_button: Добавить параметр
+intent_extras_editor_add_title: Добавить параметр
+intent_extras_editor_add_name: Имя
+intent_extras_editor_add_type: Тип
+intent_extras_editor_add_confirm: Добавить
+intent_extras_editor_add_cancel: Отмена
+intent_extras_editor_comma_separated: (через запятую)
+component_type_activity: Активность
+component_type_service: Служба
+component_type_receiver: Приёмник
+component_type_provider: Провайдер
+standard_action_main: Основное
+standard_action_view: Просмотр
+standard_action_send: Отправить
+standard_action_send_multiple: Отправить несколько
+standard_action_send_to: Отправить кому
+standard_action_dial: Набор номера
+standard_action_call: Вызов
+standard_action_edit: Изменить
+standard_action_pick: Выбрать
+standard_action_get_content: Получить контент
+standard_action_take_photo: Сделать фото
+standard_action_record_video: Записать видео
+standard_action_speech_recognition: Голосовой ввод
+standard_extra_text: Текст
+standard_extra_subject: Тема
+standard_extra_attachment: Вложение
+standard_extra_attachments: Вложения
+standard_extra_to: Кому
+standard_extra_cc: Копия
+standard_extra_bcc: Скрытая копия
+standard_extra_body: Сообщение
+standard_extra_output_uri: URI вывода
+standard_extra_max_duration: Макс. длительность (сек)
+standard_extra_quality: Качество (0 низкое / 1 высокое)
+standard_extra_language_model: Языковая модель
+standard_extra_prompt: Подсказка
+standard_extra_max_results: Макс. результатов
+settings_page_category_network: Сеть
+settings_page_category_display: Экран
+settings_page_category_sound: Звук
+settings_page_category_apps: Приложения
+settings_page_category_security: Безопасность
+settings_page_category_personal: Личное
+settings_page_category_system: Система
+settings_page_name_wifi: Wi-Fi
+settings_page_name_bluetooth: Bluetooth
+settings_page_name_nfc: NFC
+settings_page_name_mobile_networks: Мобильные сети
+settings_page_name_internet: Интернет
+settings_page_name_airplane_mode: Режим полёта
+settings_page_name_data_usage: Использование данных
+settings_page_name_apn: Точки доступа (APN)
+settings_page_name_display: Экран
+settings_page_name_night_light: Ночной свет
+settings_page_name_dark_theme: Тёмная тема
+settings_page_name_auto_rotate: Автоповорот
+settings_page_name_font_size: Размер шрифта
+settings_page_name_wallpaper: Обои
+settings_page_name_display_color_temperature: Цветовая температура экрана
+settings_page_name_sound: Звук
+settings_page_name_do_not_disturb: Не беспокоить
+settings_page_name_zen_mode: Режим Дзен
+settings_page_name_apps: Приложения
+settings_page_name_app_notifications: Уведомления приложений
+settings_page_name_app_permissions: Разрешения приложений
+settings_page_name_all_apps: Все приложения
+settings_page_name_installed_apps: Установленные приложения
+settings_page_name_developer_options: Для разработчиков
+settings_page_name_security: Безопасность
+settings_page_name_location: Местоположение
+settings_page_name_lock_screen: Блокировка экрана
+settings_page_name_privacy: Конфиденциальность
+settings_page_name_credentials: Учётные данные
+settings_page_name_trusted_certificates: Доверенные сертификаты
+settings_page_name_date_time: Дата и время
+settings_page_name_language: Язык
+settings_page_name_users: Пользователи
+settings_page_name_accounts: Аккаунты
+settings_page_name_sync: Синхронизация
+settings_page_name_voice_input: Голосовой ввод
+settings_page_name_accessibility: Специальные возможности
+settings_page_name_about_device: О телефоне
+settings_page_name_storage: Память
+settings_page_name_internal_storage: Внутренняя память
+settings_page_name_battery: Батарея
+settings_page_name_notifications: Уведомления
+settings_page_name_all_settings: Все настройки
+settings_page_name_quick_launch: Быстрый запуск
+unknown_command_title: "Команда не поддерживается"
+unknown_trigger_title: "Триггер не поддерживается"
+automation_name_auto_format: "При {triggerType} {triggerId}"
+common_notice_title: Внимание
+common_experimental_title: Экспериментальная функция

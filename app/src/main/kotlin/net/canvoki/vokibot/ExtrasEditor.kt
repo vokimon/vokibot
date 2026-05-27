@@ -23,6 +23,7 @@ import androidx.compose.runtime.saveable.Saver
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import kotlinx.serialization.builtins.MapSerializer
 import kotlinx.serialization.serializer
@@ -49,7 +50,7 @@ fun ExtrasEditor(
     modifier: Modifier = Modifier,
 ) {
     Column(modifier = modifier) {
-        SectionHeader("Extra parameters")
+        SectionHeader(stringResource(R.string.intent_extras_editor_header))
         specs.forEach { spec ->
             val value = extras[spec.key] ?: spec.defaultValue()
             value.Editor(
@@ -69,7 +70,7 @@ fun ExtrasEditor(
             ) {
                 Icon(painterResource(R.drawable.ic_add), contentDescription = null)
                 Spacer(Modifier.size(4.dp))
-                Text("Add extra parameter")
+                Text(stringResource(R.string.intent_extras_editor_add_button))
             }
 
             if (showDialog) {
@@ -79,13 +80,13 @@ fun ExtrasEditor(
 
                 AlertDialog(
                     onDismissRequest = { showDialog = false },
-                    title = { Text("Add extra parameter") },
+                    title = { Text(stringResource(R.string.intent_extras_editor_add_title)) },
                     text = {
                         Column {
                             OutlinedTextField(
                                 value = newKey,
                                 onValueChange = { newKey = it },
-                                label = { Text("Name") },
+                                label = { Text(stringResource(R.string.intent_extras_editor_add_name)) },
                                 modifier = Modifier.fillMaxWidth(),
                             )
                             Spacer(Modifier.height(8.dp))
@@ -97,7 +98,7 @@ fun ExtrasEditor(
                                     value = newType.displayName,
                                     onValueChange = {},
                                     readOnly = true,
-                                    label = { Text("Type") },
+                                    label = { Text(stringResource(R.string.intent_extras_editor_add_type)) },
                                     trailingIcon = {
                                         ExposedDropdownMenuDefaults.TrailingIcon(
                                             expanded = typeExpanded,
@@ -129,9 +130,13 @@ fun ExtrasEditor(
                                 showDialog = false
                             },
                             enabled = newKey.isNotBlank(),
-                        ) { Text("Add") }
+                        ) { Text(stringResource(R.string.intent_extras_editor_add_confirm)) }
                     },
-                    dismissButton = { TextButton(onClick = { showDialog = false }) { Text("Cancel") } },
+                    dismissButton = {
+                        TextButton(
+                            onClick = { showDialog = false },
+                        ) { Text(stringResource(R.string.intent_extras_editor_add_cancel)) }
+                    },
                 )
             }
         }

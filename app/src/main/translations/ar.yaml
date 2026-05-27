@@ -147,3 +147,104 @@ automation_help: اربط الأوامر لتشغيلها عند إطلاق مُ
 triggerlist_header: المُطلِقات المحفوظة
 commandlist_header: الإجراءات المحفوظة
 intent_editor_select_app_and_screen: اختر التطبيق والشاشة
+commandlist_item_menu_edit: تعديل
+command_run_error_fallback: فشل تنفيذ الأمر
+intent_data_editor_data_header: البيانات
+intent_data_editor_data_uri: معرف الموارد الموحد (URI)
+intent_data_editor_data_uri_required: معرف الموارد الموحد (مطلوب)
+intent_item_editor_mime_type: نوع MIME
+intent_extras_editor_header: معلمات إضافية
+intent_extras_editor_add_button: إضافة معلمة إضافية
+intent_extras_editor_add_title: إضافة معلمة إضافية
+intent_extras_editor_add_name: الاسم
+intent_extras_editor_add_type: النوع
+intent_extras_editor_add_confirm: إضافة
+intent_extras_editor_add_cancel: إلغاء
+intent_extras_editor_comma_separated: (مفصول بفواصل)
+component_type_activity: نشاط
+component_type_service: خدمة
+component_type_receiver: مستقبل
+component_type_provider: موفر المحتوى
+standard_action_main: رئيسي
+standard_action_view: عرض
+standard_action_send: إرسال
+standard_action_send_multiple: إرسال متعدد
+standard_action_send_to: إرسال إلى
+standard_action_dial: اتصال
+standard_action_call: مكالمة
+standard_action_edit: تعديل
+standard_action_pick: اختيار
+standard_action_get_content: الحصول على محتوى
+standard_action_take_photo: التقاط صورة
+standard_action_record_video: تسجيل فيديو
+standard_action_speech_recognition: التعرف على الكلام
+standard_extra_text: نص
+standard_extra_subject: الموضوع
+standard_extra_attachment: مرفق
+standard_extra_attachments: مرفقات
+standard_extra_to: إلى
+standard_extra_cc: نسخة
+standard_extra_bcc: نسخة مخفية
+standard_extra_body: المحتوى
+standard_extra_output_uri: URI الإخراج
+standard_extra_max_duration: المدة القصوى (ثواني)
+standard_extra_quality: الجودة (0 منخفضة / 1 عالية)
+standard_extra_language_model: نموذج اللغة
+standard_extra_prompt: موجّه
+standard_extra_max_results: الحد الأقصى للنتائج
+settings_page_category_network: الشبكة
+settings_page_category_display: العرض
+settings_page_category_sound: الصوت
+settings_page_category_apps: التطبيقات
+settings_page_category_security: الأمان
+settings_page_category_personal: شخصي
+settings_page_category_system: النظام
+settings_page_name_wifi: واي فاي
+settings_page_name_bluetooth: بلوتوث
+settings_page_name_nfc: إن إف سي
+settings_page_name_mobile_networks: شبكات الجوال
+settings_page_name_internet: الإنترنت
+settings_page_name_airplane_mode: وضع الطائرة
+settings_page_name_data_usage: استخدام البيانات
+settings_page_name_apn: نقاط الوصول (APN)
+settings_page_name_display: الشاشة
+settings_page_name_night_light: الضوء الليلي
+settings_page_name_dark_theme: المظهر الداكن
+settings_page_name_auto_rotate: التدوير التلقائي
+settings_page_name_font_size: حجم الخط
+settings_page_name_wallpaper: خلفية الشاشة
+settings_page_name_display_color_temperature: درجة حرارة لون الشاشة
+settings_page_name_sound: الصوت
+settings_page_name_do_not_disturb: عدم الإزعاج
+settings_page_name_zen_mode: وضع zen
+settings_page_name_apps: التطبيقات
+settings_page_name_app_notifications: إشعارات التطبيقات
+settings_page_name_app_permissions: أذونات التطبيقات
+settings_page_name_all_apps: كل التطبيقات
+settings_page_name_installed_apps: التطبيقات المثبتة
+settings_page_name_developer_options: خيارات المطور
+settings_page_name_security: الأمان
+settings_page_name_location: الموقع
+settings_page_name_lock_screen: شاشة القفل
+settings_page_name_privacy: الخصوصية
+settings_page_name_credentials: بيانات الاعتماد
+settings_page_name_trusted_certificates: الشهادات الموثوقة
+settings_page_name_date_time: التاريخ والوقت
+settings_page_name_language: اللغة
+settings_page_name_users: المستخدمون
+settings_page_name_accounts: الحسابات
+settings_page_name_sync: المزامنة
+settings_page_name_voice_input: إدخال صوتي
+settings_page_name_accessibility: إمكانية الوصول
+settings_page_name_about_device: حول الجهاز
+settings_page_name_storage: التخزين
+settings_page_name_internal_storage: التخزين الداخلي
+settings_page_name_battery: البطارية
+settings_page_name_notifications: الإشعارات
+settings_page_name_all_settings: جميع الإعدادات
+settings_page_name_quick_launch: التشغيل السريع
+unknown_command_title: "أمر غير مدعوم"
+unknown_trigger_title: "محفز غير مدعوم"
+automation_name_auto_format: "عند {triggerType} {triggerId}"
+common_notice_title: تنبيه
+common_experimental_title: ميزة تجريبية

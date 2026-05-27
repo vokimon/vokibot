@@ -147,3 +147,104 @@ automation_help: Lotu ekintzak abiarazle bat aktibatzen denean exekutatzeko
 triggerlist_header: Gordetako abiarazleak
 commandlist_header: Gordetako ekintzak
 intent_editor_select_app_and_screen: Aukeratu app-a eta pantaila
+commandlist_item_menu_edit: Editatu
+command_run_error_fallback: Komandoaren exekuzioak huts egin du
+intent_data_editor_data_header: Datuak
+intent_data_editor_data_uri: URI
+intent_data_editor_data_uri_required: URI (beharrezkoa)
+intent_item_editor_mime_type: MIME mota
+intent_extras_editor_header: Parametro gehigarriak
+intent_extras_editor_add_button: Gehitu parametro gehigarria
+intent_extras_editor_add_title: Gehitu parametro gehigarria
+intent_extras_editor_add_name: Izena
+intent_extras_editor_add_type: Mota
+intent_extras_editor_add_confirm: Gehitu
+intent_extras_editor_add_cancel: Utzi
+intent_extras_editor_comma_separated: (komaz bereizita)
+component_type_activity: Jarduera
+component_type_service: Zerbitzua
+component_type_receiver: Hartzailea
+component_type_provider: Hornitzailea
+standard_action_main: Nagusia
+standard_action_view: Ikusi
+standard_action_send: Bidali
+standard_action_send_multiple: Bidali anitz
+standard_action_send_to: Bidali hona
+standard_action_dial: Markatu
+standard_action_call: Deitu
+standard_action_edit: Editatu
+standard_action_pick: Aukeratu
+standard_action_get_content: Lortu edukia
+standard_action_take_photo: Atera argazkia
+standard_action_record_video: Grabatu bideoa
+standard_action_speech_recognition: Ahots-ezagutzea
+standard_extra_text: Testua
+standard_extra_subject: Gaia
+standard_extra_attachment: Eranskina
+standard_extra_attachments: Eranskinak
+standard_extra_to: Nork
+standard_extra_cc: KK
+standard_extra_bcc: KKO
+standard_extra_body: Gorputza
+standard_extra_output_uri: Irteerako URIa
+standard_extra_max_duration: Gehienezko iraupena (segundoak)
+standard_extra_quality: Kalitatea (0 baxua / 1 altua)
+standard_extra_language_model: Hizkuntza eredua
+standard_extra_prompt: Eskaera
+standard_extra_max_results: Emaitza maximoak
+settings_page_category_network: Sarea
+settings_page_category_display: Pantaila
+settings_page_category_sound: Soinua
+settings_page_category_apps: Aplikazioak
+settings_page_category_security: Segurtasuna
+settings_page_category_personal: Pertsonala
+settings_page_category_system: Sistema
+settings_page_name_wifi: Wi-Fia
+settings_page_name_bluetooth: Bluetootha
+settings_page_name_nfc: NFCa
+settings_page_name_mobile_networks: Mugikorreko sareak
+settings_page_name_internet: Interneta
+settings_page_name_airplane_mode: Hegazkin modua
+settings_page_name_data_usage: Datuen erabilera
+settings_page_name_apn: APNa
+settings_page_name_display: Pantaila
+settings_page_name_night_light: Gaueko argia
+settings_page_name_dark_theme: Gai iluna
+settings_page_name_auto_rotate: Biraketa automatikoa
+settings_page_name_font_size: Letra-tamaina
+settings_page_name_wallpaper: Horma-papera
+settings_page_name_display_color_temperature: Pantailaren kolore-tenperatura
+settings_page_name_sound: Soinua
+settings_page_name_do_not_disturb: Ez molestatu
+settings_page_name_zen_mode: Zen modua
+settings_page_name_apps: Aplikazioak
+settings_page_name_app_notifications: Aplikazioen jakinarazpenak
+settings_page_name_app_permissions: Aplikazioen baimenak
+settings_page_name_all_apps: Aplikazio guztiak
+settings_page_name_installed_apps: Instalaturiko aplikazioak
+settings_page_name_developer_options: Garatzaile aukerak
+settings_page_name_security: Segurtasuna
+settings_page_name_location: Kokapena
+settings_page_name_lock_screen: Blokeo-pantaila
+settings_page_name_privacy: Pribatutasuna
+settings_page_name_credentials: Kredentzialak
+settings_page_name_trusted_certificates: Ziurtagiri fidagarriak
+settings_page_name_date_time: Data eta ordua
+settings_page_name_language: Hizkuntza
+settings_page_name_users: Erabiltzaileak
+settings_page_name_accounts: Kontuak
+settings_page_name_sync: Sinkronizazioa
+settings_page_name_voice_input: Ahots-sarrera
+settings_page_name_accessibility: Irisgarritasuna
+settings_page_name_about_device: Gailuari buruz
+settings_page_name_storage: Biltegiratzea
+settings_page_name_internal_storage: Barne-biltegiratzea
+settings_page_name_battery: Bateria
+settings_page_name_notifications: Jakinarazpenak
+settings_page_name_all_settings: Ezarpen guztiak
+settings_page_name_quick_launch: Abiarazte azkarra
+unknown_command_title: "Komandoa ez da onartzen"
+unknown_trigger_title: "Abiarazlea ez da onartzen"
+automation_name_auto_format: "{triggerType} {triggerId} gertatzean"
+common_notice_title: Oharra
+common_experimental_title: Funtsio esperimentala

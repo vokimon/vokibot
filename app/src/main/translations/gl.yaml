@@ -147,3 +147,104 @@ automation_help: Vincula accións para executalas cando se dispara un disparador
 triggerlist_header: Disparadores gardados
 commandlist_header: Accións gardadas
 intent_editor_select_app_and_screen: Elixe app e pantalla
+commandlist_item_menu_edit: Editar
+command_run_error_fallback: Fallou a execución do comando
+intent_data_editor_data_header: Datos
+intent_data_editor_data_uri: URI
+intent_data_editor_data_uri_required: URI (obrigatorio)
+intent_item_editor_mime_type: Tipo MIME
+intent_extras_editor_header: Parámetros extra
+intent_extras_editor_add_button: Engadir parámetro extra
+intent_extras_editor_add_title: Engadir parámetro extra
+intent_extras_editor_add_name: Nome
+intent_extras_editor_add_type: Tipo
+intent_extras_editor_add_confirm: Engadir
+intent_extras_editor_add_cancel: Cancelar
+intent_extras_editor_comma_separated: (separado por comas)
+component_type_activity: Actividade
+component_type_service: Servizo
+component_type_receiver: Receptor
+component_type_provider: Provedor
+standard_action_main: Principal
+standard_action_view: Ver
+standard_action_send: Enviar
+standard_action_send_multiple: Enviar múltiples
+standard_action_send_to: Enviar a
+standard_action_dial: Marcar
+standard_action_call: Chamar
+standard_action_edit: Editar
+standard_action_pick: Elixir
+standard_action_get_content: Obter contido
+standard_action_take_photo: Facer unha foto
+standard_action_record_video: Grabar vídeo
+standard_action_speech_recognition: Recoñecemento de voz
+standard_extra_text: Texto
+standard_extra_subject: Asunto
+standard_extra_attachment: Adxunto
+standard_extra_attachments: Adxuntos
+standard_extra_to: Para
+standard_extra_cc: CC
+standard_extra_bcc: CCO
+standard_extra_body: Corpo
+standard_extra_output_uri: URI de saída
+standard_extra_max_duration: Duración máxima (segundos)
+standard_extra_quality: Calidade (0 baixa / 1 alta)
+standard_extra_language_model: Modelo de linguaxe
+standard_extra_prompt: Indicación
+standard_extra_max_results: Resultados máximos
+settings_page_category_network: Rede
+settings_page_category_display: Pantalla
+settings_page_category_sound: Son
+settings_page_category_apps: Aplicacións
+settings_page_category_security: Seguridade
+settings_page_category_personal: Persoal
+settings_page_category_system: Sistema
+settings_page_name_wifi: Wi-Fi
+settings_page_name_bluetooth: Bluetooth
+settings_page_name_nfc: NFC
+settings_page_name_mobile_networks: Redes móbiles
+settings_page_name_internet: Internet
+settings_page_name_airplane_mode: Modo avión
+settings_page_name_data_usage: Uso de datos
+settings_page_name_apn: APN
+settings_page_name_display: Pantalla
+settings_page_name_night_light: Luz nocturna
+settings_page_name_dark_theme: Tema escuro
+settings_page_name_auto_rotate: Rotación automática
+settings_page_name_font_size: Tamaño da fonte
+settings_page_name_wallpaper: Fondo de pantalla
+settings_page_name_display_color_temperature: Temperatura de cor da pantalla
+settings_page_name_sound: Son
+settings_page_name_do_not_disturb: Non molestar
+settings_page_name_zen_mode: Modo zen
+settings_page_name_apps: Aplicacións
+settings_page_name_app_notifications: Notificacións de aplicacións
+settings_page_name_app_permissions: Permisos de aplicacións
+settings_page_name_all_apps: Todas as aplicacións
+settings_page_name_installed_apps: Aplicacións instaladas
+settings_page_name_developer_options: Opcións de desenvolvedor
+settings_page_name_security: Seguridade
+settings_page_name_location: Ubicación
+settings_page_name_lock_screen: Pantalla de bloqueo
+settings_page_name_privacy: Privacidade
+settings_page_name_credentials: Credenciais
+settings_page_name_trusted_certificates: Certificados de confianza
+settings_page_name_date_time: Data e hora
+settings_page_name_language: Idioma
+settings_page_name_users: Usuarios
+settings_page_name_accounts: Contas
+settings_page_name_sync: Sincronización
+settings_page_name_voice_input: Entrada de voz
+settings_page_name_accessibility: Accesibilidade
+settings_page_name_about_device: Acerca do dispositivo
+settings_page_name_storage: Almacenamento
+settings_page_name_internal_storage: Almacenamento interno
+settings_page_name_battery: Batería
+settings_page_name_notifications: Notificacións
+settings_page_name_all_settings: Todos os axustes
+settings_page_name_quick_launch: Inicio rápido
+unknown_command_title: "Comando non soportado"
+unknown_trigger_title: "Desencadenante non soportado"
+automation_name_auto_format: "Ao {triggerType} {triggerId}"
+common_notice_title: Aviso
+common_experimental_title: Funcionalidade experimental

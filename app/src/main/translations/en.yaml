@@ -147,3 +147,104 @@ settings_page_no_pages: No pages available
 settings_page_try: Try
 triggerlist_header: Saved Triggers
 commandlist_header: Saved Commands
+commandlist_item_menu_edit: Edit
+command_run_error_fallback: Command execution failed
+intent_data_editor_data_header: Data
+intent_data_editor_data_uri: URI
+intent_data_editor_data_uri_required: URI (required)
+intent_item_editor_mime_type: MIME type
+intent_extras_editor_header: Extra parameters
+intent_extras_editor_add_button: Add extra parameter
+intent_extras_editor_add_title: Add extra parameter
+intent_extras_editor_add_name: Name
+intent_extras_editor_add_type: Type
+intent_extras_editor_add_confirm: Add
+intent_extras_editor_add_cancel: Cancel
+intent_extras_editor_comma_separated: (comma separated)
+component_type_activity: Activity
+component_type_service: Service
+component_type_receiver: Receiver
+component_type_provider: Provider
+standard_action_main: Main
+standard_action_view: View
+standard_action_send: Send
+standard_action_send_multiple: Send Multiple
+standard_action_send_to: Send To
+standard_action_dial: Dial
+standard_action_call: Call
+standard_action_edit: Edit
+standard_action_pick: Pick
+standard_action_get_content: Get Content
+standard_action_take_photo: Take Photo
+standard_action_record_video: Record Video
+standard_action_speech_recognition: Speech Recognition
+standard_extra_text: Text
+standard_extra_subject: Subject
+standard_extra_attachment: Attachment
+standard_extra_attachments: Attachments
+standard_extra_to: To
+standard_extra_cc: CC
+standard_extra_bcc: BCC
+standard_extra_body: Body
+standard_extra_output_uri: Output URI
+standard_extra_max_duration: Max duration (seconds)
+standard_extra_quality: Quality (0 low / 1 high)
+standard_extra_language_model: Language model
+standard_extra_prompt: Prompt
+standard_extra_max_results: Max results
+settings_page_category_network: Network
+settings_page_category_display: Display
+settings_page_category_sound: Sound
+settings_page_category_apps: Apps
+settings_page_category_security: Security
+settings_page_category_personal: Personal
+settings_page_category_system: System
+settings_page_name_wifi: Wi-Fi
+settings_page_name_bluetooth: Bluetooth
+settings_page_name_nfc: NFC
+settings_page_name_mobile_networks: Mobile networks
+settings_page_name_internet: Internet
+settings_page_name_airplane_mode: Airplane mode
+settings_page_name_data_usage: Data usage
+settings_page_name_apn: APN
+settings_page_name_display: Display
+settings_page_name_night_light: Night light
+settings_page_name_dark_theme: Dark theme
+settings_page_name_auto_rotate: Auto-rotate
+settings_page_name_font_size: Font size
+settings_page_name_wallpaper: Wallpaper
+settings_page_name_display_color_temperature: Display color temperature
+settings_page_name_sound: Sound
+settings_page_name_do_not_disturb: Do Not Disturb
+settings_page_name_zen_mode: Zen mode
+settings_page_name_apps: Apps
+settings_page_name_app_notifications: App notifications
+settings_page_name_app_permissions: App permissions
+settings_page_name_all_apps: All apps
+settings_page_name_installed_apps: Installed apps
+settings_page_name_developer_options: Developer options
+settings_page_name_security: Security
+settings_page_name_location: Location
+settings_page_name_lock_screen: Lock screen
+settings_page_name_privacy: Privacy
+settings_page_name_credentials: Credentials
+settings_page_name_trusted_certificates: Trusted certificates
+settings_page_name_date_time: Date & time
+settings_page_name_language: Language
+settings_page_name_users: Users
+settings_page_name_accounts: Accounts
+settings_page_name_sync: Sync
+settings_page_name_voice_input: Voice input
+settings_page_name_accessibility: Accessibility
+settings_page_name_about_device: About device
+settings_page_name_storage: Storage
+settings_page_name_internal_storage: Internal storage
+settings_page_name_battery: Battery
+settings_page_name_notifications: Notifications
+settings_page_name_all_settings: All settings
+settings_page_name_quick_launch: Quick launch
+unknown_command_title: "Unsupported Command"
+unknown_trigger_title: "Unsupported Trigger"
+automation_name_auto_format: "On {triggerType} {triggerId}"
+common_notice_title: Notice
+common_experimental_title: Experimental feature
