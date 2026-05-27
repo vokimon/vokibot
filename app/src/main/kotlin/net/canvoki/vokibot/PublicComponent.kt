@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
+import android.content.pm.ServiceInfo
 import android.graphics.drawable.Drawable
 import android.os.Build
 import androidx.core.content.pm.PackageInfoCompat
@@ -63,6 +64,7 @@ data class PublicComponent(
     val actions: List<String> = emptyList(),
     val actionFilterType: ActionFilterType = ActionFilterType.UNKNOWN,
     val dataSchemes: List<String> = emptyList(),
+    val foregroundServiceType: Int = 0,
 ) {
     fun toLogString(): String =
         buildString {
@@ -197,6 +199,12 @@ suspend fun queryPublicComponents(
                     actions = data?.actions ?: emptyList(),
                     actionFilterType = data?.filterType ?: ActionFilterType.UNKNOWN,
                     dataSchemes = data?.dataSchemes ?: emptyList(),
+                    foregroundServiceType =
+                        if (Build.VERSION.SDK_INT >= 34) {
+                            info.foregroundServiceType
+                        } else {
+                            0
+                        },
                 ),
             )
         }
@@ -386,3 +394,38 @@ private fun inferActionFilterType(
         acceptedActions.size == allStandardActions.size -> ActionFilterType.ANY_ACTION
         else -> ActionFilterType.SPECIFIC_ACTIONS
     }
+
+private val foregroundServiceTypeLabels: Map<Int, String> =
+    linkedMapOf(
+        ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC to "dataSync",
+        ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK to "mediaPlayback",
+        ServiceInfo.FOREGROUND_SERVICE_TYPE_PHONE_CALL to "phoneCall",
+        ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION to "location",
+        ServiceInfo.FOREGROUND_SERVICE_TYPE_CONNECTED_DEVICE to "connectedDevice",
+        ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PROJECTION to "mediaProjection",
+        ServiceInfo.FOREGROUND_SERVICE_TYPE_CAMERA to "camera",
+        ServiceInfo.FOREGROUND_SERVICE_TYPE_MICROPHONE to "microphone",
+    )
+
+fun foregroundServiceTypeNames(serviceType: Int): List<String> =
+    if (serviceType == 0) {
+        emptyList()
+    } else {
+        foregroundServiceTypeLabels.filterKeys { serviceType and it != 0 }.values.toList()
+    }
+
+fun isForegroundService(
+    context: Context,
+    packageName: String,
+    className: String,
+): Boolean {
+    if (Build.VERSION.SDK_INT < 34) return false
+    return runCatching {
+        val serviceInfo =
+            context.packageManager.getServiceInfo(
+                ComponentName(packageName, className),
+                0,
+            )
+        serviceInfo.foregroundServiceType != 0
+    }.getOrDefault(false)
+}

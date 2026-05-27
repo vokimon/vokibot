@@ -258,7 +258,11 @@ data class StartServiceCommand(
             value.addToIntent(intent, key)
         }
 
-        context.startForegroundService(intent)
+        if (isForegroundService(context, packageName, className)) {
+            context.startForegroundService(intent)
+        } else {
+            context.startService(intent)
+        }
     }
 
     override fun toJson(): String = JsonConfig.encodeToString(serializer(), this)
