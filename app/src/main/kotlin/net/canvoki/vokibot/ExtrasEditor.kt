@@ -126,7 +126,7 @@ fun ExtrasEditor(
                     confirmButton = {
                         TextButton(
                             onClick = {
-                                onAddExtra(ExtraSpec(key = newKey, type = newType, label = newKey))
+                                onAddExtra(ExtraSpec(key = newKey, type = newType))
                                 showDialog = false
                             },
                             enabled = newKey.isNotBlank(),

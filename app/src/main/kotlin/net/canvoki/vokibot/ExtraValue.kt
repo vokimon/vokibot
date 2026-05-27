@@ -2,6 +2,7 @@ package net.canvoki.vokibot
 
 import android.content.Intent
 import android.net.Uri
+import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.OutlinedTextField
@@ -46,8 +47,11 @@ data class ExtraSpec(
     val key: String,
     val type: ExtraType,
     val required: Boolean = false,
-    val label: String = key,
+    @get:StringRes val labelRes: Int = 0,
 )
+
+@Composable
+fun ExtraSpec.displayLabel(): String = if (labelRes != 0) stringResource(labelRes) else key
 
 fun ExtraSpec.defaultValue(): ExtraValue =
     when (type) {
@@ -101,7 +105,7 @@ sealed class ExtraValue {
                     text = it
                     onChanged(copy(value = it))
                 },
-                label = { Text(spec.label) },
+                label = { Text(spec.displayLabel()) },
                 modifier = Modifier.fillMaxWidth(),
             )
         }
@@ -132,7 +136,7 @@ sealed class ExtraValue {
                     text = it
                     it.toIntOrNull()?.let { v -> onChanged(copy(value = v)) }
                 },
-                label = { Text(spec.label) },
+                label = { Text(spec.displayLabel()) },
                 modifier = Modifier.fillMaxWidth(),
             )
         }
@@ -163,7 +167,7 @@ sealed class ExtraValue {
                     text = it
                     it.toLongOrNull()?.let { v -> onChanged(copy(value = v)) }
                 },
-                label = { Text(spec.label) },
+                label = { Text(spec.displayLabel()) },
                 modifier = Modifier.fillMaxWidth(),
             )
         }
@@ -187,7 +191,7 @@ sealed class ExtraValue {
             onChanged: (ExtraValue) -> Unit,
         ) {
             Row {
-                Text(spec.label, modifier = Modifier.weight(1f))
+                Text(spec.displayLabel(), modifier = Modifier.weight(1f))
                 Switch(checked = value, onCheckedChange = { onChanged(copy(value = it)) })
             }
         }
@@ -218,7 +222,7 @@ sealed class ExtraValue {
                     text = it
                     it.toFloatOrNull()?.let { v -> onChanged(copy(value = v)) }
                 },
-                label = { Text(spec.label) },
+                label = { Text(spec.displayLabel()) },
                 modifier = Modifier.fillMaxWidth(),
             )
         }
@@ -244,7 +248,7 @@ sealed class ExtraValue {
             UriField(
                 uri = value.ifBlank { null },
                 onUriChanged = { onChanged(copy(value = it.orEmpty())) },
-                label = spec.label,
+                label = spec.displayLabel(),
             )
         }
     }
@@ -274,7 +278,11 @@ sealed class ExtraValue {
                     text = it
                     onChanged(copy(values = it.split(",").map { it.trim() }.filter { it.isNotEmpty() }))
                 },
-                label = { Text("${spec.label} ${stringResource(R.string.intent_extras_editor_comma_separated)}") },
+                label = {
+                    Text(
+                        "${spec.displayLabel()} ${stringResource(R.string.intent_extras_editor_comma_separated)}",
+                    )
+                },
                 modifier = Modifier.fillMaxWidth(),
             )
         }
@@ -305,7 +313,11 @@ sealed class ExtraValue {
                     text = it
                     onChanged(copy(values = it.split(",").map { it.trim() }.filter { it.isNotEmpty() }))
                 },
-                label = { Text("${spec.label} ${stringResource(R.string.intent_extras_editor_comma_separated)}") },
+                label = {
+                    Text(
+                        "${spec.displayLabel()} ${stringResource(R.string.intent_extras_editor_comma_separated)}",
+                    )
+                },
                 modifier = Modifier.fillMaxWidth(),
             )
         }
