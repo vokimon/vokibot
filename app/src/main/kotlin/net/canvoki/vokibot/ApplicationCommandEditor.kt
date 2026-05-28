@@ -42,26 +42,6 @@ import net.canvoki.shared.component.StackedScreen
 import net.canvoki.shared.usermessage.UserMessage
 import net.canvoki.vokibot.common.EditorHeader
 
-@Composable
-fun ActivityHeader(
-    packageName: String,
-    component: PublicComponent,
-) {
-    Row {
-        Image(
-            painter = drawableToPainter(component.icon),
-            contentDescription = null,
-            modifier = Modifier.size(48.dp),
-        )
-
-        Spacer(modifier = Modifier.size(16.dp))
-
-        Column {
-            Text(component.label)
-            Text(formatComponentName(packageName, component.name))
-        }
-    }
-}
 
 private fun formatComponentName(
     packageName: String,
@@ -269,10 +249,20 @@ data class ApplicationCommandEditor(
             ) {
                 val component = currentComponent
                 if (component != null) {
-                    ActivityHeader(
-                        packageName = packageName!!,
-                        component = component,
-                    )
+                    Row {
+                        Image(
+                            painter = drawableToPainter(component.icon),
+                            contentDescription = null,
+                            modifier = Modifier.size(48.dp),
+                        )
+
+                        Spacer(modifier = Modifier.size(16.dp))
+
+                        Column {
+                            Text(component.label)
+                            Text(formatComponentName(packageName!!, component.name))
+                        }
+                    }
                 } else {
                     Card(
                         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),

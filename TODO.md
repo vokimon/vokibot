@@ -10,7 +10,6 @@
     - [ ] UriField: When the protocol ask for it, provide button to browse contacts.
     - [ ] UriField: Fix: Expands multiple lines. Limit single line? Summary?
     - [ ] IntentDataEditor: Paste icon button
-    - [ ] Play icon to the 'Try' button
     - [ ] Move error handling inside execute()
     - [ ] ActivityLaunchCommandEditor: Extract component selector as reusable composable
 - [ ] Magic naming: icon button to assign a default name from content in the name editor. Show when empty instead of delete button.
@@ -97,6 +96,7 @@
 
 ## Done
 
+- [x] Play icon to the 'Try' button
 - [x] Add EditorHeader to Trigger/CommandList "Saved Triggers/Commands"
 - [x] UriField: Only show the file picker if the field is empty (or content://)
 - [x] ActivityLaunchCommandEditor: Click on app/component actually open AppList
