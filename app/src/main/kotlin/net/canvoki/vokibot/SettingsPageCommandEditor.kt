@@ -28,6 +28,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -91,11 +92,11 @@ data class SettingsPageCommandEditor(
             }
 
             val displayedPages =
-                remember(showAll) {
+                remember(showAll, context) {
                     if (showAll) {
                         SETTINGS_PAGES
                     } else {
-                        SETTINGS_PAGES.filter { it.isMain }
+                        SETTINGS_PAGES.filter { it.isMain && it.isAvailable(context) }
                     }
                 }
 
@@ -109,17 +110,19 @@ data class SettingsPageCommandEditor(
             ) { page ->
                 val command = remember(page.id) { SettingsPageCommand(pageId = page.id) }
                 val icon = remember(command) { command.loadIcon(context) }
+                val available = remember(page.id) { page.isAvailable(context) }
                 Row(
                     modifier =
                         Modifier
                             .fillMaxWidth()
-                            .clickable {
+                            .clickable(enabled = available) {
                                 selectedPageId = page.id
                                 repository.command.save(
                                     SettingsPageCommand(pageId = page.id),
                                 )
                                 nav.pop()
-                            }.padding(start = 16.dp, top = 4.dp, bottom = 4.dp, end = 4.dp),
+                            }.then(if (!available) Modifier.alpha(0.38f) else Modifier)
+                            .padding(start = 16.dp, top = 4.dp, bottom = 4.dp, end = 4.dp),
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically,
                 ) {

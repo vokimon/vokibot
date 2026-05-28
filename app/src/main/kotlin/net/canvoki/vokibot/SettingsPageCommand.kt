@@ -57,6 +57,8 @@ data class SettingsPage(
 ) {
     @get:StringRes
     val labelRes: Int get() = categoryId.labelRes
+
+    fun isAvailable(context: Context): Boolean = context.packageManager.resolveActivity(Intent(id), 0) != null
 }
 
 enum class SettingsPageCategory {
