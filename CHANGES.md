@@ -4,7 +4,7 @@
 
 Improved application command edition
 
-- ✨ ApplicationCommand: Now you can edit existing ones
+- ✨ ApplicationCommand: Now you can edit already existing ones
 - ✨ ApplicationCommand: Add intent data (uri and/or mime)
 - ✨ ApplicationCommand: Add intent extra parameters
 - 🚸 ApplicationCommand: Component selection button.
