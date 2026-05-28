@@ -245,6 +245,5 @@ settings_page_name_all_settings: Alle Einstellungen
 settings_page_name_quick_launch: Schnellstart
 unknown_command_title: "Nicht unterstützter Befehl"
 unknown_trigger_title: "Nicht unterstützter Auslöser"
-automation_name_auto_format: "Bei {triggerType} {triggerId}"
 common_notice_title: Hinweis
 common_experimental_title: Experimentelle Funktion

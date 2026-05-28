@@ -245,6 +245,5 @@ settings_page_name_all_settings: Todos os axustes
 settings_page_name_quick_launch: Inicio rápido
 unknown_command_title: "Comando non soportado"
 unknown_trigger_title: "Desencadenante non soportado"
-automation_name_auto_format: "Ao {triggerType} {triggerId}"
 common_notice_title: Aviso
 common_experimental_title: Funcionalidade experimental

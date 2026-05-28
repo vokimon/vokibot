@@ -245,6 +245,5 @@ settings_page_name_all_settings: جميع الإعدادات
 settings_page_name_quick_launch: التشغيل السريع
 unknown_command_title: "أمر غير مدعوم"
 unknown_trigger_title: "محفز غير مدعوم"
-automation_name_auto_format: "عند {triggerType} {triggerId}"
 common_notice_title: تنبيه
 common_experimental_title: ميزة تجريبية

@@ -245,6 +245,5 @@ settings_page_name_all_settings: Все настройки
 settings_page_name_quick_launch: Быстрый запуск
 unknown_command_title: "Команда не поддерживается"
 unknown_trigger_title: "Триггер не поддерживается"
-automation_name_auto_format: "При {triggerType} {triggerId}"
 common_notice_title: Внимание
 common_experimental_title: Экспериментальная функция
