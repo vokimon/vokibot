@@ -1,5 +1,6 @@
 package net.canvoki.vokibot
 
+import android.content.Context
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -36,6 +37,9 @@ data class NfcTrigger(
     override val iconRes: Int get() = NfcTrigger.iconRes
     override val id: String get() = idFromUid(uid)
     override val title: String get() = displayName
+
+    override fun getTitle(context: Context): String = displayName
+
     override val description: String get() = uid
 
     override fun toJson(): String = JsonConfig.encodeToString(serializer(), this)

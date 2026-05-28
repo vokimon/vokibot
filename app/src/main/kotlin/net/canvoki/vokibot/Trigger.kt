@@ -1,5 +1,6 @@
 package net.canvoki.vokibot
 
+import android.content.Context
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
@@ -42,6 +43,9 @@ data class UnknownTrigger(
     override val id: String = "unknown_${type}_${json.hashCode()}"
 
     override val title: String = "Unsupported Trigger"
+
+    override fun getTitle(context: Context): String = "Unsupported Trigger"
+
     override val description: String = type
 
     override val iconRes: Int = android.R.drawable.ic_menu_help

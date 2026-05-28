@@ -1,5 +1,6 @@
 package net.canvoki.vokibot
 
+import android.content.Context
 import androidx.annotation.DrawableRes
 import androidx.compose.runtime.Composable
 import kotlinx.serialization.json.Json
@@ -23,6 +24,8 @@ interface StorableEntity {
     val type: String
 
     val title: String
+
+    open fun getTitle(context: Context): String = title
 
     val description: String
 

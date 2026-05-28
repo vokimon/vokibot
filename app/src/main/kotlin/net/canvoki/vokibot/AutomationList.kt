@@ -55,23 +55,23 @@ data object AutomationList : StackedScreen<Unit>() {
                 var automationDescription =
                     remember(automation.triggerId, automation.commandIds) {
                         buildString {
-                            append(repository.trigger.load(automation.triggerId)?.title)
+                            append(repository.trigger.load(automation.triggerId)?.getTitle(context))
                             append(" » ")
                             automation.commandIds.map { id ->
-                                append(repository.command.load(id)?.title)
+                                append(repository.command.load(id)?.getTitle(context))
                             }
                         }
                     }
 
                 val triggerDisplayName =
                     remember(automation.triggerType, automation.triggerId) {
-                        repository.trigger.load(automation.triggerId)?.title
+                        repository.trigger.load(automation.triggerId)?.getTitle(context)
                     }
 
                 ListItem(
                     headlineContent = {
                         Text(
-                            text = automation.title,
+                            text = automation.getTitle(context),
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis,
                         )

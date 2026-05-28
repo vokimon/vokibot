@@ -40,6 +40,9 @@ data class ShortcutTrigger(
     override val type = ShortcutTrigger.typeKey
     override val iconRes get() = ShortcutTrigger.iconRes
     override val title get() = displayName
+
+    override fun getTitle(context: Context): String = displayName
+
     override val description get() = "ID: ${id.takeLast(6)}"
 
     // TODO: make this configurable

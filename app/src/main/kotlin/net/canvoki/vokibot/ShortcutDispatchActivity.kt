@@ -47,12 +47,12 @@ class ShortcutDispatchActivity : ComponentActivity() {
 
             val automations = repo.automation.all().filter { it.triggerId == triggerId }
             if (automations.isEmpty()) {
-                log("ShortcutDispatchActivity: No automations linked to '${trigger.title}'")
+                log("ShortcutDispatchActivity: No automations linked to '${trigger.getTitle(this)}'")
                 return
             }
 
             val self = this
-            log("ShortcutDispatchActivity: Dispatching ${automations.size} automation(s) for '${trigger.title}'")
+            log("ShortcutDispatchActivity: Dispatching ${automations.size} automation(s) for '${trigger.getTitle(this)}'")
             CoroutineScope(Dispatchers.IO).launch {
                 automations.forEach { automation ->
                     automation.commandIds.forEach { cmdId ->

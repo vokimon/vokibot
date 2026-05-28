@@ -183,7 +183,7 @@ data class AutomationEditor(
                     Spacer(Modifier.width(12.dp))
                     Column(Modifier.weight(1f)) {
                         Text(
-                            text = triggerInfo?.title ?: stringResource(R.string.automation_trigger_placeholder),
+                            text = triggerInfo?.getTitle(context) ?: stringResource(R.string.automation_trigger_placeholder),
                             style = MaterialTheme.typography.bodyLarge,
                             color = MaterialTheme.colorScheme.primary,
                         )

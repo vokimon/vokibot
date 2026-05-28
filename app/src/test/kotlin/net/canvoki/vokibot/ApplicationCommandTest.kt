@@ -1,5 +1,7 @@
 package net.canvoki.vokibot
 
+import android.content.Context
+import io.mockk.mockk
 import net.canvoki.shared.test.assertEquals
 import net.canvoki.shared.test.assertJsonEqual
 import org.junit.Test
@@ -57,7 +59,7 @@ class ApplicationCommandTest {
     @Test
     fun `LaunchActivityCommand title returns displayName`() {
         val cmd = launchActivityCommandBase()
-        assertEquals(cmd.displayName, cmd.title)
+        assertEquals(cmd.displayName, cmd.getTitle(mockk<Context>()))
     }
 
     @Test
@@ -131,7 +133,7 @@ class ApplicationCommandTest {
     @Test
     fun `SendBroadcastCommand title returns displayName`() {
         val cmd = sendBroadcastCommandBase()
-        assertEquals(cmd.displayName, cmd.title)
+        assertEquals(cmd.displayName, cmd.getTitle(mockk<Context>()))
     }
 
     @Test
@@ -185,7 +187,7 @@ class ApplicationCommandTest {
     @Test
     fun `StartServiceCommand title returns displayName`() {
         val cmd = startServiceCommandBase()
-        assertEquals(cmd.displayName, cmd.title)
+        assertEquals(cmd.displayName, cmd.getTitle(mockk<Context>()))
     }
 
     @Test
@@ -252,7 +254,7 @@ class ApplicationCommandTest {
     @Test
     fun `AccessProviderCommand title returns displayName`() {
         val cmd = accessProviderCommandBase()
-        assertEquals(cmd.displayName, cmd.title)
+        assertEquals(cmd.displayName, cmd.getTitle(mockk<Context>()))
     }
 
     @Test

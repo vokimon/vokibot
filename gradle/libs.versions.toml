@@ -33,6 +33,7 @@ jetbrains-markdown = "0.7.3"
 # Testing
 junit = "4.13.2"
 java-diff-utils = "4.16"
+mockk = "1.13.14"
 
 [libraries]
 # AndroidX Compose BOM
@@ -75,6 +76,7 @@ jetbrains-markdown = { group = "org.jetbrains", name = "markdown", version.ref =
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 kotlin-test = { group = "org.jetbrains.kotlin", name = "kotlin-test", version.ref = "kotlin" }
 java-diff-utils = { group = "io.github.java-diff-utils", name = "java-diff-utils", version.ref = "java-diff-utils" }
+mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

@@ -14,8 +14,6 @@ abstract class Command : StorableEntity {
      */
     abstract suspend fun execute(context: Context)
 
-    open fun getTitle(context: Context): String = title
-
     /**
      * Load an icon representing this command.
      * Default uses iconRes as fallback.
