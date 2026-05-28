@@ -80,7 +80,7 @@ fun TriggerList(
                 var menuExpanded by remember { mutableStateOf(false) }
 
                 ListItem(
-                    headlineContent = { Text(trigger.title) },
+                    headlineContent = { Text(trigger.getTitle(context)) },
                     supportingContent = { Text(trigger.description) },
                     leadingContent = {
                         Icon(

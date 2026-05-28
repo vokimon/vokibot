@@ -23,9 +23,7 @@ interface StorableEntity {
 
     val type: String
 
-    val title: String
-
-    open fun getTitle(context: Context): String = title
+    abstract fun getTitle(context: Context): String
 
     val description: String
 

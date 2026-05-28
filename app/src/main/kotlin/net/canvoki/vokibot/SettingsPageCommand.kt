@@ -32,7 +32,6 @@ data class SettingsPageCommand(
     override val type = SettingsPageCommand.typeKey
     override val iconRes = SettingsPageCommand.iconRes
     override val id: String get() = "${type}_${toFileSystemId(pageId)}"
-    override val title: String get() = pageId
 
     override fun getTitle(context: Context): String {
         val page = SETTINGS_PAGES.find { it.id == pageId }

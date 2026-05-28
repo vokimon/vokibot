@@ -36,7 +36,6 @@ data class NfcTrigger(
     override val type: String = NfcTrigger.typeKey
     override val iconRes: Int get() = NfcTrigger.iconRes
     override val id: String get() = idFromUid(uid)
-    override val title: String get() = displayName
 
     override fun getTitle(context: Context): String = displayName
 

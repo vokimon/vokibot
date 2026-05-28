@@ -42,8 +42,6 @@ data class UnknownTrigger(
 ) : Trigger() {
     override val id: String = "unknown_${type}_${json.hashCode()}"
 
-    override val title: String = "Unsupported Trigger"
-
     override fun getTitle(context: Context): String = context.getString(R.string.unknown_trigger_title)
 
     override val description: String = type

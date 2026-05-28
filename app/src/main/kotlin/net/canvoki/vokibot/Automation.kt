@@ -1,5 +1,6 @@
 package net.canvoki.vokibot
 
+import android.content.Context
 import androidx.annotation.DrawableRes
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
@@ -24,8 +25,7 @@ data class Automation(
 
     override fun toJson(): String = JsonConfig.encodeToString(serializer(), this)
 
-    override val title: String
-        get() = name
+    override fun getTitle(context: Context): String = name
 
     override val description: String
         get() = "$triggerType • ${commandIds.size} command(s)"

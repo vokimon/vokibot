@@ -33,9 +33,6 @@ sealed class ApplicationCommand : Command() {
     @get:StringRes
     abstract val typeLabelRes: Int
 
-    override val title: String
-        get() = displayName
-
     override fun getTitle(context: Context): String = displayName
 
     // TODO: Make description composable to show "$packageName/$className" per type

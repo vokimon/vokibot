@@ -39,7 +39,6 @@ data class ShortcutTrigger(
 
     override val type = ShortcutTrigger.typeKey
     override val iconRes get() = ShortcutTrigger.iconRes
-    override val title get() = displayName
 
     override fun getTitle(context: Context): String = displayName
 
@@ -64,6 +63,7 @@ data class ShortcutTrigger(
                 putExtra(ShortcutDispatchActivity.EXTRA_TRIGGER_ID, id)
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK
             }
+        val title = getTitle(context)
         val shortcut =
             ShortcutInfoCompat
                 .Builder(context, id)

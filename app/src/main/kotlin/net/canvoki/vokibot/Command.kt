@@ -39,7 +39,6 @@ data class UnknownCommand(
     override val type: String,
 ) : Command() {
     override val id: String = "unknown_${type}_${json.hashCode()}"
-    override val title: String = "Unsupported Command"
 
     override fun getTitle(context: Context): String = context.getString(R.string.unknown_command_title)
 

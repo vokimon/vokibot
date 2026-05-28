@@ -263,7 +263,7 @@ data class AutomationEditor(
                                     )
                                     Column {
                                         Text(
-                                            command.title,
+                                            command.getTitle(context),
                                             style = MaterialTheme.typography.bodyMedium,
                                         )
                                         Text(
