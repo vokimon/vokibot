@@ -40,6 +40,7 @@ import net.canvoki.shared.component.ContextualHelpButton
 import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
 import net.canvoki.shared.component.preferences.rememberMutablePreference
+import net.canvoki.shared.usermessage.UserMessage
 import net.canvoki.vokibot.common.EditorHeader
 import net.canvoki.vokibot.common.toPainter
 
@@ -62,6 +63,7 @@ data class SettingsPageCommandEditor(
         }
         var showAll by rememberMutablePreference("settigs_page_editor_show_all", false)
         val scope = rememberCoroutineScope()
+        val fallbackErrorMessage = stringResource(R.string.command_run_error_fallback)
 
         LaunchedEffect(editingId) {
             existingCommand?.let { selectedPageId = it.pageId }
@@ -150,7 +152,12 @@ data class SettingsPageCommandEditor(
                     IconButton(
                         onClick = {
                             scope.launch {
-                                command.execute(context)
+                                try {
+                                    command.execute(context)
+                                } catch (e: Exception) {
+                                    e.printStackTrace()
+                                    UserMessage.Info(e.message ?: fallbackErrorMessage).post()
+                                }
                             }
                         },
                     ) {
