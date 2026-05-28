@@ -32,6 +32,12 @@ abstract class BaseActivity : ComponentActivity() {
 class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            requestPermissions(
+                arrayOf(android.Manifest.permission.POST_NOTIFICATIONS),
+                0,
+            )
+        }
         if (Build.VERSION.SDK_INT >= 35) {
             requestPermissions(
                 arrayOf(
