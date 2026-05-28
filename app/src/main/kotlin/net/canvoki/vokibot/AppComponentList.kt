@@ -33,17 +33,6 @@ import net.canvoki.shared.component.AsyncList
 import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
 
-@Serializable data class AppComponentList(
-    val packageName: String,
-) : StackedScreen<Unit>() {
-    @Composable
-    override fun Screen(nav: StackNavigatorState) {
-        ComponentListContent(packageName = packageName) {
-            nav.push(IntentEditor(packageName, it.name)) { }
-        }
-    }
-}
-
 @Serializable
 data class AppComponentSelector(
     val packageName: String,

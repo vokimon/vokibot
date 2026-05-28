@@ -74,21 +74,6 @@ data class AppInfo(
 }
 
 @Serializable
-data object AppList : StackedScreen<Unit>() {
-    @Composable
-    override fun Screen(nav: StackNavigatorState) {
-        val listState = rememberSaveable(saver = LazyListState.Saver) { LazyListState() }
-
-        AppList(
-            listState = listState,
-            onSelected = { app ->
-                nav.push(AppComponentList(app.packageName)) { result: Unit? -> }
-            },
-        )
-    }
-}
-
-@Serializable
 data class ComponentSelection(
     val packageName: String,
     val componentName: String,

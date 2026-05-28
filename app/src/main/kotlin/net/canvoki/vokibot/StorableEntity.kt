@@ -92,7 +92,6 @@ object EntityBootstrap {
     init {
         NfcTrigger.register()
         ShortcutTrigger.register()
-        LaunchActivityCommand.registerAsV2()
         LaunchActivityCommand.register()
         SendBroadcastCommand.register()
         StartServiceCommand.register()

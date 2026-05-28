@@ -1,5 +1,6 @@
 package net.canvoki.vokibot
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -40,6 +41,35 @@ import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
 import net.canvoki.shared.usermessage.UserMessage
 import net.canvoki.vokibot.common.EditorHeader
+
+@Composable
+fun ActivityHeader(
+    packageName: String,
+    component: PublicComponent,
+) {
+    Row {
+        Image(
+            painter = drawableToPainter(component.icon),
+            contentDescription = null,
+            modifier = Modifier.size(48.dp),
+        )
+
+        Spacer(modifier = Modifier.size(16.dp))
+
+        Column {
+            Text(component.label)
+            Text(formatComponentName(packageName, component.name))
+        }
+    }
+}
+
+private fun formatComponentName(
+    packageName: String,
+    fullName: String,
+): String {
+    val prefix = "$packageName."
+    return if (fullName.startsWith(prefix)) fullName.substring(packageName.length) else fullName
+}
 
 @Serializable
 data class ApplicationCommandEditor(

@@ -146,22 +146,6 @@ data class LaunchActivityCommand(
         fun fromJson(jsonString: String): LaunchActivityCommand = JsonConfig.decodeFromString(serializer(), jsonString)
 
         fun register() = StorableEntity.register(this)
-
-        fun registerAsV2() =
-            if (FeatureFlag.enableDirectActivitySelection) {
-                StorableEntity.register(
-                    object : EntityMetadata {
-                        override val typeKey = "launch_activity_old"
-                        override val entityClass = LaunchActivityCommand::class
-                        override val labelRes = R.string.command_type_launch_activity
-                        override val iconRes = R.drawable.ic_apps
-                        override val editorFactory = { _: String? -> AppList }
-                        override val deserializer = { jsonString: String -> fromJson(jsonString) }
-                        override val helpRes = R.string.command_launch_activity_help
-                    },
-                )
-            } else {
-            }
     }
 }
 
