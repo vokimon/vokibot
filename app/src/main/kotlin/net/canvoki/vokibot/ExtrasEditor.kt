@@ -28,6 +28,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import kotlinx.serialization.builtins.MapSerializer
 import kotlinx.serialization.serializer
+import net.canvoki.vokibot.common.SectionHeader
 
 val ExtraValueMapSaver: Saver<Map<String, ExtraValue>, String> =
     Saver(

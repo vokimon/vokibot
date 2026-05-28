@@ -56,15 +56,6 @@ fun ActivityHeader(
     }
 }
 
-@Composable
-fun SectionHeader(title: String) {
-    Text(
-        text = title,
-        color = MaterialTheme.colorScheme.tertiary,
-        style = MaterialTheme.typography.titleSmall,
-    )
-}
-
 @Serializable
 data class IntentEditor(
     val packageName: String,

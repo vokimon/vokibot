@@ -9,6 +9,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import net.canvoki.vokibot.common.MimeField
+import net.canvoki.vokibot.common.SectionHeader
 import net.canvoki.vokibot.common.UriField
 
 @Composable
