@@ -34,7 +34,7 @@ import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
 
 @Serializable
-data class AppComponentSelector(
+data class AppComponentList(
     val packageName: String,
 ) : StackedScreen<ComponentSelection>() {
     @Composable

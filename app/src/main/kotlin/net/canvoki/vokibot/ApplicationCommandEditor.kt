@@ -278,7 +278,7 @@ data class ApplicationCommandEditor(
                         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
                         modifier =
                             Modifier.fillMaxWidth().clickable {
-                                nav.push(AppSelector) { selection ->
+                                nav.push(AppList) { selection ->
                                     selection?.let {
                                         isDirty = true
                                         packageName = it.packageName

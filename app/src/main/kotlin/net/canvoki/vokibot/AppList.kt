@@ -80,7 +80,7 @@ data class ComponentSelection(
 )
 
 @Serializable
-data object AppSelector : StackedScreen<ComponentSelection>() {
+data object AppList : StackedScreen<ComponentSelection>() {
     @Composable
     override fun Screen(nav: StackNavigatorState) {
         val listState = rememberSaveable(saver = LazyListState.Saver) { LazyListState() }
@@ -88,7 +88,7 @@ data object AppSelector : StackedScreen<ComponentSelection>() {
         AppList(
             listState = listState,
             onSelected = { app ->
-                nav.push(AppComponentSelector(app.packageName)) { selection ->
+                nav.push(AppComponentList(app.packageName)) { selection ->
                     if (selection != null) nav.pop(selection)
                 }
             },
