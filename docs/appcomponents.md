@@ -16,27 +16,18 @@ A client can invoke components:
 
 ### Purpose
 
-An Activity provides a visible screen the user can see and interact
-with. It is the most common component type — every Android app has
-at least one.
+An Activity provides a visible screen the user can see and interact with.
+It is the most common component type — every Android app has at least one.
 
-A client application can ask a host to open a concrete screen
-(if exported).
+A client application can ask a host to open a concrete screen (if exported).
 
 ### Client interaction
 
 Clients interact with an activity by starting it (making the screen active).
 This is done by calling `startActivity(intent)`.
-The intent objects carries all the information the Activity receives (see below).
+The intent objects carries all the information the Activity receives.
 
-An Activity can be launched by:
-
-- **Implicit**: System resolves via intent filters across all apps.
-  May show a chooser if multiple apps match.
-- **Explicit**: Direct to component (`packageName` + `className`).
-  Intent filters are ignored.
-- **Scoped**: Target an app only. System picks the best Activity
-  within that app.
+Implicit opening may start a chooser for the user to selecth multiple matches.
 
 An intent may contain:
 
@@ -51,8 +42,6 @@ An intent may contain:
   Uri, etc.). Extras are the main way to pass parameters.
 - **Flags**: Modifiers like `NEW_TASK`, `CLEAR_TOP`,
   `SINGLE_TOP` that affect how the Activity is launched.
-
-
 
 ### Host implementation
 

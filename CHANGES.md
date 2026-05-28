@@ -2,14 +2,17 @@
 
 ## unreleased
 
-- ✨ ApplicationCommand: Edit existing application commands
-- ✨ ApplicationCommand: Adding intent data (uri and/or mime)
-- ✨ ApplicationCommand: Adding intent extra parameters
+Improved application command edition
+
+- ✨ ApplicationCommand: Now you can edit existing ones
+- ✨ ApplicationCommand: Add intent data (uri and/or mime)
+- ✨ ApplicationCommand: Add intent extra parameters
 - 🚸 ApplicationCommand: Component selection button.
     Now the first you see is the intent editor, not the app list,
     providing context of what you are doing when selecting the app.
 - 🚸 ApplicationCommand: Pick file button for Uri fields
 - 🚸 ApplicationCommand: Autocompletion for Uri protocols and Mime fields
+- 🌐 SettingsPage: translated page and category names
 
 ## 0.1.0 (2026-05-19)
 
