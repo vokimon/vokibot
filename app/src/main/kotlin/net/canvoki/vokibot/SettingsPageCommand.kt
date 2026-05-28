@@ -32,13 +32,17 @@ data class SettingsPageCommand(
     override val type = SettingsPageCommand.typeKey
     override val iconRes = SettingsPageCommand.iconRes
     override val id: String get() = "${type}_${toFileSystemId(pageId)}"
-    override val title: String get() = pageName
+    override val title: String get() = pageId
+
+    fun getTitle(context: Context): String {
+        val page = SETTINGS_PAGES.find { it.id == pageId }
+        return page?.nameRes?.takeIf { it != 0 }?.let { context.getString(it) }
+            ?: pageId
+    }
+
     override val description: String get() = pageId
 
     override fun toJson(): String = JsonConfig.encodeToString(serializer(), this)
-
-    private val pageName: String
-        get() = SETTINGS_PAGES.find { it.id == pageId }?.name ?: pageId
 
     override suspend fun execute(context: Context) {
         context.startActivity(Intent(pageId))

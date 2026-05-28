@@ -139,7 +139,7 @@ data class SettingsPageCommandEditor(
                         )
                         Spacer(modifier = Modifier.width(12.dp))
                         Text(
-                            text = stringResource(page.nameRes),
+                            text = command.getTitle(context),
                             style = MaterialTheme.typography.bodyLarge,
                             color =
                                 if (page.id == selectedPageId) {
