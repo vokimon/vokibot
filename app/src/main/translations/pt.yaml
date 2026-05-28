@@ -243,6 +243,8 @@ settings_page_name_battery: Bateria
 settings_page_name_notifications: Notificações
 settings_page_name_all_settings: Todas as definições
 settings_page_name_quick_launch: Início rápido
+unknown_command_title: "Comando não suportado"
+unknown_trigger_title: "Acionador não suportado"
 automation_name_auto_format: "Ao {triggerType} {triggerId}"
 common_notice_title: Aviso
 common_experimental_title: Funcionalidade experimental

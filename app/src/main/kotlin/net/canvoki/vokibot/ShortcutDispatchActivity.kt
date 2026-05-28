@@ -51,8 +51,11 @@ class ShortcutDispatchActivity : ComponentActivity() {
                 return
             }
 
+            log(
+                "ShortcutDispatchActivity: Dispatching ${automations.size} " +
+                    "automation(s) for '${trigger.getTitle(this)}'",
+            )
             val self = this
-            log("ShortcutDispatchActivity: Dispatching ${automations.size} automation(s) for '${trigger.getTitle(this)}'")
             CoroutineScope(Dispatchers.IO).launch {
                 automations.forEach { automation ->
                     automation.commandIds.forEach { cmdId ->

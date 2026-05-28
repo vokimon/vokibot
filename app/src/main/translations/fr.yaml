@@ -243,6 +243,8 @@ settings_page_name_battery: Batterie
 settings_page_name_notifications: Notifications
 settings_page_name_all_settings: Tous les paramètres
 settings_page_name_quick_launch: Lancement rapide
+unknown_command_title: "Commande non prise en charge"
+unknown_trigger_title: "Déclencheur non pris en charge"
 automation_name_auto_format: "Lors de {triggerType} {triggerId}"
 common_notice_title: Avis
 common_experimental_title: Fonctionnalité expérimentale

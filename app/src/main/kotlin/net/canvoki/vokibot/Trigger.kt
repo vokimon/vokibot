@@ -44,7 +44,7 @@ data class UnknownTrigger(
 
     override val title: String = "Unsupported Trigger"
 
-    override fun getTitle(context: Context): String = "Unsupported Trigger"
+    override fun getTitle(context: Context): String = context.getString(R.string.unknown_trigger_title)
 
     override val description: String = type
 

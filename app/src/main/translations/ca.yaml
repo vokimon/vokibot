@@ -243,6 +243,8 @@ settings_page_name_battery: Bateria
 settings_page_name_notifications: Notificacions
 settings_page_name_all_settings: Tots els ajustos
 settings_page_name_quick_launch: Inici ràpid
+unknown_command_title: "Comandament no suportat"
+unknown_trigger_title: "Disparament no suportat"
 automation_name_auto_format: "Quan {triggerType} {triggerId}"
 common_notice_title: Avís
 common_experimental_title: Funcionalitat experimental

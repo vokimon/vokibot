@@ -243,6 +243,8 @@ settings_page_name_battery: Batería
 settings_page_name_notifications: Notificazions
 settings_page_name_all_settings: Totz os achustes
 settings_page_name_quick_launch: Inicio rapido
+unknown_command_title: "Comando no suportau"
+unknown_trigger_title: "Desencadenant no suportau"
 automation_name_auto_format: "Quan {triggerType} {triggerId}"
 common_notice_title: Aviso
 common_experimental_title: Funcionalidat experimental
