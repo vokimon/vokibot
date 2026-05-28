@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.provider.Settings
-import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import kotlinx.serialization.Serializable
 
@@ -55,6 +54,23 @@ data class SettingsPage(
     val category: String,
     val isMain: Boolean,
     @get:StringRes val nameRes: Int = 0,
+) {
+    @get:StringRes
+    val categoryRes: Int get() = categoryResFor(category)
+}
+
+@StringRes
+fun categoryResFor(category: String): Int =
+    when (category) {
+        SettingsPageCat.NETWORK -> R.string.settings_page_category_network
+        SettingsPageCat.DISPLAY -> R.string.settings_page_category_display
+        SettingsPageCat.SOUND -> R.string.settings_page_category_sound
+        SettingsPageCat.APPS -> R.string.settings_page_category_apps
+        SettingsPageCat.SECURITY -> R.string.settings_page_category_security
+        SettingsPageCat.PERSONAL -> R.string.settings_page_category_personal
+        SettingsPageCat.SYSTEM -> R.string.settings_page_category_system
+        else -> 0
+    }
 
 object SettingsPageCat {
     const val NETWORK = "Network"

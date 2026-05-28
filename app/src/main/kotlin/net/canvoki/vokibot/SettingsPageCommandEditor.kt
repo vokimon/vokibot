@@ -172,7 +172,7 @@ private fun SettingsPageGroupHeader(groupKey: String) {
                 .background(MaterialTheme.colorScheme.surface),
     ) {
         Text(
-            text = groupKey,
+            text = stringResource(categoryResFor(groupKey)),
             style = MaterialTheme.typography.titleSmall,
             color = MaterialTheme.colorScheme.primary,
             modifier =
