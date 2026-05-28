@@ -3,6 +3,7 @@ package net.canvoki.vokibot
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -292,82 +293,98 @@ data class ApplicationCommandEditor(
                 },
             )
 
-            Column(
-                modifier = Modifier.verticalScroll(rememberScrollState()).weight(1f),
-                verticalArrangement = Arrangement.spacedBy(16.dp),
+            Box(
+                modifier =
+                    Modifier
+                        .weight(1f)
+                        .fillMaxWidth(),
+                contentAlignment = Alignment.Center,
             ) {
-                ComponentSelector(
-                    packageName = packageName,
-                    component = currentComponent,
-                    onSelect = {
-                        nav.push(AppList) { selection ->
-                            selection?.let {
-                                isDirty = true
-                                packageName = it.packageName
-                                componentName = it.componentName
-                            }
-                        }
-                    },
-                )
-                IntentActionSelector(
-                    supportedActions = actionsToShow,
-                    action = actionStr,
-                    onActionChanged = {
-                        actionStr = it
-                        isDirty = true
-                    },
-                )
-                val dataUriRequired = StandardActions.get(actionStr)?.probeStrategy == ProbeStrategy.REQUIRES_URI
-                IntentDataEditor(
-                    dataUri = intentData,
-                    mimeType = intentMime,
-                    onDataChanged = {
-                        intentData = it
-                        isDirty = true
-                    },
-                    onMimeChanged = {
-                        intentMime = it
-                        isDirty = true
-                    },
-                    dataUriRequired = dataUriRequired,
-                    allowedSchemes = StandardActions.get(actionStr)?.allowedSchemes,
-                )
-                ExtrasEditor(
-                    specs = allSpecs,
-                    extras = extrasState,
-                    onExtraChanged = { key, value ->
-                        extrasState = extrasState + (key to value)
-                        isDirty = true
-                    },
-                    onAddExtra = { spec ->
-                        isDirty = true
-                        customExtraSpecs = customExtraSpecs + spec
-                        extrasState = extrasState + (spec.key to spec.defaultValue())
-                    },
-                )
-                OutlinedButton(
-                    onClick = {
-                        scope.launch {
-                            currentComponent?.let {
-                                val command = buildCommand(it)
-                                try {
-                                    command.execute(context)
-                                } catch (e: Exception) {
-                                    e.printStackTrace()
-                                    UserMessage.Info(e.message ?: runErrorFallback).post()
+                if (currentComponent?.type == ComponentType.PROVIDER) {
+                    Text(stringResource(R.string.not_yet_implemented))
+                } else {
+                    Column(
+                        modifier = Modifier.verticalScroll(rememberScrollState()),
+                        verticalArrangement = Arrangement.spacedBy(16.dp),
+                    ) {
+                        ComponentSelector(
+                            packageName = packageName,
+                            component = currentComponent,
+                            onSelect = {
+                                nav.push(AppList) { selection ->
+                                    selection?.let {
+                                        isDirty = true
+                                        packageName = it.packageName
+                                        componentName = it.componentName
+                                    }
                                 }
-                            }
+                            },
+                        )
+                        IntentActionSelector(
+                            supportedActions = actionsToShow,
+                            action = actionStr,
+                            onActionChanged = {
+                                actionStr = it
+                                isDirty = true
+                            },
+                        )
+                        if (componentType != ComponentType.SERVICE) {
+                            val dataUriRequired =
+                                StandardActions.get(actionStr)?.probeStrategy == ProbeStrategy.REQUIRES_URI
+                            IntentDataEditor(
+                                dataUri = intentData,
+                                mimeType = intentMime,
+                                onDataChanged = {
+                                    intentData = it
+                                    isDirty = true
+                                },
+                                onMimeChanged = {
+                                    intentMime = it
+                                    isDirty = true
+                                },
+                                dataUriRequired = dataUriRequired,
+                                allowedSchemes = StandardActions.get(actionStr)?.allowedSchemes,
+                                showMime = componentType == ComponentType.ACTIVITY,
+                            )
                         }
-                    },
-                    enabled = currentComponent != null,
-                    modifier = Modifier.fillMaxWidth(),
-                ) {
-                    Icon(
-                        painter = painterResource(R.drawable.ic_play_arrow),
-                        contentDescription = null,
-                    )
-                    Spacer(Modifier.width(8.dp))
-                    Text(stringResource(R.string.intent_editor_try))
+                        ExtrasEditor(
+                            specs = allSpecs,
+                            extras = extrasState,
+                            onExtraChanged = { key, value ->
+                                extrasState = extrasState + (key to value)
+                                isDirty = true
+                            },
+                            onAddExtra = { spec ->
+                                isDirty = true
+                                customExtraSpecs = customExtraSpecs + spec
+                                extrasState = extrasState + (spec.key to spec.defaultValue())
+                            },
+                        )
+                        OutlinedButton(
+                            onClick = {
+                                scope.launch {
+                                    currentComponent?.let {
+                                        val command = buildCommand(it)
+                                        try {
+                                            command.execute(context)
+                                        } catch (e: Exception) {
+                                            e.printStackTrace()
+                                            UserMessage.Info(e.message ?: runErrorFallback).post()
+                                        }
+                                    }
+                                }
+                            },
+                            enabled = currentComponent != null,
+                            modifier = Modifier.fillMaxWidth(),
+                        ) {
+                            Icon(
+                                painter = painterResource(R.drawable.ic_play_arrow),
+                                contentDescription = null,
+                            )
+                            Spacer(Modifier.width(8.dp))
+                            Text(stringResource(R.string.intent_editor_try))
+                        }
+                    }
                 }
             }
         }

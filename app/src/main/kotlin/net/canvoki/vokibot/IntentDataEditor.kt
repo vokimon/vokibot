@@ -16,6 +16,7 @@ import net.canvoki.vokibot.common.UriField
 fun IntentDataEditor(
     dataUri: String?,
     mimeType: String?,
+    showMime: Boolean = true,
     onDataChanged: (String?) -> Unit,
     onMimeChanged: (String?) -> Unit,
     dataUriRequired: Boolean = false,
@@ -41,9 +42,11 @@ fun IntentDataEditor(
             },
         )
         Spacer(Modifier.height(8.dp))
-        MimeField(
-            mimeType = mimeType,
-            onMimeChanged = onMimeChanged,
-        )
+        if (showMime) {
+            MimeField(
+                mimeType = mimeType,
+                onMimeChanged = onMimeChanged,
+            )
+        }
     }
 }
