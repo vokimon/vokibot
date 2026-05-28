@@ -36,6 +36,8 @@ sealed class ApplicationCommand : Command() {
     override val title: String
         get() = displayName
 
+    override fun getTitle(context: Context): String = displayName
+
     // TODO: Make description composable to show "$packageName/$className" per type
     override val description: String
         get() = packageName

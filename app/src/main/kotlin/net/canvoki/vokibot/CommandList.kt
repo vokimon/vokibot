@@ -92,7 +92,7 @@ fun CommandList(
                 val iconPainter = remember(componentIcon) { componentIcon.toPainter() }
 
                 ListItem(
-                    headlineContent = { Text(command.title) },
+                    headlineContent = { Text(command.getTitle(context)) },
                     supportingContent = {
                         Text(
                             text = command.description,

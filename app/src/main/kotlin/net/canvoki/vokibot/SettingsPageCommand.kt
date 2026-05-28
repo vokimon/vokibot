@@ -34,7 +34,7 @@ data class SettingsPageCommand(
     override val id: String get() = "${type}_${toFileSystemId(pageId)}"
     override val title: String get() = pageId
 
-    fun getTitle(context: Context): String {
+    override fun getTitle(context: Context): String {
         val page = SETTINGS_PAGES.find { it.id == pageId }
         return page?.nameRes?.takeIf { it != 0 }?.let { context.getString(it) }
             ?: pageId
