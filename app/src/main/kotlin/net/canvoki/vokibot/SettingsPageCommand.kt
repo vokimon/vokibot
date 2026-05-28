@@ -51,103 +51,110 @@ data class SettingsPageCommand(
 data class SettingsPage(
     val id: String,
     val name: String,
-    val category: String,
+    val categoryId: SettingsPageCategory,
     val isMain: Boolean,
     @get:StringRes val nameRes: Int = 0,
 ) {
     @get:StringRes
-    val categoryRes: Int get() = categoryResFor(category)
+    val labelRes: Int get() = categoryId.labelRes
 }
 
-@StringRes
-fun categoryResFor(category: String): Int =
-    when (category) {
-        SettingsPageCat.NETWORK -> R.string.settings_page_category_network
-        SettingsPageCat.DISPLAY -> R.string.settings_page_category_display
-        SettingsPageCat.SOUND -> R.string.settings_page_category_sound
-        SettingsPageCat.APPS -> R.string.settings_page_category_apps
-        SettingsPageCat.SECURITY -> R.string.settings_page_category_security
-        SettingsPageCat.PERSONAL -> R.string.settings_page_category_personal
-        SettingsPageCat.SYSTEM -> R.string.settings_page_category_system
-        else -> 0
-    }
+enum class SettingsPageCategory {
+    NETWORK,
+    DISPLAY,
+    SOUND,
+    APPS,
+    SECURITY,
+    PERSONAL,
+    SYSTEM,
+    ;
 
-object SettingsPageCat {
-    const val NETWORK = "Network"
-    const val DISPLAY = "Display"
-    const val SOUND = "Sound"
-    const val APPS = "Apps"
-    const val SECURITY = "Security"
-    const val PERSONAL = "Personal"
-    const val SYSTEM = "System"
+    @get:StringRes
+    val labelRes: Int get() =
+        when (this) {
+            NETWORK -> R.string.settings_page_category_network
+            DISPLAY -> R.string.settings_page_category_display
+            SOUND -> R.string.settings_page_category_sound
+            APPS -> R.string.settings_page_category_apps
+            SECURITY -> R.string.settings_page_category_security
+            PERSONAL -> R.string.settings_page_category_personal
+            SYSTEM -> R.string.settings_page_category_system
+        }
 }
 
 val SETTINGS_PAGES: List<SettingsPage> =
     listOf(
         // Network
-        SettingsPage(Settings.ACTION_WIFI_SETTINGS, "Wi-Fi", SettingsPageCat.NETWORK, true),
-        SettingsPage(Settings.ACTION_BLUETOOTH_SETTINGS, "Bluetooth", SettingsPageCat.NETWORK, true),
-        SettingsPage(Settings.ACTION_NFC_SETTINGS, "NFC", SettingsPageCat.NETWORK, true),
-        SettingsPage(Settings.ACTION_NETWORK_OPERATOR_SETTINGS, "Mobile networks", SettingsPageCat.NETWORK, true),
-        SettingsPage(Settings.ACTION_WIRELESS_SETTINGS, "Internet", SettingsPageCat.NETWORK, true),
-        SettingsPage(Settings.ACTION_AIRPLANE_MODE_SETTINGS, "Airplane mode", SettingsPageCat.NETWORK, false), // OEM
-        SettingsPage(Settings.ACTION_DATA_USAGE_SETTINGS, "Data usage", SettingsPageCat.NETWORK, false),
-        SettingsPage(Settings.ACTION_APN_SETTINGS, "APN", SettingsPageCat.NETWORK, false), // OEM
+        SettingsPage(Settings.ACTION_WIFI_SETTINGS, "Wi-Fi", SettingsPageCategory.NETWORK, true),
+        SettingsPage(Settings.ACTION_BLUETOOTH_SETTINGS, "Bluetooth", SettingsPageCategory.NETWORK, true),
+        SettingsPage(Settings.ACTION_NFC_SETTINGS, "NFC", SettingsPageCategory.NETWORK, true),
+        SettingsPage(Settings.ACTION_NETWORK_OPERATOR_SETTINGS, "Mobile networks", SettingsPageCategory.NETWORK, true),
+        SettingsPage(Settings.ACTION_WIRELESS_SETTINGS, "Internet", SettingsPageCategory.NETWORK, true),
+        SettingsPage(Settings.ACTION_AIRPLANE_MODE_SETTINGS, "Airplane mode", SettingsPageCategory.NETWORK, false),
+        // OEM
+        SettingsPage(Settings.ACTION_DATA_USAGE_SETTINGS, "Data usage", SettingsPageCategory.NETWORK, false),
+        SettingsPage(Settings.ACTION_APN_SETTINGS, "APN", SettingsPageCategory.NETWORK, false), // OEM
         // Display
-        SettingsPage(Settings.ACTION_DISPLAY_SETTINGS, "Display", SettingsPageCat.DISPLAY, true),
-        SettingsPage(Settings.ACTION_NIGHT_DISPLAY_SETTINGS, "Night light", SettingsPageCat.DISPLAY, true),
-        SettingsPage("android.settings.DARK_THEME_SETTINGS", "Dark theme", SettingsPageCat.DISPLAY, true),
-        SettingsPage(Settings.ACTION_AUTO_ROTATE_SETTINGS, "Auto-rotate", SettingsPageCat.DISPLAY, false),
-        SettingsPage("android.settings.FONT_SIZE_SETTINGS", "Font size", SettingsPageCat.DISPLAY, false), // OEM
-        SettingsPage("android.settings.WALLPAPER_SETTINGS", "Wallpaper", SettingsPageCat.DISPLAY, false),
+        SettingsPage(Settings.ACTION_DISPLAY_SETTINGS, "Display", SettingsPageCategory.DISPLAY, true),
+        SettingsPage(Settings.ACTION_NIGHT_DISPLAY_SETTINGS, "Night light", SettingsPageCategory.DISPLAY, true),
+        SettingsPage("android.settings.DARK_THEME_SETTINGS", "Dark theme", SettingsPageCategory.DISPLAY, true),
+        SettingsPage(Settings.ACTION_AUTO_ROTATE_SETTINGS, "Auto-rotate", SettingsPageCategory.DISPLAY, false),
+        SettingsPage("android.settings.FONT_SIZE_SETTINGS", "Font size", SettingsPageCategory.DISPLAY, false), // OEM
+        SettingsPage("android.settings.WALLPAPER_SETTINGS", "Wallpaper", SettingsPageCategory.DISPLAY, false),
         SettingsPage(
             "android.settings.LIVE_DISPLAY_SETTINGS",
             "Display color temperature",
-            SettingsPageCat.DISPLAY,
+            SettingsPageCategory.DISPLAY,
             false,
         ), // OEM
         // Sound
-        SettingsPage(Settings.ACTION_SOUND_SETTINGS, "Sound", SettingsPageCat.SOUND, true),
+        SettingsPage(Settings.ACTION_SOUND_SETTINGS, "Sound", SettingsPageCategory.SOUND, true),
         SettingsPage(
             Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS,
             "Do Not Disturb",
-            SettingsPageCat.SOUND,
+            SettingsPageCategory.SOUND,
             false,
         ),
-        SettingsPage(Settings.ACTION_ZEN_MODE_PRIORITY_SETTINGS, "Zen mode", SettingsPageCat.SOUND, false),
+        SettingsPage(Settings.ACTION_ZEN_MODE_PRIORITY_SETTINGS, "Zen mode", SettingsPageCategory.SOUND, false),
         // Apps
-        SettingsPage(Settings.ACTION_APPLICATION_SETTINGS, "Apps", SettingsPageCat.APPS, true),
-        SettingsPage(Settings.ACTION_APP_NOTIFICATION_SETTINGS, "App notifications", SettingsPageCat.APPS, false),
-        SettingsPage(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, "App permissions", SettingsPageCat.APPS, false),
-        SettingsPage(Settings.ACTION_MANAGE_ALL_APPLICATIONS_SETTINGS, "All apps", SettingsPageCat.APPS, false),
-        SettingsPage(Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS, "Installed apps", SettingsPageCat.APPS, false),
-        SettingsPage(Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS, "Developer options", SettingsPageCat.APPS, true),
+        SettingsPage(Settings.ACTION_APPLICATION_SETTINGS, "Apps", SettingsPageCategory.APPS, true),
+        SettingsPage(Settings.ACTION_APP_NOTIFICATION_SETTINGS, "App notifications", SettingsPageCategory.APPS, false),
+        SettingsPage(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, "App permissions", SettingsPageCategory.APPS, false),
+        SettingsPage(Settings.ACTION_MANAGE_ALL_APPLICATIONS_SETTINGS, "All apps", SettingsPageCategory.APPS, false),
+        SettingsPage(Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS, "Installed apps", SettingsPageCategory.APPS, false),
+        SettingsPage(
+            Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS,
+            "Developer options",
+            SettingsPageCategory.APPS,
+            true,
+        ),
         // Security
-        SettingsPage(Settings.ACTION_SECURITY_SETTINGS, "Security", SettingsPageCat.SECURITY, true),
-        SettingsPage(Settings.ACTION_LOCATION_SOURCE_SETTINGS, "Location", SettingsPageCat.SECURITY, true),
-        SettingsPage("android.settings.LOCK_SCREEN_SETTINGS", "Lock screen", SettingsPageCat.SECURITY, false),
-        SettingsPage(Settings.ACTION_PRIVACY_SETTINGS, "Privacy", SettingsPageCat.SECURITY, false),
-        SettingsPage("android.settings.CREDENTIAL_SETTINGS", "Credentials", SettingsPageCat.SECURITY, false), // OEM
+        SettingsPage(Settings.ACTION_SECURITY_SETTINGS, "Security", SettingsPageCategory.SECURITY, true),
+        SettingsPage(Settings.ACTION_LOCATION_SOURCE_SETTINGS, "Location", SettingsPageCategory.SECURITY, true),
+        SettingsPage("android.settings.LOCK_SCREEN_SETTINGS", "Lock screen", SettingsPageCategory.SECURITY, false),
+        SettingsPage(Settings.ACTION_PRIVACY_SETTINGS, "Privacy", SettingsPageCategory.SECURITY, false),
+        SettingsPage("android.settings.CREDENTIAL_SETTINGS", "Credentials", SettingsPageCategory.SECURITY, false),
+        // OEM
         SettingsPage(
             "android.settings.TRUSTED_CREDENTIALS_SETTINGS",
             "Trusted certificates",
-            SettingsPageCat.SECURITY,
+            SettingsPageCategory.SECURITY,
             false,
         ),
         // Personal
-        SettingsPage(Settings.ACTION_DATE_SETTINGS, "Date & time", SettingsPageCat.PERSONAL, true),
-        SettingsPage(Settings.ACTION_LOCALE_SETTINGS, "Language", SettingsPageCat.PERSONAL, true),
-        SettingsPage("android.settings.USER_SETTINGS", "Users", SettingsPageCat.PERSONAL, false),
-        SettingsPage("android.settings.ACCOUNT_SYNC_SETTINGS", "Accounts", SettingsPageCat.PERSONAL, false),
-        SettingsPage(Settings.ACTION_SYNC_SETTINGS, "Sync", SettingsPageCat.PERSONAL, false),
-        SettingsPage(Settings.ACTION_VOICE_INPUT_SETTINGS, "Voice input", SettingsPageCat.PERSONAL, false),
+        SettingsPage(Settings.ACTION_DATE_SETTINGS, "Date & time", SettingsPageCategory.PERSONAL, true),
+        SettingsPage(Settings.ACTION_LOCALE_SETTINGS, "Language", SettingsPageCategory.PERSONAL, true),
+        SettingsPage("android.settings.USER_SETTINGS", "Users", SettingsPageCategory.PERSONAL, false),
+        SettingsPage("android.settings.ACCOUNT_SYNC_SETTINGS", "Accounts", SettingsPageCategory.PERSONAL, false),
+        SettingsPage(Settings.ACTION_SYNC_SETTINGS, "Sync", SettingsPageCategory.PERSONAL, false),
+        SettingsPage(Settings.ACTION_VOICE_INPUT_SETTINGS, "Voice input", SettingsPageCategory.PERSONAL, false),
         // System
-        SettingsPage(Settings.ACTION_ACCESSIBILITY_SETTINGS, "Accessibility", SettingsPageCat.SYSTEM, true),
-        SettingsPage(Settings.ACTION_DEVICE_INFO_SETTINGS, "About device", SettingsPageCat.SYSTEM, false),
-        SettingsPage(Settings.ACTION_MEMORY_CARD_SETTINGS, "Storage", SettingsPageCat.SYSTEM, false),
-        SettingsPage(Settings.ACTION_INTERNAL_STORAGE_SETTINGS, "Internal storage", SettingsPageCat.SYSTEM, false),
-        SettingsPage(Settings.ACTION_BATTERY_SAVER_SETTINGS, "Battery", SettingsPageCat.SYSTEM, false),
-        SettingsPage("android.settings.NOTIFICATION_SETTINGS", "Notifications", SettingsPageCat.SYSTEM, false),
-        SettingsPage(Settings.ACTION_SETTINGS, "All settings", SettingsPageCat.SYSTEM, false),
-        SettingsPage(Settings.ACTION_QUICK_LAUNCH_SETTINGS, "Quick launch", SettingsPageCat.SYSTEM, false), // OEM
+        SettingsPage(Settings.ACTION_ACCESSIBILITY_SETTINGS, "Accessibility", SettingsPageCategory.SYSTEM, true),
+        SettingsPage(Settings.ACTION_DEVICE_INFO_SETTINGS, "About device", SettingsPageCategory.SYSTEM, false),
+        SettingsPage(Settings.ACTION_MEMORY_CARD_SETTINGS, "Storage", SettingsPageCategory.SYSTEM, false),
+        SettingsPage(Settings.ACTION_INTERNAL_STORAGE_SETTINGS, "Internal storage", SettingsPageCategory.SYSTEM, false),
+        SettingsPage(Settings.ACTION_BATTERY_SAVER_SETTINGS, "Battery", SettingsPageCategory.SYSTEM, false),
+        SettingsPage("android.settings.NOTIFICATION_SETTINGS", "Notifications", SettingsPageCategory.SYSTEM, false),
+        SettingsPage(Settings.ACTION_SETTINGS, "All settings", SettingsPageCategory.SYSTEM, false),
+        SettingsPage(Settings.ACTION_QUICK_LAUNCH_SETTINGS, "Quick launch", SettingsPageCategory.SYSTEM, false), // OEM
     )
