@@ -1,34 +1,18 @@
 # Change log
 
-- [x] Add EditorHeader to Trigger/CommandList "Saved Triggers/Commands"
+- [ ] Shortcuts: Customizable icon/color
+- [ ] DataProviders: How to use them as commands?
+- [ ] fun Modifier.menuAnchor(): Modifier' is deprecated. Use overload that takes ExposedDropdownMenuAnchorType and enabled parameters.
 - [ ] Complete the editor for ActivityLaunchCommand
     - [ ] IntentExtraEditor: Delete Extra
     - [ ] IntentExtraEditor: Specific editor for string list 
     - [ ] IntentExtraEditor: Specific editor for uri list 
-    - [ ] IntentDataEditor: Paste icon button
+    - [ ] UriField: When the protocol ask for it, provide button to browse contacts.
     - [ ] UriField: Fix: Expands multiple lines. Limit single line? Summary?
-    - [x] UriField: Only show the file picker if the field is empty (or content://)
+    - [ ] IntentDataEditor: Paste icon button
     - [ ] Play icon to the 'Try' button
     - [ ] Move error handling inside execute()
-    - [ ] UriField: When the protocol ask for it, provide button to browse contacts.
     - [ ] ActivityLaunchCommandEditor: Extract component selector as reusable composable
-    - [x] ActivityLaunchCommandEditor: Click on app/component actually open AppList
-    - [x] ActivityLaunchCommandEditor: Done button actually saves entity
-    - [x] ActivityLaunchCommandEditor: Fix: 'data' extra in command specs is not extra but data in most cases
-    - [x] ActivityLaunchCommandEditor: Fix: data required by command specs should be protocol restricted in some cases
-    - [x] ActivityLaunchCommandEditor: Edit mode
-    - [x] UriField: When file picked show the file name instead of the uri and make it readonly for typing
-    - [x] UrlField: reuse for extras
-    - [x] ActivityLaunchCommandEditor: Try button
-    - [x] IntentDataEditor: Pick file icon button
-    - [x] IntentDataEditor: Pick file icon button sets mime
-    - [x] IntentDataEditor: Autocomplete mime type
-    - [x] IntentEditor: Action select in a dialog with scroll -> Material version is better
-    - [x] IntentEditor: Action select with icons
-    - [x] IntentEditor: Add custom Extras (choose name and type)
-    - [x] IntentEditor: On change action, remove empty extras, keep filled
-    - [x] Extract as composables the parts of the editor that might be reused
-- [ ] Progressively, one component kind at a time, add the dialog of that kind of App component, reusing parts of Activity and composing its ApplicationCommand.
 - [ ] Magic naming: icon button to assign a default name from content in the name editor. Show when empty instead of delete button.
 - [ ] Use UserMessage for "Try" button errors
 - [ ] ApplicationCommand: Overwrite dialog: if not confirm, back to ask the name not full cancell
@@ -113,6 +97,24 @@
 
 ## Done
 
+- [x] Add EditorHeader to Trigger/CommandList "Saved Triggers/Commands"
+- [x] UriField: Only show the file picker if the field is empty (or content://)
+- [x] ActivityLaunchCommandEditor: Click on app/component actually open AppList
+- [x] ActivityLaunchCommandEditor: Done button actually saves entity
+- [x] ActivityLaunchCommandEditor: Fix: 'data' extra in command specs is not extra but data in most cases
+- [x] ActivityLaunchCommandEditor: Fix: data required by command specs should be protocol restricted in some cases
+- [x] ActivityLaunchCommandEditor: Edit mode
+- [x] UriField: When file picked show the file name instead of the uri and make it readonly for typing
+- [x] UrlField: reuse for extras
+- [x] ActivityLaunchCommandEditor: Try button
+- [x] IntentDataEditor: Pick file icon button
+- [x] IntentDataEditor: Pick file icon button sets mime
+- [x] IntentDataEditor: Autocomplete mime type
+- [x] IntentEditor: Action select in a dialog with scroll -> Material version is better
+- [x] IntentEditor: Action select with icons
+- [x] IntentEditor: Add custom Extras (choose name and type)
+- [x] IntentEditor: On change action, remove empty extras, keep filled
+- [x] Extract as composables the parts of the editor that might be reused
  
 ## Done 0.1.0
 
