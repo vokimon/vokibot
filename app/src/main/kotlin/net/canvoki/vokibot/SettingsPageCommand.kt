@@ -54,7 +54,6 @@ data class SettingsPageCommand(
 
 data class SettingsPage(
     val id: String,
-    val name: String,
     val categoryId: SettingsPageCategory,
     val isMain: Boolean,
     @get:StringRes val nameRes: Int = 0,
@@ -93,42 +92,36 @@ val SETTINGS_PAGES: List<SettingsPage> =
         // Network
         SettingsPage(
             Settings.ACTION_WIFI_SETTINGS,
-            "Wi-Fi",
             SettingsPageCategory.NETWORK,
             true,
             R.string.settings_page_name_wifi,
         ),
         SettingsPage(
             Settings.ACTION_BLUETOOTH_SETTINGS,
-            "Bluetooth",
             SettingsPageCategory.NETWORK,
             true,
             R.string.settings_page_name_bluetooth,
         ),
         SettingsPage(
             Settings.ACTION_NFC_SETTINGS,
-            "NFC",
             SettingsPageCategory.NETWORK,
             true,
             R.string.settings_page_name_nfc,
         ),
         SettingsPage(
             Settings.ACTION_NETWORK_OPERATOR_SETTINGS,
-            "Mobile networks",
             SettingsPageCategory.NETWORK,
             true,
             R.string.settings_page_name_mobile_networks,
         ),
         SettingsPage(
             Settings.ACTION_WIRELESS_SETTINGS,
-            "Internet",
             SettingsPageCategory.NETWORK,
             true,
             R.string.settings_page_name_internet,
         ),
         SettingsPage(
             Settings.ACTION_AIRPLANE_MODE_SETTINGS,
-            "Airplane mode",
             SettingsPageCategory.NETWORK,
             false,
             R.string.settings_page_name_airplane_mode,
@@ -136,14 +129,12 @@ val SETTINGS_PAGES: List<SettingsPage> =
         // OEM
         SettingsPage(
             Settings.ACTION_DATA_USAGE_SETTINGS,
-            "Data usage",
             SettingsPageCategory.NETWORK,
             false,
             R.string.settings_page_name_data_usage,
         ),
         SettingsPage(
             Settings.ACTION_APN_SETTINGS,
-            "APN",
             SettingsPageCategory.NETWORK,
             false,
             R.string.settings_page_name_apn,
@@ -151,49 +142,42 @@ val SETTINGS_PAGES: List<SettingsPage> =
         // Display
         SettingsPage(
             Settings.ACTION_DISPLAY_SETTINGS,
-            "Display",
             SettingsPageCategory.DISPLAY,
             true,
             R.string.settings_page_name_display,
         ),
         SettingsPage(
             Settings.ACTION_NIGHT_DISPLAY_SETTINGS,
-            "Night light",
             SettingsPageCategory.DISPLAY,
             true,
             R.string.settings_page_name_night_light,
         ),
         SettingsPage(
             "android.settings.DARK_THEME_SETTINGS",
-            "Dark theme",
             SettingsPageCategory.DISPLAY,
             true,
             R.string.settings_page_name_dark_theme,
         ),
         SettingsPage(
             Settings.ACTION_AUTO_ROTATE_SETTINGS,
-            "Auto-rotate",
             SettingsPageCategory.DISPLAY,
             false,
             R.string.settings_page_name_auto_rotate,
         ),
         SettingsPage(
             "android.settings.FONT_SIZE_SETTINGS",
-            "Font size",
             SettingsPageCategory.DISPLAY,
             false,
             R.string.settings_page_name_font_size,
         ), // OEM
         SettingsPage(
             "android.settings.WALLPAPER_SETTINGS",
-            "Wallpaper",
             SettingsPageCategory.DISPLAY,
             false,
             R.string.settings_page_name_wallpaper,
         ),
         SettingsPage(
             "android.settings.LIVE_DISPLAY_SETTINGS",
-            "Display color temperature",
             SettingsPageCategory.DISPLAY,
             false,
             R.string.settings_page_name_display_color_temperature,
@@ -201,21 +185,18 @@ val SETTINGS_PAGES: List<SettingsPage> =
         // Sound
         SettingsPage(
             Settings.ACTION_SOUND_SETTINGS,
-            "Sound",
             SettingsPageCategory.SOUND,
             true,
             R.string.settings_page_name_sound,
         ),
         SettingsPage(
             Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS,
-            "Do Not Disturb",
             SettingsPageCategory.SOUND,
             false,
             R.string.settings_page_name_do_not_disturb,
         ),
         SettingsPage(
             Settings.ACTION_ZEN_MODE_PRIORITY_SETTINGS,
-            "Zen mode",
             SettingsPageCategory.SOUND,
             false,
             R.string.settings_page_name_zen_mode,
@@ -223,42 +204,36 @@ val SETTINGS_PAGES: List<SettingsPage> =
         // Apps
         SettingsPage(
             Settings.ACTION_APPLICATION_SETTINGS,
-            "Apps",
             SettingsPageCategory.APPS,
             true,
             R.string.settings_page_name_apps,
         ),
         SettingsPage(
             Settings.ACTION_APP_NOTIFICATION_SETTINGS,
-            "App notifications",
             SettingsPageCategory.APPS,
             false,
             R.string.settings_page_name_app_notifications,
         ),
         SettingsPage(
             Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
-            "App permissions",
             SettingsPageCategory.APPS,
             false,
             R.string.settings_page_name_app_permissions,
         ),
         SettingsPage(
             Settings.ACTION_MANAGE_ALL_APPLICATIONS_SETTINGS,
-            "All apps",
             SettingsPageCategory.APPS,
             false,
             R.string.settings_page_name_all_apps,
         ),
         SettingsPage(
             Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS,
-            "Installed apps",
             SettingsPageCategory.APPS,
             false,
             R.string.settings_page_name_installed_apps,
         ),
         SettingsPage(
             Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS,
-            "Developer options",
             SettingsPageCategory.APPS,
             true,
             R.string.settings_page_name_developer_options,
@@ -266,35 +241,30 @@ val SETTINGS_PAGES: List<SettingsPage> =
         // Security
         SettingsPage(
             Settings.ACTION_SECURITY_SETTINGS,
-            "Security",
             SettingsPageCategory.SECURITY,
             true,
             R.string.settings_page_name_security,
         ),
         SettingsPage(
             Settings.ACTION_LOCATION_SOURCE_SETTINGS,
-            "Location",
             SettingsPageCategory.SECURITY,
             true,
             R.string.settings_page_name_location,
         ),
         SettingsPage(
             "android.settings.LOCK_SCREEN_SETTINGS",
-            "Lock screen",
             SettingsPageCategory.SECURITY,
             false,
             R.string.settings_page_name_lock_screen,
         ),
         SettingsPage(
             Settings.ACTION_PRIVACY_SETTINGS,
-            "Privacy",
             SettingsPageCategory.SECURITY,
             false,
             R.string.settings_page_name_privacy,
         ),
         SettingsPage(
             "android.settings.CREDENTIAL_SETTINGS",
-            "Credentials",
             SettingsPageCategory.SECURITY,
             false,
             R.string.settings_page_name_credentials,
@@ -302,7 +272,6 @@ val SETTINGS_PAGES: List<SettingsPage> =
         // OEM
         SettingsPage(
             "android.settings.TRUSTED_CREDENTIALS_SETTINGS",
-            "Trusted certificates",
             SettingsPageCategory.SECURITY,
             false,
             R.string.settings_page_name_trusted_certificates,
@@ -310,42 +279,36 @@ val SETTINGS_PAGES: List<SettingsPage> =
         // Personal
         SettingsPage(
             Settings.ACTION_DATE_SETTINGS,
-            "Date & time",
             SettingsPageCategory.PERSONAL,
             true,
             R.string.settings_page_name_date_time,
         ),
         SettingsPage(
             Settings.ACTION_LOCALE_SETTINGS,
-            "Language",
             SettingsPageCategory.PERSONAL,
             true,
             R.string.settings_page_name_language,
         ),
         SettingsPage(
             "android.settings.USER_SETTINGS",
-            "Users",
             SettingsPageCategory.PERSONAL,
             false,
             R.string.settings_page_name_users,
         ),
         SettingsPage(
             "android.settings.ACCOUNT_SYNC_SETTINGS",
-            "Accounts",
             SettingsPageCategory.PERSONAL,
             false,
             R.string.settings_page_name_accounts,
         ),
         SettingsPage(
             Settings.ACTION_SYNC_SETTINGS,
-            "Sync",
             SettingsPageCategory.PERSONAL,
             false,
             R.string.settings_page_name_sync,
         ),
         SettingsPage(
             Settings.ACTION_VOICE_INPUT_SETTINGS,
-            "Voice input",
             SettingsPageCategory.PERSONAL,
             false,
             R.string.settings_page_name_voice_input,
@@ -353,56 +316,48 @@ val SETTINGS_PAGES: List<SettingsPage> =
         // System
         SettingsPage(
             Settings.ACTION_ACCESSIBILITY_SETTINGS,
-            "Accessibility",
             SettingsPageCategory.SYSTEM,
             true,
             R.string.settings_page_name_accessibility,
         ),
         SettingsPage(
             Settings.ACTION_DEVICE_INFO_SETTINGS,
-            "About device",
             SettingsPageCategory.SYSTEM,
             false,
             R.string.settings_page_name_about_device,
         ),
         SettingsPage(
             Settings.ACTION_MEMORY_CARD_SETTINGS,
-            "Storage",
             SettingsPageCategory.SYSTEM,
             false,
             R.string.settings_page_name_storage,
         ),
         SettingsPage(
             Settings.ACTION_INTERNAL_STORAGE_SETTINGS,
-            "Internal storage",
             SettingsPageCategory.SYSTEM,
             false,
             R.string.settings_page_name_internal_storage,
         ),
         SettingsPage(
             Settings.ACTION_BATTERY_SAVER_SETTINGS,
-            "Battery",
             SettingsPageCategory.SYSTEM,
             false,
             R.string.settings_page_name_battery,
         ),
         SettingsPage(
             "android.settings.NOTIFICATION_SETTINGS",
-            "Notifications",
             SettingsPageCategory.SYSTEM,
             false,
             R.string.settings_page_name_notifications,
         ),
         SettingsPage(
             Settings.ACTION_SETTINGS,
-            "All settings",
             SettingsPageCategory.SYSTEM,
             false,
             R.string.settings_page_name_all_settings,
         ),
         SettingsPage(
             Settings.ACTION_QUICK_LAUNCH_SETTINGS,
-            "Quick launch",
             SettingsPageCategory.SYSTEM,
             false,
             R.string.settings_page_name_quick_launch,
