@@ -150,6 +150,7 @@ data class SettingsPageCommandEditor(
                         )
                     }
                     IconButton(
+                        enabled = available,
                         onClick = {
                             scope.launch {
                                 try {
