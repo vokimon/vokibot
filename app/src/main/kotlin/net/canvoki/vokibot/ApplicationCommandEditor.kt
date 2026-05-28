@@ -42,13 +42,62 @@ import net.canvoki.shared.component.StackedScreen
 import net.canvoki.shared.usermessage.UserMessage
 import net.canvoki.vokibot.common.EditorHeader
 
-
 private fun formatComponentName(
     packageName: String,
     fullName: String,
 ): String {
     val prefix = "$packageName."
     return if (fullName.startsWith(prefix)) fullName.substring(packageName.length) else fullName
+}
+
+@Composable
+private fun ComponentSelector(
+    packageName: String?,
+    component: PublicComponent?,
+    onSelect: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    Card(
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
+        modifier = modifier.fillMaxWidth().clickable(onClick = onSelect),
+    ) {
+        Row(
+            modifier = Modifier.fillMaxWidth().padding(16.dp),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            if (component != null) {
+                Image(
+                    painter = drawableToPainter(component.icon),
+                    contentDescription = null,
+                    modifier = Modifier.size(48.dp),
+                )
+                Spacer(Modifier.width(12.dp))
+                Column(modifier = Modifier.weight(1f)) {
+                    Text(
+                        text = component.label,
+                        color = MaterialTheme.colorScheme.primary,
+                    )
+                    Text(
+                        formatComponentName(packageName!!, component.name),
+                        style = MaterialTheme.typography.bodySmall,
+                    )
+                }
+            } else {
+                Icon(
+                    painter = painterResource(R.drawable.ic_add),
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.primary,
+                    modifier = Modifier.size(24.dp),
+                )
+                Spacer(Modifier.width(12.dp))
+                Text(
+                    text = stringResource(R.string.intent_editor_select_app_and_screen),
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = MaterialTheme.colorScheme.primary,
+                )
+            }
+        }
+    }
 }
 
 @Serializable
@@ -247,55 +296,19 @@ data class ApplicationCommandEditor(
                 modifier = Modifier.verticalScroll(rememberScrollState()).weight(1f),
                 verticalArrangement = Arrangement.spacedBy(16.dp),
             ) {
-                val component = currentComponent
-                if (component != null) {
-                    Row {
-                        Image(
-                            painter = drawableToPainter(component.icon),
-                            contentDescription = null,
-                            modifier = Modifier.size(48.dp),
-                        )
-
-                        Spacer(modifier = Modifier.size(16.dp))
-
-                        Column {
-                            Text(component.label)
-                            Text(formatComponentName(packageName!!, component.name))
+                ComponentSelector(
+                    packageName = packageName,
+                    component = currentComponent,
+                    onSelect = {
+                        nav.push(AppList) { selection ->
+                            selection?.let {
+                                isDirty = true
+                                packageName = it.packageName
+                                componentName = it.componentName
+                            }
                         }
-                    }
-                } else {
-                    Card(
-                        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
-                        modifier =
-                            Modifier.fillMaxWidth().clickable {
-                                nav.push(AppList) { selection ->
-                                    selection?.let {
-                                        isDirty = true
-                                        packageName = it.packageName
-                                        componentName = it.componentName
-                                    }
-                                }
-                            },
-                    ) {
-                        Row(
-                            modifier = Modifier.fillMaxWidth().padding(16.dp),
-                            verticalAlignment = Alignment.CenterVertically,
-                        ) {
-                            Icon(
-                                painter = painterResource(R.drawable.ic_add),
-                                contentDescription = null,
-                                tint = MaterialTheme.colorScheme.primary,
-                                modifier = Modifier.size(24.dp),
-                            )
-                            Spacer(Modifier.width(12.dp))
-                            Text(
-                                text = stringResource(R.string.intent_editor_select_app_and_screen),
-                                style = MaterialTheme.typography.bodyLarge,
-                                color = MaterialTheme.colorScheme.primary,
-                            )
-                        }
-                    }
-                }
+                    },
+                )
                 IntentActionSelector(
                     supportedActions = actionsToShow,
                     action = actionStr,
@@ -335,7 +348,7 @@ data class ApplicationCommandEditor(
                 OutlinedButton(
                     onClick = {
                         scope.launch {
-                            component?.let {
+                            currentComponent?.let {
                                 val command = buildCommand(it)
                                 try {
                                     command.execute(context)
@@ -346,7 +359,7 @@ data class ApplicationCommandEditor(
                             }
                         }
                     },
-                    enabled = component != null,
+                    enabled = currentComponent != null,
                     modifier = Modifier.fillMaxWidth(),
                 ) {
                     Icon(

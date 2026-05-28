@@ -11,7 +11,6 @@
     - [ ] UriField: Fix: Expands multiple lines. Limit single line? Summary?
     - [ ] IntentDataEditor: Paste icon button
     - [ ] Move error handling inside execute()
-    - [ ] ActivityLaunchCommandEditor: Extract component selector as reusable composable
 - [ ] Magic naming: icon button to assign a default name from content in the name editor. Show when empty instead of delete button.
 - [ ] Use UserMessage for "Try" button errors
 - [ ] ApplicationCommand: Overwrite dialog: if not confirm, back to ask the name not full cancell
@@ -96,6 +95,7 @@
 
 ## Done
 
+- [x] ApplicationCommandEditor: Extract component selector as reusable composable
 - [x] Play icon to the 'Try' button
 - [x] Add EditorHeader to Trigger/CommandList "Saved Triggers/Commands"
 - [x] UriField: Only show the file picker if the field is empty (or content://)
