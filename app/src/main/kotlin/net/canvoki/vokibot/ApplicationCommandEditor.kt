@@ -332,7 +332,7 @@ data class ApplicationCommandEditor(
                     verticalArrangement = Arrangement.spacedBy(16.dp),
                 ) {
                     IntentActionSelector(
-                        supportedActions = actionsToShow,
+                        selectableActions = actionsToShow,
                         action = actionStr,
                         onActionChanged = {
                             actionStr = it

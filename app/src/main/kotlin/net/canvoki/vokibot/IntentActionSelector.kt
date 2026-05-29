@@ -23,13 +23,13 @@ import net.canvoki.vokibot.common.SectionHeader
 
 @Composable
 fun IntentActionSelector(
-    supportedActions: List<ActionDefinition>,
+    selectableActions: List<ActionDefinition>,
     action: String?,
     onActionChanged: (String?) -> Unit,
 ) {
     var expanded by remember { mutableStateOf(false) }
 
-    val selected = supportedActions.find { it.action == action }
+    val selected = selectableActions.find { it.action == action }
 
     Column {
         SectionHeader(stringResource(R.string.intent_editor_action_label))
@@ -55,7 +55,7 @@ fun IntentActionSelector(
                 expanded = expanded,
                 onDismissRequest = { expanded = false },
             ) {
-                supportedActions.forEach { actionDef ->
+                selectableActions.forEach { actionDef ->
                     DropdownMenuItem(
                         text = { Text(stringResource(actionDef.labelRes)) },
                         onClick = {
