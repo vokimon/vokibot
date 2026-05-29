@@ -12,3 +12,6 @@ app/debug/
 .env
 .*.sw?
 .kotlin
+meta/fdroid-data
+meta/fdroid-server
+meta/web/*/index.html
