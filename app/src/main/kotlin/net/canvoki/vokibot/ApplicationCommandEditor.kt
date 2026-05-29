@@ -281,10 +281,15 @@ data class ApplicationCommandEditor(
                     ComponentType.SERVICE -> StartServiceCommand
                     ComponentType.PROVIDER -> AccessProviderCommand
                 }
+            val readyToRun =
+                currentComponent != null && (
+                    componentType != ComponentType.RECEIVER || !actionStr.isNullOrBlank()
+                )
             EditorHeader(
                 icon = painterResource(commandTypeMeta.iconRes),
                 title = stringResource(commandTypeMeta.labelRes),
                 actionText = stringResource(R.string.automation_done),
+                actionEnabled = readyToRun,
                 action = {
                     currentComponent?.let {
                         val command = buildCommand(it)
@@ -382,7 +387,7 @@ data class ApplicationCommandEditor(
                                 }
                             }
                         },
-                        enabled = currentComponent != null,
+                        enabled = readyToRun,
                         modifier = Modifier.fillMaxWidth(),
                     ) {
                         Icon(
