@@ -2,41 +2,25 @@
 
 - [ ] Shortcuts: Customizable icon/color
 - [ ] DataProviders: How to use them as commands?
-- [ ] fun Modifier.menuAnchor(): Modifier' is deprecated. Use overload that takes ExposedDropdownMenuAnchorType and enabled parameters.
-- [ ] Complete the editor for ActivityLaunchCommand
-    - [ ] IntentExtraEditor: Delete Extra
-    - [ ] IntentExtraEditor: Specific editor for string list 
-    - [ ] IntentExtraEditor: Specific editor for uri list 
-    - [ ] UriField: When the protocol ask for it, provide button to browse contacts.
-    - [ ] UriField: Fix: Expands multiple lines. Limit single line? Summary?
-    - [ ] IntentDataEditor: Paste icon button
-    - [ ] Move error handling inside execute()
+- [ ] Bound services: How to use them as commands?
+- [ ] IntentActionEditor: Suggest package name as action prefix
+- [ ] IntentExtraEditor: Delete Extra
+- [ ] IntentExtraEditor: Specific editor for string list
+- [ ] IntentExtraEditor: Specific editor for uri list
+- [ ] UriField: When the protocol ask for it (tel, sms, mailto), provide button to browse contacts.
+- [ ] UriField: Fix: Expands multiple lines. Limit single line? Summary?
+- [ ] IntentDataEditor: Paste icon button
 - [ ] Magic naming: icon button to assign a default name from content in the name editor. Show when empty instead of delete button.
-- [ ] Use UserMessage for "Try" button errors
 - [ ] ApplicationCommand: Overwrite dialog: if not confirm, back to ask the name not full cancell
-- [ ] Save dialog: smarter default naming, not just the app name
 - [ ] AppList: Filter sheet gets cropped on landscape
-- [ ] Application Command type: List application
-
-- [ ] System discoverability
-    - [ ] List actionable Services 
-        - PackageInfo.services
-        - pm.queryIntentServices(intent, 0)
-        - background capabilites
-    - [ ] List actionable Receivers
-        - PackageInfo.receivers
-        - pm.queryBroadcastReceivers(intent, 0)
-        - not that interesting, maybe we could inverse engineer custom app events we could also subscribe
-    - [ ] List providers
-        - PackageInfo.providers
-        - pm.resolveContentProvider(authority, 0)
+- [ ] Action to stop a service
 
 - More commands:
     - [ ] Airplaine mode on/off
     - [ ] Enable/Disable/Connect Bluetooth 
     - [ ] Enable/Disable/Connect Wi-Fi
 - More triggers:
-    - [ ] On broadcast received
+    - [ ] System Broadcast: As trigger to vokibot, system sends broadcasts to any listening app
     - [ ] On notification received
     - [ ] Date/Day of Week/Time/Timer
     - [ ] Calendar events
@@ -54,48 +38,19 @@
     - [ ] Wifi enabled
     - [ ] Wifi connection
     - [ ] Tiled services: https://developer.android.com/develop/ui/views/quicksettings-tiles
-- [ ] Services: https://developer.android.com/develop/background-work/services
-    - [ ] Start/stop the service (few allow it, even if they publish it)
-    - [ ] Bound services long lasting communication Through a IBinder (Maybe  too low level and too app specific)
-- [ ] System Broadcast: As trigger to vokibot, system sends broadcasts to any listening app
-    - List of system broadcasts: <https://github.com/flyskywhy/android-sdk/blob/master/platforms/android-10/data/broadcast_actions.txt>
-- [ ] Broadcasts: Send a shot and forget message https://developer.android.com/develop/background-work/background-tasks/broadcasts
-    - [ ] Puppet: Add broadcast to the manifest
-    - [ ] Puppet: Required permissions to receive
-    - [ ] Puppet: onReceive https://developer.android.com/reference/android/content/BroadcastReceiver
-    - [ ] What permissions are required to interact
-    - [ ] try with val canDeliver = context.packageManager.queryBroadcastReceivers(intent, 0).isNotEmpty()
-
-        val intent = Intent().apply {
-            // Option 1: Explicit (recommended)
-            setClassName("com.target.app", "com.target.app.MyBroadcastReceiver")
-            setAction("com.target.app.ACTION_DO_SOMETHING")
-
-            // Option 2: Package-scoped (lets system find matching receiver)
-            setPackage("com.target.app")
-            action = "com.target.app.ACTION_DO_SOMETHING"
-
-            // Optional extras
-            putExtra("param_key", "value")
-            putExtra("flag", true)
-        }
-
-        // Validate before saving/executing
-        val canDeliver = context.packageManager.queryBroadcastReceivers(intent, 0).isNotEmpty()
-
-        // Execute
-        try {
-            context.sendBroadcast(intent)
-            // Log: "Broadcast dispatched to $intent"
-        } catch (e: SecurityException) {
-            // Log: "Permission denied or receiver not exported"
-        } catch (e: Exception) {
-            // Log: "Broadcast dispatch failed: $e"
-        }
-
+    - [ ] List of system broadcasts: <https://github.com/flyskywhy/android-sdk/blob/master/platforms/android-10/data/broadcast_actions.txt>
 
 ## Done
 
+- [x] Use UserMessage for "Try" button errors
+- [x] Services: https://developer.android.com/develop/background-work/services
+- [x] Broadcasts: Send a shot and forget message https://developer.android.com/develop/background-work/background-tasks/broadcasts
+    - [x] Puppet: Add broadcast to the manifest
+    - [x] Puppet: Required permissions to receive
+    - [x] Puppet: onReceive https://developer.android.com/reference/android/content/BroadcastReceiver
+    - [x] What permissions are required to interact
+    - [x] try with val canDeliver = context.packageManager.queryBroadcastReceivers(intent, 0).isNotEmpty()
+- [x] fun Modifier.menuAnchor(): Modifier' is deprecated. Use overload that takes ExposedDropdownMenuAnchorType and enabled parameters.
 - [x] ApplicationCommandEditor: Extract component selector as reusable composable
 - [x] Play icon to the 'Try' button
 - [x] Add EditorHeader to Trigger/CommandList "Saved Triggers/Commands"
@@ -116,7 +71,7 @@
 - [x] IntentEditor: Add custom Extras (choose name and type)
 - [x] IntentEditor: On change action, remove empty extras, keep filled
 - [x] Extract as composables the parts of the editor that might be reused
- 
+
 ## Done 0.1.0
 
 - [x] TriggerList delete does not work for NFC (it does for shortcuts)
