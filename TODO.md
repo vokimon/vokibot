@@ -53,6 +53,7 @@
     - [ ] Screen status
     - [ ] Wifi enabled
     - [ ] Wifi connection
+    - [ ] Tiled services: https://developer.android.com/develop/ui/views/quicksettings-tiles
 - [ ] Services: https://developer.android.com/develop/background-work/services
     - [ ] Start/stop the service (few allow it, even if they publish it)
     - [ ] Bound services long lasting communication Through a IBinder (Maybe  too low level and too app specific)

@@ -301,6 +301,7 @@ data class ApplicationCommandEditor(
                 contentAlignment = Alignment.Center,
             ) {
                 if (currentComponent?.type == ComponentType.PROVIDER) {
+                    // TODO: Provider: not intent-based but ContentResolver
                     Text(stringResource(R.string.not_yet_implemented))
                 } else {
                     Column(
@@ -328,6 +329,7 @@ data class ApplicationCommandEditor(
                                 isDirty = true
                             },
                         )
+                        // Data information not for Services
                         if (componentType != ComponentType.SERVICE) {
                             val dataUriRequired =
                                 StandardActions.get(actionStr)?.probeStrategy == ProbeStrategy.REQUIRES_URI
@@ -344,6 +346,7 @@ data class ApplicationCommandEditor(
                                 },
                                 dataUriRequired = dataUriRequired,
                                 allowedSchemes = StandardActions.get(actionStr)?.allowedSchemes,
+                                // Only activities meaningfully use MIME type
                                 showMime = componentType == ComponentType.ACTIVITY,
                             )
                         }

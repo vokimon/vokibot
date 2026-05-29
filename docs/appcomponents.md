@@ -129,13 +129,11 @@ class MyReceiver : BroadcastReceiver() {
 }
 ```
 
-Since the receiver has no UI, the typical testing pattern is to
-start an Activity that displays the received intent details,
-labeled as a broadcast response.
-
 ---
 
 ## Service: Control a background task
+
+<https://developer.android.com/develop/background-work/services>
 
 ### Purpose
 
