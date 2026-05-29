@@ -29,14 +29,7 @@ fun IntentActionSelector(
 ) {
     var expanded by remember { mutableStateOf(false) }
 
-    val actionsToShow =
-        if (supportedActions.isNotEmpty()) {
-            supportedActions
-        } else {
-            StandardActions.all()
-        }
-
-    val selected = actionsToShow.find { it.action == action }
+    val selected = supportedActions.find { it.action == action }
 
     Column {
         SectionHeader(stringResource(R.string.intent_editor_action_label))
@@ -62,7 +55,7 @@ fun IntentActionSelector(
                 expanded = expanded,
                 onDismissRequest = { expanded = false },
             ) {
-                actionsToShow.forEach { actionDef ->
+                supportedActions.forEach { actionDef ->
                     DropdownMenuItem(
                         text = { Text(stringResource(actionDef.labelRes)) },
                         onClick = {
