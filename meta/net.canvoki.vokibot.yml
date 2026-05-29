@@ -20,11 +20,19 @@ Builds:
   commit: vokibot-0.1.0
   subdir: .
   submodules: true
-  gradle: true
+  gradle: 'yes'
+
+Builds:
+- versionName: 0.2.0
+  versionCode: 20000
+  commit: vokibot-0.2.0
+  subdir: .
+  submodules: true
+  gradle: 'yes'
 
 AllowedAPKSigningKeys: 9754033f7e40da57540f9bc23ea5a359368f502501fa7d122544899bc8d3c1f1
 
 AutoUpdateMode: Version
 UpdateCheckMode: Tags
-CurrentVersion: 0.1.0
-CurrentVersionCode: 10000
+CurrentVersion: 0.2.0
+CurrentVersionCode: 20000

@@ -23,7 +23,7 @@ but let's start humble.
     - NFC tags (configure by tapping)
     - Shortcuts (launcher icons)
 - Commands:
-    - Run applications
+    - Run application components (Activities, Services, Receivers)
     - Open system configuration pages
 - License: AGPLv3+
 - Theming: Material3 light and dark

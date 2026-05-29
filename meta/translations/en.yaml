@@ -19,11 +19,26 @@ full_description_md: |-
       - NFC tags (configure by tapping)
       - Shortcuts (launcher icons)
   - Commands:
-      - Run applications
+      - Run application components (Activities, Services, Receivers)
+      - Open system configuration pages
   - License: AGPLv3+
   - Theming: Material3 light and dark
   - Languages: an, ar, ca, de, en, es, eu, fr, gl, pt, ru, andaluh (no iso yet)
 keywords: automation, nfc, timer, shortcut
+changes_0_2_0_md: |-
+  Improved application commands edition
+
+  - ✨ ApplicationCommand: Inverted flow
+      Now the first you see is the intent editor, not the app list,
+      providing context of what you are doing when selecting the app.
+  - ✨ ApplicationCommand: Enabled editing already existing one
+  - ✨ ApplicationCommand: Change the selected component
+  - 🚸 ApplicationCommand: Same editor adapts to the picked component type
+  - ✨ ApplicationCommand: Edit intent data (uri and/or mime)
+  - ✨ ApplicationCommand: Edit intent extra parameters
+  - 🚸 ApplicationCommand: Pick file button for Uri fields
+  - 🚸 ApplicationCommand: Autocompletion for Uri protocols and Mime fields
+  - 🌐 SettingsPage: translated page and category names
 changes_0_1_0_md: |-
   - ✨ Automations: Relate triggers to commands
   - ✨ NfcTrigger: Runs a command when approaching an NFC tag

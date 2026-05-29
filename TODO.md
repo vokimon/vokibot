@@ -1,5 +1,9 @@
 # Change log
 
+## Sprinted
+
+## Backlog
+
 - [ ] Shortcuts: Customizable icon/color
 - [ ] DataProviders: How to use them as commands?
 - [ ] Bound services: How to use them as commands?

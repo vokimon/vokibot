@@ -1,5 +1,3 @@
-# Change log
-
 ## 0.2.0 (2026-05-29)
 
 Improved application commands edition
@@ -16,15 +14,3 @@ Improved application commands edition
 - 🚸 ApplicationCommand: Autocompletion for Uri protocols and Mime fields
 - 🌐 SettingsPage: translated page and category names
 
-## 0.1.0 (2026-05-19)
-
-- ✨ Automations: Relate triggers to commands
-- ✨ NfcTrigger: Runs a command when approaching an NFC tag
-- ✨ NfcTrigger: Autodetect NFC tags for quick setup
-- ✨ ShortcutTrigger: Run a command from a home screen shortcut
-- ✨ ShortcutTrigger: On creation also creates the Shortcuts in the Launcher
-- ✨ ApplicationCommand: Launches an Application
-- ✨ ApplicationCommand: Configure by browsing installed applications and their components
-- ✨ SettingsPageCommand: Opens a system configuration page
-- 🌐 Translations: an, ar, ca, de, en, es, eu, fr, gl, pt, ru, andaluh
-- 💄 Material3 theming (light and dark)
