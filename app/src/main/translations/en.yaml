@@ -247,3 +247,4 @@ unknown_command_title: "Unsupported Command"
 unknown_trigger_title: "Unsupported Trigger"
 common_notice_title: Notice
 common_experimental_title: Experimental feature
+application_command_editor_not_implemented: This kind of application component is not implemented yet

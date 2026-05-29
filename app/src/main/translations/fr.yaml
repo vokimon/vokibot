@@ -247,3 +247,4 @@ unknown_command_title: "Commande non prise en charge"
 unknown_trigger_title: "Déclencheur non pris en charge"
 common_notice_title: Avis
 common_experimental_title: Fonctionnalité expérimentale
+application_command_editor_not_implemented: Ce type de composant d'application n'est pas encore implémenté

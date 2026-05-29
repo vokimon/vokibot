@@ -35,6 +35,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
@@ -278,7 +279,7 @@ data class ApplicationCommandEditor(
                     ComponentType.ACTIVITY -> LaunchActivityCommand
                     ComponentType.RECEIVER -> SendBroadcastCommand
                     ComponentType.SERVICE -> StartServiceCommand
-                    ComponentType.PROVIDER -> LaunchActivityCommand
+                    ComponentType.PROVIDER -> AccessProviderCommand
                 }
             EditorHeader(
                 icon = painterResource(commandTypeMeta.iconRes),
@@ -293,100 +294,103 @@ data class ApplicationCommandEditor(
                 },
             )
 
-            Box(
-                modifier =
-                    Modifier
-                        .weight(1f)
-                        .fillMaxWidth(),
-                contentAlignment = Alignment.Center,
-            ) {
-                if (currentComponent?.type == ComponentType.PROVIDER) {
-                    // TODO: Provider: not intent-based but ContentResolver
-                    Text(stringResource(R.string.not_yet_implemented))
-                } else {
-                    Column(
-                        modifier = Modifier.verticalScroll(rememberScrollState()),
-                        verticalArrangement = Arrangement.spacedBy(16.dp),
+            ComponentSelector(
+                packageName = packageName,
+                component = currentComponent,
+                onSelect = {
+                    nav.push(AppList) { selection ->
+                        selection?.let {
+                            isDirty = true
+                            packageName = it.packageName
+                            componentName = it.componentName
+                        }
+                    }
+                },
+            )
+            // TODO: Provider: not intent-based but ContentResolver
+            if (componentType == ComponentType.PROVIDER) {
+                Box(
+                    modifier =
+                        Modifier
+                            .weight(1f)
+                            .fillMaxWidth(),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    Text(
+                        stringResource(R.string.application_command_editor_not_implemented),
+                        textAlign = TextAlign.Center,
+                    )
+                }
+            } else {
+                Column(
+                    modifier = Modifier.verticalScroll(rememberScrollState()).weight(1f),
+                    verticalArrangement = Arrangement.spacedBy(16.dp),
+                ) {
+                    IntentActionSelector(
+                        supportedActions = actionsToShow,
+                        action = actionStr,
+                        onActionChanged = {
+                            actionStr = it
+                            isDirty = true
+                        },
+                    )
+                    // Data information not for Services
+                    if (componentType != ComponentType.SERVICE) {
+                        val dataUriRequired =
+                            StandardActions.get(actionStr)?.probeStrategy == ProbeStrategy.REQUIRES_URI
+                        IntentDataEditor(
+                            dataUri = intentData,
+                            mimeType = intentMime,
+                            onDataChanged = {
+                                intentData = it
+                                isDirty = true
+                            },
+                            onMimeChanged = {
+                                intentMime = it
+                                isDirty = true
+                            },
+                            dataUriRequired = dataUriRequired,
+                            allowedSchemes = StandardActions.get(actionStr)?.allowedSchemes,
+                            // Only activities meaningfully use MIME type
+                            showMime = componentType == ComponentType.ACTIVITY,
+                        )
+                    }
+                    ExtrasEditor(
+                        specs = allSpecs,
+                        extras = extrasState,
+                        onExtraChanged = { key, value ->
+                            extrasState = extrasState + (key to value)
+                            isDirty = true
+                        },
+                        onAddExtra = { spec ->
+                            isDirty = true
+                            customExtraSpecs = customExtraSpecs + spec
+                            extrasState = extrasState + (spec.key to spec.defaultValue())
+                        },
+                    )
+                    OutlinedButton(
+                        onClick = {
+                            scope.launch {
+                                currentComponent?.let {
+                                    val command = buildCommand(it)
+                                    try {
+                                        command.execute(context)
+                                    } catch (e: Exception) {
+                                        e.printStackTrace()
+                                        UserMessage.Info(e.message ?: runErrorFallback).post()
+                                    }
+                                }
+                            }
+                        },
+                        enabled = currentComponent != null,
+                        modifier = Modifier.fillMaxWidth(),
                     ) {
-                        ComponentSelector(
-                            packageName = packageName,
-                            component = currentComponent,
-                            onSelect = {
-                                nav.push(AppList) { selection ->
-                                    selection?.let {
-                                        isDirty = true
-                                        packageName = it.packageName
-                                        componentName = it.componentName
-                                    }
-                                }
-                            },
+                        Icon(
+                            painter = painterResource(R.drawable.ic_play_arrow),
+                            contentDescription = null,
                         )
-                        IntentActionSelector(
-                            supportedActions = actionsToShow,
-                            action = actionStr,
-                            onActionChanged = {
-                                actionStr = it
-                                isDirty = true
-                            },
-                        )
-                        // Data information not for Services
-                        if (componentType != ComponentType.SERVICE) {
-                            val dataUriRequired =
-                                StandardActions.get(actionStr)?.probeStrategy == ProbeStrategy.REQUIRES_URI
-                            IntentDataEditor(
-                                dataUri = intentData,
-                                mimeType = intentMime,
-                                onDataChanged = {
-                                    intentData = it
-                                    isDirty = true
-                                },
-                                onMimeChanged = {
-                                    intentMime = it
-                                    isDirty = true
-                                },
-                                dataUriRequired = dataUriRequired,
-                                allowedSchemes = StandardActions.get(actionStr)?.allowedSchemes,
-                                // Only activities meaningfully use MIME type
-                                showMime = componentType == ComponentType.ACTIVITY,
-                            )
-                        }
-                        ExtrasEditor(
-                            specs = allSpecs,
-                            extras = extrasState,
-                            onExtraChanged = { key, value ->
-                                extrasState = extrasState + (key to value)
-                                isDirty = true
-                            },
-                            onAddExtra = { spec ->
-                                isDirty = true
-                                customExtraSpecs = customExtraSpecs + spec
-                                extrasState = extrasState + (spec.key to spec.defaultValue())
-                            },
-                        )
-                        OutlinedButton(
-                            onClick = {
-                                scope.launch {
-                                    currentComponent?.let {
-                                        val command = buildCommand(it)
-                                        try {
-                                            command.execute(context)
-                                        } catch (e: Exception) {
-                                            e.printStackTrace()
-                                            UserMessage.Info(e.message ?: runErrorFallback).post()
-                                        }
-                                    }
-                                }
-                            },
-                            enabled = currentComponent != null,
-                            modifier = Modifier.fillMaxWidth(),
-                        ) {
-                            Icon(
-                                painter = painterResource(R.drawable.ic_play_arrow),
-                                contentDescription = null,
-                            )
-                            Spacer(Modifier.width(8.dp))
-                            Text(stringResource(R.string.intent_editor_try))
-                        }
+                        Spacer(Modifier.width(8.dp))
+                        Text(stringResource(R.string.intent_editor_try))
                     }
                 }
             }

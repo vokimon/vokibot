@@ -247,3 +247,4 @@ unknown_command_title: "أمر غير مدعوم"
 unknown_trigger_title: "محفز غير مدعوم"
 common_notice_title: تنبيه
 common_experimental_title: ميزة تجريبية
+application_command_editor_not_implemented: لم يتم تنفيذ نوع مكون التطبيق هذا بعد

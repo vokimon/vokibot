@@ -247,3 +247,4 @@ unknown_command_title: "Comandament no suportat"
 unknown_trigger_title: "Disparament no suportat"
 common_notice_title: Avís
 common_experimental_title: Funcionalitat experimental
+application_command_editor_not_implemented: Aquest tipus de component d'aplicació encara no està implementat

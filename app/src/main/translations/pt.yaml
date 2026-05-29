@@ -247,3 +247,4 @@ unknown_command_title: "Comando não suportado"
 unknown_trigger_title: "Acionador não suportado"
 common_notice_title: Aviso
 common_experimental_title: Funcionalidade experimental
+application_command_editor_not_implemented: Este tipo de componente de aplicação ainda não está implementado

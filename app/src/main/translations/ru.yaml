@@ -247,3 +247,4 @@ unknown_command_title: "Команда не поддерживается"
 unknown_trigger_title: "Триггер не поддерживается"
 common_notice_title: Внимание
 common_experimental_title: Экспериментальная функция
+application_command_editor_not_implemented: Этот тип компонента приложения ещё не реализован
