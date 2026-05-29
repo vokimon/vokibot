@@ -6,8 +6,9 @@ keywords:
 - nfc
 - timer
 - shortcut
+website: https://vokibot.canvoki.net
 fdroid_categories:
-- Navigation
+- System
 submodules: true
 fdroid_fields:
   AuthorEmail: fdroid@canvoki.net
