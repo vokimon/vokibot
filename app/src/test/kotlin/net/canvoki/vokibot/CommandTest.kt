@@ -13,12 +13,6 @@ class CommandTest {
             listOfNotNull(
                 "access_provider",
                 "launch_activity",
-                // TODO: Remove this when transition ends
-                if (FeatureFlag.enableDirectActivitySelection) {
-                    "launch_activity_old"
-                } else {
-                    null
-                },
                 "send_broadcast",
                 "settings_page",
                 "start_service",
