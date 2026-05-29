@@ -180,19 +180,25 @@ data class ApplicationCommandEditor(
         }
 
         val actionsToShow =
-            remember(currentComponent?.actions) {
-                val mapped =
-                    currentComponent?.let {
-                        it.actions.mapNotNull { actionStr ->
-                            StandardActions.all().find { a -> a.action == actionStr }
-                        }
-                    } ?: emptyList<ActionDefinition>()
+            remember(currentComponent?.actions, componentType) {
+                if (componentType != ComponentType.ACTIVITY) {
+                    emptyList()
+                } else {
+                    val mapped =
+                        currentComponent?.let {
+                            it.actions.mapNotNull { actionStr ->
+                                StandardActions.all().find { a -> a.action == actionStr }
+                            }
+                        } ?: emptyList<ActionDefinition>()
 
-                if (mapped.isNotEmpty()) mapped else StandardActions.all()
+                    if (mapped.isNotEmpty()) mapped else StandardActions.all()
+                }
             }
 
         LaunchedEffect(currentComponent) {
-            if (currentComponent != null && commandId == null && actionStr == null) {
+            if (currentComponent != null && commandId == null && actionStr == null &&
+                componentType == ComponentType.ACTIVITY
+            ) {
                 actionStr = actionsToShow.firstOrNull()?.action
             }
         }
