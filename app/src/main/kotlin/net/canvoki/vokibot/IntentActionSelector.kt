@@ -27,50 +27,56 @@ fun IntentActionSelector(
     action: String?,
     onActionChanged: (String?) -> Unit,
 ) {
-    var expanded by remember { mutableStateOf(false) }
-
     val selected = selectableActions.find { it.action == action }
 
     Column {
         SectionHeader(stringResource(R.string.intent_editor_action_label))
 
-        Spacer(modifier = Modifier.height(8.dp))
+        if (selectableActions.isNotEmpty()) {
+            var expanded by remember { mutableStateOf(false) }
 
-        @OptIn(ExperimentalMaterial3Api::class)
-        ExposedDropdownMenuBox(
-            expanded = expanded,
-            onExpandedChange = { expanded = it },
-        ) {
-            OutlinedTextField(
-                value =
-                    selected?.let { stringResource(it.labelRes) }
-                        ?: stringResource(R.string.intent_editor_custom_or_none),
-                onValueChange = {},
-                readOnly = true,
-                label = { Text(stringResource(R.string.intent_editor_action_label)) },
-                trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
-                modifier = Modifier.menuAnchor(type = ExposedDropdownMenuAnchorType.PrimaryNotEditable).fillMaxWidth(),
-            )
-            ExposedDropdownMenu(
+            Spacer(modifier = Modifier.height(8.dp))
+
+            @OptIn(ExperimentalMaterial3Api::class)
+            ExposedDropdownMenuBox(
                 expanded = expanded,
-                onDismissRequest = { expanded = false },
+                onExpandedChange = { expanded = it },
             ) {
-                selectableActions.forEach { actionDef ->
+                OutlinedTextField(
+                    value =
+                        selected?.let { stringResource(it.labelRes) }
+                            ?: stringResource(R.string.intent_editor_custom_or_none),
+                    onValueChange = {},
+                    readOnly = true,
+                    label = { Text(stringResource(R.string.intent_editor_action_label)) },
+                    trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
+                    modifier =
+                        Modifier
+                            .menuAnchor(
+                                type = ExposedDropdownMenuAnchorType.PrimaryNotEditable,
+                            ).fillMaxWidth(),
+                )
+                ExposedDropdownMenu(
+                    expanded = expanded,
+                    onDismissRequest = { expanded = false },
+                ) {
+                    selectableActions.forEach { actionDef ->
+                        DropdownMenuItem(
+                            text = { Text(stringResource(actionDef.labelRes)) },
+                            onClick = {
+                                expanded = false
+                                onActionChanged(actionDef.action)
+                            },
+                        )
+                    }
                     DropdownMenuItem(
-                        text = { Text(stringResource(actionDef.labelRes)) },
+                        text = { Text(stringResource(R.string.intent_editor_custom_or_none)) },
                         onClick = {
                             expanded = false
-                            onActionChanged(actionDef.action)
+                            onActionChanged(null)
                         },
                     )
                 }
-                DropdownMenuItem(
-                    text = { Text(stringResource(R.string.intent_editor_custom_or_none)) },
-                    onClick = {
-                        expanded = false
-                        onActionChanged(null)
-                    },
-                )
             }
         }
 
