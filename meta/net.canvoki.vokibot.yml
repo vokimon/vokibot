@@ -13,28 +13,22 @@ AutoName: Voki Bot
 
 RepoType: git
 Repo: https://github.com/vokimon/vokibot.git
-Binaries: https://github.com/vokimon/vokibot/releases/download/vokibot-%v/net.canvoki.vokibot-%v-release.apk
+Binaries: 
+  https://github.com/vokimon/vokibot/releases/download/vokibot-%v/net.canvoki.vokibot-floss-%v-release.apk
 
 Builds:
-  - versionName: 0.1.0
-    versionCode: 10000
-    commit: vokibot-0.1.0
-    subdir: .
-    submodules: true
-    gradle:
-      - yes
-
   - versionName: 0.2.0
     versionCode: 20000
-    commit: vokibot-0.2.0
-    subdir: .
+    commit: 9bc3acfa88498537963d0d7b806cddf11d34e603
+    subdir: app
     submodules: true
     gradle:
-      - yes
+      - floss
 
 AllowedAPKSigningKeys: 9754033f7e40da57540f9bc23ea5a359368f502501fa7d122544899bc8d3c1f1
 
 AutoUpdateMode: Version
-UpdateCheckMode: Tags
+UpdateCheckMode: Tags vokibot-([\d.]+)
+UpdateCheckData: version.properties|versionCode=(\d+)|.|versionName=([\d.]+)
 CurrentVersion: 0.2.0
 CurrentVersionCode: 20000

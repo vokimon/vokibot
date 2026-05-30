@@ -14,3 +14,10 @@ fdroid_fields:
   AuthorEmail: fdroid@canvoki.net
   AuthorName: David García Garzón
   AuthorWebSite: https://canvoki.net/coder
+  UpdateCheckMode: Tags vokibot-([\d.]+)
+  Binaries: https://github.com/vokimon/vokibot/releases/download/vokibot-%v/net.canvoki.vokibot-floss-%v-release.apk
+  UpdateCheckData: 'version.properties|versionCode=(\d+)|.|versionName=([\d.]+)'
+fdroid_extra_build:
+  subdir: app
+  gradle:
+    - floss
