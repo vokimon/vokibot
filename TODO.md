@@ -18,11 +18,16 @@
 - [ ] ApplicationCommand: Overwrite dialog: if not confirm, back to ask the name not full cancell
 - [ ] AppList: Filter sheet gets cropped on landscape
 - [ ] Action to stop a service
+- [ ] Extract list group item and reuse it
 - [ ] Trigger: Connected Bluetooth
     - [x] Detect bluetooth connection
     - [x] BluetoothDeviceTrigger
-    - [ ] BluetoothDeviceTriggerEditor
-
+    - [x] BluetoothDeviceTriggerEditor
+    - [x] BluetoothDeviceTriggerEditor list of bound devices
+    - [x] BluetoothDeviceTriggerEditor ask for grants
+    - [ ] BluetoothDeviceTriggerEditor list of devices
+    - [ ] BluetoothDeviceTriggerEditor disable "Save" until fields filed
+    - [ ] Bluetooth detector launches activitites
 - More commands:
     - [ ] Airplaine mode on/off
     - [ ] Enable/Disable/Connect Bluetooth 

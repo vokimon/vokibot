@@ -11,7 +11,7 @@
 Android automation tool
 
 Start any application on approaching the device to an NFC tag or
-running a home screen shortcut.
+running a home screen shortcut or when connecting to a Bluetooth device.
 
 This project aims to be "on any trigger do anything",
 but let's start humble.
@@ -22,6 +22,7 @@ but let's start humble.
 - Triggers:
     - NFC tags (configure by tapping)
     - Shortcuts (launcher icons)
+    - Bluetooth device (on connect to them)
 - Commands:
     - Run application components (Activities, Services, Receivers)
     - Open system configuration pages

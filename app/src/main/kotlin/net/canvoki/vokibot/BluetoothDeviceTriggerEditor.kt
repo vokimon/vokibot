@@ -1,12 +1,26 @@
 package net.canvoki.vokibot
 
+import android.Manifest
+import android.bluetooth.BluetoothAdapter
+import android.content.pm.PackageManager
+import android.os.Build
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.background
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.Button
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -16,9 +30,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.ImeAction
+import androidx.core.content.ContextCompat
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
 import kotlinx.serialization.Serializable
@@ -41,6 +57,33 @@ data class BluetoothDeviceTriggerEditor(
         var isDirty by remember { mutableStateOf(false) }
         var showDiscardDialog by remember { mutableStateOf(false) }
         var hasLoaded by rememberSaveable { mutableStateOf(false) }
+
+        fun checkBtConnectGranted(): Boolean =
+            if (Build.VERSION.SDK_INT >= 31) {
+                ContextCompat.checkSelfPermission(
+                    context, Manifest.permission.BLUETOOTH_CONNECT,
+                ) == PackageManager.PERMISSION_GRANTED
+            } else true
+
+        var btConnectGranted by remember { mutableStateOf(checkBtConnectGranted()) }
+
+        val permissionLauncher =
+            rememberLauncherForActivityResult(
+                contract = ActivityResultContracts.RequestPermission(),
+            ) { granted ->
+                btConnectGranted = granted
+            }
+
+        val bluetoothAdapter = remember { BluetoothAdapter.getDefaultAdapter() }
+        val bondedDevices = remember(btConnectGranted) {
+            if (!btConnectGranted) {
+                emptyList()
+            } else {
+                bluetoothAdapter
+                    ?.bondedDevices
+                    ?.sortedBy { it.name?.lowercase() } ?: emptyList()
+            }
+        }
 
         LaunchedEffect(triggerId) {
             if (triggerId != null && !hasLoaded) {
@@ -75,8 +118,11 @@ data class BluetoothDeviceTriggerEditor(
             onDismiss = { showDiscardDialog = false },
         )
 
-        Column(
-            modifier = Modifier.fillMaxSize().padding(8.dp),
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .verticalScroll(rememberScrollState())
+                    .padding(8.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             EditorHeader(
@@ -129,6 +175,56 @@ data class BluetoothDeviceTriggerEditor(
                         imeAction = ImeAction.Done,
                     ),
             )
+
+            if (!btConnectGranted) {
+                Button(
+                    onClick = {
+                        permissionLauncher.launch(Manifest.permission.BLUETOOTH_CONNECT)
+                    },
+                ) {
+                    Text("Permissions to list devices")
+                }
+            } else if (bondedDevices.isNotEmpty()) {
+                HorizontalDivider()
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(MaterialTheme.colorScheme.surface),
+                ) {
+                    Text(
+                        text = "Paired devices",
+                        style = MaterialTheme.typography.titleSmall,
+                        color = MaterialTheme.colorScheme.primary,
+                        modifier = Modifier.weight(1f).padding(vertical = 8.dp),
+                    )
+                }
+                Column {
+                    bondedDevices.forEachIndexed { index, device ->
+                        if (index > 0) HorizontalDivider()
+                        val deviceName = device.name ?: device.address
+                        Surface(
+                            onClick = {
+                                name = deviceName
+                                mac = device.address
+                                isDirty = true
+                            },
+                            color = Color.Transparent,
+                        ) {
+                            Column(modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)) {
+                                Text(
+                                    text = deviceName,
+                                    style = MaterialTheme.typography.bodyLarge,
+                                )
+                                Text(
+                                    text = device.address,
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                )
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
