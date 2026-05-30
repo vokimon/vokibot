@@ -15,7 +15,8 @@ data class BluetoothDeviceTrigger(
         override val entityClass = BluetoothDeviceTrigger::class
         override val labelRes = R.string.triggerlist_option_bluetooth_device
         override val iconRes = R.drawable.ic_bluetooth
-        override val editorFactory = { _: String? -> NotYetImplementedEditor }
+        override val editorFactory =
+            { triggerId: String? -> BluetoothDeviceTriggerEditor(triggerId) }
         override val deserializer = { jsonString: String -> fromJson(jsonString) }
         override val helpRes = R.string.trigger_bluetooth_device_help
 
@@ -23,8 +24,7 @@ data class BluetoothDeviceTrigger(
 
         fun register() = StorableEntity.register(this)
 
-        fun fromJson(jsonString: String): BluetoothDeviceTrigger =
-            JsonConfig.decodeFromString(serializer(), jsonString)
+        fun fromJson(jsonString: String): BluetoothDeviceTrigger = JsonConfig.decodeFromString(serializer(), jsonString)
     }
 
     override val type: String = BluetoothDeviceTrigger.typeKey

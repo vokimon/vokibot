@@ -1,5 +1,9 @@
 # Change log
 
+## unreleased
+
+- ✨ New Trigger: Bluetooth Device Connected
+
 ## 0.2.0 (2026-05-29)
 
 Improved application commands edition
