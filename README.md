@@ -36,6 +36,13 @@ Some of the options presented might not be fully functional yet,
 like calling services, providers, broadcast or any activity requiring additional information.
 Those components are shown but might not work.
 
+<p align="center">
+<img width="22%" alt="Editing an automation to set car mode: music, map and " src="media/vokibot-automation-edit-car.png" />
+<img width="22%" alt="Configuring a command to change the product in carburoid" src="media/vokibot-command-carburoid-change-product.png" />
+<img width="22%" alt="Editing command to open a settings page" src="media/vokibot-settings-page.png" />
+<img width="22%" alt="Editing an NFC trigger with autodetection" src="media/vokibot-trigger-nfc-autodetect.png" />
+</p>
+
 ## License
 
 Copyright © 2025-2026 David García Garzón
