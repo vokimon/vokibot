@@ -33,9 +33,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import net.canvoki.shared.component.AppScaffold
 import net.canvoki.shared.component.WatermarkBox
 
@@ -93,27 +90,13 @@ private fun NfcActivityScreen(
             return@LaunchedEffect
         }
 
-        val automations =
-            repository.automation
-                .all()
-                .filter { it.triggerType == NfcTrigger.typeKey && it.triggerId == trigger.id }
-
-        if (automations.isEmpty()) {
+        executionState = ExecutionState.Executing
+        val hadAutomations = Automation.executeByTrigger(repository, trigger.id, context) {
+            (context as? ComponentActivity)?.runOnUiThread { onAutomationExecuted() }
+        }
+        if (!hadAutomations) {
             executionState = ExecutionState.NoAutomation
             return@LaunchedEffect
-        }
-
-        executionState = ExecutionState.Executing
-
-        CoroutineScope(Dispatchers.IO).launch {
-            automations.forEach { automation ->
-                automation.commandIds.forEach { cmdId ->
-                    repository.command.load(cmdId)?.execute(context)
-                }
-            }
-            (context as? ComponentActivity)?.runOnUiThread {
-                onAutomationExecuted()
-            }
         }
     }
 

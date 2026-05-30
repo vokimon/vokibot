@@ -2,8 +2,12 @@ package net.canvoki.vokibot
 
 import android.content.Context
 import androidx.annotation.DrawableRes
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
+import net.canvoki.shared.log
 import java.util.UUID
 
 @Serializable
@@ -43,5 +47,25 @@ data class Automation(
         override val helpRes = R.string.automation_help
 
         fun fromJson(jsonString: String): Automation = JsonConfig.decodeFromString(serializer(), jsonString)
+
+        fun executeByTrigger(
+            repo: FileDataRepository,
+            triggerId: String,
+            context: Context,
+            onExecuted: (() -> Unit)? = null,
+        ): Boolean {
+            val automations = repo.automation.all().filter { it.triggerId == triggerId }
+            if (automations.isEmpty()) return false
+            log("Automation.executeByTrigger: Dispatching ${automations.size} automation(s) for $triggerId")
+            CoroutineScope(Dispatchers.IO).launch {
+                automations.forEach { automation ->
+                    automation.commandIds.forEach { cmdId ->
+                        repo.command.load(cmdId)?.execute(context)
+                    }
+                }
+                onExecuted?.invoke()
+            }
+            return true
+        }
     }
 }
