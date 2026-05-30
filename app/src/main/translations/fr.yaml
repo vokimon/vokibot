@@ -248,3 +248,5 @@ unknown_trigger_title: "Déclencheur non pris en charge"
 common_notice_title: Avis
 common_experimental_title: Fonctionnalité expérimentale
 application_command_editor_not_implemented: Ce type de composant d'application n'est pas encore implémenté
+triggerlist_option_bluetooth_device: Appareil Bluetooth
+trigger_bluetooth_device_help: Déclenche des automatisations lorsqu'un appareil Bluetooth spécifique se connecte.

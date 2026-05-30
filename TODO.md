@@ -18,6 +18,10 @@
 - [ ] ApplicationCommand: Overwrite dialog: if not confirm, back to ask the name not full cancell
 - [ ] AppList: Filter sheet gets cropped on landscape
 - [ ] Action to stop a service
+- [ ] Trigger: Connected Bluetooth
+    - [x] Detect bluetooth connection
+    - [x] BluetoothDeviceTrigger
+    - [ ] BluetoothDeviceTriggerEditor
 
 - More commands:
     - [ ] Airplaine mode on/off
@@ -33,7 +37,6 @@
     - [ ] SMS received
     - [ ] Batery level
     - [ ] Power status
-    - [ ] Connected Bluetooth
     - [ ] Bluetooth Enabled
     - [ ] NFC Enabled
     - [ ] Connectivity type

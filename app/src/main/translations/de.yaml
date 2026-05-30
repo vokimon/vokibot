@@ -248,3 +248,5 @@ unknown_trigger_title: "Nicht unterstützter Auslöser"
 common_notice_title: Hinweis
 common_experimental_title: Experimentelle Funktion
 application_command_editor_not_implemented: Dieser Typ von Anwendungskomponente ist noch nicht implementiert
+triggerlist_option_bluetooth_device: Bluetooth-Gerät
+trigger_bluetooth_device_help: Startet Automatisierungen, wenn ein bestimmtes Bluetooth-Gerät verbunden wird.

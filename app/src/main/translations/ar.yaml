@@ -248,3 +248,5 @@ unknown_trigger_title: "محفز غير مدعوم"
 common_notice_title: تنبيه
 common_experimental_title: ميزة تجريبية
 application_command_editor_not_implemented: لم يتم تنفيذ نوع مكون التطبيق هذا بعد
+triggerlist_option_bluetooth_device: جهاز بلوتوث
+trigger_bluetooth_device_help: يشتغل عند اتصال جهاز بلوتوث محدد.

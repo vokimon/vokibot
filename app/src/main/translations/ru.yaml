@@ -248,3 +248,5 @@ unknown_trigger_title: "Триггер не поддерживается"
 common_notice_title: Внимание
 common_experimental_title: Экспериментальная функция
 application_command_editor_not_implemented: Этот тип компонента приложения ещё не реализован
+triggerlist_option_bluetooth_device: Устройство Bluetooth
+trigger_bluetooth_device_help: Запускает автоматизации при подключении конкретного устройства Bluetooth.

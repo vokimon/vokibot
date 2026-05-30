@@ -248,3 +248,5 @@ unknown_trigger_title: "Abiarazlea ez da onartzen"
 common_notice_title: Oharra
 common_experimental_title: Funtsio esperimentala
 application_command_editor_not_implemented: Aplikazio-osagai mota hau ez da oraindik inplementatu
+triggerlist_option_bluetooth_device: Bluetooth gailua
+trigger_bluetooth_device_help: Automatizazioak abiarazten ditu Bluetooth gailu zehatz bat konektatzen denean.

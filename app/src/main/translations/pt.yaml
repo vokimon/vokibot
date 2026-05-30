@@ -248,3 +248,5 @@ unknown_trigger_title: "Acionador não suportado"
 common_notice_title: Aviso
 common_experimental_title: Funcionalidade experimental
 application_command_editor_not_implemented: Este tipo de componente de aplicação ainda não está implementado
+triggerlist_option_bluetooth_device: Dispositivo Bluetooth
+trigger_bluetooth_device_help: Aciona automações quando um dispositivo Bluetooth específico se conecta.
