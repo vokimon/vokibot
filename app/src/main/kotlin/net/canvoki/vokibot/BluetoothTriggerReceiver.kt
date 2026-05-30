@@ -25,5 +25,11 @@ class BluetoothTriggerReceiver : BroadcastReceiver() {
 
         val name = device.name ?: device.address
         log("Bluetooth connected: $name (${device.address})")
+
+        val repo = FileDataRepository.fromContext(context)
+        val triggerId = BluetoothDeviceTrigger.idFromMac(device.address)
+        if (!Automation.executeByTrigger(repo, triggerId, context)) {
+            log("BluetoothTriggerReceiver: No automation for $name (${device.address})")
+        }
     }
 }
