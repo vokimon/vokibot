@@ -12,6 +12,12 @@
     <uses-permission android:name="android.permission.NFC" />
     <uses-feature android:name="android.hardware.nfc" android:required="false" />
 
+    <!-- Bluetooth Detection -->
+    <uses-permission android:name="android.permission.BLUETOOTH"
+        android:maxSdkVersion="30" />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-feature android:name="android.hardware.bluetooth" android:required="false" />
+
     <!--
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -82,6 +88,15 @@
                 <action android:name="net.canvoki.vokibot.ACTION_SHORTCUT_TRIGGER" />
             </intent-filter>
         </activity>
+
+        <!-- Bluetooth Trigger Receiver -->
+        <receiver
+            android:name=".BluetoothTriggerReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.bluetooth.device.action.ACL_CONNECTED" />
+            </intent-filter>
+        </receiver>
 
     </application>
 
