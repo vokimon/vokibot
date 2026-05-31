@@ -19,7 +19,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Button
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -87,22 +86,6 @@ data class BluetoothDeviceTriggerEditor(
         val connectPermissionLauncher =
             permissionRequestLauncher { granted ->
                 connectPermissionGranted = granted
-            }
-
-        fun checkScanPermission(): Boolean {
-            val permission =
-                if (Build.VERSION.SDK_INT >= 31) {
-                    Manifest.permission.BLUETOOTH_SCAN
-                } else {
-                    Manifest.permission.ACCESS_FINE_LOCATION
-                }
-            return ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED
-        }
-        var scanPermissionGranted by remember { mutableStateOf(checkScanPermission()) }
-
-        val scanPermissionLauncher =
-            permissionRequestLauncher { granted ->
-                scanPermissionGranted = granted
             }
 
         val bluetoothAdapter =
@@ -234,7 +217,11 @@ data class BluetoothDeviceTriggerEditor(
                                 connectPermissionLauncher.launch(Manifest.permission.BLUETOOTH_CONNECT)
                             },
                         ) {
-                            Text("Grant permission")
+                            Text(
+                                text = "Grant permission",
+                                style = MaterialTheme.typography.bodySmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            )
                         }
                     }
                 }
@@ -252,37 +239,6 @@ data class BluetoothDeviceTriggerEditor(
                                     isDirty = true
                                 },
                             )
-                        }
-                    }
-
-                    HorizontalDivider()
-                    Row(
-                        modifier =
-                            Modifier
-                                .fillMaxWidth()
-                                .background(MaterialTheme.colorScheme.surface),
-                        verticalAlignment = Alignment.CenterVertically,
-                    ) {
-                        Text(
-                            text = "Other nearby devices",
-                            style = MaterialTheme.typography.titleSmall,
-                            color = MaterialTheme.colorScheme.primary,
-                            modifier = Modifier.weight(1f),
-                        )
-                        TextButton(
-                            onClick = {
-                                val permission =
-                                    when {
-                                        Build.VERSION.SDK_INT >= 31 -> Manifest.permission.BLUETOOTH_SCAN
-                                        else -> Manifest.permission.ACCESS_FINE_LOCATION
-                                    }
-                                if (!scanPermissionGranted) {
-                                    scanPermissionLauncher.launch(permission)
-                                }
-                                // TODO: start discovery — next step
-                            },
-                        ) {
-                            Text("Scan")
                         }
                     }
                 }
