@@ -31,7 +31,11 @@ data class BluetoothDeviceTrigger(
     override val iconRes: Int get() = bluetoothDeviceIcon(bluetoothDeviceFromMac(macAddress))
     override val id: String get() = idFromMac(macAddress)
 
-    override fun getTitle(context: Context): String = name
+    override fun getTitle(context: Context): String {
+        val device = bluetoothDeviceFromMac(macAddress)
+        val label = device?.let { bluetoothDeviceLabelRes(it) }?.let { context.getString(it) }
+        return if (label != null) "$name ($label)" else name
+    }
 
     override val description: String get() = macAddress
 
