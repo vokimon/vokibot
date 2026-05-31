@@ -4,11 +4,13 @@ import android.Manifest
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothManager
+import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Build
+import android.provider.Settings
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -33,7 +35,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -82,10 +83,12 @@ data class BluetoothDeviceTriggerEditor(
             }
 
         var connectPermissionGranted by remember { mutableStateOf(checkConnectPermission()) }
+        var permissionDenied by remember { mutableStateOf(false) }
 
         val connectPermissionLauncher =
             permissionRequestLauncher { granted ->
                 connectPermissionGranted = granted
+                if (!granted) permissionDenied = true
             }
 
         val bluetoothAdapter =
@@ -198,34 +201,12 @@ data class BluetoothDeviceTriggerEditor(
 
             if (bluetoothAdapter != null) {
                 HorizontalDivider()
-                Row(
-                    modifier =
-                        Modifier
-                            .fillMaxWidth()
-                            .background(MaterialTheme.colorScheme.surface),
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
+                if (connectPermissionGranted) {
                     Text(
                         text = "Paired devices",
                         style = MaterialTheme.typography.titleSmall,
                         color = MaterialTheme.colorScheme.primary,
-                        modifier = Modifier.weight(1f),
                     )
-                    if (!connectPermissionGranted) {
-                        TextButton(
-                            onClick = {
-                                connectPermissionLauncher.launch(Manifest.permission.BLUETOOTH_CONNECT)
-                            },
-                        ) {
-                            Text(
-                                text = "Grant permission",
-                                style = MaterialTheme.typography.bodySmall,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                            )
-                        }
-                    }
-                }
-                if (connectPermissionGranted) {
                     Column {
                         bondedDevices.forEachIndexed { index, device ->
                             if (index > 0) HorizontalDivider()
@@ -240,6 +221,32 @@ data class BluetoothDeviceTriggerEditor(
                                 },
                             )
                         }
+                    }
+                } else {
+                    Text(
+                        text = "This trigger requires permission to access Bluetooth subsystem.",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                    TextButton(
+                        onClick = {
+                            if (permissionDenied) {
+                                Settings.ACTION_APPLICATION_DETAILS_SETTINGS.let { action ->
+                                    Intent(action).apply {
+                                        data = Uri.fromParts("package", context.packageName, null)
+                                        context.startActivity(this)
+                                    }
+                                }
+                            } else {
+                                connectPermissionLauncher.launch(Manifest.permission.BLUETOOTH_CONNECT)
+                            }
+                        },
+                    ) {
+                        Text(
+                            text = "Grant permission",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
                     }
                 }
             }
@@ -271,9 +278,10 @@ private fun BluetoothDeviceItem(
                     style = MaterialTheme.typography.bodyLarge,
                 )
                 Text(
-                    text = bluetoothDeviceLabelRes(device)?.let {
-                        "${device.address} - ${stringResource(it)}"
-                    } ?: device.address,
+                    text =
+                        bluetoothDeviceLabelRes(device)?.let {
+                            "${device.address} - ${stringResource(it)}"
+                        } ?: device.address,
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
