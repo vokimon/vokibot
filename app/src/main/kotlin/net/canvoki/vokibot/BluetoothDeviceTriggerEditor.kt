@@ -83,6 +83,21 @@ data class BluetoothDeviceTriggerEditor(
                 btConnectGranted = granted
             }
 
+        fun checkScanGranted(): Boolean = when {
+            Build.VERSION.SDK_INT >= 31 ->
+                ContextCompat.checkSelfPermission(context, Manifest.permission.BLUETOOTH_SCAN) == PackageManager.PERMISSION_GRANTED
+            else ->
+                ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+        }
+        var scanGranted by remember { mutableStateOf(checkScanGranted()) }
+
+        val scanPermissionLauncher =
+            rememberLauncherForActivityResult(
+                contract = ActivityResultContracts.RequestPermission(),
+            ) { granted ->
+                scanGranted = granted
+            }
+
         val bluetoothAdapter = remember {
             val manager = context.getSystemService(BluetoothManager::class.java)
             manager?.adapter
@@ -268,7 +283,16 @@ data class BluetoothDeviceTriggerEditor(
                         modifier = Modifier.weight(1f),
                     )
                     TextButton(
-                        onClick = { },
+                        onClick = {
+                            val permission = when {
+                                Build.VERSION.SDK_INT >= 31 -> Manifest.permission.BLUETOOTH_SCAN
+                                else -> Manifest.permission.ACCESS_FINE_LOCATION
+                            }
+                            if (!scanGranted) {
+                                scanPermissionLauncher.launch(permission)
+                            }
+                            // TODO: start discovery — next step
+                        },
                     ) {
                         Text("Scan")
                     }
