@@ -210,7 +210,7 @@ data class BluetoothDeviceTriggerEditor(
                 Column {
                     bondedDevices.forEachIndexed { index, device ->
                         if (index > 0) HorizontalDivider()
-                        val deviceName = device.name ?: device.address
+                        val deviceName = device.alias ?: device.name ?: device.address
                         Surface(
                             onClick = {
                                 name = deviceName
