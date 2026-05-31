@@ -48,6 +48,13 @@ import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
 import net.canvoki.vokibot.common.EditorHeader
 
+@Composable
+private fun permissionRequestLauncher(onResult: (Boolean) -> Unit) =
+    rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.RequestPermission(),
+        onResult = onResult,
+    )
+
 @Serializable
 data class BluetoothDeviceTriggerEditor(
     val triggerId: String? = null,
@@ -64,7 +71,7 @@ data class BluetoothDeviceTriggerEditor(
         var showDiscardDialog by remember { mutableStateOf(false) }
         var hasLoaded by rememberSaveable { mutableStateOf(false) }
 
-        fun checkBtConnectGranted(): Boolean =
+        fun checkConnectPermission(): Boolean =
             if (Build.VERSION.SDK_INT >= 31) {
                 ContextCompat.checkSelfPermission(
                     context,
@@ -74,37 +81,37 @@ data class BluetoothDeviceTriggerEditor(
                 true
             }
 
-        var btConnectGranted by remember { mutableStateOf(checkBtConnectGranted()) }
+        var connectPermissionGranted by remember { mutableStateOf(checkConnectPermission()) }
 
-        val permissionLauncher =
-            rememberLauncherForActivityResult(
-                contract = ActivityResultContracts.RequestPermission(),
-            ) { granted ->
-                btConnectGranted = granted
+        val connectPermissionLauncher =
+            permissionRequestLauncher { granted ->
+                connectPermissionGranted = granted
             }
 
-        fun checkScanGranted(): Boolean = when {
-            Build.VERSION.SDK_INT >= 31 ->
-                ContextCompat.checkSelfPermission(context, Manifest.permission.BLUETOOTH_SCAN) == PackageManager.PERMISSION_GRANTED
-            else ->
-                ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+        fun checkScanPermission(): Boolean {
+            val permission =
+                if (Build.VERSION.SDK_INT >= 31) {
+                    Manifest.permission.BLUETOOTH_SCAN
+                } else {
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                }
+            return ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED
         }
-        var scanGranted by remember { mutableStateOf(checkScanGranted()) }
+        var scanPermissionGranted by remember { mutableStateOf(checkScanPermission()) }
 
         val scanPermissionLauncher =
-            rememberLauncherForActivityResult(
-                contract = ActivityResultContracts.RequestPermission(),
-            ) { granted ->
-                scanGranted = granted
+            permissionRequestLauncher { granted ->
+                scanPermissionGranted = granted
             }
 
-        val bluetoothAdapter = remember {
-            val manager = context.getSystemService(BluetoothManager::class.java)
-            manager?.adapter
-        }
+        val bluetoothAdapter =
+            remember {
+                val manager = context.getSystemService(BluetoothManager::class.java)
+                manager?.adapter
+            }
         val bondedDevices =
-            remember(btConnectGranted) {
-                if (!btConnectGranted) {
+            remember(connectPermissionGranted) {
+                if (!connectPermissionGranted) {
                     emptyList()
                 } else {
                     bluetoothAdapter
@@ -205,68 +212,6 @@ data class BluetoothDeviceTriggerEditor(
                     ),
             )
 
-            if (!btConnectGranted) {
-                Button(
-                    onClick = {
-                        permissionLauncher.launch(Manifest.permission.BLUETOOTH_CONNECT)
-                    },
-                ) {
-                    Text("Permissions to list devices")
-                }
-            } else if (bondedDevices.isNotEmpty()) {
-                HorizontalDivider()
-                Row(
-                    modifier =
-                        Modifier
-                            .fillMaxWidth()
-                            .background(MaterialTheme.colorScheme.surface),
-                ) {
-                    Text(
-                        text = "Paired devices",
-                        style = MaterialTheme.typography.titleSmall,
-                        color = MaterialTheme.colorScheme.primary,
-                        modifier = Modifier.weight(1f).padding(vertical = 8.dp),
-                    )
-                }
-                Column {
-                    bondedDevices.forEachIndexed { index, device ->
-                        if (index > 0) HorizontalDivider()
-                        val deviceName = device.alias ?: device.name ?: device.address
-                        Surface(
-                            onClick = {
-                                name = deviceName
-                                mac = device.address
-                                isDirty = true
-                            },
-                            color = Color.Transparent,
-                        ) {
-                            Row(modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)) {
-                                Icon(
-                                    painter = painterResource(bluetoothDeviceIcon(device)),
-                                    contentDescription = null,
-                                    modifier = Modifier.size(40.dp).padding(end = 12.dp),
-                                    tint = MaterialTheme.colorScheme.primary,
-                                )
-                                Column {
-                                    Text(
-                                        text = deviceName,
-                                        style = MaterialTheme.typography.bodyLarge,
-                                    )
-                                    Text(
-                                        text =
-                                            bluetoothDeviceLabelRes(device)?.let {
-                                                "${device.address} - ${stringResource(it)}"
-                                            } ?: device.address,
-                                        style = MaterialTheme.typography.bodySmall,
-                                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                    )
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
             if (bluetoothAdapter != null) {
                 HorizontalDivider()
                 Row(
@@ -277,24 +222,89 @@ data class BluetoothDeviceTriggerEditor(
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Text(
-                        text = "Other nearby devices",
+                        text = "Paired devices",
                         style = MaterialTheme.typography.titleSmall,
                         color = MaterialTheme.colorScheme.primary,
                         modifier = Modifier.weight(1f),
                     )
-                    TextButton(
-                        onClick = {
-                            val permission = when {
-                                Build.VERSION.SDK_INT >= 31 -> Manifest.permission.BLUETOOTH_SCAN
-                                else -> Manifest.permission.ACCESS_FINE_LOCATION
+                    if (!connectPermissionGranted) {
+                        TextButton(
+                            onClick = {
+                                connectPermissionLauncher.launch(Manifest.permission.BLUETOOTH_CONNECT)
+                            },
+                        ) {
+                            Text("Grant permission")
+                        }
+                    }
+                }
+                if (connectPermissionGranted) {
+                    Column {
+                        bondedDevices.forEachIndexed { index, device ->
+                            if (index > 0) HorizontalDivider()
+                            val deviceName = device.alias ?: device.name ?: device.address
+                            Surface(
+                                onClick = {
+                                    name = deviceName
+                                    mac = device.address
+                                    isDirty = true
+                                },
+                                color = Color.Transparent,
+                            ) {
+                                Row(modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)) {
+                                    Icon(
+                                        painter = painterResource(bluetoothDeviceIcon(device)),
+                                        contentDescription = null,
+                                        modifier = Modifier.size(40.dp).padding(end = 12.dp),
+                                        tint = MaterialTheme.colorScheme.primary,
+                                    )
+                                    Column {
+                                        Text(
+                                            text = deviceName,
+                                            style = MaterialTheme.typography.bodyLarge,
+                                        )
+                                        Text(
+                                            text =
+                                                bluetoothDeviceLabelRes(device)?.let {
+                                                    "${device.address} - ${stringResource(it)}"
+                                                } ?: device.address,
+                                            style = MaterialTheme.typography.bodySmall,
+                                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                        )
+                                    }
+                                }
                             }
-                            if (!scanGranted) {
-                                scanPermissionLauncher.launch(permission)
-                            }
-                            // TODO: start discovery — next step
-                        },
+                        }
+                    }
+
+                    HorizontalDivider()
+                    Row(
+                        modifier =
+                            Modifier
+                                .fillMaxWidth()
+                                .background(MaterialTheme.colorScheme.surface),
+                        verticalAlignment = Alignment.CenterVertically,
                     ) {
-                        Text("Scan")
+                        Text(
+                            text = "Other nearby devices",
+                            style = MaterialTheme.typography.titleSmall,
+                            color = MaterialTheme.colorScheme.primary,
+                            modifier = Modifier.weight(1f),
+                        )
+                        TextButton(
+                            onClick = {
+                                val permission =
+                                    when {
+                                        Build.VERSION.SDK_INT >= 31 -> Manifest.permission.BLUETOOTH_SCAN
+                                        else -> Manifest.permission.ACCESS_FINE_LOCATION
+                                    }
+                                if (!scanPermissionGranted) {
+                                    scanPermissionLauncher.launch(permission)
+                                }
+                                // TODO: start discovery — next step
+                            },
+                        ) {
+                            Text("Scan")
+                        }
                     }
                 }
             }
