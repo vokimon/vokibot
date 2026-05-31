@@ -2,6 +2,7 @@ package net.canvoki.vokibot
 
 import android.Manifest
 import android.bluetooth.BluetoothAdapter
+import android.bluetooth.BluetoothManager
 import android.content.pm.PackageManager
 import android.os.Build
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -80,7 +81,10 @@ data class BluetoothDeviceTriggerEditor(
                 btConnectGranted = granted
             }
 
-        val bluetoothAdapter = remember { BluetoothAdapter.getDefaultAdapter() }
+        val bluetoothAdapter = remember {
+            val manager = context.getSystemService(BluetoothManager::class.java)
+            manager?.adapter
+        }
         val bondedDevices =
             remember(btConnectGranted) {
                 if (!btConnectGranted) {
