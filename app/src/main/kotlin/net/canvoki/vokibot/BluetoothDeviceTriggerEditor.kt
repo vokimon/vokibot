@@ -14,12 +14,10 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
@@ -29,7 +27,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -37,7 +34,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -51,6 +47,7 @@ import kotlinx.serialization.Serializable
 import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
 import net.canvoki.vokibot.common.EditorHeader
+import net.canvoki.vokibot.common.WarningBanner
 
 @Composable
 private fun permissionRequestLauncher(onResult: (Boolean) -> Unit) =
@@ -214,51 +211,20 @@ data class BluetoothDeviceTriggerEditor(
                         },
                     )
                 } else {
-                    Surface(
-                        color = MaterialTheme.colorScheme.surfaceVariant,
-                        shape = MaterialTheme.shapes.small,
-                    ) {
-                        Column {
-                            Row(
-                                modifier = Modifier.padding(start = 12.dp, end = 12.dp, top = 12.dp),
-                                verticalAlignment = Alignment.CenterVertically,
-                            ) {
-                                Icon(
-                                    painter = painterResource(R.drawable.ic_warning),
-                                    contentDescription = null,
-                                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
-                                    modifier = Modifier.size(20.dp),
-                                )
-                                Spacer(Modifier.width(8.dp))
-                                Text(
-                                    text = "This trigger requires permission to access Bluetooth subsystem.",
-                                    style = MaterialTheme.typography.bodySmall,
-                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                )
-                            }
-                            Row(
-                                modifier = Modifier.fillMaxWidth().padding(start = 12.dp, end = 12.dp, bottom = 4.dp),
-                                horizontalArrangement = Arrangement.End,
-                            ) {
-                                TextButton(
-                                    onClick = {
-                                        if (permissionDenied) {
-                                            Settings.ACTION_APPLICATION_DETAILS_SETTINGS.let { action ->
-                                                Intent(action).apply {
-                                                    data = Uri.fromParts("package", context.packageName, null)
-                                                    context.startActivity(this)
-                                                }
-                                            }
-                                        } else {
-                                            connectPermissionLauncher.launch(Manifest.permission.BLUETOOTH_CONNECT)
-                                        }
-                                    },
-                                ) {
-                                    Text("Grant permission")
+                    WarningBanner(
+                        message = "This trigger requires permission to access Bluetooth subsystem.",
+                        buttonText = "Grant permission",
+                        onClick = {
+                            if (permissionDenied) {
+                                Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
+                                    data = Uri.fromParts("package", context.packageName, null)
+                                    context.startActivity(this)
                                 }
+                            } else {
+                                connectPermissionLauncher.launch(Manifest.permission.BLUETOOTH_CONNECT)
                             }
-                        }
-                    }
+                        },
+                    )
                 }
             }
         }

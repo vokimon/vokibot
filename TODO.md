@@ -22,8 +22,9 @@
 - [ ] Trigger: Connected Bluetooth
     - [ ] Add bluetooth class description in trigger list and automation editor
     - [ ] Traduccions del bluetoothdevicetriggereditor
-    - [ ] Extract device list as composable
-    - [ ] Extract permissions warning as composable
+    - [ ] Explore if it is easy to combine icons for bluetooth + class icon
+    - [x] Extract device list as composable
+    - [x] Extract permissions warning as composable
 - More commands:
     - [ ] Airplaine mode on/off
     - [ ] Enable/Disable/Connect Bluetooth 
