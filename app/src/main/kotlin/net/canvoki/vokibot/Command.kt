@@ -1,7 +1,6 @@
 package net.canvoki.vokibot
 
 import android.content.Context
-import android.graphics.drawable.Drawable
 import kotlinx.serialization.Serializable
 
 /**
@@ -13,12 +12,6 @@ abstract class Command : StorableEntity {
      * Execute this command.
      */
     abstract suspend fun execute(context: Context)
-
-    /**
-     * Load an icon representing this command.
-     * Default uses iconRes as fallback.
-     */
-    open fun loadIcon(context: Context): Drawable = context.getDrawable(iconRes)!!
 
     companion object {
         val iconRes = R.drawable.ic_task_alt

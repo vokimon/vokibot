@@ -1,6 +1,7 @@
 package net.canvoki.vokibot
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import androidx.annotation.DrawableRes
 import androidx.compose.runtime.Composable
 import kotlinx.serialization.json.Json
@@ -29,6 +30,12 @@ interface StorableEntity {
 
     @get:DrawableRes
     val iconRes: Int
+
+    /**
+     * Load an icon representing this entity.
+     * Default uses iconRes as fallback.
+     */
+    fun loadIcon(context: Context): Drawable = context.getDrawable(iconRes)!!
 
     fun toJson(): String
 
