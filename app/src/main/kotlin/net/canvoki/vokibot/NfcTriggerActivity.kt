@@ -91,9 +91,10 @@ private fun NfcActivityScreen(
         }
 
         executionState = ExecutionState.Executing
-        val hadAutomations = Automation.executeByTrigger(repository, trigger.id, context) {
-            (context as? ComponentActivity)?.runOnUiThread { onAutomationExecuted() }
-        }
+        val hadAutomations =
+            Automation.executeByTrigger(repository, trigger.id, context) {
+                (context as? ComponentActivity)?.runOnUiThread { onAutomationExecuted() }
+            }
         if (!hadAutomations) {
             executionState = ExecutionState.NoAutomation
             return@LaunchedEffect

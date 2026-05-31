@@ -43,8 +43,9 @@ class ShortcutDispatchActivity : ComponentActivity() {
             }
 
             if (!Automation.executeByTrigger(repo, triggerId, this) {
-                runOnUiThread { finish() }
-            }) {
+                    runOnUiThread { finish() }
+                }
+            ) {
                 log("ShortcutDispatchActivity: No automations linked to '${trigger.getTitle(this)}'")
                 return
             }

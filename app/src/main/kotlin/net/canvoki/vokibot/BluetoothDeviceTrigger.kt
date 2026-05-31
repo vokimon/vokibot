@@ -28,7 +28,7 @@ data class BluetoothDeviceTrigger(
     }
 
     override val type: String = BluetoothDeviceTrigger.typeKey
-    override val iconRes: Int get() = BluetoothDeviceTrigger.iconRes
+    override val iconRes: Int get() = bluetoothDeviceIcon(bluetoothDeviceFromMac(macAddress))
     override val id: String get() = idFromMac(macAddress)
 
     override fun getTitle(context: Context): String = name

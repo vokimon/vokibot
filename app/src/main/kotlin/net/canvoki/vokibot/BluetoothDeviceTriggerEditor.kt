@@ -6,18 +6,20 @@ import android.content.pm.PackageManager
 import android.os.Build
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
@@ -33,10 +35,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
-import androidx.core.content.ContextCompat
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
+import androidx.core.content.ContextCompat
 import kotlinx.serialization.Serializable
 import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
@@ -61,9 +64,12 @@ data class BluetoothDeviceTriggerEditor(
         fun checkBtConnectGranted(): Boolean =
             if (Build.VERSION.SDK_INT >= 31) {
                 ContextCompat.checkSelfPermission(
-                    context, Manifest.permission.BLUETOOTH_CONNECT,
+                    context,
+                    Manifest.permission.BLUETOOTH_CONNECT,
                 ) == PackageManager.PERMISSION_GRANTED
-            } else true
+            } else {
+                true
+            }
 
         var btConnectGranted by remember { mutableStateOf(checkBtConnectGranted()) }
 
@@ -75,15 +81,16 @@ data class BluetoothDeviceTriggerEditor(
             }
 
         val bluetoothAdapter = remember { BluetoothAdapter.getDefaultAdapter() }
-        val bondedDevices = remember(btConnectGranted) {
-            if (!btConnectGranted) {
-                emptyList()
-            } else {
-                bluetoothAdapter
-                    ?.bondedDevices
-                    ?.sortedBy { it.name?.lowercase() } ?: emptyList()
+        val bondedDevices =
+            remember(btConnectGranted) {
+                if (!btConnectGranted) {
+                    emptyList()
+                } else {
+                    bluetoothAdapter
+                        ?.bondedDevices
+                        ?.sortedBy { it.name?.lowercase() } ?: emptyList()
+                }
             }
-        }
 
         LaunchedEffect(triggerId) {
             if (triggerId != null && !hasLoaded) {
@@ -118,8 +125,9 @@ data class BluetoothDeviceTriggerEditor(
             onDismiss = { showDiscardDialog = false },
         )
 
-            Column(
-                modifier = Modifier
+        Column(
+            modifier =
+                Modifier
                     .fillMaxSize()
                     .verticalScroll(rememberScrollState())
                     .padding(8.dp),
@@ -187,9 +195,10 @@ data class BluetoothDeviceTriggerEditor(
             } else if (bondedDevices.isNotEmpty()) {
                 HorizontalDivider()
                 Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .background(MaterialTheme.colorScheme.surface),
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .background(MaterialTheme.colorScheme.surface),
                 ) {
                     Text(
                         text = "Paired devices",
@@ -210,16 +219,27 @@ data class BluetoothDeviceTriggerEditor(
                             },
                             color = Color.Transparent,
                         ) {
-                            Column(modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)) {
-                                Text(
-                                    text = deviceName,
-                                    style = MaterialTheme.typography.bodyLarge,
+                            Row(modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)) {
+                                Icon(
+                                    painter = painterResource(bluetoothDeviceIcon(device)),
+                                    contentDescription = null,
+                                    modifier = Modifier.size(40.dp).padding(end = 12.dp),
+                                    tint = MaterialTheme.colorScheme.primary,
                                 )
-                                Text(
-                                    text = device.address,
-                                    style = MaterialTheme.typography.bodySmall,
-                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                )
+                                Column {
+                                    Text(
+                                        text = deviceName,
+                                        style = MaterialTheme.typography.bodyLarge,
+                                    )
+                                    Text(
+                                        text =
+                                            bluetoothDeviceLabelRes(device)?.let {
+                                                "${device.address} - ${stringResource(it)}"
+                                            } ?: device.address,
+                                        style = MaterialTheme.typography.bodySmall,
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                    )
+                                }
                             }
                         }
                     }
