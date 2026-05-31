@@ -205,26 +205,14 @@ data class BluetoothDeviceTriggerEditor(
             if (bluetoothAdapter != null) {
                 HorizontalDivider()
                 if (connectPermissionGranted) {
-                    Text(
-                        text = "Paired devices",
-                        style = MaterialTheme.typography.titleSmall,
-                        color = MaterialTheme.colorScheme.primary,
+                    PairedDevicesList(
+                        devices = bondedDevices,
+                        onDeviceSelected = { deviceName, macAddress ->
+                            name = deviceName
+                            mac = macAddress
+                            isDirty = true
+                        },
                     )
-                    Column {
-                        bondedDevices.forEachIndexed { index, device ->
-                            if (index > 0) HorizontalDivider()
-                            val deviceName = device.alias ?: device.name ?: device.address
-                            BluetoothDeviceItem(
-                                device = device,
-                                deviceName = deviceName,
-                                onClick = {
-                                    name = deviceName
-                                    mac = device.address
-                                    isDirty = true
-                                },
-                            )
-                        }
-                    }
                 } else {
                     Surface(
                         color = MaterialTheme.colorScheme.surfaceVariant,
@@ -273,6 +261,29 @@ data class BluetoothDeviceTriggerEditor(
                     }
                 }
             }
+        }
+    }
+}
+
+@Composable
+private fun PairedDevicesList(
+    devices: List<BluetoothDevice>,
+    onDeviceSelected: (name: String, mac: String) -> Unit,
+) {
+    Text(
+        text = "Paired devices",
+        style = MaterialTheme.typography.titleSmall,
+        color = MaterialTheme.colorScheme.primary,
+    )
+    Column {
+        devices.forEachIndexed { index, device ->
+            if (index > 0) HorizontalDivider()
+            val deviceName = device.alias ?: device.name ?: device.address
+            BluetoothDeviceItem(
+                device = device,
+                deviceName = deviceName,
+                onClick = { onDeviceSelected(deviceName, device.address) },
+            )
         }
     }
 }
