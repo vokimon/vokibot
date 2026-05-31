@@ -3,20 +3,36 @@ package net.canvoki.vokibot
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothClass
 import android.bluetooth.BluetoothDevice
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import net.canvoki.shared.log
 
-fun bluetoothDeviceIcon(device: BluetoothDevice?): Int = when (device?.bluetoothClass?.majorDeviceClass) {
-    BluetoothClass.Device.Major.AUDIO_VIDEO -> R.drawable.ic_headphones
-    BluetoothClass.Device.Major.COMPUTER -> R.drawable.ic_computer
-    BluetoothClass.Device.Major.HEALTH -> R.drawable.ic_medical_services
-    BluetoothClass.Device.Major.IMAGING -> R.drawable.ic_photo_camera
-    BluetoothClass.Device.Major.NETWORKING -> R.drawable.ic_router
-    BluetoothClass.Device.Major.PERIPHERAL -> R.drawable.ic_keyboard
-    BluetoothClass.Device.Major.PHONE -> R.drawable.ic_phone
-    BluetoothClass.Device.Major.TOY -> R.drawable.ic_toys
-    BluetoothClass.Device.Major.WEARABLE -> R.drawable.ic_watch
-    else -> R.drawable.ic_bluetooth
-}
+fun bluetoothDeviceIcon(device: BluetoothDevice?): Int =
+    when (device?.bluetoothClass?.majorDeviceClass) {
+        BluetoothClass.Device.Major.AUDIO_VIDEO -> R.drawable.ic_headphones
+        BluetoothClass.Device.Major.COMPUTER -> R.drawable.ic_computer
+        BluetoothClass.Device.Major.HEALTH -> R.drawable.ic_medical_services
+        BluetoothClass.Device.Major.IMAGING -> R.drawable.ic_photo_camera
+        BluetoothClass.Device.Major.NETWORKING -> R.drawable.ic_router
+        BluetoothClass.Device.Major.PERIPHERAL -> R.drawable.ic_keyboard
+        BluetoothClass.Device.Major.PHONE -> R.drawable.ic_phone
+        BluetoothClass.Device.Major.TOY -> R.drawable.ic_toys
+        BluetoothClass.Device.Major.WEARABLE -> R.drawable.ic_watch
+        else -> R.drawable.ic_bluetooth
+    }
 
 fun bluetoothDeviceLabelRes(device: BluetoothDevice?): Int? {
     val btClass = device?.bluetoothClass ?: return null
