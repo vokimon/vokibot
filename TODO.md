@@ -20,14 +20,10 @@
 - [ ] Action to stop a service
 - [ ] Extract list group item and reuse it
 - [ ] Trigger: Connected Bluetooth
-    - [x] Detect bluetooth connection
-    - [x] BluetoothDeviceTrigger
-    - [x] BluetoothDeviceTriggerEditor
-    - [x] BluetoothDeviceTriggerEditor list of bound devices
-    - [x] BluetoothDeviceTriggerEditor ask for grants
-    - [ ] BluetoothDeviceTriggerEditor list of devices
-    - [ ] BluetoothDeviceTriggerEditor disable "Save" until fields filed
-    - [ ] Bluetooth detector launches activitites
+    - [ ] Add bluetooth class description in trigger list and automation editor
+    - [ ] Traduccions del bluetoothdevicetriggereditor
+    - [ ] Extract device list as composable
+    - [ ] Extract permissions warning as composable
 - More commands:
     - [ ] Airplaine mode on/off
     - [ ] Enable/Disable/Connect Bluetooth 
@@ -53,6 +49,19 @@
     - [ ] List of system broadcasts: <https://github.com/flyskywhy/android-sdk/blob/master/platforms/android-10/data/broadcast_actions.txt>
 
 ## Done
+
+    - [x] Detect bluetooth connection
+    - [x] BluetoothDeviceTrigger
+    - [x] BluetoothDeviceTriggerEditor
+    - [x] BluetoothDeviceTriggerEditor list of bound devices
+    - [x] BluetoothDeviceTriggerEditor ask for grants
+    - [x] BluetoothDeviceTriggerEditor list of paired devices
+    - [x] BluetoothDeviceTriggerEditor disable "Save" until fields filed
+    - [x] Bluetooth detector launches activitites
+    - [x] Bluetooth show class information as icon/description
+    - [x] BluetoothDeviceTriggerEditor list of detected devices -> Discarded, not useful, android provides no means to make them useful
+
+## Done 0.2.0
 
 - [x] Use UserMessage for "Try" button errors
 - [x] Services: https://developer.android.com/develop/background-work/services
