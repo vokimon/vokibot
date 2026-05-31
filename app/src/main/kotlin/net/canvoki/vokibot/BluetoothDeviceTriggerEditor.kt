@@ -2,6 +2,7 @@ package net.canvoki.vokibot
 
 import android.Manifest
 import android.bluetooth.BluetoothAdapter
+import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothManager
 import android.content.pm.PackageManager
 import android.os.Build
@@ -242,37 +243,15 @@ data class BluetoothDeviceTriggerEditor(
                         bondedDevices.forEachIndexed { index, device ->
                             if (index > 0) HorizontalDivider()
                             val deviceName = device.alias ?: device.name ?: device.address
-                            Surface(
+                            BluetoothDeviceItem(
+                                device = device,
+                                deviceName = deviceName,
                                 onClick = {
                                     name = deviceName
                                     mac = device.address
                                     isDirty = true
                                 },
-                                color = Color.Transparent,
-                            ) {
-                                Row(modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)) {
-                                    Icon(
-                                        painter = painterResource(bluetoothDeviceIcon(device)),
-                                        contentDescription = null,
-                                        modifier = Modifier.size(40.dp).padding(end = 12.dp),
-                                        tint = MaterialTheme.colorScheme.primary,
-                                    )
-                                    Column {
-                                        Text(
-                                            text = deviceName,
-                                            style = MaterialTheme.typography.bodyLarge,
-                                        )
-                                        Text(
-                                            text =
-                                                bluetoothDeviceLabelRes(device)?.let {
-                                                    "${device.address} - ${stringResource(it)}"
-                                                } ?: device.address,
-                                            style = MaterialTheme.typography.bodySmall,
-                                            color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                        )
-                                    }
-                                }
-                            }
+                            )
                         }
                     }
 
@@ -307,6 +286,41 @@ data class BluetoothDeviceTriggerEditor(
                         }
                     }
                 }
+            }
+        }
+    }
+}
+
+@Composable
+private fun BluetoothDeviceItem(
+    device: BluetoothDevice,
+    deviceName: String,
+    onClick: () -> Unit,
+    tint: Color = MaterialTheme.colorScheme.primary,
+) {
+    Surface(
+        onClick = onClick,
+        color = Color.Transparent,
+    ) {
+        Row(modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)) {
+            Icon(
+                painter = painterResource(bluetoothDeviceIcon(device)),
+                contentDescription = null,
+                modifier = Modifier.size(40.dp).padding(end = 12.dp),
+                tint = tint,
+            )
+            Column {
+                Text(
+                    text = deviceName,
+                    style = MaterialTheme.typography.bodyLarge,
+                )
+                Text(
+                    text = bluetoothDeviceLabelRes(device)?.let {
+                        "${device.address} - ${stringResource(it)}"
+                    } ?: device.address,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
             }
         }
     }
