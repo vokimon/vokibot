@@ -312,7 +312,7 @@ bluetooth_device_editor_mac_label: MAC helbidea
 bluetooth_device_editor_permission_warning: Abiarazle honek baimena behar du Bluetooth azpisistemara sartzeko.
 bluetooth_device_editor_grant_permission: Eman baimena
 bluetooth_device_editor_paired_devices: Parekatutako gailuak
-command_bluetooth_connect_label: Konektatu Bluetooth gailua
+command_bluetooth_connect_label: Konektatu Bluetooth
 command_bluetooth_connect_help: |
   Bluetooth gailu batekin konexioa kontrolatzen du.
 

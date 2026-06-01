@@ -310,7 +310,7 @@ bluetooth_device_editor_mac_label: Dirêççión MAC
 bluetooth_device_editor_permission_warning: Êtte dîpparadôh requiere permiço pa âççedêh ar çûççîttema Bluetooth.
 bluetooth_device_editor_grant_permission: Conçedêh permiço
 bluetooth_device_editor_paired_devices: Dîppoçitibô empareháô
-command_bluetooth_connect_label: Conêttâh dîppoçitibo Bluetoôh
+command_bluetooth_connect_label: Conêttâh Bluetoôh
 command_bluetooth_connect_help: |
   Controla la conêççión con un dîppoçitibo Bluetoôh.
 

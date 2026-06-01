@@ -312,7 +312,7 @@ bluetooth_device_editor_mac_label: MAC-адрес
 bluetooth_device_editor_permission_warning: Этот триггер требует разрешения на доступ к подсистеме Bluetooth.
 bluetooth_device_editor_grant_permission: Предоставить разрешение
 bluetooth_device_editor_paired_devices: Сопряженные устройства
-command_bluetooth_connect_label: Подключить устройство Bluetooth
+command_bluetooth_connect_label: Подключить Bluetooth
 command_bluetooth_connect_help: |
   Управляет подключением к Bluetooth-устройству.
 

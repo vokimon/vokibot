@@ -312,7 +312,7 @@ bluetooth_device_editor_mac_label: Dirección MAC
 bluetooth_device_editor_permission_warning: Este disparador requiere permiso para acceder al subsistema Bluetooth.
 bluetooth_device_editor_grant_permission: Conceder permiso
 bluetooth_device_editor_paired_devices: Dispositivos emparejados
-command_bluetooth_connect_label: Conectar dispositivo Bluetooth
+command_bluetooth_connect_label: Conectar Bluetooth
 command_bluetooth_connect_help: |
   Controla la conexión con un dispositivo Bluetooth.
 
