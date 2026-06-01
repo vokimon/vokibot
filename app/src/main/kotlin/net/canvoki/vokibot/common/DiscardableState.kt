@@ -13,7 +13,7 @@ import net.canvoki.shared.component.StackedScreen
 import net.canvoki.vokibot.ConfirmDialog
 import net.canvoki.vokibot.R
 
-class DirtyState {
+class DiscardableState {
     var isDirty by mutableStateOf(false)
         internal set
 
@@ -22,9 +22,9 @@ class DirtyState {
     }
 
     companion object {
-        val Saver = Saver<DirtyState, Boolean>(
+        val Saver = Saver<DiscardableState, Boolean>(
             save = { it.isDirty },
-            restore = { saved -> DirtyState().also { if (saved) it.markDirty() } },
+            restore = { saved -> DiscardableState().also { if (saved) it.markDirty() } },
         )
     }
 }
@@ -33,8 +33,8 @@ class DirtyState {
 fun DiscardDialog(
     screen: StackedScreen<*>,
     nav: StackNavigatorState,
-): DirtyState {
-    val state = rememberSaveable(saver = DirtyState.Saver) { DirtyState() }
+): DiscardableState {
+    val state = rememberSaveable(saver = DiscardableState.Saver) { DiscardableState() }
     var showDialog by rememberSaveable { mutableStateOf(false) }
 
     LaunchedEffect(state.isDirty) {
