@@ -7,9 +7,9 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffXfermode
+import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.LayerDrawable
-import android.graphics.drawable.BitmapDrawable
 
 fun buildBadgeIcon(
     context: Context,
@@ -17,7 +17,7 @@ fun buildBadgeIcon(
     badge: Drawable,
     mainScale: Float = 0.8f,
     badgeScale: Float = 0.4f,
-    sizeDp: Int = 40
+    sizeDp: Int = 40,
 ): Drawable {
     val d = context.resources.displayMetrics.density
     val canvasSize = (sizeDp * d).toInt()
@@ -25,11 +25,12 @@ fun buildBadgeIcon(
     val mainSize = (canvasSize * mainScale).toInt()
     val badgeSize = (canvasSize * badgeScale).toInt()
 
-    val bitmap = Bitmap.createBitmap(
-        canvasSize,
-        canvasSize,
-        Bitmap.Config.ARGB_8888
-    )
+    val bitmap =
+        Bitmap.createBitmap(
+            canvasSize,
+            canvasSize,
+            Bitmap.Config.ARGB_8888,
+        )
 
     val canvas = Canvas(bitmap)
 
@@ -39,7 +40,7 @@ fun buildBadgeIcon(
         0,
         0,
         mainSize,
-        mainSize
+        mainSize,
     )
     main.draw(canvas)
 
@@ -55,7 +56,7 @@ fun buildBadgeIcon(
         canvasSize.toFloat(),
         Paint().apply {
             xfermode = PorterDuffXfermode(PorterDuff.Mode.CLEAR)
-        }
+        },
     )
 
     badge.mutate()
@@ -63,10 +64,9 @@ fun buildBadgeIcon(
         badgeLeft,
         badgeTop,
         canvasSize,
-        canvasSize
+        canvasSize,
     )
     badge.draw(canvas)
 
     return BitmapDrawable(context.resources, bitmap)
 }
-

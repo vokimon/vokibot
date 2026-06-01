@@ -58,4 +58,3 @@ data class BluetoothDeviceTrigger(
 
     override fun toJson(): String = JsonConfig.encodeToString(serializer(), this)
 }
-
