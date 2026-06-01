@@ -3,6 +3,7 @@ package net.canvoki.vokibot
 import android.content.Context
 import io.mockk.mockk
 import net.canvoki.shared.test.assertEquals
+import net.canvoki.shared.test.assertJsonEqual
 import org.junit.Test
 
 class BluetoothConnectCommandTest {
@@ -28,5 +29,22 @@ class BluetoothConnectCommandTest {
 
     @Test fun `getTitle falls back to macAddress when deviceName empty`() {
         assertEquals("AA:BB:CC:DD:EE:FF", commandBase(deviceName = "").getTitle(mockk<Context>()))
+    }
+
+    fun commandJson() = """{
+  "type": "bluetooth_connect",
+  "id": "entity_id",
+  "macAddress": "AA:BB:CC:DD:EE:FF",
+  "deviceName": "Device Name",
+  "action": "CONNECT"
+}""".trimIndent()
+
+    @Test fun `toJson`() {
+        val cmd = BluetoothConnectCommand(
+            id = "entity_id",
+            macAddress = "AA:BB:CC:DD:EE:FF",
+            deviceName = "Device Name",
+        )
+        assertJsonEqual(cmd.toJson(), commandJson())
     }
 }

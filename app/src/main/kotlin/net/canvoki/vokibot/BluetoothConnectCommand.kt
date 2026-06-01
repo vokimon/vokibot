@@ -15,12 +15,12 @@ data class BluetoothConnectCommand(
     val action: ConnectionAction = ConnectionAction.CONNECT,
 ) : Command() {
     override val type = "bluetooth_connect"
-    override val iconRes = R.drawable.ic_bluetooth
+    override val iconRes: Int get() = R.drawable.ic_bluetooth
 
     override fun getTitle(context: Context): String = deviceName.ifEmpty { macAddress }
-    override val description: String = macAddress
+    override val description: String get() = macAddress
 
-    override fun toJson(): String = """{"wrong":true}"""
+    override fun toJson(): String = JsonConfig.encodeToString(serializer(), this)
 
     override suspend fun execute(context: Context) {}
 }
