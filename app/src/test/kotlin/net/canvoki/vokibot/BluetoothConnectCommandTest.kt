@@ -6,9 +6,11 @@ import net.canvoki.shared.test.assertEquals
 import org.junit.Test
 
 class BluetoothConnectCommandTest {
-    fun commandBase() = BluetoothConnectCommand(
+    fun commandBase(
+        deviceName: String = "Device Name",
+    ) = BluetoothConnectCommand(
         macAddress = "AA:BB:CC:DD:EE:FF",
-        deviceName = "Device Name",
+        deviceName = deviceName,
     )
 
     @Test fun `type is bluetooth_connect`() {
@@ -22,5 +24,9 @@ class BluetoothConnectCommandTest {
 
     @Test fun `description returns macAddress`() {
         assertEquals("AA:BB:CC:DD:EE:FF", commandBase().description)
+    }
+
+    @Test fun `getTitle falls back to macAddress when deviceName empty`() {
+        assertEquals("AA:BB:CC:DD:EE:FF", commandBase(deviceName = "").getTitle(mockk<Context>()))
     }
 }
