@@ -69,4 +69,9 @@ class BluetoothConnectCommandTest {
         val typeKeys = types.map { it.typeKey }.sorted().joinToString("\n")
         assertEquals("bluetooth_connect", typeKeys)
     }
+
+    @Test fun `editor returns BluetoothConnectCommandEditor`() {
+        val editor = StorableEntity.getEditorScreen("bluetooth_connect", null)
+        assertEquals(BluetoothConnectCommandEditor(), editor)
+    }
 }

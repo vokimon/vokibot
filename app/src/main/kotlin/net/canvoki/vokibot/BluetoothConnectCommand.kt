@@ -29,7 +29,7 @@ data class BluetoothConnectCommand(
         override val entityClass = BluetoothConnectCommand::class
         override val labelRes = 0 // TODO
         override val iconRes = 0 // TODO
-        override val editorFactory = { _: String? -> NotYetImplementedEditor }
+        override val editorFactory = { id: String? -> BluetoothConnectCommandEditor(id) }
         override val deserializer: ((String) -> StorableEntity)? = { fromJson(it) }
         override val helpRes = 0 // TODO
 
