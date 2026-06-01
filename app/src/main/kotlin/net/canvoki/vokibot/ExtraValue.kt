@@ -31,9 +31,9 @@ enum class ExtraType {
     STRING_ARRAY,
     URI_LIST,
 }
-
 val ExtraType.displayName: String get() =
     when (this) {
+        // TODO: translate
         ExtraType.STRING -> "Text"
         ExtraType.URI -> "URI"
         ExtraType.INT -> "Number"

@@ -25,7 +25,7 @@ class AutomationEditorActivity : ComponentActivity() {
             val repository = FileDataRepository.fromContext(this)
             val automation =
                 Automation(
-                    name = "On $triggerType $triggerId",
+                    name = "On $triggerType $triggerId", // TODO: translate
                     triggerType = preselectedTrigger.first,
                     triggerId = preselectedTrigger.second,
                     commandIds = emptyList(),
