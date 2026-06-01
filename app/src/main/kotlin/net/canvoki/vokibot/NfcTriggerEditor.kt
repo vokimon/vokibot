@@ -42,6 +42,7 @@ import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
 import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
+import net.canvoki.vokibot.common.DiscardDialog
 import net.canvoki.vokibot.common.EditorHeader
 
 @Serializable
@@ -63,8 +64,7 @@ data class NfcTriggerEditor(
         var isNfcAvailable by rememberSaveable { mutableStateOf(true) }
         var isNfcEnabled by rememberSaveable { mutableStateOf(true) }
         var isSaving by rememberSaveable { mutableStateOf(false) }
-        var isDirty by remember { mutableStateOf(false) }
-        var showDiscardDialog by remember { mutableStateOf(false) }
+        val discardState = DiscardDialog(screen = this@NfcTriggerEditor, nav = nav)
         var hasLoaded by rememberSaveable { mutableStateOf(false) }
 
         fun checkNfcState() {
@@ -92,7 +92,7 @@ data class NfcTriggerEditor(
                 }
                 hasLoaded = true
             }
-            isDirty = false
+            discardState.isDirty = false
         }
 
         // Update displayName when uid changes
@@ -108,28 +108,6 @@ data class NfcTriggerEditor(
                 }
         }
 
-        LaunchedEffect(isDirty) {
-            nav.onBack(this@NfcTriggerEditor, enabled = isDirty) {
-                showDiscardDialog = true
-            }
-        }
-
-        ConfirmDialog(
-            show = showDiscardDialog,
-            title = stringResource(R.string.discard_dialog_title),
-            text = stringResource(R.string.discard_dialog_message),
-            confirmText = stringResource(R.string.discard_dialog_confirm),
-            dismissText = stringResource(R.string.discard_dialog_cancel),
-            onConfirm = {
-                isDirty = false
-                showDiscardDialog = false
-                nav.pop()
-            },
-            onDismiss = {
-                showDiscardDialog = false
-            },
-        )
-
         // NFC reader mode: updates uid state when a tag is scanned
         DisposableEffect(isNfcEnabled, isNfcAvailable, nfcAdapter) {
             val callback =
@@ -137,7 +115,7 @@ data class NfcTriggerEditor(
                     val hexUid = tag.id.joinToString(":") { "%02X".format(it) }
                     activity?.runOnUiThread {
                         uid = hexUid
-                        isDirty = true
+                        discardState.markDirty()
                         scanSuccess = true
                         scope.launch {
                             delay(1500)
@@ -200,7 +178,7 @@ data class NfcTriggerEditor(
                 value = displayName,
                 onValueChange = {
                     displayName = it
-                    isDirty = true
+                    discardState.markDirty()
                 },
                 label = { Text(stringResource(R.string.nfc_editor_name_label)) },
                 placeholder = { Text(stringResource(R.string.nfc_editor_name_placeholder)) },
@@ -213,7 +191,7 @@ data class NfcTriggerEditor(
                 value = uid,
                 onValueChange = {
                     uid = it
-                    isDirty = true
+                    discardState.markDirty()
                 },
                 label = { Text(stringResource(R.string.nfc_editor_uid_label)) },
                 placeholder = { Text("04:AB:12:CD:56:78:90") },

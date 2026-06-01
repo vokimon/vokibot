@@ -47,6 +47,7 @@ import kotlinx.serialization.Serializable
 import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
 import net.canvoki.vokibot.common.EditorHeader
+import net.canvoki.vokibot.common.DiscardDialog
 import net.canvoki.vokibot.common.WarningBanner
 
 @Composable
@@ -68,8 +69,7 @@ data class BluetoothDeviceTriggerEditor(
         var name by rememberSaveable { mutableStateOf("") }
         var mac by rememberSaveable { mutableStateOf("") }
         var isSaving by rememberSaveable { mutableStateOf(false) }
-        var isDirty by remember { mutableStateOf(false) }
-        var showDiscardDialog by remember { mutableStateOf(false) }
+        val discardState = DiscardDialog(screen = this@BluetoothDeviceTriggerEditor, nav = nav)
         var hasLoaded by rememberSaveable { mutableStateOf(false) }
 
         fun checkConnectPermission(): Boolean =
@@ -117,28 +117,8 @@ data class BluetoothDeviceTriggerEditor(
                 }
                 hasLoaded = true
             }
-            isDirty = false
+            discardState.isDirty = false
         }
-
-        LaunchedEffect(isDirty) {
-            nav.onBack(this@BluetoothDeviceTriggerEditor, enabled = isDirty) {
-                showDiscardDialog = true
-            }
-        }
-
-        ConfirmDialog(
-            show = showDiscardDialog,
-            title = stringResource(R.string.discard_dialog_title),
-            text = stringResource(R.string.discard_dialog_message),
-            confirmText = stringResource(R.string.discard_dialog_confirm),
-            dismissText = stringResource(R.string.discard_dialog_cancel),
-            onConfirm = {
-                isDirty = false
-                showDiscardDialog = false
-                nav.pop()
-            },
-            onDismiss = { showDiscardDialog = false },
-        )
 
         Column(
             modifier =
@@ -173,7 +153,7 @@ data class BluetoothDeviceTriggerEditor(
                 value = name,
                 onValueChange = {
                     name = it
-                    isDirty = true
+                    discardState.markDirty()
                 },
                 label = { Text(stringResource(R.string.bluetooth_device_editor_name_label)) },
                 placeholder = { Text(stringResource(R.string.bluetooth_device_editor_name_placeholder)) },
@@ -186,7 +166,7 @@ data class BluetoothDeviceTriggerEditor(
                 value = mac,
                 onValueChange = {
                     mac = it
-                    isDirty = true
+                    discardState.markDirty()
                 },
                 label = { Text(stringResource(R.string.bluetooth_device_editor_mac_label)) },
                 placeholder = { Text("AA:BB:CC:DD:EE:FF") },
@@ -207,7 +187,7 @@ data class BluetoothDeviceTriggerEditor(
                         onDeviceSelected = { deviceName, macAddress ->
                             name = deviceName
                             mac = macAddress
-                            isDirty = true
+                            discardState.markDirty()
                         },
                     )
                 } else {

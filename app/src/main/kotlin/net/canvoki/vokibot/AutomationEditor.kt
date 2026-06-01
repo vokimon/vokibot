@@ -42,6 +42,7 @@ import androidx.compose.ui.unit.dp
 import kotlinx.serialization.Serializable
 import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
+import net.canvoki.vokibot.common.DiscardDialog
 import net.canvoki.vokibot.common.EditorHeader
 
 @Serializable
@@ -57,8 +58,7 @@ data class AutomationEditor(
         var triggerType by rememberSaveable { mutableStateOf("") }
         var triggerId by rememberSaveable { mutableStateOf("") }
         var commandIds by rememberSaveable { mutableStateOf<List<String>>(emptyList()) }
-        var isDirty by rememberSaveable { mutableStateOf(false) }
-        var showDiscardDialog by remember { mutableStateOf(false) }
+        val discardState = DiscardDialog(screen = this@AutomationEditor, nav = nav)
         var lastLoadedId by remember { mutableStateOf<String?>(null) }
 
         LaunchedEffect(editingId) {
@@ -68,7 +68,7 @@ data class AutomationEditor(
             triggerType = ""
             triggerId = ""
             commandIds = emptyList()
-            isDirty = false
+            discardState.isDirty = false
 
             if (editingId != null) {
                 repository.automation.load(editingId)?.let { existing ->
@@ -80,28 +80,6 @@ data class AutomationEditor(
             }
             lastLoadedId = editingId
         }
-
-        LaunchedEffect(isDirty) {
-            nav.onBack(this@AutomationEditor, enabled = isDirty) {
-                showDiscardDialog = true
-            }
-        }
-
-        ConfirmDialog(
-            show = showDiscardDialog,
-            title = stringResource(R.string.discard_dialog_title),
-            text = stringResource(R.string.discard_dialog_message),
-            confirmText = stringResource(R.string.discard_dialog_confirm),
-            dismissText = stringResource(R.string.discard_dialog_cancel),
-            onConfirm = {
-                isDirty = false
-                showDiscardDialog = false
-                nav.pop()
-            },
-            onDismiss = {
-                showDiscardDialog = false
-            },
-        )
 
         Column(
             modifier =
@@ -124,7 +102,7 @@ data class AutomationEditor(
                             id = editingId,
                         )
                     repository.automation.save(automation)
-                    isDirty = false
+                    discardState.isDirty = false
                     nav.pop()
                 },
                 actionEnabled = triggerId.isNotBlank() && commandIds.isNotEmpty(),
@@ -134,7 +112,7 @@ data class AutomationEditor(
                 value = name,
                 onValueChange = {
                     name = it
-                    isDirty = true
+                    discardState.markDirty()
                 },
                 label = { Text(stringResource(R.string.automation_name_label)) },
                 placeholder = { Text(stringResource(R.string.automation_name_placeholder)) },
@@ -156,7 +134,7 @@ data class AutomationEditor(
                             result?.let { (type, id) ->
                                 triggerType = type
                                 triggerId = id
-                                isDirty = true
+                                discardState.markDirty()
                             }
                         }
                     }),
@@ -210,7 +188,7 @@ data class AutomationEditor(
                         result?.let { id ->
                             if (!commandIds.contains(id)) {
                                 commandIds = commandIds + id
-                                isDirty = true
+                                discardState.markDirty()
                             }
                         }
                     }
@@ -278,7 +256,7 @@ data class AutomationEditor(
                                 }
                                 IconButton(onClick = {
                                     commandIds = commandIds.filterIndexed { i, _ -> i != index }
-                                    isDirty = true
+                                    discardState.markDirty()
                                 }) {
                                     Icon(
                                         painterResource(R.drawable.ic_delete),

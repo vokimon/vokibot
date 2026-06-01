@@ -42,6 +42,7 @@ import kotlinx.serialization.Serializable
 import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
 import net.canvoki.shared.usermessage.UserMessage
+import net.canvoki.vokibot.common.DiscardDialog
 import net.canvoki.vokibot.common.EditorHeader
 
 private fun formatComponentName(
@@ -108,8 +109,7 @@ data class ApplicationCommandEditor(
 ) : StackedScreen<Unit>() {
     @Composable
     override fun Screen(nav: StackNavigatorState) {
-        var isDirty by remember { mutableStateOf(false) }
-        var showDiscardDialog by remember { mutableStateOf(false) }
+        val discardState = DiscardDialog(screen = this@ApplicationCommandEditor, nav = nav)
         var packageName by remember { mutableStateOf<String?>(null) }
         var componentName by remember { mutableStateOf<String?>(null) }
         var actionStr by remember { mutableStateOf<String?>(null) }
@@ -203,28 +203,6 @@ data class ApplicationCommandEditor(
             }
         }
 
-        LaunchedEffect(isDirty) {
-            nav.onBack(this@ApplicationCommandEditor, enabled = isDirty) {
-                showDiscardDialog = true
-            }
-        }
-
-        ConfirmDialog(
-            show = showDiscardDialog,
-            title = stringResource(R.string.discard_dialog_title),
-            text = stringResource(R.string.discard_dialog_message),
-            confirmText = stringResource(R.string.discard_dialog_confirm),
-            dismissText = stringResource(R.string.discard_dialog_cancel),
-            onConfirm = {
-                isDirty = false
-                showDiscardDialog = false
-                nav.pop()
-            },
-            onDismiss = {
-                showDiscardDialog = false
-            },
-        )
-
         LaunchedEffect(actionStr) {
             val actionDef = StandardActions.get(actionStr)
             val actionExtras = actionDef?.extras ?: emptyList()
@@ -311,7 +289,7 @@ data class ApplicationCommandEditor(
                 onSelect = {
                     nav.push(AppList) { selection ->
                         selection?.let {
-                            isDirty = true
+                            discardState.markDirty()
                             packageName = it.packageName
                             componentName = it.componentName
                         }
@@ -342,7 +320,7 @@ data class ApplicationCommandEditor(
                         action = actionStr,
                         onActionChanged = {
                             actionStr = it
-                            isDirty = true
+                            discardState.markDirty()
                         },
                     )
                     // Data information not for Services
@@ -354,11 +332,11 @@ data class ApplicationCommandEditor(
                             mimeType = intentMime,
                             onDataChanged = {
                                 intentData = it
-                                isDirty = true
+                                discardState.markDirty()
                             },
                             onMimeChanged = {
                                 intentMime = it
-                                isDirty = true
+                                discardState.markDirty()
                             },
                             dataUriRequired = dataUriRequired,
                             allowedSchemes = StandardActions.get(actionStr)?.allowedSchemes,
@@ -371,10 +349,10 @@ data class ApplicationCommandEditor(
                         extras = extrasState,
                         onExtraChanged = { key, value ->
                             extrasState = extrasState + (key to value)
-                            isDirty = true
+                            discardState.markDirty()
                         },
                         onAddExtra = { spec ->
-                            isDirty = true
+                            discardState.markDirty()
                             customExtraSpecs = customExtraSpecs + spec
                             extrasState = extrasState + (spec.key to spec.defaultValue())
                         },
