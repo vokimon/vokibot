@@ -243,8 +243,8 @@ settings_page_name_battery: Batería
 settings_page_name_notifications: Notificaciones
 settings_page_name_all_settings: Todos los ajustes
 settings_page_name_quick_launch: Inicio rápido
-unknown_command_title: "Comando no soportado"
-unknown_trigger_title: "Desencadenante no soportado"
+unknown_command_title: Comando no soportado
+unknown_trigger_title: Disparador no soportado
 common_notice_title: Aviso
 common_experimental_title: Función experimental
 application_command_editor_not_implemented: Este tipo de componente de aplicación aún no está implementado

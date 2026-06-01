@@ -198,7 +198,7 @@ settings_page_category_security: Çeguridá
 settings_page_category_personal: Perçonâh
 settings_page_category_system: Çîttema
 settings_page_name_wifi: Wi-Fi
-settings_page_name_bluetooth: Bluetoôh
+settings_page_name_bluetooth: Bluetooth
 settings_page_name_nfc: NFC
 settings_page_name_mobile_networks: Redê móbilê
 settings_page_name_internet: Intênnêh
@@ -242,7 +242,7 @@ settings_page_name_notifications: Notificaçionê
 settings_page_name_all_settings: Tôh lô ahûttê
 settings_page_name_quick_launch: Iniçio rápido
 unknown_command_title: Comando no çoportao
-unknown_trigger_title: Deencadenante no çoportao
+unknown_trigger_title: Dîpparadôh no çoportao
 common_notice_title: Abiço
 common_experimental_title: Funçión êpperimentâh
 application_command_editor_not_implemented: Êtte tipo de componente de aplicaçión aún no êttá implementao
@@ -260,7 +260,7 @@ bluetooth_device_class_phone_uncategorized: Teléfono
 bluetooth_device_class_phone_cordless: Teléfono inalámbrico
 bluetooth_device_class_phone_smart: Smartpone
 bluetooth_device_class_phone_modem_or_gateway: Módem o puerta de enlaçe
-bluetooth_device_class_phone_isdn: Teléfono RDÇI
+bluetooth_device_class_phone_isdn: Teléfono RDSI
 bluetooth_device_class_audio_video_wearable_headset: Auriculâh portátî
 bluetooth_device_class_audio_video_uncategorized: Dîppoçitibo de audio
 bluetooth_device_class_audio_video_handsfree: Manô librê
@@ -270,7 +270,7 @@ bluetooth_device_class_audio_video_loudspeaker: Artabôh
 bluetooth_device_class_audio_video_portable_audio: Audio portátî
 bluetooth_device_class_audio_video_car_audio: Audio de coxe
 bluetooth_device_class_audio_video_set_top_box: Decodificadôh
-bluetooth_device_class_audio_video_hifi_audio: Audio I-Fi
+bluetooth_device_class_audio_video_hifi_audio: Audio Hi-Fi
 bluetooth_device_class_audio_video_vcr: Bideograbadora
 bluetooth_device_class_audio_video_video_camera: Cámara de bídeo
 bluetooth_device_class_audio_video_camcorder: Bideocámara
