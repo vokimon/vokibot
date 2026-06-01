@@ -18,15 +18,7 @@
 - [ ] ApplicationCommand: Overwrite dialog: if not confirm, back to ask the name not full cancell
 - [ ] AppList: Filter sheet gets cropped on landscape
 - [ ] Action to stop a service
-- [ ] Extract list group item and reuse it
-- [ ] Trigger: Connected Bluetooth
-    - [ ] Add bluetooth class description in trigger list and automation editor
-    - [ ] Traduccions del bluetoothdevicetriggereditor
-    - [ ] Explore if it is easy to combine icons for bluetooth + class icon
-    - [x] Extract device list as composable
-    - [x] Extract permissions warning as composable
-    - [ ] w: app/src/main/kotlin/net/canvoki/vokibot/Bluetooth.kt:146:36 'static fun getDefaultAdapter(): BluetoothAdapter!' is deprecated. Deprecated in Java.
-    - [ ] app/src/main/kotlin/net/canvoki/vokibot/Bluetooth.kt:9: Error: Call requires permission which may be rejected by user: code should explicitly check to see if permission is available (with checkPermission) or explicitly handle a potential SecurityException [MissingPermission]
+- [ ] Extract list group header item and reuse it
 
 - More commands:
     - [ ] Airplaine mode on/off
@@ -54,16 +46,23 @@
 
 ## Done
 
-    - [x] Detect bluetooth connection
-    - [x] BluetoothDeviceTrigger
-    - [x] BluetoothDeviceTriggerEditor
-    - [x] BluetoothDeviceTriggerEditor list of bound devices
-    - [x] BluetoothDeviceTriggerEditor ask for grants
-    - [x] BluetoothDeviceTriggerEditor list of paired devices
-    - [x] BluetoothDeviceTriggerEditor disable "Save" until fields filed
-    - [x] Bluetooth detector launches activitites
-    - [x] Bluetooth show class information as icon/description
-    - [x] BluetoothDeviceTriggerEditor list of detected devices -> Discarded, not useful, android provides no means to make them useful
+- [x] Detect bluetooth connection
+- [x] BluetoothDeviceTrigger
+- [x] BluetoothDeviceTriggerEditor
+- [x] BluetoothDeviceTriggerEditor list of bound devices
+- [x] BluetoothDeviceTriggerEditor ask for grants
+- [x] BluetoothDeviceTriggerEditor list of paired devices
+- [x] BluetoothDeviceTriggerEditor disable "Save" until fields filed
+- [x] Bluetooth detector launches activitites
+- [x] Bluetooth show class information as icon/description
+- [x] BluetoothDeviceTriggerEditor list of detected devices -> Discarded, not useful, android provides no means to make them useful
+- [x] Add bluetooth class description in trigger list and automation editor
+- [x] Traduccions del bluetoothdevicetriggereditor
+- [x] Combine icons for bluetooth + class icon
+- [x] Extract device list as composable
+- [x] Extract permissions warning as composable
+- [x] app/src/main/kotlin/net/canvoki/vokibot/Bluetooth.kt:9: Error: Call requires permission which may be rejected by user: code should explicitly check to see if permission is available (with checkPermission) or explicitly handle a potential SecurityException [MissingPermission]
+- [x] w: app/src/main/kotlin/net/canvoki/vokibot/Bluetooth.kt:146:36 'static fun getDefaultAdapter(): BluetoothAdapter!' is deprecated. Deprecated in Java.
 
 ## Done 0.2.0
 
