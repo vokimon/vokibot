@@ -34,11 +34,11 @@ class BluetoothConnectCommandTest {
     fun commandJson() =
         """
         {
-  "type": "bluetooth_connect",
-  "macAddress": "AA:BB:CC:DD:EE:FF",
-  "deviceName": "Device Name",
-  "action": "CONNECT"
-}
+          "type": "bluetooth_connect",
+          "macAddress": "AA:BB:CC:DD:EE:FF",
+          "deviceName": "Device Name",
+          "action": "CONNECT"
+        }
         """.trimIndent()
 
     @Test fun `toJson`() {
