@@ -2,7 +2,7 @@
 [![CI Status](https://github.com/vokimon/vokibot/actions/workflows/main.yaml/badge.svg)](https://github.com/vokimon/vokibot/actions/workflows/main.yaml)
 <!--[![Estat de la traducció](https://hosted.weblate.org/widget/vokibot/vokibot-ui/svg-badge.svg)](https://hosted.weblate.org/engage/vokibot/)-->
 <!--[![Get it on F-Droid](https://img.shields.io/f-droid/v/net.canvoki.vokibot.svg?logo=F-Droid)](https://f-droid.org/packages/net.canvoki.vokibot)-->
-<!--![GitHub Downloads](https://img.shields.io/github/downloads/vokimon/vokibot/total?logo=github)-->
+![GitHub Downloads](https://img.shields.io/github/downloads/vokimon/vokibot/total?logo=github)
 <!--<a rel="me" href="https://masto.es/@vokibot"><img alt="Mastodon" src="https://img.shields.io/mastodon/follow/116250870368086238?domain=masto.es"></a>-->
 ![Voki Bot. On any trigger, run whatever](media/promo/splash.svg)
 
@@ -10,25 +10,19 @@
 
 Android automation tool
 
-Start any application on approaching the device to an NFC tag or
-running a home screen shortcut or when connecting to a Bluetooth device.
+Makes you Android device perform actions (commands)
+whenever something happens (triggers).
 
-This project aims to be "on any trigger do anything",
-but let's start humble.
+Implemented triggers:
 
-## Features
+- NFC tags (configure by tapping)
+- Shortcuts (creates launcher icons)
+- Bluetooth device (on connect to it)
 
-- Automations: Relate triggers to commands
-- Triggers:
-    - NFC tags (configure by tapping)
-    - Shortcuts (launcher icons)
-    - Bluetooth device (on connect to them)
-- Commands:
-    - Run application components (Activities, Services, Receivers)
-    - Open system configuration pages
-- License: AGPLv3+
-- Theming: Material3 light and dark
-- Languages: an, ar, ca, de, en, es, eu, fr, gl, pt, ru, andaluh (no iso yet)
+Implemented commands:
+
+- Activate application components (Activities, Services, Receivers)
+- Open system configuration pages
 
 <!-- end-of-description -->
 
