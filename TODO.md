@@ -28,7 +28,6 @@
     - [ ] w: app/src/main/kotlin/net/canvoki/vokibot/Bluetooth.kt:146:36 'static fun getDefaultAdapter(): BluetoothAdapter!' is deprecated. Deprecated in Java.
     - [ ] app/src/main/kotlin/net/canvoki/vokibot/Bluetooth.kt:9: Error: Call requires permission which may be rejected by user: code should explicitly check to see if permission is available (with checkPermission) or explicitly handle a potential SecurityException [MissingPermission]
 
-
 - More commands:
     - [ ] Airplaine mode on/off
     - [ ] Enable/Disable/Connect Bluetooth 

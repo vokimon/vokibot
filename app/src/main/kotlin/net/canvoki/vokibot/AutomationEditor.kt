@@ -174,11 +174,12 @@ data class AutomationEditor(
                                 null
                             }
                         }
+                    val icon = remember(triggerInfo?.id) { triggerInfo?.loadIcon(context) }
                     Icon(
-                        painterResource(triggerInfo?.iconRes ?: Trigger.iconRes),
+                        painter = icon ?.let { drawableToPainter(it) } ?: painterResource(Trigger.iconRes),
                         contentDescription = null,
                         tint = MaterialTheme.colorScheme.primary,
-                        modifier = Modifier.size(24.dp),
+                        modifier = Modifier.size(40.dp),
                     )
                     Spacer(Modifier.width(12.dp))
                     Column(Modifier.weight(1f)) {
