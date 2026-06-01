@@ -10,7 +10,7 @@
 
 Android automation tool
 
-Makes you Android device perform actions (commands)
+Makes your Android device perform actions (commands)
 whenever something happens (triggers).
 
 Implemented triggers:

@@ -5,6 +5,7 @@
 - ✨ New Trigger: Bluetooth Device, launch commands on Bluetooth connection
 - ✨ BluetoothDeviceTrigger: Edit device by hand or from a list of paired or available
 - ✨ BluetoothDeviceTrigger: Show icon by major class and description by class
+- ✨ BluetoothDeviceTrigger: Permissions on demand when you add a trigger
 
 ## 0.2.0 (2026-05-29)
 
