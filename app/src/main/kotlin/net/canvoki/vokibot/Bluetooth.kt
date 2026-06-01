@@ -5,8 +5,15 @@ import android.bluetooth.BluetoothClass
 import android.bluetooth.BluetoothDevice
 import net.canvoki.shared.log
 
+private fun BluetoothDevice?.bluetoothClassSafe(): BluetoothClass? = try {
+    this?.bluetoothClass
+} catch (e: SecurityException) {
+    log("Bluetooth permission denied")
+    null
+}
+
 fun bluetoothDeviceIcon(device: BluetoothDevice?): Int =
-    when (device?.bluetoothClass?.majorDeviceClass) {
+    when (device?.bluetoothClassSafe()?.majorDeviceClass) {
         BluetoothClass.Device.Major.AUDIO_VIDEO -> R.drawable.ic_headphones
         BluetoothClass.Device.Major.COMPUTER -> R.drawable.ic_computer
         BluetoothClass.Device.Major.HEALTH -> R.drawable.ic_medical_services
@@ -20,7 +27,7 @@ fun bluetoothDeviceIcon(device: BluetoothDevice?): Int =
     }
 
 fun bluetoothDeviceLabelRes(device: BluetoothDevice?): Int? {
-    val btClass = device?.bluetoothClass ?: return null
+    val btClass = device?.bluetoothClassSafe() ?: return null
     // https://developer.android.com/reference/android/bluetooth/BluetoothClass.Device
     return when (btClass.deviceClass) {
         BluetoothClass.Device.COMPUTER_DESKTOP ->
@@ -147,7 +154,10 @@ fun bluetoothDeviceFromMac(macAddress: String): BluetoothDevice? {
     return try {
         adapter.getRemoteDevice(macAddress)
     } catch (e: IllegalArgumentException) {
-        log("bluetoothDeviceFromMac: invalid MAC: $macAddress")
+        log("bluetoothDeviceFromMac: invalid MAC")
+        null
+    } catch (e: SecurityException) {
+        log("bluetoothDeviceFromMac: permission denied")
         null
     }
 }
