@@ -86,15 +86,189 @@ Permission: BLUETOOTH_CONNECT (runtime on 31+).
 On older versions BLUETOOTH is auto-granted.
 
 
+### Toggling Bluetooth
+
+**`BluetoothAdapter.enable()` / `disable()`** (API 5+, deprecated 31, blocked 33+):
+
+- Permission: `BLUETOOTH` + `BLUETOOTH_ADMIN` (legacy), `BLUETOOTH_CONNECT` (31+).
+- No user flow: silent programmatic toggle.
+- On API 33+ both methods always return `false` for non-system apps
+  (https://android.googlesource.com/platform/frameworks/base/+/refs/heads/main/core/java/android/bluetooth/BluetoothAdapter.java).
+- Reliable only on API 30 and below.
+
+```kotlin
+val adapter = context.getSystemService(BluetoothManager::class.java)?.adapter
+adapter?.enable()    // returns false on API 33+
+adapter?.disable()   // returns false on API 33+
+```
+
+**`ACTION_REQUEST_ENABLE`** (API 5+):
+
+- Permission: `BLUETOOTH` (normal, auto-granted).
+- User flow: system dialog requesting consent — requires a foreground `Activity`.
+- No `ACTION_REQUEST_DISABLE` exists (enable only).
+- Not usable for background automation (per-action dialog + Activity context).
+
+```kotlin
+// From an Activity
+val intent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
+startActivityForResult(intent, REQUEST_ENABLE_BT)
+```
+
+**Settings panel** (API 33+):
+
+- Permission: none.
+- User flow: app opens floating panel -> user toggles Bluetooth manually.
+- Not automation, just a shortcut to system UI.
+
+```kotlin
+val intent = Intent(Settings.Panel.ACTION_BLUETOOTH)
+startActivity(intent)
+```
+
+**Shell command `svc bluetooth`**:
+
+- Requires ADB connection, root, or `BLUETOOTH_PRIVILEGED` (system app).
+- Not available to normal non-system apps.
+
+```bash
+svc bluetooth enable
+svc bluetooth disable
+```
+
+### Connecting and disconnecting devices
+
+**Profile proxy via reflection** (A2DP, HFP/HSP, HID Host):
+
+Most profile proxy classes (`BluetoothA2dp`, `BluetoothHeadset`, `BluetoothHidHost`)
+have `connect()` and `disconnect()` methods marked `@hide`.
+On the source side (phone connecting to headset or speaker), these methods
+require only `BLUETOOTH_CONNECT` — not `BLUETOOTH_PRIVILEGED`.
+The sink side (`BluetoothA2dpSink`) requires `BLUETOOTH_PRIVILEGED`.
+
+- API: 11+ (A2DP, Headset).
+- Permission: `BLUETOOTH_CONNECT` for source-side profiles.
+- User flow: none — async, result via `BluetoothProfile.ServiceListener`.
+- Caveat: reflection is fragile across Android releases; may break on future versions.
+
+```kotlin
+// Connect via A2DP profile
+adapter.getProfileProxy(context, object : BluetoothProfile.ServiceListener {
+    override fun onServiceConnected(profile: Int, proxy: BluetoothProfile) {
+        val a2dp = proxy as BluetoothA2dp
+        val connectMethod = BluetoothA2dp::class.java.getDeclaredMethod(
+            "connect", BluetoothDevice::class.java
+        )
+        connectMethod.isAccessible = true
+        connectMethod.invoke(a2dp, device)
+    }
+
+    override fun onServiceDisconnected(profile: Int) {}
+}, BluetoothProfile.A2DP)
+```
+
+```kotlin
+// Disconnect via A2DP profile
+adapter.getProfileProxy(context, object : BluetoothProfile.ServiceListener {
+    override fun onServiceConnected(profile: Int, proxy: BluetoothProfile) {
+        val a2dp = proxy as BluetoothA2dp
+        val disconnectMethod = BluetoothA2dp::class.java.getDeclaredMethod(
+            "disconnect", BluetoothDevice::class.java
+        )
+        disconnectMethod.isAccessible = true
+        disconnectMethod.invoke(a2dp, device)
+    }
+
+    override fun onServiceDisconnected(profile: Int) {}
+}, BluetoothProfile.A2DP)
+```
+
+**`BluetoothDevice.disconnect()`** (API 37+):
+
+- Clean public API — disconnects all active profiles for a device.
+- Permission: `BLUETOOTH_CONNECT` + (`BLUETOOTH_PRIVILEGED` or Companion Device Manager association).
+- User flow: none for PRIVILEGED apps; one-time CDM association otherwise.
+- API 37 is not yet released as of SDK 36.
+
+**Companion Device Manager (CDM)**:
+
+- API: 26+ for basic association, 37+ for connect/disconnect grant.
+- User flow: one-time system UI — user selects the device and confirms.
+- After association: persistent permission grant, no further dialogs.
+
+```kotlin
+val deviceManager = getSystemService(CompanionDeviceManager::class.java)
+val deviceFilter = BluetoothDeviceFilter.Builder()
+    .setAddress(macAddress)
+    .build()
+val request = AssociationRequest.Builder()
+    .addDeviceFilter(deviceFilter)
+    .build()
+
+deviceManager.associate(request, object : CompanionDeviceManager.Callback() {
+    override fun onDeviceFound(discoveryResult: IntentSender) {
+        startIntentSenderForResult(
+            discoveryResult, REQUEST_CDM, null, 0, 0, 0
+        )
+    }
+
+    override fun onFailure(error: CharSequence?) {}
+}, null)
+```
+
+**RFCOMM socket**:
+
+- Low-level `BluetoothDevice.createRfcommSocketToServiceRecord(uuid)` + `socket.connect()`.
+- Permission: `BLUETOOTH_CONNECT`.
+- Requires knowing the service UUID on the target device.
+- Only applicable for custom peer-to-peer apps, not for connecting to
+  consumer devices under standard profiles.
+
+### Detecting device capabilities
+
+`BluetoothDevice.fetchUuidsWithSdp()` queries the device's SDP record for
+supported profile UUIDs. The result arrives via `ACTION_UUID` broadcast.
+Cached values are available through `getUuids()`.
+
+Profile UUIDs are defined by the Bluetooth SIG:
+
+```
+A2DP Source      0000110A-0000-1000-8000-00805F9B34FB
+A2DP Sink        0000110B-0000-1000-8000-00805F9B34FB
+HFP (Hands-Free) 0000111E-0000-1000-8000-00805F9B34FB
+HSP (Headset)    00001108-0000-1000-8000-00805F9B34FB
+HID              00001124-0000-1000-8000-00805F9B34FB
+```
+
+```kotlin
+// Check cached UUIDs
+device.uuids?.forEach { uuid ->
+    when (uuid.toString().uppercase()) {
+        "0000110B-0000-1000-8000-00805F9B34FB" -> supportsA2dp = true
+        "0000111E-0000-1000-8000-00805F9B34FB" -> supportsHfp = true
+    }
+}
+
+// Trigger fresh SDP fetch (result via ACTION_UUID broadcast)
+device.fetchUuidsWithSdp()
+```
+
+- Permission: `BLUETOOTH_CONNECT`.
+- Some devices do not advertise all profiles via SDP.
+- Useful for validation: warn user when the selected profile is not advertised.
+
+
 ## Design decisions
 
+### Device connection event trigger
 
 **Passive ACL detection over active scanning**:
-we use `ACTION_ACL_CONNECTED` via a manifest-declared `BroadcastReceiver`
+Use `ACTION_ACL_CONNECTED` via a manifest-declared `BroadcastReceiver`
 instead of polling with `BluetoothAdapter.startDiscovery()` or `BluetoothLeScanner`.
 The ACL broadcast is fire-and-forget, needs no
 foreground service, and is exempt from API 26+ implicit broadcast
-restrictions. Since VokiBot only needs to react when a bonded device
+restrictions.
+Since VokiBot only needs to react when a bonded device
 reconnects (arrival), this is sufficient.
 
 **No AmbientMonitorService yet**:
@@ -112,4 +286,29 @@ can be added with `ACTION_ACL_DISCONNECTED` in the same receiver.
 31+). Below API 31, `BLUETOOTH` is a normal permission (auto-granted
 at install). `ACCESS_FINE_LOCATION` is **not** required because we
 don't do BLE scanning.
+
+### Device connection command
+
+**Bluetooth connect/disconnect via reflection**:
+source-side profile proxy methods (`BluetoothA2dp.connect()`, `BluetoothHeadset.connect()`)
+require only `BLUETOOTH_CONNECT` and are accessible via reflection.
+This works on API 33-36 today but is fragile across Android updates.
+If implemented, the `try` button in the editor provides immediate feedback
+on whether the call succeeded on the current device.
+
+**CDM + `BluetoothDevice.disconnect()` as future path**
+This would solve the BT status in a more reliable way
+but Vokibot is API 26-36 this is API 37.
+A future migration could be considered when API support moves.
+
+**Bluetooth enable/disable not viable for automation**:
+`enable()`/`disable()` are hard-blocked on API 33+.
+`ACTION_REQUEST_ENABLE` requires a foreground Activity and a system dialog
+per action — incompatible with background execution. Shell commands need
+ADB or root. No practical option exists for a non-system F-Droid app.
+
+**Profile detection via SDP useful for editorial validation**:
+`fetchUuidsWithSdp()` can determine which profiles a device advertises.
+In a connect-action editor this helps the user select an appropriate profile.
+The ACL trigger itself does not need this information.
 
