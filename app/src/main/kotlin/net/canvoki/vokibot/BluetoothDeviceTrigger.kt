@@ -30,11 +30,11 @@ data class BluetoothDeviceTrigger(
     }
 
     override val type: String = BluetoothDeviceTrigger.typeKey
-    override val iconRes: Int get() = bluetoothDeviceIcon(bluetoothDeviceFromMac(macAddress))
+    override val iconRes: Int get() = BluetoothDeviceTrigger.iconRes
     override val id: String get() = idFromMac(macAddress)
 
     override fun getTitle(context: Context): String {
-        val device = bluetoothDeviceFromMac(macAddress)
+        val device = bluetoothDeviceFromMac(context, macAddress)
         val label = device?.let { bluetoothDeviceLabelRes(it) }?.let { context.getString(it) }
         return if (label != null) "$name ($label)" else name
     }
@@ -42,7 +42,7 @@ data class BluetoothDeviceTrigger(
     override val description: String get() = macAddress
 
     override fun loadIcon(context: Context): Drawable {
-        val device = bluetoothDeviceFromMac(macAddress)
+        val device = bluetoothDeviceFromMac(context, macAddress)
         val deviceIcon = bluetoothDeviceIcon(device)
 
         if (deviceIcon == BluetoothDeviceTrigger.iconRes) {

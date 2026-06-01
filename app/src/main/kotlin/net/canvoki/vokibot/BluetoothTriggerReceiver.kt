@@ -23,13 +23,14 @@ class BluetoothTriggerReceiver : BroadcastReceiver() {
                 intent.getParcelableExtra<BluetoothDevice>(BluetoothDevice.EXTRA_DEVICE)
             } ?: return
 
-        val name = device.name ?: device.address
-        log("Bluetooth connected: $name (${device.address})")
+        val mac = device.safeAddress()
+        val name = device.safeDisplayName()
+        log("Bluetooth connected: $name ($mac)")
 
         val repo = FileDataRepository.fromContext(context)
-        val triggerId = BluetoothDeviceTrigger.idFromMac(device.address)
+        val triggerId = BluetoothDeviceTrigger.idFromMac(mac)
         if (!Automation.executeByTrigger(repo, triggerId, context)) {
-            log("BluetoothTriggerReceiver: No automation for $name (${device.address})")
+            log("BluetoothTriggerReceiver: No automation for $name ($mac)")
         }
     }
 }

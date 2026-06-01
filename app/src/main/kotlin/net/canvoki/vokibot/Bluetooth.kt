@@ -1,16 +1,19 @@
 package net.canvoki.vokibot
 
-import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothClass
 import android.bluetooth.BluetoothDevice
+import android.bluetooth.BluetoothManager
+import android.content.Context
+import android.os.Build
 import net.canvoki.shared.log
 
-private fun BluetoothDevice?.bluetoothClassSafe(): BluetoothClass? = try {
-    this?.bluetoothClass
-} catch (e: SecurityException) {
-    log("Bluetooth permission denied")
-    null
-}
+private fun BluetoothDevice?.bluetoothClassSafe(): BluetoothClass? =
+    try {
+        this?.bluetoothClass
+    } catch (e: SecurityException) {
+        log("Bluetooth permission denied")
+        null
+    }
 
 fun bluetoothDeviceIcon(device: BluetoothDevice?): Int =
     when (device?.bluetoothClassSafe()?.majorDeviceClass) {
@@ -149,8 +152,30 @@ fun bluetoothDeviceLabelRes(device: BluetoothDevice?): Int? {
     }
 }
 
-fun bluetoothDeviceFromMac(macAddress: String): BluetoothDevice? {
-    val adapter = BluetoothAdapter.getDefaultAdapter() ?: return null
+fun BluetoothDevice.safeAddress(): String {
+    @Suppress("MissingPermission")
+    return address
+}
+
+fun BluetoothDevice.safeDisplayName(): String {
+    @Suppress("MissingPermission")
+    val aliasOrNull =
+        if (Build.VERSION.SDK_INT >= 30) {
+            @Suppress("NewApi") // alias added in API 30
+            alias
+        } else {
+            null
+        }
+    @Suppress("MissingPermission")
+    return aliasOrNull ?: name ?: address
+}
+
+fun bluetoothDeviceFromMac(
+    context: Context,
+    macAddress: String,
+): BluetoothDevice? {
+    val manager = context.getSystemService(BluetoothManager::class.java) ?: return null
+    val adapter = manager.adapter ?: return null
     return try {
         adapter.getRemoteDevice(macAddress)
     } catch (e: IllegalArgumentException) {

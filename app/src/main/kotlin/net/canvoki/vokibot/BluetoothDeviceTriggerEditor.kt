@@ -224,7 +224,7 @@ private fun PairedDevicesList(
     Column {
         devices.forEachIndexed { index, device ->
             if (index > 0) HorizontalDivider()
-            val deviceName = device.alias ?: device.name ?: device.address
+            val deviceName = device.safeDisplayName()
             BluetoothDeviceItem(
                 device = device,
                 deviceName = deviceName,
