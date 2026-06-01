@@ -51,7 +51,7 @@ import net.canvoki.vokibot.common.WarningBanner
 import net.canvoki.vokibot.common.rememberDiscardableState
 
 @Composable
-private fun permissionRequestLauncher(onResult: (Boolean) -> Unit) =
+fun permissionRequestLauncher(onResult: (Boolean) -> Unit) =
     rememberLauncherForActivityResult(
         contract = ActivityResultContracts.RequestPermission(),
         onResult = onResult,
@@ -63,156 +63,167 @@ data class BluetoothDeviceTriggerEditor(
 ) : StackedScreen<Unit>() {
     @Composable
     override fun Screen(nav: StackNavigatorState) {
-        val context = LocalContext.current
-        val repository = remember { FileDataRepository.fromContext(context) }
+        BluetoothDeviceTriggerEditor(nav, this, triggerId)
+    }
+}
 
-        var name by rememberSaveable { mutableStateOf("") }
-        var mac by rememberSaveable { mutableStateOf("") }
-        var isSaving by rememberSaveable { mutableStateOf(false) }
-        val discardState = rememberDiscardableState(screen = this@BluetoothDeviceTriggerEditor, nav = nav)
-        var hasLoaded by rememberSaveable { mutableStateOf(false) }
+@Composable
+fun BluetoothDeviceTriggerEditor(
+    nav: StackNavigatorState,
+    editor: BluetoothDeviceTriggerEditor,
+    triggerId: String?,
+) {
+    val context = LocalContext.current
+    val repository = remember { FileDataRepository.fromContext(context) }
 
-        fun checkConnectPermission(): Boolean =
-            if (Build.VERSION.SDK_INT >= 31) {
-                ContextCompat.checkSelfPermission(
-                    context,
-                    Manifest.permission.BLUETOOTH_CONNECT,
-                ) == PackageManager.PERMISSION_GRANTED
-            } else {
-                true
-            }
+    var name by rememberSaveable { mutableStateOf("") }
+    var mac by rememberSaveable { mutableStateOf("") }
+    var isSaving by rememberSaveable { mutableStateOf(false) }
+    val discardState = rememberDiscardableState(screen = editor, nav = nav)
+    var hasLoaded by rememberSaveable { mutableStateOf(false) }
 
-        var connectPermissionGranted by remember { mutableStateOf(checkConnectPermission()) }
-        var permissionDenied by remember { mutableStateOf(false) }
-
-        val connectPermissionLauncher =
-            permissionRequestLauncher { granted ->
-                connectPermissionGranted = granted
-                if (!granted) permissionDenied = true
-            }
-
-        val bluetoothAdapter =
-            remember {
-                val manager = context.getSystemService(BluetoothManager::class.java)
-                manager?.adapter
-            }
-        val bondedDevices =
-            remember(connectPermissionGranted) {
-                if (!connectPermissionGranted) {
-                    emptyList()
-                } else {
-                    bluetoothAdapter
-                        ?.bondedDevices
-                        ?.sortedBy { it.name?.lowercase() } ?: emptyList()
-                }
-            }
-
-        LaunchedEffect(triggerId) {
-            if (triggerId != null && !hasLoaded) {
-                val existing =
-                    repository.trigger.load(triggerId) as? BluetoothDeviceTrigger
-                existing?.let {
-                    name = it.name
-                    mac = it.macAddress
-                }
-                hasLoaded = true
-            }
-            discardState.isDirty = false
+    fun checkConnectPermission(): Boolean =
+        if (Build.VERSION.SDK_INT >= 31) {
+            ContextCompat.checkSelfPermission(
+                context,
+                Manifest.permission.BLUETOOTH_CONNECT,
+            ) == PackageManager.PERMISSION_GRANTED
+        } else {
+            true
         }
 
-        Column(
-            modifier =
-                Modifier
-                    .fillMaxSize()
-                    .verticalScroll(rememberScrollState())
-                    .padding(8.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp),
-        ) {
-            EditorHeader(
-                icon = painterResource(R.drawable.ic_bluetooth),
-                title = stringResource(R.string.triggerlist_option_bluetooth_device),
-                actionText = stringResource(R.string.bluetooth_device_editor_save),
-                actionEnabled = name.isNotBlank() && mac.isNotBlank() && !isSaving,
-                actionIsRunning = isSaving,
-                action = {
-                    if (name.isNotBlank() && mac.isNotBlank()) {
-                        isSaving = true
-                        val trigger =
-                            BluetoothDeviceTrigger(
-                                name = name.trim(),
-                                macAddress = mac.trim(),
-                            )
-                        repository.trigger.save(trigger)
-                        isSaving = false
-                        nav.pop()
-                    }
-                },
-            )
+    var connectPermissionGranted by remember { mutableStateOf(checkConnectPermission()) }
+    var permissionDenied by remember { mutableStateOf(false) }
 
-            OutlinedTextField(
-                value = name,
-                onValueChange = {
-                    name = it
-                    discardState.markDirty()
-                },
-                label = { Text(stringResource(R.string.bluetooth_device_editor_name_label)) },
-                placeholder = { Text(stringResource(R.string.bluetooth_device_editor_name_placeholder)) },
-                modifier = Modifier.fillMaxWidth(),
-                singleLine = true,
-                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
-            )
+    val connectPermissionLauncher =
+        permissionRequestLauncher { granted ->
+            connectPermissionGranted = granted
+            if (!granted) permissionDenied = true
+        }
 
-            OutlinedTextField(
-                value = mac,
-                onValueChange = {
-                    mac = it
-                    discardState.markDirty()
-                },
-                label = { Text(stringResource(R.string.bluetooth_device_editor_mac_label)) },
-                placeholder = { Text("AA:BB:CC:DD:EE:FF") },
-                modifier = Modifier.fillMaxWidth(),
-                singleLine = true,
-                keyboardOptions =
-                    KeyboardOptions(
-                        capitalization = KeyboardCapitalization.Characters,
-                        imeAction = ImeAction.Done,
-                    ),
-            )
+    val bluetoothAdapter =
+        remember {
+            val manager = context.getSystemService(BluetoothManager::class.java)
+            manager?.adapter
+        }
+    fun buildTrigger() =
+        BluetoothDeviceTrigger(
+            name = name.trim(),
+            macAddress = mac.trim(),
+        )
 
-            if (bluetoothAdapter != null) {
-                HorizontalDivider()
-                if (connectPermissionGranted) {
-                    PairedDevicesList(
-                        devices = bondedDevices,
-                        onDeviceSelected = { deviceName, macAddress ->
-                            name = deviceName
-                            mac = macAddress
-                            discardState.markDirty()
-                        },
-                    )
-                } else {
-                    WarningBanner(
-                        message = stringResource(R.string.bluetooth_device_editor_permission_warning),
-                        buttonText = stringResource(R.string.bluetooth_device_editor_grant_permission),
-                        onClick = {
-                            if (permissionDenied) {
-                                Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
-                                    data = Uri.fromParts("package", context.packageName, null)
-                                    context.startActivity(this)
-                                }
-                            } else {
-                                connectPermissionLauncher.launch(Manifest.permission.BLUETOOTH_CONNECT)
-                            }
-                        },
-                    )
+    val bondedDevices =
+        remember(connectPermissionGranted) {
+            if (!connectPermissionGranted) {
+                emptyList()
+            } else {
+                bluetoothAdapter
+                    ?.bondedDevices
+                    ?.sortedBy { it.name?.lowercase() } ?: emptyList()
+            }
+        }
+
+    LaunchedEffect(triggerId) {
+        if (triggerId != null && !hasLoaded) {
+            val existing =
+                repository.trigger.load(triggerId) as? BluetoothDeviceTrigger
+            existing?.let {
+                name = it.name
+                mac = it.macAddress
+            }
+            hasLoaded = true
+        }
+        discardState.isDirty = false
+    }
+
+    Column(
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState())
+                .padding(8.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp),
+    ) {
+        EditorHeader(
+            icon = painterResource(BluetoothDeviceTrigger.iconRes),
+            title = stringResource(BluetoothDeviceTrigger.labelRes),
+            actionText = stringResource(R.string.bluetooth_device_editor_save),
+            actionEnabled = name.isNotBlank() && mac.isNotBlank() && !isSaving,
+            actionIsRunning = isSaving,
+            action = {
+                if (name.isNotBlank() && mac.isNotBlank()) {
+                    isSaving = true
+                    val trigger = buildTrigger()
+                    repository.trigger.save(trigger)
+                    isSaving = false
+                    nav.pop()
                 }
+            },
+        )
+
+        OutlinedTextField(
+            value = name,
+            onValueChange = {
+                name = it
+                discardState.markDirty()
+            },
+            label = { Text(stringResource(R.string.bluetooth_device_editor_name_label)) },
+            placeholder = { Text(stringResource(R.string.bluetooth_device_editor_name_placeholder)) },
+            modifier = Modifier.fillMaxWidth(),
+            singleLine = true,
+            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
+        )
+
+        OutlinedTextField(
+            value = mac,
+            onValueChange = {
+                mac = it
+                discardState.markDirty()
+            },
+            label = { Text(stringResource(R.string.bluetooth_device_editor_mac_label)) },
+            placeholder = { Text("AA:BB:CC:DD:EE:FF") },
+            modifier = Modifier.fillMaxWidth(),
+            singleLine = true,
+            keyboardOptions =
+                KeyboardOptions(
+                    capitalization = KeyboardCapitalization.Characters,
+                    imeAction = ImeAction.Done,
+                ),
+        )
+
+        if (bluetoothAdapter != null) {
+            HorizontalDivider()
+            if (connectPermissionGranted) {
+                PairedDevicesList(
+                    devices = bondedDevices,
+                    onDeviceSelected = { deviceName, macAddress ->
+                        name = deviceName
+                        mac = macAddress
+                        discardState.markDirty()
+                    },
+                )
+            } else {
+                WarningBanner(
+                    message = stringResource(R.string.bluetooth_device_editor_permission_warning),
+                    buttonText = stringResource(R.string.bluetooth_device_editor_grant_permission),
+                    onClick = {
+                        if (permissionDenied) {
+                            Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
+                                data = Uri.fromParts("package", context.packageName, null)
+                                context.startActivity(this)
+                            }
+                        } else {
+                            connectPermissionLauncher.launch(Manifest.permission.BLUETOOTH_CONNECT)
+                        }
+                    },
+                )
             }
         }
     }
 }
 
 @Composable
-private fun PairedDevicesList(
+fun PairedDevicesList(
     devices: List<BluetoothDevice>,
     onDeviceSelected: (name: String, mac: String) -> Unit,
 ) {
