@@ -50,12 +50,21 @@ Alternative: User can discard by checking out (reverting).
 - Do NOT modify untracked files
 - May create new files, but only edit them after User adds them to the stage
 - Produce small, focused proposals (tens of lines)
-- Split large changes into multiple commits, planning a sequence where each step keeps the codebase working. This requires strategic thinking: break the task into incremental steps that each compile and pass tests.
+- Split large changes into multiple commits,
+  planning a sequence where each step keeps the codebase working.
+  This requires strategic thinking:
+  break the task into incremental steps
+  (each must compile; all tests must pass except the new test during TDD RED phase).
 
 ## TDD (Test-Driven Development)
 
 When using TDD (Beck/Fowler methodology):
-1. **Red**: Write a failing test. Only a failing assertion counts as RED (not compile errors or runtime crashes).
+1. **Red**: Write a failing test.
+   Only a failing assertion counts as RED --
+   compilation errors, runtime crashes, or build failures do not qualify.
+   The proposal must compile,
+   and only the new test may fail;
+   existing tests must still pass.
 2. **Green**: Write the minimal implementation to make the test pass. Do not add extra behavior.
 3. **Refactor**: Clean up code while keeping tests passing.
 
@@ -71,7 +80,18 @@ When using TDD (Beck/Fowler methodology):
 **Rules**:
 - Do not change behavior during RED phase
 - Implement only what is needed to pass the test, no more
-- Each step should compile and pass tests
+- Each step must compile.
+  RED proposals have only the new test failing by design;
+  existing tests must still pass.
+  GREEN and refactored steps must pass all tests.
+
+**Workflow**: Agent proposes RED code
+(test + deliberately wrong implementation that compiles but the new test fails).
+User reviews the RED --
+verifies the failure message is informative,
+may adjust the test.
+After approval, Agent adds the GREEN fix.
+RED and GREEN are committed together in a single commit for the step.
 
 ### Long refactorings workflow (Duppe, Fill, Rely, Cleanup)
 
