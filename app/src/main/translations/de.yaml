@@ -312,3 +312,10 @@ bluetooth_device_editor_mac_label: MAC-Adresse
 bluetooth_device_editor_permission_warning: Dieser Auslöser erfordert die Berechtigung zum Zugriff auf das Bluetooth-Subsystem.
 bluetooth_device_editor_grant_permission: Berechtigung erteilen
 bluetooth_device_editor_paired_devices: Gekoppelte Geräte
+command_bluetooth_connect_label: Bluetooth-Gerät verbinden
+command_bluetooth_connect_help: |
+  Steuert die Verbindung mit einem Bluetooth-Gerät.
+
+  Du kannst es verbinden oder trennen.
+  Aus Sicherheitsgründen beschränkt Android die Steuerung
+  der Verbindung einiger Gerätetypen.

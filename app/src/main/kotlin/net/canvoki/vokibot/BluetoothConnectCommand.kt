@@ -22,16 +22,18 @@ data class BluetoothConnectCommand(
 
     override fun toJson(): String = JsonConfig.encodeToString(serializer(), this)
 
-    override suspend fun execute(context: Context) {}
+    override suspend fun execute(context: Context) {
+        // TODO
+    }
 
     companion object : EntityMetadata {
         override val typeKey = "bluetooth_connect"
         override val entityClass = BluetoothConnectCommand::class
-        override val labelRes = 0 // TODO
-        override val iconRes = 0 // TODO
+        override val labelRes = R.string.command_bluetooth_connect_label
+        override val iconRes = R.drawable.ic_bluetooth
         override val editorFactory = { id: String? -> BluetoothConnectCommandEditor(id) }
         override val deserializer: ((String) -> StorableEntity)? = { fromJson(it) }
-        override val helpRes = 0 // TODO
+        override val helpRes = R.string.command_bluetooth_connect_help
 
         fun fromJson(jsonString: String): BluetoothConnectCommand =
             JsonConfig.decodeFromString(serializer(), jsonString)

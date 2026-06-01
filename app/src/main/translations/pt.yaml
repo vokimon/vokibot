@@ -312,3 +312,10 @@ bluetooth_device_editor_mac_label: Endereço MAC
 bluetooth_device_editor_permission_warning: Este acionador requer permissão para aceder ao subsistema Bluetooth.
 bluetooth_device_editor_grant_permission: Conceder permissão
 bluetooth_device_editor_paired_devices: Dispositivos emparelhados
+command_bluetooth_connect_label: Ligar dispositivo Bluetooth
+command_bluetooth_connect_help: |
+  Controla a ligação com um dispositivo Bluetooth.
+
+  Podes ligá-lo ou desligá-lo.
+  Por razões de segurança, o Android restringe o controlo
+  da ligação de alguns tipos de dispositivos.

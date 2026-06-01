@@ -312,3 +312,10 @@ bluetooth_device_editor_mac_label: Adreza MAC
 bluetooth_device_editor_permission_warning: Iste disparador requiere permiso ta acceder a o subsistema Bluetooth.
 bluetooth_device_editor_grant_permission: Conceder permiso
 bluetooth_device_editor_paired_devices: Dispositivos emparellaus
+command_bluetooth_connect_label: Conectar dispositivo Bluetooth
+command_bluetooth_connect_help: |
+  Controla a connexión con un dispositivo Bluetooth.
+
+  Puetz conectar-lo u desconnectar-lo.
+  Por razons de seguridat, Android restrinche o control
+  d'a connexión de bel tipo de dispositivos.

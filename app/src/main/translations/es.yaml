@@ -243,8 +243,8 @@ settings_page_name_battery: Batería
 settings_page_name_notifications: Notificaciones
 settings_page_name_all_settings: Todos los ajustes
 settings_page_name_quick_launch: Inicio rápido
-unknown_command_title: Comando no soportado
-unknown_trigger_title: Disparador no soportado
+unknown_command_title: "Comando no soportado"
+unknown_trigger_title: "Disparador no soportado"
 common_notice_title: Aviso
 common_experimental_title: Función experimental
 application_command_editor_not_implemented: Este tipo de componente de aplicación aún no está implementado
@@ -312,3 +312,10 @@ bluetooth_device_editor_mac_label: Dirección MAC
 bluetooth_device_editor_permission_warning: Este disparador requiere permiso para acceder al subsistema Bluetooth.
 bluetooth_device_editor_grant_permission: Conceder permiso
 bluetooth_device_editor_paired_devices: Dispositivos emparejados
+command_bluetooth_connect_label: Conectar dispositivo Bluetooth
+command_bluetooth_connect_help: |
+  Controla la conexión con un dispositivo Bluetooth.
+
+  Puedes conectarlo o desconectarlo.
+  Por razones de seguridad, Android restringe el control
+  de la conexión de algunos tipos de dispositivos.

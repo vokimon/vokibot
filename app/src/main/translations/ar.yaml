@@ -307,8 +307,15 @@ bluetooth_device_class_health_uncategorized: جهاز صحي
 bluetooth_device_class_unknown: نوع غير معروف
 bluetooth_device_editor_save: حفظ
 bluetooth_device_editor_name_label: اسم الجهاز
-bluetooth_device_editor_name_placeholder: "مثلاً: نظام اليدين الحرتين في السيارة"
+bluetooth_device_editor_name_placeholder: 'مثلاً: نظام اليدين الحرتين في السيارة'
 bluetooth_device_editor_mac_label: عنوان MAC
 bluetooth_device_editor_permission_warning: يتطلب هذا المُطلِق إذنًا للوصول إلى نظام البلوتوث الفرعي.
 bluetooth_device_editor_grant_permission: منح الإذن
 bluetooth_device_editor_paired_devices: الأجهزة المقترنة
+command_bluetooth_connect_label: توصيل جهاز بلوتوث
+command_bluetooth_connect_help: |
+  يتحكم في الاتصال بجهاز بلوتوث.
+
+  يمكنك توصيله أو فصله.
+  لأسباب أمنية، يقيد أندرويد التحكم
+  في اتصال بعض أنواع الأجهزة.

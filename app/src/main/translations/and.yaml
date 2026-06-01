@@ -123,7 +123,7 @@ trigger_nfc_help: |
 trigger_shortcut_help: |
   Crea un âççeço dirêtto en la pantaya de iniçio que dîppara automatiçaçionê al abrirçe.
 command_settings_page_help: |
-  Abre una páhina êppeçífica de la configuraçión de Androîh.
+  Abre una páhina êppeçífica de la configuraçión de Android.
 
   Omite lô menûh y te yeba dirêttamente a la páhina deçeá.
 command_launch_activity_help: |
@@ -241,8 +241,8 @@ settings_page_name_battery: Batería
 settings_page_name_notifications: Notificaçionê
 settings_page_name_all_settings: Tôh lô ahûttê
 settings_page_name_quick_launch: Iniçio rápido
-unknown_command_title: Comando no çoportao
-unknown_trigger_title: Dîpparadôh no çoportao
+unknown_command_title: "Comando no çoportao"
+unknown_trigger_title: "Dîpparadôh no çoportao"
 common_notice_title: Abiço
 common_experimental_title: Funçión êpperimentâh
 application_command_editor_not_implemented: Êtte tipo de componente de aplicaçión aún no êttá implementao
@@ -310,3 +310,10 @@ bluetooth_device_editor_mac_label: Dirêççión MAC
 bluetooth_device_editor_permission_warning: Êtte dîpparadôh requiere permiço pa âççedêh ar çûççîttema Bluetooth.
 bluetooth_device_editor_grant_permission: Conçedêh permiço
 bluetooth_device_editor_paired_devices: Dîppoçitibô empareháô
+command_bluetooth_connect_label: Conêttâh dîppoçitibo Bluetoôh
+command_bluetooth_connect_help: |
+  Controla la conêççión con un dîppoçitibo Bluetoôh.
+
+  Puedê conêttâl-lo o dêcconêttâl-lo.
+  Por raçonê de çeguridá, Androîh rêttrinhe er contrôh
+  de la conêççión de argunô tipô de dîppoçitibô.

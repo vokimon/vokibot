@@ -22,21 +22,22 @@ Two main types:
   identified by its MAC address and a human-readable name.
 - **MAC address**: Unique hardware identifier, format `AA:BB:CC:DD:EE:FF`.
   Stable across reboots and renames.
-- **Name**: Human-readable device label set by default by the manufacturer.
+- **Name:** Human-readable device label set by default by the manufacturer.
   Can be changed afterwards by the user, so not an stable identifier.
-- **Bonding (pairing)**: a persistent relationship between two devices.
-  Bonded devices can reconnect automatically without user confirmation.
-  Pairing is the term used for the user.
-  Bonding is the term used in the api.
-- **ACL (Asynchronous Connection-Less) link**: the low-level data link
-  between two Bluetooth devices. When a bonded device comes within range
-  and reconnects, an ACL link is established. "ACL connected" means the
-  device is now linked at the radio level.
+- **Alias:** Name used in the peer alternative to the name provided by the device.
+- **Discovery:** Locate nearby devices and its capabilities
+- **Pairing:** Stablishing trust between peers, usually involving user key veryfication.
+- **Bonding:** Remembering each other for later reconnection.
+- **Connecting:** Making the actual use comunication.
+- **ACL (Asynchronous Connection-Less) link**:
+  Low-level data link between two Bluetooth devices. 
+  "ACL connected" means the device is now linked at the radio level.
 - **Profile:** Standardized set of rules that defines what a device does and how it communicates with peers.
 - **Roles:** Each profile define two complementary roles for the communication.
-- **Implemented role:** A role of a profile a device can adopt.
-- **Service:** An exposed implementation of a role that is discoverable by peers
-  (Not all the implemented roles are always advertised as services)
+- **Capability:** A role of a profile a device can adopt.
+  Each device may implement one or both roles of one or many profiles.
+- **Service:** An exposed capability that is discoverable by peers.
+  Not all the capabilities are always advertised as services.
 - **Advertising:** is how a device makes a role/service (services) discoverable
   so that a peer can initiate a connection using the complementary role.
   - Classic Bluetooth: SDP (Service Discovery Protocol) Holds all information
@@ -45,8 +46,6 @@ Two main types:
 
 ## Bluetooth profiles
 
-- Each profile defines two complementary roles
-- Devices may implement several profiles and one or both roles of each profile
 - Of those implmented, device may advertise the ones to be initiated by the complementary role
 
 Common profiles:
