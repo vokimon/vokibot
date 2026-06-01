@@ -32,6 +32,91 @@ Two main types:
   between two Bluetooth devices. When a bonded device comes within range
   and reconnects, an ACL link is established. "ACL connected" means the
   device is now linked at the radio level.
+- **Profile:** Standardized set of rules that defines what a device does and how it communicates with peers.
+- **Roles:** Each profile define two complementary roles for the communication.
+- **Implemented role:** A role of a profile a device can adopt.
+- **Service:** An exposed implementation of a role that is discoverable by peers
+  (Not all the implemented roles are always advertised as services)
+- **Advertising:** is how a device makes a role/service (services) discoverable
+  so that a peer can initiate a connection using the complementary role.
+  - Classic Bluetooth: SDP (Service Discovery Protocol) Holds all information
+  - BLE (Bluetooth Low Energy): GAP (lightweight advertising) + GATT (provides details after connection)
+- **Device Class:** A coarse classification of devices (phone, laptop, keyboard...). Does not imply protocol just a hint for users.
+
+## Bluetooth profiles
+
+- Each profile defines two complementary roles
+- Devices may implement several profiles and one or both roles of each profile
+- Of those implmented, device may advertise the ones to be initiated by the complementary role
+
+Common profiles:
+
+* HID: Human Interface Device
+
+  * Examples: keyboard, mouse, drawing tablet, game controller, remote control...
+  * Optimized for low latency
+  * Roles: Host / Device
+
+* HSP: Headset Profile
+
+  * Mono audio intended for telephony
+  * Supports mic + speaker, call answer, call end
+  * Limited sound quality
+  * Roles: Headset / Audio Gateway
+
+* HFP: Hands-Free Profile
+
+  * Improves HSP, mostly used today for headset calls
+  * Supports voice calling, caller ID, voice dialing
+  * Additional call controls and status information (e.g. battery reporting)
+  * Roles: Hands-Free / Audio Gateway
+
+* A2DP: Advanced Audio Distribution Profile
+
+  * High-quality audio streaming
+  * Stereo audio for music and media playback
+  * Does not carry microphone audio
+  * Roles: Source / Sink
+
+* AVRCP: Audio/Video Remote Control Profile
+
+  * Remote control for media playback
+  * Play, pause, next track, previous track
+  * Volume control
+  * Can provide media metadata (song title, artist...)
+  * Roles: Controller / Target
+
+* PAN: Personal Area Networking Profile
+
+  * Network connection over Bluetooth
+  * Can be used for internet tethering or device-to-device networking
+  * Roles: PANU / NAP / GN
+
+* OPP: Object Push Profile
+
+  * Transfer files between devices
+  * Commonly used for contacts, images and documents
+  * Mostly found on older devices
+  * Roles: Client / Server
+
+* PBAP: Phone Book Access Profile
+
+  * Allows access to a phone's contacts
+  * Commonly used by car infotainment systems
+  * Roles: Client / Server
+
+* MAP: Message Access Profile
+
+  * Allows access to messages and notifications
+  * Commonly used by cars for SMS display and read-aloud features
+  * Roles: Message Client / Message Server
+
+A device may support several profiles and roles.
+
+* Typical headset: A2DP Sink (media) + AVRCP Target (media control) + HFP Hands-Free (voice calls)
+* Typical speaker: A2DP Sink (media) + AVRCP Target (media control)
+* Typical smart car: A2DP Sink + HFP Hands-Free + AVRCP Target + PBAP Client + MAP Client
+
 
 ## Android implementation
 
