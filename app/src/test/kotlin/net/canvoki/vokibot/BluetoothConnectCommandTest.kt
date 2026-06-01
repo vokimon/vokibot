@@ -33,7 +33,6 @@ class BluetoothConnectCommandTest {
 
     fun commandJson() = """{
   "type": "bluetooth_connect",
-  "id": "entity_id",
   "macAddress": "AA:BB:CC:DD:EE:FF",
   "deviceName": "Device Name",
   "action": "CONNECT"
@@ -41,10 +40,19 @@ class BluetoothConnectCommandTest {
 
     @Test fun `toJson`() {
         val cmd = BluetoothConnectCommand(
-            id = "entity_id",
             macAddress = "AA:BB:CC:DD:EE:FF",
             deviceName = "Device Name",
         )
         assertJsonEqual(cmd.toJson(), commandJson())
+    }
+
+    @Test fun `id is constructed from mac and action`() {
+        val cmd = commandBase()
+        assertEquals("bluetooth_connect_AA_BB_CC_DD_EE_FF_connect", cmd.id)
+    }
+
+    @Test fun `fromJson`() {
+        val deserialized = BluetoothConnectCommand.fromJson(commandJson())
+        assertEquals(commandBase().toString(), deserialized.toString())
     }
 }
