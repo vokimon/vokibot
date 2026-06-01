@@ -1,8 +1,8 @@
 [![Last Release](https://img.shields.io/github/release/vokimon/vokibot.svg?logo=github)](https://github.com/vokimon/vokibot/releases/latest)
 [![CI Status](https://github.com/vokimon/vokibot/actions/workflows/main.yaml/badge.svg)](https://github.com/vokimon/vokibot/actions/workflows/main.yaml)
+[![Get it on F-Droid](https://img.shields.io/f-droid/v/net.canvoki.vokibot.svg?logo=F-Droid)](https://f-droid.org/packages/net.canvoki.vokibot)
 ![GitHub Downloads](https://img.shields.io/github/downloads/vokimon/vokibot/total?logo=github)
 <!--[![Estat de la traducció](https://hosted.weblate.org/widget/vokibot/vokibot-ui/svg-badge.svg)](https://hosted.weblate.org/engage/vokibot/)-->
-<!--[![Get it on F-Droid](https://img.shields.io/f-droid/v/net.canvoki.vokibot.svg?logo=F-Droid)](https://f-droid.org/packages/net.canvoki.vokibot)-->
 <!--<a rel="me" href="https://masto.es/@vokibot"><img alt="Mastodon" src="https://img.shields.io/mastodon/follow/116250870368086238?domain=masto.es"></a>-->
 ![Voki Bot. On any trigger, run whatever](media/promo/splash.svg)
 
