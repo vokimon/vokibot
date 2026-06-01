@@ -70,8 +70,13 @@ class BluetoothConnectCommandTest {
         assertEquals("bluetooth_connect", typeKeys)
     }
 
-    @Test fun `editor returns BluetoothConnectCommandEditor`() {
+    @Test fun `editor returns BluetoothConnectCommandEditor, without id`() {
         val editor = StorableEntity.getEditorScreen("bluetooth_connect", null)
         assertEquals(BluetoothConnectCommandEditor(), editor)
+    }
+
+    @Test fun `editor returns BluetoothConnectCommandEditor, with id`() {
+        val editor = StorableEntity.getEditorScreen("bluetooth_connect", "my_id")
+        assertEquals(BluetoothConnectCommandEditor("my_id"), editor)
     }
 }
