@@ -17,9 +17,9 @@ Binaries:
   https://github.com/vokimon/vokibot/releases/download/vokibot-%v/net.canvoki.vokibot-floss-%v-release.apk
 
 Builds:
-  - versionName: 0.2.0
-    versionCode: 20000
-    commit: 9bc3acfa88498537963d0d7b806cddf11d34e603
+  - versionName: 0.3.0
+    versionCode: 30000
+    commit: 9de7800ec14204dd0cc3f1e8d8eaafe5b0a74124
     subdir: app
     submodules: true
     gradle:
@@ -30,5 +30,5 @@ AllowedAPKSigningKeys: 9754033f7e40da57540f9bc23ea5a359368f502501fa7d122544899bc
 AutoUpdateMode: Version
 UpdateCheckMode: Tags vokibot-([\d.]+)
 UpdateCheckData: version.properties|versionCode=(\d+)|.|versionName=([\d.]+)
-CurrentVersion: 0.2.0
-CurrentVersionCode: 20000
+CurrentVersion: 0.3.0
+CurrentVersionCode: 30000
