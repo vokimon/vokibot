@@ -5,6 +5,7 @@ import io.mockk.mockk
 import net.canvoki.shared.test.assertEquals
 import net.canvoki.shared.test.assertJsonEqual
 import org.junit.Test
+import kotlin.test.assertIs
 
 class BluetoothConnectCommandTest {
     fun commandBase(
@@ -54,5 +55,9 @@ class BluetoothConnectCommandTest {
     @Test fun `fromJson`() {
         val deserialized = BluetoothConnectCommand.fromJson(commandJson())
         assertEquals(commandBase().toString(), deserialized.toString())
+    }
+
+    @Test fun `polymorphic Command fromJson`() {
+        assertIs<BluetoothConnectCommand>(Command.fromJson(commandJson()))
     }
 }

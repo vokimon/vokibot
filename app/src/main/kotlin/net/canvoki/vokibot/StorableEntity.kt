@@ -105,5 +105,6 @@ object EntityBootstrap {
         StartServiceCommand.register()
         AccessProviderCommand.register()
         SettingsPageCommand.register()
+        BluetoothConnectCommand.register()
     }
 }

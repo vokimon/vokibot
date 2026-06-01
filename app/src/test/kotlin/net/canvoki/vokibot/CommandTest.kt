@@ -12,6 +12,7 @@ class CommandTest {
         val expectedTypes =
             listOfNotNull(
                 "access_provider",
+                "bluetooth_connect",
                 "launch_activity",
                 "send_broadcast",
                 "settings_page",

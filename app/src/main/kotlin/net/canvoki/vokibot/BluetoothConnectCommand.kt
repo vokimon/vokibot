@@ -23,8 +23,18 @@ data class BluetoothConnectCommand(
 
     override suspend fun execute(context: Context) {}
 
-    companion object {
+    companion object : EntityMetadata {
+        override val typeKey = "bluetooth_connect"
+        override val entityClass = UnknownCommand::class
+        override val labelRes = 0
+        override val iconRes = 0
+        override val editorFactory = { _: String? -> NotYetImplementedEditor }
+        override val deserializer: ((String) -> StorableEntity)? = { fromJson(it) }
+        override val helpRes = 0
+
         fun fromJson(jsonString: String): BluetoothConnectCommand =
             JsonConfig.decodeFromString(serializer(), jsonString)
+
+        fun register() = StorableEntity.register(this)
     }
 }
