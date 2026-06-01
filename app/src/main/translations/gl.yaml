@@ -305,3 +305,10 @@ bluetooth_device_class_health_pulse_rate: Monitor de frecuencia cardíaca
 bluetooth_device_class_health_data_display: Pantalla de datos de saúde
 bluetooth_device_class_health_uncategorized: Dispositivo de saúde
 bluetooth_device_class_unknown: Descoñecido
+bluetooth_device_editor_save: Gardar
+bluetooth_device_editor_name_label: Nome do dispositivo
+bluetooth_device_editor_name_placeholder: p. ex. Mans libres do coche
+bluetooth_device_editor_mac_label: Enderezo MAC
+bluetooth_device_editor_permission_warning: Este disparador require permiso para acceder ao subsistema Bluetooth.
+bluetooth_device_editor_grant_permission: Conceder permiso
+bluetooth_device_editor_paired_devices: Dispositivos emparellados

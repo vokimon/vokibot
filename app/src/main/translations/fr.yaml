@@ -305,3 +305,10 @@ bluetooth_device_class_health_pulse_rate: Cardiofréquencemètre
 bluetooth_device_class_health_data_display: Affichage de données de santé
 bluetooth_device_class_health_uncategorized: Dispositif médical
 bluetooth_device_class_unknown: Inconnu
+bluetooth_device_editor_save: Enregistrer
+bluetooth_device_editor_name_label: Nom de l'appareil
+bluetooth_device_editor_name_placeholder: par ex. Kit piéton voiture
+bluetooth_device_editor_mac_label: Adresse MAC
+bluetooth_device_editor_permission_warning: Ce déclencheur nécessite l'autorisation d'accéder au sous-système Bluetooth.
+bluetooth_device_editor_grant_permission: Accorder l'autorisation
+bluetooth_device_editor_paired_devices: Appareils appairés

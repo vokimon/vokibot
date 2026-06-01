@@ -241,13 +241,13 @@ settings_page_name_battery: Batería
 settings_page_name_notifications: Notificaçionê
 settings_page_name_all_settings: Tôh lô ahûttê
 settings_page_name_quick_launch: Iniçio rápido
-unknown_command_title: "Comando no çoportao"
-unknown_trigger_title: "Deencadenante no çoportao"
+unknown_command_title: Comando no çoportao
+unknown_trigger_title: Deencadenante no çoportao
 common_notice_title: Abiço
 common_experimental_title: Funçión êpperimentâh
 application_command_editor_not_implemented: Êtte tipo de componente de aplicaçión aún no êttá implementao
-triggerlist_option_bluetooth_device: Dîppoçitibo Bluetoôh
-trigger_bluetooth_device_help: Dîppara automatiçaçionê cuando çe conêtta un dîppoçitibo Bluetoôh êppeçífico.
+triggerlist_option_bluetooth_device: Dîppoçitibo Bluetooth
+trigger_bluetooth_device_help: Dîppara automatiçaçionê cuando çe conêtta un dîppoçitibo Bluetooth êppeçífico.
 bluetooth_device_class_computer_desktop: Êccritorio
 bluetooth_device_class_computer_server: Çerbidôh
 bluetooth_device_class_computer_laptop: Portátî
@@ -303,3 +303,10 @@ bluetooth_device_class_health_pulse_rate: Monitôh de rîmmo cardíaco
 bluetooth_device_class_health_data_display: Pantaya de datô de çalûh
 bluetooth_device_class_health_uncategorized: Dîppoçitibo de çalûh
 bluetooth_device_class_unknown: Dêcconoçío
+bluetooth_device_editor_save: Guardâh
+bluetooth_device_editor_name_label: Nombre der dîppoçitibo
+bluetooth_device_editor_name_placeholder: p. ej. Manô librê der coxe
+bluetooth_device_editor_mac_label: Dirêççión MAC
+bluetooth_device_editor_permission_warning: Êtte dîpparadôh requiere permiço pa âççedêh ar çûççîttema Bluetooth.
+bluetooth_device_editor_grant_permission: Conçedêh permiço
+bluetooth_device_editor_paired_devices: Dîppoçitibô empareháô

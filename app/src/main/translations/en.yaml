@@ -305,3 +305,10 @@ bluetooth_device_class_health_pulse_rate: Pulse rate monitor
 bluetooth_device_class_health_data_display: Health data display
 bluetooth_device_class_health_uncategorized: Health device
 bluetooth_device_class_unknown: Unknown type
+bluetooth_device_editor_save: Save
+bluetooth_device_editor_name_label: Device name
+bluetooth_device_editor_name_placeholder: e.g. Car hands-free
+bluetooth_device_editor_mac_label: MAC address
+bluetooth_device_editor_permission_warning: This trigger requires permission to access Bluetooth subsystem.
+bluetooth_device_editor_grant_permission: Grant permission
+bluetooth_device_editor_paired_devices: Paired devices

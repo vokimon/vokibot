@@ -128,10 +128,10 @@ data class BluetoothDeviceTriggerEditor(
 
         ConfirmDialog(
             show = showDiscardDialog,
-            title = "Discard changes?",
-            text = "Unsaved changes will be lost.",
-            confirmText = "Discard",
-            dismissText = "Cancel",
+            title = stringResource(R.string.automation_discard_title),
+            text = stringResource(R.string.automation_discard_message),
+            confirmText = stringResource(R.string.automation_discard_confirm),
+            dismissText = stringResource(R.string.automation_discard_cancel),
             onConfirm = {
                 isDirty = false
                 showDiscardDialog = false
@@ -150,8 +150,8 @@ data class BluetoothDeviceTriggerEditor(
         ) {
             EditorHeader(
                 icon = painterResource(R.drawable.ic_bluetooth),
-                title = "Bluetooth Device",
-                actionText = "Save",
+                title = stringResource(R.string.triggerlist_option_bluetooth_device),
+                actionText = stringResource(R.string.bluetooth_device_editor_save),
                 actionEnabled = name.isNotBlank() && mac.isNotBlank() && !isSaving,
                 actionIsRunning = isSaving,
                 action = {
@@ -175,8 +175,8 @@ data class BluetoothDeviceTriggerEditor(
                     name = it
                     isDirty = true
                 },
-                label = { Text("Device name") },
-                placeholder = { Text("e.g. Car hands-free") },
+                label = { Text(stringResource(R.string.bluetooth_device_editor_name_label)) },
+                placeholder = { Text(stringResource(R.string.bluetooth_device_editor_name_placeholder)) },
                 modifier = Modifier.fillMaxWidth(),
                 singleLine = true,
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
@@ -188,7 +188,7 @@ data class BluetoothDeviceTriggerEditor(
                     mac = it
                     isDirty = true
                 },
-                label = { Text("MAC address") },
+                label = { Text(stringResource(R.string.bluetooth_device_editor_mac_label)) },
                 placeholder = { Text("AA:BB:CC:DD:EE:FF") },
                 modifier = Modifier.fillMaxWidth(),
                 singleLine = true,
@@ -212,8 +212,8 @@ data class BluetoothDeviceTriggerEditor(
                     )
                 } else {
                     WarningBanner(
-                        message = "This trigger requires permission to access Bluetooth subsystem.",
-                        buttonText = "Grant permission",
+                        message = stringResource(R.string.bluetooth_device_editor_permission_warning),
+                        buttonText = stringResource(R.string.bluetooth_device_editor_grant_permission),
                         onClick = {
                             if (permissionDenied) {
                                 Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
@@ -237,7 +237,7 @@ private fun PairedDevicesList(
     onDeviceSelected: (name: String, mac: String) -> Unit,
 ) {
     Text(
-        text = "Paired devices",
+        text = stringResource(R.string.bluetooth_device_editor_paired_devices),
         style = MaterialTheme.typography.titleSmall,
         color = MaterialTheme.colorScheme.primary,
     )

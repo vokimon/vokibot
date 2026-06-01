@@ -305,3 +305,10 @@ bluetooth_device_class_health_pulse_rate: Maiztasun kardiako monitorea
 bluetooth_device_class_health_data_display: Osasun-datuen pantaila
 bluetooth_device_class_health_uncategorized: Osasun-gailua
 bluetooth_device_class_unknown: Ezezaguna
+bluetooth_device_editor_save: Gorde
+bluetooth_device_editor_name_label: Gailuaren izena
+bluetooth_device_editor_name_placeholder: adib. Autoako esku askeak
+bluetooth_device_editor_mac_label: MAC helbidea
+bluetooth_device_editor_permission_warning: Abiarazle honek baimena behar du Bluetooth azpisistemara sartzeko.
+bluetooth_device_editor_grant_permission: Eman baimena
+bluetooth_device_editor_paired_devices: Parekatutako gailuak
