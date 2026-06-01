@@ -1,1 +1,17 @@
-splash_motto: Zerbait gertatuz gero, egin nahi duzuna
+splash_motto: Exekutatu edozein ekintza edozein abiarazlerekin
+short_description: Androiderako automatizazio tresna
+full_description_md: |
+  Zure Android gailuak ekintzak (komandoak) egiten ditu
+  zerbait gertatzen denean (abiarazleak).
+
+  Inplementatutako abiarazleak:
+
+  - NFC etiketak (ukituzez konfiguratu)
+  - Lasterbideak (abiarazleko ikonoak sortzen ditu)
+  - Bluetooth gailuak (konektatzean)
+
+  Inplementatutako komandoak:
+
+  - Aplikazio-osagaiak aktibatu (Jarduerak, Zerbitzuak, Hartzaileak)
+  - Sistemako konfigurazio-orriak ireki
+keywords: automatizazioa, nfc, tenporizadorea, lasterbidea

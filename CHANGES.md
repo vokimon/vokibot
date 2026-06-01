@@ -1,11 +1,13 @@
 # Change log
 
-## unreleased
+## 0.3.0 (2026-06-01)
 
-- ✨ New Trigger: Bluetooth Device, launch commands on Bluetooth connection
-- ✨ BluetoothDeviceTrigger: Edit device by hand or from a list of paired or available
-- ✨ BluetoothDeviceTrigger: Show icon by major class and description by class
-- ✨ BluetoothDeviceTrigger: Permissions on demand when you add a trigger
+Bluetooth Device Trigger, launch commands on Bluetooth connection
+
+- ✨ BluetoothDeviceTrigger: Added new type of trigger
+- ✨ BluetoothDeviceTrigger: Choosing from a list of paired devices
+- ✨ BluetoothDeviceTrigger: Ask permissions only when adding the trigger
+- ✨ BluetoothDeviceTrigger: Represent device class information
 
 ## 0.2.0 (2026-05-29)
 

@@ -1,1 +1,17 @@
-splash_motto: Se algo acontecer, faça o que quiser
+splash_motto: Executa qualquer ação usando qualquer acionador
+short_description: Ferramenta de automação para Android
+full_description_md: |
+  Faz com que o teu dispositivo Android execute ações (comandos)
+  sempre que algo acontece (acionadores).
+
+  Acionadores implementados:
+
+  - Etiquetas NFC (configurar tocando)
+  - Atalhos (cria ícones no lançador)
+  - Dispositivos Bluetooth (ao conectar)
+
+  Comandos implementados:
+
+  - Ativar componentes da aplicação (Atividades, Serviços, Recetores)
+  - Abrir páginas de configuração do sistema
+keywords: automação, nfc, temporizador, atalho

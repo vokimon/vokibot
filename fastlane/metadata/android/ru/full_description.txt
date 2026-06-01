@@ -1,18 +1,13 @@
-Start any application on approaching the device to an NFC tag or
-running a home screen shortcut.
+Заставляет ваше Android-устройство выполнять действия (команды),
+когда что-то происходит (триггеры).
 
-This project aims to be "on any trigger do anything",
-but let's start humble.
+Реализованные триггеры:
 
-## Features
+- NFC-метки (настройка касанием)
+- Ярлыки (создает иконки на рабочем столе)
+- Bluetooth-устройства (при подключении)
 
-- Automations: Relate triggers to commands
-- Triggers:
-    - NFC tags (configure by tapping)
-    - Shortcuts (launcher icons)
-- Commands:
-    - Run application components (Activities, Services, Receivers)
-    - Open system configuration pages
-- License: AGPLv3+
-- Theming: Material3 light and dark
-- Languages: an, ar, ca, de, en, es, eu, fr, gl, pt, ru, andaluh (no iso yet)
+Реализованные команды:
+
+- Активация компонентов приложения (Активности, Службы, Приемники)
+- Открытие страниц настроек системы

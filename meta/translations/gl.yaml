@@ -1,1 +1,17 @@
-splash_motto: Se algo pasa, fai o que queiras
+splash_motto: Executa calquera acción con calquera disparador
+short_description: Ferramenta de automatización para Android
+full_description_md: |
+  Fai que o teu dispositivo Android execute accións (comandos)
+  cando ocorre algo (disparadores).
+
+  Disparadores implementados:
+
+  - Etiquetas NFC (configurar tocándoas)
+  - Atallos (crea iconas no lanzador)
+  - Dispositivos Bluetooth (ao conectarse)
+
+  Comandos implementados:
+
+  - Activar compoñentes de aplicación (Actividades, Servizos, Receptores)
+  - Abrir páxinas de configuración do sistema
+keywords: automatización, nfc, temporizador, atallo

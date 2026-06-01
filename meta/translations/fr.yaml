@@ -1,1 +1,17 @@
-splash_motto: Si quelque chose arrive, fais ce que tu veux
+splash_motto: Exécutez n'importe quelle action avec n'importe quel déclencheur
+short_description: Outil d'automatisation pour Android
+full_description_md: |
+  Permet à votre appareil Android d'effectuer des actions (commandes)
+  lorsque quelque chose se produit (déclencheurs).
+
+  Déclencheurs implémentés :
+
+  - Étiquettes NFC (configurer en tapant)
+  - Raccourcis (crée des icônes dans le lanceur)
+  - Appareils Bluetooth (lors de la connexion)
+
+  Commandes implémentées :
+
+  - Activer les composants de l'application (Activités, Services, Récepteurs)
+  - Ouvrir les pages de configuration du système
+keywords: automatisation, nfc, minuterie, raccourci

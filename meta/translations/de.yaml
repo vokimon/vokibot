@@ -1,1 +1,17 @@
-splash_motto: Wenn etwas passiert, tu was du willst
+splash_motto: Jede Aktion mit jedem Auslöser starten
+short_description: Android-Automatisierungstool
+full_description_md: |
+  Lässt dein Android-Gerät Aktionen (Befehle) ausführen,
+  wenn etwas passiert (Auslöser).
+
+  Implementierte Auslöser:
+
+  - NFC-Tags (durch Antippen konfigurieren)
+  - Verknüpfungen (erstellt Launcher-Symbole)
+  - Bluetooth-Geräte (beim Verbinden)
+
+  Implementierte Befehle:
+
+  - Anwendungskomponenten aktivieren (Aktivitäten, Dienste, Empfänger)
+  - Systemkonfigurationsseiten öffnen
+keywords: automatisierung, nfc, timer, kurztaste

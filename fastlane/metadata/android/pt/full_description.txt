@@ -1,18 +1,13 @@
-Start any application on approaching the device to an NFC tag or
-running a home screen shortcut.
+Faz com que o teu dispositivo Android execute ações (comandos)
+sempre que algo acontece (acionadores).
 
-This project aims to be "on any trigger do anything",
-but let's start humble.
+Acionadores implementados:
 
-## Features
+- Etiquetas NFC (configurar tocando)
+- Atalhos (cria ícones no lançador)
+- Dispositivos Bluetooth (ao conectar)
 
-- Automations: Relate triggers to commands
-- Triggers:
-    - NFC tags (configure by tapping)
-    - Shortcuts (launcher icons)
-- Commands:
-    - Run application components (Activities, Services, Receivers)
-    - Open system configuration pages
-- License: AGPLv3+
-- Theming: Material3 light and dark
-- Languages: an, ar, ca, de, en, es, eu, fr, gl, pt, ru, andaluh (no iso yet)
+Comandos implementados:
+
+- Ativar componentes da aplicação (Atividades, Serviços, Recetores)
+- Abrir páginas de configuração do sistema

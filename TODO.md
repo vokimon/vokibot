@@ -19,6 +19,9 @@
 - [ ] AppList: Filter sheet gets cropped on landscape
 - [ ] Action to stop a service
 - [ ] Extract list group header item and reuse it
+- [ ] Extract list group item and reuse it
+- [ ] Translate extra type names
+- [ ] Translate action auto description
 
 - More commands:
     - [ ] Airplaine mode on/off

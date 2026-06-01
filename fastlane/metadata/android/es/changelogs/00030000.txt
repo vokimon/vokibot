@@ -1,0 +1,9 @@
+## 0.3.0 (2026-06-01)
+
+Bluetooth Device Trigger, launch commands on Bluetooth connection
+
+- ✨ BluetoothDeviceTrigger: Added new type of trigger
+- ✨ BluetoothDeviceTrigger: Choosing from a list of paired devices
+- ✨ BluetoothDeviceTrigger: Ask permissions only when adding the trigger
+- ✨ BluetoothDeviceTrigger: Represent device class information
+

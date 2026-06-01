@@ -1,1 +1,1 @@
-Android automation tool
+Ferramienta d'automatización ta Android
