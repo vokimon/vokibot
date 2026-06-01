@@ -26,11 +26,11 @@ data class BluetoothConnectCommand(
     companion object : EntityMetadata {
         override val typeKey = "bluetooth_connect"
         override val entityClass = BluetoothConnectCommand::class
-        override val labelRes = 0
-        override val iconRes = 0
+        override val labelRes = 0  // TODO
+        override val iconRes = 0  // TODO
         override val editorFactory = { _: String? -> NotYetImplementedEditor }
         override val deserializer: ((String) -> StorableEntity)? = { fromJson(it) }
-        override val helpRes = 0
+        override val helpRes = 0  // TODO
 
         fun fromJson(jsonString: String): BluetoothConnectCommand =
             JsonConfig.decodeFromString(serializer(), jsonString)
