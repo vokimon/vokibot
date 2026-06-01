@@ -42,8 +42,8 @@ import kotlinx.serialization.Serializable
 import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
 import net.canvoki.shared.usermessage.UserMessage
-import net.canvoki.vokibot.common.DiscardDialog
 import net.canvoki.vokibot.common.EditorHeader
+import net.canvoki.vokibot.common.rememberDiscardableState
 
 private fun formatComponentName(
     packageName: String,
@@ -109,7 +109,7 @@ data class ApplicationCommandEditor(
 ) : StackedScreen<Unit>() {
     @Composable
     override fun Screen(nav: StackNavigatorState) {
-        val discardState = DiscardDialog(screen = this@ApplicationCommandEditor, nav = nav)
+        val discardState = rememberDiscardableState(screen = this@ApplicationCommandEditor, nav = nav)
         var packageName by remember { mutableStateOf<String?>(null) }
         var componentName by remember { mutableStateOf<String?>(null) }
         var actionStr by remember { mutableStateOf<String?>(null) }

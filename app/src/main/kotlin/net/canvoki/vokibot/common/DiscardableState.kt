@@ -13,24 +13,47 @@ import net.canvoki.shared.component.StackedScreen
 import net.canvoki.vokibot.ConfirmDialog
 import net.canvoki.vokibot.R
 
+/**
+ * State holder for the discard-on-back pattern used by editors.
+ *
+ * Tracks whether the editor has unsaved changes and provides [markDirty] to
+ * signal modifications. Used together with [rememberDiscardableState].
+ */
 class DiscardableState {
     var isDirty by mutableStateOf(false)
         internal set
 
+    /** Marks the editor state as dirty (unsaved changes exist). */
     fun markDirty() {
         isDirty = true
     }
 
     companion object {
-        val Saver = Saver<DiscardableState, Boolean>(
-            save = { it.isDirty },
-            restore = { saved -> DiscardableState().also { if (saved) it.markDirty() } },
-        )
+        val Saver =
+            Saver<DiscardableState, Boolean>(
+                save = { it.isDirty },
+                restore = { saved -> DiscardableState().also { if (saved) it.markDirty() } },
+            )
     }
 }
 
+/**
+ * Registers a back-press handler that shows a confirmation dialog when
+ * the editor has unsaved changes.
+ *
+ * Usage:
+ * ```
+ * val discardState = rememberDiscardableState(screen = this@Editor, nav = nav)
+ * discardState.markDirty()  // on every user edit
+ * discardState.isDirty = false  // on successful save or load
+ * ```
+ *
+ * @param screen The [StackedScreen] instance that owns this back behavior.
+ * @param nav The navigation state used to register the back handler and pop.
+ * @return A [DiscardableState] that tracks the dirty flag.
+ */
 @Composable
-fun DiscardDialog(
+fun rememberDiscardableState(
     screen: StackedScreen<*>,
     nav: StackNavigatorState,
 ): DiscardableState {

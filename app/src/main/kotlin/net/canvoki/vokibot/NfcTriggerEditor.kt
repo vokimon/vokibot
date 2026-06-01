@@ -42,8 +42,8 @@ import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
 import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
-import net.canvoki.vokibot.common.DiscardDialog
 import net.canvoki.vokibot.common.EditorHeader
+import net.canvoki.vokibot.common.rememberDiscardableState
 
 @Serializable
 data class NfcTriggerEditor(
@@ -64,7 +64,7 @@ data class NfcTriggerEditor(
         var isNfcAvailable by rememberSaveable { mutableStateOf(true) }
         var isNfcEnabled by rememberSaveable { mutableStateOf(true) }
         var isSaving by rememberSaveable { mutableStateOf(false) }
-        val discardState = DiscardDialog(screen = this@NfcTriggerEditor, nav = nav)
+        val discardState = rememberDiscardableState(screen = this@NfcTriggerEditor, nav = nav)
         var hasLoaded by rememberSaveable { mutableStateOf(false) }
 
         fun checkNfcState() {

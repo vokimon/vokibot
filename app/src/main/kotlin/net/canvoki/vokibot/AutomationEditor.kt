@@ -42,8 +42,8 @@ import androidx.compose.ui.unit.dp
 import kotlinx.serialization.Serializable
 import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
-import net.canvoki.vokibot.common.DiscardDialog
 import net.canvoki.vokibot.common.EditorHeader
+import net.canvoki.vokibot.common.rememberDiscardableState
 
 @Serializable
 data class AutomationEditor(
@@ -58,7 +58,7 @@ data class AutomationEditor(
         var triggerType by rememberSaveable { mutableStateOf("") }
         var triggerId by rememberSaveable { mutableStateOf("") }
         var commandIds by rememberSaveable { mutableStateOf<List<String>>(emptyList()) }
-        val discardState = DiscardDialog(screen = this@AutomationEditor, nav = nav)
+        val discardState = rememberDiscardableState(screen = this@AutomationEditor, nav = nav)
         var lastLoadedId by remember { mutableStateOf<String?>(null) }
 
         LaunchedEffect(editingId) {

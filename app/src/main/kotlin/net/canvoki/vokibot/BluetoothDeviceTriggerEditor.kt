@@ -47,8 +47,8 @@ import kotlinx.serialization.Serializable
 import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
 import net.canvoki.vokibot.common.EditorHeader
-import net.canvoki.vokibot.common.DiscardDialog
 import net.canvoki.vokibot.common.WarningBanner
+import net.canvoki.vokibot.common.rememberDiscardableState
 
 @Composable
 private fun permissionRequestLauncher(onResult: (Boolean) -> Unit) =
@@ -69,7 +69,7 @@ data class BluetoothDeviceTriggerEditor(
         var name by rememberSaveable { mutableStateOf("") }
         var mac by rememberSaveable { mutableStateOf("") }
         var isSaving by rememberSaveable { mutableStateOf(false) }
-        val discardState = DiscardDialog(screen = this@BluetoothDeviceTriggerEditor, nav = nav)
+        val discardState = rememberDiscardableState(screen = this@BluetoothDeviceTriggerEditor, nav = nav)
         var hasLoaded by rememberSaveable { mutableStateOf(false) }
 
         fun checkConnectPermission(): Boolean =

@@ -31,6 +31,7 @@ enum class ExtraType {
     STRING_ARRAY,
     URI_LIST,
 }
+
 val ExtraType.displayName: String get() =
     when (this) {
         // TODO: translate
