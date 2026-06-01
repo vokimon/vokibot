@@ -8,12 +8,11 @@ import org.junit.Test
 import kotlin.test.assertIs
 
 class BluetoothConnectCommandTest {
-    fun commandBase(
-        deviceName: String = "Device Name",
-    ) = BluetoothConnectCommand(
-        macAddress = "AA:BB:CC:DD:EE:FF",
-        deviceName = deviceName,
-    )
+    fun commandBase(deviceName: String = "Device Name") =
+        BluetoothConnectCommand(
+            macAddress = "AA:BB:CC:DD:EE:FF",
+            deviceName = deviceName,
+        )
 
     @Test fun `type is bluetooth_connect`() {
         val command: StorableEntity = commandBase()
@@ -32,18 +31,22 @@ class BluetoothConnectCommandTest {
         assertEquals("AA:BB:CC:DD:EE:FF", commandBase(deviceName = "").getTitle(mockk<Context>()))
     }
 
-    fun commandJson() = """{
+    fun commandJson() =
+        """
+        {
   "type": "bluetooth_connect",
   "macAddress": "AA:BB:CC:DD:EE:FF",
   "deviceName": "Device Name",
   "action": "CONNECT"
-}""".trimIndent()
+}
+        """.trimIndent()
 
     @Test fun `toJson`() {
-        val cmd = BluetoothConnectCommand(
-            macAddress = "AA:BB:CC:DD:EE:FF",
-            deviceName = "Device Name",
-        )
+        val cmd =
+            BluetoothConnectCommand(
+                macAddress = "AA:BB:CC:DD:EE:FF",
+                deviceName = "Device Name",
+            )
         assertJsonEqual(cmd.toJson(), commandJson())
     }
 
