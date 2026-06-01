@@ -41,6 +41,7 @@ import net.canvoki.shared.component.ContextualHelpButton
 import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
 import net.canvoki.vokibot.common.EditorHeader
+import net.canvoki.vokibot.drawableToPainter
 
 @Serializable
 data object TriggerList : StackedScreen<Pair<String, String>>() {
@@ -84,7 +85,7 @@ fun TriggerList(
                     supportingContent = { Text(trigger.description) },
                     leadingContent = {
                         Icon(
-                            painter = painterResource(trigger.iconRes),
+                            painter = drawableToPainter(trigger.loadIcon(context)),
                             contentDescription = null,
                             modifier = Modifier.size(40.dp),
                             tint = MaterialTheme.colorScheme.primary,
