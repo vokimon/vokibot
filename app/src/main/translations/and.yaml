@@ -97,10 +97,10 @@ automation_group_automation: Reglâ de automatiçaçión
 automation_trigger_hint: Toca pa çelêççionâh
 automation_add_command_desc: Añadîh comando
 automation_edit_title: Editâh automatiçaçión
-automation_discard_title: ¿Dêccartâh cambiô?
-automation_discard_message: Çe perderán lô cambiô no guardáô.
-automation_discard_confirm: Dêccartâh
-automation_discard_cancel: Cançelâh
+discard_dialog_title: ¿Dêccartâh cambiô?
+discard_dialog_message: Çe perderán lô cambiô no guardáô.
+discard_dialog_confirm: Dêccartâh
+discard_dialog_cancel: Cançelâh
 automation_done: Exo
 automation_hint_trigger: Çelêççiona un dîpparadôh pa continuâh
 automation_hint_commands: Añade ar menô un comando

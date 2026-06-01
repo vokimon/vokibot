@@ -89,10 +89,10 @@ data class AutomationEditor(
 
         ConfirmDialog(
             show = showDiscardDialog,
-            title = stringResource(R.string.automation_discard_title),
-            text = stringResource(R.string.automation_discard_message),
-            confirmText = stringResource(R.string.automation_discard_confirm),
-            dismissText = stringResource(R.string.automation_discard_cancel),
+            title = stringResource(R.string.discard_dialog_title),
+            text = stringResource(R.string.discard_dialog_message),
+            confirmText = stringResource(R.string.discard_dialog_confirm),
+            dismissText = stringResource(R.string.discard_dialog_cancel),
             onConfirm = {
                 isDirty = false
                 showDiscardDialog = false

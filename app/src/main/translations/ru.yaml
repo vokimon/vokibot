@@ -97,10 +97,10 @@ automation_group_automation: Правила автоматизации
 automation_trigger_hint: Нажмите, чтобы выбрать
 automation_add_command_desc: Добавить команду
 automation_edit_title: Редактировать автоматизацию
-automation_discard_title: Отменить изменения?
-automation_discard_message: Несохранённые изменения будут утеряны.
-automation_discard_confirm: Отменить
-automation_discard_cancel: Отмена
+discard_dialog_title: Отменить изменения?
+discard_dialog_message: Несохранённые изменения будут утеряны.
+discard_dialog_confirm: Отменить
+discard_dialog_cancel: Отмена
 automation_done: Готово
 automation_hint_trigger: Выберите триггер для продолжения
 automation_hint_commands: Добавьте хотя бы одну команду
