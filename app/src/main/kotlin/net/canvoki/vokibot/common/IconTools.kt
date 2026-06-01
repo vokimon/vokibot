@@ -15,9 +15,9 @@ fun buildBadgeIcon(
     context: Context,
     main: Drawable,
     badge: Drawable,
-    mainScale: Float = 0.9f,
-    badgeScale: Float = 0.6f,
-    sizeDp: Int = 24
+    mainScale: Float = 0.8f,
+    badgeScale: Float = 0.4f,
+    sizeDp: Int = 40
 ): Drawable {
     val d = context.resources.displayMetrics.density
     val canvasSize = (sizeDp * d).toInt()

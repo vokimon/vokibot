@@ -53,8 +53,6 @@ data class BluetoothDeviceTrigger(
             context = context,
             main = context.getDrawable(deviceIcon)!!,
             badge = context.getDrawable(BluetoothDeviceTrigger.iconRes)!!,
-            mainScale = 0.8f,
-            badgeScale = 0.4f
         )
     }
 
