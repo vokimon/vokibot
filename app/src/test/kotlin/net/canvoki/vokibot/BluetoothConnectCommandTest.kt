@@ -19,4 +19,8 @@ class BluetoothConnectCommandTest {
     @Test fun `getTitle returns deviceName`() {
         assertEquals("Device Name", commandBase().getTitle(mockk<Context>()))
     }
+
+    @Test fun `description returns macAddress`() {
+        assertEquals("AA:BB:CC:DD:EE:FF", commandBase().description)
+    }
 }

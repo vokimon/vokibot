@@ -18,7 +18,7 @@ data class BluetoothConnectCommand(
     override val iconRes = R.drawable.ic_bluetooth
 
     override fun getTitle(context: Context): String = deviceName
-    override val description: String = "TODO"
+    override val description: String = macAddress
 
     override fun toJson(): String = """{"wrong":true}"""
 
