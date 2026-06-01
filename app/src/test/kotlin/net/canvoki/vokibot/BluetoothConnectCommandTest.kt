@@ -60,4 +60,10 @@ class BluetoothConnectCommandTest {
     @Test fun `polymorphic Command fromJson`() {
         assertIs<BluetoothConnectCommand>(Command.fromJson(commandJson()))
     }
+
+    @Test fun `registered with correct entityClass`() {
+        val types = StorableEntity.registry.getRegisteredTypes(BluetoothConnectCommand::class)
+        val typeKeys = types.map { it.typeKey }.sorted().joinToString("\n")
+        assertEquals("bluetooth_connect", typeKeys)
+    }
 }

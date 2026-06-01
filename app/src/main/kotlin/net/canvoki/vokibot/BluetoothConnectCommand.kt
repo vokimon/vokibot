@@ -25,7 +25,7 @@ data class BluetoothConnectCommand(
 
     companion object : EntityMetadata {
         override val typeKey = "bluetooth_connect"
-        override val entityClass = UnknownCommand::class
+        override val entityClass = BluetoothConnectCommand::class
         override val labelRes = 0
         override val iconRes = 0
         override val editorFactory = { _: String? -> NotYetImplementedEditor }
