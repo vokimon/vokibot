@@ -2,7 +2,6 @@ package net.canvoki.vokibot
 
 import android.Manifest
 import android.bluetooth.BluetoothManager
-import android.content.pm.PackageManager
 import android.os.Build
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -27,13 +26,12 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.core.content.ContextCompat
 import kotlinx.serialization.Serializable
 import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
 import net.canvoki.vokibot.common.EditorHeader
-import net.canvoki.vokibot.common.WarningBanner
 import net.canvoki.vokibot.common.rememberDiscardableState
+import net.canvoki.vokibot.common.rememberPermissionState
 
 @Serializable
 data class BluetoothDeviceTriggerEditor(
@@ -60,18 +58,10 @@ fun BluetoothDeviceTriggerEditor(
     val discardState = rememberDiscardableState(screen = editor, nav = nav)
     var hasLoaded by rememberSaveable { mutableStateOf(false) }
 
-    fun checkConnectPermission(): Boolean =
-        if (Build.VERSION.SDK_INT >= 31) {
-            ContextCompat.checkSelfPermission(
-                context,
-                Manifest.permission.BLUETOOTH_CONNECT,
-            ) == PackageManager.PERMISSION_GRANTED
-        } else {
-            true
-        }
-
-    var connectPermissionGranted by remember { mutableStateOf(checkConnectPermission()) }
-    var permissionDenied by remember { mutableStateOf(false) }
+    val connectPermState =
+        rememberPermissionState(
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) Manifest.permission.BLUETOOTH_CONNECT else null,
+        )
 
     val bluetoothAdapter =
         remember {
@@ -86,8 +76,8 @@ fun BluetoothDeviceTriggerEditor(
         )
 
     val bondedDevices =
-        remember(connectPermissionGranted) {
-            if (!connectPermissionGranted) {
+        remember(connectPermState.isGranted) {
+            if (!connectPermState.isGranted) {
                 emptyList()
             } else {
                 bluetoothAdapter
@@ -152,7 +142,7 @@ fun BluetoothDeviceTriggerEditor(
 
         if (bluetoothAdapter != null) {
             HorizontalDivider()
-            if (connectPermissionGranted) {
+            if (connectPermState.isGranted) {
                 PairedDevicesList(
                     devices = bondedDevices,
                     onDeviceSelected = { deviceName, macAddress ->
@@ -162,13 +152,7 @@ fun BluetoothDeviceTriggerEditor(
                     },
                 )
             } else {
-                PermissionBanner(
-                    permissionDenied=permissionDenied,
-                    onPermissionResponse = { granted ->
-                        connectPermissionGranted = granted
-                        if (!granted) permissionDenied = true
-                    },
-                )
+                PermissionBanner(onGrantClicked = { connectPermState.request() })
             }
         }
     }
