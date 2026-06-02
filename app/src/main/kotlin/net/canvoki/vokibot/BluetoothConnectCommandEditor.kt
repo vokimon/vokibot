@@ -30,6 +30,7 @@ import kotlinx.serialization.Serializable
 import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
 import net.canvoki.vokibot.common.EditorHeader
+import net.canvoki.vokibot.common.TryCommandButton
 import net.canvoki.vokibot.common.rememberDiscardableState
 import net.canvoki.vokibot.common.rememberPermissionState
 
@@ -139,6 +140,11 @@ fun BluetoothConnectCommandEditor(
                 mac = it
                 discardState.markDirty()
             },
+        )
+
+        TryCommandButton(
+            enabled = name.isNotBlank() && mac.isNotBlank() && connectPermState.isGranted,
+            buildCommand = { buildCommand() },
         )
 
         if (bluetoothAdapter != null) {
