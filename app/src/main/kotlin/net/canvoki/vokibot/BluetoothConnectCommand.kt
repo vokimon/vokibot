@@ -1,14 +1,7 @@
 package net.canvoki.vokibot
 
-import android.bluetooth.BluetoothDevice
-import android.bluetooth.BluetoothManager
-import android.bluetooth.BluetoothProfile
 import android.content.Context
 import kotlinx.serialization.Serializable
-import net.canvoki.shared.log
-
-private const val BLUETOOTH_PROXY_CONNECT = "connect"
-private const val BLUETOOTH_PROXY_DISCONNECT = "disconnect"
 
 @Serializable
 enum class ConnectionAction { CONNECT, DISCONNECT }
@@ -39,46 +32,10 @@ data class BluetoothConnectCommand(
     override fun toJson(): String = JsonConfig.encodeToString(serializer(), this)
 
     override suspend fun execute(context: Context) {
-        val device =
-            bluetoothDeviceFromMac(context, macAddress) ?: run {
-                log("BluetoothConnect: device not found for $macAddress")
-                return
-            }
-        val adapter =
-            context.getSystemService(BluetoothManager::class.java)?.adapter ?: run {
-                log("BluetoothConnect: no adapter")
-                return
-            }
-        adapter.getProfileProxy(
-            context,
-            object : BluetoothProfile.ServiceListener {
-                override fun onServiceConnected(
-                    profile: Int,
-                    proxy: BluetoothProfile,
-                ) {
-                    val methodName =
-                        when (action) {
-                            ConnectionAction.CONNECT -> BLUETOOTH_PROXY_CONNECT
-                            ConnectionAction.DISCONNECT -> BLUETOOTH_PROXY_DISCONNECT
-                        }
-                    try {
-                        val method =
-                            proxy::class.java.getDeclaredMethod(
-                                methodName,
-                                BluetoothDevice::class.java,
-                            )
-                        method.isAccessible = true
-                        method.invoke(proxy, device)
-                    } catch (e: Exception) {
-                        log("BluetoothConnect: $methodName failed: $e")
-                    }
-                    adapter.closeProfileProxy(profile, proxy)
-                }
-
-                override fun onServiceDisconnected(profile: Int) {}
-            },
-            BluetoothProfile.A2DP,
-        )
+        when (action) {
+            ConnectionAction.CONNECT -> bluetoothConnect(context, macAddress)
+            ConnectionAction.DISCONNECT -> bluetoothDisconnect(context, macAddress)
+        }
     }
 
     companion object : EntityMetadata {

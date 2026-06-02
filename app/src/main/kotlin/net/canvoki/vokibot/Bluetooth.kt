@@ -3,6 +3,7 @@ package net.canvoki.vokibot
 import android.bluetooth.BluetoothClass
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothManager
+import android.bluetooth.BluetoothProfile
 import android.content.Context
 import android.os.Build
 import net.canvoki.shared.log
@@ -185,4 +186,56 @@ fun bluetoothDeviceFromMac(
         log("bluetoothDeviceFromMac: permission denied")
         null
     }
+}
+
+private const val BLUETOOTH_PROXY_CONNECT = "connect"
+private const val BLUETOOTH_PROXY_DISCONNECT = "disconnect"
+
+fun bluetoothConnect(
+    context: Context,
+    macAddress: String,
+) {
+    bluetoothAction(context, macAddress, BLUETOOTH_PROXY_CONNECT)
+}
+
+fun bluetoothDisconnect(
+    context: Context,
+    macAddress: String,
+) {
+    bluetoothAction(context, macAddress, BLUETOOTH_PROXY_DISCONNECT)
+}
+
+private fun bluetoothAction(
+    context: Context,
+    macAddress: String,
+    methodName: String,
+) {
+    val device = bluetoothDeviceFromMac(context, macAddress) ?: return
+    val adapter =
+        context.getSystemService(BluetoothManager::class.java)?.adapter ?: return
+    adapter.getProfileProxy(
+        context,
+        object : BluetoothProfile.ServiceListener {
+            override fun onServiceConnected(
+                profile: Int,
+                proxy: BluetoothProfile,
+            ) {
+                try {
+                    val method =
+                        proxy::class.java.getDeclaredMethod(
+                            methodName,
+                            BluetoothDevice::class.java,
+                        )
+                    method.isAccessible = true
+                    method.invoke(proxy, device)
+                } catch (e: Exception) {
+                    log("BluetoothConnect: $methodName failed: $e")
+                }
+                adapter.closeProfileProxy(profile, proxy)
+            }
+
+            override fun onServiceDisconnected(profile: Int) {}
+        },
+        BluetoothProfile.A2DP,
+    )
 }
