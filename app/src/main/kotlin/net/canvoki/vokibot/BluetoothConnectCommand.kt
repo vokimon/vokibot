@@ -20,7 +20,7 @@ data class BluetoothConnectCommand(
     override val type = "bluetooth_connect"
     override val iconRes: Int get() = R.drawable.ic_bluetooth
 
-    override fun getTitle(context: Context): String = deviceName.ifEmpty { macAddress }
+    override fun getTitle(context: Context): String = deviceName.ifEmpty { macAddress }.let { "Connect $it" }
 
     override val description: String get() = macAddress
 

@@ -20,7 +20,7 @@ class BluetoothConnectCommandTest {
     }
 
     @Test fun `getTitle returns deviceName`() {
-        assertEquals("Device Name", commandBase().getTitle(mockk<Context>()))
+        assertEquals("Connect Device Name", commandBase().getTitle(mockk<Context>()))
     }
 
     @Test fun `description returns macAddress`() {
@@ -28,7 +28,7 @@ class BluetoothConnectCommandTest {
     }
 
     @Test fun `getTitle falls back to macAddress when deviceName empty`() {
-        assertEquals("AA:BB:CC:DD:EE:FF", commandBase(deviceName = "").getTitle(mockk<Context>()))
+        assertEquals("Connect AA:BB:CC:DD:EE:FF", commandBase(deviceName = "").getTitle(mockk<Context>()))
     }
 
     fun commandJson() =
