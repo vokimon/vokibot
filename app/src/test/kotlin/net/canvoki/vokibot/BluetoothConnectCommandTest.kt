@@ -8,11 +8,14 @@ import org.junit.Test
 import kotlin.test.assertIs
 
 class BluetoothConnectCommandTest {
-    fun commandBase(deviceName: String = "Device Name") =
-        BluetoothConnectCommand(
-            macAddress = "AA:BB:CC:DD:EE:FF",
-            deviceName = deviceName,
-        )
+    fun commandBase(
+        deviceName: String = "Device Name",
+        action: ConnectionAction = ConnectionAction.CONNECT,
+    ) = BluetoothConnectCommand(
+        macAddress = "AA:BB:CC:DD:EE:FF",
+        deviceName = deviceName,
+        action = action,
+    )
 
     fun context(): Context = mockk()
 
@@ -24,6 +27,11 @@ class BluetoothConnectCommandTest {
     @Test fun `getTitle returns deviceName`() {
         val command = commandBase()
         assertEquals("Connect Device Name", command.getTitle(context()))
+    }
+
+    @Test fun `getTitle when disconnect`() {
+        val command = commandBase(action = ConnectionAction.DISCONNECT)
+        assertEquals("Disonnect Device Name", command.getTitle(context()))
     }
 
     @Test fun `description returns macAddress`() {
