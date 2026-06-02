@@ -19,7 +19,6 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -27,7 +26,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -37,12 +35,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
 import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
-import net.canvoki.shared.usermessage.UserMessage
 import net.canvoki.vokibot.common.EditorHeader
+import net.canvoki.vokibot.common.TryCommandButton
 import net.canvoki.vokibot.common.rememberDiscardableState
 
 private fun formatComponentName(
@@ -116,7 +113,6 @@ data class ApplicationCommandEditor(
         var componentType by remember { mutableStateOf(ComponentType.ACTIVITY) }
         var currentComponent by remember { mutableStateOf<PublicComponent?>(null) }
         val context = LocalContext.current
-        val scope = rememberCoroutineScope()
         val repository = remember { FileDataRepository.fromContext(context) }
         var extrasState by rememberSaveable(stateSaver = ExtraValueMapSaver) {
             mutableStateOf(emptyMap<String, ExtraValue>())
@@ -128,7 +124,6 @@ data class ApplicationCommandEditor(
         var intentMime by remember { mutableStateOf<String?>(null) }
 
         val allSpecs = (StandardActions.get(actionStr)?.extras ?: emptyList()) + customExtraSpecs
-        val runErrorFallback = stringResource(R.string.command_run_error_fallback)
 
         LaunchedEffect(commandId) {
             if (commandId != null) {
@@ -357,30 +352,10 @@ data class ApplicationCommandEditor(
                             extrasState = extrasState + (spec.key to spec.defaultValue())
                         },
                     )
-                    OutlinedButton(
-                        onClick = {
-                            scope.launch {
-                                currentComponent?.let {
-                                    val command = buildCommand(it)
-                                    try {
-                                        command.execute(context)
-                                    } catch (e: Exception) {
-                                        e.printStackTrace()
-                                        UserMessage.Info(e.message ?: runErrorFallback).post()
-                                    }
-                                }
-                            }
-                        },
+                    TryCommandButton(
                         enabled = readyToRun,
-                        modifier = Modifier.fillMaxWidth(),
-                    ) {
-                        Icon(
-                            painter = painterResource(R.drawable.ic_play_arrow),
-                            contentDescription = null,
-                        )
-                        Spacer(Modifier.width(8.dp))
-                        Text(stringResource(R.string.intent_editor_try))
-                    }
+                        buildCommand = { buildCommand(currentComponent!!) },
+                    )
                 }
             }
         }
