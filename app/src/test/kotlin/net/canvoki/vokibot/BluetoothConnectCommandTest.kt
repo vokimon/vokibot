@@ -14,13 +14,16 @@ class BluetoothConnectCommandTest {
             deviceName = deviceName,
         )
 
+    fun context(): Context = mockk()
+
     @Test fun `type is bluetooth_connect`() {
         val command: StorableEntity = commandBase()
         assertEquals("bluetooth_connect", command.type)
     }
 
     @Test fun `getTitle returns deviceName`() {
-        assertEquals("Connect Device Name", commandBase().getTitle(mockk<Context>()))
+        val command = commandBase()
+        assertEquals("Connect Device Name", command.getTitle(context()))
     }
 
     @Test fun `description returns macAddress`() {
@@ -28,7 +31,8 @@ class BluetoothConnectCommandTest {
     }
 
     @Test fun `getTitle falls back to macAddress when deviceName empty`() {
-        assertEquals("Connect AA:BB:CC:DD:EE:FF", commandBase(deviceName = "").getTitle(mockk<Context>()))
+        val command = commandBase(deviceName = "")
+        assertEquals("Connect AA:BB:CC:DD:EE:FF", command.getTitle(context()))
     }
 
     fun commandJson() =
