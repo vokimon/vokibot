@@ -91,6 +91,7 @@ fun BluetoothConnectCommandEditor(
             val manager = context.getSystemService(BluetoothManager::class.java)
             manager?.adapter
         }
+
     fun buildCommand() =
         BluetoothConnectCommand(
             deviceName = name.trim(),
@@ -160,21 +161,12 @@ fun BluetoothConnectCommandEditor(
             keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
         )
 
-        OutlinedTextField(
+        BluetoothMacField(
             value = mac,
             onValueChange = {
                 mac = it
                 discardState.markDirty()
             },
-            label = { Text(stringResource(R.string.bluetooth_device_editor_mac_label)) },
-            placeholder = { Text("AA:BB:CC:DD:EE:FF") },
-            modifier = Modifier.fillMaxWidth(),
-            singleLine = true,
-            keyboardOptions =
-                KeyboardOptions(
-                    capitalization = KeyboardCapitalization.Characters,
-                    imeAction = ImeAction.Done,
-                ),
         )
 
         if (bluetoothAdapter != null) {
@@ -207,6 +199,3 @@ fun BluetoothConnectCommandEditor(
         }
     }
 }
-
-
-
