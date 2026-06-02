@@ -24,7 +24,7 @@ data class BluetoothConnectCommand(
         deviceName.ifEmpty { macAddress }.let {
             when (action) {
                 ConnectionAction.CONNECT -> "Connect $it"
-                ConnectionAction.DISCONNECT -> "Disonnect $it"
+                ConnectionAction.DISCONNECT -> "Disconnect $it"
             }
         }
 

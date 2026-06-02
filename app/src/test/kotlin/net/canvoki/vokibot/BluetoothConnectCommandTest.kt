@@ -31,7 +31,7 @@ class BluetoothConnectCommandTest {
 
     @Test fun `getTitle when disconnect`() {
         val command = commandBase(action = ConnectionAction.DISCONNECT)
-        assertEquals("Disonnect Device Name", command.getTitle(context()))
+        assertEquals("Disconnect Device Name", command.getTitle(context()))
     }
 
     @Test fun `description returns macAddress`() {
