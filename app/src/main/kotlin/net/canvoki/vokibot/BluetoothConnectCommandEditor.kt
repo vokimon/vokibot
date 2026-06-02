@@ -13,6 +13,9 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.SegmentedButton
+import androidx.compose.material3.SegmentedButtonDefaults
+import androidx.compose.material3.SingleChoiceSegmentedButtonRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -55,6 +58,7 @@ fun BluetoothConnectCommandEditor(
 
     var name by rememberSaveable { mutableStateOf("") }
     var mac by rememberSaveable { mutableStateOf("") }
+    var selectedAction by rememberSaveable { mutableStateOf(ConnectionAction.CONNECT) }
     var isSaving by rememberSaveable { mutableStateOf(false) }
     val discardState = rememberDiscardableState(screen = editor, nav = nav)
     var hasLoaded by rememberSaveable { mutableStateOf(false) }
@@ -74,7 +78,7 @@ fun BluetoothConnectCommandEditor(
         BluetoothConnectCommand(
             deviceName = name.trim(),
             macAddress = mac.trim(),
-            action = ConnectionAction.CONNECT,
+            action = selectedAction,
         )
 
     val bondedDevices =
@@ -95,6 +99,7 @@ fun BluetoothConnectCommandEditor(
             existing?.let {
                 name = it.deviceName
                 mac = it.macAddress
+                selectedAction = it.action
             }
             hasLoaded = true
         }
@@ -141,6 +146,27 @@ fun BluetoothConnectCommandEditor(
                 discardState.markDirty()
             },
         )
+
+        SingleChoiceSegmentedButtonRow(modifier = Modifier.fillMaxWidth()) {
+            ConnectionAction.entries.forEachIndexed { index, action ->
+                SegmentedButton(
+                    selected = selectedAction == action,
+                    onClick = {
+                        selectedAction = action
+                        discardState.markDirty()
+                    },
+                    shape = SegmentedButtonDefaults.itemShape(index, ConnectionAction.entries.size),
+                    label = {
+                        Text(
+                            when (action) {
+                                ConnectionAction.CONNECT -> "Connect"
+                                ConnectionAction.DISCONNECT -> "Disconnect"
+                            },
+                        )
+                    },
+                )
+            }
+        }
 
         TryCommandButton(
             enabled = name.isNotBlank() && mac.isNotBlank() && connectPermState.isGranted,
