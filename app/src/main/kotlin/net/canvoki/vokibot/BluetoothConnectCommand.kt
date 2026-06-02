@@ -43,6 +43,7 @@ data class BluetoothConnectCommand(
                 log("BluetoothConnect: no adapter")
                 return
             }
+        // TODO: DO not rely on action.name but in enums and constants
         val methodName = action.name.lowercase()
 
         adapter.getProfileProxy(

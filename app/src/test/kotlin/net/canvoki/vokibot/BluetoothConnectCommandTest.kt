@@ -1,12 +1,17 @@
 package net.canvoki.vokibot
 
 import android.content.Context
-import io.mockk.mockk
+import androidx.test.core.app.ApplicationProvider
 import net.canvoki.shared.test.assertEquals
 import net.canvoki.shared.test.assertJsonEqual
 import org.junit.Test
+import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
+import org.robolectric.annotation.Config
 import kotlin.test.assertIs
 
+@RunWith(RobolectricTestRunner::class)
+@Config(manifest = Config.NONE, qualifiers = "en")
 class BluetoothConnectCommandTest {
     fun commandBase(
         deviceName: String = "Device Name",
@@ -17,7 +22,7 @@ class BluetoothConnectCommandTest {
         action = action,
     )
 
-    fun context(): Context = mockk()
+    fun context(): Context = ApplicationProvider.getApplicationContext()
 
     @Test fun `type is bluetooth_connect`() {
         val command: StorableEntity = commandBase()
