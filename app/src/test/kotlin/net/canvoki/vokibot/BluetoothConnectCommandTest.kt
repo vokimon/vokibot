@@ -45,7 +45,8 @@ class BluetoothConnectCommandTest {
     }
 
     @Config(qualifiers = "ca")
-    @Test fun `getTitle in other language`() {
+    @Test
+    fun `getTitle in other language`() {
         val command = commandBase()
         assertEquals("Connecta Device Name", command.getTitle(context()))
     }
