@@ -80,12 +80,6 @@ fun BluetoothConnectCommandEditor(
     var connectPermissionGranted by remember { mutableStateOf(checkConnectPermission()) }
     var permissionDenied by remember { mutableStateOf(false) }
 
-    val connectPermissionLauncher =
-        permissionRequestLauncher { granted ->
-            connectPermissionGranted = granted
-            if (!granted) permissionDenied = true
-        }
-
     val bluetoothAdapter =
         remember {
             val manager = context.getSystemService(BluetoothManager::class.java)
@@ -176,18 +170,11 @@ fun BluetoothConnectCommandEditor(
                     },
                 )
             } else {
-                WarningBanner(
-                    message = stringResource(R.string.bluetooth_device_editor_permission_warning),
-                    buttonText = stringResource(R.string.bluetooth_device_editor_grant_permission),
-                    onClick = {
-                        if (permissionDenied) {
-                            Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
-                                data = Uri.fromParts("package", context.packageName, null)
-                                context.startActivity(this)
-                            }
-                        } else {
-                            connectPermissionLauncher.launch(Manifest.permission.BLUETOOTH_CONNECT)
-                        }
+                PermissionBanner(
+                    permissionDenied=permissionDenied,
+                    onPermissionResponse = { granted ->
+                        connectPermissionGranted = granted
+                        if (!granted) permissionDenied = true
                     },
                 )
             }

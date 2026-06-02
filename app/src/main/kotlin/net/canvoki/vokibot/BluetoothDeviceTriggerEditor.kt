@@ -1,13 +1,9 @@
 package net.canvoki.vokibot
 
 import android.Manifest
-import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothManager
-import android.content.Intent
 import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Build
-import android.provider.Settings
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -76,12 +72,6 @@ fun BluetoothDeviceTriggerEditor(
 
     var connectPermissionGranted by remember { mutableStateOf(checkConnectPermission()) }
     var permissionDenied by remember { mutableStateOf(false) }
-
-    val connectPermissionLauncher =
-        permissionRequestLauncher { granted ->
-            connectPermissionGranted = granted
-            if (!granted) permissionDenied = true
-        }
 
     val bluetoothAdapter =
         remember {
@@ -172,18 +162,11 @@ fun BluetoothDeviceTriggerEditor(
                     },
                 )
             } else {
-                WarningBanner(
-                    message = stringResource(R.string.bluetooth_device_editor_permission_warning),
-                    buttonText = stringResource(R.string.bluetooth_device_editor_grant_permission),
-                    onClick = {
-                        if (permissionDenied) {
-                            Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
-                                data = Uri.fromParts("package", context.packageName, null)
-                                context.startActivity(this)
-                            }
-                        } else {
-                            connectPermissionLauncher.launch(Manifest.permission.BLUETOOTH_CONNECT)
-                        }
+                PermissionBanner(
+                    permissionDenied=permissionDenied,
+                    onPermissionResponse = { granted ->
+                        connectPermissionGranted = granted
+                        if (!granted) permissionDenied = true
                     },
                 )
             }
