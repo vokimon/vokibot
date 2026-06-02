@@ -25,6 +25,22 @@ import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
 
 @Composable
+fun BluetoothNameField(
+    value: String,
+    onValueChange: (String) -> Unit,
+) {
+    OutlinedTextField(
+        value = value,
+        onValueChange = onValueChange,
+        label = { Text(stringResource(R.string.bluetooth_device_editor_name_label)) },
+        placeholder = { Text(stringResource(R.string.bluetooth_device_editor_name_placeholder)) },
+        modifier = Modifier.fillMaxWidth(),
+        singleLine = true,
+        keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
+    )
+}
+
+@Composable
 fun BluetoothMacField(
     value: String,
     onValueChange: (String) -> Unit,

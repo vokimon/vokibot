@@ -148,17 +148,12 @@ fun BluetoothConnectCommandEditor(
             },
         )
 
-        OutlinedTextField(
+        BluetoothNameField(
             value = name,
             onValueChange = {
                 name = it
                 discardState.markDirty()
             },
-            label = { Text(stringResource(R.string.bluetooth_device_editor_name_label)) },
-            placeholder = { Text(stringResource(R.string.bluetooth_device_editor_name_placeholder)) },
-            modifier = Modifier.fillMaxWidth(),
-            singleLine = true,
-            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
         )
 
         BluetoothMacField(
