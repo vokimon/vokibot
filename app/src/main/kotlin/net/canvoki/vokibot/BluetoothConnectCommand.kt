@@ -1,7 +1,11 @@
 package net.canvoki.vokibot
 
+import android.bluetooth.BluetoothDevice
+import android.bluetooth.BluetoothManager
+import android.bluetooth.BluetoothProfile
 import android.content.Context
 import kotlinx.serialization.Serializable
+import net.canvoki.shared.log
 
 @Serializable
 enum class ConnectionAction { CONNECT, DISCONNECT }
@@ -23,7 +27,43 @@ data class BluetoothConnectCommand(
     override fun toJson(): String = JsonConfig.encodeToString(serializer(), this)
 
     override suspend fun execute(context: Context) {
-        // TODO
+        val device =
+            bluetoothDeviceFromMac(context, macAddress) ?: run {
+                log("BluetoothConnect: device not found for $macAddress")
+                return
+            }
+        val adapter =
+            context.getSystemService(BluetoothManager::class.java)?.adapter ?: run {
+                log("BluetoothConnect: no adapter")
+                return
+            }
+        val methodName = action.name.lowercase()
+
+        adapter.getProfileProxy(
+            context,
+            object : BluetoothProfile.ServiceListener {
+                override fun onServiceConnected(
+                    profile: Int,
+                    proxy: BluetoothProfile,
+                ) {
+                    try {
+                        val method =
+                            proxy::class.java.getDeclaredMethod(
+                                methodName,
+                                BluetoothDevice::class.java,
+                            )
+                        method.isAccessible = true
+                        method.invoke(proxy, device)
+                    } catch (e: Exception) {
+                        log("BluetoothConnect: $methodName failed: $e")
+                    }
+                    adapter.closeProfileProxy(profile, proxy)
+                }
+
+                override fun onServiceDisconnected(profile: Int) {}
+            },
+            BluetoothProfile.A2DP,
+        )
     }
 
     companion object : EntityMetadata {
