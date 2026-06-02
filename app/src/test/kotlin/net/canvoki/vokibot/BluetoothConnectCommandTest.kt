@@ -39,13 +39,19 @@ class BluetoothConnectCommandTest {
         assertEquals("Disconnect Device Name", command.getTitle(context()))
     }
 
-    @Test fun `description returns macAddress`() {
-        assertEquals("AA:BB:CC:DD:EE:FF", commandBase().description)
-    }
-
     @Test fun `getTitle falls back to macAddress when deviceName empty`() {
         val command = commandBase(deviceName = "")
         assertEquals("Connect AA:BB:CC:DD:EE:FF", command.getTitle(context()))
+    }
+
+    @Config(qualifiers = "ca")
+    @Test fun `getTitle in other language`() {
+        val command = commandBase()
+        assertEquals("Connecta Device Name", command.getTitle(context()))
+    }
+
+    @Test fun `description returns macAddress`() {
+        assertEquals("AA:BB:CC:DD:EE:FF", commandBase().description)
     }
 
     fun commandJson() =
@@ -95,11 +101,5 @@ class BluetoothConnectCommandTest {
     @Test fun `editor returns BluetoothConnectCommandEditor, with id`() {
         val editor = StorableEntity.getEditorScreen("bluetooth_connect", "my_id")
         assertEquals(BluetoothConnectCommandEditor("my_id"), editor)
-    }
-
-    @Config(qualifiers = "ca")
-    @Test fun `getTitle in other language`() {
-        val command = commandBase()
-        assertEquals("Connecta Device Name", command.getTitle(context()))
     }
 }
