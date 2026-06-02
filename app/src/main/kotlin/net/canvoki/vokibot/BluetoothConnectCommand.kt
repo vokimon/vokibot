@@ -7,6 +7,9 @@ import android.content.Context
 import kotlinx.serialization.Serializable
 import net.canvoki.shared.log
 
+private const val BLUETOOTH_PROXY_CONNECT = "connect"
+private const val BLUETOOTH_PROXY_DISCONNECT = "disconnect"
+
 @Serializable
 enum class ConnectionAction { CONNECT, DISCONNECT }
 
@@ -46,9 +49,6 @@ data class BluetoothConnectCommand(
                 log("BluetoothConnect: no adapter")
                 return
             }
-        // TODO: DO not rely on action.name but in enums and constants
-        val methodName = action.name.lowercase()
-
         adapter.getProfileProxy(
             context,
             object : BluetoothProfile.ServiceListener {
@@ -56,6 +56,11 @@ data class BluetoothConnectCommand(
                     profile: Int,
                     proxy: BluetoothProfile,
                 ) {
+                    val methodName =
+                        when (action) {
+                            ConnectionAction.CONNECT -> BLUETOOTH_PROXY_CONNECT
+                            ConnectionAction.DISCONNECT -> BLUETOOTH_PROXY_DISCONNECT
+                        }
                     try {
                         val method =
                             proxy::class.java.getDeclaredMethod(
