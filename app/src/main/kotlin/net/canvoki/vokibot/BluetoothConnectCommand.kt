@@ -21,11 +21,14 @@ data class BluetoothConnectCommand(
     override val iconRes: Int get() = R.drawable.ic_bluetooth
 
     override fun getTitle(context: Context): String =
-        deviceName.ifEmpty { macAddress }.let {
-            when (action) {
-                ConnectionAction.CONNECT -> "Connect $it"
-                ConnectionAction.DISCONNECT -> "Disconnect $it"
-            }
+        deviceName.ifEmpty { macAddress }.let { displayName ->
+            context.getString(
+                when (action) {
+                    ConnectionAction.CONNECT -> R.string.command_bluetooth_connect_title_connect
+                    ConnectionAction.DISCONNECT -> R.string.command_bluetooth_connect_title_disconnect
+                },
+                displayName,
+            )
         }
 
     override val description: String get() = macAddress

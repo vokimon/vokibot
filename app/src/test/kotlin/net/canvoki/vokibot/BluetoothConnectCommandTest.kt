@@ -11,7 +11,7 @@ import org.robolectric.annotation.Config
 import kotlin.test.assertIs
 
 @RunWith(RobolectricTestRunner::class)
-@Config(manifest = Config.NONE, qualifiers = "en")
+@Config(qualifiers = "en")
 class BluetoothConnectCommandTest {
     fun commandBase(
         deviceName: String = "Device Name",
@@ -95,5 +95,11 @@ class BluetoothConnectCommandTest {
     @Test fun `editor returns BluetoothConnectCommandEditor, with id`() {
         val editor = StorableEntity.getEditorScreen("bluetooth_connect", "my_id")
         assertEquals(BluetoothConnectCommandEditor("my_id"), editor)
+    }
+
+    @Config(qualifiers = "ca")
+    @Test fun `getTitle in other language`() {
+        val command = commandBase()
+        assertEquals("Connecta Device Name", command.getTitle(context()))
     }
 }

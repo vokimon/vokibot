@@ -319,3 +319,5 @@ command_bluetooth_connect_help: |
   Pots connectar-lo o desconnectar-lo.
   Per raons de seguretat, Android restringeix el control
   de la connexió d'alguns tipus de dispositius.
+command_bluetooth_connect_title_connect: "Connecta {deviceName}"
+command_bluetooth_connect_title_disconnect: "Desconnecta {deviceName}"

@@ -123,6 +123,7 @@ android {
     testOptions {
         unitTests {
             isReturnDefaultValues = true
+            isIncludeAndroidResources = true
         }
         unitTests.all {
             it.jvmArgs(

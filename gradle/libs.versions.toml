@@ -34,7 +34,7 @@ jetbrains-markdown = "0.7.3"
 junit = "4.13.2"
 java-diff-utils = "4.16"
 mockk = "1.13.14"
-robolectric = "4.14.1"
+robolectric = "4.16.1"
 
 [libraries]
 # AndroidX Compose BOM
