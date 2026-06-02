@@ -86,6 +86,7 @@ fun BluetoothConnectCommandEditor(
             if (!connectPermState.isGranted) {
                 emptyList()
             } else {
+                @Suppress("MissingPermission")
                 bluetoothAdapter
                     ?.bondedDevices
                     ?.sortedBy { it.name?.lowercase() } ?: emptyList()
