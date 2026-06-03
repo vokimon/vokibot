@@ -190,9 +190,16 @@ fun bluetoothDeviceFromMac(
 private const val BLUETOOTH_PROXY_CONNECT = "connect"
 private const val BLUETOOTH_PROXY_DISCONNECT = "disconnect"
 private const val BLUETOOTH_PROFILE_A2DP_SINK = 11
+private const val BLUETOOTH_PROFILE_AVRCP_CONTROLLER = 12
+private const val BLUETOOTH_PROFILE_AVRCP_TARGET = 13
 private const val BLUETOOTH_PROFILE_HEADSET_CLIENT = 16
+private const val BLUETOOTH_PROFILE_HID_DEVICE = 19
 private const val BLUETOOTH_PROFILE_HID_HOST = 4
+private const val BLUETOOTH_PROFILE_MAP = 9
+private const val BLUETOOTH_PROFILE_MAP_CLIENT = 18
 private const val BLUETOOTH_PROFILE_PAN = 5
+private const val BLUETOOTH_PROFILE_PBAP = 6
+private const val BLUETOOTH_PROFILE_PBAP_CLIENT = 17
 
 fun bluetoothConnect(
     context: Context,
@@ -221,18 +228,18 @@ private fun profileLabel(profile: Int): String =
         BluetoothProfile.HEALTH -> "HEALTH"
         BLUETOOTH_PROFILE_HID_HOST -> "HID_HOST"
         BLUETOOTH_PROFILE_PAN -> "PAN"
-        6 -> "PBAP"
-        7 -> "GATT"
-        8 -> "GATT_SERVER"
-        9 -> "MAP"
-        10 -> "SAP"
+        BLUETOOTH_PROFILE_PBAP -> "PBAP"
+        BluetoothProfile.GATT -> "GATT"
+        BluetoothProfile.GATT_SERVER -> "GATT_SERVER"
+        BLUETOOTH_PROFILE_MAP -> "MAP"
+        BluetoothProfile.SAP -> "SAP"
         BLUETOOTH_PROFILE_A2DP_SINK -> "A2DP_SINK"
-        12 -> "AVRCP_CONTROLLER"
-        13 -> "AVRCP_TARGET"
+        BLUETOOTH_PROFILE_AVRCP_CONTROLLER -> "AVRCP_CONTROLLER"
+        BLUETOOTH_PROFILE_AVRCP_TARGET -> "AVRCP_TARGET"
         BLUETOOTH_PROFILE_HEADSET_CLIENT -> "HEADSET_CLIENT"
-        17 -> "PBAP_CLIENT"
-        18 -> "MAP_CLIENT"
-        19 -> "HID_DEVICE"
+        BLUETOOTH_PROFILE_PBAP_CLIENT -> "PBAP_CLIENT"
+        BLUETOOTH_PROFILE_MAP_CLIENT -> "MAP_CLIENT"
+        BLUETOOTH_PROFILE_HID_DEVICE -> "HID_DEVICE"
         else -> "UNKNOWN($profile)"
     }
 
