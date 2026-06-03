@@ -176,7 +176,7 @@ fun BluetoothConnectCommandEditor(
         )
         if (selectedAction == ConnectionAction.DISCONNECT) {
             WarningBanner(
-                stringResource(R.string.command_bluetooth_connect_warn_disconnect)
+                stringResource(R.string.command_bluetooth_connect_warn_disconnect),
             )
         }
 

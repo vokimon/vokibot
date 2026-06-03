@@ -1,5 +1,10 @@
 # Change log
 
+## Unreleased
+
+- ✨ BluetoothConnectCommand: Connect or disconnect bluetooth devices
+- ♻️ Common code extracted for reusing
+
 ## 0.3.0 (2026-06-01)
 
 Bluetooth Device Trigger, launch commands on Bluetooth connection

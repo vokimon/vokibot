@@ -189,6 +189,10 @@ fun bluetoothDeviceFromMac(
 
 private const val BLUETOOTH_PROXY_CONNECT = "connect"
 private const val BLUETOOTH_PROXY_DISCONNECT = "disconnect"
+private const val BLUETOOTH_PROFILE_A2DP_SINK = 11
+private const val BLUETOOTH_PROFILE_HEADSET_CLIENT = 16
+private const val BLUETOOTH_PROFILE_HID_HOST = 4
+private const val BLUETOOTH_PROFILE_PAN = 5
 
 fun bluetoothConnect(
     context: Context,
@@ -201,19 +205,68 @@ fun bluetoothDisconnect(
     context: Context,
     macAddress: String,
 ) {
-    bluetoothAction(context, macAddress, BLUETOOTH_PROXY_DISCONNECT)
+    disconnectAllProfiles(context, macAddress)
+    // Single-profile A2DP-only strategy (kept for reference):
+    // bluetoothAction(context, macAddress, BLUETOOTH_PROXY_DISCONNECT)
 }
 
-private fun bluetoothManager(context: Context) =
-    context.getSystemService(BluetoothManager::class.java)
+private fun bluetoothManager(context: Context) = context.getSystemService(BluetoothManager::class.java)
 
-private fun bluetoothAdapter(context: Context) =
-    bluetoothManager(context)?.adapter
+private fun bluetoothAdapter(context: Context) = bluetoothManager(context)?.adapter
+
+private fun profileLabel(profile: Int): String =
+    when (profile) {
+        BluetoothProfile.A2DP -> "A2DP"
+        BluetoothProfile.HEADSET -> "HEADSET"
+        BluetoothProfile.HEALTH -> "HEALTH"
+        BLUETOOTH_PROFILE_HID_HOST -> "HID_HOST"
+        BLUETOOTH_PROFILE_PAN -> "PAN"
+        6 -> "PBAP"
+        7 -> "GATT"
+        8 -> "GATT_SERVER"
+        9 -> "MAP"
+        10 -> "SAP"
+        BLUETOOTH_PROFILE_A2DP_SINK -> "A2DP_SINK"
+        12 -> "AVRCP_CONTROLLER"
+        13 -> "AVRCP_TARGET"
+        BLUETOOTH_PROFILE_HEADSET_CLIENT -> "HEADSET_CLIENT"
+        17 -> "PBAP_CLIENT"
+        18 -> "MAP_CLIENT"
+        19 -> "HID_DEVICE"
+        else -> "UNKNOWN($profile)"
+    }
+
+private fun disconnectAllProfiles(
+    context: Context,
+    macAddress: String,
+) {
+    val profiles =
+        listOf(
+            BluetoothProfile.A2DP,
+            BluetoothProfile.HEADSET,
+            BLUETOOTH_PROFILE_A2DP_SINK,
+            BLUETOOTH_PROFILE_HID_HOST,
+            BLUETOOTH_PROFILE_PAN,
+            BLUETOOTH_PROFILE_HEADSET_CLIENT,
+        )
+    for (profile in profiles) {
+        log("disconnectAllProfiles: checking ${profileLabel(profile)}")
+        try {
+            log("disconnectAllProfiles: ${profileLabel(profile)} disconnecting")
+            bluetoothAction(context, macAddress, BLUETOOTH_PROXY_DISCONNECT, profile)
+            log("disconnectAllProfiles: ${profileLabel(profile)} success")
+        } catch (e: IllegalArgumentException) {
+            log("disconnectAllProfiles: ${profileLabel(profile)} not supported on this device: $e")
+        }
+    }
+}
+
 
 private fun bluetoothAction(
     context: Context,
     macAddress: String,
     methodName: String,
+    profile: Int = BluetoothProfile.A2DP,
 ) {
     val device = bluetoothDeviceFromMac(context, macAddress) ?: return
     val adapter = bluetoothAdapter(context) ?: return
@@ -240,6 +293,6 @@ private fun bluetoothAction(
 
             override fun onServiceDisconnected(profile: Int) {}
         },
-        BluetoothProfile.A2DP,
+        profile,
     )
 }
