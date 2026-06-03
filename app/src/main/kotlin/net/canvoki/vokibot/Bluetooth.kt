@@ -175,8 +175,7 @@ fun bluetoothDeviceFromMac(
     context: Context,
     macAddress: String,
 ): BluetoothDevice? {
-    val manager = context.getSystemService(BluetoothManager::class.java) ?: return null
-    val adapter = manager.adapter ?: return null
+    val adapter = bluetoothAdapter(context) ?: return null
     return try {
         adapter.getRemoteDevice(macAddress)
     } catch (e: IllegalArgumentException) {
@@ -205,14 +204,19 @@ fun bluetoothDisconnect(
     bluetoothAction(context, macAddress, BLUETOOTH_PROXY_DISCONNECT)
 }
 
+private fun bluetoothManager(context: Context) =
+    context.getSystemService(BluetoothManager::class.java)
+
+private fun bluetoothAdapter(context: Context) =
+    bluetoothManager(context)?.adapter
+
 private fun bluetoothAction(
     context: Context,
     macAddress: String,
     methodName: String,
 ) {
     val device = bluetoothDeviceFromMac(context, macAddress) ?: return
-    val adapter =
-        context.getSystemService(BluetoothManager::class.java)?.adapter ?: return
+    val adapter = bluetoothAdapter(context) ?: return
     adapter.getProfileProxy(
         context,
         object : BluetoothProfile.ServiceListener {
