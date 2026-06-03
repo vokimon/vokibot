@@ -321,3 +321,4 @@ command_bluetooth_connect_help: |
   the connection of some kind of devices.
 command_bluetooth_connect_title_connect: "Connect {deviceName}"
 command_bluetooth_connect_title_disconnect: "Disconnect {deviceName}"
+command_bluetooth_connect_warn_disconnect: Due to system limitations, this command only disables the audio connection, leaving the device connected for other uses.

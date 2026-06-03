@@ -319,3 +319,4 @@ command_bluetooth_connect_help: |
   Puedes conectarlo o desconectarlo.
   Por razones de seguridad, Android restringe el control
   de la conexión de algunos tipos de dispositivos.
+command_bluetooth_connect_warn_disconnect: Por limitaciones del sistema, este comando solo desactiva la conexión de audio, dejando el dispositivo conectado para otros usos.

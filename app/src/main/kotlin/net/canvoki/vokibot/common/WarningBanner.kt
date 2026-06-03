@@ -23,8 +23,8 @@ import net.canvoki.vokibot.R
 @Composable
 fun WarningBanner(
     message: String,
-    buttonText: String,
-    onClick: () -> Unit,
+    buttonText: String? = null,
+    onClick: () -> Unit = {},
 ) {
     Surface(
         color = MaterialTheme.colorScheme.surfaceVariant,
@@ -48,12 +48,14 @@ fun WarningBanner(
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
             }
-            Row(
-                modifier = Modifier.fillMaxWidth().padding(12.dp),
-                horizontalArrangement = Arrangement.End,
-            ) {
-                TextButton(onClick = onClick) {
-                    Text(buttonText)
+            buttonText?.let {
+                Row(
+                    modifier = Modifier.fillMaxWidth().padding(12.dp),
+                    horizontalArrangement = Arrangement.End,
+                ) {
+                    TextButton(onClick = onClick) {
+                        Text(it)
+                    }
                 }
             }
         }
