@@ -27,7 +27,7 @@ actions:
 #    link: "https://patreon.com/miappgenial"
 #    icon: "../assets/patreon.svg"
   - label: ACTION_SOCIAL
-    link: "https://masto.es/@vokibot"
+    link: https://mastodon.social/@lovoki
     icon: "../assets/mastodon.svg"
 #  - label: ACTION_GOOGLE_PLAY
 #    link: "https://play.google.com/store/apps/details?id=net.canvoki.vokibot"
