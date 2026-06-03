@@ -261,7 +261,6 @@ private fun disconnectAllProfiles(
     }
 }
 
-
 private fun bluetoothAction(
     context: Context,
     macAddress: String,
