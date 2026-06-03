@@ -4,10 +4,13 @@ DESCRIPTION: Eina d'automatització per a Android
 KEYWORDS: android, automatització, nfc, drecera, disparador, floss, foss, codi obert, programari lliure
 FEATURE_MULTIPLE_TRIGGERS_TITLE: Tria un disparador
 FEATURE_MULTIPLE_TRIGGERS_DESCRIPTION: |
-  Pots utilitzar <b>etiquetes NFC</b> i <b>dreceres de la pantalla d'inici</b> com a disparadors per a les teves automatitzacions.
+  Pots utilitzar <b>etiquetes NFC</b>,
+  <b>dreceres de la pantalla d'inici</b>
+  i <b>dispositius Bluetooth</b>
+  com a disparadors per a les teves automatitzacions.
   Dissenyat per ser <b>extensible</b>,
   amb més disparadors previstos per al futur com ara
-  esdeveniments del sistema, gestos, detecció Wi-Fi/Bluetooth…
+  esdeveniments del sistema, gestos, detecció Wi-Fi…
 FEATURE_MULTIPLE_COMMANDS_TITLE: Tria què executar
 FEATURE_MULTIPLE_COMMANDS_DESCRIPTION: |
   Què pots automatitzar?

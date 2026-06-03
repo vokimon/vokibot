@@ -4,10 +4,13 @@ DESCRIPTION: Android-Automatisierungstool
 KEYWORDS: android, automatisierung, nfc, kurztaste, auslöser, floss, foss, open source, freie software
 FEATURE_MULTIPLE_TRIGGERS_TITLE: Wähle einen Auslöser
 FEATURE_MULTIPLE_TRIGGERS_DESCRIPTION: |
-  Du kannst <b>NFC-Tags</b> und <b>Startbildschirm-Verknüpfungen</b> als Auslöser für deine Automatisierungen verwenden.
+  Du kannst <b>NFC-Tags</b>,
+  <b>Startbildschirm-Verknüpfungen</b>
+  und <b>Bluetooth-Geräte</b>
+  als Auslöser für deine Automatisierungen verwenden.
   Entwickelt, um <b>erweiterbar</b> zu sein,
   mit weiteren geplanten Auslösern wie
-  Systemereignissen, Gesten, Wi-Fi/Bluetooth-Erkennung…
+  Systemereignissen, Gesten, Wi-Fi-Erkennung…
 FEATURE_MULTIPLE_COMMANDS_TITLE: Wähle, was ausgeführt werden soll
 FEATURE_MULTIPLE_COMMANDS_DESCRIPTION: |
   Was kannst du automatisieren?

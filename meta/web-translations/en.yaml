@@ -4,10 +4,13 @@ DESCRIPTION: Android automation tool
 KEYWORDS: android, automation, nfc, shortcut, trigger, floss, foss, opensource, free software
 FEATURE_MULTIPLE_TRIGGERS_TITLE: Choose a trigger
 FEATURE_MULTIPLE_TRIGGERS_DESCRIPTION: |
-  You can use <b>NFC tags</b> and <b>home screen shortcuts</b> as triggers for your automations.
+  You can use <b>NFC tags</b>,
+  <b>home screen shortcuts</b>
+  and <b>Bluetooth devices</b>
+  as triggers for your automations.
   Built to be <b>extensible</b>,
   with more triggers planned for the future such as
-  system events, gestures, Wi-Fi/Bluetooth detection…
+  system events, gestures, Wi-Fi detection…
 FEATURE_MULTIPLE_COMMANDS_TITLE: Choose what to run
 FEATURE_MULTIPLE_COMMANDS_DESCRIPTION: |
   What can you automate?

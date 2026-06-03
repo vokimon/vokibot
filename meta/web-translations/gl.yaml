@@ -4,10 +4,13 @@ DESCRIPTION: Ferramenta de automatización para Android
 KEYWORDS: android, automatización, nfc, atallo, disparador, floss, foss, código aberto, software libre
 FEATURE_MULTIPLE_TRIGGERS_TITLE: Elixe un disparador
 FEATURE_MULTIPLE_TRIGGERS_DESCRIPTION: |
-  Podes usar <b>etiquetas NFC</b> e <b>atallos na pantalla de inicio</b> como disparadores para as túas automatizacións.
+  Podes usar <b>etiquetas NFC</b>,
+  <b>atallos na pantalla de inicio</b>
+  e <b>dispositivos Bluetooth</b>
+  como disparadores para as túas automatizacións.
   Deseñado para ser <b>extensible</b>,
   con máis disparadores previstos para o futuro como
-  eventos do sistema, xestos, detección Wi-Fi/Bluetooth…
+  eventos do sistema, xestos, detección Wi-Fi…
 FEATURE_MULTIPLE_COMMANDS_TITLE: Elixe qué executar
 FEATURE_MULTIPLE_COMMANDS_DESCRIPTION: |
   Que podes automatizar?

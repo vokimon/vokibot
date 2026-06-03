@@ -4,10 +4,13 @@ DESCRIPTION: Ferramenta de automação para Android
 KEYWORDS: android, automação, nfc, atalho, acionador, floss, foss, código aberto, software livre
 FEATURE_MULTIPLE_TRIGGERS_TITLE: Escolhe um acionador
 FEATURE_MULTIPLE_TRIGGERS_DESCRIPTION: |
-  Podes usar <b>etiquetas NFC</b> e <b>atalhos no ecrã inicial</b> como acionadores para as tuas automações.
+  Podes usar <b>etiquetas NFC</b>,
+  <b>atalhos no ecrã inicial</b>
+  e <b>dispositivos Bluetooth</b>
+  como acionadores para as tuas automações.
   Concebido para ser <b>extensível</b>,
   com mais acionadores planeados para o futuro, como
-  eventos do sistema, gestos, deteção Wi-Fi/Bluetooth…
+  eventos do sistema, gestos, deteção Wi-Fi…
 FEATURE_MULTIPLE_COMMANDS_TITLE: Escolhe o que executar
 FEATURE_MULTIPLE_COMMANDS_DESCRIPTION: |
   O que podes automatizar?

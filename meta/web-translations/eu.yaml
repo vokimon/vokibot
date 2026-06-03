@@ -4,10 +4,13 @@ DESCRIPTION: Androiderako automatizazio tresna
 KEYWORDS: android, automatizazioa, nfc, lasterbidea, abiarazlea, floss, foss, kode irekia, software librea
 FEATURE_MULTIPLE_TRIGGERS_TITLE: Aukeratu abiarazle bat
 FEATURE_MULTIPLE_TRIGGERS_DESCRIPTION: |
-  <b>NFC etiketak</b> eta <b>hasierako pantailako lasterbideak</b> erabil ditzakezu zure automatizazioetarako abiarazle gisa.
+  <b>NFC etiketak</b>,
+  <b>hasierako pantailako lasterbideak</b>
+  eta <b>Bluetooth gailuak</b>
+  erabil ditzakezu zure automatizazioetarako abiarazle gisa.
   <b>Hedagarria</b> izateko diseinatuta,
   etorkizunerako abiarazle gehiago aurreikusita, hala nola
-  sistemako gertaerak, keinuak, Wi-Fi/Bluetooth detekzioa…
+  sistemako gertaerak, keinuak, Wi-Fi detekzioa…
 FEATURE_MULTIPLE_COMMANDS_TITLE: Aukeratu zer exekutatu
 FEATURE_MULTIPLE_COMMANDS_DESCRIPTION: |
   Zer automatiza dezakezu?
