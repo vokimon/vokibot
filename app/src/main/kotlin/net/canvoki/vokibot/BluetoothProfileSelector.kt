@@ -40,7 +40,16 @@ fun BluetoothProfileSelector(
             ).forEachIndexed { index, (isSelective, label) ->
                 SegmentedButton(
                     selected = selectiveMode == isSelective,
-                    onClick = { selectiveMode = isSelective },
+                    onClick = {
+                        selectiveMode = isSelective
+                        if (isSelective) {
+                            if (affectedRoles.isEmpty()) {
+                                onAffectedRolesChange(DisconnectableRole.entries.toSet())
+                            }
+                        } else {
+                            onAffectedRolesChange(emptySet())
+                        }
+                    },
                     shape = SegmentedButtonDefaults.itemShape(index, 2),
                     label = { Text(label) },
                 )
