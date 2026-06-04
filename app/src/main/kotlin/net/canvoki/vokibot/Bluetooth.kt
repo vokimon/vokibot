@@ -194,6 +194,7 @@ private const val BLUETOOTH_PROXY_DISCONNECT = "disconnect"
 private const val BLUETOOTH_PROFILE_A2DP_SINK = 11
 private const val BLUETOOTH_PROFILE_AVRCP_CONTROLLER = 12
 private const val BLUETOOTH_PROFILE_AVRCP_TARGET = 13
+private const val BLUETOOTH_PROFILE_HEALTH = 3
 private const val BLUETOOTH_PROFILE_HEADSET_CLIENT = 16
 private const val BLUETOOTH_PROFILE_HID_DEVICE = 19
 private const val BLUETOOTH_PROFILE_HID_HOST = 4
@@ -206,7 +207,7 @@ private const val BLUETOOTH_PROFILE_PBAP_CLIENT = 17
 @Serializable
 enum class DisconnectableRole(
     val profileId: Int,
-    @StringRes val labelRes: Int,
+    @get:StringRes val labelRes: Int,
 ) {
     A2DP(BluetoothProfile.A2DP, R.string.bluetooth_profile_multimedia_source),
     HEADSET(BluetoothProfile.HEADSET, R.string.bluetooth_profile_calls),
@@ -242,7 +243,7 @@ private fun profileLabel(profile: Int): String =
     when (profile) {
         BluetoothProfile.A2DP -> "A2DP"
         BluetoothProfile.HEADSET -> "HEADSET"
-        BluetoothProfile.HEALTH -> "HEALTH"
+        BLUETOOTH_PROFILE_HEALTH -> "HEALTH"
         BLUETOOTH_PROFILE_HID_HOST -> "HID_HOST"
         BLUETOOTH_PROFILE_PAN -> "PAN"
         BLUETOOTH_PROFILE_PBAP -> "PBAP"
