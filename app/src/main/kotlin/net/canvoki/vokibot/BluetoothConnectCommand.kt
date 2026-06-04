@@ -11,6 +11,7 @@ data class BluetoothConnectCommand(
     val macAddress: String,
     val deviceName: String = "",
     val action: ConnectionAction = ConnectionAction.CONNECT,
+    val affectedRoles: Set<DisconnectableRole> = emptySet(),
 ) : Command() {
     override val id: String get() = "bluetooth_connect_${toFileSystemId(macAddress)}_${action.name.lowercase()}"
     override val type = "bluetooth_connect"

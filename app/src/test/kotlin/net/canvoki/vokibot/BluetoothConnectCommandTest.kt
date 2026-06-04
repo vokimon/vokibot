@@ -61,7 +61,8 @@ class BluetoothConnectCommandTest {
           "type": "bluetooth_connect",
           "macAddress": "AA:BB:CC:DD:EE:FF",
           "deviceName": "Device Name",
-          "action": "CONNECT"
+          "action": "CONNECT",
+          "affectedRoles": []
         }
         """.trimIndent()
 
