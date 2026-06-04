@@ -6,6 +6,7 @@ import android.bluetooth.BluetoothManager
 import android.bluetooth.BluetoothProfile
 import android.content.Context
 import android.os.Build
+import kotlinx.serialization.Serializable
 import net.canvoki.shared.log
 
 private fun BluetoothDevice?.bluetoothClassSafe(): BluetoothClass? =
@@ -200,6 +201,26 @@ private const val BLUETOOTH_PROFILE_MAP_CLIENT = 18
 private const val BLUETOOTH_PROFILE_PAN = 5
 private const val BLUETOOTH_PROFILE_PBAP = 6
 private const val BLUETOOTH_PROFILE_PBAP_CLIENT = 17
+
+@Serializable
+enum class DisconnectableRole(val profileId: Int) {
+    A2DP(BluetoothProfile.A2DP),
+    HEADSET(BluetoothProfile.HEADSET),
+    A2DP_SINK(BLUETOOTH_PROFILE_A2DP_SINK),
+    HID_HOST(BLUETOOTH_PROFILE_HID_HOST),
+    PAN(BLUETOOTH_PROFILE_PAN),
+    HEADSET_CLIENT(BLUETOOTH_PROFILE_HEADSET_CLIENT),
+}
+
+fun DisconnectableRole.getLabel(context: Context): String =
+    when (this) {
+        DisconnectableRole.A2DP -> "Multimedia source"
+        DisconnectableRole.HEADSET -> "Calls"
+        DisconnectableRole.A2DP_SINK -> "Multimedia speaker"
+        DisconnectableRole.HID_HOST -> "Keyboard & mouse"
+        DisconnectableRole.PAN -> "Network sharing"
+        DisconnectableRole.HEADSET_CLIENT -> "Speakerphone"
+    }
 
 fun bluetoothConnect(
     context: Context,
