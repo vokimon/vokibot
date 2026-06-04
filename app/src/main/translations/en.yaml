@@ -328,3 +328,12 @@ bluetooth_profile_multimedia_speaker: Multimedia speaker
 bluetooth_profile_keyboard_mouse: Keyboard & mouse
 bluetooth_profile_network_sharing: Network sharing
 bluetooth_profile_speakerphone: Speakerphone
+bluetooth_profile_multimedia_receiver: Speaker/Headphones
+bluetooth_profile_media_controller: Media controller
+bluetooth_profile_media_player: Media player
+bluetooth_profile_input_device: Input device
+bluetooth_profile_input_receiver: Input receiver
+bluetooth_profile_messages: Messages
+bluetooth_profile_message_client: Message client
+bluetooth_profile_phonebook: Phonebook
+bluetooth_profile_phonebook_client: Phonebook client

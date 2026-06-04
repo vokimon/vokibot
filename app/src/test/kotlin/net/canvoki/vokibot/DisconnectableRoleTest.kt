@@ -24,17 +24,23 @@ class DisconnectableRoleTest {
             "${role.name}: ${role.profileId}"
         }
 
-    @Ignore
     @Test
     fun `english labels`() {
         assertEquals(
             """
             A2DP: Multimedia source
+            A2DP_SINK: Speaker/Headphones
+            AVRCP_CONTROLLER: Media controller
+            AVRCP_TARGET: Media player
             HEADSET: Calls
-            A2DP_SINK: Multimedia speaker
-            HID_HOST: Keyboard & mouse
-            PAN: Network sharing
             HEADSET_CLIENT: Speakerphone
+            HID_DEVICE: Input device
+            HID_HOST: Input receiver
+            MAP: Messages
+            MAP_CLIENT: Message client
+            PAN: Network sharing
+            PBAP: Phonebook
+            PBAP_CLIENT: Phonebook client
             """.trimIndent(),
             dumpRoles(),
         )
