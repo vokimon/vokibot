@@ -319,21 +319,19 @@ command_bluetooth_connect_help: |
   You can connect or disconnect it.
   For security reasons Android restricts controlling
   the connection of some kind of devices.
-command_bluetooth_connect_title_connect: "Connect {deviceName}"
-command_bluetooth_connect_title_disconnect: "Disconnect {deviceName}"
+command_bluetooth_connect_title_connect: Connect {deviceName}
+command_bluetooth_connect_title_disconnect: Disconnect {deviceName}
 command_bluetooth_connect_warn_disconnect: Due to system limitations, this command only disables the audio connection, leaving the device connected for other uses.
-bluetooth_profile_multimedia_source: Multimedia source
-bluetooth_profile_calls: Calls
-bluetooth_profile_multimedia_speaker: Multimedia speaker
-bluetooth_profile_keyboard_mouse: Keyboard & mouse
-bluetooth_profile_network_sharing: Network sharing
-bluetooth_profile_speakerphone: Speakerphone
-bluetooth_profile_multimedia_receiver: Speaker/Headphones
-bluetooth_profile_media_controller: Media controller
-bluetooth_profile_media_player: Media player
-bluetooth_profile_input_device: Input device
-bluetooth_profile_input_receiver: Input receiver
-bluetooth_profile_messages: Messages
-bluetooth_profile_message_client: Message client
-bluetooth_profile_phonebook: Phonebook
-bluetooth_profile_phonebook_client: Phonebook client
+bluetooth_profile_a2dp: Multimedia source
+bluetooth_profile_a2dp_sink: Speaker/Headphones
+bluetooth_profile_avrcp_controller: Media controller
+bluetooth_profile_avrcp_target: Media player
+bluetooth_profile_headset: Calls
+bluetooth_profile_headset_client: Speakerphone
+bluetooth_profile_hid_device: Input device
+bluetooth_profile_hid_host: Input receiver
+bluetooth_profile_map: Messages
+bluetooth_profile_map_client: Message client
+bluetooth_profile_pan: Shared network
+bluetooth_profile_pbap: Contacts
+bluetooth_profile_pbap_client: Contacts client

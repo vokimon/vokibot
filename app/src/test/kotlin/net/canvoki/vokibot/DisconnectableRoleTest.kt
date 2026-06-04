@@ -3,7 +3,6 @@ package net.canvoki.vokibot
 import android.content.Context
 import androidx.test.core.app.ApplicationProvider
 import net.canvoki.shared.test.assertEquals
-import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
@@ -38,25 +37,32 @@ class DisconnectableRoleTest {
             HID_HOST: Input receiver
             MAP: Messages
             MAP_CLIENT: Message client
-            PAN: Network sharing
-            PBAP: Phonebook
-            PBAP_CLIENT: Phonebook client
+            PAN: Shared network
+            PBAP: Contacts
+            PBAP_CLIENT: Contacts client
             """.trimIndent(),
             dumpRoles(),
         )
     }
 
-    @Ignore @Test
+    @Test
     @Config(qualifiers = "ca")
     fun `catalan labels`() {
         assertEquals(
             """
             A2DP: Font multimèdia
+            A2DP_SINK: Altaveu/Auriculars
+            AVRCP_CONTROLLER: Controlador multimèdia
+            AVRCP_TARGET: Reproductor multimèdia
             HEADSET: Trucades
-            A2DP_SINK: Altaveu multimèdia
-            HID_HOST: Teclat i ratolí
-            PAN: Compartir xarxa
-            HEADSET_CLIENT: Altaveu de trucada
+            HEADSET_CLIENT: Mans lliures
+            HID_DEVICE: Dispositiu d'entrada
+            HID_HOST: Receptor d'entrada
+            MAP: Missatges
+            MAP_CLIENT: Client de missatgeria
+            PAN: Xarxa compartida
+            PBAP: Contactes
+            PBAP_CLIENT: Client de contactes
             """.trimIndent(),
             dumpRoles(),
         )

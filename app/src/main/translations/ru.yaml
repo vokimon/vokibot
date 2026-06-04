@@ -319,10 +319,19 @@ command_bluetooth_connect_help: |
   Вы можете подключить или отключить его.
   В целях безопасности Android ограничивает управление
   подключением некоторых типов устройств.
+command_bluetooth_connect_title_connect: Подключить {deviceName}
+command_bluetooth_connect_title_disconnect: Отключить {deviceName}
 command_bluetooth_connect_warn_disconnect: Из-за системных ограничений эта команда отключает только аудиоподключение, оставляя устройство подключенным для других целей.
-bluetooth_profile_multimedia_source: Источник мультимедиа
-bluetooth_profile_calls: Вызовы
-bluetooth_profile_multimedia_speaker: Мультимедийный динамик
-bluetooth_profile_keyboard_mouse: Клавиатура и мышь
-bluetooth_profile_network_sharing: Общий доступ к сети
-bluetooth_profile_speakerphone: Громкая связь
+bluetooth_profile_a2dp: Источник мультимедиа
+bluetooth_profile_a2dp_sink: Динамик/Наушники
+bluetooth_profile_avrcp_controller: Контроллер мультимедиа
+bluetooth_profile_avrcp_target: Медиаплеер
+bluetooth_profile_headset: Вызовы
+bluetooth_profile_headset_client: Громкая связь
+bluetooth_profile_hid_device: Устройство ввода
+bluetooth_profile_hid_host: Приёмник ввода
+bluetooth_profile_map: Сообщения
+bluetooth_profile_map_client: Клиент сообщений
+bluetooth_profile_pan: Общая сеть
+bluetooth_profile_pbap: Контакты
+bluetooth_profile_pbap_client: Клиент контактов

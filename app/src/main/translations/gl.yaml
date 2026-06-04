@@ -319,10 +319,19 @@ command_bluetooth_connect_help: |
   Podes conectalo ou desconectalo.
   Por razóns de seguridade, Android restrinxe o control
   da conexión de algúns tipos de dispositivos.
+command_bluetooth_connect_title_connect: Conectar {deviceName}
+command_bluetooth_connect_title_disconnect: Desconectar {deviceName}
 command_bluetooth_connect_warn_disconnect: Por limitacións do sistema, este comando só desactiva a conexión de audio, deixando o dispositivo conectado para outros usos.
-bluetooth_profile_multimedia_source: Fonte multimedia
-bluetooth_profile_calls: Chamadas
-bluetooth_profile_multimedia_speaker: Altofalante multimedia
-bluetooth_profile_keyboard_mouse: Teclado e rato
-bluetooth_profile_network_sharing: Compartir rede
-bluetooth_profile_speakerphone: Altofalante do teléfono
+bluetooth_profile_a2dp: Fonte multimedia
+bluetooth_profile_a2dp_sink: Altofalante/Auriculares
+bluetooth_profile_avrcp_controller: Controlador multimedia
+bluetooth_profile_avrcp_target: Reprodutor multimedia
+bluetooth_profile_headset: Chamadas
+bluetooth_profile_headset_client: Mans libres
+bluetooth_profile_hid_device: Dispositivo de entrada
+bluetooth_profile_hid_host: Receptor de entrada
+bluetooth_profile_map: Mensaxes
+bluetooth_profile_map_client: Cliente de mensaxería
+bluetooth_profile_pan: Rede compartida
+bluetooth_profile_pbap: Contactos
+bluetooth_profile_pbap_client: Cliente de contactos

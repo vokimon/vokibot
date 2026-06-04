@@ -319,10 +319,19 @@ command_bluetooth_connect_help: |
   يمكنك توصيله أو فصله.
   لأسباب أمنية، يقيد أندرويد التحكم
   في اتصال بعض أنواع الأجهزة.
+command_bluetooth_connect_title_connect: توصيل {deviceName}
+command_bluetooth_connect_title_disconnect: فصل {deviceName}
 command_bluetooth_connect_warn_disconnect: بسبب قيود النظام، يقوم هذا الأمر بتعطيل اتصال الصوت فقط، مع إبقاء الجهاز متصلاً للاستخدامات الأخرى.
-bluetooth_profile_multimedia_source: مصدر وسائط متعددة
-bluetooth_profile_calls: المكالمات
-bluetooth_profile_multimedia_speaker: مكبر صوت وسائط متعددة
-bluetooth_profile_keyboard_mouse: لوحة المفاتيح والفأرة
-bluetooth_profile_network_sharing: مشاركة الشبكة
-bluetooth_profile_speakerphone: سماعة الهاتف
+bluetooth_profile_a2dp: مصدر وسائط متعددة
+bluetooth_profile_a2dp_sink: مكبر صوت/سماعات رأس
+bluetooth_profile_avrcp_controller: وحدة تحكم الوسائط
+bluetooth_profile_avrcp_target: مشغل وسائط
+bluetooth_profile_headset: المكالمات
+bluetooth_profile_headset_client: سماعة الهاتف
+bluetooth_profile_hid_device: جهاز إدخال
+bluetooth_profile_hid_host: مستقبل الإدخال
+bluetooth_profile_map: الرسائل
+bluetooth_profile_map_client: عميل المراسلة
+bluetooth_profile_pan: شبكة مشتركة
+bluetooth_profile_pbap: جهات الاتصال
+bluetooth_profile_pbap_client: عميل جهات الاتصال

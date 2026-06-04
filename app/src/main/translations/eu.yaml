@@ -319,10 +319,19 @@ command_bluetooth_connect_help: |
   Konektatu edo deskonektatu dezakezu.
   Segurtasun arrazoiak direla eta, Android-ek mugatu egiten du
   gailu mota batzuen konexioa kontrolatzea.
+command_bluetooth_connect_title_connect: Konektatu {deviceName}
+command_bluetooth_connect_title_disconnect: Deskonektatu {deviceName}
 command_bluetooth_connect_warn_disconnect: Sistemaren mugak direla eta, komando honek audio konexioa bakarrik desgaitzen du, gailua beste erabileretarako konektatuta utziz.
-bluetooth_profile_multimedia_source: Multimedia iturria
-bluetooth_profile_calls: Deiak
-bluetooth_profile_multimedia_speaker: Multimedia bozgorailua
-bluetooth_profile_keyboard_mouse: Teklatua eta sagua
-bluetooth_profile_network_sharing: Sarea partekatu
-bluetooth_profile_speakerphone: Esku askeak
+bluetooth_profile_a2dp: Multimedia iturria
+bluetooth_profile_a2dp_sink: Bozgorailua/Aurikularrak
+bluetooth_profile_avrcp_controller: Multimedia kontrolagailua
+bluetooth_profile_avrcp_target: Multimedia erreproduzitzailea
+bluetooth_profile_headset: Deiak
+bluetooth_profile_headset_client: Esku askeak
+bluetooth_profile_hid_device: Sarrera-gailua
+bluetooth_profile_hid_host: Sarrera-hartzailea
+bluetooth_profile_map: Mezuak
+bluetooth_profile_map_client: Mezularitza bezeroa
+bluetooth_profile_pan: Sare partekatua
+bluetooth_profile_pbap: Kontaktua
+bluetooth_profile_pbap_client: kontaktu-bezeroa
