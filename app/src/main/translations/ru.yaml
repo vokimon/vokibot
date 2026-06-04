@@ -320,3 +320,9 @@ command_bluetooth_connect_help: |
   В целях безопасности Android ограничивает управление
   подключением некоторых типов устройств.
 command_bluetooth_connect_warn_disconnect: Из-за системных ограничений эта команда отключает только аудиоподключение, оставляя устройство подключенным для других целей.
+bluetooth_profile_multimedia_source: Источник мультимедиа
+bluetooth_profile_calls: Вызовы
+bluetooth_profile_multimedia_speaker: Мультимедийный динамик
+bluetooth_profile_keyboard_mouse: Клавиатура и мышь
+bluetooth_profile_network_sharing: Общий доступ к сети
+bluetooth_profile_speakerphone: Громкая связь

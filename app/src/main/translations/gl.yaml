@@ -320,3 +320,9 @@ command_bluetooth_connect_help: |
   Por razóns de seguridade, Android restrinxe o control
   da conexión de algúns tipos de dispositivos.
 command_bluetooth_connect_warn_disconnect: Por limitacións do sistema, este comando só desactiva a conexión de audio, deixando o dispositivo conectado para outros usos.
+bluetooth_profile_multimedia_source: Fonte multimedia
+bluetooth_profile_calls: Chamadas
+bluetooth_profile_multimedia_speaker: Altofalante multimedia
+bluetooth_profile_keyboard_mouse: Teclado e rato
+bluetooth_profile_network_sharing: Compartir rede
+bluetooth_profile_speakerphone: Altofalante do teléfono

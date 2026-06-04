@@ -6,6 +6,7 @@ import android.bluetooth.BluetoothManager
 import android.bluetooth.BluetoothProfile
 import android.content.Context
 import android.os.Build
+import androidx.annotation.StringRes
 import kotlinx.serialization.Serializable
 import net.canvoki.shared.log
 
@@ -203,24 +204,19 @@ private const val BLUETOOTH_PROFILE_PBAP = 6
 private const val BLUETOOTH_PROFILE_PBAP_CLIENT = 17
 
 @Serializable
-enum class DisconnectableRole(val profileId: Int) {
-    A2DP(BluetoothProfile.A2DP),
-    HEADSET(BluetoothProfile.HEADSET),
-    A2DP_SINK(BLUETOOTH_PROFILE_A2DP_SINK),
-    HID_HOST(BLUETOOTH_PROFILE_HID_HOST),
-    PAN(BLUETOOTH_PROFILE_PAN),
-    HEADSET_CLIENT(BLUETOOTH_PROFILE_HEADSET_CLIENT),
+enum class DisconnectableRole(
+    val profileId: Int,
+    @StringRes val labelRes: Int,
+) {
+    A2DP(BluetoothProfile.A2DP, R.string.bluetooth_profile_multimedia_source),
+    HEADSET(BluetoothProfile.HEADSET, R.string.bluetooth_profile_calls),
+    A2DP_SINK(BLUETOOTH_PROFILE_A2DP_SINK, R.string.bluetooth_profile_multimedia_speaker),
+    HID_HOST(BLUETOOTH_PROFILE_HID_HOST, R.string.bluetooth_profile_keyboard_mouse),
+    PAN(BLUETOOTH_PROFILE_PAN, R.string.bluetooth_profile_network_sharing),
+    HEADSET_CLIENT(BLUETOOTH_PROFILE_HEADSET_CLIENT, R.string.bluetooth_profile_speakerphone),
 }
 
-fun DisconnectableRole.getLabel(context: Context): String =
-    when (this) {
-        DisconnectableRole.A2DP -> "Multimedia source"
-        DisconnectableRole.HEADSET -> "Calls"
-        DisconnectableRole.A2DP_SINK -> "Multimedia speaker"
-        DisconnectableRole.HID_HOST -> "Keyboard & mouse"
-        DisconnectableRole.PAN -> "Network sharing"
-        DisconnectableRole.HEADSET_CLIENT -> "Speakerphone"
-    }
+fun DisconnectableRole.getLabel(context: Context): String = context.getString(labelRes)
 
 fun bluetoothConnect(
     context: Context,

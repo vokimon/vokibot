@@ -322,3 +322,9 @@ command_bluetooth_connect_help: |
 command_bluetooth_connect_title_connect: "Connecta {deviceName}"
 command_bluetooth_connect_title_disconnect: "Desconnecta {deviceName}"
 command_bluetooth_connect_warn_disconnect: Per limitacions del sistema, aquesta ordre només desactiva la connexió d'àudio, deixant el dispositiu connectat per a altres usos.
+bluetooth_profile_multimedia_source: Font multimèdia
+bluetooth_profile_calls: Trucades
+bluetooth_profile_multimedia_speaker: Altaveu multimèdia
+bluetooth_profile_keyboard_mouse: Teclat i ratolí
+bluetooth_profile_network_sharing: Compartir xarxa
+bluetooth_profile_speakerphone: Altaveu de trucada

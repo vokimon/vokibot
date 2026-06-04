@@ -320,3 +320,9 @@ command_bluetooth_connect_help: |
   Segurtasun arrazoiak direla eta, Android-ek mugatu egiten du
   gailu mota batzuen konexioa kontrolatzea.
 command_bluetooth_connect_warn_disconnect: Sistemaren mugak direla eta, komando honek audio konexioa bakarrik desgaitzen du, gailua beste erabileretarako konektatuta utziz.
+bluetooth_profile_multimedia_source: Multimedia iturria
+bluetooth_profile_calls: Deiak
+bluetooth_profile_multimedia_speaker: Multimedia bozgorailua
+bluetooth_profile_keyboard_mouse: Teklatua eta sagua
+bluetooth_profile_network_sharing: Sarea partekatu
+bluetooth_profile_speakerphone: Esku askeak

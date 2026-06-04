@@ -322,3 +322,9 @@ command_bluetooth_connect_help: |
 command_bluetooth_connect_title_connect: "Connect {deviceName}"
 command_bluetooth_connect_title_disconnect: "Disconnect {deviceName}"
 command_bluetooth_connect_warn_disconnect: Due to system limitations, this command only disables the audio connection, leaving the device connected for other uses.
+bluetooth_profile_multimedia_source: Multimedia source
+bluetooth_profile_calls: Calls
+bluetooth_profile_multimedia_speaker: Multimedia speaker
+bluetooth_profile_keyboard_mouse: Keyboard & mouse
+bluetooth_profile_network_sharing: Network sharing
+bluetooth_profile_speakerphone: Speakerphone

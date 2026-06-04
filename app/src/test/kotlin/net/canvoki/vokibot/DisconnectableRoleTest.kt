@@ -32,4 +32,19 @@ class DisconnectableRoleTest {
             dumpRoles(),
         )
     }
+
+    @Test @Config(qualifiers = "ca")
+    fun `translated labels`() {
+        assertEquals(
+            """
+            A2DP: Font multimèdia
+            HEADSET: Trucades
+            A2DP_SINK: Altaveu multimèdia
+            HID_HOST: Teclat i ratolí
+            PAN: Compartir xarxa
+            HEADSET_CLIENT: Altaveu de trucada
+            """.trimIndent(),
+            dumpRoles(),
+        )
+    }
 }

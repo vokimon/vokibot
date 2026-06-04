@@ -320,3 +320,9 @@ command_bluetooth_connect_help: |
   لأسباب أمنية، يقيد أندرويد التحكم
   في اتصال بعض أنواع الأجهزة.
 command_bluetooth_connect_warn_disconnect: بسبب قيود النظام، يقوم هذا الأمر بتعطيل اتصال الصوت فقط، مع إبقاء الجهاز متصلاً للاستخدامات الأخرى.
+bluetooth_profile_multimedia_source: مصدر وسائط متعددة
+bluetooth_profile_calls: المكالمات
+bluetooth_profile_multimedia_speaker: مكبر صوت وسائط متعددة
+bluetooth_profile_keyboard_mouse: لوحة المفاتيح والفأرة
+bluetooth_profile_network_sharing: مشاركة الشبكة
+bluetooth_profile_speakerphone: سماعة الهاتف
