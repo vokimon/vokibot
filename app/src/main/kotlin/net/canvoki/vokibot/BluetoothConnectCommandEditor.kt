@@ -34,7 +34,6 @@ import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
 import net.canvoki.vokibot.common.EditorHeader
 import net.canvoki.vokibot.common.TryCommandButton
-import net.canvoki.vokibot.common.WarningBanner
 import net.canvoki.vokibot.common.rememberDiscardableState
 import net.canvoki.vokibot.common.rememberPermissionState
 
@@ -60,6 +59,7 @@ fun BluetoothConnectCommandEditor(
     var name by rememberSaveable { mutableStateOf("") }
     var mac by rememberSaveable { mutableStateOf("") }
     var selectedAction by rememberSaveable { mutableStateOf(ConnectionAction.CONNECT) }
+    var affectedRoles by remember { mutableStateOf(emptySet<DisconnectableRole>()) }
     var isSaving by rememberSaveable { mutableStateOf(false) }
     val discardState = rememberDiscardableState(screen = editor, nav = nav)
     var hasLoaded by rememberSaveable { mutableStateOf(false) }
@@ -170,15 +170,20 @@ fun BluetoothConnectCommandEditor(
             }
         }
 
+        if (selectedAction == ConnectionAction.DISCONNECT) {
+            BluetoothProfileSelector(
+                affectedRoles = affectedRoles,
+                onAffectedRolesChange = {
+                    affectedRoles = it
+                    discardState.markDirty()
+                },
+            )
+        }
+
         TryCommandButton(
             enabled = name.isNotBlank() && mac.isNotBlank() && connectPermState.isGranted,
             buildCommand = { buildCommand() },
         )
-        if (selectedAction == ConnectionAction.DISCONNECT) {
-            WarningBanner(
-                stringResource(R.string.command_bluetooth_connect_warn_disconnect),
-            )
-        }
 
         if (bluetoothAdapter != null) {
             HorizontalDivider()
