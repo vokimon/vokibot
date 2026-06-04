@@ -265,23 +265,14 @@ private fun disconnectAllProfiles(
     context: Context,
     macAddress: String,
 ) {
-    val profiles =
-        listOf(
-            BluetoothProfile.A2DP,
-            BluetoothProfile.HEADSET,
-            BLUETOOTH_PROFILE_A2DP_SINK,
-            BLUETOOTH_PROFILE_HID_HOST,
-            BLUETOOTH_PROFILE_PAN,
-            BLUETOOTH_PROFILE_HEADSET_CLIENT,
-        )
-    for (profile in profiles) {
-        log("disconnectAllProfiles: checking ${profileLabel(profile)}")
+    for (role in DisconnectableRole.entries) {
+        log("disconnectAllProfiles: checking ${role.name}")
         try {
-            log("disconnectAllProfiles: ${profileLabel(profile)} disconnecting")
-            bluetoothAction(context, macAddress, BLUETOOTH_PROXY_DISCONNECT, profile)
-            log("disconnectAllProfiles: ${profileLabel(profile)} success")
+            log("disconnectAllProfiles: ${role.name} disconnecting")
+            bluetoothAction(context, macAddress, BLUETOOTH_PROXY_DISCONNECT, role.profileId)
+            log("disconnectAllProfiles: ${role.name} success")
         } catch (e: IllegalArgumentException) {
-            log("disconnectAllProfiles: ${profileLabel(profile)} not supported on this device: $e")
+            log("disconnectAllProfiles: ${role.name} not supported on this device: $e")
         }
     }
 }
