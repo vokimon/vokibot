@@ -18,6 +18,11 @@ class DisconnectableRoleTest {
             "${role.name}: ${role.getLabel(context())}"
         }
 
+    private fun dumpRoleIds(): String =
+        DisconnectableRole.entries.joinToString("\n") { role ->
+            "${role.name}: ${role.profileId}"
+        }
+
     @Test
     fun `english labels`() {
         assertEquals(
@@ -34,7 +39,7 @@ class DisconnectableRoleTest {
     }
 
     @Test @Config(qualifiers = "ca")
-    fun `translated labels`() {
+    fun `catalan labels`() {
         assertEquals(
             """
             A2DP: Font multimèdia
@@ -45,6 +50,21 @@ class DisconnectableRoleTest {
             HEADSET_CLIENT: Altaveu de trucada
             """.trimIndent(),
             dumpRoles(),
+        )
+    }
+
+    @Test
+    fun `profile ids`() {
+        assertEquals(
+            """
+            A2DP: 2
+            HEADSET: 1
+            A2DP_SINK: 11
+            HID_HOST: 4
+            PAN: 5
+            HEADSET_CLIENT: 16
+            """.trimIndent(),
+            dumpRoleIds(),
         )
     }
 }
