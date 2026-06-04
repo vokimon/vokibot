@@ -35,10 +35,7 @@ fun TryCommandButton(
                     command.execute(context)
                 } catch (e: Exception) {
                     e.printStackTrace()
-                    UserMessage
-                        .Info(
-                            e.message ?: fallbackErrorMessage,
-                        ).post()
+                    UserMessage.Info(e.message ?: fallbackErrorMessage).post()
                 }
             }
         },
