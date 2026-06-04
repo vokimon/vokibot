@@ -38,7 +38,8 @@ class DisconnectableRoleTest {
         )
     }
 
-    @Test @Config(qualifiers = "ca")
+    @Test
+    @Config(qualifiers = "ca")
     fun `catalan labels`() {
         assertEquals(
             """
