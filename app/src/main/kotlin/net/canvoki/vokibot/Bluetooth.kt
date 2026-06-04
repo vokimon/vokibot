@@ -210,11 +210,18 @@ enum class DisconnectableRole(
     @get:StringRes val labelRes: Int,
 ) {
     A2DP(BluetoothProfile.A2DP, R.string.bluetooth_profile_multimedia_source),
-    HEADSET(BluetoothProfile.HEADSET, R.string.bluetooth_profile_calls),
     A2DP_SINK(BLUETOOTH_PROFILE_A2DP_SINK, R.string.bluetooth_profile_multimedia_speaker),
-    HID_HOST(BLUETOOTH_PROFILE_HID_HOST, R.string.bluetooth_profile_keyboard_mouse),
-    PAN(BLUETOOTH_PROFILE_PAN, R.string.bluetooth_profile_network_sharing),
+    AVRCP_CONTROLLER(BLUETOOTH_PROFILE_AVRCP_CONTROLLER, R.string.bluetooth_profile_multimedia_source),
+    AVRCP_TARGET(BLUETOOTH_PROFILE_AVRCP_TARGET, R.string.bluetooth_profile_multimedia_source),
+    HEADSET(BluetoothProfile.HEADSET, R.string.bluetooth_profile_calls),
     HEADSET_CLIENT(BLUETOOTH_PROFILE_HEADSET_CLIENT, R.string.bluetooth_profile_speakerphone),
+    HID_DEVICE(BLUETOOTH_PROFILE_HID_DEVICE, R.string.bluetooth_profile_multimedia_source),
+    HID_HOST(BLUETOOTH_PROFILE_HID_HOST, R.string.bluetooth_profile_keyboard_mouse),
+    MAP(BLUETOOTH_PROFILE_MAP, R.string.bluetooth_profile_multimedia_source),
+    MAP_CLIENT(BLUETOOTH_PROFILE_MAP_CLIENT, R.string.bluetooth_profile_multimedia_source),
+    PAN(BLUETOOTH_PROFILE_PAN, R.string.bluetooth_profile_network_sharing),
+    PBAP(BLUETOOTH_PROFILE_PBAP, R.string.bluetooth_profile_multimedia_source),
+    PBAP_CLIENT(BLUETOOTH_PROFILE_PBAP_CLIENT, R.string.bluetooth_profile_multimedia_source),
 }
 
 fun DisconnectableRole.getLabel(context: Context): String = context.getString(labelRes)
