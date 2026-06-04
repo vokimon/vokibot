@@ -25,6 +25,7 @@ fun TryCommandButton(
 ) {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
+    val fallbackErrorMessage = stringResource(R.string.command_run_error_fallback)
 
     OutlinedButton(
         onClick = {
@@ -36,7 +37,7 @@ fun TryCommandButton(
                     e.printStackTrace()
                     UserMessage
                         .Info(
-                            e.message ?: context.getString(R.string.command_run_error_fallback),
+                            e.message ?: fallbackErrorMessage,
                         ).post()
                 }
             }
