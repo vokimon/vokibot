@@ -34,7 +34,10 @@ fun BluetoothProfileSelector(
 
     Column(modifier = modifier) {
         SingleChoiceSegmentedButtonRow(modifier = Modifier.fillMaxWidth()) {
-            listOf(false to "Full", true to "Selective").forEachIndexed { index, (isSelective, label) ->
+            listOf(
+                false to "Full",
+                true to "Selective",
+            ).forEachIndexed { index, (isSelective, label) ->
                 SegmentedButton(
                     selected = selectiveMode == isSelective,
                     onClick = { selectiveMode = isSelective },
@@ -54,11 +57,19 @@ fun BluetoothProfileSelector(
                         selected = role in affectedRoles,
                         onClick = {
                             onAffectedRolesChange(
-                                if (role in affectedRoles) affectedRoles - role
-                                else affectedRoles + role
+                                if (role in affectedRoles) {
+                                    affectedRoles - role
+                                } else {
+                                    affectedRoles + role
+                                },
                             )
                         },
-                        label = { Text(role.getLabel(context), style = MaterialTheme.typography.labelSmall) },
+                        label = {
+                            Text(
+                                role.getLabel(context),
+                                style = MaterialTheme.typography.labelSmall,
+                            )
+                        },
                         leadingIcon = {
                             if (role in affectedRoles) {
                                 Icon(
