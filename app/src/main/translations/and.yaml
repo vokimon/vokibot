@@ -317,3 +317,10 @@ command_bluetooth_connect_help: |
   Puedê conêttâl-lo o dêcconêttâl-lo.
   Por raçonê de çeguridá, Androîh rêttrinhe er contrôh
   de la conêççión de argunô tipô de dîppoçitibô.
+command_bluetooth_connect_warn_disconnect: Por limitaçionê der çîttema, êtte comando çolo deçâttiba la conêççión de audio, dehando er dîppoçitibo conêttao pa otrô uçô.
+bluetooth_profile_multimedia_source: Fuente murtimedia
+bluetooth_profile_calls: Yamâh
+bluetooth_profile_multimedia_speaker: Artabôh murtimedia
+bluetooth_profile_keyboard_mouse: Teclao y ratón
+bluetooth_profile_network_sharing: Compartîh ré
+bluetooth_profile_speakerphone: Artabôh der teléfono
