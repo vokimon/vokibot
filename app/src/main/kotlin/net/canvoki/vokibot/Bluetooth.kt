@@ -194,7 +194,6 @@ private const val BLUETOOTH_PROXY_DISCONNECT = "disconnect"
 private const val BLUETOOTH_PROFILE_A2DP_SINK = 11
 private const val BLUETOOTH_PROFILE_AVRCP_CONTROLLER = 12
 private const val BLUETOOTH_PROFILE_AVRCP_TARGET = 13
-private const val BLUETOOTH_PROFILE_HEALTH = 3
 private const val BLUETOOTH_PROFILE_HEADSET_CLIENT = 16
 private const val BLUETOOTH_PROFILE_HID_DEVICE = 19
 private const val BLUETOOTH_PROFILE_HID_HOST = 4
@@ -204,6 +203,16 @@ private const val BLUETOOTH_PROFILE_PAN = 5
 private const val BLUETOOTH_PROFILE_PBAP = 6
 private const val BLUETOOTH_PROFILE_PBAP_CLIENT = 17
 
+/**
+ * Bluetooth profiles / roles the user can selectively keep connected.
+ *
+ * Excluded profiles (roles not disconnectable):
+ * - HEALTH (3) — deprecated, removed from Android public SDK
+ * - GATT / GATT_SERVER (4/5) — core BLE layers; disconnecting
+ *   terminates all BLE communication with the device
+ * - SAP (22) — SIM Access Profile, niche; allows a car to use the
+ *   phone's SIM for its own modem
+ */
 @Serializable
 enum class DisconnectableRole(
     val profileId: Int,
@@ -238,35 +247,11 @@ fun bluetoothDisconnect(
     macAddress: String,
 ) {
     disconnectAllProfiles(context, macAddress)
-    // Single-profile A2DP-only strategy (kept for reference):
-    // bluetoothAction(context, macAddress, BLUETOOTH_PROXY_DISCONNECT)
 }
 
 private fun bluetoothManager(context: Context) = context.getSystemService(BluetoothManager::class.java)
 
 private fun bluetoothAdapter(context: Context) = bluetoothManager(context)?.adapter
-
-private fun profileLabel(profile: Int): String =
-    when (profile) {
-        BluetoothProfile.A2DP -> "A2DP"
-        BluetoothProfile.HEADSET -> "HEADSET"
-        BLUETOOTH_PROFILE_HEALTH -> "HEALTH"
-        BLUETOOTH_PROFILE_HID_HOST -> "HID_HOST"
-        BLUETOOTH_PROFILE_PAN -> "PAN"
-        BLUETOOTH_PROFILE_PBAP -> "PBAP"
-        BluetoothProfile.GATT -> "GATT"
-        BluetoothProfile.GATT_SERVER -> "GATT_SERVER"
-        BLUETOOTH_PROFILE_MAP -> "MAP"
-        BluetoothProfile.SAP -> "SAP"
-        BLUETOOTH_PROFILE_A2DP_SINK -> "A2DP_SINK"
-        BLUETOOTH_PROFILE_AVRCP_CONTROLLER -> "AVRCP_CONTROLLER"
-        BLUETOOTH_PROFILE_AVRCP_TARGET -> "AVRCP_TARGET"
-        BLUETOOTH_PROFILE_HEADSET_CLIENT -> "HEADSET_CLIENT"
-        BLUETOOTH_PROFILE_PBAP_CLIENT -> "PBAP_CLIENT"
-        BLUETOOTH_PROFILE_MAP_CLIENT -> "MAP_CLIENT"
-        BLUETOOTH_PROFILE_HID_DEVICE -> "HID_DEVICE"
-        else -> "UNKNOWN($profile)"
-    }
 
 private fun disconnectAllProfiles(
     context: Context,
