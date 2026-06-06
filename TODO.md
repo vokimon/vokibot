@@ -22,6 +22,7 @@
 - [ ] Extract list group item and reuse it
 - [ ] Translate extra type names
 - [ ] Translate action auto description
+- [ ] BluetoothConnect: default icon does not get the tint
 
 - More commands:
     - [ ] Airplaine mode on/off
