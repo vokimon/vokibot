@@ -245,26 +245,28 @@ fun bluetoothConnect(
 fun bluetoothDisconnect(
     context: Context,
     macAddress: String,
+    roles: Set<DisconnectableRole> = emptySet(),
 ) {
-    disconnectAllProfiles(context, macAddress)
+    disconnectRoles(context, macAddress, roles)
 }
 
 private fun bluetoothManager(context: Context) = context.getSystemService(BluetoothManager::class.java)
 
 private fun bluetoothAdapter(context: Context) = bluetoothManager(context)?.adapter
 
-private fun disconnectAllProfiles(
+private fun disconnectRoles(
     context: Context,
     macAddress: String,
+    roles: Set<DisconnectableRole> = emptySet(),
 ) {
-    for (role in DisconnectableRole.entries) {
-        log("disconnectAllProfiles: checking ${role.name}")
+    for (role in roles.ifEmpty { DisconnectableRole.entries }) {
+        log("disconnectRoles: checking ${role.name}")
         try {
-            log("disconnectAllProfiles: ${role.name} disconnecting")
+            log("disconnectRoles: ${role.name} disconnecting")
             bluetoothAction(context, macAddress, BLUETOOTH_PROXY_DISCONNECT, role.profileId)
-            log("disconnectAllProfiles: ${role.name} success")
+            log("disconnectRoles: ${role.name} success")
         } catch (e: IllegalArgumentException) {
-            log("disconnectAllProfiles: ${role.name} not supported on this device: $e")
+            log("disconnectRoles: ${role.name} not supported on this device: $e")
         }
     }
 }

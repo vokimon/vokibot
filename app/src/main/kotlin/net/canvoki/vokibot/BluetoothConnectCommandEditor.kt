@@ -81,6 +81,7 @@ fun BluetoothConnectCommandEditor(
             deviceName = name.trim(),
             macAddress = mac.trim(),
             action = selectedAction,
+            affectedRoles = affectedRoles,
         )
 
     val bondedDevices =

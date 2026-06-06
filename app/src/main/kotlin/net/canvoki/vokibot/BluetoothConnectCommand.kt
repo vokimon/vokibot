@@ -54,7 +54,7 @@ data class BluetoothConnectCommand(
     override suspend fun execute(context: Context) {
         when (action) {
             ConnectionAction.CONNECT -> bluetoothConnect(context, macAddress)
-            ConnectionAction.DISCONNECT -> bluetoothDisconnect(context, macAddress)
+            ConnectionAction.DISCONNECT -> bluetoothDisconnect(context, macAddress, affectedRoles)
         }
     }
 
