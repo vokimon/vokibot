@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.test.core.app.ApplicationProvider
 import net.canvoki.shared.test.assertEquals
 import net.canvoki.shared.test.assertJsonEqual
+import net.canvoki.shared.test.assertMatches
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
@@ -46,6 +47,26 @@ class BluetoothConnectCommandTest {
           "affectedRoles": []
         }
         """.trimIndent()
+
+    // Helper passes id as String? → forces secondary constructor.
+    // Primary's id: String rejects nullable, so Kotlin resolves here.
+    fun commandNullableId(id: String? = null) =
+        BluetoothConnectCommand(
+            macAddress = "AA:BB:CC:DD:EE:FF",
+            deviceName = "",
+            action = ConnectionAction.CONNECT,
+            affectedRoles = emptySet(),
+            id = id,
+        )
+
+    @Test fun `id is UUID when passed null`() {
+        val cmd = commandNullableId(id = null)
+        assertMatches(UUID_REGEX, cmd.id)
+    }
+
+    private companion object {
+        val UUID_REGEX = Regex("""[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}""")
+    }
 
     fun context(): Context = ApplicationProvider.getApplicationContext()
 

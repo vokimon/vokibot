@@ -2,6 +2,7 @@ package net.canvoki.vokibot
 
 import android.content.Context
 import kotlinx.serialization.Serializable
+import java.util.UUID
 
 @Serializable
 enum class ConnectionAction { CONNECT, DISCONNECT }
@@ -14,6 +15,24 @@ data class BluetoothConnectCommand(
     val affectedRoles: Set<DisconnectableRole> = emptySet(),
     override val id: String = "bluetooth_connect_${toFileSystemId(macAddress)}_${action.name.lowercase()}",
 ) : Command() {
+    // Secondary constructor accepts nullable id.
+    // Because primary's id: String rejects nullable,
+    // Kotlin resolves all id: String? calls to this secondary.
+    // Params reordered (id before affectedRoles) to avoid JVM signature clash.
+    constructor(
+        macAddress: String,
+        deviceName: String = "",
+        action: ConnectionAction = ConnectionAction.CONNECT,
+        id: String?,
+        affectedRoles: Set<DisconnectableRole> = emptySet(),
+    ) : this(
+        macAddress = macAddress,
+        deviceName = deviceName,
+        action = action,
+        affectedRoles = affectedRoles,
+        id = UUID.randomUUID().toString(),
+    )
+
     override val type = "bluetooth_connect"
     override val iconRes: Int get() = R.drawable.ic_bluetooth
 
