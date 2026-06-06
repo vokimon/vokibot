@@ -77,6 +77,7 @@ fun BluetoothConnectCommandEditor(
 
     fun buildCommand() =
         BluetoothConnectCommand(
+            id = editingId,
             deviceName = name.trim(),
             macAddress = mac.trim(),
             action = selectedAction,
