@@ -58,11 +58,11 @@ sealed class ApplicationCommand : Command() {
     override fun toJson(): String = JsonConfig.encodeToString(serializer(), this)
 
     companion object {
+        fun resolveId(id: String?): String = id ?: UUID.randomUUID().toString()
+
         /**
          * Deserialize a command from JSON.
          */
-        fun resolveId(id: String?): String = id ?: UUID.randomUUID().toString()
-
         fun fromJson(jsonString: String): ApplicationCommand =
             StorableEntity.fromJson(jsonString, ApplicationCommand::class)
                 ?: throw kotlinx.serialization.SerializationException(
@@ -76,7 +76,7 @@ sealed class ApplicationCommand : Command() {
  */
 @Serializable
 data class LaunchActivityCommand(
-    override val id: String = UUID.randomUUID().toString(),
+    override val id: String,
     override val displayName: String,
     override val packageName: String,
     val className: String,
@@ -157,7 +157,7 @@ data class LaunchActivityCommand(
  */
 @Serializable
 data class SendBroadcastCommand(
-    override val id: String = UUID.randomUUID().toString(),
+    override val id: String,
     override val displayName: String,
     override val packageName: String,
     val className: String?,
@@ -214,7 +214,7 @@ data class SendBroadcastCommand(
  */
 @Serializable
 data class StartServiceCommand(
-    override val id: String = UUID.randomUUID().toString(),
+    override val id: String,
     override val displayName: String,
     override val packageName: String,
     val className: String,
@@ -270,7 +270,7 @@ data class StartServiceCommand(
  */
 @Serializable
 data class AccessProviderCommand(
-    override val id: String = UUID.randomUUID().toString(),
+    override val id: String,
     override val displayName: String,
     override val packageName: String,
     val authority: String,
