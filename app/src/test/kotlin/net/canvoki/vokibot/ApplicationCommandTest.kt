@@ -70,7 +70,12 @@ class ApplicationCommandTest {
 
     @Test
     fun `Null and empty fields are handled correctly`() {
-        val command = LaunchActivityCommand(displayName = "Minimal", packageName = "pkg", className = "cls")
+        val command = LaunchActivityCommand(
+            id = "my_id",
+            displayName = "Minimal",
+            packageName = "pkg",
+            className = "cls",
+        )
         val deserialized = ApplicationCommand.fromJson(command.toJson())
         assertEquals(command, deserialized)
     }
@@ -79,6 +84,7 @@ class ApplicationCommandTest {
     fun `LaunchActivityCommand description when className shares package prefix returns shortened`() {
         val cmd =
             LaunchActivityCommand(
+                id = "my_id",
                 displayName = "Open Maps",
                 packageName = "com.google.android.apps.maps",
                 className = "com.google.android.apps.maps.MapsActivity",
@@ -200,6 +206,7 @@ class ApplicationCommandTest {
     fun `StartServiceCommand description when className shares package prefix returns shortened`() {
         val cmd =
             StartServiceCommand(
+                id = "my_id",
                 displayName = "Sync Data",
                 packageName = "com.example.app",
                 className = "com.example.app.SyncService",
