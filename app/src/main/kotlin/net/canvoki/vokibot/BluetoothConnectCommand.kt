@@ -30,7 +30,7 @@ data class BluetoothConnectCommand(
         deviceName = deviceName,
         action = action,
         affectedRoles = affectedRoles,
-        id = UUID.randomUUID().toString(),
+        id = id ?: UUID.randomUUID().toString(),
     )
 
     override val type = "bluetooth_connect"

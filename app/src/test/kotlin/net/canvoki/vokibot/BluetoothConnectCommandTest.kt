@@ -64,6 +64,11 @@ class BluetoothConnectCommandTest {
         assertMatches(UUID_REGEX, cmd.id)
     }
 
+    @Test fun `id is explicit`() {
+        val cmd = commandNullableId(id = "explicit_id")
+        assertEquals("explicit_id", cmd.id)
+    }
+
     private companion object {
         val UUID_REGEX = Regex("""[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}""")
     }
@@ -104,11 +109,6 @@ class BluetoothConnectCommandTest {
     @Test fun `toJson`() {
         val cmd = commandBase()
         assertJsonEqual(cmd.toJson(), commandJson())
-    }
-
-    @Test fun `id is constructed from mac and action`() {
-        val cmd = commandBase()
-        assertEquals("my_id", cmd.id)
     }
 
     @Test fun `fromJson`() {
