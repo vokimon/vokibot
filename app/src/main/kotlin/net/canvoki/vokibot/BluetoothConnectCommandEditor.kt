@@ -104,6 +104,7 @@ fun BluetoothConnectCommandEditor(
                 name = it.deviceName
                 mac = it.macAddress
                 selectedAction = it.action
+                affectedRoles = it.affectedRoles
             }
             hasLoaded = true
         }
