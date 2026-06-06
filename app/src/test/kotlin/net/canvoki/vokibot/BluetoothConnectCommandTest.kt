@@ -17,6 +17,7 @@ class BluetoothConnectCommandTest {
         deviceName: String = "Device Name",
         action: ConnectionAction = ConnectionAction.CONNECT,
     ) = BluetoothConnectCommand(
+        id = "my_id",
         macAddress = "AA:BB:CC:DD:EE:FF",
         deviceName = deviceName,
         action = action,
@@ -34,6 +35,17 @@ class BluetoothConnectCommandTest {
         }
         """.trimIndent()
 
+    fun legacyCommandJson() =
+        // No id attribute
+        """
+        {
+          "type": "bluetooth_connect",
+          "macAddress": "AA:BB:CC:DD:EE:FF",
+          "deviceName": "Device Name",
+          "action": "CONNECT",
+          "affectedRoles": []
+        }
+        """.trimIndent()
 
     fun context(): Context = ApplicationProvider.getApplicationContext()
 
@@ -75,12 +87,17 @@ class BluetoothConnectCommandTest {
 
     @Test fun `id is constructed from mac and action`() {
         val cmd = commandBase()
-        assertEquals("bluetooth_connect_AA_BB_CC_DD_EE_FF_connect", cmd.id)
+        assertEquals("my_id", cmd.id)
     }
 
     @Test fun `fromJson`() {
         val deserialized = BluetoothConnectCommand.fromJson(commandJson())
         assertEquals(commandBase().toString(), deserialized.toString())
+    }
+
+    @Test fun `fromJson legacy use content based implicity id`() {
+        val deserialized = BluetoothConnectCommand.fromJson(legacyCommandJson())
+        assertEquals("bluetooth_connect_AA_BB_CC_DD_EE_FF_connect", deserialized.id)
     }
 
     @Test fun `polymorphic Command fromJson`() {
