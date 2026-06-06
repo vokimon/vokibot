@@ -22,6 +22,19 @@ class BluetoothConnectCommandTest {
         action = action,
     )
 
+    fun commandJson() =
+        """
+        {
+          "id": "my_id",
+          "type": "bluetooth_connect",
+          "macAddress": "AA:BB:CC:DD:EE:FF",
+          "deviceName": "Device Name",
+          "action": "CONNECT",
+          "affectedRoles": []
+        }
+        """.trimIndent()
+
+
     fun context(): Context = ApplicationProvider.getApplicationContext()
 
     @Test fun `type is bluetooth_connect`() {
@@ -55,23 +68,8 @@ class BluetoothConnectCommandTest {
         assertEquals("AA:BB:CC:DD:EE:FF", commandBase().description)
     }
 
-    fun commandJson() =
-        """
-        {
-          "type": "bluetooth_connect",
-          "macAddress": "AA:BB:CC:DD:EE:FF",
-          "deviceName": "Device Name",
-          "action": "CONNECT",
-          "affectedRoles": []
-        }
-        """.trimIndent()
-
     @Test fun `toJson`() {
-        val cmd =
-            BluetoothConnectCommand(
-                macAddress = "AA:BB:CC:DD:EE:FF",
-                deviceName = "Device Name",
-            )
+        val cmd = commandBase()
         assertJsonEqual(cmd.toJson(), commandJson())
     }
 
