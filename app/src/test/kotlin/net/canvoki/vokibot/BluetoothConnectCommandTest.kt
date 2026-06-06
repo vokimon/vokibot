@@ -48,27 +48,6 @@ class BluetoothConnectCommandTest {
         }
         """.trimIndent()
 
-    // Helper passes id as String? → forces secondary constructor.
-    // Primary's id: String rejects nullable, so Kotlin resolves here.
-    fun commandNullableId(id: String? = null) =
-        BluetoothConnectCommand(
-            macAddress = "AA:BB:CC:DD:EE:FF",
-            deviceName = "",
-            action = ConnectionAction.CONNECT,
-            affectedRoles = emptySet(),
-            id = id,
-        )
-
-    @Test fun `id is UUID when passed null`() {
-        val cmd = commandNullableId(id = null)
-        assertMatches(UUID_REGEX, cmd.id)
-    }
-
-    @Test fun `id is explicit`() {
-        val cmd = commandNullableId(id = "explicit_id")
-        assertEquals("explicit_id", cmd.id)
-    }
-
     private companion object {
         val UUID_REGEX = Regex("""[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}""")
     }
@@ -139,5 +118,26 @@ class BluetoothConnectCommandTest {
     @Test fun `editor returns BluetoothConnectCommandEditor, with id`() {
         val editor = StorableEntity.getEditorScreen("bluetooth_connect", "my_id")
         assertEquals(BluetoothConnectCommandEditor("my_id"), editor)
+    }
+
+    // Helper passes id as String? → forces secondary constructor.
+    // Primary's id: String rejects nullable, so Kotlin resolves here.
+    fun commandNullableId(id: String? = null) =
+        BluetoothConnectCommand(
+            macAddress = "AA:BB:CC:DD:EE:FF",
+            deviceName = "",
+            action = ConnectionAction.CONNECT,
+            affectedRoles = emptySet(),
+            id = id,
+        )
+
+    @Test fun `id is UUID when passed null`() {
+        val cmd = commandNullableId(id = null)
+        assertMatches(UUID_REGEX, cmd.id)
+    }
+
+    @Test fun `id is explicit`() {
+        val cmd = commandNullableId(id = "explicit_id")
+        assertEquals("explicit_id", cmd.id)
     }
 }
