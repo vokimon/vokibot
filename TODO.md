@@ -22,11 +22,9 @@
 - [ ] Extract list group item and reuse it
 - [ ] Translate extra type names
 - [ ] Translate action auto description
-- [ ] BluetoothConnect: default icon does not get the tint
 
 - More commands:
     - [ ] Airplaine mode on/off
-    - [ ] Enable/Disable/Connect Bluetooth 
     - [ ] Enable/Disable/Connect Wi-Fi
 - More triggers:
     - [ ] System Broadcast: As trigger to vokibot, system sends broadcasts to any listening app
@@ -38,7 +36,6 @@
     - [ ] SMS received
     - [ ] Batery level
     - [ ] Power status
-    - [ ] Bluetooth Enabled
     - [ ] NFC Enabled
     - [ ] Connectivity type
     - [ ] Headset
@@ -49,6 +46,13 @@
     - [ ] List of system broadcasts: <https://github.com/flyskywhy/android-sdk/blob/master/platforms/android-10/data/broadcast_actions.txt>
 
 ## Done
+
+## Done 0.4.0
+
+- [x] Command: Enable/Disable/Connect Bluetooth 
+- [x] Fix: BluetoothConnect: default icon does not get the tint
+
+## Done 0.3.0
 
 - [x] Detect bluetooth connection
 - [x] BluetoothDeviceTrigger
@@ -66,7 +70,7 @@
 - [x] Extract device list as composable
 - [x] Extract permissions warning as composable
 - [x] app/src/main/kotlin/net/canvoki/vokibot/Bluetooth.kt:9: Error: Call requires permission which may be rejected by user: code should explicitly check to see if permission is available (with checkPermission) or explicitly handle a potential SecurityException [MissingPermission]
-- [x] w: app/src/main/kotlin/net/canvoki/vokibot/Bluetooth.kt:146:36 'static fun getDefaultAdapter(): BluetoothAdapter!' is deprecated. Deprecated in Java.
+- [x] warning: app/src/main/kotlin/net/canvoki/vokibot/Bluetooth.kt:146:36 'static fun getDefaultAdapter(): BluetoothAdapter!' is deprecated. Deprecated in Java.
 
 ## Done 0.2.0
 
