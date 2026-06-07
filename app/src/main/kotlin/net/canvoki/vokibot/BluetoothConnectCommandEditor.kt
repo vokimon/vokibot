@@ -165,7 +165,10 @@ fun BluetoothConnectCommandEditor(
                         Text(
                             when (action) {
                                 ConnectionAction.CONNECT -> stringResource(R.string.bluetooth_editor_action_connect)
-                                ConnectionAction.DISCONNECT -> stringResource(R.string.bluetooth_editor_action_disconnect)
+                                ConnectionAction.DISCONNECT ->
+                                    stringResource(
+                                        R.string.bluetooth_editor_action_disconnect,
+                                    )
                             },
                         )
                     },
