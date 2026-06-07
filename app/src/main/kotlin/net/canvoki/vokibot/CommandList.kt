@@ -1,6 +1,6 @@
 package net.canvoki.vokibot
 
-import androidx.compose.foundation.Image
+import android.graphics.drawable.VectorDrawable
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -30,6 +30,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -43,6 +44,7 @@ import net.canvoki.shared.component.ContextualHelpButton
 import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
 import net.canvoki.shared.usermessage.UserMessage
+import net.canvoki.vokibot.common.BadgeDrawable
 import net.canvoki.vokibot.common.EditorHeader
 import net.canvoki.vokibot.common.toPainter
 
@@ -90,6 +92,11 @@ fun CommandList(
 
                 val componentIcon = remember(command.id) { command.loadIcon(context) }
                 val iconPainter = remember(componentIcon) { componentIcon.toPainter() }
+                val tint =
+                    when (componentIcon) {
+                        is VectorDrawable, is BadgeDrawable -> MaterialTheme.colorScheme.primary
+                        else -> Color.Unspecified
+                    }
 
                 ListItem(
                     headlineContent = { Text(command.getTitle(context)) },
@@ -102,10 +109,11 @@ fun CommandList(
                     },
                     modifier = Modifier.clickable { nav.pop(command.id) },
                     leadingContent = {
-                        Image(
+                        Icon(
                             painter = iconPainter,
                             contentDescription = null,
                             modifier = Modifier.size(40.dp),
+                            tint = tint,
                         )
                     },
                     trailingContent = {

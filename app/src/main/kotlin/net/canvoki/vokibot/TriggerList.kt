@@ -1,5 +1,6 @@
 package net.canvoki.vokibot
 
+import android.graphics.drawable.VectorDrawable
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -40,6 +41,7 @@ import net.canvoki.shared.component.ChooserOption
 import net.canvoki.shared.component.ContextualHelpButton
 import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
+import net.canvoki.vokibot.common.BadgeDrawable
 import net.canvoki.vokibot.common.EditorHeader
 import net.canvoki.vokibot.drawableToPainter
 
@@ -84,11 +86,16 @@ fun TriggerList(
                     headlineContent = { Text(trigger.getTitle(context)) },
                     supportingContent = { Text(trigger.description) },
                     leadingContent = {
+                        val triggerIcon = remember(trigger.id) { trigger.loadIcon(context) }
                         Icon(
-                            painter = drawableToPainter(trigger.loadIcon(context)),
+                            painter = drawableToPainter(triggerIcon),
                             contentDescription = null,
                             modifier = Modifier.size(40.dp),
-                            tint = MaterialTheme.colorScheme.primary,
+                            tint =
+                                when (triggerIcon) {
+                                    is VectorDrawable, is BadgeDrawable -> MaterialTheme.colorScheme.primary
+                                    else -> Color.Unspecified
+                                },
                         )
                     },
                     colors = ListItemDefaults.colors(containerColor = Color.Transparent),

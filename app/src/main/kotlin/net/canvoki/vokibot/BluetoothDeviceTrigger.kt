@@ -3,7 +3,7 @@ package net.canvoki.vokibot
 import android.content.Context
 import android.graphics.drawable.Drawable
 import kotlinx.serialization.Serializable
-import net.canvoki.vokibot.common.buildBadgeIcon
+import net.canvoki.vokibot.common.BadgeDrawable
 
 @Serializable
 data class BluetoothDeviceTrigger(
@@ -49,8 +49,7 @@ data class BluetoothDeviceTrigger(
             return context.getDrawable(deviceIcon)!!
         }
 
-        return buildBadgeIcon(
-            context = context,
+        return BadgeDrawable(
             main = context.getDrawable(deviceIcon)!!,
             badge = context.getDrawable(BluetoothDeviceTrigger.iconRes)!!,
         )

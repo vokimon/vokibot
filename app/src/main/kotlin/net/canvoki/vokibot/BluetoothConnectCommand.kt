@@ -1,7 +1,9 @@
 package net.canvoki.vokibot
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import kotlinx.serialization.Serializable
+import net.canvoki.vokibot.common.BadgeDrawable
 import java.util.UUID
 
 @Serializable
@@ -35,6 +37,20 @@ data class BluetoothConnectCommand(
 
     override val type = "bluetooth_connect"
     override val iconRes: Int get() = R.drawable.ic_bluetooth
+
+    override fun loadIcon(context: Context): Drawable {
+        val device = bluetoothDeviceFromMac(context, macAddress)
+        val deviceIcon = bluetoothDeviceIcon(device)
+
+        if (deviceIcon == R.drawable.ic_bluetooth) {
+            return context.getDrawable(deviceIcon)!!
+        }
+
+        return BadgeDrawable(
+            main = context.getDrawable(deviceIcon)!!,
+            badge = context.getDrawable(R.drawable.ic_bluetooth)!!,
+        )
+    }
 
     override fun getTitle(context: Context): String =
         deviceName.ifEmpty { macAddress }.let { displayName ->

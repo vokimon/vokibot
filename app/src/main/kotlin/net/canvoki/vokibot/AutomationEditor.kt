@@ -1,6 +1,6 @@
 package net.canvoki.vokibot
 
-import androidx.compose.foundation.Image
+import android.graphics.drawable.VectorDrawable
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -32,6 +32,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -42,6 +43,7 @@ import androidx.compose.ui.unit.dp
 import kotlinx.serialization.Serializable
 import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
+import net.canvoki.vokibot.common.BadgeDrawable
 import net.canvoki.vokibot.common.EditorHeader
 import net.canvoki.vokibot.common.rememberDiscardableState
 
@@ -154,9 +156,14 @@ data class AutomationEditor(
                         }
                     val icon = remember(triggerInfo?.id) { triggerInfo?.loadIcon(context) }
                     Icon(
-                        painter = icon ?.let { drawableToPainter(it) } ?: painterResource(Trigger.iconRes),
+                        painter = icon?.let { drawableToPainter(it) } ?: painterResource(Trigger.iconRes),
                         contentDescription = null,
-                        tint = MaterialTheme.colorScheme.primary,
+                        tint =
+                            when (icon) {
+                                null -> MaterialTheme.colorScheme.primary
+                                is VectorDrawable, is BadgeDrawable -> MaterialTheme.colorScheme.primary
+                                else -> Color.Unspecified
+                            },
                         modifier = Modifier.size(40.dp),
                     )
                     Spacer(Modifier.width(12.dp))
@@ -235,10 +242,15 @@ data class AutomationEditor(
                                     horizontalArrangement = Arrangement.spacedBy(12.dp),
                                 ) {
                                     val icon = remember(command.id) { command.loadIcon(context) }
-                                    Image(
+                                    Icon(
                                         painter = drawableToPainter(icon),
                                         contentDescription = null,
                                         modifier = Modifier.size(40.dp),
+                                        tint =
+                                            when (icon) {
+                                                is VectorDrawable, is BadgeDrawable -> MaterialTheme.colorScheme.primary
+                                                else -> Color.Unspecified
+                                            },
                                     )
                                     Column {
                                         Text(
