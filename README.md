@@ -23,6 +23,7 @@ Implemented commands:
 
 - Activate application components (Activities, Services, Receivers)
 - Open system configuration pages
+- Connect or disconnect Bluetooth devices
 
 <!-- end-of-description -->
 

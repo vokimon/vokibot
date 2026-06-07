@@ -19,7 +19,14 @@ full_description_md: |-
 
   - Activate application components (Activities, Services, Receivers)
   - Open system configuration pages
+  - Connect or disconnect Bluetooth devices
 keywords: automation, nfc, timer, shortcut
+changes_0_4_0_md: |-
+  New command: Connect and disconnect Bluetooth devices
+
+  - ✨ BluetoothConnectCommand: Connect or disconnect bluetooth devices
+  - ✨ BluetoothConnectCommand: Pick specific roles to disconnect
+  - ♻️ Common code extracted for reusing
 changes_0_3_0_md: |-
   Bluetooth Device Trigger, launch commands on Bluetooth connection
 

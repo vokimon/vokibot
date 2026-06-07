@@ -1,9 +1,11 @@
 # Change log
 
-## Unreleased
+## 0.4.0 (2026-06-07)
+
+New command: Connect and disconnect Bluetooth devices
 
 - ✨ BluetoothConnectCommand: Connect or disconnect bluetooth devices
-- ✨ BluetoothConnectCommand: Pick roles to disconnect
+- ✨ BluetoothConnectCommand: Pick specific roles to disconnect
 - ♻️ Common code extracted for reusing
 
 ## 0.3.0 (2026-06-01)
