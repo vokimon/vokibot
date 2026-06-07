@@ -58,7 +58,7 @@ sealed class ApplicationCommand : Command() {
     override fun toJson(): String = JsonConfig.encodeToString(serializer(), this)
 
     companion object {
-        fun resolveId(id: String?): String = UUID.randomUUID().toString()
+        fun generateUuid(): String = UUID.randomUUID().toString()
 
         /**
          * Deserialize a command from JSON.
@@ -97,7 +97,7 @@ data class LaunchActivityCommand(
         id: String?,
         flagList: List<String> = emptyList(),
     ) : this(
-        id = id ?: UUID.randomUUID().toString(),
+        id = id ?: generateUuid(),
         displayName = displayName,
         packageName = packageName,
         className = className,
@@ -202,7 +202,7 @@ data class SendBroadcastCommand(
         action = action,
         dataUri = dataUri,
         extras = extras,
-        id = id ?: UUID.randomUUID().toString(),
+        id = id ?: generateUuid(),
     )
 
     override val type: String = "send_broadcast"
@@ -274,7 +274,7 @@ data class StartServiceCommand(
         className = className,
         action = action,
         extras = extras,
-        id = id ?: UUID.randomUUID().toString(),
+        id = id ?: generateUuid(),
     )
 
     override val type: String = "start_service"
@@ -345,7 +345,7 @@ data class AccessProviderCommand(
         extras: Map<String, ExtraValue> = emptyMap(),
         id: String?,
     ) : this(
-        id = id ?: UUID.randomUUID().toString(),
+        id = id ?: generateUuid(),
         displayName = displayName,
         packageName = packageName,
         authority = authority,

@@ -209,7 +209,7 @@ data class ApplicationCommandEditor(
             when (componentType) {
                 ComponentType.ACTIVITY ->
                     LaunchActivityCommand(
-                        id = ApplicationCommand.resolveId(commandId),
+                        id = commandId,
                         displayName = component.label,
                         packageName = packageName!!,
                         className = component.name,
@@ -220,7 +220,7 @@ data class ApplicationCommandEditor(
                     )
                 ComponentType.RECEIVER ->
                     SendBroadcastCommand(
-                        id = ApplicationCommand.resolveId(commandId),
+                        id = commandId,
                         displayName = component.label,
                         packageName = packageName!!,
                         className = component.name,
@@ -230,7 +230,7 @@ data class ApplicationCommandEditor(
                     )
                 ComponentType.SERVICE ->
                     StartServiceCommand(
-                        id = ApplicationCommand.resolveId(commandId),
+                        id = commandId,
                         displayName = component.label,
                         packageName = packageName!!,
                         className = component.name,
@@ -239,7 +239,7 @@ data class ApplicationCommandEditor(
                     )
                 ComponentType.PROVIDER ->
                     AccessProviderCommand(
-                        id = ApplicationCommand.resolveId(commandId),
+                        id = commandId,
                         displayName = component.label,
                         packageName = packageName!!,
                         authority = component.authorities.firstOrNull() ?: "",
