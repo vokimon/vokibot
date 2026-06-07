@@ -18,8 +18,12 @@ class ApplicationCommandTest {
             id = id,
         )
 
-    @Test fun `LaunchActivityCommand id is UUID when passed null`() {
+    @Test fun `LaunchActivityCommand nullable id being null sets UUID`() {
         assertIsUUID(launchActivityNullableId(null).id)
+    }
+
+    @Test fun `LaunchActivityCommand nullable id being explicit sets value`() {
+        assertEquals("explicit_id", launchActivityNullableId("explicit_id").id)
     }
 
     fun launchActivityCommandBase() =
@@ -111,6 +115,7 @@ class ApplicationCommandTest {
     }
 
     // ---------- SendBroadcastCommand ----------
+
     fun sendBroadcastNullableId(id: String? = null) =
         SendBroadcastCommand(
             displayName = "Send SMS",
@@ -120,8 +125,12 @@ class ApplicationCommandTest {
             id = id,
         )
 
-    @Test fun `SendBroadcastCommand id is UUID when passed null`() {
+    @Test fun `SendBroadcastCommand nullable id being null sets UUID`() {
         assertIsUUID(sendBroadcastNullableId(null).id)
+    }
+
+    @Test fun `SendBroadcastCommand nullable id being explicit sets value`() {
+        assertEquals("explicit_id", sendBroadcastNullableId("explicit_id").id)
     }
 
     fun sendBroadcastCommandBase() =
@@ -188,9 +197,14 @@ class ApplicationCommandTest {
             id = id,
         )
 
-    @Test fun `StartServiceCommand id is UUID when passed null`() {
+    @Test fun `StartServiceCommand nullable id being null sets UUID`() {
         assertIsUUID(startServiceNullableId(null).id)
     }
+
+    @Test fun `StartServiceCommand nullable id being explicit sets value`() {
+        assertEquals("explicit_id", startServiceNullableId("explicit_id").id)
+    }
+
 
     fun startServiceCommandBase() =
         StartServiceCommand(
@@ -258,6 +272,7 @@ class ApplicationCommandTest {
     }
 
     // ---------- AccessProviderCommand ----------
+
     fun accessProviderNullableId(id: String? = null) =
         AccessProviderCommand(
             displayName = "Read Contacts",
@@ -267,9 +282,14 @@ class ApplicationCommandTest {
             id = id,
         )
 
-    @Test fun `AccessProviderCommand id is UUID when passed null`() {
+    @Test fun `AccessProviderCommand nullable id being null sets UUID`() {
         assertIsUUID(accessProviderNullableId(null).id)
     }
+
+    @Test fun `AccessProviderCommand nullable id being explicit sets value`() {
+        assertEquals("explicit_id", accessProviderNullableId("explicit_id").id)
+    }
+
 
     fun accessProviderCommandBase() =
         AccessProviderCommand(

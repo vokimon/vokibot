@@ -97,7 +97,7 @@ data class LaunchActivityCommand(
         id: String?,
         flagList: List<String> = emptyList(),
     ) : this(
-        id = UUID.randomUUID().toString(),
+        id = id ?: UUID.randomUUID().toString(),
         displayName = displayName,
         packageName = packageName,
         className = className,
@@ -202,7 +202,7 @@ data class SendBroadcastCommand(
         action = action,
         dataUri = dataUri,
         extras = extras,
-        id = UUID.randomUUID().toString(),
+        id = id ?: UUID.randomUUID().toString(),
     )
 
     override val type: String = "send_broadcast"
@@ -274,7 +274,7 @@ data class StartServiceCommand(
         className = className,
         action = action,
         extras = extras,
-        id = UUID.randomUUID().toString(),
+        id = id ?: UUID.randomUUID().toString(),
     )
 
     override val type: String = "start_service"
@@ -345,7 +345,7 @@ data class AccessProviderCommand(
         extras: Map<String, ExtraValue> = emptyMap(),
         id: String?,
     ) : this(
-        id = UUID.randomUUID().toString(),
+        id = id ?: UUID.randomUUID().toString(),
         displayName = displayName,
         packageName = packageName,
         authority = authority,
