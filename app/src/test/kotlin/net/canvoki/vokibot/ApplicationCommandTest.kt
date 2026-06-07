@@ -4,11 +4,24 @@ import android.content.Context
 import io.mockk.mockk
 import net.canvoki.shared.test.assertEquals
 import net.canvoki.shared.test.assertJsonEqual
+import net.canvoki.shared.test.assertIsUUID
 import org.junit.Test
 import kotlin.test.assertIs
 
 class ApplicationCommandTest {
     // ---------- LaunchActivityCommand ----------
+    fun launchActivityNullableId(id: String? = null) =
+        LaunchActivityCommand(
+            displayName = "Open Maps",
+            packageName = "com.google.android.apps.maps",
+            className = "com.android.gl.maps.MainActivity",
+            id = id,
+        )
+
+    @Test fun `LaunchActivityCommand id is UUID when passed null`() {
+        assertIsUUID(launchActivityNullableId(null).id)
+    }
+
     fun launchActivityCommandBase() =
         LaunchActivityCommand(
             id = "test-launch-id",
@@ -98,6 +111,19 @@ class ApplicationCommandTest {
     }
 
     // ---------- SendBroadcastCommand ----------
+    fun sendBroadcastNullableId(id: String? = null) =
+        SendBroadcastCommand(
+            displayName = "Send SMS",
+            packageName = "com.android.messaging",
+            className = null,
+            action = "android.intent.action.SENDTO",
+            id = id,
+        )
+
+    @Test fun `SendBroadcastCommand id is UUID when passed null`() {
+        assertIsUUID(sendBroadcastNullableId(null).id)
+    }
+
     fun sendBroadcastCommandBase() =
         SendBroadcastCommand(
             id = "test-send-id",
@@ -154,6 +180,18 @@ class ApplicationCommandTest {
     }
 
     // ---------- StartServiceCommand ----------
+    fun startServiceNullableId(id: String? = null) =
+        StartServiceCommand(
+            displayName = "Sync Data",
+            packageName = "com.example.app",
+            className = "com.android.sync.SyncWorker",
+            id = id,
+        )
+
+    @Test fun `StartServiceCommand id is UUID when passed null`() {
+        assertIsUUID(startServiceNullableId(null).id)
+    }
+
     fun startServiceCommandBase() =
         StartServiceCommand(
             id = "test-start-id",
@@ -220,6 +258,19 @@ class ApplicationCommandTest {
     }
 
     // ---------- AccessProviderCommand ----------
+    fun accessProviderNullableId(id: String? = null) =
+        AccessProviderCommand(
+            displayName = "Read Contacts",
+            packageName = "com.android.contacts",
+            authority = "com.android.contacts",
+            operation = ProviderOperation.QUERY,
+            id = id,
+        )
+
+    @Test fun `AccessProviderCommand id is UUID when passed null`() {
+        assertIsUUID(accessProviderNullableId(null).id)
+    }
+
     fun accessProviderCommandBase() =
         AccessProviderCommand(
             id = "test-access-id",

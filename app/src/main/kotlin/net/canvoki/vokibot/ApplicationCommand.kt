@@ -58,7 +58,7 @@ sealed class ApplicationCommand : Command() {
     override fun toJson(): String = JsonConfig.encodeToString(serializer(), this)
 
     companion object {
-        fun resolveId(id: String?): String = id ?: UUID.randomUUID().toString()
+        fun resolveId(id: String?): String = UUID.randomUUID().toString()
 
         /**
          * Deserialize a command from JSON.
@@ -86,6 +86,28 @@ data class LaunchActivityCommand(
     val extras: Map<String, ExtraValue> = emptyMap(),
     val flagList: List<String> = emptyList(),
 ) : ApplicationCommand() {
+    constructor(
+        displayName: String,
+        packageName: String,
+        className: String,
+        action: String? = null,
+        dataUri: String? = null,
+        dataMimeType: String? = null,
+        extras: Map<String, ExtraValue> = emptyMap(),
+        id: String?,
+        flagList: List<String> = emptyList(),
+    ) : this(
+        id = UUID.randomUUID().toString(),
+        displayName = displayName,
+        packageName = packageName,
+        className = className,
+        action = action,
+        dataUri = dataUri,
+        dataMimeType = dataMimeType,
+        extras = extras,
+        flagList = flagList,
+    )
+
     override val type: String = "launch_activity"
 
     @kotlinx.serialization.Transient
@@ -165,6 +187,24 @@ data class SendBroadcastCommand(
     val dataUri: String? = null,
     val extras: Map<String, ExtraValue> = emptyMap(),
 ) : ApplicationCommand() {
+    constructor(
+        displayName: String,
+        packageName: String,
+        className: String?,
+        action: String,
+        dataUri: String? = null,
+        extras: Map<String, ExtraValue> = emptyMap(),
+        id: String?,
+    ) : this(
+        displayName = displayName,
+        packageName = packageName,
+        className = className,
+        action = action,
+        dataUri = dataUri,
+        extras = extras,
+        id = UUID.randomUUID().toString(),
+    )
+
     override val type: String = "send_broadcast"
 
     @kotlinx.serialization.Transient
@@ -221,6 +261,22 @@ data class StartServiceCommand(
     val action: String? = null,
     val extras: Map<String, ExtraValue> = emptyMap(),
 ) : ApplicationCommand() {
+    constructor(
+        displayName: String,
+        packageName: String,
+        className: String,
+        action: String? = null,
+        extras: Map<String, ExtraValue> = emptyMap(),
+        id: String?,
+    ) : this(
+        displayName = displayName,
+        packageName = packageName,
+        className = className,
+        action = action,
+        extras = extras,
+        id = UUID.randomUUID().toString(),
+    )
+
     override val type: String = "start_service"
 
     @kotlinx.serialization.Transient
@@ -279,6 +335,26 @@ data class AccessProviderCommand(
     val mimeType: String? = null,
     val extras: Map<String, ExtraValue> = emptyMap(),
 ) : ApplicationCommand() {
+    constructor(
+        displayName: String,
+        packageName: String,
+        authority: String,
+        operation: ProviderOperation,
+        path: String? = null,
+        mimeType: String? = null,
+        extras: Map<String, ExtraValue> = emptyMap(),
+        id: String?,
+    ) : this(
+        id = UUID.randomUUID().toString(),
+        displayName = displayName,
+        packageName = packageName,
+        authority = authority,
+        operation = operation,
+        path = path,
+        mimeType = mimeType,
+        extras = extras,
+    )
+
     override val type: String = "access_provider"
 
     @kotlinx.serialization.Transient
