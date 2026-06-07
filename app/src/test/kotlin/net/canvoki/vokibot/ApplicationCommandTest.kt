@@ -3,8 +3,8 @@ package net.canvoki.vokibot
 import android.content.Context
 import io.mockk.mockk
 import net.canvoki.shared.test.assertEquals
-import net.canvoki.shared.test.assertJsonEqual
 import net.canvoki.shared.test.assertIsUUID
+import net.canvoki.shared.test.assertJsonEqual
 import org.junit.Test
 import kotlin.test.assertIs
 
@@ -87,12 +87,13 @@ class ApplicationCommandTest {
 
     @Test
     fun `Null and empty fields are handled correctly`() {
-        val command = LaunchActivityCommand(
-            id = "my_id",
-            displayName = "Minimal",
-            packageName = "pkg",
-            className = "cls",
-        )
+        val command =
+            LaunchActivityCommand(
+                id = "my_id",
+                displayName = "Minimal",
+                packageName = "pkg",
+                className = "cls",
+            )
         val deserialized = ApplicationCommand.fromJson(command.toJson())
         assertEquals(command, deserialized)
     }
@@ -205,7 +206,6 @@ class ApplicationCommandTest {
         assertEquals("explicit_id", startServiceNullableId("explicit_id").id)
     }
 
-
     fun startServiceCommandBase() =
         StartServiceCommand(
             id = "test-start-id",
@@ -289,7 +289,6 @@ class ApplicationCommandTest {
     @Test fun `AccessProviderCommand nullable id being explicit sets value`() {
         assertEquals("explicit_id", accessProviderNullableId("explicit_id").id)
     }
-
 
     fun accessProviderCommandBase() =
         AccessProviderCommand(
