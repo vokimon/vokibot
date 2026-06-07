@@ -319,7 +319,6 @@ command_bluetooth_connect_help: |
   de la conêççión de argunô tipô de dîppoçitibô.
 command_bluetooth_connect_title_connect: Conêttâh {deviceName}
 command_bluetooth_connect_title_disconnect: Dêcconêttâh {deviceName}
-command_bluetooth_connect_warn_disconnect: Por limitaçionê der çîttema, êtte comando çolo deçâttiba la conêççión de audio, dehando er dîppoçitibo conêttao pa otrô uçô.
 bluetooth_profile_a2dp: Fuente murtimedia
 bluetooth_profile_a2dp_sink: Artabôh/Auricularê
 bluetooth_profile_avrcp_controller: Controladôh murtimedia
@@ -333,3 +332,8 @@ bluetooth_profile_map_client: Cliente de mençahería
 bluetooth_profile_pan: Ré compartida
 bluetooth_profile_pbap: Contâttô
 bluetooth_profile_pbap_client: Cliente de contâttô
+bluetooth_editor_action_connect: Conêttâh
+bluetooth_editor_action_disconnect: Desconectar
+bluetooth_editor_disconnect_mode_full: Totál
+bluetooth_editor_disconnect_mode_selective: Seletiva
+command_bluetooth_connect_warn_disconnect: Por limitaçionê der çîttema, êtte comando çolo deçâttiba la conêççión de audio, dehando er dîppoçitibo conêttao pa otrô uçô.

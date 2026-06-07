@@ -321,7 +321,6 @@ command_bluetooth_connect_help: |
   the connection of some kind of devices.
 command_bluetooth_connect_title_connect: Connect {deviceName}
 command_bluetooth_connect_title_disconnect: Disconnect {deviceName}
-command_bluetooth_connect_warn_disconnect: Due to system limitations, this command only disables the audio connection, leaving the device connected for other uses.
 bluetooth_profile_a2dp: Multimedia source
 bluetooth_profile_a2dp_sink: Speaker/Headphones
 bluetooth_profile_avrcp_controller: Media controller
@@ -335,3 +334,7 @@ bluetooth_profile_map_client: Message client
 bluetooth_profile_pan: Shared network
 bluetooth_profile_pbap: Contacts
 bluetooth_profile_pbap_client: Contacts client
+bluetooth_editor_action_connect: Connect
+bluetooth_editor_action_disconnect: Disconnect
+bluetooth_editor_disconnect_mode_full: Full
+bluetooth_editor_disconnect_mode_selective: Selective

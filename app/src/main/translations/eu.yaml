@@ -321,7 +321,6 @@ command_bluetooth_connect_help: |
   gailu mota batzuen konexioa kontrolatzea.
 command_bluetooth_connect_title_connect: Konektatu {deviceName}
 command_bluetooth_connect_title_disconnect: Deskonektatu {deviceName}
-command_bluetooth_connect_warn_disconnect: Sistemaren mugak direla eta, komando honek audio konexioa bakarrik desgaitzen du, gailua beste erabileretarako konektatuta utziz.
 bluetooth_profile_a2dp: Multimedia iturria
 bluetooth_profile_a2dp_sink: Bozgorailua/Aurikularrak
 bluetooth_profile_avrcp_controller: Multimedia kontrolagailua
@@ -335,3 +334,8 @@ bluetooth_profile_map_client: Mezularitza bezeroa
 bluetooth_profile_pan: Sare partekatua
 bluetooth_profile_pbap: Kontaktua
 bluetooth_profile_pbap_client: kontaktu-bezeroa
+bluetooth_editor_action_connect: Konektatu
+bluetooth_editor_action_disconnect: Deskonektatu
+bluetooth_editor_disconnect_mode_full: Osoa
+bluetooth_editor_disconnect_mode_selective: Selektiboa
+command_bluetooth_connect_warn_disconnect: Sistemaren mugak direla eta, komando honek audio konexioa bakarrik desgaitzen du, gailua beste erabileretarako konektatuta utziz.

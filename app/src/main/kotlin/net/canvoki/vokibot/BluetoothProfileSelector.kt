@@ -21,6 +21,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -35,8 +36,8 @@ fun BluetoothProfileSelector(
     Column(modifier = modifier) {
         SingleChoiceSegmentedButtonRow(modifier = Modifier.fillMaxWidth()) {
             listOf(
-                false to "Full",
-                true to "Selective",
+                false to stringResource(R.string.bluetooth_editor_disconnect_mode_full),
+                true to stringResource(R.string.bluetooth_editor_disconnect_mode_selective),
             ).forEachIndexed { index, (isSelective, label) ->
                 SegmentedButton(
                     selected = selectiveMode == isSelective,

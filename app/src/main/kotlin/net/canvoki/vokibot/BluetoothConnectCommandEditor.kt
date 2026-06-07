@@ -164,8 +164,8 @@ fun BluetoothConnectCommandEditor(
                     label = {
                         Text(
                             when (action) {
-                                ConnectionAction.CONNECT -> "Connect"
-                                ConnectionAction.DISCONNECT -> "Disconnect"
+                                ConnectionAction.CONNECT -> stringResource(R.string.bluetooth_editor_action_connect)
+                                ConnectionAction.DISCONNECT -> stringResource(R.string.bluetooth_editor_action_disconnect)
                             },
                         )
                     },

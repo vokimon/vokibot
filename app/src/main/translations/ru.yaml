@@ -321,7 +321,6 @@ command_bluetooth_connect_help: |
   подключением некоторых типов устройств.
 command_bluetooth_connect_title_connect: Подключить {deviceName}
 command_bluetooth_connect_title_disconnect: Отключить {deviceName}
-command_bluetooth_connect_warn_disconnect: Из-за системных ограничений эта команда отключает только аудиоподключение, оставляя устройство подключенным для других целей.
 bluetooth_profile_a2dp: Источник мультимедиа
 bluetooth_profile_a2dp_sink: Динамик/Наушники
 bluetooth_profile_avrcp_controller: Контроллер мультимедиа
@@ -335,3 +334,8 @@ bluetooth_profile_map_client: Клиент сообщений
 bluetooth_profile_pan: Общая сеть
 bluetooth_profile_pbap: Контакты
 bluetooth_profile_pbap_client: Клиент контактов
+bluetooth_editor_action_connect: Подключить
+bluetooth_editor_action_disconnect: Отключить
+bluetooth_editor_disconnect_mode_full: Полная
+bluetooth_editor_disconnect_mode_selective: Выборочная
+command_bluetooth_connect_warn_disconnect: Из-за системных ограничений эта команда отключает только аудиоподключение, оставляя устройство подключенным для других целей.

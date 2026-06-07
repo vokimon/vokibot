@@ -321,7 +321,6 @@ command_bluetooth_connect_help: |
   da conexión de algúns tipos de dispositivos.
 command_bluetooth_connect_title_connect: Conectar {deviceName}
 command_bluetooth_connect_title_disconnect: Desconectar {deviceName}
-command_bluetooth_connect_warn_disconnect: Por limitacións do sistema, este comando só desactiva a conexión de audio, deixando o dispositivo conectado para outros usos.
 bluetooth_profile_a2dp: Fonte multimedia
 bluetooth_profile_a2dp_sink: Altofalante/Auriculares
 bluetooth_profile_avrcp_controller: Controlador multimedia
@@ -335,3 +334,8 @@ bluetooth_profile_map_client: Cliente de mensaxería
 bluetooth_profile_pan: Rede compartida
 bluetooth_profile_pbap: Contactos
 bluetooth_profile_pbap_client: Cliente de contactos
+bluetooth_editor_action_connect: Conectar
+bluetooth_editor_action_disconnect: Desconectar
+bluetooth_editor_disconnect_mode_full: Total
+bluetooth_editor_disconnect_mode_selective: Selectiva
+command_bluetooth_connect_warn_disconnect: Por limitacións do sistema, este comando só desactiva a conexión de audio, deixando o dispositivo conectado para outros usos.
