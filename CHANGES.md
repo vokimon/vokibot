@@ -1,5 +1,9 @@
 # Change log
 
+## Unreleased
+
+- ✨ Enable crash handler
+
 ## 0.4.0 (2026-06-07)
 
 New command: Connect and disconnect Bluetooth devices
