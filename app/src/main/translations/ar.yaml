@@ -338,4 +338,3 @@ bluetooth_editor_action_connect: توصيل
 bluetooth_editor_action_disconnect: فصل
 bluetooth_editor_disconnect_mode_full: كاملة
 bluetooth_editor_disconnect_mode_selective: انتقائية
-command_bluetooth_connect_warn_disconnect: بسبب قيود النظام، يقوم هذا الأمر بتعطيل اتصال الصوت فقط، مع إبقاء الجهاز متصلاً للاستخدامات الأخرى.

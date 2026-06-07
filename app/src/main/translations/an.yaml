@@ -338,4 +338,3 @@ bluetooth_editor_action_connect: Conectar
 bluetooth_editor_action_disconnect: Desconnectar
 bluetooth_editor_disconnect_mode_full: Total
 bluetooth_editor_disconnect_mode_selective: Selectiva
-command_bluetooth_connect_warn_disconnect: Por limitacions d'o sistema, iste comando nomás desactiva a connexión d'audio, deixando o dispositivo connectau ta atros usos.

@@ -338,4 +338,3 @@ bluetooth_editor_action_connect: Verbinden
 bluetooth_editor_action_disconnect: Trennen
 bluetooth_editor_disconnect_mode_full: Komplett
 bluetooth_editor_disconnect_mode_selective: Selektiv
-command_bluetooth_connect_warn_disconnect: Aufgrund von Systemeinschränkungen deaktiviert dieser Befehl nur die Audioverbindung, das Gerät bleibt für andere Zwecke verbunden.
