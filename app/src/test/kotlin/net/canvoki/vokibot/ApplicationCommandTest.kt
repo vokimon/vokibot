@@ -10,6 +10,7 @@ import kotlin.test.assertIs
 
 class ApplicationCommandTest {
     // ---------- LaunchActivityCommand ----------
+
     fun launchActivityNullableId(id: String? = null) =
         LaunchActivityCommand(
             displayName = "Open Maps",
@@ -190,6 +191,7 @@ class ApplicationCommandTest {
     }
 
     // ---------- StartServiceCommand ----------
+
     fun startServiceNullableId(id: String? = null) =
         StartServiceCommand(
             displayName = "Sync Data",
