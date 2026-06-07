@@ -35,6 +35,7 @@ Implemented commands:
 <img width="22%" alt="Editing command to open a settings page" src="media/vokibot-settings-page.png" />
 <img width="22%" alt="Editing an NFC trigger with autodetection" src="media/vokibot-trigger-nfc-autodetect.png" />
 <img width="22%" alt="Editing an Bluetooth trigger with list" src="media/vokibot-trigger-bluetooth.png" />
+<img width="22%" alt="Editing an Bluetooth connect/disconnect command" src="media/vokibot-command-bluetooth-connect.png" />
 </p>
 
 ## License
