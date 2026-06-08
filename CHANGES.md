@@ -3,6 +3,8 @@
 ## Unreleased
 
 - ✨ Enable crash handler
+- ✨ Change theme from drawer
+- ✨ Chenge language from drawer
 
 ## 0.4.0 (2026-06-07)
 
