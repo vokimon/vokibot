@@ -5,6 +5,8 @@ import net.canvoki.shared.crash.CopyCrashBackend
 import net.canvoki.shared.crash.CrashReporter
 import net.canvoki.shared.crash.CrashReporterConfig
 import net.canvoki.shared.crash.GitHubCrashBackend
+import net.canvoki.shared.settings.LanguageSettings
+import net.canvoki.shared.settings.ThemeSettings
 
 class VokiBotApplication : Application() {
     override fun onCreate() {
@@ -23,5 +25,7 @@ class VokiBotApplication : Application() {
                         ),
                 ),
         )
+        LanguageSettings.initialize(this)
+        ThemeSettings.initialize(this)
     }
 }

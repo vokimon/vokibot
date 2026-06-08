@@ -4,6 +4,7 @@
 
 ## Backlog
 
+- [ ] ComponentLst: Fix: Shown app icon instead of component icon
 - [ ] ComponentList: add help icon for each kind of component
 - [ ] All buttons Save -> Done to denote save+close
 - [ ] Shortcuts: Customizable icon/color
