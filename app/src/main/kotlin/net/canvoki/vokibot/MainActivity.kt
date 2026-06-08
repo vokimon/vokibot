@@ -3,17 +3,18 @@ package net.canvoki.vokibot
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.layout.padding
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import net.canvoki.shared.component.AppScaffold
 import net.canvoki.shared.component.StackNavigator
 import net.canvoki.shared.component.WatermarkBox
-import net.canvoki.shared.log
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            AppScaffold {
+            AppScaffold(drawer = { Drawer() }) {
                 WatermarkBox(
                     watermark = painterResource(R.drawable.ic_brand),
                 ) {

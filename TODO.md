@@ -4,6 +4,7 @@
 
 ## Backlog
 
+- [ ] All buttons Save -> Done to denote save+close
 - [ ] Shortcuts: Customizable icon/color
 - [ ] DataProviders: How to use them as commands?
 - [ ] Bound services: How to use them as commands?
