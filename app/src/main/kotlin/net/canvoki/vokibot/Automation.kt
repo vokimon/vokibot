@@ -48,6 +48,8 @@ data class Automation(
 
         fun fromJson(jsonString: String): Automation = JsonConfig.decodeFromString(serializer(), jsonString)
 
+        fun register() = StorableEntity.register(this)
+
         fun executeByTrigger(
             repo: FileDataRepository,
             triggerId: String,

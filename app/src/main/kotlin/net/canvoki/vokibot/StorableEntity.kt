@@ -97,6 +97,7 @@ object EntityBootstrap {
     }
 
     init {
+        Automation.register()
         NfcTrigger.register()
         ShortcutTrigger.register()
         BluetoothDeviceTrigger.register()
