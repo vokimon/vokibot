@@ -1,0 +1,8 @@
+## 0.5.0 (2026-06-09)
+
+Crash handler and a drawer to change theme and language
+
+- ✨ Add crash handler
+- ✨ Change dark/light theme from drawer
+- ✨ Change language from drawer
+

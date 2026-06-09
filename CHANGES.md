@@ -1,10 +1,12 @@
 # Change log
 
-## Unreleased
+## 0.5.0 (2026-06-09)
 
-- ✨ Enable crash handler
-- ✨ Change theme from drawer
-- ✨ Chenge language from drawer
+Crash handler and a drawer to change theme and language
+
+- ✨ Add crash handler
+- ✨ Change dark/light theme from drawer
+- ✨ Change language from drawer
 
 ## 0.4.0 (2026-06-07)
 

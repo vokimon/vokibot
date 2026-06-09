@@ -1,8 +1,7 @@
 splash_motto: Executa qualquer ação usando qualquer acionador
 short_description: Ferramenta de automação para Android
 full_description_md: |
-  Faz com que o teu dispositivo Android execute ações (comandos)
-  sempre que algo acontece (acionadores).
+  Faz com que o teu dispositivo Android execute ações (comandos) sempre que algo acontece (acionadores).
 
   Acionadores implementados:
 
@@ -12,6 +11,7 @@ full_description_md: |
 
   Comandos implementados:
 
-  - Ativar componentes da aplicação (Atividades, Serviços, Recetores)
+  - Ativar componentes da aplicação: Atividades, Serviços, Recetores
   - Abrir páginas de configuração do sistema
+  - Ligar ou desligar dispositivos Bluetooth
 keywords: automação, nfc, temporizador, atalho

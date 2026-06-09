@@ -1,8 +1,7 @@
 splash_motto: Jede Aktion mit jedem Auslöser starten
 short_description: Android-Automatisierungstool
 full_description_md: |
-  Lässt dein Android-Gerät Aktionen (Befehle) ausführen,
-  wenn etwas passiert (Auslöser).
+  Lässt dein Android-Gerät Aktionen (Befehle) ausführen, wenn etwas passiert (Auslöser).
 
   Implementierte Auslöser:
 
@@ -12,6 +11,7 @@ full_description_md: |
 
   Implementierte Befehle:
 
-  - Anwendungskomponenten aktivieren (Aktivitäten, Dienste, Empfänger)
+  - Anwendungskomponenten aktivieren: Aktivitäten, Dienste, Empfänger
   - Systemkonfigurationsseiten öffnen
+  - Bluetooth-Geräte verbinden oder trennen
 keywords: automatisierung, nfc, timer, kurztaste

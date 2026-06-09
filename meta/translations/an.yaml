@@ -1,8 +1,7 @@
 splash_motto: Executa qualsiquier acción con qualsiquier disparador
 short_description: Ferramienta d'automatización ta Android
 full_description_md: |
-  Fa que o tuyo dispositivo Android execute accions (comandos)
-  quan pase algo (disparadors).
+  Fa que o tuyo dispositivo Android execute accions (comandos) quan pase algo (disparadors).
 
   Disparadors implementaus:
 
@@ -12,6 +11,7 @@ full_description_md: |
 
   Comandos implementaus:
 
-  - Activar components d'aplicación (Actividatz, Serbicios, Receptors)
+  - Activar components d'aplicación: Actividatz, Serbicios, Receptors
   - Ubrir pachinas de configuración d'o sistema
+  - Conectar u desconnectar dispositivos Bluetooth
 keywords: automatización, nfc, temporizador, drecera

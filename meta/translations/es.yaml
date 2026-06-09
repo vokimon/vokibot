@@ -1,8 +1,7 @@
 splash_motto: Ejecuta cualquier acción con cualquier disparador
 short_description: Herramienta de automatización para Android
 full_description_md: |
-  Hace que tu dispositivo Android ejecute acciones (comandos)
-  cuando ocurre algo (disparadores).
+  Hace que tu dispositivo Android ejecute acciones (comandos) cuando ocurre algo (disparadores).
 
   Disparadores implementados:
 
@@ -12,6 +11,7 @@ full_description_md: |
 
   Comandos implementados:
 
-  - Activar componentes de aplicación (Actividades, Servicios, Receptores)
+  - Activar componentes de aplicación: Actividades, Servicios, Receptores
   - Abrir páginas de configuración del sistema
+  - Conectar o desconectar dispositivos Bluetooth
 keywords: automatización, nfc, temporizador, acceso directo

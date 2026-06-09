@@ -10,8 +10,7 @@
 
 Android automation tool
 
-Makes your Android device perform actions (commands)
-whenever something happens (triggers).
+Makes your Android device perform actions (commands) whenever something happens (triggers).
 
 Implemented triggers:
 
@@ -21,7 +20,7 @@ Implemented triggers:
 
 Implemented commands:
 
-- Activate application components (Activities, Services, Receivers)
+- Activate application components: Activities, Services, Receivers
 - Open system configuration pages
 - Connect or disconnect Bluetooth devices
 
