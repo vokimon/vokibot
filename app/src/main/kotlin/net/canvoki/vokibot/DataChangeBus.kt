@@ -1,7 +1,7 @@
 package net.canvoki.vokibot
 
 object DataChangeBus {
-    val listeners = mutableListOf<() -> Unit>()
+    private val listeners = mutableListOf<() -> Unit>()
 
     fun emit() {
         listeners.map { it.invoke() }
