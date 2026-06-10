@@ -396,6 +396,16 @@ class FileDataRepositoryTest {
 
         assertEquals(setOf("nfc_10_01"), bundle.entityIds())
     }
+
+    @Test
+    fun `exportBundle includes commands`() {
+        val repo = FileDataRepository(testDir)
+        repo.saveCommand(buildCommand("my command"))
+
+        val bundle = repo.exportBundle()
+
+        assertEquals(setOf("my command"), bundle.entityIds())
+    }
 }
 
 fun <T : StorableEntity> assertDataEqual(
