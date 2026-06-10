@@ -56,7 +56,7 @@ class FileDataRepository(
 
     fun loadAllCommands() = command.all()
 
-    fun saveNfcTrigger(trigger: NfcTrigger) = this.trigger.save(trigger)
+    fun saveTrigger(trigger: Trigger) = this.trigger.save(trigger)
 
     fun loadNfcTrigger(uid: String) = trigger.load(NfcTrigger.idFromUid(uid)) as? NfcTrigger
 

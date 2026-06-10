@@ -213,7 +213,7 @@ class FileDataRepositoryTest {
         val repository = FileDataRepository(testDir)
         val original = buildNfc("my tag", "10:01")
 
-        repository.saveNfcTrigger(original)
+        repository.saveTrigger(original)
         val retrieved = repository.loadNfcTrigger("10:01")
 
         assertDataEqual(original, retrieved)
@@ -223,7 +223,7 @@ class FileDataRepositoryTest {
     fun loadNfcTrigger_notFound_returnsNull() {
         val repository = FileDataRepository(testDir)
         val original = buildNfc("tag", "10:01")
-        repository.saveNfcTrigger(original)
+        repository.saveTrigger(original)
 
         val retrieved = repository.loadNfcTrigger("non_existent")
 
@@ -236,8 +236,8 @@ class FileDataRepositoryTest {
         val triggerA = buildNfc("tag A", "AA:01")
         val triggerB = buildNfc("tag B", "BB:02")
 
-        repository.saveNfcTrigger(triggerA)
-        repository.saveNfcTrigger(triggerB)
+        repository.saveTrigger(triggerA)
+        repository.saveTrigger(triggerB)
         val retrievedA = repository.loadNfcTrigger("AA:01")
 
         assertDataEqual(triggerA, retrievedA)
@@ -247,7 +247,7 @@ class FileDataRepositoryTest {
     fun removeNfcTrigger() {
         val repo = FileDataRepository(testDir)
         val original = buildNfc("tag", "10:01")
-        repo.saveNfcTrigger(original)
+        repo.saveTrigger(original)
         repo.removeNfcTrigger("10:01")
 
         val retrieved = repo.loadNfcTrigger("10:01")
@@ -258,7 +258,7 @@ class FileDataRepositoryTest {
     fun existsNfcTriggerWhenItExists() {
         val repo = FileDataRepository(testDir)
         val trigger = buildNfc("tag", "10:01")
-        repo.saveNfcTrigger(trigger)
+        repo.saveTrigger(trigger)
 
         val doesExist = repo.existsNfcTrigger("10:01")
         assertEquals(true, doesExist)
@@ -268,7 +268,7 @@ class FileDataRepositoryTest {
     fun existsNfcTriggerWhenItDoesNotExist() {
         val repo = FileDataRepository(testDir)
         val trigger = buildNfc("tag", "10:01")
-        repo.saveNfcTrigger(trigger)
+        repo.saveTrigger(trigger)
 
         val doesExist = repo.existsNfcTrigger("non-existing")
         assertEquals(false, doesExist)
@@ -278,7 +278,7 @@ class FileDataRepositoryTest {
     fun listNfcTriggers_singleTrigger() {
         val repo = FileDataRepository(testDir)
         val trigger = buildNfc("tag", "10:01")
-        repo.saveNfcTrigger(trigger)
+        repo.saveTrigger(trigger)
 
         val list = repo.listNfcTriggers()
         assertEquals(listOf("10:01"), list)
@@ -294,8 +294,8 @@ class FileDataRepositoryTest {
     @Test
     fun listNfcTriggers_manyTriggers() {
         val repo = FileDataRepository(testDir)
-        repo.saveNfcTrigger(buildNfc("tag1", "10:01"))
-        repo.saveNfcTrigger(buildNfc("tag2", "20:02"))
+        repo.saveTrigger(buildNfc("tag1", "10:01"))
+        repo.saveTrigger(buildNfc("tag2", "20:02"))
 
         val list = repo.listNfcTriggers()
         assertEquals(listOf("10:01", "20:02"), list.sorted())
@@ -304,7 +304,7 @@ class FileDataRepositoryTest {
     @Test
     fun listNfcTriggers_ignoresBadPrefix() {
         val repo = FileDataRepository(testDir)
-        repo.saveNfcTrigger(buildNfc("tag", "10:01"))
+        repo.saveTrigger(buildNfc("tag", "10:01"))
         File(testDir, "log.json").writeText("{}")
 
         assertEquals(listOf("10:01"), repo.listNfcTriggers())
@@ -313,7 +313,7 @@ class FileDataRepositoryTest {
     @Test
     fun listNfcTriggers_ignoresBadSuffix() {
         val repo = FileDataRepository(testDir)
-        repo.saveNfcTrigger(buildNfc("tag", "10:01"))
+        repo.saveTrigger(buildNfc("tag", "10:01"))
         File(testDir, "trigger_nfc_log.txt").writeText("{}")
 
         assertEquals(listOf("10:01"), repo.listNfcTriggers())
@@ -323,7 +323,7 @@ class FileDataRepositoryTest {
     fun loadAllNfcTriggers_returnsSingleSavedTrigger() {
         val repo = FileDataRepository(testDir)
         val original = buildNfc("tag", "10:01")
-        repo.saveNfcTrigger(original)
+        repo.saveTrigger(original)
 
         val loaded = repo.loadAllNfcTriggers()
         assertDataEqual(original, loaded.firstOrNull())
@@ -334,8 +334,8 @@ class FileDataRepositoryTest {
         val repo = FileDataRepository(testDir)
         val data1 = buildNfc("tag1", "10:01")
         val data2 = buildNfc("tag2", "20:02")
-        repo.saveNfcTrigger(data1)
-        repo.saveNfcTrigger(data2)
+        repo.saveTrigger(data1)
+        repo.saveTrigger(data2)
 
         val loaded = repo.loadAllNfcTriggers()
         assertDataEqual(data1, loaded.firstOrNull())
@@ -347,8 +347,8 @@ class FileDataRepositoryTest {
         val repo = FileDataRepository(testDir)
         val data1 = buildNfc("tag1", "10:01")
         val data2 = buildNfc("tag2", "20:02")
-        repo.saveNfcTrigger(data1)
-        repo.saveNfcTrigger(data2)
+        repo.saveTrigger(data1)
+        repo.saveTrigger(data2)
 
         val loaded = repo.trigger.all()
         assertDataEqual(data1, loaded.firstOrNull())
@@ -360,8 +360,8 @@ class FileDataRepositoryTest {
         val repo = FileDataRepository(testDir)
         val data1 = buildNfc("tag1", "10:01")
         val data2 = buildNfc("tag2", "20:02")
-        repo.saveNfcTrigger(data1)
-        repo.saveNfcTrigger(data2)
+        repo.saveTrigger(data1)
+        repo.saveTrigger(data2)
 
         val loaded1 = repo.trigger.load("nfc_10_01")
         assertDataEqual(data1, loaded1)
@@ -376,7 +376,7 @@ class FileDataRepositoryTest {
         val repo = FileDataRepository(testDir)
         val data1 = buildNfc("tag1", "10:01")
         val data2 = buildShortcut("shortcut1", "010A")
-        repo.saveNfcTrigger(data1)
+        repo.saveTrigger(data1)
         repo.trigger.save(data2)
 
         val loaded1 = repo.trigger.load("nfc_10_01")
@@ -390,7 +390,7 @@ class FileDataRepositoryTest {
     @Test
     fun `exportBundle includes trigger`() {
         val repo = FileDataRepository(testDir)
-        repo.saveNfcTrigger(buildNfc("tag", "10:01"))
+        repo.saveTrigger(buildNfc("tag", "10:01"))
 
         val bundle = repo.exportBundle()
 
