@@ -6,6 +6,7 @@ import org.junit.After
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Before
+import org.junit.Ignore
 import org.junit.Test
 import java.io.File
 
@@ -466,6 +467,17 @@ class FileDataRepositoryTest {
             setOf("nfc_10_01", "my command", automation.id),
             exported.entityIds(),
         )
+    }
+
+    @Test
+    fun `saveCommand notifies DataChangeBus`() {
+        val repo = FileDataRepository(testDir)
+        var result = "not received"
+        DataChangeBus.subscribe { result = "received" }
+
+        repo.saveCommand(buildCommand("id1"))
+
+        assertEquals("received", result)
     }
 }
 

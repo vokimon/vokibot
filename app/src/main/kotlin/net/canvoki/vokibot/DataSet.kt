@@ -29,6 +29,7 @@ class DataSet<T : StorableEntity>(
         directory.mkdirs()
         val file = fileForId(item.id)
         file.writeText(item.toJson())
+        DataChangeBus.emit()
     }
 
     fun load(id: String): T? {
