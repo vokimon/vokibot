@@ -19,7 +19,9 @@ import androidx.compose.ui.unit.dp
 import net.canvoki.shared.component.preferences.PreferenceCategory
 import net.canvoki.shared.settings.LanguageSettings
 import net.canvoki.shared.settings.ThemeSettings
+import net.canvoki.shared.storage.rememberOpenFilePicker
 import net.canvoki.shared.storage.rememberSaveFilePicker
+import net.canvoki.shared.usermessage.UserMessage
 import java.time.LocalDate
 
 @Composable
@@ -27,6 +29,7 @@ fun Drawer() {
     val context = LocalContext.current
     val repo = FileDataRepository.fromContext(context)
     val saver = rememberSaveFilePicker("application/json")
+    val opener = rememberOpenFilePicker()
 
     Column(
         modifier =
@@ -55,6 +58,27 @@ fun Drawer() {
                         val filename = "vokibot-$date.vokibot.json"
                         val json = repo.exportBundle().toJson()
                         saver.save(filename, json.toByteArray())
+                    },
+            )
+            ListItem(
+                headlineContent = { Text("Import") },
+                supportingContent = { Text("Load automations from a file") },
+                leadingContent = {
+                    Icon(
+                        painter = painterResource(R.drawable.ic_file_download),
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                },
+                modifier =
+                    Modifier.clickable {
+                        opener.open(arrayOf("application/json")) { bytes ->
+                            bytes?.let {
+                                val bundle = ExportedBundle.fromJson(it.decodeToString())
+                                repo.importBundle(bundle)
+                                UserMessage.Info("Imported ${bundle.entities.size} entities").post()
+                            }
+                        }
                     },
             )
         }
