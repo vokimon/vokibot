@@ -479,6 +479,18 @@ class FileDataRepositoryTest {
 
         assertEquals("received", result)
     }
+
+    @Test
+    fun `removeCommand notifies DataChangeBus`() {
+        val repo = FileDataRepository(testDir)
+        repo.saveCommand(buildCommand("id1"))
+        var result = "not received"
+        DataChangeBus.subscribe { result = "received" }
+
+        repo.removeCommand("id1")
+
+        assertEquals("received", result)
+    }
 }
 
 fun <T : StorableEntity> assertDataEqual(

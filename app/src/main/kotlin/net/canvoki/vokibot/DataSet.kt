@@ -39,6 +39,7 @@ class DataSet<T : StorableEntity>(
 
     fun remove(id: String) {
         val file = fileForId(id).takeIf { it.exists() }?.delete()
+        DataChangeBus.emit()
     }
 
     fun exists(id: String): Boolean = fileForId(id).exists()
