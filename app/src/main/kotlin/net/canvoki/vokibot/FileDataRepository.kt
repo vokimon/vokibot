@@ -90,6 +90,7 @@ class FileDataRepository(
             when (entity) {
                 is Trigger -> trigger.save(entity)
                 is Command -> command.save(entity)
+                is Automation -> automation.save(entity)
                 else -> {}
             }
         }

@@ -445,6 +445,25 @@ class FileDataRepositoryTest {
 
         assertDataEqual(command, repo.command.load("my command"))
     }
+
+    @Test
+    fun `importBundle saves automation with dependencies`() {
+        val repo = FileDataRepository(testDir)
+        val trigger = buildNfc("tag", "10:01")
+        val command = buildCommand("my command")
+        val automation = Automation(
+            name = "test", triggerType = "trigger_nfc",
+            triggerId = "nfc_10_01", commandIds = listOf("my command"),
+        )
+
+        repo.importBundle(ExportedBundle(entities = listOf(trigger, command, automation)))
+
+        val exported = repo.exportBundle()
+        assertEquals(
+            setOf("nfc_10_01", "my command", automation.id),
+            exported.entityIds(),
+        )
+    }
 }
 
 fun <T : StorableEntity> assertDataEqual(
