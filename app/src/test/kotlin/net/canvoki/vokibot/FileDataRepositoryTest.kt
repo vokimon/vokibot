@@ -435,6 +435,16 @@ class FileDataRepositoryTest {
 
         assertDataEqual(trigger, repo.trigger.load("nfc_10_01"))
     }
+
+    @Test
+    fun `importBundle saves command`() {
+        val repo = FileDataRepository(testDir)
+        val command = buildCommand("my command")
+
+        repo.importBundle(ExportedBundle(entities = listOf(command)))
+
+        assertDataEqual(command, repo.command.load("my command"))
+    }
 }
 
 fun <T : StorableEntity> assertDataEqual(

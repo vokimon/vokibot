@@ -89,6 +89,7 @@ class FileDataRepository(
         bundle.entities.forEach { entity ->
             when (entity) {
                 is Trigger -> trigger.save(entity)
+                is Command -> command.save(entity)
                 else -> {}
             }
         }
