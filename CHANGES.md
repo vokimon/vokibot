@@ -1,5 +1,9 @@
 # Change log
 
+## Unreleased
+
+- ✨ Export automations
+
 ## 0.5.0 (2026-06-09)
 
 Crash handler and a drawer to change theme and language
