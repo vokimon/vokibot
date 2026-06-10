@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.drawable.Drawable
 import androidx.annotation.DrawableRes
 import androidx.compose.runtime.Composable
+import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import net.canvoki.shared.component.StackedScreen
 import kotlin.reflect.KClass
@@ -75,7 +76,9 @@ interface StorableEntity {
             registry.getRegisteredTypes(baseClass)
 
         /** Deserialize any registered StorableEntity from JSON */
-        fun fromJson(jsonString: String): StorableEntity? = registry.fromJson(jsonString, StorableEntity::class)
+        fun fromJson(jsonString: String): StorableEntity =
+            registry.fromJson(jsonString, StorableEntity::class)
+                ?: UnknownEntity(jsonString, extractType(jsonString))
 
         /** Deserialize any registered StorableEntity inheriting baseClass from JSON */
         fun <T : StorableEntity> fromJson(
@@ -86,6 +89,21 @@ interface StorableEntity {
         /** Extract the type attribute of a json object string */
         fun extractType(jsonString: String) = registry.extractType(jsonString) ?: "unknown"
     }
+}
+
+@Serializable
+data class UnknownEntity(
+    val json: String,
+    override val type: String,
+) : StorableEntity {
+    override val id: String = "unknown_${type}_${json.hashCode()}"
+
+    override fun getTitle(context: Context): String = context.getString(R.string.unknown_command_title)
+
+    override val description: String = type
+    override val iconRes: Int = android.R.drawable.ic_menu_help
+
+    override fun toJson(): String = json
 }
 
 object EntityBootstrap {

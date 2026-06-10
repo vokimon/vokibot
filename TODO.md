@@ -25,7 +25,8 @@
 - [ ] Extract list group item and reuse it
 - [ ] Translate extra type names
 - [ ] Translate action auto description
-- [ ] Tasker compatibility (being able to reuse tasker extensions as host)
+- [ ] Explore Tasker compatibility (being able to reuse tasker extensions as host)
+- [ ] Import/Export entities.
 
 - More commands:
     - [ ] Airplaine mode on/off

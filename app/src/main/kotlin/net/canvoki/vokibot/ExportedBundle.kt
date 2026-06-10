@@ -25,23 +25,21 @@ object EntityListSerializer : KSerializer<List<StorableEntity>> {
     override fun deserialize(decoder: Decoder): List<StorableEntity> {
         val jsonObjects =
             decoder.decodeSerializableValue(ListSerializer(JsonObject.serializer()))
-        return jsonObjects.map { StorableEntity.fromJson(it.toString()) ?: UnknownCommand(it.toString(), "Unknown") }
+        return jsonObjects.map { StorableEntity.fromJson(it.toString()) }
     }
 }
 
 @Serializable
 data class ExportedBundle(
-    
     @Serializable(with = EntityListSerializer::class)
     val entities: List<StorableEntity>,
     val version: Int = 1,
 ) {
-    fun entityIds(): Set<String> =
-        entities.map { it.id }.toSet()
+    fun entityIds(): Set<String> = entities.map { it.id }.toSet()
+
     fun toJson(): String = JsonConfig.encodeToString(serializer(), this)
 
     companion object {
-        fun fromJson(json: String): ExportedBundle =
-            JsonConfig.decodeFromString(ExportedBundle.serializer(), json)
+        fun fromJson(json: String): ExportedBundle = JsonConfig.decodeFromString(ExportedBundle.serializer(), json)
     }
 }

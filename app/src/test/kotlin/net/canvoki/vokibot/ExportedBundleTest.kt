@@ -13,6 +13,9 @@ class ExportedBundleTest {
             className = "com.test.Main",
         )
 
+    private fun commandJson() =
+        """{"id": "cmd-1", "displayName": "Test Command", "packageName":"com.test","className":"com.test.Main","extras":{},"flagList":[],"type":"launch_activity"}"""
+
     private fun anAutomation() =
         Automation(
             id = "auto-1",
@@ -22,24 +25,32 @@ class ExportedBundleTest {
             commandIds = listOf("cmd-1"),
         )
 
+    private fun automationJson() =
+        """{"id": "auto-1", "name": "Test Automation", "triggerType":"trigger_shortcut","triggerId":"trg-1","commandIds":["cmd-1"],"type": "automation"}"""
+
     private fun anTrigger() =
         ShortcutTrigger(
             id = "trg-1",
             displayName = "Test Trigger",
         )
 
-    private fun buildBundle(vararg entities: StorableEntity) =
-        ExportedBundle(entities = entities.toList())
+    private fun buildBundle(vararg entities: StorableEntity) = ExportedBundle(entities = entities.toList())
 
-    private fun bundleJson() ="""
+    private fun buildJson(vararg entityJsons: String) =
+        """
         {
             "version": 1,
             "entities": [
-                {"id": "cmd-1", "displayName": "Test Command", "packageName":"com.test","className":"com.test.Main","extras":{},"flagList":[],"type":"launch_activity"},
-                {"id": "auto-1", "name": "Test Automation", "triggerType":"trigger_shortcut","triggerId":"trg-1","commandIds":["cmd-1"],"type": "automation"}
+                ${entityJsons.joinToString(",\n    ")}
             ]
         }
         """
+
+    private fun bundleJson() =
+        buildJson(
+            commandJson(),
+            automationJson(),
+        )
 
     @Test
     fun `toJson`() {
@@ -49,8 +60,17 @@ class ExportedBundleTest {
 
     @Test
     fun `fromJson`() {
-        val expected = buildBundle(aCommand(), anAutomation())
         val bundle = ExportedBundle.fromJson(bundleJson())
+        val expected = buildBundle(aCommand(), anAutomation())
+        assertEquals(expected.toString(), bundle.toString())
+    }
+
+    @Test
+    fun `fromJson with unsupported type`() {
+        val unknownJson =
+            """{"type":"future_type","id":"x","data":"test"}"""
+        val bundle = ExportedBundle.fromJson(buildJson(unknownJson))
+        val expected = buildBundle(UnknownEntity(unknownJson, "future_type"))
         assertEquals(expected.toString(), bundle.toString())
     }
 
