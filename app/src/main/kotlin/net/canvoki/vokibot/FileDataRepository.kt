@@ -84,4 +84,13 @@ class FileDataRepository(
     fun loadAllAutomations() = automation.all()
 
     fun exportBundle(): ExportedBundle = ExportedBundle(entities = trigger.all() + command.all() + automation.all())
+
+    fun importBundle(bundle: ExportedBundle) {
+        bundle.entities.forEach { entity ->
+            when (entity) {
+                is Trigger -> trigger.save(entity)
+                else -> {}
+            }
+        }
+    }
 }
