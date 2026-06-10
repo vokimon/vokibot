@@ -84,5 +84,5 @@ class FileDataRepository(
     fun loadAllAutomations() = automation.all()
 
     fun exportBundle(): ExportedBundle =
-        ExportedBundle(entities = trigger.all() + command.all())
+        ExportedBundle(entities = trigger.all() + command.all() + automation.all())
 }

@@ -406,6 +406,25 @@ class FileDataRepositoryTest {
 
         assertEquals(setOf("my command"), bundle.entityIds())
     }
+
+    @Test
+    fun `exportBundle includes automation`() {
+        val repo = FileDataRepository(testDir)
+        repo.saveTrigger(buildNfc("tag", "10:01"))
+        repo.saveCommand(buildCommand("my command"))
+        val automation =
+            Automation(
+                name = "automation example",
+                triggerType = "trigger_nfc",
+                triggerId = "nfc_10_01",
+                commandIds = listOf("my command"),
+        )
+        repo.saveAutomation(automation)
+
+        val bundle = repo.exportBundle()
+
+        assertEquals(setOf("nfc_10_01", "my command", automation.id), bundle.entityIds())
+    }
 }
 
 fun <T : StorableEntity> assertDataEqual(
