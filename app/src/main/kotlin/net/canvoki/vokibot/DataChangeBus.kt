@@ -4,7 +4,7 @@ object DataChangeBus {
     private val listeners = mutableListOf<() -> Unit>()
 
     fun emit() {
-        listeners.map { it.invoke() }
+        listeners.forEach { it.invoke() }
     }
 
     fun subscribe(listener: () -> Unit) {
