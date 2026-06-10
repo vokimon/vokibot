@@ -4,6 +4,8 @@
 
 ## Backlog
 
+- [ ] Refresh after import
+- [ ] Trigger/CommandList: Set a fix order (it changes on every refresh)
 - [ ] Export: Fix: UnknownEntity title is using command's
 - [ ] ComponentLst: Fix: Shown app icon instead of component icon
 - [ ] ComponentList: add help icon for each kind of component
