@@ -386,6 +386,16 @@ class FileDataRepositoryTest {
         val missing = repo.trigger.load("missing")
         assertDataEqual(null, missing)
     }
+
+    @Test
+    fun `exportBundle includes trigger`() {
+        val repo = FileDataRepository(testDir)
+        repo.saveNfcTrigger(buildNfc("tag", "10:01"))
+
+        val bundle = repo.exportBundle()
+
+        assertEquals(setOf("nfc_10_01"), bundle.entityIds())
+    }
 }
 
 fun <T : StorableEntity> assertDataEqual(
