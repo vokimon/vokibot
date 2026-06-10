@@ -418,7 +418,7 @@ class FileDataRepositoryTest {
                 triggerType = "trigger_nfc",
                 triggerId = "nfc_10_01",
                 commandIds = listOf("my command"),
-        )
+            )
         repo.saveAutomation(automation)
 
         val bundle = repo.exportBundle()

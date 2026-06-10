@@ -10,6 +10,11 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.jsonObject
 
+private val PrettyJson =
+    Json(JsonConfig) {
+        prettyPrint = true
+    }
+
 object EntityListSerializer : KSerializer<List<StorableEntity>> {
     override val descriptor: SerialDescriptor =
         ListSerializer(JsonObject.serializer()).descriptor
@@ -37,7 +42,7 @@ data class ExportedBundle(
 ) {
     fun entityIds(): Set<String> = entities.map { it.id }.toSet()
 
-    fun toJson(): String = JsonConfig.encodeToString(serializer(), this)
+    fun toJson(): String = PrettyJson.encodeToString(serializer(), this)
 
     companion object {
         fun fromJson(json: String): ExportedBundle = JsonConfig.decodeFromString(ExportedBundle.serializer(), json)
