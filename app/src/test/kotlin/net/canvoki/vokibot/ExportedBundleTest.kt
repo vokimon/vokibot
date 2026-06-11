@@ -2,6 +2,7 @@ package net.canvoki.vokibot
 
 import net.canvoki.shared.test.assertEquals
 import net.canvoki.shared.test.assertJsonEqual
+import org.junit.Ignore
 import org.junit.Test
 
 class ExportedBundleTest {
@@ -226,5 +227,60 @@ class ExportedBundleTest {
         val analysis = bundle.analyzeImport(repoIds)
 
         assertEquals(setOf("unsolved-ref"), analysis.referencedMissing)
+    }
+
+    @Test
+    fun `summary with no issues returns empty string`() {
+        val analysis = ImportAnalysis(
+            overwritten = emptySet(),
+            repositoryReferences = emptySet(),
+            referencedMissing = emptySet(),
+        )
+
+        val result = analysis.summary()
+
+        assertEquals("", result)
+    }
+
+    @Ignore("next step")
+    @Test
+    fun `summary formats overwritten entities`() {
+        val analysis = ImportAnalysis(
+            overwritten = setOf("cmd-1", "trg-1"),
+            repositoryReferences = emptySet(),
+            referencedMissing = emptySet(),
+        )
+
+        val result = analysis.summary()
+
+        assertEquals("Will overwrite:\n- cmd-1\n- trg-1\n\n", result)
+    }
+
+    @Ignore("next step")
+    @Test
+    fun `summary formats repository references`() {
+        val analysis = ImportAnalysis(
+            overwritten = emptySet(),
+            repositoryReferences = setOf("cmd-1"),
+            referencedMissing = emptySet(),
+        )
+
+        val result = analysis.summary()
+
+        assertEquals("References to existing entities:\n- cmd-1\n\n", result)
+    }
+
+    @Ignore("next step")
+    @Test
+    fun `summary formats missing references`() {
+        val analysis = ImportAnalysis(
+            overwritten = emptySet(),
+            repositoryReferences = emptySet(),
+            referencedMissing = setOf("cmd-3"),
+        )
+
+        val result = analysis.summary()
+
+        assertEquals("Missing references:\n- cmd-3", result)
     }
 }

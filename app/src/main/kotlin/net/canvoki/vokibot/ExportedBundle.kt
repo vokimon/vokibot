@@ -38,7 +38,9 @@ data class ImportAnalysis(
     val overwritten: Set<String>,
     val repositoryReferences: Set<String>,
     val referencedMissing: Set<String>,
-)
+) {
+    fun summary(): String = ""
+}
 
 @Serializable
 data class ExportedBundle(

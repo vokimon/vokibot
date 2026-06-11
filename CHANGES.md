@@ -3,6 +3,9 @@
 ## Unreleased
 
 - ✨ Export/Import automations
+- 🚸 Import warns on overwritten entities
+- 🚸 Import warns on imported references to repo entities
+- 🚸 Import warns on broken references
 - 🐛 Centralize updates on repository data versions
 
 ## 0.5.0 (2026-06-09)
