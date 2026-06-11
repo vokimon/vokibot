@@ -121,4 +121,19 @@ class ExportedBundleTest {
 
         assertEquals(setOf("trg-1", "cmd-1"), refs)
     }
+
+    @Test
+    fun `automation references with many commands returns trigger and all commands`() {
+        val auto = Automation(
+            id = "auto-1",
+            name = "test",
+            triggerType = "trigger_shortcut",
+            triggerId = "trg-1",
+            commandIds = listOf("cmd-1", "cmd-2"),
+        )
+
+        val refs = auto.references()
+
+        assertEquals(setOf("trg-1", "cmd-1", "cmd-2"), refs)
+    }
 }
