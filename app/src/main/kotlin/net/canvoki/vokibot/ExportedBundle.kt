@@ -55,7 +55,7 @@ data class ExportedBundle(
         val bundleRefs = references()
         return ImportAnalysis(
             overwritten = bundleIds intersect repoEntityIds,
-            repositoryReferences = bundleRefs intersect repoEntityIds,
+            repositoryReferences = (bundleRefs - bundleIds) intersect repoEntityIds,
             referencedMissing = emptySet(),
         )
     }

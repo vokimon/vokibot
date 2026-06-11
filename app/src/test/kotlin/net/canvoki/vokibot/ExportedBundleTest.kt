@@ -31,9 +31,9 @@ class ExportedBundleTest {
     private fun automationJson() =
         """{"id": "auto-1", "name": "Test Automation", "triggerType":"trigger_shortcut","triggerId":"trg-1","commandIds":["cmd-1"],"type": "automation"}"""
 
-    private fun anTrigger() =
+    private fun anTrigger(id: String = "trg-1") =
         ShortcutTrigger(
-            id = "trg-1",
+            id = id,
             displayName = "Test Trigger",
         )
 
@@ -200,5 +200,18 @@ class ExportedBundleTest {
         val analysis = bundle.analyzeImport(repoIds)
 
         assertEquals(setOf("ref-in-repo"), analysis.repositoryReferences)
+    }
+
+    @Test
+    fun `repositoryReferences excludes overwritten`() {
+        val bundle = buildBundle(
+            anTrigger(id = "overwritten-referenced-in-bundle"),
+            anAutomation(id = "auto-1", triggerId = "overwritten-referenced-in-bundle", commandIds = listOf("repo-id-referenced-in-bundle")),
+        )
+        val repoIds = setOf("overwritten-referenced-in-bundle", "repo-id-referenced-in-bundle")
+
+        val analysis = bundle.analyzeImport(repoIds)
+
+        assertEquals(setOf("repo-id-referenced-in-bundle"), analysis.repositoryReferences)
     }
 }
