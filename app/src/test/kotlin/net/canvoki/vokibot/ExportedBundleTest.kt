@@ -2,7 +2,6 @@ package net.canvoki.vokibot
 
 import net.canvoki.shared.test.assertEquals
 import net.canvoki.shared.test.assertJsonEqual
-import org.junit.Ignore
 import org.junit.Test
 
 class ExportedBundleTest {
@@ -268,7 +267,6 @@ class ExportedBundleTest {
         assertEquals("References to existing entities:\n- cmd-1\n\n", result)
     }
 
-    @Ignore("next step")
     @Test
     fun `summary formats missing references`() {
         val analysis = ImportAnalysis(

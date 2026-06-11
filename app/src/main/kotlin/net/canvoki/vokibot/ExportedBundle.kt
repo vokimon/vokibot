@@ -50,6 +50,10 @@ data class ImportAnalysis(
             repositoryReferences.forEach { appendLine("- $it") }
             appendLine()
         }
+        if (referencedMissing.isNotEmpty()) {
+            appendLine("Missing references:")
+            referencedMissing.forEach { appendLine("- $it") }
+        }
     }
 }
 
