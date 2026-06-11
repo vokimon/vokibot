@@ -34,6 +34,12 @@ object EntityListSerializer : KSerializer<List<StorableEntity>> {
     }
 }
 
+data class ImportAnalysis(
+    val overwritten: Set<String>,
+    val repositoryReferences: Set<String>,
+    val referencedMissing: Set<String>,
+)
+
 @Serializable
 data class ExportedBundle(
     @Serializable(with = EntityListSerializer::class)
@@ -43,6 +49,15 @@ data class ExportedBundle(
     fun entityIds(): Set<String> = entities.map { it.id }.toSet()
 
     fun references(): Set<String> = entities.flatMap { it.references() }.toSet()
+
+    fun analyzeImport(repoEntityIds: Set<String>): ImportAnalysis {
+        val bundleIds = entityIds()
+        return ImportAnalysis(
+            overwritten = bundleIds intersect repoEntityIds,
+            repositoryReferences = emptySet(),
+            referencedMissing = emptySet(),
+        )
+    }
 
     fun toJson(): String = PrettyJson.encodeToString(serializer(), this)
 

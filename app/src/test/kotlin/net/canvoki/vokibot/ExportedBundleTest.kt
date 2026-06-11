@@ -5,9 +5,9 @@ import net.canvoki.shared.test.assertJsonEqual
 import org.junit.Test
 
 class ExportedBundleTest {
-    private fun aCommand() =
+    private fun aCommand(id: String = "cmd-1") =
         LaunchActivityCommand(
-            id = "cmd-1",
+            id = id,
             displayName = "Test Command",
             packageName = "com.test",
             className = "com.test.Main",
@@ -174,5 +174,19 @@ class ExportedBundleTest {
         val refs = bundle.references()
 
         assertEquals(setOf("trg-1", "cmd-1", "trg-2", "cmd-2"), refs)
+    }
+
+    @Test
+    fun `analyzeImport detects overwritten entities`() {
+        val bundle =
+            buildBundle(
+                aCommand(id = "in-both"),
+                aCommand(id = "only-bundle"),
+            )
+        val repoIds = setOf("in-both", "only-repo")
+
+        val analysis = bundle.analyzeImport(repoIds)
+
+        assertEquals(setOf("in-both"), analysis.overwritten)
     }
 }
