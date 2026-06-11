@@ -136,4 +136,22 @@ class ExportedBundleTest {
 
         assertEquals(setOf("trg-1", "cmd-1", "cmd-2"), refs)
     }
+
+    @Test
+    fun `bundle references with no automations returns empty set`() {
+        val bundle = buildBundle(aCommand(), anTrigger())
+
+        val refs = bundle.references()
+
+        assertEquals(emptySet<String>(), refs)
+    }
+
+    @Test
+    fun `bundle references with automation returns its refs`() {
+        val bundle = buildBundle(anAutomation(), aCommand(), anTrigger())
+
+        val refs = bundle.references()
+
+        assertEquals(setOf("trg-1", "cmd-1"), refs)
+    }
 }
