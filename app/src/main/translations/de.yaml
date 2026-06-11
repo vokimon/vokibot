@@ -338,3 +338,6 @@ bluetooth_editor_action_connect: Verbinden
 bluetooth_editor_action_disconnect: Trennen
 bluetooth_editor_disconnect_mode_full: Komplett
 bluetooth_editor_disconnect_mode_selective: Selektiv
+import_analysis_overwritten: "Wird überschrieben:"
+import_analysis_referenced: "Verweise auf bestehende Elemente:"
+import_analysis_unresolved: "Fehlende Verweise:"

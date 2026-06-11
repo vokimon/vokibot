@@ -338,3 +338,6 @@ bluetooth_editor_action_connect: Konektatu
 bluetooth_editor_action_disconnect: Deskonektatu
 bluetooth_editor_disconnect_mode_full: Osoa
 bluetooth_editor_disconnect_mode_selective: Selektiboa
+import_analysis_overwritten: "Gainidatziko du:"
+import_analysis_referenced: "Lehendako elementuen erreferentziak:"
+import_analysis_unresolved: "Konpondu gabeko erreferentziak:"

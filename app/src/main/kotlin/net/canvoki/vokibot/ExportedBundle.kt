@@ -44,19 +44,19 @@ data class ImportAnalysis(
     fun summary(context: Context): String =
         buildString {
             if (overwritten.isNotEmpty()) {
-                appendLine("Will overwrite:")
+                appendLine(context.getString(R.string.import_analysis_overwritten))
                 appendLine()
                 overwritten.forEach { appendLine(it) }
                 appendLine()
             }
             if (repositoryReferences.isNotEmpty()) {
-                appendLine("References to existing entities:")
+                appendLine(context.getString(R.string.import_analysis_referenced))
                 appendLine()
                 repositoryReferences.forEach { appendLine(it) }
                 appendLine()
             }
             if (referencedMissing.isNotEmpty()) {
-                appendLine("Missing references:")
+                appendLine(context.getString(R.string.import_analysis_unresolved))
                 appendLine()
                 referencedMissing.forEach { appendLine(it) }
                 appendLine()

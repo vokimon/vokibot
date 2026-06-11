@@ -338,3 +338,6 @@ bluetooth_editor_action_connect: توصيل
 bluetooth_editor_action_disconnect: فصل
 bluetooth_editor_disconnect_mode_full: كاملة
 bluetooth_editor_disconnect_mode_selective: انتقائية
+import_analysis_overwritten: "سيتم الكتابة فوقه:"
+import_analysis_referenced: "إشارات إلى عناصر موجودة:"
+import_analysis_unresolved: "إشارات غير محسومة:"

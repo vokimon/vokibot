@@ -338,3 +338,6 @@ bluetooth_editor_action_connect: Подключить
 bluetooth_editor_action_disconnect: Отключить
 bluetooth_editor_disconnect_mode_full: Полная
 bluetooth_editor_disconnect_mode_selective: Выборочная
+import_analysis_overwritten: "Перезапишет:"
+import_analysis_referenced: "Ссылки на существующие элементы:"
+import_analysis_unresolved: "Неразрешённые ссылки:"

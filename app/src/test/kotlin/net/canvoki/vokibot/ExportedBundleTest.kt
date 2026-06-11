@@ -305,7 +305,7 @@ class ExportedBundleTest {
 
         val result = analysis.summary(context())
 
-        assertEquals("References to existing entities:\n\ncmd-1\n\n", result)
+        assertEquals("References to existing items:\n\ncmd-1\n\n", result)
     }
 
     @Test
@@ -319,6 +319,26 @@ class ExportedBundleTest {
 
         val result = analysis.summary(context())
 
-        assertEquals("Missing references:\n\ncmd-3\n\n", result)
+        assertEquals("Unresolved references:\n\ncmd-3\n\n", result)
+    }
+
+    @Config(qualifiers = "ca")
+    @Test
+    fun `summary in catalan`() {
+        val analysis =
+            ImportAnalysis(
+                overwritten = setOf("cmd-1"),
+                repositoryReferences = setOf("cmd-2"),
+                referencedMissing = setOf("cmd-3"),
+            )
+
+        val result = analysis.summary(context())
+
+        assertEquals(
+            "Se sobreescriurà:\n\ncmd-1\n\n" +
+                "Referències a elements existents:\n\ncmd-2\n\n" +
+                "Referències no resoltes:\n\ncmd-3\n\n",
+            result,
+        )
     }
 }

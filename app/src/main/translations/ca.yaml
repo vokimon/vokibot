@@ -338,3 +338,7 @@ bluetooth_editor_action_connect: Connecta
 bluetooth_editor_action_disconnect: Desconnectar
 bluetooth_editor_disconnect_mode_full: Total
 bluetooth_editor_disconnect_mode_selective: Selectiva
+import_analysis_overwritten: "Se sobreescriurà:"
+import_analysis_referenced: "Referències a elements existents:"
+import_analysis_broken: "Referències trencades:"
+import_analysis_unresolved: "Referències no resoltes:"
