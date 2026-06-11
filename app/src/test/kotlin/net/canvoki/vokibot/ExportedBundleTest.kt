@@ -310,6 +310,6 @@ class ExportedBundleTest {
 
         val result = analysis.summary()
 
-        assertEquals("Missing references:\n- cmd-3", result)
+        assertEquals("Missing references:\n- cmd-3\n", result)
     }
 }
