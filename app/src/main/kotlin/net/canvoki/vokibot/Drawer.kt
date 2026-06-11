@@ -74,9 +74,13 @@ fun Drawer() {
                     Modifier.clickable {
                         opener.open(arrayOf("application/json")) { bytes ->
                             bytes?.let {
-                                val bundle = ExportedBundle.fromJson(it.decodeToString())
-                                repo.importBundle(bundle)
-                                UserMessage.Info("Imported ${bundle.entities.size} entities").post()
+                                try {
+                                    val bundle = ExportedBundle.fromJson(it.decodeToString())
+                                    repo.importBundle(bundle)
+                                    UserMessage.Info("Imported ${bundle.entities.size} entities").post()
+                                } catch (e: kotlinx.serialization.SerializationException) {
+                                    UserMessage.Info("Invalid import file $e").post()
+                                }
                             }
                         }
                     },

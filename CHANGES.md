@@ -3,6 +3,7 @@
 ## Unreleased
 
 - ✨ Export/Import automations
+- 🐛 Centralize updates on repository data versions
 
 ## 0.5.0 (2026-06-09)
 
