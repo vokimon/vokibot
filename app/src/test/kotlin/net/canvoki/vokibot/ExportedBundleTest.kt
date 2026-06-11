@@ -20,14 +20,13 @@ class ExportedBundleTest {
         id: String = "auto-1",
         triggerId: String = "trg-1",
         commandIds: List<String> = listOf("cmd-1"),
-    ) =
-        Automation(
-            id = id,
-            name = "Test Automation",
-            triggerType = "trigger_shortcut",
-            triggerId = triggerId,
-            commandIds = commandIds,
-        )
+    ) = Automation(
+        id = id,
+        name = "Test Automation",
+        triggerType = "trigger_shortcut",
+        triggerId = triggerId,
+        commandIds = commandIds,
+    )
 
     private fun automationJson() =
         """{"id": "auto-1", "name": "Test Automation", "triggerType":"trigger_shortcut","triggerId":"trg-1","commandIds":["cmd-1"],"type": "automation"}"""
@@ -98,13 +97,14 @@ class ExportedBundleTest {
 
     @Test
     fun `automation references with no commands returns trigger only`() {
-        val auto = Automation(
-            id = "auto-1",
-            name = "test",
-            triggerType = "trigger_shortcut",
-            triggerId = "trg-1",
-            commandIds = emptyList(),
-        )
+        val auto =
+            Automation(
+                id = "auto-1",
+                name = "test",
+                triggerType = "trigger_shortcut",
+                triggerId = "trg-1",
+                commandIds = emptyList(),
+            )
 
         val refs = auto.references()
 
@@ -113,13 +113,14 @@ class ExportedBundleTest {
 
     @Test
     fun `automation references with one command returns trigger and command`() {
-        val auto = Automation(
-            id = "auto-1",
-            name = "test",
-            triggerType = "trigger_shortcut",
-            triggerId = "trg-1",
-            commandIds = listOf("cmd-1"),
-        )
+        val auto =
+            Automation(
+                id = "auto-1",
+                name = "test",
+                triggerType = "trigger_shortcut",
+                triggerId = "trg-1",
+                commandIds = listOf("cmd-1"),
+            )
 
         val refs = auto.references()
 
@@ -128,13 +129,14 @@ class ExportedBundleTest {
 
     @Test
     fun `automation references with many commands returns trigger and all commands`() {
-        val auto = Automation(
-            id = "auto-1",
-            name = "test",
-            triggerType = "trigger_shortcut",
-            triggerId = "trg-1",
-            commandIds = listOf("cmd-1", "cmd-2"),
-        )
+        val auto =
+            Automation(
+                id = "auto-1",
+                name = "test",
+                triggerType = "trigger_shortcut",
+                triggerId = "trg-1",
+                commandIds = listOf("cmd-1", "cmd-2"),
+            )
 
         val refs = auto.references()
 
@@ -161,12 +163,13 @@ class ExportedBundleTest {
 
     @Test
     fun `bundle references returns union of all automation refs`() {
-        val bundle = buildBundle(
-            anAutomation(),
-            anAutomation(id = "auto-2", triggerId = "trg-2", commandIds = listOf("cmd-2")),
-            aCommand(),
-            anTrigger(),
-        )
+        val bundle =
+            buildBundle(
+                anAutomation(),
+                anAutomation(id = "auto-2", triggerId = "trg-2", commandIds = listOf("cmd-2")),
+                aCommand(),
+                anTrigger(),
+            )
 
         val refs = bundle.references()
 
