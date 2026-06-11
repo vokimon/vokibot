@@ -82,4 +82,13 @@ class ExportedBundleTest {
 
         assertEquals(setOf("cmd-1", "auto-1"), ids)
     }
+
+    @Test
+    fun `command references is empty set`() {
+        val cmd = aCommand()
+
+        val refs = cmd.references()
+
+        assertEquals(emptySet<String>(), refs)
+    }
 }

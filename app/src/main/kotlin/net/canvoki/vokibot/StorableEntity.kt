@@ -40,6 +40,8 @@ interface StorableEntity {
 
     fun toJson(): String
 
+    fun references(): Set<String> = emptySet()
+
     companion object {
         private fun ensureInitialized() = EntityBootstrap.ensure()
 
