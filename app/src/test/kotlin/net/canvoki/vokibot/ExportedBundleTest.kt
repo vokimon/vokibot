@@ -282,7 +282,7 @@ class ExportedBundleTest {
 
         val result = analysis.summary()
 
-        assertEquals("Will overwrite:\n- cmd-1\n- trg-1\n\n", result)
+        assertEquals("Will overwrite:\n\ncmd-1\ntrg-1\n\n", result)
     }
 
     @Test
@@ -296,7 +296,7 @@ class ExportedBundleTest {
 
         val result = analysis.summary()
 
-        assertEquals("References to existing entities:\n- cmd-1\n\n", result)
+        assertEquals("References to existing entities:\n\ncmd-1\n\n", result)
     }
 
     @Test
@@ -310,6 +310,6 @@ class ExportedBundleTest {
 
         val result = analysis.summary()
 
-        assertEquals("Missing references:\n- cmd-3\n", result)
+        assertEquals("Missing references:\n\ncmd-3\n\n", result)
     }
 }
