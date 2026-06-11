@@ -493,7 +493,7 @@ class FileDataRepositoryTest {
     }
 
     @Test
-    fun `entityIds returns single command id`() {
+    fun `entityIds with single command`() {
         val repo = FileDataRepository(testDir)
         repo.saveCommand(buildCommand("cmd-1"))
 
@@ -503,13 +503,33 @@ class FileDataRepositoryTest {
     }
 
     @Test
-    fun `entityIds returns single trigger id`() {
+    fun `entityIds with single trigger`() {
         val repo = FileDataRepository(testDir)
         repo.saveTrigger(buildNfc("my tag", "trg-1"))
 
         val ids = repo.entityIds()
 
         assertEquals(setOf("nfc_trg-1"), ids)
+    }
+
+    @Test
+    fun `entityIds with automation and deps`() {
+        val repo = FileDataRepository(testDir)
+        repo.saveCommand(buildCommand("cmd-1"))
+        repo.saveTrigger(buildNfc("tag", "trg-1"))
+        repo.saveAutomation(
+            Automation(
+                id = "auto-1",
+                name = "test",
+                triggerType = "trigger_nfc",
+                triggerId = "nfc_trg-1",
+                commandIds = listOf("cmd-1"),
+            ),
+        )
+
+        val ids = repo.entityIds()
+
+        assertEquals(setOf("cmd-1", "nfc_trg-1", "auto-1"), ids)
     }
 }
 

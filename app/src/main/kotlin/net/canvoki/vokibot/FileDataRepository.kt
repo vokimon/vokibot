@@ -102,7 +102,7 @@ class FileDataRepository(
         }
     }
 
-    fun entityIds(): Set<String> = command.listIds().toSet() + trigger.listIds().toSet()
+    fun entityIds(): Set<String> = command.listIds().toSet() + trigger.listIds().toSet() + automation.listIds().toSet()
 
     @Composable
     fun rememberDataVersion(): Int {
