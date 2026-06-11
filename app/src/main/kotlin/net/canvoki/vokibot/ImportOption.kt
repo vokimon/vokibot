@@ -11,12 +11,15 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import net.canvoki.shared.storage.rememberOpenFilePicker
 import net.canvoki.shared.usermessage.UserMessage
 
 @Composable
-fun ImportOption(repo: FileDataRepository) {
+fun ImportOption() {
+    val context = LocalContext.current
+    val repo = FileDataRepository.fromContext(context)
     val opener = rememberOpenFilePicker()
     var pendingSummary by remember { mutableStateOf<String?>(null) }
     var pendingBundle by remember { mutableStateOf<ExportedBundle?>(null) }

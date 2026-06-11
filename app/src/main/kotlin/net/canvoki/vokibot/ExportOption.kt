@@ -7,12 +7,15 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import net.canvoki.shared.storage.rememberSaveFilePicker
 import java.time.LocalDate
 
 @Composable
-fun ExportOption(repo: FileDataRepository) {
+fun ExportOption() {
+    val context = LocalContext.current
+    val repo = FileDataRepository.fromContext(context)
     val saver = rememberSaveFilePicker("application/json")
     ListItem(
         headlineContent = { Text("Export") },

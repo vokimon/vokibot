@@ -8,7 +8,6 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import net.canvoki.shared.component.preferences.PreferenceCategory
 import net.canvoki.shared.settings.LanguageSettings
@@ -16,9 +15,6 @@ import net.canvoki.shared.settings.ThemeSettings
 
 @Composable
 fun Drawer() {
-    val context = LocalContext.current
-    val repo = FileDataRepository.fromContext(context)
-
     Column(
         modifier =
             Modifier
@@ -30,8 +26,8 @@ fun Drawer() {
             ThemeSettings.Preference()
         }
         PreferenceCategory("Data Exchange") {
-            ExportOption(repo)
-            ImportOption(repo)
+            ExportOption()
+            ImportOption()
         }
         Spacer(modifier = Modifier.height(32.dp))
     }
