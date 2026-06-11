@@ -189,4 +189,16 @@ class ExportedBundleTest {
 
         assertEquals(setOf("in-both"), analysis.overwritten)
     }
+
+    @Test
+    fun `repositoryReferences includes references to objects in the repository`() {
+        val bundle = buildBundle(
+            anAutomation(id = "auto-1", triggerId = "ref-in-repo", commandIds = listOf("ref-not-in-repo")),
+        )
+        val repoIds = setOf("ref-in-repo", "unref-in-repo")
+
+        val analysis = bundle.analyzeImport(repoIds)
+
+        assertEquals(setOf("ref-in-repo"), analysis.repositoryReferences)
+    }
 }

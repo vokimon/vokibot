@@ -52,9 +52,10 @@ data class ExportedBundle(
 
     fun analyzeImport(repoEntityIds: Set<String>): ImportAnalysis {
         val bundleIds = entityIds()
+        val bundleRefs = references()
         return ImportAnalysis(
             overwritten = bundleIds intersect repoEntityIds,
-            repositoryReferences = emptySet(),
+            repositoryReferences = bundleRefs intersect repoEntityIds,
             referencedMissing = emptySet(),
         )
     }
