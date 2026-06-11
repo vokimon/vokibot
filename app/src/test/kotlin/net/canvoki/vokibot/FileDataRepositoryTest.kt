@@ -501,6 +501,16 @@ class FileDataRepositoryTest {
 
         assertEquals(setOf("cmd-1"), ids)
     }
+
+    @Test
+    fun `entityIds returns single trigger id`() {
+        val repo = FileDataRepository(testDir)
+        repo.saveTrigger(buildNfc("my tag", "trg-1"))
+
+        val ids = repo.entityIds()
+
+        assertEquals(setOf("nfc_trg-1"), ids)
+    }
 }
 
 fun <T : StorableEntity> assertDataEqual(
