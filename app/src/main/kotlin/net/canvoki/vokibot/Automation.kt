@@ -29,7 +29,7 @@ data class Automation(
 
     override fun toJson(): String = JsonConfig.encodeToString(serializer(), this)
 
-    override fun references(): Set<String> = setOf(triggerId)
+    override fun references(): Set<String> = setOf(triggerId) + commandIds.take(1).toSet()
 
     override fun getTitle(context: Context): String = name
 
