@@ -14,7 +14,16 @@ class ExportedBundleTest {
         )
 
     private fun commandJson() =
-        """{"id": "cmd-1", "displayName": "Test Command", "packageName":"com.test","className":"com.test.Main","extras":{},"flagList":[],"type":"launch_activity"}"""
+        """
+        {
+            "id": "cmd-1",
+            "displayName": "Test Command",
+            "packageName":"com.test",
+            "className":"com.test.Main","extras":{},
+            "flagList":[],
+            "type":"launch_activity"
+        }
+        """
 
     private fun anAutomation(
         id: String = "auto-1",
@@ -29,7 +38,16 @@ class ExportedBundleTest {
     )
 
     private fun automationJson() =
-        """{"id": "auto-1", "name": "Test Automation", "triggerType":"trigger_shortcut","triggerId":"trg-1","commandIds":["cmd-1"],"type": "automation"}"""
+        """
+        {
+            "id": "auto-1",
+            "name": "Test Automation",
+            "triggerType":"trigger_shortcut",
+            "triggerId":"trg-1",
+            "commandIds":["cmd-1"],
+            "type": "automation"
+        }
+        """
 
     private fun anTrigger(id: String = "trg-1") =
         ShortcutTrigger(
