@@ -91,4 +91,19 @@ class ExportedBundleTest {
 
         assertEquals(emptySet<String>(), refs)
     }
+
+    @Test
+    fun `automation references with no commands returns trigger only`() {
+        val auto = Automation(
+            id = "auto-1",
+            name = "test",
+            triggerType = "trigger_shortcut",
+            triggerId = "trg-1",
+            commandIds = emptyList(),
+        )
+
+        val refs = auto.references()
+
+        assertEquals(setOf("trg-1"), refs)
+    }
 }

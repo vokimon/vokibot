@@ -29,6 +29,8 @@ data class Automation(
 
     override fun toJson(): String = JsonConfig.encodeToString(serializer(), this)
 
+    override fun references(): Set<String> = setOf(triggerId)
+
     override fun getTitle(context: Context): String = name
 
     override val description: String
