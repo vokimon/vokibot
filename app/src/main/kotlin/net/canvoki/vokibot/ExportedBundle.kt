@@ -45,6 +45,11 @@ data class ImportAnalysis(
             overwritten.forEach { appendLine("- $it") }
             appendLine()
         }
+        if (repositoryReferences.isNotEmpty()) {
+            appendLine("References to existing entities:")
+            repositoryReferences.forEach { appendLine("- $it") }
+            appendLine()
+        }
     }
 }
 

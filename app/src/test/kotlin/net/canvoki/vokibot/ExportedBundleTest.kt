@@ -255,7 +255,6 @@ class ExportedBundleTest {
         assertEquals("Will overwrite:\n- cmd-1\n- trg-1\n\n", result)
     }
 
-    @Ignore("next step")
     @Test
     fun `summary formats repository references`() {
         val analysis = ImportAnalysis(
