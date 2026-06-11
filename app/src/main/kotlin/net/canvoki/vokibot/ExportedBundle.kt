@@ -56,7 +56,7 @@ data class ExportedBundle(
         return ImportAnalysis(
             overwritten = bundleIds intersect repoEntityIds,
             repositoryReferences = (bundleRefs - bundleIds) intersect repoEntityIds,
-            referencedMissing = emptySet(),
+            referencedMissing = (bundleRefs - bundleIds) - repoEntityIds,
         )
     }
 

@@ -214,4 +214,17 @@ class ExportedBundleTest {
 
         assertEquals(setOf("repo-id-referenced-in-bundle"), analysis.repositoryReferences)
     }
+
+    @Test
+    fun `referencedMissing detects references not in repo or bundle`() {
+        val bundle = buildBundle(
+            anTrigger(id = "inner-ref"),
+            anAutomation(id = "repo-unref", triggerId = "inner-ref", commandIds = listOf("unsolved-ref", "repo-ref")),
+        )
+        val repoIds = setOf("repo-ref", "repo-unref")
+
+        val analysis = bundle.analyzeImport(repoIds)
+
+        assertEquals(setOf("unsolved-ref"), analysis.referencedMissing)
+    }
 }
