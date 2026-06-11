@@ -43,25 +43,25 @@ data class ImportAnalysis(
     @Suppress("UNUSED_PARAMETER")
     fun summary(context: Context): String =
         buildString {
-             if (overwritten.isNotEmpty()) {
-                 appendLine("Will overwrite:")
-                 appendLine()
-                 overwritten.forEach { appendLine(it) }
-                 appendLine()
-             }
-             if (repositoryReferences.isNotEmpty()) {
-                 appendLine("References to existing entities:")
-                 appendLine()
-                 repositoryReferences.forEach { appendLine(it) }
-                 appendLine()
-             }
-             if (referencedMissing.isNotEmpty()) {
-                 appendLine("Missing references:")
-                 appendLine()
-                 referencedMissing.forEach { appendLine(it) }
-                 appendLine()
-             }
-         }
+            if (overwritten.isNotEmpty()) {
+                appendLine("Will overwrite:")
+                appendLine()
+                overwritten.forEach { appendLine(it) }
+                appendLine()
+            }
+            if (repositoryReferences.isNotEmpty()) {
+                appendLine("References to existing entities:")
+                appendLine()
+                repositoryReferences.forEach { appendLine(it) }
+                appendLine()
+            }
+            if (referencedMissing.isNotEmpty()) {
+                appendLine("Missing references:")
+                appendLine()
+                referencedMissing.forEach { appendLine(it) }
+                appendLine()
+            }
+        }
 }
 
 @Serializable
