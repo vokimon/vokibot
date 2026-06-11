@@ -39,22 +39,23 @@ data class ImportAnalysis(
     val repositoryReferences: Set<String>,
     val referencedMissing: Set<String>,
 ) {
-    fun summary(): String = buildString {
-        if (overwritten.isNotEmpty()) {
-            appendLine("Will overwrite:")
-            overwritten.forEach { appendLine("- $it") }
-            appendLine()
+    fun summary(): String =
+        buildString {
+            if (overwritten.isNotEmpty()) {
+                appendLine("Will overwrite:")
+                overwritten.forEach { appendLine("- $it") }
+                appendLine()
+            }
+            if (repositoryReferences.isNotEmpty()) {
+                appendLine("References to existing entities:")
+                repositoryReferences.forEach { appendLine("- $it") }
+                appendLine()
+            }
+            if (referencedMissing.isNotEmpty()) {
+                appendLine("Missing references:")
+                referencedMissing.forEach { appendLine("- $it") }
+            }
         }
-        if (repositoryReferences.isNotEmpty()) {
-            appendLine("References to existing entities:")
-            repositoryReferences.forEach { appendLine("- $it") }
-            appendLine()
-        }
-        if (referencedMissing.isNotEmpty()) {
-            appendLine("Missing references:")
-            referencedMissing.forEach { appendLine("- $it") }
-        }
-    }
 }
 
 @Serializable

@@ -192,9 +192,10 @@ class ExportedBundleTest {
 
     @Test
     fun `repositoryReferences includes references to objects in the repository`() {
-        val bundle = buildBundle(
-            anAutomation(id = "auto-1", triggerId = "ref-in-repo", commandIds = listOf("ref-not-in-repo")),
-        )
+        val bundle =
+            buildBundle(
+                anAutomation(id = "auto-1", triggerId = "ref-in-repo", commandIds = listOf("ref-not-in-repo")),
+            )
         val repoIds = setOf("ref-in-repo", "unref-in-repo")
 
         val analysis = bundle.analyzeImport(repoIds)
@@ -204,10 +205,15 @@ class ExportedBundleTest {
 
     @Test
     fun `repositoryReferences excludes overwritten`() {
-        val bundle = buildBundle(
-            anTrigger(id = "overwritten-referenced-in-bundle"),
-            anAutomation(id = "auto-1", triggerId = "overwritten-referenced-in-bundle", commandIds = listOf("repo-id-referenced-in-bundle")),
-        )
+        val bundle =
+            buildBundle(
+                anTrigger(id = "overwritten-referenced-in-bundle"),
+                anAutomation(
+                    id = "auto-1",
+                    triggerId = "overwritten-referenced-in-bundle",
+                    commandIds = listOf("repo-id-referenced-in-bundle"),
+                ),
+            )
         val repoIds = setOf("overwritten-referenced-in-bundle", "repo-id-referenced-in-bundle")
 
         val analysis = bundle.analyzeImport(repoIds)
@@ -217,10 +223,15 @@ class ExportedBundleTest {
 
     @Test
     fun `referencedMissing detects references not in repo or bundle`() {
-        val bundle = buildBundle(
-            anTrigger(id = "inner-ref"),
-            anAutomation(id = "repo-unref", triggerId = "inner-ref", commandIds = listOf("unsolved-ref", "repo-ref")),
-        )
+        val bundle =
+            buildBundle(
+                anTrigger(id = "inner-ref"),
+                anAutomation(
+                    id = "repo-unref",
+                    triggerId = "inner-ref",
+                    commandIds = listOf("unsolved-ref", "repo-ref"),
+                ),
+            )
         val repoIds = setOf("repo-ref", "repo-unref")
 
         val analysis = bundle.analyzeImport(repoIds)
@@ -230,11 +241,12 @@ class ExportedBundleTest {
 
     @Test
     fun `summary with no issues returns empty string`() {
-        val analysis = ImportAnalysis(
-            overwritten = emptySet(),
-            repositoryReferences = emptySet(),
-            referencedMissing = emptySet(),
-        )
+        val analysis =
+            ImportAnalysis(
+                overwritten = emptySet(),
+                repositoryReferences = emptySet(),
+                referencedMissing = emptySet(),
+            )
 
         val result = analysis.summary()
 
@@ -243,11 +255,12 @@ class ExportedBundleTest {
 
     @Test
     fun `summary formats overwritten entities`() {
-        val analysis = ImportAnalysis(
-            overwritten = setOf("cmd-1", "trg-1"),
-            repositoryReferences = emptySet(),
-            referencedMissing = emptySet(),
-        )
+        val analysis =
+            ImportAnalysis(
+                overwritten = setOf("cmd-1", "trg-1"),
+                repositoryReferences = emptySet(),
+                referencedMissing = emptySet(),
+            )
 
         val result = analysis.summary()
 
@@ -256,11 +269,12 @@ class ExportedBundleTest {
 
     @Test
     fun `summary formats repository references`() {
-        val analysis = ImportAnalysis(
-            overwritten = emptySet(),
-            repositoryReferences = setOf("cmd-1"),
-            referencedMissing = emptySet(),
-        )
+        val analysis =
+            ImportAnalysis(
+                overwritten = emptySet(),
+                repositoryReferences = setOf("cmd-1"),
+                referencedMissing = emptySet(),
+            )
 
         val result = analysis.summary()
 
@@ -269,11 +283,12 @@ class ExportedBundleTest {
 
     @Test
     fun `summary formats missing references`() {
-        val analysis = ImportAnalysis(
-            overwritten = emptySet(),
-            repositoryReferences = emptySet(),
-            referencedMissing = setOf("cmd-3"),
-        )
+        val analysis =
+            ImportAnalysis(
+                overwritten = emptySet(),
+                repositoryReferences = emptySet(),
+                referencedMissing = setOf("cmd-3"),
+            )
 
         val result = analysis.summary()
 
