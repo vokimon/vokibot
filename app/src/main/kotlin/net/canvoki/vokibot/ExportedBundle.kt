@@ -42,7 +42,7 @@ data class ExportedBundle(
 ) {
     fun entityIds(): Set<String> = entities.map { it.id }.toSet()
 
-    fun references(): Set<String> = entities.take(1).flatMap { it.references() }.toSet()
+    fun references(): Set<String> = entities.flatMap { it.references() }.toSet()
 
     fun toJson(): String = PrettyJson.encodeToString(serializer(), this)
 

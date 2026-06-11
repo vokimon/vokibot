@@ -16,13 +16,17 @@ class ExportedBundleTest {
     private fun commandJson() =
         """{"id": "cmd-1", "displayName": "Test Command", "packageName":"com.test","className":"com.test.Main","extras":{},"flagList":[],"type":"launch_activity"}"""
 
-    private fun anAutomation() =
+    private fun anAutomation(
+        id: String = "auto-1",
+        triggerId: String = "trg-1",
+        commandIds: List<String> = listOf("cmd-1"),
+    ) =
         Automation(
-            id = "auto-1",
+            id = id,
             name = "Test Automation",
             triggerType = "trigger_shortcut",
-            triggerId = "trg-1",
-            commandIds = listOf("cmd-1"),
+            triggerId = triggerId,
+            commandIds = commandIds,
         )
 
     private fun automationJson() =
@@ -153,5 +157,19 @@ class ExportedBundleTest {
         val refs = bundle.references()
 
         assertEquals(setOf("trg-1", "cmd-1"), refs)
+    }
+
+    @Test
+    fun `bundle references returns union of all automation refs`() {
+        val bundle = buildBundle(
+            anAutomation(),
+            anAutomation(id = "auto-2", triggerId = "trg-2", commandIds = listOf("cmd-2")),
+            aCommand(),
+            anTrigger(),
+        )
+
+        val refs = bundle.references()
+
+        assertEquals(setOf("trg-1", "cmd-1", "trg-2", "cmd-2"), refs)
     }
 }
