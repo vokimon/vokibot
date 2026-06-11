@@ -40,7 +40,7 @@ fun ImportOption() {
                     bytes?.let {
                         try {
                             val bundle = ExportedBundle.fromJson(it.decodeToString())
-                            val summary = bundle.analyzeImport(repo.entityIds()).summary()
+                            val summary = bundle.analyzeImport(repo.entityIds()).summary(context)
                             if (summary.isEmpty()) {
                                 repo.importBundle(bundle)
                                 UserMessage.Info("Imported ${bundle.entities.size} entities").post()

@@ -1,5 +1,6 @@
 package net.canvoki.vokibot
 
+import android.content.Context
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.builtins.ListSerializer
@@ -39,8 +40,9 @@ data class ImportAnalysis(
     val repositoryReferences: Set<String>,
     val referencedMissing: Set<String>,
 ) {
-     fun summary(): String =
-         buildString {
+    @Suppress("UNUSED_PARAMETER")
+    fun summary(context: Context): String =
+        buildString {
              if (overwritten.isNotEmpty()) {
                  appendLine("Will overwrite:")
                  appendLine()

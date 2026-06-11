@@ -1,10 +1,19 @@
 package net.canvoki.vokibot
 
+import android.content.Context
+import androidx.test.core.app.ApplicationProvider
 import net.canvoki.shared.test.assertEquals
 import net.canvoki.shared.test.assertJsonEqual
 import org.junit.Test
+import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
+import org.robolectric.annotation.Config
 
+@RunWith(RobolectricTestRunner::class)
+@Config(qualifiers = "en")
 class ExportedBundleTest {
+    fun context(): Context = ApplicationProvider.getApplicationContext()
+
     private fun aCommand(id: String = "cmd-1") =
         LaunchActivityCommand(
             id = id,
@@ -266,7 +275,7 @@ class ExportedBundleTest {
                 referencedMissing = emptySet(),
             )
 
-        val result = analysis.summary()
+        val result = analysis.summary(context())
 
         assertEquals("", result)
     }
@@ -280,7 +289,7 @@ class ExportedBundleTest {
                 referencedMissing = emptySet(),
             )
 
-        val result = analysis.summary()
+        val result = analysis.summary(context())
 
         assertEquals("Will overwrite:\n\ncmd-1\ntrg-1\n\n", result)
     }
@@ -294,7 +303,7 @@ class ExportedBundleTest {
                 referencedMissing = emptySet(),
             )
 
-        val result = analysis.summary()
+        val result = analysis.summary(context())
 
         assertEquals("References to existing entities:\n\ncmd-1\n\n", result)
     }
@@ -308,7 +317,7 @@ class ExportedBundleTest {
                 referencedMissing = setOf("cmd-3"),
             )
 
-        val result = analysis.summary()
+        val result = analysis.summary(context())
 
         assertEquals("Missing references:\n\ncmd-3\n\n", result)
     }
