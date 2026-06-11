@@ -23,7 +23,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -64,8 +63,8 @@ fun CommandList(
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
     val repository = remember { FileDataRepository.fromContext(context) }
-    var refreshCounter by remember { mutableIntStateOf(0) }
     var commandToDelete by remember { mutableStateOf<String?>(null) }
+    val dataVersion = repository.rememberDataVersion()
 
     val fallbacErrorMessage = stringResource(R.string.command_run_error_fallback)
 
@@ -79,7 +78,7 @@ fun CommandList(
                 title = stringResource(R.string.commandlist_header),
             )
             AsyncList(
-                refreshKeys = listOf(refreshCounter),
+                refreshKeys = listOf(dataVersion),
                 loader = { repository.loadAllCommands() },
                 itemKey = { it.id },
                 groupBy = { command -> command.type },
@@ -135,7 +134,7 @@ fun CommandList(
                                 onClick = {
                                     menuExpanded = false
                                     StorableEntity.getEditorScreen(command.type, command.id)?.let {
-                                        nav.push(it) { refreshCounter++ }
+                                        nav.push(it)
                                     }
                                 },
                             )
@@ -181,7 +180,7 @@ fun CommandList(
         }
 
         FloatingActionButton(
-            onClick = { nav.push(CommandTypePicker) { refreshCounter++ } },
+            onClick = { nav.push(CommandTypePicker) },
             modifier = Modifier.align(Alignment.BottomEnd).padding(16.dp),
         ) {
             Icon(
@@ -203,7 +202,6 @@ fun CommandList(
         onConfirm = {
             commandToDelete?.let { id ->
                 repository.removeCommand(id)
-                refreshCounter++
                 commandToDelete = null
             }
         },

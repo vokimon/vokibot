@@ -1,6 +1,12 @@
 package net.canvoki.vokibot
 
 import android.content.Context
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import java.io.File
 
 class FileDataRepository(
@@ -94,5 +100,16 @@ class FileDataRepository(
                 else -> {}
             }
         }
+    }
+
+    @Composable
+    fun rememberDataVersion(): Int {
+        var version by remember { mutableIntStateOf(0) }
+        DisposableEffect(Unit) {
+            val listener = { version += 1 }
+            DataChangeBus.subscribe(listener)
+            onDispose { DataChangeBus.unsubscribe(listener) }
+        }
+        return version
     }
 }

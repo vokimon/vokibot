@@ -2,7 +2,6 @@ package net.canvoki.vokibot
 
 import org.junit.After
 import org.junit.Assert.assertEquals
-import org.junit.Ignore
 import org.junit.Test
 
 class DataChangeBusTest {
