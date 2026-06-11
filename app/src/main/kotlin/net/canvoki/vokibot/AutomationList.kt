@@ -17,7 +17,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -39,12 +38,12 @@ data object AutomationList : StackedScreen<Unit>() {
     override fun Screen(nav: StackNavigatorState) {
         val context = LocalContext.current
         val repository = remember { FileDataRepository.fromContext(context) }
-        var refreshCounter by remember { mutableIntStateOf(0) }
         var automationToDelete by remember { mutableStateOf<Automation?>(null) }
+        val dataVersion = repository.rememberDataVersion()
 
         Box(modifier = Modifier.fillMaxSize()) {
             AsyncList(
-                refreshKeys = listOf(refreshCounter),
+                refreshKeys = listOf(dataVersion),
                 loader = { repository.automation.all() },
                 itemKey = { it.id },
                 groupBy = { "automation" },
@@ -92,9 +91,7 @@ data object AutomationList : StackedScreen<Unit>() {
                     },
                     modifier =
                         Modifier.clickable {
-                            nav.push(AutomationEditor(automation.id)) {
-                                refreshCounter++
-                            }
+                            nav.push(AutomationEditor(automation.id))
                         },
                     trailingContent = {
                         IconButton(onClick = { menuExpanded = true }) {
@@ -127,9 +124,7 @@ data object AutomationList : StackedScreen<Unit>() {
 
             FloatingActionButton(
                 onClick = {
-                    nav.push(AutomationEditor(null)) {
-                        refreshCounter++
-                    }
+                    nav.push(AutomationEditor(null))
                 },
                 modifier = Modifier.align(Alignment.BottomEnd).padding(16.dp),
             ) {
@@ -149,7 +144,6 @@ data object AutomationList : StackedScreen<Unit>() {
             onConfirm = {
                 automationToDelete?.let { auto ->
                     repository.automation.remove(auto.id)
-                    refreshCounter++
                     automationToDelete = null
                 }
             },
