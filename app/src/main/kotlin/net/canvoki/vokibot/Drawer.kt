@@ -12,6 +12,10 @@ import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -30,6 +34,8 @@ fun Drawer() {
     val repo = FileDataRepository.fromContext(context)
     val saver = rememberSaveFilePicker("application/json")
     val opener = rememberOpenFilePicker()
+    var pendingSummary by remember { mutableStateOf<String?>(null) }
+    var pendingBundle by remember { mutableStateOf<ExportedBundle?>(null) }
 
     Column(
         modifier =
@@ -76,8 +82,14 @@ fun Drawer() {
                             bytes?.let {
                                 try {
                                     val bundle = ExportedBundle.fromJson(it.decodeToString())
-                                    repo.importBundle(bundle)
-                                    UserMessage.Info("Imported ${bundle.entities.size} entities").post()
+                                    val summary = bundle.analyzeImport(repo.entityIds()).summary()
+                                    if (summary.isEmpty()) {
+                                        repo.importBundle(bundle)
+                                        UserMessage.Info("Imported ${bundle.entities.size} entities").post()
+                                    } else {
+                                        pendingSummary = summary
+                                        pendingBundle = bundle
+                                    }
                                 } catch (e: kotlinx.serialization.SerializationException) {
                                     UserMessage.Info("Invalid import file $e").post()
                                 }
@@ -87,5 +99,25 @@ fun Drawer() {
             )
         }
         Spacer(modifier = Modifier.height(32.dp))
+    }
+
+    if (pendingSummary != null) {
+        ConfirmDialog(
+            show = true,
+            title = "Import Analysis",
+            text = pendingSummary!!,
+            confirmText = "Import",
+            dismissText = "Cancel",
+            onConfirm = {
+                pendingBundle?.let { repo.importBundle(it) }
+                UserMessage.Info("Imported ${pendingBundle?.entities?.size} entities").post()
+                pendingSummary = null
+                pendingBundle = null
+            },
+            onDismiss = {
+                pendingSummary = null
+                pendingBundle = null
+            },
+        )
     }
 }
