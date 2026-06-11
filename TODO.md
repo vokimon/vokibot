@@ -11,11 +11,7 @@
 - [x] Import edge case 4: Duplicate IDs: Importing same bundle twice -> silent overwrite -> This is intended
 - [ ] Import edge case 5: Cross-type ID collision: Command "abc" and trigger "abc" -> no collision, different DataSets with different prefixes. Not an issue.
     - [ ] But xplicit ids can be whatever.
-- [ ] Import edge case 6: File picker cancelled: Returns null -- should be handled, no import triggered. Need to verify.
-- [ ] Import edge case 7: File read fails after picker: URI returned but read fails (permissions, deleted file). Crash risk -- uncaught exception.
-- [ ] Import edge case 8: Very large bundle: No size limit. Memory/performance concern -- unlikely but possible.
-- [ ] Import edge case 9: Re-import after export with different version: Unknown types become UnknownEntity. Graceful degradation, but no migration path.
-- [ ] Import edge case 10: Import from different device/app version: Entity types may not exist locally. Same as I2 -- unknown types silently dropped.
+- [x] Import edge case 6: File picker cancelled: Returns null -- should be handled, no import triggered. -> bytes?.let
 
 - [x] Refresh after import
 - [ ] Trigger/CommandList: Set a fix order (it changes on every refresh)

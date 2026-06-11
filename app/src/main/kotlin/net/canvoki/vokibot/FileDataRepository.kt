@@ -102,6 +102,8 @@ class FileDataRepository(
         }
     }
 
+    fun entityIds(): Set<String> = command.listIds().toSet()
+
     @Composable
     fun rememberDataVersion(): Int {
         var version by remember { mutableIntStateOf(0) }

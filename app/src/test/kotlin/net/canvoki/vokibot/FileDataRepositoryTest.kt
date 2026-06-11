@@ -491,6 +491,16 @@ class FileDataRepositoryTest {
 
         assertEquals("received", result)
     }
+
+    @Test
+    fun `entityIds returns single command id`() {
+        val repo = FileDataRepository(testDir)
+        repo.saveCommand(buildCommand("cmd-1"))
+
+        val ids = repo.entityIds()
+
+        assertEquals(setOf("cmd-1"), ids)
+    }
 }
 
 fun <T : StorableEntity> assertDataEqual(
