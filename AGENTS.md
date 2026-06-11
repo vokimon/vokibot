@@ -21,20 +21,22 @@
 
 CI runs: build → test → assemble (see `.github/workflows/main.yaml`)
 
+To avoid build collisions and excessive token expending.
+Those commands are for the User to run. Not for the agent to run,
+with the only exception of `spotlessApply`.
+
 ## Controlled Workflow
 
 1. **Task**: User asks a task
 2. **Propose**: Agent proposes code changes (few tens of lines), focused on a clear goal
 3. **Refine**: User reviews, asks refinements in chat
 4. **Apply**: Either User or Agent writes/edits the files
-5. **Test**: User compiles, tests, and provides feedback in chat (this is important)
-6. **Iterate**: Repeat until User commits or discards the proposal
-
-Alternative: User can discard by checking out (reverting).
+5. **Build/Test**: User compiles, tests, and provides feedback in chat not the Agen (this is important)
+6. **Iterate**: Repeat until User commits or discards the proposal by reverting uncommited changes.
 
 **Git references**:
 - Last commit = reference for ongoing changes
-- Stage = optional reference for refinements (only before asking for refinements in an ongoing proposal)
+- Stage = optional reference for refinements (usually before asking for refinements in an ongoing proposal)
 
 **Proposal categories** (do not mix in one proposal):
 1. Style (formatting, naming)
@@ -74,8 +76,11 @@ When using TDD (Beck/Fowler methodology):
 - Avoid multiple asserts in a single test
 - When asserting multiple parts of a structure, build a helper that dumps the structure as string and assert against expected output using `net.canvoki.shared.test.assertEquals` (supports colored multiline diff)
 - When testing multiple cases with the same logic, create a separate test method for each case; extract common code to a helper method with discriminant features as parameters
-- Asserting large structures, often became fragile. Concentrating in a helper the definition of the unrelevant parts of the structure, and parametrizing the relevant one, makes updating those irrelevan parts more easy
+- Asserting large structures, often became fragile. Concentrating in a helper the definition of the unrelevant parts of the structure, and parametrizing the relevant one, makes updating those irrelevant parts more easy. Do not expose parameters before they are needed.
 - For setup objects, encapsulate common setup in a helper with parameters for what varies between cases; this makes each test case show only what differs
+- Name the tests to include those parts: sut, case and optionally expectation, like in `summary with many errors display one each line"
+- For literals, choose content that when shown in assertions, help to make faster diagnoses. Instead of naming two test objects 'a' and 'b', name them "previous", "wrongname"
+- For aggregations consider testing 0, 1, N cases. Depending on the case, 0 or 1 first may make simpler fail the tests in order.
 
 **Rules**:
 - Do not change behavior during RED phase
@@ -133,6 +138,9 @@ Since all the steps are stable, we could stop an ongoing refactor and focus on T
 - IDs and comments in English (regardless of prompt language)
 - Avoid "conversational comments" — code comments that make sense only in this conversation, common in tutorials but awful in committed code
 - Comments should help maintenance, not explain what you changed
+- Names should provide meaning and purpose, names should sufice to avoid comments most of the time
+- Meaningfull names use to be long, avoid including empty significants (Manager, Object...)
+- Meaningfull names use to be long, avoid repeating implied context, ie, `agentName` attribute in an `Agent` class.
 
 ## Exception Handling
 
