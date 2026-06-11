@@ -39,7 +39,13 @@ data class ImportAnalysis(
     val repositoryReferences: Set<String>,
     val referencedMissing: Set<String>,
 ) {
-    fun summary(): String = ""
+    fun summary(): String = buildString {
+        if (overwritten.isNotEmpty()) {
+            appendLine("Will overwrite:")
+            overwritten.forEach { appendLine("- $it") }
+            appendLine()
+        }
+    }
 }
 
 @Serializable

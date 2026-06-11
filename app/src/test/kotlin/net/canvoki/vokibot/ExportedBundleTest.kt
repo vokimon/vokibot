@@ -242,7 +242,6 @@ class ExportedBundleTest {
         assertEquals("", result)
     }
 
-    @Ignore("next step")
     @Test
     fun `summary formats overwritten entities`() {
         val analysis = ImportAnalysis(
