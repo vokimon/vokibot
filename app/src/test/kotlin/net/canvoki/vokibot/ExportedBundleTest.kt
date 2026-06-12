@@ -387,12 +387,14 @@ class ExportedBundleTest {
                 overwritten = setOf("cmd-1"),
                 repositoryReferences = setOf("cmd-2"),
                 referencedMissing = setOf("cmd-3"),
+                unsupportedTypes = setOf("unsupported_type"),
             )
 
         val result = analysis.summary(context())
 
         assertEquals(
-            "Se sobreescriurà:\n\ncmd-1\n\n" +
+            "Unsupported types:\n\nunsupported_type\n\n" +
+                "Se sobreescriurà:\n\ncmd-1\n\n" +
                 "Referències a elements existents:\n\ncmd-2\n\n" +
                 "Referències no resoltes:\n\ncmd-3\n\n",
             result,

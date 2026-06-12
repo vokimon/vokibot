@@ -44,6 +44,12 @@ data class ImportAnalysis(
     @Suppress("UNUSED_PARAMETER")
     fun summary(context: Context): String =
         buildString {
+            if (unsupportedTypes.isNotEmpty()) {
+                appendLine("Unsupported types:")
+                appendLine()
+                unsupportedTypes.forEach { appendLine(it) }
+                appendLine()
+            }
             if (overwritten.isNotEmpty()) {
                 appendLine(context.getString(R.string.import_analysis_overwritten))
                 appendLine()
@@ -60,12 +66,6 @@ data class ImportAnalysis(
                 appendLine(context.getString(R.string.import_analysis_unresolved))
                 appendLine()
                 referencedMissing.forEach { appendLine(it) }
-                appendLine()
-            }
-            if (unsupportedTypes.isNotEmpty()) {
-                appendLine("Unsupported types:")
-                appendLine()
-                unsupportedTypes.forEach { appendLine(it) }
                 appendLine()
             }
         }
