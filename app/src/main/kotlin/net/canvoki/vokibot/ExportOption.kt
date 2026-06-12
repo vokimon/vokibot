@@ -35,9 +35,11 @@ fun ExportOption() {
         },
         modifier =
             Modifier.clickable {
-                val timestamp = LocalDateTime.now(ZoneOffset.UTC)
-                    .format(DateTimeFormatter.ISO_LOCAL_DATE_TIME)
-                    .replace(":", "-")
+                val timestamp =
+                    LocalDateTime
+                        .now(ZoneOffset.UTC)
+                        .format(DateTimeFormatter.ISO_LOCAL_DATE_TIME)
+                        .replace(":", "-")
                 val filename = "vokibot-$timestamp.json"
                 val json = repo.exportBundle().toJson()
                 saver.save(filename, json.toByteArray())
