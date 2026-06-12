@@ -32,6 +32,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import net.canvoki.shared.component.AppScaffold
 import net.canvoki.shared.component.WatermarkBox
@@ -128,88 +129,39 @@ private fun NfcUidDisplayScreen(
     var showNameDialog by remember { mutableStateOf(false) }
     val repository = remember { FileDataRepository.fromContext(context) }
 
-    Column(
-        modifier =
-            Modifier
-                .fillMaxSize()
-                .padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
-    ) {
+    FullCenter() {
         when (executionState) {
             is ExecutionState.Searching -> {
-                CircularProgressIndicator()
-                Spacer(modifier = Modifier.height(16.dp))
-                Text(stringResource(R.string.nfc_trigger_searching))
+                Loading(stringResource(R.string.nfc_trigger_searching))
             }
             is ExecutionState.Executing -> {
-                CircularProgressIndicator()
-                Spacer(modifier = Modifier.height(16.dp))
-                Text(stringResource(R.string.nfc_trigger_executing))
+                Loading(stringResource(R.string.nfc_trigger_executing))
             }
             is ExecutionState.NoTrigger -> {
-                Icon(
-                    painter = painterResource(R.drawable.ic_nfc),
-                    contentDescription = null,
-                    modifier = Modifier.size(64.dp),
-                    tint = MaterialTheme.colorScheme.primary,
+                NotAutomatedYet(
+                    iconRes = NfcTrigger.iconRes,
+                    title = stringResource(R.string.nfc_trigger_detected),
+                    subtitle = uid ?: "???",
+                    help = stringResource(R.string.nfc_trigger_not_registered),
+                    actionText = stringResource(R.string.nfc_trigger_create_automation),
+                    action = {
+                        showNameDialog = true
+                    },
                 )
-                Spacer(modifier = Modifier.height(24.dp))
-                Text(
-                    text = stringResource(R.string.nfc_trigger_detected),
-                    style = MaterialTheme.typography.titleMedium,
-                )
-                Spacer(modifier = Modifier.height(8.dp))
-                Text(
-                    text = uid ?: "???",
-                    style = MaterialTheme.typography.headlineMedium,
-                    modifier = Modifier.padding(vertical = 8.dp),
-                )
-                Spacer(modifier = Modifier.height(16.dp))
-                Text(
-                    text = stringResource(R.string.nfc_trigger_not_registered),
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
-                Spacer(modifier = Modifier.height(16.dp))
-                Button(onClick = {
-                    showNameDialog = true
-                }) {
-                    Text(stringResource(R.string.nfc_trigger_create_automation))
-                }
             }
             is ExecutionState.NoAutomation -> {
-                Icon(
-                    painter = painterResource(R.drawable.ic_nfc),
-                    contentDescription = null,
-                    modifier = Modifier.size(64.dp),
-                    tint = MaterialTheme.colorScheme.primary,
+                NotAutomatedYet(
+                    iconRes = NfcTrigger.iconRes,
+                    title = triggerName ?: stringResource(R.string.nfc_trigger_detected),
+                    subtitle = uid ?: "???",
+                    help = stringResource(R.string.nfc_trigger_no_automation),
+                    actionText = stringResource(R.string.nfc_trigger_create_automation),
+                    action = {
+                        uid?.let { rawUid ->
+                            onCreateAutomation(NfcTrigger.idFromUid(rawUid))
+                        }
+                    },
                 )
-                Spacer(modifier = Modifier.height(24.dp))
-                Text(
-                    text = triggerName ?: stringResource(R.string.nfc_trigger_detected),
-                    style = MaterialTheme.typography.titleMedium,
-                )
-                Spacer(modifier = Modifier.height(8.dp))
-                Text(
-                    text = uid ?: "???",
-                    style = MaterialTheme.typography.headlineSmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
-                Spacer(modifier = Modifier.height(16.dp))
-                Text(
-                    text = stringResource(R.string.nfc_trigger_no_automation),
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
-                Spacer(modifier = Modifier.height(16.dp))
-                Button(onClick = {
-                    uid?.let { rawUid ->
-                        onCreateAutomation(NfcTrigger.idFromUid(rawUid))
-                    }
-                }) {
-                    Text(stringResource(R.string.nfc_trigger_create_automation))
-                }
             }
             is ExecutionState.Error, is ExecutionState.Idle -> {
                 Text(
@@ -241,6 +193,68 @@ private fun NfcUidDisplayScreen(
             }
         },
     )
+}
+
+@Composable
+fun Loading(text: String) {
+    CircularProgressIndicator()
+    Spacer(modifier = Modifier.height(16.dp))
+    Text(text)
+}
+
+@Composable
+fun FullCenter(content: @Composable ()->Unit) {
+    Column(
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center,
+    ) {
+        content.invoke()
+    }
+}
+
+@Composable
+fun NotAutomatedYet(
+    iconRes: Int,
+    title: String,
+    subtitle: String,
+    help: String,
+    actionText: String,
+    action: () -> Unit,
+) {
+    Icon(
+        painter = painterResource(iconRes),
+        contentDescription = null,
+        modifier = Modifier.size(64.dp),
+        tint = MaterialTheme.colorScheme.primary,
+    )
+    Spacer(modifier = Modifier.height(24.dp))
+    Text(
+        text = title,
+        style = MaterialTheme.typography.titleMedium,
+    )
+    Spacer(modifier = Modifier.height(8.dp))
+    Text(
+        text = subtitle,
+        style = MaterialTheme.typography.headlineSmall,
+        //style = MaterialTheme.typography.headlineMedium,
+        color = MaterialTheme.colorScheme.onSurfaceVariant,
+        modifier = Modifier.padding(vertical = 8.dp),
+    )
+    Spacer(modifier = Modifier.height(16.dp))
+    Text(
+        text = help,
+        style = MaterialTheme.typography.bodyMedium,
+        color = MaterialTheme.colorScheme.onSurfaceVariant,
+        textAlign = TextAlign.Center,
+    )
+    Spacer(modifier = Modifier.height(48.dp))
+    Button(onClick = { action.invoke() }) {
+        Text(actionText)
+    }
 }
 
 private fun extractUidFromIntent(intent: Intent): String? =
