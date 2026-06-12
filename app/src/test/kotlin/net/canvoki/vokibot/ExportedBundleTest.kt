@@ -309,6 +309,21 @@ class ExportedBundleTest {
     }
 
     @Test
+    fun `summary formats unsupported types`() {
+        val analysis =
+            ImportAnalysis(
+                overwritten = emptySet(),
+                repositoryReferences = emptySet(),
+                referencedMissing = emptySet(),
+                unsupportedTypes = setOf("unsupported_type"),
+            )
+
+        val result = analysis.summary(context())
+
+        assertEquals("Unsupported types:\n\nunsupported_type\n\n", result)
+    }
+
+    @Test
     fun `summary with no issues returns empty string`() {
         val analysis =
             ImportAnalysis(

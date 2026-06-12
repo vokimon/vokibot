@@ -62,6 +62,12 @@ data class ImportAnalysis(
                 referencedMissing.forEach { appendLine(it) }
                 appendLine()
             }
+            if (unsupportedTypes.isNotEmpty()) {
+                appendLine("Unsupported types:")
+                appendLine()
+                unsupportedTypes.forEach { appendLine(it) }
+                appendLine()
+            }
         }
 }
 
