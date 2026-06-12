@@ -26,6 +26,8 @@ fun ImportOption() {
     val opener = rememberOpenFilePicker()
     var pendingSummary by remember { mutableStateOf<String?>(null) }
     var pendingBundle by remember { mutableStateOf<ExportedBundle?>(null) }
+    val successMessage = stringResource(R.string.import_result_success)
+    val failureMessage = stringResource(R.string.import_result_failure)
 
     ListItem(
         headlineContent = { Text(stringResource(R.string.dasher_import_title)) },
@@ -47,16 +49,13 @@ fun ImportOption() {
                             val summary = bundle.analyzeImport(repo.entityIds()).summary(context)
                             if (summary.isEmpty()) {
                                 repo.importBundle(bundle)
-                                UserMessage
-                                    .Info(
-                                        context.getString(R.string.import_result_success, bundle.entities.size),
-                                    ).post()
+                                UserMessage.Info(successMessage.format(bundle.entities.size)).post()
                             } else {
                                 pendingSummary = summary
                                 pendingBundle = bundle
                             }
                         } catch (e: kotlinx.serialization.SerializationException) {
-                            UserMessage.Info(context.getString(R.string.import_result_failure, e.toString())).post()
+                            UserMessage.Info(failureMessage.format(e.toString())).post()
                         }
                     }
                 }
@@ -72,10 +71,7 @@ fun ImportOption() {
             dismissText = stringResource(R.string.import_confirm_dialog_ko),
             onConfirm = {
                 pendingBundle?.let { repo.importBundle(it) }
-                UserMessage
-                    .Info(
-                        context.getString(R.string.import_result_success, pendingBundle?.entities?.size ?: 0),
-                    ).post()
+                UserMessage.Info(successMessage.format(pendingBundle?.entities?.size ?: 0)).post()
                 pendingSummary = null
                 pendingBundle = null
             },
