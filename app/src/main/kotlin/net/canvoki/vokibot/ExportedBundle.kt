@@ -88,10 +88,11 @@ data class ExportedBundle(
             overwritten = bundleIds intersect repoEntityIds,
             repositoryReferences = (bundleRefs - bundleIds) intersect repoEntityIds,
             referencedMissing = (bundleRefs - bundleIds) - repoEntityIds,
-            unsupportedTypes = entities
-                .filterIsInstance<UnknownEntity>()
-                .map { it.type }
-                .toSet(),
+            unsupportedTypes =
+                entities
+                    .filterIsInstance<UnknownEntity>()
+                    .map { it.type }
+                    .toSet(),
         )
     }
 
