@@ -163,7 +163,7 @@ private fun NfcUidDisplayScreen(
             )
         }
         is ExecutionState.Error, is ExecutionState.Idle -> {
-            FullCenter() {
+            FullCenter {
                 Text(
                     text = stringResource(R.string.nfc_trigger_no_tag),
                     style = MaterialTheme.typography.bodyMedium,
@@ -197,7 +197,7 @@ private fun NfcUidDisplayScreen(
 
 @Composable
 fun Loading(text: String) {
-    FullCenter() {
+    FullCenter {
         CircularProgressIndicator()
         Spacer(modifier = Modifier.height(16.dp))
         Text(text)
@@ -205,7 +205,7 @@ fun Loading(text: String) {
 }
 
 @Composable
-fun FullCenter(content: @Composable ()->Unit) {
+fun FullCenter(content: @Composable () -> Unit) {
     Column(
         modifier =
             Modifier
@@ -227,7 +227,7 @@ fun NotAutomatedYet(
     actionText: String,
     action: () -> Unit,
 ) {
-    FullCenter() {
+    FullCenter {
         Icon(
             painter = painterResource(iconRes),
             contentDescription = null,

@@ -36,17 +36,22 @@ data class ShortcutTrigger(
 
         fun fromJson(jsonString: String): ShortcutTrigger = JsonConfig.decodeFromString(serializer(), jsonString)
 
-        fun fromExistingShortcut(context: Context, id: String): ShortcutTrigger? {
+        fun fromExistingShortcut(
+            context: Context,
+            id: String,
+        ): ShortcutTrigger? {
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) return null
-            val info = ShortcutManagerCompat
-                .getShortcuts(context, ShortcutManagerCompat.FLAG_MATCH_PINNED)
-                .firstOrNull { it.id == id }
-                ?: return null
+            val info =
+                ShortcutManagerCompat
+                    .getShortcuts(context, ShortcutManagerCompat.FLAG_MATCH_PINNED)
+                    .firstOrNull { it.id == id }
+                    ?: return null
             return ShortcutTrigger(
                 id = id,
-                displayName = info.longLabel?.toString()
-                    ?: info.shortLabel?.toString()
-                    ?: id,
+                displayName =
+                    info.longLabel?.toString()
+                        ?: info.shortLabel?.toString()
+                        ?: id,
             )
         }
     }

@@ -22,7 +22,7 @@ class ShortcutDispatchActivity : ComponentActivity() {
     }
 
     private fun handleTrigger(intent: Intent) {
-        log("ShortcutDispatchActivity: Processing ${intent}")
+        log("ShortcutDispatchActivity: Processing $intent")
         if (intent.action != ACTION_TRIGGER) {
             log("ShortcutDispatchActivity: Wrong action ${intent.action}")
             finish()
