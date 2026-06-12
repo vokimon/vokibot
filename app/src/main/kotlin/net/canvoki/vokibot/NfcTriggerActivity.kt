@@ -129,41 +129,41 @@ private fun NfcUidDisplayScreen(
     var showNameDialog by remember { mutableStateOf(false) }
     val repository = remember { FileDataRepository.fromContext(context) }
 
-    FullCenter() {
-        when (executionState) {
-            is ExecutionState.Searching -> {
-                Loading(stringResource(R.string.nfc_trigger_searching))
-            }
-            is ExecutionState.Executing -> {
-                Loading(stringResource(R.string.nfc_trigger_executing))
-            }
-            is ExecutionState.NoTrigger -> {
-                NotAutomatedYet(
-                    iconRes = NfcTrigger.iconRes,
-                    title = stringResource(R.string.nfc_trigger_detected),
-                    subtitle = uid ?: "???",
-                    help = stringResource(R.string.nfc_trigger_not_registered),
-                    actionText = stringResource(R.string.nfc_trigger_create_automation),
-                    action = {
-                        showNameDialog = true
-                    },
-                )
-            }
-            is ExecutionState.NoAutomation -> {
-                NotAutomatedYet(
-                    iconRes = NfcTrigger.iconRes,
-                    title = triggerName ?: stringResource(R.string.nfc_trigger_detected),
-                    subtitle = uid ?: "???",
-                    help = stringResource(R.string.nfc_trigger_no_automation),
-                    actionText = stringResource(R.string.nfc_trigger_create_automation),
-                    action = {
-                        uid?.let { rawUid ->
-                            onCreateAutomation(NfcTrigger.idFromUid(rawUid))
-                        }
-                    },
-                )
-            }
-            is ExecutionState.Error, is ExecutionState.Idle -> {
+    when (executionState) {
+        is ExecutionState.Searching -> {
+            Loading(stringResource(R.string.nfc_trigger_searching))
+        }
+        is ExecutionState.Executing -> {
+            Loading(stringResource(R.string.nfc_trigger_executing))
+        }
+        is ExecutionState.NoTrigger -> {
+            NotAutomatedYet(
+                iconRes = NfcTrigger.iconRes,
+                title = stringResource(R.string.nfc_trigger_detected),
+                subtitle = uid ?: "???",
+                help = stringResource(R.string.nfc_trigger_not_registered),
+                actionText = stringResource(R.string.nfc_trigger_create_automation),
+                action = {
+                    showNameDialog = true
+                },
+            )
+        }
+        is ExecutionState.NoAutomation -> {
+            NotAutomatedYet(
+                iconRes = NfcTrigger.iconRes,
+                title = triggerName ?: stringResource(R.string.nfc_trigger_detected),
+                subtitle = uid ?: "???",
+                help = stringResource(R.string.nfc_trigger_no_automation),
+                actionText = stringResource(R.string.nfc_trigger_create_automation),
+                action = {
+                    uid?.let { rawUid ->
+                        onCreateAutomation(NfcTrigger.idFromUid(rawUid))
+                    }
+                },
+            )
+        }
+        is ExecutionState.Error, is ExecutionState.Idle -> {
+            FullCenter() {
                 Text(
                     text = stringResource(R.string.nfc_trigger_no_tag),
                     style = MaterialTheme.typography.bodyMedium,
@@ -197,9 +197,11 @@ private fun NfcUidDisplayScreen(
 
 @Composable
 fun Loading(text: String) {
-    CircularProgressIndicator()
-    Spacer(modifier = Modifier.height(16.dp))
-    Text(text)
+    FullCenter() {
+        CircularProgressIndicator()
+        Spacer(modifier = Modifier.height(16.dp))
+        Text(text)
+    }
 }
 
 @Composable
@@ -225,35 +227,36 @@ fun NotAutomatedYet(
     actionText: String,
     action: () -> Unit,
 ) {
-    Icon(
-        painter = painterResource(iconRes),
-        contentDescription = null,
-        modifier = Modifier.size(64.dp),
-        tint = MaterialTheme.colorScheme.primary,
-    )
-    Spacer(modifier = Modifier.height(24.dp))
-    Text(
-        text = title,
-        style = MaterialTheme.typography.titleMedium,
-    )
-    Spacer(modifier = Modifier.height(8.dp))
-    Text(
-        text = subtitle,
-        style = MaterialTheme.typography.headlineSmall,
-        //style = MaterialTheme.typography.headlineMedium,
-        color = MaterialTheme.colorScheme.onSurfaceVariant,
-        modifier = Modifier.padding(vertical = 8.dp),
-    )
-    Spacer(modifier = Modifier.height(16.dp))
-    Text(
-        text = help,
-        style = MaterialTheme.typography.bodyMedium,
-        color = MaterialTheme.colorScheme.onSurfaceVariant,
-        textAlign = TextAlign.Center,
-    )
-    Spacer(modifier = Modifier.height(48.dp))
-    Button(onClick = { action.invoke() }) {
-        Text(actionText)
+    FullCenter() {
+        Icon(
+            painter = painterResource(iconRes),
+            contentDescription = null,
+            modifier = Modifier.size(64.dp),
+            tint = MaterialTheme.colorScheme.primary,
+        )
+        Spacer(modifier = Modifier.height(16.dp))
+        Text(
+            text = title,
+            style = MaterialTheme.typography.titleMedium,
+        )
+        Spacer(modifier = Modifier.height(4.dp))
+        Text(
+            text = subtitle,
+            style = MaterialTheme.typography.headlineSmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier.padding(vertical = 8.dp),
+        )
+        Spacer(modifier = Modifier.height(16.dp))
+        Text(
+            text = help,
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            textAlign = TextAlign.Center,
+        )
+        Spacer(modifier = Modifier.height(48.dp))
+        Button(onClick = { action.invoke() }) {
+            Text(actionText)
+        }
     }
 }
 
