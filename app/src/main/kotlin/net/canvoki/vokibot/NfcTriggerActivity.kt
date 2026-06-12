@@ -207,9 +207,7 @@ private fun NfcUidDisplayScreen(
                 Spacer(modifier = Modifier.height(16.dp))
                 Button(onClick = {
                     uid?.let { rawUid ->
-                        repository.loadNfcTrigger(rawUid)?.let { trigger ->
-                            onCreateAutomation(trigger.id, trigger.type)
-                        }
+                        onCreateAutomation(NfcTrigger.idFromUid(rawUid), "TODO: remove triggerType")
                     }
                 }) {
                     Text(stringResource(R.string.nfc_trigger_create_automation))
