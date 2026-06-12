@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import net.canvoki.shared.storage.rememberSaveFilePicker
 import java.time.LocalDate
 
@@ -18,8 +19,8 @@ fun ExportOption() {
     val repo = FileDataRepository.fromContext(context)
     val saver = rememberSaveFilePicker("application/json")
     ListItem(
-        headlineContent = { Text("Export") },
-        supportingContent = { Text("Save automations to a file") },
+        headlineContent = { Text(stringResource(R.string.dasher_export_title)) },
+        supportingContent = { Text(stringResource(R.string.dasher_export_description)) },
         leadingContent = {
             Icon(
                 painter = painterResource(R.drawable.ic_file_upload),

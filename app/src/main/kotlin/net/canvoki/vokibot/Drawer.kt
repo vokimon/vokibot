@@ -8,6 +8,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import net.canvoki.shared.component.preferences.PreferenceCategory
 import net.canvoki.shared.settings.LanguageSettings
@@ -21,11 +22,11 @@ fun Drawer() {
                 .padding(horizontal = 16.dp)
                 .verticalScroll(rememberScrollState()),
     ) {
-        PreferenceCategory("Settings") {
+        PreferenceCategory(stringResource(R.string.dasher_group_settings)) {
             LanguageSettings.Preference()
             ThemeSettings.Preference()
         }
-        PreferenceCategory("Data Exchange") {
+        PreferenceCategory(stringResource(R.string.dasher_group_data_exchange)) {
             ExportOption()
             ImportOption()
         }

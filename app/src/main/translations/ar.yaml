@@ -341,3 +341,14 @@ bluetooth_editor_disconnect_mode_selective: انتقائية
 import_analysis_overwritten: "سيتم الكتابة فوقه:"
 import_analysis_referenced: "إشارات إلى عناصر موجودة:"
 import_analysis_unresolved: "إشارات غير محسومة:"
+dasher_group_settings: الإعدادات
+dasher_group_data_exchange: تبادل البيانات
+dasher_import_title: استيراد
+dasher_import_description: تحميل الأتمتة من ملف
+dasher_export_title: تصدير
+dasher_export_description: حفظ الأتمتة في ملف
+import_confirm_dialog_title: تأكيد الاستيراد
+import_confirm_dialog_ok: استيراد
+import_confirm_dialog_ko: إلغاء
+import_result_success: تم استيراد {count} عناصر
+import_result_failure: ملف استيراد غير صالح {error}

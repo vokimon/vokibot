@@ -342,3 +342,14 @@ import_analysis_overwritten: "Se sobreescriurà:"
 import_analysis_referenced: "Referències a elements existents:"
 import_analysis_broken: "Referències trencades:"
 import_analysis_unresolved: "Referències no resoltes:"
+dasher_group_settings: Configuració
+dasher_group_data_exchange: Intercanvi de dades
+dasher_import_title: Importa
+dasher_import_description: Carrega automatitzacions des d'un fitxer
+dasher_export_title: Exporta
+dasher_export_description: Desa automatitzacions en un fitxer
+import_confirm_dialog_title: Confirma la importació
+import_confirm_dialog_ok: Importa
+import_confirm_dialog_ko: Cancel·la
+import_result_success: S'han importat {count} elements
+import_result_failure: Fitxer d'importació no vàlid {error}

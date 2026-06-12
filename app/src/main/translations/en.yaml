@@ -342,3 +342,14 @@ import_analysis_overwritten: "Will overwrite:"
 import_analysis_referenced: "References to existing items:"
 import_analysis_broken: "Broken references:"
 import_analysis_unresolved: "Unresolved references:"
+dasher_group_settings: Settings
+dasher_group_data_exchange: Data Exchange
+dasher_import_title: Import
+dasher_import_description: Load automations from a file
+dasher_export_title: Export
+dasher_export_description: Save automations to a file
+import_confirm_dialog_title: Confirm import
+import_confirm_dialog_ok: Import
+import_confirm_dialog_ko: Cancel
+import_result_success: Imported {count} items
+import_result_failure: Invalid import file {error}

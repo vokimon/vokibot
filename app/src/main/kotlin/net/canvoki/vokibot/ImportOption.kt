@@ -13,6 +13,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import net.canvoki.shared.storage.rememberOpenFilePicker
 import net.canvoki.shared.usermessage.UserMessage
 
@@ -25,8 +26,8 @@ fun ImportOption() {
     var pendingBundle by remember { mutableStateOf<ExportedBundle?>(null) }
 
     ListItem(
-        headlineContent = { Text("Import") },
-        supportingContent = { Text("Load automations from a file") },
+        headlineContent = { Text(stringResource(R.string.dasher_import_title)) },
+        supportingContent = { Text(stringResource(R.string.dasher_import_description)) },
         leadingContent = {
             Icon(
                 painter = painterResource(R.drawable.ic_file_download),
@@ -43,13 +44,13 @@ fun ImportOption() {
                             val summary = bundle.analyzeImport(repo.entityIds()).summary(context)
                             if (summary.isEmpty()) {
                                 repo.importBundle(bundle)
-                                UserMessage.Info("Imported ${bundle.entities.size} entities").post()
+                                UserMessage.Info(context.getString(R.string.import_result_success, bundle.entities.size)).post()
                             } else {
                                 pendingSummary = summary
                                 pendingBundle = bundle
                             }
                         } catch (e: kotlinx.serialization.SerializationException) {
-                            UserMessage.Info("Invalid import file $e").post()
+                            UserMessage.Info(context.getString(R.string.import_result_failure, e.toString())).post()
                         }
                     }
                 }
@@ -59,13 +60,13 @@ fun ImportOption() {
     if (pendingSummary != null) {
         ConfirmDialog(
             show = true,
-            title = "Import Analysis",
+            title = stringResource(R.string.import_confirm_dialog_title),
             text = pendingSummary!!,
-            confirmText = "Import",
-            dismissText = "Cancel",
+            confirmText = stringResource(R.string.import_confirm_dialog_ok),
+            dismissText = stringResource(R.string.import_confirm_dialog_ko),
             onConfirm = {
                 pendingBundle?.let { repo.importBundle(it) }
-                UserMessage.Info("Imported ${pendingBundle?.entities?.size} entities").post()
+                UserMessage.Info(context.getString(R.string.import_result_success, pendingBundle?.entities?.size ?: 0)).post()
                 pendingSummary = null
                 pendingBundle = null
             },

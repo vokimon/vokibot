@@ -341,3 +341,14 @@ bluetooth_editor_disconnect_mode_selective: Selectiva
 import_analysis_overwritten: "Sobrescribirase:"
 import_analysis_referenced: "Referencias a elementos existentes:"
 import_analysis_unresolved: "Referencias non resoltas:"
+dasher_group_settings: Axustes
+dasher_group_data_exchange: Intercambio de datos
+dasher_import_title: Importar
+dasher_import_description: Cargar automatizacións dende un ficheiro
+dasher_export_title: Exportar
+dasher_export_description: Gardar automatizacións nun ficheiro
+import_confirm_dialog_title: Confirmar importación
+import_confirm_dialog_ok: Importar
+import_confirm_dialog_ko: Cancelar
+import_result_success: Importáronse {count} elementos
+import_result_failure: Ficheiro de importación non válido {error}

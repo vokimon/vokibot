@@ -341,3 +341,14 @@ bluetooth_editor_disconnect_mode_selective: Selektiboa
 import_analysis_overwritten: "Gainidatziko du:"
 import_analysis_referenced: "Lehendako elementuen erreferentziak:"
 import_analysis_unresolved: "Konpondu gabeko erreferentziak:"
+dasher_group_settings: Ezarpenak
+dasher_group_data_exchange: Datu-trukea
+dasher_import_title: Inportatu
+dasher_import_description: Kargatu automatizazioak fitxategi batetik
+dasher_export_title: Esportatu
+dasher_export_description: Gorde automatizazioak fitxategi batean
+import_confirm_dialog_title: Berretsi inportazioa
+import_confirm_dialog_ok: Inportatu
+import_confirm_dialog_ko: Utzi
+import_result_success: "{count} elementu inportatu dira"
+import_result_failure: Inportazio-fitxategi baliogabea {error}
