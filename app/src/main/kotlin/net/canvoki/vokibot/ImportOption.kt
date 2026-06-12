@@ -44,7 +44,10 @@ fun ImportOption() {
                             val summary = bundle.analyzeImport(repo.entityIds()).summary(context)
                             if (summary.isEmpty()) {
                                 repo.importBundle(bundle)
-                                UserMessage.Info(context.getString(R.string.import_result_success, bundle.entities.size)).post()
+                                UserMessage
+                                    .Info(
+                                        context.getString(R.string.import_result_success, bundle.entities.size),
+                                    ).post()
                             } else {
                                 pendingSummary = summary
                                 pendingBundle = bundle
@@ -66,7 +69,10 @@ fun ImportOption() {
             dismissText = stringResource(R.string.import_confirm_dialog_ko),
             onConfirm = {
                 pendingBundle?.let { repo.importBundle(it) }
-                UserMessage.Info(context.getString(R.string.import_result_success, pendingBundle?.entities?.size ?: 0)).post()
+                UserMessage
+                    .Info(
+                        context.getString(R.string.import_result_success, pendingBundle?.entities?.size ?: 0),
+                    ).post()
                 pendingSummary = null
                 pendingBundle = null
             },
