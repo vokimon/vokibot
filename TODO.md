@@ -4,8 +4,13 @@
 
 ## Backlog
 
-- [ ] Import edge case: Cross-type ID collision: Command "abc" and trigger "abc" -> no collision, different DataSets with different prefixes. Not an issue.
-    - [ ] But xplicit ids can be whatever.
+- [ ] Import: warn newer versions
+- [ ] Import: warn older versions or give option to migrate
+- [ ] Import: warn on duplicated ids in the bundle
+- [ ] Import: different ids may collide in file after sanitization
+- [ ] Import: DataChangeBus storm on big files (not relevant by now)
+- [ ] Import: Atomicity (not relevant by now)
+- [ ] Import: edge case: Ids dupplicated in the bundle.
 - [ ] Trigger/CommandList: Set a fix order (it changes on every refresh)
 - [ ] Export: Fix: UnknownEntity title is using command's
 - [ ] ComponentLst: Fix: Shown app icon instead of component icon
