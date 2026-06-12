@@ -294,6 +294,21 @@ class ExportedBundleTest {
     }
 
     @Test
+    fun `unsupportedTypes with multiple unsupported types`() {
+        val bundle =
+            buildBundle(
+                aCommand(id = "cmd-1"),
+                anUnsupportedType("unsupported_type_a"),
+                anUnsupportedType("unsupported_type_b"),
+            )
+        val repoIds = setOf("cmd-1")
+
+        val analysis = bundle.analyzeImport(repoIds)
+
+        assertEquals(setOf("unsupported_type_a", "unsupported_type_b"), analysis.unsupportedTypes)
+    }
+
+    @Test
     fun `summary with no issues returns empty string`() {
         val analysis =
             ImportAnalysis(

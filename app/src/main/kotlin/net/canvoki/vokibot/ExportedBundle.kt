@@ -85,7 +85,6 @@ data class ExportedBundle(
             unsupportedTypes = entities
                 .filterIsInstance<UnknownEntity>()
                 .map { it.type }
-                .take(1)
                 .toSet(),
         )
     }
