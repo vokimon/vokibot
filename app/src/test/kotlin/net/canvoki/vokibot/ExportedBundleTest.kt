@@ -267,6 +267,16 @@ class ExportedBundleTest {
     }
 
     @Test
+    fun `unsupportedTypes is empty when no unsupported entities in bundle`() {
+        val bundle = buildBundle(aCommand(id = "cmd-1"), anAutomation())
+        val repoIds = setOf("cmd-1")
+
+        val analysis = bundle.analyzeImport(repoIds)
+
+        assertEquals(emptySet<String>(), analysis.unsupportedTypes)
+    }
+
+    @Test
     fun `summary with no issues returns empty string`() {
         val analysis =
             ImportAnalysis(

@@ -39,6 +39,7 @@ data class ImportAnalysis(
     val overwritten: Set<String>,
     val repositoryReferences: Set<String>,
     val referencedMissing: Set<String>,
+    val unsupportedTypes: Set<String> = emptySet(),
 ) {
     @Suppress("UNUSED_PARAMETER")
     fun summary(context: Context): String =
