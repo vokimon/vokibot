@@ -14,21 +14,24 @@ class ShortcutDispatchActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         handleTrigger(intent)
-        finish()
     }
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         handleTrigger(intent)
-        finish()
     }
 
     private fun handleTrigger(intent: Intent) {
-        if (intent.action != ACTION_TRIGGER) return
+        if (intent.action != ACTION_TRIGGER) {
+            log("ShortcutDispatchActivity: Wrong action ${intent.action}")
+            finish()
+            return
+        }
 
         val triggerId = intent.getStringExtra(EXTRA_TRIGGER_ID)
         if (triggerId.isNullOrBlank()) {
             log("ShortcutDispatchActivity: Missing trigger ID")
+            finish()
             return
         }
 
@@ -36,10 +39,13 @@ class ShortcutDispatchActivity : ComponentActivity() {
 
         try {
             if (executeAutomation(triggerId)) return
-            // TODO: offer to create trigger and/or automation
         } catch (e: Exception) {
             log("ShortcutDispatchActivity: Failed to process trigger $triggerId: $e")
+            finish()
+            return
         }
+        // TODO: offer to create trigger and/or automation
+        finish()
     }
 
     private fun executeAutomation(triggerId: String): Boolean {
