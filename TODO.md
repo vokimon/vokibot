@@ -4,10 +4,10 @@
 
 ## Backlog
 
-- [ ] Import/Export text translations
+- [x] Import/Export text translations
 - [x] Import edge case 1: Malformed bundle JSON: ExportedBundle.fromJson() throws SerializationException. -> Catch in Drawer item click handler, notify on UserMessage
 - [ ] Import edge case 2: Unknown type in bundle: now loaded as UnknownEntity -> 
-- [ ] Import edge case 3: Missing dependencies: Automation references command/trigger not in bundle neither the repo.
+- [x] Import edge case 3: Missing dependencies: Automation references command/trigger not in bundle neither the repo.
 - [x] Import edge case 4: Duplicate IDs: Importing same bundle twice -> silent overwrite -> This is intended
 - [ ] Import edge case 5: Cross-type ID collision: Command "abc" and trigger "abc" -> no collision, different DataSets with different prefixes. Not an issue.
     - [ ] But xplicit ids can be whatever.

@@ -64,6 +64,9 @@ class ExportedBundleTest {
             displayName = "Test Trigger",
         )
 
+    private fun anUnsupportedType(type: String = "unsupported_type") =
+        UnknownEntity("""{"type":"$type","id":"x"}""", type)
+
     private fun buildBundle(vararg entities: StorableEntity) = ExportedBundle(entities = entities.toList())
 
     private fun buildJson(vararg entityJsons: String) =
@@ -267,13 +270,27 @@ class ExportedBundleTest {
     }
 
     @Test
-    fun `unsupportedTypes is empty when no unsupported entities in bundle`() {
+    fun `unsupportedTypes with all types supported empty`() {
         val bundle = buildBundle(aCommand(id = "cmd-1"), anAutomation())
         val repoIds = setOf("cmd-1")
 
         val analysis = bundle.analyzeImport(repoIds)
 
         assertEquals(emptySet<String>(), analysis.unsupportedTypes)
+    }
+
+    @Test
+    fun `unsupportedTypes with an unsuported type`() {
+        val bundle =
+            buildBundle(
+                aCommand(id = "cmd-1"),
+                anUnsupportedType("unsupported_type"),
+            )
+        val repoIds = setOf("cmd-1")
+
+        val analysis = bundle.analyzeImport(repoIds)
+
+        assertEquals(setOf("unsupported_type"), analysis.unsupportedTypes)
     }
 
     @Test
