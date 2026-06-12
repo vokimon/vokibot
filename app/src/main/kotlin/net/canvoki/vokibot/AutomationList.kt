@@ -63,7 +63,7 @@ data object AutomationList : StackedScreen<Unit>() {
                     }
 
                 val triggerDisplayName =
-                    remember(automation.triggerType, automation.triggerId) {
+                    remember(automation.triggerId) {
                         repository.trigger.load(automation.triggerId)?.getTitle(context)
                     }
 

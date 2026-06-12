@@ -11,23 +11,16 @@ class AutomationEditorActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val repository = FileDataRepository.fromContext(this)
 
-        val triggerType = intent.getStringExtra("trigger_type")
         val triggerId = intent.getStringExtra("trigger_id")
-        val preselectedTrigger =
-            if (triggerType != null && triggerId != null) {
-                triggerType to triggerId
-            } else {
-                null
-            }
+        val trigger = triggerId?.let { id -> repository.trigger.load(id) }
 
-        if (savedInstanceState == null && preselectedTrigger != null) {
-            val repository = FileDataRepository.fromContext(this)
+        if (savedInstanceState == null && trigger != null) {
             val automation =
                 Automation(
-                    name = "On $triggerType $triggerId", // TODO: translate
-                    triggerType = preselectedTrigger.first,
-                    triggerId = preselectedTrigger.second,
+                    name = "On ${trigger.type} $triggerId", // TODO: translate
+                    triggerId = trigger.id,
                     commandIds = emptyList(),
                 )
             repository.automation.save(automation)

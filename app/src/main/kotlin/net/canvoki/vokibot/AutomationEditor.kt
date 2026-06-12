@@ -75,9 +75,11 @@ data class AutomationEditor(
             if (editingId != null) {
                 repository.automation.load(editingId)?.let { existing ->
                     name = existing.name
-                    triggerType = existing.triggerType
                     triggerId = existing.triggerId
                     commandIds = existing.commandIds
+                    repository.trigger.load(triggerId)?.let { existingTrigger ->
+                        triggerType = existingTrigger.type
+                    }
                 }
             }
             lastLoadedId = editingId
@@ -98,7 +100,6 @@ data class AutomationEditor(
                     val automation =
                         Automation(
                             name = name.trim(),
-                            triggerType = triggerType,
                             triggerId = triggerId,
                             commandIds = commandIds,
                             id = editingId,

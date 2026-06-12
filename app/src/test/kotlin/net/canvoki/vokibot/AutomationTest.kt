@@ -14,13 +14,11 @@ class AutomationTest {
 
     private fun automationBase(
         name: String = "Test",
-        triggerType: String = "nfc",
         triggerId: String = "abc",
         commandIds: List<String> = emptyList(),
         id: String? = null,
     ) = Automation(
         name = name,
-        triggerType = triggerType,
         triggerId = triggerId,
         commandIds = commandIds,
         id = id,
@@ -97,7 +95,6 @@ class AutomationTest {
             Automation(
                 id = original.id,
                 name = "New Name",
-                triggerType = original.triggerType,
                 triggerId = original.triggerId,
                 commandIds = original.commandIds,
             )

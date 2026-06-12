@@ -14,6 +14,7 @@ val JsonConfig =
         explicitNulls = false
         encodeDefaults = true
         classDiscriminator = "type"
+        ignoreUnknownKeys = true
     }
 
 /**

@@ -6,6 +6,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.Transient
 import kotlinx.serialization.json.Json
 import net.canvoki.shared.log
 import java.util.UUID
@@ -14,18 +15,21 @@ import java.util.UUID
 data class Automation(
     override val id: String,
     val name: String,
-    val triggerType: String,
     val triggerId: String,
     val commandIds: List<String>,
 ) : StorableEntity {
     override val type: String = "automation"
     constructor(
         name: String,
-        triggerType: String,
         triggerId: String,
         commandIds: List<String>,
         id: String? = null,
-    ) : this(id ?: UUID.randomUUID().toString(), name, triggerType, triggerId, commandIds)
+    ) : this(
+        id = id ?: UUID.randomUUID().toString(),
+        name = name,
+        triggerId = triggerId,
+        commandIds = commandIds,
+    )
 
     override fun toJson(): String = JsonConfig.encodeToString(serializer(), this)
 
@@ -34,7 +38,7 @@ data class Automation(
     override fun getTitle(context: Context): String = name
 
     override val description: String
-        get() = "$triggerType • ${commandIds.size} command(s)"
+        get() = "$triggerId -> ${commandIds.size} command(s)"
 
     @get:DrawableRes
     override val iconRes: Int get() = Companion.iconRes

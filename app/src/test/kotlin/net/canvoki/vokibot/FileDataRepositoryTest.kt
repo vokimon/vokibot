@@ -416,7 +416,6 @@ class FileDataRepositoryTest {
         val automation =
             Automation(
                 name = "automation example",
-                triggerType = "trigger_nfc",
                 triggerId = "nfc_10_01",
                 commandIds = listOf("my command"),
             )
@@ -455,7 +454,6 @@ class FileDataRepositoryTest {
         val automation =
             Automation(
                 name = "test",
-                triggerType = "trigger_nfc",
                 triggerId = "nfc_10_01",
                 commandIds = listOf("my command"),
             )
@@ -521,7 +519,6 @@ class FileDataRepositoryTest {
             Automation(
                 id = "auto-1",
                 name = "test",
-                triggerType = "trigger_nfc",
                 triggerId = "nfc_trg-1",
                 commandIds = listOf("cmd-1"),
             ),

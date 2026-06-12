@@ -41,7 +41,6 @@ class ExportedBundleTest {
     ) = Automation(
         id = id,
         name = "Test Automation",
-        triggerType = "trigger_shortcut",
         triggerId = triggerId,
         commandIds = commandIds,
     )
@@ -51,7 +50,6 @@ class ExportedBundleTest {
         {
             "id": "auto-1",
             "name": "Test Automation",
-            "triggerType":"trigger_shortcut",
             "triggerId":"trg-1",
             "commandIds":["cmd-1"],
             "type": "automation"
@@ -131,7 +129,6 @@ class ExportedBundleTest {
             Automation(
                 id = "auto-1",
                 name = "test",
-                triggerType = "trigger_shortcut",
                 triggerId = "trg-1",
                 commandIds = emptyList(),
             )
@@ -147,7 +144,6 @@ class ExportedBundleTest {
             Automation(
                 id = "auto-1",
                 name = "test",
-                triggerType = "trigger_shortcut",
                 triggerId = "trg-1",
                 commandIds = listOf("cmd-1"),
             )
@@ -163,7 +159,6 @@ class ExportedBundleTest {
             Automation(
                 id = "auto-1",
                 name = "test",
-                triggerType = "trigger_shortcut",
                 triggerId = "trg-1",
                 commandIds = listOf("cmd-1", "cmd-2"),
             )
