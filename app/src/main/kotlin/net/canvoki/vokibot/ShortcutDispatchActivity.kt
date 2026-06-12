@@ -35,22 +35,27 @@ class ShortcutDispatchActivity : ComponentActivity() {
         log("ShortcutDispatchActivity: Trigger tapped - $triggerId")
 
         try {
-            val repo = FileDataRepository.fromContext(this)
-            val trigger = repo.trigger.load(triggerId)
-            if (trigger == null) {
-                log("ShortcutDispatchActivity: Trigger not found - $triggerId")
-                return
-            }
-
-            if (!Automation.executeByTrigger(repo, triggerId, this) {
-                    runOnUiThread { finish() }
-                }
-            ) {
-                log("ShortcutDispatchActivity: No automations linked to '${trigger.getTitle(this)}'")
-                return
-            }
+            if (executeAutomation(triggerId)) return
+            // TODO: offer to create trigger and/or automation
         } catch (e: Exception) {
             log("ShortcutDispatchActivity: Failed to process trigger $triggerId: $e")
         }
+    }
+
+    private fun executeAutomation(triggerId: String): Boolean {
+        val repo = FileDataRepository.fromContext(this)
+        val trigger = repo.trigger.load(triggerId)
+        if (trigger == null) {
+            log("ShortcutDispatchActivity: Trigger not found - $triggerId")
+            return false
+        }
+        if (!Automation.executeByTrigger(repo, triggerId, this) {
+                runOnUiThread { finish() }
+            }
+        ) {
+            log("ShortcutDispatchActivity: No automations linked to '${trigger.getTitle(this)}'")
+            return false
+        }
+        return true
     }
 }
