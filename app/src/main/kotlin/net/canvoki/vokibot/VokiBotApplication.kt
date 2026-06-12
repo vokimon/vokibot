@@ -27,5 +27,6 @@ class VokiBotApplication : Application() {
         )
         LanguageSettings.initialize(this)
         ThemeSettings.initialize(this)
+        DataFormat.initialize(this)
     }
 }

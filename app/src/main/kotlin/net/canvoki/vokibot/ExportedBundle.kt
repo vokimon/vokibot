@@ -96,7 +96,11 @@ data class ExportedBundle(
         )
     }
 
-    fun toJson(): String = PrettyJson.encodeToString(serializer(), this)
+    fun toJson(): String =
+        PrettyJson.encodeToString(
+            serializer(),
+            this.copy(version = DataFormat.CURRENT_VERSION),
+        )
 
     companion object {
         fun fromJson(json: String): ExportedBundle = JsonConfig.decodeFromString(ExportedBundle.serializer(), json)

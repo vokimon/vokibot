@@ -187,6 +187,7 @@ dependencies {
     implementation(libs.androidx.material)
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.preference.ktx)
     implementation(libs.kotlin.reflect)
     implementation(libs.kotlinx.serialization.json)
 
