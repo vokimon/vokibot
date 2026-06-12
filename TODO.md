@@ -4,16 +4,8 @@
 
 ## Backlog
 
-- [x] Import/Export text translations
-- [x] Import edge case 1: Malformed bundle JSON: ExportedBundle.fromJson() throws SerializationException. -> Catch in Drawer item click handler, notify on UserMessage
-- [ ] Import edge case 2: Unknown type in bundle: now loaded as UnknownEntity -> 
-- [x] Import edge case 3: Missing dependencies: Automation references command/trigger not in bundle neither the repo.
-- [x] Import edge case 4: Duplicate IDs: Importing same bundle twice -> silent overwrite -> This is intended
-- [ ] Import edge case 5: Cross-type ID collision: Command "abc" and trigger "abc" -> no collision, different DataSets with different prefixes. Not an issue.
+- [ ] Import edge case: Cross-type ID collision: Command "abc" and trigger "abc" -> no collision, different DataSets with different prefixes. Not an issue.
     - [ ] But xplicit ids can be whatever.
-- [x] Import edge case 6: File picker cancelled: Returns null -- should be handled, no import triggered. -> bytes?.let
-
-- [x] Refresh after import
 - [ ] Trigger/CommandList: Set a fix order (it changes on every refresh)
 - [ ] Export: Fix: UnknownEntity title is using command's
 - [ ] ComponentLst: Fix: Shown app icon instead of component icon
@@ -63,6 +55,16 @@
     - [ ] List of system broadcasts: <https://github.com/flyskywhy/android-sdk/blob/master/platforms/android-10/data/broadcast_actions.txt>
 
 ## Done
+
+- [x] Import/Export text translations
+- [x] Import edge case 1: Malformed bundle JSON: ExportedBundle.fromJson() throws SerializationException. -> Catch in Drawer item click handler, notify on UserMessage
+- [x] Import edge case 2: Unknown type in bundle: now loaded as UnknownEntity -> report as warning
+- [x] Import edge case 3: Missing dependencies: Automation references command/trigger not in bundle neither the repo. -> report as warning
+- [x] Import edge case 4: Duplicate IDs: Importing same bundle twice -> silent overwrite -> This is intended -> report as warning
+- [x] Import edge case 6: File picker cancelled: Returns null -- should be handled, no import triggered. -> bytes?.let
+- [x] Refresh after import
+
+## Done 0.5.0
 
 ## Done 0.4.0
 
