@@ -353,3 +353,4 @@ import_confirm_dialog_ok: Importa
 import_confirm_dialog_ko: Cancel·la
 import_result_success: S'han importat {count} elements
 import_result_failure: Fitxer d'importació no vàlid {error}
+import_analysis_unsupported_type: "Tipus no suportats:"

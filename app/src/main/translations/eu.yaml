@@ -352,3 +352,4 @@ import_confirm_dialog_ok: Inportatu
 import_confirm_dialog_ko: Utzi
 import_result_success: "{count} elementu inportatu dira"
 import_result_failure: Inportazio-fitxategi baliogabea {error}
+import_analysis_unsupported_type: "Onartzen ez diren motak:"

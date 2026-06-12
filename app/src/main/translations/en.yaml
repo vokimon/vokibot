@@ -353,3 +353,4 @@ import_confirm_dialog_ok: Import
 import_confirm_dialog_ko: Cancel
 import_result_success: Imported {count} items
 import_result_failure: Invalid import file {error}
+import_analysis_unsupported_type: "Unsupported types:"

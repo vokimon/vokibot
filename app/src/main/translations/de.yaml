@@ -352,3 +352,4 @@ import_confirm_dialog_ok: Importieren
 import_confirm_dialog_ko: Abbrechen
 import_result_success: "{count} Elemente importiert"
 import_result_failure: Ungültige Importdatei {error}
+import_analysis_unsupported_type: "Nicht unterstützte Typen:"

@@ -393,7 +393,7 @@ class ExportedBundleTest {
         val result = analysis.summary(context())
 
         assertEquals(
-            "Unsupported types:\n\nunsupported_type\n\n" +
+            "Tipus no suportats:\n\nunsupported_type\n\n" +
                 "Se sobreescriurà:\n\ncmd-1\n\n" +
                 "Referències a elements existents:\n\ncmd-2\n\n" +
                 "Referències no resoltes:\n\ncmd-3\n\n",

@@ -352,3 +352,4 @@ import_confirm_dialog_ok: Импортировать
 import_confirm_dialog_ko: Отмена
 import_result_success: "Импортировано элементов: {count}"
 import_result_failure: Неверный файл импорта {error}
+import_analysis_unsupported_type: "Неподдерживаемые типы:"

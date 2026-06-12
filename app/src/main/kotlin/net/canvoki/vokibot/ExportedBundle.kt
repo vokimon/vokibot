@@ -45,7 +45,7 @@ data class ImportAnalysis(
     fun summary(context: Context): String =
         buildString {
             if (unsupportedTypes.isNotEmpty()) {
-                appendLine("Unsupported types:")
+                appendLine(context.getString(R.string.import_analysis_unsupported_type))
                 appendLine()
                 unsupportedTypes.forEach { appendLine(it) }
                 appendLine()
