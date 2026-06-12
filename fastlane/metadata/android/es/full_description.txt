@@ -1,5 +1,4 @@
-Hace que tu dispositivo Android ejecute acciones (comandos)
-cuando ocurre algo (disparadores).
+Hace que tu dispositivo Android ejecute acciones (comandos) cuando ocurre algo (disparadores).
 
 Disparadores implementados:
 
@@ -9,5 +8,6 @@ Disparadores implementados:
 
 Comandos implementados:
 
-- Activar componentes de aplicación (Actividades, Servicios, Receptores)
+- Activar componentes de aplicación: Actividades, Servicios, Receptores
 - Abrir páginas de configuración del sistema
+- Conectar o desconectar dispositivos Bluetooth

@@ -1,0 +1,11 @@
+## 0.6.0 (2026-06-12)
+
+Import and export automation definitions
+
+- ✨ Drawer options to export/import automations
+- ✨ Versioned data format for future automatic migrations
+- 🐛 Fix synchronization bugs by centralizing updates on repository data versions
+- 🐛 Scanning an already registered nfc was not passed to the automation editor
+- 💥 Automations do not have triggerType as attribute, is redundant. Now ignored if present.
+- 🌐 Translated extra field type labels
+

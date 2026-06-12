@@ -1,5 +1,4 @@
-Permet à votre appareil Android d'effectuer des actions (commandes)
-lorsque quelque chose se produit (déclencheurs).
+Permet à votre appareil Android d'effectuer des actions (commandes) lorsque quelque chose se produit (déclencheurs).
 
 Déclencheurs implémentés :
 
@@ -9,5 +8,6 @@ Déclencheurs implémentés :
 
 Commandes implémentées :
 
-- Activer les composants de l'application (Activités, Services, Récepteurs)
+- Activer les composants de l'application: Activités, Services, Récepteurs
 - Ouvrir les pages de configuration du système
+- Connecter ou déconnecter des appareils Bluetooth

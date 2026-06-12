@@ -1,5 +1,4 @@
-Lässt dein Android-Gerät Aktionen (Befehle) ausführen,
-wenn etwas passiert (Auslöser).
+Lässt dein Android-Gerät Aktionen (Befehle) ausführen, wenn etwas passiert (Auslöser).
 
 Implementierte Auslöser:
 
@@ -9,5 +8,6 @@ Implementierte Auslöser:
 
 Implementierte Befehle:
 
-- Anwendungskomponenten aktivieren (Aktivitäten, Dienste, Empfänger)
+- Anwendungskomponenten aktivieren: Aktivitäten, Dienste, Empfänger
 - Systemkonfigurationsseiten öffnen
+- Bluetooth-Geräte verbinden oder trennen

@@ -1,5 +1,4 @@
-Fa que o tuyo dispositivo Android execute accions (comandos)
-quan pase algo (disparadors).
+Fa que o tuyo dispositivo Android execute accions (comandos) quan pase algo (disparadors).
 
 Disparadors implementaus:
 
@@ -9,5 +8,6 @@ Disparadors implementaus:
 
 Comandos implementaus:
 
-- Activar components d'aplicación (Actividatz, Serbicios, Receptors)
+- Activar components d'aplicación: Actividatz, Serbicios, Receptors
 - Ubrir pachinas de configuración d'o sistema
+- Conectar u desconnectar dispositivos Bluetooth

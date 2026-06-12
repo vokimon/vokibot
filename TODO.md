@@ -4,6 +4,8 @@
 
 ## Backlog
 
+- [ ] ShortcutDispatcher: if no trigger related, create it
+- [ ] ShortcutDispatcher: if no action related, create and edit it
 - [ ] AutomationEditor: when launched from nfc detector, it has no padding
 - [ ] Import: warn newer versions
 - [ ] Import: warn older versions or give option to migrate

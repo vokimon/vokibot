@@ -1,5 +1,4 @@
-Zure Android gailuak ekintzak (komandoak) egiten ditu
-zerbait gertatzen denean (abiarazleak).
+Zure Android gailuak ekintzak (komandoak) egiten ditu zerbait gertatzen denean (abiarazleak).
 
 Inplementatutako abiarazleak:
 
@@ -9,5 +8,6 @@ Inplementatutako abiarazleak:
 
 Inplementatutako komandoak:
 
-- Aplikazio-osagaiak aktibatu (Jarduerak, Zerbitzuak, Hartzaileak)
+- Aplikazio-osagaiak aktibatu: Jarduerak, Zerbitzuak, Hartzaileak
 - Sistemako konfigurazio-orriak ireki
+- Bluetooth gailuak konektatu edo deskonektatu

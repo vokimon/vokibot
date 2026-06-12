@@ -1,5 +1,4 @@
-Fa que el teu dispositiu Android executi accions (ordres)
-quan passi alguna cosa (disparadors).
+Fa que el teu dispositiu Android executi accions (ordres) quan passi alguna cosa (disparadors).
 
 Disparadors implementats:
 
@@ -9,5 +8,6 @@ Disparadors implementats:
 
 Ordres implementades:
 
-- Activar components d'aplicació (Activitats, Serveis, Receptors)
+- Activar components d'aplicació: Activitats, Serveis, Receptors
 - Obrir pàgines de configuració del sistema
+- Connectar o desconnectar dispositius Bluetooth

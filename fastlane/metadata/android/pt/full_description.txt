@@ -1,5 +1,4 @@
-Faz com que o teu dispositivo Android execute ações (comandos)
-sempre que algo acontece (acionadores).
+Faz com que o teu dispositivo Android execute ações (comandos) sempre que algo acontece (acionadores).
 
 Acionadores implementados:
 
@@ -9,5 +8,6 @@ Acionadores implementados:
 
 Comandos implementados:
 
-- Ativar componentes da aplicação (Atividades, Serviços, Recetores)
+- Ativar componentes da aplicação: Atividades, Serviços, Recetores
 - Abrir páginas de configuração do sistema
+- Ligar ou desligar dispositivos Bluetooth
