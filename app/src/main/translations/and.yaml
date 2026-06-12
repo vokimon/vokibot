@@ -336,3 +336,18 @@ bluetooth_editor_action_connect: Conêttâh
 bluetooth_editor_action_disconnect: Desconectar
 bluetooth_editor_disconnect_mode_full: Totál
 bluetooth_editor_disconnect_mode_selective: Seletiva
+import_analysis_overwritten: 'Çe çobrêccribirá:'
+import_analysis_referenced: 'Referençiâ a elementô êççîttentê:'
+import_analysis_unresolved: 'Referençiâ no reçuertâ:'
+dasher_group_settings: Ahûttê
+dasher_group_data_exchange: Intercambio de datô
+dasher_import_title: Importâh
+dasher_import_description: Cargâh automatiçaçionê dêdde un arxibo
+dasher_export_title: Êpportâh
+dasher_export_description: Guardâh automatiçaçionê en un arxibo
+import_confirm_dialog_title: Confirmâh importaçión
+import_confirm_dialog_ok: Importâh
+import_confirm_dialog_ko: Cançelâh
+import_result_success: Çe an importao {count} elementô
+import_result_failure: Arxibo de importaçión no bálido {error}
+import_analysis_unsupported_type: 'Tipô no çoportáô:'
