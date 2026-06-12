@@ -353,3 +353,9 @@ import_confirm_dialog_ko: Utzi
 import_result_success: "{count} elementu inportatu dira"
 import_result_failure: Inportazio-fitxategi baliogabea {error}
 import_analysis_unsupported_type: "Onartzen ez diren motak:"
+extra_value_type_text: Testua
+extra_value_type_uri: URI
+extra_value_type_number: Zenbakizkoa
+extra_value_type_boolean: Boolearra
+extra_value_type_text_list: Testu zerrenda
+extra_value_type_uri_list: URI zerrenda

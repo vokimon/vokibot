@@ -351,3 +351,9 @@ import_confirm_dialog_ko: Cançelâh
 import_result_success: Çe an importao {count} elementô
 import_result_failure: Arxibo de importaçión no bálido {error}
 import_analysis_unsupported_type: 'Tipô no çoportáô:'
+extra_value_type_text: Têtto
+extra_value_type_uri: URI
+extra_value_type_boolean: Booleano
+extra_value_type_text_list: Lîtta de têtto
+extra_value_type_uri_list: Lîtta de URI
+extra_value_type_number: Numérico

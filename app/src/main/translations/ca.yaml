@@ -354,3 +354,9 @@ import_confirm_dialog_ko: Cancel·la
 import_result_success: S'han importat {count} elements
 import_result_failure: Fitxer d'importació no vàlid {error}
 import_analysis_unsupported_type: "Tipus no suportats:"
+extra_value_type_text: Text
+extra_value_type_uri: URI
+extra_value_type_number: Numèric
+extra_value_type_boolean: Booleà
+extra_value_type_text_list: Llista de text
+extra_value_type_uri_list: Llista d'URI

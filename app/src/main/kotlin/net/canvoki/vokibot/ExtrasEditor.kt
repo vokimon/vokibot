@@ -97,7 +97,7 @@ fun ExtrasEditor(
                                 onExpandedChange = { typeExpanded = it },
                             ) {
                                 OutlinedTextField(
-                                    value = newType.displayName,
+                                    value = stringResource(newType.labelRes),
                                     onValueChange = {},
                                     readOnly = true,
                                     label = { Text(stringResource(R.string.intent_extras_editor_add_type)) },
@@ -118,7 +118,7 @@ fun ExtrasEditor(
                                 ) {
                                     ExtraType.entries.forEach { type ->
                                         DropdownMenuItem(
-                                            text = { Text(type.displayName) },
+                                            text = { Text(stringResource(type.labelRes)) },
                                             onClick = {
                                                 newType = type
                                                 typeExpanded = false

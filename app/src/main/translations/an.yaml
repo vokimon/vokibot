@@ -353,3 +353,9 @@ import_confirm_dialog_ko: Cancelar
 import_result_success: S'han importau {count} elementos
 import_result_failure: Fichero d'importación invalido {error}
 import_analysis_unsupported_type: "Tipos no soportaus:"
+extra_value_type_text: Texto
+extra_value_type_uri: URI
+extra_value_type_number: Numerico
+extra_value_type_boolean: Booleano
+extra_value_type_text_list: Lista de texto
+extra_value_type_uri_list: Lista d'URI

@@ -15,9 +15,11 @@
 - [ ] DataProviders: How to use them as commands?
 - [ ] Bound services: How to use them as commands?
 - [ ] IntentActionEditor: Suggest package name as action prefix
-- [ ] IntentExtraEditor: Delete Extra
-- [ ] IntentExtraEditor: Specific editor for string list
-- [ ] IntentExtraEditor: Specific editor for uri list
+- [ ] ExtraEditor: Edit the name of the Extra value afterwards
+- [ ] ExtraEditor: Suggest package prefixes for the Extra name when empty
+- [ ] ExtraEditor: Delete Extra
+- [ ] ExtraEditor: Specific editor for string list
+- [ ] ExtraEditor: Specific editor for uri list
 - [ ] UriField: When the protocol ask for it (tel, sms, mailto), provide button to browse contacts.
 - [ ] UriField: Fix: Expands multiple lines. Limit single line? Summary?
 - [ ] IntentDataEditor: Paste icon button

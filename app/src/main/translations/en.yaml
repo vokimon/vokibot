@@ -354,3 +354,9 @@ import_confirm_dialog_ko: Cancel
 import_result_success: Imported {count} items
 import_result_failure: Invalid import file {error}
 import_analysis_unsupported_type: "Unsupported types:"
+extra_value_type_text: Text
+extra_value_type_uri: URI
+extra_value_type_number: Numeric
+extra_value_type_boolean: Boolean
+extra_value_type_text_list: Text list
+extra_value_type_uri_list: URI list

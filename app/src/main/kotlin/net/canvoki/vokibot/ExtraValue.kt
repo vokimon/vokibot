@@ -32,15 +32,14 @@ enum class ExtraType {
     URI_LIST,
 }
 
-val ExtraType.displayName: String get() =
+val ExtraType.labelRes get() =
     when (this) {
-        // TODO: translate
-        ExtraType.STRING -> "Text"
-        ExtraType.URI -> "URI"
-        ExtraType.INT -> "Number"
-        ExtraType.BOOLEAN -> "Boolean"
-        ExtraType.STRING_ARRAY -> "Text list"
-        ExtraType.URI_LIST -> "URI list"
+        ExtraType.STRING -> R.string.extra_value_type_text
+        ExtraType.URI -> R.string.extra_value_type_uri
+        ExtraType.INT -> R.string.extra_value_type_number
+        ExtraType.BOOLEAN -> R.string.extra_value_type_boolean
+        ExtraType.STRING_ARRAY -> R.string.extra_value_type_text_list
+        ExtraType.URI_LIST -> R.string.extra_value_type_uri_list
     }
 
 @Serializable
