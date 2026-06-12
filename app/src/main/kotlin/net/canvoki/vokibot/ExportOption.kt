@@ -13,7 +13,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import net.canvoki.shared.storage.rememberSaveFilePicker
-import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.ZoneOffset
+import java.time.format.DateTimeFormatter
 
 @Composable
 fun ExportOption() {
@@ -33,8 +35,10 @@ fun ExportOption() {
         },
         modifier =
             Modifier.clickable {
-                val date = LocalDate.now()
-                val filename = "vokibot-$date.vokibot.json"
+                val timestamp = LocalDateTime.now(ZoneOffset.UTC)
+                    .format(DateTimeFormatter.ISO_LOCAL_DATE_TIME)
+                    .replace(":", "-")
+                val filename = "vokibot-$timestamp.json"
                 val json = repo.exportBundle().toJson()
                 saver.save(filename, json.toByteArray())
             },

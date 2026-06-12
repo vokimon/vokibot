@@ -3,11 +3,12 @@
 ## Unreleased
 
 - ✨ Export/Import automations
+- 🚸 Import warns on unsupported items
 - 🚸 Import warns on overwritten entities
 - 🚸 Import warns on imported references to repo entities
 - 🚸 Import warns on broken references
 - 🐛 Fix sync bugs centralizing updates on repository data versions
-- 🐛 Regression: Trigger id not passed scanning an already registered nfc
+- 🐛 Scanning an already registered nfc was not passed to the automation editor
 - 💥 Automations do not have triggerType as attribute, is redundant. Now ignored if present.
 - 🌐 Translated extra field type names
 
