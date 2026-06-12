@@ -30,7 +30,6 @@
 - [ ] Translate extra type names
 - [ ] Translate action auto description
 - [ ] Explore Tasker compatibility (being able to reuse tasker extensions as host)
-- [ ] Import/Export entities.
 
 - More commands:
     - [ ] Airplaine mode on/off
@@ -56,6 +55,7 @@
 
 ## Done
 
+- [x] Import/Export entities.
 - [x] Import/Export text translations
 - [x] Import edge case 1: Malformed bundle JSON: ExportedBundle.fromJson() throws SerializationException. -> Catch in Drawer item click handler, notify on UserMessage
 - [x] Import edge case 2: Unknown type in bundle: now loaded as UnknownEntity -> report as warning
