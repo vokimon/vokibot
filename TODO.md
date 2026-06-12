@@ -4,6 +4,8 @@
 
 ## Backlog
 
+- [ ] Weblate: create meta module
+- [ ] Weblate: create web module
 - [ ] ShortcutDispatcher: if no trigger related, create it
 - [ ] ShortcutDispatcher: if no action related, create and edit it
 - [ ] AutomationEditor: when launched from nfc detector, it has no padding
