@@ -205,7 +205,13 @@ private fun NfcUidDisplayScreen(
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
                 Spacer(modifier = Modifier.height(16.dp))
-                Button(onClick = { onCreateAutomation(uid?.replace(":", "_") ?: "", "nfc") }) {
+                Button(onClick = {
+                    uid?.let { rawUid ->
+                        repository.loadNfcTrigger(rawUid)?.let { trigger ->
+                            onCreateAutomation(trigger.id, trigger.type)
+                        }
+                    }
+                }) {
                     Text(stringResource(R.string.nfc_trigger_create_automation))
                 }
             }
