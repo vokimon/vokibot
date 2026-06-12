@@ -36,7 +36,7 @@ class ShortcutDispatchActivity : ComponentActivity() {
 
         try {
             val repo = FileDataRepository.fromContext(this)
-            val trigger = repo.trigger.all().find { it.id == triggerId }
+            val trigger = repo.trigger.load(triggerId)
             if (trigger == null) {
                 log("ShortcutDispatchActivity: Trigger not found - $triggerId")
                 return
