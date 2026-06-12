@@ -20,21 +20,21 @@ FEATURE_MULTIPLE_COMMANDS_DESCRIPTION: |
   Extensions futures: Canviar configuracions, executar scripts ADB, executar scripts Python…
 FEATURE_FREEDOM_AS_FEATURE_TITLE: La llibertat com a funcionalitat
 FEATURE_FREEDOM_AS_FEATURE_DESCRIPTION: |
-  L'AGPLv3 protegeix les teves llibertats com a usuari.
-  El codi és mantingut per la comunitat i qualsevol pot auditar-lo.
-  Sense spyware. Sense recollida de dades. Sense publicitat encoberta.
-  F-Droid assegura que els binaris es generen només des del codi font publicat sense addicions ocultes.
+  La llicència AGPLv3 protegeix la teva llibertat com a usuària.
+  El codi és mantingut per la comunitat i tothom el pot auditar.
+  Sense espies. Sense recollida de dades. Sense publicitat encoberta.
+  F-Droid assegura que els instal·lables són generats amb el codi publicat sense addicions ocultes.
 FEATURE_FREEDOM_AS_FEATURE_ACTION_GITHUB: Codi font
 FEATURE_FREEDOM_AS_FEATURE_ACTION_LICENSE: GNU Affero GPLv3 o posterior
 FEATURE_TRANSLATIONS_TITLE: Traduccions
 FEATURE_TRANSLATIONS_DESCRIPTION: |
-  Es presta especial atenció al suport de llengües minoritàries i regionals.
-  Aquest és un esforç comunitari; tradueix la teva llengua amb Weblate.
-FEATURE_TRANSLATIONS_ACTION_WEBLATE: Tradueix
-ACTION_FDROID: Descarrega-ho a F-Droid
-ACTION_DONATE: Dona
-ACTION_SOCIAL: Segueix-nos
+  Posem cura especial en donar suport a les llengües minoritàries.
+  És un esforç comunitari; tradueix la teva llengua amb Weblate.
+FEATURE_TRANSLATIONS_ACTION_WEBLATE: Traduiu
+ACTION_FDROID: Descarregueu a F-Droid
+ACTION_DONATE: Feu una donació
+ACTION_SOCIAL: Seguiu-nos
 ACTION_GOOGLE_PLAY: Google Play
 ACTION_APP_STORE: App Store
-COOKIE_NOTICE: Aquest lloc no utilitza cookies. De veritat, ens importa la teva privacitat.
-ACTION_GITHUB_DOWNLOAD: Descarrega
+ACTION_GITHUB_DOWNLOAD: Descarregueu
+COOKIE_NOTICE: Aquest lloc no fa servir galetes. La teva privacitat sí que ens importa de veritat.

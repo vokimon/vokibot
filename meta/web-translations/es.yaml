@@ -20,10 +20,10 @@ FEATURE_MULTIPLE_COMMANDS_DESCRIPTION: |
   Extensiones futuras: Cambiar ajustes, ejecutar scripts ADB, ejecutar scripts Python…
 FEATURE_FREEDOM_AS_FEATURE_TITLE: La libertad como funcionalidad
 FEATURE_FREEDOM_AS_FEATURE_DESCRIPTION: |
-  AGPLv3 protege tus libertades como usuario.
+  La licencia AGPLv3 protege tus libertades como usuaria.
   El código es mantenido por la comunidad y cualquiera puede auditarlo.
-  Sin spyware. Sin recopilación de datos. Sin publicidad encubierta.
-  F-Droid asegura que los binarios se generan únicamente desde el código fuente publicado sin adiciones ocultas.
+  Sin espías. Sin recolección de datos. Sin publicidad encubierta.
+  F-Droid garantiza que los instalables provienen del código exacto publicado, sin adiciones ocultas.
 FEATURE_FREEDOM_AS_FEATURE_ACTION_GITHUB: Código fuente
 FEATURE_FREEDOM_AS_FEATURE_ACTION_LICENSE: GNU Affero GPLv3 o posterior
 FEATURE_TRANSLATIONS_TITLE: Traducciones
@@ -31,10 +31,10 @@ FEATURE_TRANSLATIONS_DESCRIPTION: |
   Se presta especial atención al soporte de lenguas minoritarias y regionales.
   Este es un esfuerzo comunitario; traduce tu idioma con Weblate.
 FEATURE_TRANSLATIONS_ACTION_WEBLATE: Traducir
-ACTION_FDROID: Consíguelo en F-Droid
-ACTION_DONATE: Donar
+ACTION_FDROID: Disponible en F‑Droid
+ACTION_DONATE: Apóyanos
 ACTION_SOCIAL: Síguenos
 ACTION_GOOGLE_PLAY: Google Play
 ACTION_APP_STORE: App Store
-COOKIE_NOTICE: Este sitio no usa cookies. Nos importa mucho tu privacidad.
 ACTION_GITHUB_DOWNLOAD: Descargar
+COOKIE_NOTICE: Este sitio no usa cookies. Tu privacidad sí que nos importa de verdad.

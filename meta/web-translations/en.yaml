@@ -1,3 +1,4 @@
+# The native name of the translated language (Español, Català, Deutsch...), not "English" translated to the language 
 LANGUAGE_NAME: English
 MOTTO: Run any action using any trigger
 DESCRIPTION: Android automation tool
@@ -20,7 +21,7 @@ FEATURE_MULTIPLE_COMMANDS_DESCRIPTION: |
   Future extensions: Toggle settings, run ADB scripts, run Python scripts…
 FEATURE_FREEDOM_AS_FEATURE_TITLE: Freedom as a feature
 FEATURE_FREEDOM_AS_FEATURE_DESCRIPTION: |
-  AGPLv3 protects your freedoms as a user.
+  AGPLv3 license protects your freedoms as a user.
   Code is maintained by the community and anyone can audit it.
   No spyware. No data collection. No product placement.
   F-Droid ensures that binaries are generated only from the published source with no hidden additions.
@@ -32,9 +33,9 @@ FEATURE_TRANSLATIONS_DESCRIPTION: |
   This is a community effort; translate your own language with Weblate.
 FEATURE_TRANSLATIONS_ACTION_WEBLATE: Translate
 ACTION_FDROID: Get it on F-Droid
-ACTION_DONATE: Donate
+ACTION_DONATE: Support us
 ACTION_SOCIAL: Follow us
 ACTION_GOOGLE_PLAY: Google Play
 ACTION_APP_STORE: App Store
-COOKIE_NOTICE: This site does not use cookies. We really care about your privacy.
 ACTION_GITHUB_DOWNLOAD: Download
+COOKIE_NOTICE: This site does not use cookies. We really care about your privacy.
