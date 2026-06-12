@@ -192,6 +192,12 @@ standard_extra_quality: Quality (0 low / 1 high)
 standard_extra_language_model: Language model
 standard_extra_prompt: Prompt
 standard_extra_max_results: Max results
+extra_value_type_text: Text
+extra_value_type_uri: URI
+extra_value_type_number: Numeric
+extra_value_type_boolean: Boolean
+extra_value_type_text_list: Text list
+extra_value_type_uri_list: URI list
 settings_page_category_network: Network
 settings_page_category_display: Display
 settings_page_category_sound: Sound
@@ -338,25 +344,18 @@ bluetooth_editor_action_connect: Connect
 bluetooth_editor_action_disconnect: Disconnect
 bluetooth_editor_disconnect_mode_full: Full
 bluetooth_editor_disconnect_mode_selective: Selective
-import_analysis_overwritten: "Will overwrite:"
-import_analysis_referenced: "References to existing items:"
-import_analysis_broken: "Broken references:"
-import_analysis_unresolved: "Unresolved references:"
 dasher_group_settings: Settings
 dasher_group_data_exchange: Data Exchange
 dasher_import_title: Import
 dasher_import_description: Load automations from a file
 dasher_export_title: Export
 dasher_export_description: Save automations to a file
+import_analysis_unsupported_type: "Unsupported types:"
+import_analysis_overwritten: "Will overwrite:"
+import_analysis_referenced: "References to existing items:"
+import_analysis_unresolved: "Unresolved references:"
 import_confirm_dialog_title: Confirm import
 import_confirm_dialog_ok: Import
 import_confirm_dialog_ko: Cancel
 import_result_success: Imported {count} items
 import_result_failure: Invalid import file {error}
-import_analysis_unsupported_type: "Unsupported types:"
-extra_value_type_text: Text
-extra_value_type_uri: URI
-extra_value_type_number: Numeric
-extra_value_type_boolean: Boolean
-extra_value_type_text_list: Text list
-extra_value_type_uri_list: URI list

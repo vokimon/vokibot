@@ -192,6 +192,12 @@ standard_extra_quality: Qualitat (0 baixa / 1 alta)
 standard_extra_language_model: Model de llenguatge
 standard_extra_prompt: Instrucció
 standard_extra_max_results: Resultats màxims
+extra_value_type_text: Text
+extra_value_type_uri: URI
+extra_value_type_number: Numèric
+extra_value_type_boolean: Booleà
+extra_value_type_text_list: Llista de text
+extra_value_type_uri_list: Llista d'URI
 settings_page_category_network: Xarxa
 settings_page_category_display: Pantalla
 settings_page_category_sound: So
@@ -338,25 +344,18 @@ bluetooth_editor_action_connect: Connecta
 bluetooth_editor_action_disconnect: Desconnectar
 bluetooth_editor_disconnect_mode_full: Total
 bluetooth_editor_disconnect_mode_selective: Selectiva
-import_analysis_overwritten: "Se sobreescriurà:"
-import_analysis_referenced: "Referències a elements existents:"
-import_analysis_broken: "Referències trencades:"
-import_analysis_unresolved: "Referències no resoltes:"
 dasher_group_settings: Configuració
 dasher_group_data_exchange: Intercanvi de dades
 dasher_import_title: Importa
 dasher_import_description: Carrega automatitzacions des d'un fitxer
 dasher_export_title: Exporta
 dasher_export_description: Desa automatitzacions en un fitxer
+import_analysis_unsupported_type: "Tipus no suportats:"
+import_analysis_overwritten: "Se sobreescriurà:"
+import_analysis_referenced: "Referències a elements existents:"
+import_analysis_unresolved: "Referències no resoltes:"
 import_confirm_dialog_title: Confirma la importació
 import_confirm_dialog_ok: Importa
 import_confirm_dialog_ko: Cancel·la
 import_result_success: S'han importat {count} elements
 import_result_failure: Fitxer d'importació no vàlid {error}
-import_analysis_unsupported_type: "Tipus no suportats:"
-extra_value_type_text: Text
-extra_value_type_uri: URI
-extra_value_type_number: Numèric
-extra_value_type_boolean: Booleà
-extra_value_type_text_list: Llista de text
-extra_value_type_uri_list: Llista d'URI

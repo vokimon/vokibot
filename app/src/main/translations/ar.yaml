@@ -192,6 +192,12 @@ standard_extra_quality: الجودة (0 منخفضة / 1 عالية)
 standard_extra_language_model: نموذج اللغة
 standard_extra_prompt: موجّه
 standard_extra_max_results: الحد الأقصى للنتائج
+extra_value_type_text: نص
+extra_value_type_uri: معرف الموارد الموحد (URI)
+extra_value_type_number: رقمي
+extra_value_type_boolean: قيمة منطقية
+extra_value_type_text_list: قائمة نصوص
+extra_value_type_uri_list: قائمة معرفات الموارد الموحدة
 settings_page_category_network: الشبكة
 settings_page_category_display: العرض
 settings_page_category_sound: الصوت
@@ -338,24 +344,18 @@ bluetooth_editor_action_connect: توصيل
 bluetooth_editor_action_disconnect: فصل
 bluetooth_editor_disconnect_mode_full: كاملة
 bluetooth_editor_disconnect_mode_selective: انتقائية
-import_analysis_overwritten: "سيتم الكتابة فوقه:"
-import_analysis_referenced: "إشارات إلى عناصر موجودة:"
-import_analysis_unresolved: "إشارات غير محسومة:"
 dasher_group_settings: الإعدادات
 dasher_group_data_exchange: تبادل البيانات
 dasher_import_title: استيراد
 dasher_import_description: تحميل الأتمتة من ملف
 dasher_export_title: تصدير
 dasher_export_description: حفظ الأتمتة في ملف
+import_analysis_unsupported_type: "أنواع غير مدعومة:"
+import_analysis_overwritten: "سيتم الكتابة فوقه:"
+import_analysis_referenced: "إشارات إلى عناصر موجودة:"
+import_analysis_unresolved: "إشارات غير محسومة:"
 import_confirm_dialog_title: تأكيد الاستيراد
 import_confirm_dialog_ok: استيراد
 import_confirm_dialog_ko: إلغاء
 import_result_success: تم استيراد {count} عناصر
 import_result_failure: ملف استيراد غير صالح {error}
-import_analysis_unsupported_type: "أنواع غير مدعومة:"
-extra_value_type_text: نص
-extra_value_type_uri: معرف الموارد الموحد (URI)
-extra_value_type_number: رقمي
-extra_value_type_boolean: قيمة منطقية
-extra_value_type_text_list: قائمة نصوص
-extra_value_type_uri_list: قائمة معرفات الموارد الموحدة

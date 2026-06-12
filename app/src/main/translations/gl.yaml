@@ -192,6 +192,12 @@ standard_extra_quality: Calidade (0 baixa / 1 alta)
 standard_extra_language_model: Modelo de linguaxe
 standard_extra_prompt: Indicación
 standard_extra_max_results: Resultados máximos
+extra_value_type_text: Texto
+extra_value_type_uri: URI
+extra_value_type_number: Numérico
+extra_value_type_boolean: Booleano
+extra_value_type_text_list: Lista de texto
+extra_value_type_uri_list: Lista de URI
 settings_page_category_network: Rede
 settings_page_category_display: Pantalla
 settings_page_category_sound: Son
@@ -338,24 +344,18 @@ bluetooth_editor_action_connect: Conectar
 bluetooth_editor_action_disconnect: Desconectar
 bluetooth_editor_disconnect_mode_full: Total
 bluetooth_editor_disconnect_mode_selective: Selectiva
-import_analysis_overwritten: "Sobrescribirase:"
-import_analysis_referenced: "Referencias a elementos existentes:"
-import_analysis_unresolved: "Referencias non resoltas:"
 dasher_group_settings: Axustes
 dasher_group_data_exchange: Intercambio de datos
 dasher_import_title: Importar
 dasher_import_description: Cargar automatizacións dende un ficheiro
 dasher_export_title: Exportar
 dasher_export_description: Gardar automatizacións nun ficheiro
+import_analysis_unsupported_type: "Tipos non soportados:"
+import_analysis_overwritten: "Sobrescribirase:"
+import_analysis_referenced: "Referencias a elementos existentes:"
+import_analysis_unresolved: "Referencias non resoltas:"
 import_confirm_dialog_title: Confirmar importación
 import_confirm_dialog_ok: Importar
 import_confirm_dialog_ko: Cancelar
 import_result_success: Importáronse {count} elementos
 import_result_failure: Ficheiro de importación non válido {error}
-import_analysis_unsupported_type: "Tipos non soportados:"
-extra_value_type_text: Texto
-extra_value_type_uri: URI
-extra_value_type_number: Numérico
-extra_value_type_boolean: Booleano
-extra_value_type_text_list: Lista de texto
-extra_value_type_uri_list: Lista de URI

@@ -192,6 +192,12 @@ standard_extra_quality: Качество (0 низкое / 1 высокое)
 standard_extra_language_model: Языковая модель
 standard_extra_prompt: Подсказка
 standard_extra_max_results: Макс. результатов
+extra_value_type_text: Текст
+extra_value_type_uri: URI
+extra_value_type_number: Числовой
+extra_value_type_boolean: Логическое значение
+extra_value_type_text_list: Список текста
+extra_value_type_uri_list: Список URI
 settings_page_category_network: Сеть
 settings_page_category_display: Экран
 settings_page_category_sound: Звук
@@ -338,24 +344,18 @@ bluetooth_editor_action_connect: Подключить
 bluetooth_editor_action_disconnect: Отключить
 bluetooth_editor_disconnect_mode_full: Полная
 bluetooth_editor_disconnect_mode_selective: Выборочная
-import_analysis_overwritten: "Перезапишет:"
-import_analysis_referenced: "Ссылки на существующие элементы:"
-import_analysis_unresolved: "Неразрешённые ссылки:"
 dasher_group_settings: Настройки
 dasher_group_data_exchange: Обмен данными
 dasher_import_title: Импорт
 dasher_import_description: Загрузить автоматизации из файла
 dasher_export_title: Экспорт
 dasher_export_description: Сохранить автоматизации в файл
+import_analysis_unsupported_type: "Неподдерживаемые типы:"
+import_analysis_overwritten: "Перезапишет:"
+import_analysis_referenced: "Ссылки на существующие элементы:"
+import_analysis_unresolved: "Неразрешённые ссылки:"
 import_confirm_dialog_title: Подтвердить импорт
 import_confirm_dialog_ok: Импортировать
 import_confirm_dialog_ko: Отмена
-import_result_success: "Импортировано элементов: {count}"
+import_result_success: 'Импортировано элементов: {count}'
 import_result_failure: Неверный файл импорта {error}
-import_analysis_unsupported_type: "Неподдерживаемые типы:"
-extra_value_type_text: Текст
-extra_value_type_uri: URI
-extra_value_type_number: Числовой
-extra_value_type_boolean: Логическое значение
-extra_value_type_text_list: Список текста
-extra_value_type_uri_list: Список URI

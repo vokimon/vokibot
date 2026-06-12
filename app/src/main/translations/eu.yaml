@@ -192,6 +192,12 @@ standard_extra_quality: Kalitatea (0 baxua / 1 altua)
 standard_extra_language_model: Hizkuntza eredua
 standard_extra_prompt: Eskaera
 standard_extra_max_results: Emaitza maximoak
+extra_value_type_text: Testua
+extra_value_type_uri: URI
+extra_value_type_number: Zenbakizkoa
+extra_value_type_boolean: Boolearra
+extra_value_type_text_list: Testu zerrenda
+extra_value_type_uri_list: URI zerrenda
 settings_page_category_network: Sarea
 settings_page_category_display: Pantaila
 settings_page_category_sound: Soinua
@@ -338,24 +344,18 @@ bluetooth_editor_action_connect: Konektatu
 bluetooth_editor_action_disconnect: Deskonektatu
 bluetooth_editor_disconnect_mode_full: Osoa
 bluetooth_editor_disconnect_mode_selective: Selektiboa
-import_analysis_overwritten: "Gainidatziko du:"
-import_analysis_referenced: "Lehendako elementuen erreferentziak:"
-import_analysis_unresolved: "Konpondu gabeko erreferentziak:"
 dasher_group_settings: Ezarpenak
 dasher_group_data_exchange: Datu-trukea
 dasher_import_title: Inportatu
 dasher_import_description: Kargatu automatizazioak fitxategi batetik
 dasher_export_title: Esportatu
 dasher_export_description: Gorde automatizazioak fitxategi batean
+import_analysis_unsupported_type: "Onartzen ez diren motak:"
+import_analysis_overwritten: "Gainidatziko du:"
+import_analysis_referenced: "Lehendako elementuen erreferentziak:"
+import_analysis_unresolved: "Konpondu gabeko erreferentziak:"
 import_confirm_dialog_title: Berretsi inportazioa
 import_confirm_dialog_ok: Inportatu
 import_confirm_dialog_ko: Utzi
-import_result_success: "{count} elementu inportatu dira"
+import_result_success: '{count} elementu inportatu dira'
 import_result_failure: Inportazio-fitxategi baliogabea {error}
-import_analysis_unsupported_type: "Onartzen ez diren motak:"
-extra_value_type_text: Testua
-extra_value_type_uri: URI
-extra_value_type_number: Zenbakizkoa
-extra_value_type_boolean: Boolearra
-extra_value_type_text_list: Testu zerrenda
-extra_value_type_uri_list: URI zerrenda

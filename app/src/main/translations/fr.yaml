@@ -192,6 +192,12 @@ standard_extra_quality: Qualité (0 faible / 1 élevée)
 standard_extra_language_model: Modèle de langue
 standard_extra_prompt: Invite
 standard_extra_max_results: Résultats max
+extra_value_type_text: Texte
+extra_value_type_uri: URI
+extra_value_type_number: Numérique
+extra_value_type_boolean: Booléen
+extra_value_type_text_list: Liste de texte
+extra_value_type_uri_list: Liste d'URI
 settings_page_category_network: Réseau
 settings_page_category_display: Affichage
 settings_page_category_sound: Son
@@ -338,24 +344,18 @@ bluetooth_editor_action_connect: Connecter
 bluetooth_editor_action_disconnect: Déconnecter
 bluetooth_editor_disconnect_mode_full: Total
 bluetooth_editor_disconnect_mode_selective: Sélective
-import_analysis_overwritten: "Écrasera :"
-import_analysis_referenced: "Références aux éléments existants :"
-import_analysis_unresolved: "Références non résolues :"
 dasher_group_settings: Paramètres
 dasher_group_data_exchange: Échange de données
 dasher_import_title: Importer
 dasher_import_description: Charger les automatisations depuis un fichier
 dasher_export_title: Exporter
 dasher_export_description: Enregistrer les automatisations dans un fichier
+import_analysis_unsupported_type: "Types non pris en charge :"
+import_analysis_overwritten: "Écrasera :"
+import_analysis_referenced: "Références aux éléments existants :"
+import_analysis_unresolved: "Références non résolues :"
 import_confirm_dialog_title: Confirmer l'importation
 import_confirm_dialog_ok: Importer
 import_confirm_dialog_ko: Annuler
-import_result_success: "{count} éléments importés"
+import_result_success: '{count} éléments importés'
 import_result_failure: Fichier d'importation invalide {error}
-import_analysis_unsupported_type: "Types non pris en charge :"
-extra_value_type_text: Texte
-extra_value_type_uri: URI
-extra_value_type_number: Numérique
-extra_value_type_boolean: Booléen
-extra_value_type_text_list: Liste de texte
-extra_value_type_uri_list: Liste d'URI

@@ -192,6 +192,12 @@ standard_extra_quality: Calidat (0 baixa / 1 alta)
 standard_extra_language_model: Modelo de luengache
 standard_extra_prompt: Instrucción
 standard_extra_max_results: Resultaus maximos
+extra_value_type_text: Texto
+extra_value_type_uri: URI
+extra_value_type_number: Numerico
+extra_value_type_boolean: Booleano
+extra_value_type_text_list: Lista de texto
+extra_value_type_uri_list: Lista d'URI
 settings_page_category_network: Ret
 settings_page_category_display: Pantalla
 settings_page_category_sound: Soniu
@@ -338,24 +344,18 @@ bluetooth_editor_action_connect: Conectar
 bluetooth_editor_action_disconnect: Desconnectar
 bluetooth_editor_disconnect_mode_full: Total
 bluetooth_editor_disconnect_mode_selective: Selectiva
-import_analysis_overwritten: "Se sobreescribirá:"
-import_analysis_referenced: "Referencias a elementos existients:"
-import_analysis_unresolved: "Referencias no resueltas:"
 dasher_group_settings: Achustes
 dasher_group_data_exchange: Intercambio de datos
 dasher_import_title: Importar
 dasher_import_description: Cargar automatizacions dende un fichero
 dasher_export_title: Exportar
 dasher_export_description: Alzar automatizacions en un fichero
+import_analysis_unsupported_type: "Tipos no soportaus:"
+import_analysis_overwritten: "Se sobreescribirá:"
+import_analysis_referenced: "Referencias a elementos existients:"
+import_analysis_unresolved: "Referencias no resueltas:"
 import_confirm_dialog_title: Confirmar importación
 import_confirm_dialog_ok: Importar
 import_confirm_dialog_ko: Cancelar
 import_result_success: S'han importau {count} elementos
 import_result_failure: Fichero d'importación invalido {error}
-import_analysis_unsupported_type: "Tipos no soportaus:"
-extra_value_type_text: Texto
-extra_value_type_uri: URI
-extra_value_type_number: Numerico
-extra_value_type_boolean: Booleano
-extra_value_type_text_list: Lista de texto
-extra_value_type_uri_list: Lista d'URI

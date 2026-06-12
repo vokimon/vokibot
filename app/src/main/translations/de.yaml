@@ -192,6 +192,12 @@ standard_extra_quality: Qualität (0 niedrig / 1 hoch)
 standard_extra_language_model: Sprachmodell
 standard_extra_prompt: Eingabeaufforderung
 standard_extra_max_results: Max. Ergebnisse
+extra_value_type_text: Text
+extra_value_type_uri: URI
+extra_value_type_number: Numerisch
+extra_value_type_boolean: Boolesch
+extra_value_type_text_list: Textliste
+extra_value_type_uri_list: URI-Liste
 settings_page_category_network: Netzwerk
 settings_page_category_display: Anzeige
 settings_page_category_sound: Ton
@@ -338,24 +344,18 @@ bluetooth_editor_action_connect: Verbinden
 bluetooth_editor_action_disconnect: Trennen
 bluetooth_editor_disconnect_mode_full: Komplett
 bluetooth_editor_disconnect_mode_selective: Selektiv
-import_analysis_overwritten: "Wird überschrieben:"
-import_analysis_referenced: "Verweise auf bestehende Elemente:"
-import_analysis_unresolved: "Fehlende Verweise:"
 dasher_group_settings: Einstellungen
 dasher_group_data_exchange: Datenaustausch
 dasher_import_title: Importieren
 dasher_import_description: Automatisierungen aus einer Datei laden
 dasher_export_title: Exportieren
 dasher_export_description: Automatisierungen in einer Datei speichern
+import_analysis_unsupported_type: "Nicht unterstützte Typen:"
+import_analysis_overwritten: "Wird überschrieben:"
+import_analysis_referenced: "Verweise auf bestehende Elemente:"
+import_analysis_unresolved: "Fehlende Verweise:"
 import_confirm_dialog_title: Import bestätigen
 import_confirm_dialog_ok: Importieren
 import_confirm_dialog_ko: Abbrechen
-import_result_success: "{count} Elemente importiert"
+import_result_success: '{count} Elemente importiert'
 import_result_failure: Ungültige Importdatei {error}
-import_analysis_unsupported_type: "Nicht unterstützte Typen:"
-extra_value_type_text: Text
-extra_value_type_uri: URI
-extra_value_type_number: Numerisch
-extra_value_type_boolean: Boolesch
-extra_value_type_text_list: Textliste
-extra_value_type_uri_list: URI-Liste
