@@ -4,6 +4,7 @@
 
 ## Backlog
 
+- [ ] AutomationEditor: when launched from nfc detector, it has no padding
 - [ ] Import: warn newer versions
 - [ ] Import: warn older versions or give option to migrate
 - [ ] Import: warn on duplicated ids in the bundle

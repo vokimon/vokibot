@@ -48,8 +48,8 @@ class NfcTriggerActivity : ComponentActivity() {
             NfcActivityScreen(
                 intent = intent,
                 onAutomationExecuted = { finish() },
-                onCreateAutomation = { triggerId, triggerType ->
-                    editAutomationForTrigger(context = this, triggerType, triggerId)
+                onCreateAutomation = { triggerId ->
+                    editAutomationForTrigger(context = this, triggerId)
                     finish()
                 },
             )
@@ -66,7 +66,7 @@ class NfcTriggerActivity : ComponentActivity() {
 private fun NfcActivityScreen(
     intent: Intent,
     onAutomationExecuted: () -> Unit,
-    onCreateAutomation: (triggerId: String, triggerType: String) -> Unit,
+    onCreateAutomation: (triggerId: String) -> Unit,
 ) {
     val context = LocalContext.current
     val repository = remember { FileDataRepository.fromContext(context) }
@@ -110,9 +110,7 @@ private fun NfcActivityScreen(
                     uid = uid,
                     triggerName = registeredTrigger?.displayName,
                     executionState = executionState,
-                    onCreateAutomation = { triggerId, triggerType ->
-                        onCreateAutomation(triggerId, triggerType)
-                    },
+                    onCreateAutomation = { triggerId -> onCreateAutomation(triggerId) },
                 )
             }
         }
@@ -124,7 +122,7 @@ private fun NfcUidDisplayScreen(
     uid: String?,
     triggerName: String?,
     executionState: ExecutionState,
-    onCreateAutomation: (String, String) -> Unit,
+    onCreateAutomation: (String) -> Unit,
 ) {
     val context = LocalContext.current
     var showNameDialog by remember { mutableStateOf(false) }
@@ -207,7 +205,7 @@ private fun NfcUidDisplayScreen(
                 Spacer(modifier = Modifier.height(16.dp))
                 Button(onClick = {
                     uid?.let { rawUid ->
-                        onCreateAutomation(NfcTrigger.idFromUid(rawUid), "TODO: remove triggerType")
+                        onCreateAutomation(NfcTrigger.idFromUid(rawUid))
                     }
                 }) {
                     Text(stringResource(R.string.nfc_trigger_create_automation))
@@ -239,7 +237,7 @@ private fun NfcUidDisplayScreen(
                     )
                 repository.trigger.save(trigger)
                 showNameDialog = false
-                onCreateAutomation(trigger.id, NfcTrigger.typeKey)
+                onCreateAutomation(trigger.id)
             }
         },
     )
@@ -263,12 +261,10 @@ private fun extractUidFromIntent(intent: Intent): String? =
 
 fun editAutomationForTrigger(
     context: Context,
-    triggerType: String,
     triggerId: String,
 ) {
     val editorIntent =
         Intent(context, AutomationEditorActivity::class.java).apply {
-            putExtra("trigger_type", triggerType)
             putExtra("trigger_id", triggerId)
         }
     context.startActivity(editorIntent)

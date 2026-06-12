@@ -6,7 +6,9 @@
 - 🚸 Import warns on overwritten entities
 - 🚸 Import warns on imported references to repo entities
 - 🚸 Import warns on broken references
-- 🐛 Centralize updates on repository data versions
+- 🐛 Fix sync bugs centralizing updates on repository data versions
+- 🐛 Regression: Trigger id not passed scanning an already registered nfc
+- 💥 Automations do not have triggerType as attribute, is redundant. Now ignored if present.
 - 🌐 Translated extra field type names
 
 ## 0.5.0 (2026-06-09)
