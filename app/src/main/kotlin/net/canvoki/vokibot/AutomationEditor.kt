@@ -57,7 +57,6 @@ data class AutomationEditor(
         val repository = remember { FileDataRepository.fromContext(context) }
 
         var name by rememberSaveable { mutableStateOf("") }
-        var triggerType by rememberSaveable { mutableStateOf("") }
         var triggerId by rememberSaveable { mutableStateOf("") }
         var commandIds by rememberSaveable { mutableStateOf<List<String>>(emptyList()) }
         val discardState = rememberDiscardableState(screen = this@AutomationEditor, nav = nav)
@@ -67,7 +66,6 @@ data class AutomationEditor(
             if (editingId == lastLoadedId) return@LaunchedEffect
 
             name = ""
-            triggerType = ""
             triggerId = ""
             commandIds = emptyList()
             discardState.isDirty = false
@@ -77,9 +75,6 @@ data class AutomationEditor(
                     name = existing.name
                     triggerId = existing.triggerId
                     commandIds = existing.commandIds
-                    repository.trigger.load(triggerId)?.let { existingTrigger ->
-                        triggerType = existingTrigger.type
-                    }
                 }
             }
             lastLoadedId = editingId
@@ -133,9 +128,8 @@ data class AutomationEditor(
                 colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
                 modifier =
                     Modifier.fillMaxWidth().clickable(onClick = {
-                        nav.push(TriggerList) { result: Pair<String, String>? ->
-                            result?.let { (type, id) ->
-                                triggerType = type
+                        nav.push(TriggerList) { result: String? ->
+                            result?.let { id ->
                                 triggerId = id
                                 discardState.markDirty()
                             }
@@ -147,10 +141,10 @@ data class AutomationEditor(
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
                     val triggerInfo =
-                        remember(triggerId, triggerType) {
-                            log("AutomationEditor: remember $triggerId $triggerType")
+                        remember(triggerId) {
+                            log("AutomationEditor: remember $triggerId")
                             if (triggerId.isNotBlank()) {
-                                repository.trigger.all().find { it.type == triggerType && it.id == triggerId }
+                                repository.trigger.load(triggerId)
                             } else {
                                 null
                             }

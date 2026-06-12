@@ -45,7 +45,7 @@ import net.canvoki.vokibot.common.EditorHeader
 import net.canvoki.vokibot.drawableToPainter
 
 @Serializable
-data object TriggerList : StackedScreen<Pair<String, String>>() {
+data object TriggerList : StackedScreen<String>() {
     @Composable
     override fun Screen(nav: StackNavigatorState) {
         TriggerList(nav)
@@ -100,7 +100,7 @@ fun TriggerList(
                     colors = ListItemDefaults.colors(containerColor = Color.Transparent),
                     modifier =
                         Modifier.clickable {
-                            nav.pop(Pair(trigger.type, trigger.id))
+                            nav.pop(trigger.id)
                         },
                     trailingContent = {
                         IconButton(onClick = { menuExpanded = true }) {
