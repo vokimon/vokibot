@@ -5,6 +5,22 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import net.canvoki.shared.log
 
+sealed class ExecutionState {
+    data object Idle : ExecutionState()
+
+    data object Searching : ExecutionState()
+
+    data object Executing : ExecutionState()
+
+    data object NoTrigger : ExecutionState()
+
+    data object NoAutomation : ExecutionState()
+
+    data class Error(
+        val message: String,
+    ) : ExecutionState()
+}
+
 class ShortcutDispatchActivity : ComponentActivity() {
     companion object {
         const val ACTION_TRIGGER = "net.canvoki.vokibot.ACTION_SHORTCUT_TRIGGER"

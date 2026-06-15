@@ -7,35 +7,25 @@ import android.nfc.Tag
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.material3.Button
-import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import net.canvoki.shared.component.AppScaffold
 import net.canvoki.shared.component.WatermarkBox
+import net.canvoki.vokibot.common.ErrorSplash
+import net.canvoki.vokibot.common.Loading
+import net.canvoki.vokibot.common.NotAutomatedYet
 
 class NfcTriggerActivity : ComponentActivity() {
     private val currentIntent = mutableStateOf<Intent?>(null)
@@ -48,7 +38,7 @@ class NfcTriggerActivity : ComponentActivity() {
             val intent = currentIntent.value ?: return@setContent
             NfcActivityScreen(
                 intent = intent,
-                onAutomationExecuted = { finish() },
+                onDone = { finish() },
                 onCreateAutomation = { triggerId ->
                     editAutomationForTrigger(context = this, triggerId)
                     finish()
@@ -66,7 +56,7 @@ class NfcTriggerActivity : ComponentActivity() {
 @Composable
 private fun NfcActivityScreen(
     intent: Intent,
-    onAutomationExecuted: () -> Unit,
+    onDone: () -> Unit,
     onCreateAutomation: (triggerId: String) -> Unit,
 ) {
     val context = LocalContext.current
@@ -74,10 +64,11 @@ private fun NfcActivityScreen(
     val uid = remember(intent) { extractUidFromIntent(intent) }
     var executionState by remember { mutableStateOf<ExecutionState>(ExecutionState.Idle) }
     var registeredTrigger by remember { mutableStateOf<NfcTrigger?>(null) }
+    val noTagMessage = stringResource(R.string.nfc_trigger_no_tag)
 
     LaunchedEffect(uid) {
         if (uid == null) {
-            executionState = ExecutionState.Error
+            executionState = ExecutionState.Error(noTagMessage)
             return@LaunchedEffect
         }
 
@@ -94,7 +85,7 @@ private fun NfcActivityScreen(
         executionState = ExecutionState.Executing
         val hadAutomations =
             Automation.executeByTrigger(repository, trigger.id, context) {
-                (context as? ComponentActivity)?.runOnUiThread { onAutomationExecuted() }
+                (context as? ComponentActivity)?.runOnUiThread { onDone() }
             }
         if (!hadAutomations) {
             executionState = ExecutionState.NoAutomation
@@ -106,14 +97,12 @@ private fun NfcActivityScreen(
         WatermarkBox(
             watermark = painterResource(R.drawable.ic_brand),
         ) {
-            uid?.let {
-                NfcUidDisplayScreen(
-                    uid = uid,
-                    triggerName = registeredTrigger?.displayName,
-                    executionState = executionState,
-                    onCreateAutomation = { triggerId -> onCreateAutomation(triggerId) },
-                )
-            }
+            NfcUidDisplayScreen(
+                uid = uid,
+                triggerName = registeredTrigger?.displayName,
+                executionState = executionState,
+                onCreateAutomation = { triggerId -> onCreateAutomation(triggerId) },
+            )
         }
     }
 }
@@ -130,11 +119,16 @@ private fun NfcUidDisplayScreen(
     val repository = remember { FileDataRepository.fromContext(context) }
 
     when (executionState) {
-        is ExecutionState.Searching -> {
+        is ExecutionState.Idle,
+        is ExecutionState.Searching,
+        -> {
             Loading(stringResource(R.string.nfc_trigger_searching))
         }
         is ExecutionState.Executing -> {
             Loading(stringResource(R.string.nfc_trigger_executing))
+        }
+        is ExecutionState.Error -> {
+            ErrorSplash(text = executionState.message)
         }
         is ExecutionState.NoTrigger -> {
             NotAutomatedYet(
@@ -162,15 +156,6 @@ private fun NfcUidDisplayScreen(
                 },
             )
         }
-        is ExecutionState.Error, is ExecutionState.Idle -> {
-            FullCenter {
-                Text(
-                    text = stringResource(R.string.nfc_trigger_no_tag),
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
-            }
-        }
     }
     InputDialog(
         show = showNameDialog,
@@ -193,71 +178,6 @@ private fun NfcUidDisplayScreen(
             }
         },
     )
-}
-
-@Composable
-fun Loading(text: String) {
-    FullCenter {
-        CircularProgressIndicator()
-        Spacer(modifier = Modifier.height(16.dp))
-        Text(text)
-    }
-}
-
-@Composable
-fun FullCenter(content: @Composable () -> Unit) {
-    Column(
-        modifier =
-            Modifier
-                .fillMaxSize()
-                .padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
-    ) {
-        content.invoke()
-    }
-}
-
-@Composable
-fun NotAutomatedYet(
-    iconRes: Int,
-    title: String,
-    subtitle: String,
-    help: String,
-    actionText: String,
-    action: () -> Unit,
-) {
-    FullCenter {
-        Icon(
-            painter = painterResource(iconRes),
-            contentDescription = null,
-            modifier = Modifier.size(64.dp),
-            tint = MaterialTheme.colorScheme.primary,
-        )
-        Spacer(modifier = Modifier.height(16.dp))
-        Text(
-            text = title,
-            style = MaterialTheme.typography.titleMedium,
-        )
-        Spacer(modifier = Modifier.height(4.dp))
-        Text(
-            text = subtitle,
-            style = MaterialTheme.typography.headlineSmall,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-            modifier = Modifier.padding(vertical = 8.dp),
-        )
-        Spacer(modifier = Modifier.height(16.dp))
-        Text(
-            text = help,
-            style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-            textAlign = TextAlign.Center,
-        )
-        Spacer(modifier = Modifier.height(48.dp))
-        Button(onClick = { action.invoke() }) {
-            Text(actionText)
-        }
-    }
 }
 
 private fun extractUidFromIntent(intent: Intent): String? =
@@ -285,18 +205,4 @@ fun editAutomationForTrigger(
             putExtra("trigger_id", triggerId)
         }
     context.startActivity(editorIntent)
-}
-
-private sealed class ExecutionState {
-    data object Idle : ExecutionState()
-
-    data object Searching : ExecutionState()
-
-    data object Executing : ExecutionState()
-
-    data object NoTrigger : ExecutionState()
-
-    data object NoAutomation : ExecutionState()
-
-    data object Error : ExecutionState()
 }

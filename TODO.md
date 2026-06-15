@@ -67,6 +67,8 @@
 
 ## Done
 
+## Done 0.6.0
+
 - [x] Import/Export entities.
 - [x] Import/Export text translations
 - [x] Import edge case 1: Malformed bundle JSON: ExportedBundle.fromJson() throws SerializationException. -> Catch in Drawer item click handler, notify on UserMessage
