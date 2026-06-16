@@ -24,10 +24,6 @@ class ShortcutDispatchActivity : ComponentActivity() {
                 WatermarkBox(
                     watermark = painterResource(R.drawable.ic_brand),
                 ) {
-                    TriggerDispatcher(
-                        uid = "boo",
-                        missingTriggerInfoMessage = "Shorcut activation with no trigger id",
-                    )
                 }
             }
         }
