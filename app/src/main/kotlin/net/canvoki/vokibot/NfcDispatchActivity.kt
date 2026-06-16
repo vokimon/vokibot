@@ -29,7 +29,7 @@ import net.canvoki.vokibot.common.Loading
 import net.canvoki.vokibot.common.NotAutomatedYet
 import net.canvoki.vokibot.common.TriggerDispatcher
 
-class NfcTriggerActivity : ComponentActivity() {
+class NfcDispatchActivity : ComponentActivity() {
     private val currentIntent = mutableStateOf<Intent?>(null)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,7 +43,7 @@ class NfcTriggerActivity : ComponentActivity() {
                 WatermarkBox(
                     watermark = painterResource(R.drawable.ic_brand),
                 ) {
-                    NfcActivityScreen(
+                    NfcDispatchScreen(
                         intent = intent,
                         onDone = { finish() },
                         onCreateAutomation = { triggerId ->
@@ -63,7 +63,7 @@ class NfcTriggerActivity : ComponentActivity() {
 }
 
 @Composable
-private fun NfcActivityScreen(
+private fun NfcDispatchScreen(
     intent: Intent,
     onDone: () -> Unit,
     onCreateAutomation: (triggerId: String) -> Unit,
