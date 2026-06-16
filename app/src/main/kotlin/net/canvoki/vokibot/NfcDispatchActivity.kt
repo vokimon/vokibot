@@ -51,6 +51,12 @@ class NfcDispatchActivity : ComponentActivity() {
                             finish()
                         },
                         iconRes = NfcTrigger.iconRes,
+                        searchingText = stringResource(R.string.nfc_trigger_searching),
+                        executingText = stringResource(R.string.nfc_trigger_executing),
+                        notRegisteredTitle = stringResource(R.string.nfc_trigger_detected),
+                        notRegisteredHelp = stringResource(R.string.nfc_trigger_not_registered),
+                        noAutomationHelp = stringResource(R.string.nfc_trigger_no_automation),
+                        createAutomationText = stringResource(R.string.nfc_trigger_create_automation),
                     )
                 }
             }
@@ -69,6 +75,12 @@ private fun NfcDispatchScreen(
     onDone: () -> Unit,
     onCreateAutomation: (triggerId: String) -> Unit,
     iconRes: Int,
+    searchingText: String,
+    executingText: String,
+    notRegisteredTitle: String,
+    notRegisteredHelp: String,
+    noAutomationHelp: String,
+    createAutomationText: String,
 ) {
     val context = LocalContext.current
     val repository = remember { FileDataRepository.fromContext(context) }
@@ -109,10 +121,10 @@ private fun NfcDispatchScreen(
         is ExecutionState.Idle,
         is ExecutionState.Searching,
         -> {
-            Loading(stringResource(R.string.nfc_trigger_searching))
+            Loading(searchingText)
         }
         is ExecutionState.Executing -> {
-            Loading(stringResource(R.string.nfc_trigger_executing))
+            Loading(executingText)
         }
         is ExecutionState.Error -> {
             ErrorSplash(text = (executionState as ExecutionState.Error)?.message ?: "...")
@@ -120,10 +132,10 @@ private fun NfcDispatchScreen(
         is ExecutionState.NoTrigger -> {
             NotAutomatedYet(
                 iconRes = iconRes,
-                title = stringResource(R.string.nfc_trigger_detected),
+                title = notRegisteredTitle,
                 subtitle = uid ?: "???",
-                help = stringResource(R.string.nfc_trigger_not_registered),
-                actionText = stringResource(R.string.nfc_trigger_create_automation),
+                help = notRegisteredHelp,
+                actionText = createAutomationText,
                 action = {
                     showNameDialog = true
                 },
@@ -132,10 +144,10 @@ private fun NfcDispatchScreen(
         is ExecutionState.NoAutomation -> {
             NotAutomatedYet(
                 iconRes = iconRes,
-                title = registeredTrigger?.getTitle(context) ?: stringResource(R.string.nfc_trigger_detected),
+                title = registeredTrigger?.getTitle(context) ?: notRegisteredTitle,
                 subtitle = uid ?: "???",
-                help = stringResource(R.string.nfc_trigger_no_automation),
-                actionText = stringResource(R.string.nfc_trigger_create_automation),
+                help = noAutomationHelp,
+                actionText = createAutomationText,
                 action = {
                     uid?.let { rawUid ->
                         onCreateAutomation(NfcTrigger.idFromUid(rawUid))
