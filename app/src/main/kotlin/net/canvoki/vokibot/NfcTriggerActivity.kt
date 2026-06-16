@@ -27,6 +27,7 @@ import net.canvoki.vokibot.common.ErrorSplash
 import net.canvoki.vokibot.common.ExecutionState
 import net.canvoki.vokibot.common.Loading
 import net.canvoki.vokibot.common.NotAutomatedYet
+import net.canvoki.vokibot.common.TriggerDispatcher
 
 class NfcTriggerActivity : ComponentActivity() {
     private val currentIntent = mutableStateOf<Intent?>(null)
@@ -34,17 +35,24 @@ class NfcTriggerActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         currentIntent.value = intent
+        val context = this
 
         setContent {
             val intent = currentIntent.value ?: return@setContent
-            NfcActivityScreen(
-                intent = intent,
-                onDone = { finish() },
-                onCreateAutomation = { triggerId ->
-                    editAutomationForTrigger(context = this, triggerId)
-                    finish()
-                },
-            )
+            AppScaffold {
+                WatermarkBox(
+                    watermark = painterResource(R.drawable.ic_brand),
+                ) {
+                    NfcActivityScreen(
+                        intent = intent,
+                        onDone = { finish() },
+                        onCreateAutomation = { triggerId ->
+                            editAutomationForTrigger(context = context, triggerId)
+                            finish()
+                        },
+                    )
+                }
+            }
         }
     }
 
@@ -66,6 +74,7 @@ private fun NfcActivityScreen(
     var executionState by remember { mutableStateOf<ExecutionState>(ExecutionState.Idle) }
     var registeredTrigger by remember { mutableStateOf<NfcTrigger?>(null) }
     val noTagMessage = stringResource(R.string.nfc_trigger_no_tag)
+    var showNameDialog by remember { mutableStateOf(false) }
 
     LaunchedEffect(uid) {
         if (uid == null) {
@@ -94,31 +103,6 @@ private fun NfcActivityScreen(
         }
     }
 
-    AppScaffold {
-        WatermarkBox(
-            watermark = painterResource(R.drawable.ic_brand),
-        ) {
-            NfcUidDisplayScreen(
-                uid = uid,
-                triggerName = registeredTrigger?.displayName,
-                executionState = executionState,
-                onCreateAutomation = { triggerId -> onCreateAutomation(triggerId) },
-            )
-        }
-    }
-}
-
-@Composable
-private fun NfcUidDisplayScreen(
-    uid: String?,
-    triggerName: String?,
-    executionState: ExecutionState,
-    onCreateAutomation: (String) -> Unit,
-) {
-    val context = LocalContext.current
-    var showNameDialog by remember { mutableStateOf(false) }
-    val repository = remember { FileDataRepository.fromContext(context) }
-
     when (executionState) {
         is ExecutionState.Idle,
         is ExecutionState.Searching,
@@ -129,7 +113,7 @@ private fun NfcUidDisplayScreen(
             Loading(stringResource(R.string.nfc_trigger_executing))
         }
         is ExecutionState.Error -> {
-            ErrorSplash(text = executionState.message)
+            ErrorSplash(text = (executionState as ExecutionState.Error)?.message ?: "...")
         }
         is ExecutionState.NoTrigger -> {
             NotAutomatedYet(
@@ -146,7 +130,7 @@ private fun NfcUidDisplayScreen(
         is ExecutionState.NoAutomation -> {
             NotAutomatedYet(
                 iconRes = NfcTrigger.iconRes,
-                title = triggerName ?: stringResource(R.string.nfc_trigger_detected),
+                title = registeredTrigger?.getTitle(context) ?: stringResource(R.string.nfc_trigger_detected),
                 subtitle = uid ?: "???",
                 help = stringResource(R.string.nfc_trigger_no_automation),
                 actionText = stringResource(R.string.nfc_trigger_create_automation),
