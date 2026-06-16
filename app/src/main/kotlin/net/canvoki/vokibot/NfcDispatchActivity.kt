@@ -7,27 +7,21 @@ import android.nfc.Tag
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.height
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import net.canvoki.shared.component.AppScaffold
 import net.canvoki.shared.component.WatermarkBox
 import net.canvoki.vokibot.common.ErrorSplash
 import net.canvoki.vokibot.common.ExecutionState
 import net.canvoki.vokibot.common.Loading
 import net.canvoki.vokibot.common.NotAutomatedYet
-import net.canvoki.vokibot.common.TriggerDispatcher
 
 class NfcDispatchActivity : ComponentActivity() {
     private val currentIntent = mutableStateOf<Intent?>(null)
@@ -39,16 +33,32 @@ class NfcDispatchActivity : ComponentActivity() {
 
         setContent {
             val intent = currentIntent.value ?: return@setContent
+            val uid = remember(intent) { extractUidFromIntent(intent) }
+            val triggerId = remember(uid) { uid?.let { NfcTrigger.idFromUid(it) } }
+            val repository = remember { FileDataRepository.fromContext(context) }
             AppScaffold {
                 WatermarkBox(
                     watermark = painterResource(R.drawable.ic_brand),
                 ) {
                     NfcDispatchScreen(
-                        intent = intent,
+                        triggerId = triggerId,
+                        description = uid ?: "???",
                         onDone = { finish() },
-                        onCreateAutomation = { triggerId ->
-                            editAutomationForTrigger(context = context, triggerId)
+                        onCreateAutomation = { id ->
+                            editAutomationForTrigger(context = context, id)
                             finish()
+                        },
+                        onCreateTrigger = { name ->
+                            if (uid != null) {
+                                val newTrigger =
+                                    NfcTrigger(
+                                        displayName = name,
+                                        uid = uid,
+                                    )
+                                repository.trigger.save(newTrigger)
+                                editAutomationForTrigger(context = context, newTrigger.id)
+                                finish()
+                            }
                         },
                         iconRes = NfcTrigger.iconRes,
                         badInputError = stringResource(R.string.nfc_trigger_no_tag),
@@ -72,10 +82,12 @@ class NfcDispatchActivity : ComponentActivity() {
 
 @Composable
 private fun NfcDispatchScreen(
-    intent: Intent,
+    triggerId: String?,
     onDone: () -> Unit,
     onCreateAutomation: (triggerId: String) -> Unit,
+    onCreateTrigger: (name: String) -> Unit,
     iconRes: Int,
+    description: String,
     badInputError: String,
     searchingText: String,
     executingText: String,
@@ -86,20 +98,19 @@ private fun NfcDispatchScreen(
 ) {
     val context = LocalContext.current
     val repository = remember { FileDataRepository.fromContext(context) }
-    val uid = remember(intent) { extractUidFromIntent(intent) }
     var executionState by remember { mutableStateOf<ExecutionState>(ExecutionState.Idle) }
     var trigger by remember { mutableStateOf<Trigger?>(null) }
     var showNameDialog by remember { mutableStateOf(false) }
 
-    LaunchedEffect(uid) {
-        if (uid == null) {
+    LaunchedEffect(triggerId) {
+        if (triggerId == null) {
             executionState = ExecutionState.Error(badInputError)
             return@LaunchedEffect
         }
 
         executionState = ExecutionState.Searching
 
-        trigger = repository.trigger.load(id = NfcTrigger.idFromUid(uid))
+        trigger = repository.trigger.load(id = triggerId)
         val triggerNotNull = trigger
 
         if (triggerNotNull == null) {
@@ -134,7 +145,7 @@ private fun NfcDispatchScreen(
             NotAutomatedYet(
                 iconRes = iconRes,
                 title = notRegisteredTitle,
-                subtitle = uid ?: "???",
+                subtitle = description,
                 help = notRegisteredHelp,
                 actionText = createAutomationText,
                 action = {
@@ -146,13 +157,11 @@ private fun NfcDispatchScreen(
             NotAutomatedYet(
                 iconRes = iconRes,
                 title = trigger?.getTitle(context) ?: notRegisteredTitle,
-                subtitle = uid ?: "???",
+                subtitle = description,
                 help = noAutomationHelp,
                 actionText = createAutomationText,
                 action = {
-                    uid?.let { rawUid ->
-                        onCreateAutomation(NfcTrigger.idFromUid(rawUid))
-                    }
+                    onCreateAutomation(triggerId!!)
                 },
             )
         }
@@ -166,16 +175,8 @@ private fun NfcDispatchScreen(
         dismissText = stringResource(R.string.nfc_trigger_name_dialog_cancel),
         onDismiss = { showNameDialog = false },
         onConfirm = { value ->
-            if (uid != null) {
-                val newTrigger =
-                    NfcTrigger(
-                        displayName = value,
-                        uid = uid,
-                    )
-                repository.trigger.save(newTrigger)
-                showNameDialog = false
-                onCreateAutomation(newTrigger.id)
-            }
+            showNameDialog = false
+            onCreateTrigger(value)
         },
     )
 }
