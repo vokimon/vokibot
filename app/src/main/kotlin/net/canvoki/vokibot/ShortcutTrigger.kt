@@ -54,6 +54,7 @@ data class ShortcutTrigger(
                         ?: id,
             )
         }
+        fun idFromUid(id: String) = id
     }
 
     override val type = ShortcutTrigger.typeKey
