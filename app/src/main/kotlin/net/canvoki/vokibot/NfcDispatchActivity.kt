@@ -86,7 +86,7 @@ private fun NfcDispatchScreen(
     val repository = remember { FileDataRepository.fromContext(context) }
     val uid = remember(intent) { extractUidFromIntent(intent) }
     var executionState by remember { mutableStateOf<ExecutionState>(ExecutionState.Idle) }
-    var registeredTrigger by remember { mutableStateOf<NfcTrigger?>(null) }
+    var trigger by remember { mutableStateOf<Trigger?>(null) }
     val noTagMessage = stringResource(R.string.nfc_trigger_no_tag)
     var showNameDialog by remember { mutableStateOf(false) }
 
@@ -98,17 +98,17 @@ private fun NfcDispatchScreen(
 
         executionState = ExecutionState.Searching
 
-        val trigger = repository.loadNfcTrigger(uid = uid)
-        registeredTrigger = trigger
+        trigger = repository.trigger.load(id = NfcTrigger.idFromUid(uid))
+        val triggerNotNull = trigger
 
-        if (trigger == null) {
+        if (triggerNotNull == null) {
             executionState = ExecutionState.NoTrigger
             return@LaunchedEffect
         }
 
         executionState = ExecutionState.Executing
         val hadAutomations =
-            Automation.executeByTrigger(repository, trigger.id, context) {
+            Automation.executeByTrigger(repository, triggerNotNull.id, context) {
                 (context as? ComponentActivity)?.runOnUiThread { onDone() }
             }
         if (!hadAutomations) {
@@ -144,7 +144,7 @@ private fun NfcDispatchScreen(
         is ExecutionState.NoAutomation -> {
             NotAutomatedYet(
                 iconRes = iconRes,
-                title = registeredTrigger?.getTitle(context) ?: notRegisteredTitle,
+                title = trigger?.getTitle(context) ?: notRegisteredTitle,
                 subtitle = uid ?: "???",
                 help = noAutomationHelp,
                 actionText = createAutomationText,
@@ -166,14 +166,14 @@ private fun NfcDispatchScreen(
         onDismiss = { showNameDialog = false },
         onConfirm = { value ->
             if (uid != null) {
-                val trigger =
+                val newTrigger =
                     NfcTrigger(
                         displayName = value,
                         uid = uid,
                     )
-                repository.trigger.save(trigger)
+                repository.trigger.save(newTrigger)
                 showNameDialog = false
-                onCreateAutomation(trigger.id)
+                onCreateAutomation(newTrigger.id)
             }
         },
     )
