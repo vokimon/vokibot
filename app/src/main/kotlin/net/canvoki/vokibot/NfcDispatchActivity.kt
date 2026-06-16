@@ -51,6 +51,7 @@ class NfcDispatchActivity : ComponentActivity() {
                             finish()
                         },
                         iconRes = NfcTrigger.iconRes,
+                        badInputError = stringResource(R.string.nfc_trigger_no_tag),
                         searchingText = stringResource(R.string.nfc_trigger_searching),
                         executingText = stringResource(R.string.nfc_trigger_executing),
                         notRegisteredTitle = stringResource(R.string.nfc_trigger_detected),
@@ -75,6 +76,7 @@ private fun NfcDispatchScreen(
     onDone: () -> Unit,
     onCreateAutomation: (triggerId: String) -> Unit,
     iconRes: Int,
+    badInputError: String,
     searchingText: String,
     executingText: String,
     notRegisteredTitle: String,
@@ -87,12 +89,11 @@ private fun NfcDispatchScreen(
     val uid = remember(intent) { extractUidFromIntent(intent) }
     var executionState by remember { mutableStateOf<ExecutionState>(ExecutionState.Idle) }
     var trigger by remember { mutableStateOf<Trigger?>(null) }
-    val noTagMessage = stringResource(R.string.nfc_trigger_no_tag)
     var showNameDialog by remember { mutableStateOf(false) }
 
     LaunchedEffect(uid) {
         if (uid == null) {
-            executionState = ExecutionState.Error(noTagMessage)
+            executionState = ExecutionState.Error(badInputError)
             return@LaunchedEffect
         }
 
