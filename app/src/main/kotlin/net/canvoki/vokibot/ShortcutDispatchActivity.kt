@@ -3,23 +3,12 @@ package net.canvoki.vokibot
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.ui.res.painterResource
+import net.canvoki.shared.component.AppScaffold
+import net.canvoki.shared.component.WatermarkBox
 import net.canvoki.shared.log
-
-sealed class ExecutionState {
-    data object Idle : ExecutionState()
-
-    data object Searching : ExecutionState()
-
-    data object Executing : ExecutionState()
-
-    data object NoTrigger : ExecutionState()
-
-    data object NoAutomation : ExecutionState()
-
-    data class Error(
-        val message: String,
-    ) : ExecutionState()
-}
+import net.canvoki.vokibot.common.TriggerDispatcher
 
 class ShortcutDispatchActivity : ComponentActivity() {
     companion object {
@@ -30,6 +19,18 @@ class ShortcutDispatchActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         handleTrigger(intent)
+        setContent {
+            AppScaffold {
+                WatermarkBox(
+                    watermark = painterResource(R.drawable.ic_brand),
+                ) {
+                    TriggerDispatcher(
+                        uid = "boo",
+                        missingTriggerInfoMessage = "Shorcut activation with no trigger id",
+                    )
+                }
+            }
+        }
     }
 
     override fun onNewIntent(intent: Intent) {
