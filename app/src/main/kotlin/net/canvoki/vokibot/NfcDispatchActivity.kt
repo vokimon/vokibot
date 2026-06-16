@@ -50,6 +50,7 @@ class NfcDispatchActivity : ComponentActivity() {
                             editAutomationForTrigger(context = context, triggerId)
                             finish()
                         },
+                        iconRes = NfcTrigger.iconRes,
                     )
                 }
             }
@@ -67,6 +68,7 @@ private fun NfcDispatchScreen(
     intent: Intent,
     onDone: () -> Unit,
     onCreateAutomation: (triggerId: String) -> Unit,
+    iconRes: Int,
 ) {
     val context = LocalContext.current
     val repository = remember { FileDataRepository.fromContext(context) }
@@ -117,7 +119,7 @@ private fun NfcDispatchScreen(
         }
         is ExecutionState.NoTrigger -> {
             NotAutomatedYet(
-                iconRes = NfcTrigger.iconRes,
+                iconRes = iconRes,
                 title = stringResource(R.string.nfc_trigger_detected),
                 subtitle = uid ?: "???",
                 help = stringResource(R.string.nfc_trigger_not_registered),
@@ -129,7 +131,7 @@ private fun NfcDispatchScreen(
         }
         is ExecutionState.NoAutomation -> {
             NotAutomatedYet(
-                iconRes = NfcTrigger.iconRes,
+                iconRes = iconRes,
                 title = registeredTrigger?.getTitle(context) ?: stringResource(R.string.nfc_trigger_detected),
                 subtitle = uid ?: "???",
                 help = stringResource(R.string.nfc_trigger_no_automation),
