@@ -2,8 +2,10 @@
 
 ## Unreleased
 
-- ✨ Deleted shortcuts can be recovered
-- ♻️ Dispatcher code for any trigger unified
+- ✨ Deleted shortcuts can be recovered by tapping them
+- ♻️ Converging dispatchers code for nfc and shortcut
+- 🐛 Do not save discarded new automations created from a dispatched trigger
+- 💄 Unpadded screens when starting on a dispatcher
 
 ## 0.6.0 (2026-06-12)
 
