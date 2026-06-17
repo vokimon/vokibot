@@ -48,6 +48,12 @@ class ShortcutDispatchActivity : ComponentActivity() {
             val uid = remember(intent) { extractShortcutIdFromIntent(intent) }
             val triggerId = remember(uid) { uid?.let { ShortcutTrigger.idFromUid(it) } }
             val repository = remember { FileDataRepository.fromContext(context) }
+            val trigger = remember(triggerId) {
+                triggerId?.let {
+                    repository.trigger.load(triggerId)
+                        ?: ShortcutTrigger.fromExistingShortcut(context, triggerId)
+                }
+            }
 
             AppScaffold {
                 WatermarkBox(
@@ -55,7 +61,7 @@ class ShortcutDispatchActivity : ComponentActivity() {
                 ) {
                     TriggerDispatcher(
                         triggerId = triggerId,
-                        description = uid ?: "??",
+                        description = trigger?.getTitle(context) ?: "???",
                         onDone = { finish() },
                         onCreateAutomation = { id ->
                             editAutomationForTrigger(context = context, id)
@@ -73,13 +79,13 @@ class ShortcutDispatchActivity : ComponentActivity() {
                             }
                         },
                         iconRes = ShortcutTrigger.iconRes,
-                        badInputError = stringResource(R.string.nfc_trigger_no_tag),
-                        searchingText = stringResource(R.string.nfc_trigger_searching),
-                        executingText = stringResource(R.string.nfc_trigger_executing),
-                        notRegisteredTitle = stringResource(R.string.nfc_trigger_detected),
-                        notRegisteredHelp = stringResource(R.string.nfc_trigger_not_registered),
-                        noAutomationHelp = stringResource(R.string.nfc_trigger_no_automation),
-                        createAutomationText = stringResource(R.string.nfc_trigger_create_automation),
+                        badInputError = "Bad shortcut intent",
+                        searchingText = "Searching trigger...",
+                        executingText = "Executing automation...",
+                        notRegisteredTitle = "Shortcut tapped", // TODO: should use shortcut name
+                        notRegisteredHelp = "No trigger bound to this shortcut",
+                        noAutomationHelp = "No automation bound to the trigger",
+                        createAutomationText = "Automate",
                     )
                 }
             }

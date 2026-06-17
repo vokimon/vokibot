@@ -1,5 +1,10 @@
 # Change log
 
+## Unreleased
+
+- ✨ Deleted shortcuts can be recovered
+- ♻️ Dispatcher code for any trigger unified
+
 ## 0.6.0 (2026-06-12)
 
 Import and export automation definitions
