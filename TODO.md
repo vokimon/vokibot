@@ -4,8 +4,6 @@
 
 ## Backlog
 
-- [ ] BT Trigger: Detect that bt is disabled or/and button to reenable it
-- [ ] BT Connect: Detect that bt is disabled or/and button to reenable it
 - [ ] Weblate: create meta module
 - [ ] Weblate: create web module
 - [ ] Import: warn newer versions
@@ -45,6 +43,7 @@
 - More commands:
     - [ ] Airplaine mode on/off
     - [ ] Enable/Disable/Connect Wi-Fi
+
 - More triggers:
     - [ ] System Broadcast: As trigger to vokibot, system sends broadcasts to any listening app
     - [ ] On notification received
@@ -66,6 +65,10 @@
 
 ## Done
 
+## Done 0.6.1
+
+- [x] BT Trigger: Detect that bt is disabled or/and button to reenable it
+- [x] BT Connect: Detect that bt is disabled or/and button to reenable it
 - [x] AutomationEditor: when launched from nfc detector, it has no padding
 - [x] ShortcutDispatcher: if no trigger related, create it
 - [x] ShortcutDispatcher: if no action related, create and edit it
