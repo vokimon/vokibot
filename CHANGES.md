@@ -3,8 +3,8 @@
 ## Unreleased
 
 - ✨ Magic name suggestions
+- ✨ When Bluetooth is disabled give option to enable instead showing an empty list
 - ✨ Deleted shortcut triggers can be recovered by tapping undeleted shortcuts
-- ✨ When Bluetooth is disable give option to enable instead of an empty list
 - ♻️ Converging nfc and shortcut dispatcher code
 - 🐛 Do not prematurely save automations created by an unmatched trigger dispatch
 - 💄 Unpadded screens when starting on a dispatcher

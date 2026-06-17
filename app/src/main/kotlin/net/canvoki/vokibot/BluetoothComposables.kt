@@ -4,7 +4,12 @@ import android.Manifest
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothManager
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.os.Build
+import android.provider.Settings
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -18,6 +23,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -30,8 +36,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
-import net.canvoki.vokibot.common.rememberPermissionState
 import net.canvoki.vokibot.common.WarningBanner
+import net.canvoki.vokibot.common.rememberPermissionState
 
 @Composable
 fun PermissionBanner(onGrantClicked: () -> Unit) {
@@ -42,13 +48,23 @@ fun PermissionBanner(onGrantClicked: () -> Unit) {
     )
 }
 
+private fun isBluetoothEnabled(adapter: BluetoothAdapter): Boolean =
+    try {
+        val service = BluetoothAdapter::class.java.getDeclaredMethod("getService").invoke(adapter)
+        service?.javaClass?.getDeclaredMethod("isEnabled")?.invoke(service) as? Boolean ?: false
+    } catch (_: Exception) {
+        @Suppress("DEPRECATION")
+        adapter.isEnabled
+    }
+
 data class BluetoothUsabilityState(
     val isPermissionGranted: Boolean,
     val adapter: BluetoothAdapter?,
     val requestPermission: () -> Unit,
+    val isEnabled: Boolean,
 ) {
     val isAdapterAvailable: Boolean get() = adapter != null
-    val isUsable: Boolean get() = isAdapterAvailable && isPermissionGranted
+    val isUsable: Boolean get() = isAdapterAvailable && isPermissionGranted && isEnabled
 }
 
 @Composable
@@ -63,10 +79,38 @@ fun rememberBluetoothUsabilityState(): BluetoothUsabilityState {
             val manager = context.getSystemService(BluetoothManager::class.java)
             manager?.adapter
         }
+
+    var isEnabled by remember(adapter) {
+        mutableStateOf(adapter?.let { isBluetoothEnabled(it) } ?: false)
+    }
+
+    DisposableEffect(adapter) {
+        if (adapter == null) return@DisposableEffect onDispose {}
+        val receiver =
+            object : BroadcastReceiver() {
+                override fun onReceive(
+                    context: Context,
+                    intent: Intent,
+                ) {
+                    if (intent.action == BluetoothAdapter.ACTION_STATE_CHANGED) {
+                        isEnabled = isBluetoothEnabled(adapter)
+                    }
+                }
+            }
+        val filter = IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            context.registerReceiver(receiver, filter, Context.RECEIVER_NOT_EXPORTED)
+        } else {
+            context.registerReceiver(receiver, filter)
+        }
+        onDispose { context.unregisterReceiver(receiver) }
+    }
+
     return BluetoothUsabilityState(
         isPermissionGranted = connectPermState.isGranted,
         adapter = adapter,
         requestPermission = { connectPermState.request() },
+        isEnabled = isEnabled,
     )
 }
 
@@ -75,9 +119,10 @@ fun BluetoothDeviceChooser(
     state: BluetoothUsabilityState = rememberBluetoothUsabilityState(),
     onDeviceSelected: (name: String, mac: String) -> Unit,
 ) {
+    val context = LocalContext.current
     val bondedDevices =
-        remember(state.isPermissionGranted, state.adapter) {
-            if (!state.isPermissionGranted || state.adapter == null) {
+        remember(state.isPermissionGranted, state.isEnabled, state.adapter) {
+            if (!state.isPermissionGranted || !state.isEnabled || state.adapter == null) {
                 emptyList()
             } else {
                 @Suppress("MissingPermission")
@@ -89,7 +134,15 @@ fun BluetoothDeviceChooser(
 
     if (state.isAdapterAvailable) {
         HorizontalDivider()
-        if (state.isPermissionGranted) {
+        if (!state.isEnabled) {
+            WarningBanner(
+                message = "Bluetooth is disabled",
+                buttonText = "Enable",
+                onClick = {
+                    context.startActivity(Intent(Settings.ACTION_BLUETOOTH_SETTINGS))
+                },
+            )
+        } else if (state.isPermissionGranted) {
             PairedDevicesList(
                 devices = bondedDevices,
                 onDeviceSelected = onDeviceSelected,
