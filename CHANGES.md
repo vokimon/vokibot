@@ -1,13 +1,17 @@
 # Change log
 
-## Unreleased
+## 0.6.1 (2026-06-17)
 
-- ✨ Magic name suggestions
-- ✨ When Bluetooth is disabled give option to enable instead showing an empty list
-- ✨ Deleted shortcut triggers can be recovered by tapping undeleted shortcuts
-- ♻️ Converging nfc and shortcut dispatcher code
-- 🐛 Do not prematurely save automations created by an unmatched trigger dispatch
-- 💄 Unpadded screens when starting on a dispatcher
+Usability enhancements
+
+- ✨ Magic name suggestion icon button
+- ✨ Bluetooth device list: When Blutetooth is disabled, message and button to enable
+- ✨ Bluetooth device list: When no support, show a message
+- ✨ Bluetooth device list: When no device, show a message
+- ✨ Deleted shortcut triggers can be recovered by tapping the actual shortcuts
+- ♻ Converging nfc and shortcut dispatcher code
+- 🐛 Automation edit after dispatcher: Hold automation saving until actually done.
+- 💄 Automation edit after dispatcher: Padding, watermark, header...
 
 ## 0.6.0 (2026-06-12)
 

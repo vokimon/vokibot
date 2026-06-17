@@ -20,6 +20,17 @@ full_description_md: |-
   - Open system configuration pages
   - Connect or disconnect Bluetooth devices
 keywords: automation, nfc, timer, shortcut
+changes_0_6_1_md: |-
+  Usability enhancements
+
+  - ✨ Magic name suggestion icon button
+  - ✨ Bluetooth device list: When Blutetooth is disabled, message and button to enable
+  - ✨ Bluetooth device list: When no support, show a message
+  - ✨ Bluetooth device list: When no device, show a message
+  - ✨ Deleted shortcut triggers can be recovered by tapping the actual shortcuts
+  - ♻ Converging nfc and shortcut dispatcher code
+  - 🐛 Automation edit after dispatcher: Hold automation saving until actually done.
+  - 💄 Automation edit after dispatcher: Padding, watermark, header...
 changes_0_6_0_md: |-
   Import and export automation definitions
 
