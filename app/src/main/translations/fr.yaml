@@ -364,3 +364,4 @@ nfc_dispatcher_title: Étiquette détectée
 bluetooth_device_editor_no_bluetooth: Cet appareil ne prend pas en charge le Bluetooth
 bluetooth_device_editor_disabled: Le Bluetooth est désactivé
 bluetooth_device_editor_button_enable: Activer
+bluetooth_device_editor_no_paired_devices: Aucun appareil appairé trouvé.

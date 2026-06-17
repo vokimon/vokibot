@@ -364,3 +364,4 @@ nfc_dispatcher_title: Etiqueta detectada
 bluetooth_device_editor_no_bluetooth: Este dispositivo não tem suporte para Bluetooth
 bluetooth_device_editor_disabled: O Bluetooth está desativado
 bluetooth_device_editor_button_enable: Ativar
+bluetooth_device_editor_no_paired_devices: Não foram encontrados dispositivos emparelhados.

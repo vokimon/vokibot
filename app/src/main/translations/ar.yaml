@@ -364,3 +364,4 @@ nfc_dispatcher_title: تم اكتشاف العلامة
 bluetooth_device_editor_no_bluetooth: هذا الجهاز لا يدعم البلوتوث
 bluetooth_device_editor_disabled: البلوتوث معطل
 bluetooth_device_editor_button_enable: تفعيل
+bluetooth_device_editor_no_paired_devices: لم يتم العثور على أجهزة مقترنة.

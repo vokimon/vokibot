@@ -364,3 +364,4 @@ nfc_dispatcher_title: Метка обнаружена
 bluetooth_device_editor_no_bluetooth: Это устройство не поддерживает Bluetooth
 bluetooth_device_editor_disabled: Bluetooth отключен
 bluetooth_device_editor_button_enable: Включить
+bluetooth_device_editor_no_paired_devices: Сопряженные устройства не найдены.

@@ -202,6 +202,13 @@ fun PairedDevicesList(
         color = MaterialTheme.colorScheme.primary,
     )
     Column {
+        if (devices.isEmpty()) {
+            Text(
+                text = stringResource(R.string.bluetooth_device_editor_no_paired_devices),
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+        }
         devices.forEachIndexed { index, device ->
             if (index > 0) HorizontalDivider()
             val deviceName = device.safeDisplayName()
