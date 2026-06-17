@@ -48,12 +48,13 @@ class ShortcutDispatchActivity : ComponentActivity() {
             val uid = remember(intent) { extractShortcutIdFromIntent(intent) }
             val triggerId = remember(uid) { uid?.let { ShortcutTrigger.idFromUid(it) } }
             val repository = remember { FileDataRepository.fromContext(context) }
-            val trigger = remember(triggerId) {
-                triggerId?.let {
-                    repository.trigger.load(triggerId)
-                        ?: ShortcutTrigger.fromExistingShortcut(context, triggerId)
+            val trigger =
+                remember(triggerId) {
+                    triggerId?.let {
+                        repository.trigger.load(triggerId)
+                            ?: ShortcutTrigger.fromExistingShortcut(context, triggerId)
+                    }
                 }
-            }
 
             AppScaffold {
                 WatermarkBox(
@@ -69,11 +70,12 @@ class ShortcutDispatchActivity : ComponentActivity() {
                         },
                         onCreateTriggerAndAction = {
                             if (uid != null) {
-                                val newTrigger = ShortcutTrigger.fromExistingShortcut(context, uid)
-                                    ?: ShortcutTrigger(
-                                        id = uid,
-                                        displayName = "TODO",
-                                    )
+                                val newTrigger =
+                                    ShortcutTrigger.fromExistingShortcut(context, uid)
+                                        ?: ShortcutTrigger(
+                                            id = uid,
+                                            displayName = "TODO",
+                                        )
                                 repository.trigger.save(newTrigger)
                                 editAutomationForTrigger(context = context, newTrigger.id)
                             }
