@@ -132,24 +132,26 @@ fun BluetoothDeviceChooser(
             }
         }
 
-    if (state.isAdapterAvailable) {
-        HorizontalDivider()
-        if (!state.isEnabled) {
-            WarningBanner(
-                message = "Bluetooth is disabled",
-                buttonText = "Enable",
-                onClick = {
-                    context.startActivity(Intent(Settings.ACTION_BLUETOOTH_SETTINGS))
-                },
-            )
-        } else if (state.isPermissionGranted) {
-            PairedDevicesList(
-                devices = bondedDevices,
-                onDeviceSelected = onDeviceSelected,
-            )
-        } else {
-            PermissionBanner(onGrantClicked = state.requestPermission)
-        }
+    HorizontalDivider()
+    if (!state.isAdapterAvailable) {
+        WarningBanner(
+            message = "This device has no Bluetooth support",
+        )
+    } else if (!state.isEnabled) {
+        WarningBanner(
+            message = "Bluetooth is disabled",
+            buttonText = "Enable",
+            onClick = {
+                context.startActivity(Intent(Settings.ACTION_BLUETOOTH_SETTINGS))
+            },
+        )
+    } else if (!state.isPermissionGranted) {
+        PermissionBanner(onGrantClicked = state.requestPermission)
+    } else {
+        PairedDevicesList(
+            devices = bondedDevices,
+            onDeviceSelected = onDeviceSelected,
+        )
     }
 }
 
