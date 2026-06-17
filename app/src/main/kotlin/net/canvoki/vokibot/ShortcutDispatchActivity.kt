@@ -82,7 +82,7 @@ class ShortcutDispatchActivity : ComponentActivity() {
                         badInputError = "Bad shortcut intent",
                         searchingText = "Searching trigger...",
                         executingText = "Executing automation...",
-                        notRegisteredTitle = "Shortcut tapped", // TODO: should use shortcut name
+                        notRegisteredTitle = "Shortcut tapped",
                         notRegisteredHelp = "No trigger bound to this shortcut",
                         noAutomationHelp = "No automation bound to the trigger",
                         createAutomationText = "Automate",
@@ -95,24 +95,5 @@ class ShortcutDispatchActivity : ComponentActivity() {
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         currentIntent.value = intent
-    }
-
-    private fun executeAutomation(triggerId: String): Boolean {
-        val repo = FileDataRepository.fromContext(this)
-        val trigger = repo.trigger.load(triggerId)
-        if (trigger == null) {
-            log("ShortcutDispatchActivity: Trigger not found - $triggerId")
-            return false
-        }
-        if (!Automation.executeByTrigger(repo, triggerId, this) {
-                runOnUiThread {
-                    //finish()
-                }
-            }
-        ) {
-            log("ShortcutDispatchActivity: No automations linked to '${trigger.getTitle(this)}'")
-            return false
-        }
-        return true
     }
 }
