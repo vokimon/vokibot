@@ -26,6 +26,22 @@ import net.canvoki.vokibot.common.editAutomationForTrigger
 class NfcDispatchActivity : ComponentActivity() {
     private val currentIntent = mutableStateOf<Intent?>(null)
 
+    private fun extractInfoFromIntent(intent: Intent): String? =
+        if (intent.action == NfcAdapter.ACTION_TAG_DISCOVERED ||
+            intent.action == NfcAdapter.ACTION_TECH_DISCOVERED
+        ) {
+            val tag =
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
+                    intent.getParcelableExtra(NfcAdapter.EXTRA_TAG, Tag::class.java)
+                } else {
+                    @Suppress("DEPRECATION")
+                    intent.getParcelableExtra<Tag>(NfcAdapter.EXTRA_TAG)
+                }
+            tag?.id?.joinToString(":") { "%02X".format(it) }
+        } else {
+            null
+        }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         currentIntent.value = intent
@@ -33,7 +49,7 @@ class NfcDispatchActivity : ComponentActivity() {
 
         setContent {
             val intent = currentIntent.value ?: return@setContent
-            val uid = remember(intent) { extractUidFromIntent(intent) }
+            val uid = remember(intent) { extractInfoFromIntent(intent) }
             val triggerId = remember(uid) { uid?.let { NfcTrigger.idFromUid(it) } }
             val repository = remember { FileDataRepository.fromContext(context) }
             var showNameDialog by remember { mutableStateOf(false) }
@@ -91,19 +107,3 @@ class NfcDispatchActivity : ComponentActivity() {
         currentIntent.value = intent
     }
 }
-
-private fun extractUidFromIntent(intent: Intent): String? =
-    if (intent.action == NfcAdapter.ACTION_TAG_DISCOVERED ||
-        intent.action == NfcAdapter.ACTION_TECH_DISCOVERED
-    ) {
-        val tag =
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
-                intent.getParcelableExtra(NfcAdapter.EXTRA_TAG, Tag::class.java)
-            } else {
-                @Suppress("DEPRECATION")
-                intent.getParcelableExtra<Tag>(NfcAdapter.EXTRA_TAG)
-            }
-        tag?.id?.joinToString(":") { "%02X".format(it) }
-    } else {
-        null
-    }

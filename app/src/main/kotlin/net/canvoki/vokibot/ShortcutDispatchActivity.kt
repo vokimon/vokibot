@@ -24,7 +24,7 @@ class ShortcutDispatchActivity : ComponentActivity() {
 
     private val currentIntent = mutableStateOf<Intent?>(null)
 
-    fun extractShortcutIdFromIntent(intent: Intent): String? {
+    private fun extractInfoFromIntent(intent: Intent): String? {
         if (intent.action != ACTION_TRIGGER) {
             log("ShortcutDispatchActivity: Wrong action ${intent.action}")
             return null
@@ -45,7 +45,7 @@ class ShortcutDispatchActivity : ComponentActivity() {
 
         setContent {
             val intent = currentIntent.value ?: return@setContent
-            val uid = remember(intent) { extractShortcutIdFromIntent(intent) }
+            val uid = remember(intent) { extractInfoFromIntent(intent) }
             val triggerId = remember(uid) { uid?.let { ShortcutTrigger.idFromUid(it) } }
             val repository = remember { FileDataRepository.fromContext(context) }
             val trigger =
