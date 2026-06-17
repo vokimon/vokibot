@@ -60,11 +60,8 @@ data class AutomationEditor(
         var triggerId by rememberSaveable { mutableStateOf("") }
         var commandIds by rememberSaveable { mutableStateOf<List<String>>(emptyList()) }
         val discardState = rememberDiscardableState(screen = this@AutomationEditor, nav = nav)
-        var lastLoadedId by remember { mutableStateOf<String?>(null) }
 
-        LaunchedEffect(editingId) {
-            if (editingId == lastLoadedId) return@LaunchedEffect
-
+        LaunchedEffect(Unit) {
             name = ""
             triggerId = ""
             commandIds = emptyList()
@@ -77,7 +74,6 @@ data class AutomationEditor(
                     commandIds = existing.commandIds
                 }
             }
-            lastLoadedId = editingId
         }
 
         Column(
