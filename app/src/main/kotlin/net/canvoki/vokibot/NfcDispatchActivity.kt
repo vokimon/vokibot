@@ -6,8 +6,6 @@ import android.nfc.Tag
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -16,10 +14,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import net.canvoki.shared.component.AppScaffold
 import net.canvoki.shared.component.WatermarkBox
-import net.canvoki.vokibot.common.ErrorSplash
-import net.canvoki.vokibot.common.ExecutionState
-import net.canvoki.vokibot.common.Loading
-import net.canvoki.vokibot.common.NotAutomatedYet
 import net.canvoki.vokibot.common.TriggerDispatcher
 import net.canvoki.vokibot.common.editAutomationForTrigger
 
@@ -67,13 +61,7 @@ class NfcDispatchActivity : ComponentActivity() {
                         },
                         onCreateTriggerAndAction = { showNameDialog = true },
                         iconRes = NfcTrigger.iconRes,
-                        badInputError = stringResource(R.string.nfc_trigger_no_tag),
-                        searchingText = stringResource(R.string.nfc_trigger_searching),
-                        executingText = stringResource(R.string.nfc_trigger_executing),
-                        notRegisteredTitle = stringResource(R.string.nfc_trigger_detected),
-                        notRegisteredHelp = stringResource(R.string.nfc_trigger_not_registered),
-                        noAutomationHelp = stringResource(R.string.nfc_trigger_no_automation),
-                        createAutomationText = stringResource(R.string.nfc_trigger_create_automation),
+                        title = stringResource(R.string.nfc_dispatcher_title),
                     )
                 }
             }

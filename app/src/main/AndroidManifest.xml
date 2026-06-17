@@ -63,9 +63,9 @@
 
         <activity android:name=".AutomationEditorActivity" />
 
-        <!-- NFC Trigger Activity -->
+        <!-- NFC Dispatch Activity -->
         <activity
-            android:label="@string/nfc_trigger_activity_label"
+            android:label="@string/nfc_dispatcher_activity_label"
             android:name=".NfcDispatchActivity"
             android:launchMode="singleTop"
             android:exported="true">
@@ -77,9 +77,10 @@
 
         </activity>
 
-        <!-- Shorcut Trigger -->
+        <!-- Shorcut Dispatch Activity -->
         <activity
             android:name=".ShortcutDispatchActivity"
+            android:label="@string/shortcut_dispatcher_activity_label"
             android:exported="true"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:launchMode="singleTask"

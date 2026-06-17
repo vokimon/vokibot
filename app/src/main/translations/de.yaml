@@ -52,14 +52,7 @@ nfc_editor_not_available: Dieses Gerät unterstützt kein NFC
 nfc_editor_enable_to_autodetect: NFC für Autoerkennung aktivieren
 nfc_editor_autodetect_hint: NFC-Tag nah ans Gerät halten
 nfc_editor_scan_success: Tag erkannt ✓
-nfc_trigger_detected: Tag erkannt
-nfc_trigger_no_tag: Kein Tag erkannt. Berühren Sie ein NFC-Tag, um seine ID anzuzeigen.
-nfc_trigger_activity_label: Befehl mit diesem NFC-Tag ausführen
-nfc_trigger_searching: Suche nach Automatisierung…
-nfc_trigger_executing: Automatisierung wird ausgeführt…
-nfc_trigger_not_registered: Dieser Tag ist nicht registriert
-nfc_trigger_no_automation: Keine Automatisierung mit diesem Tag verknüpft
-nfc_trigger_create_automation: Automatisierung erstellen
+nfc_dispatcher_activity_label: Befehle bei NFC-Erkennung ausführen
 nfc_trigger_name_dialog_title: Tag benennen
 nfc_trigger_name_dialog_confirm: Speichern & Weiter
 nfc_trigger_name_dialog_cancel: Abbrechen
@@ -359,3 +352,12 @@ import_confirm_dialog_ok: Importieren
 import_confirm_dialog_ko: Abbrechen
 import_result_success: '{count} Elemente importiert'
 import_result_failure: Ungültige Importdatei {error}
+trigger_dispatcher_create_automation: Automatisierung erstellen
+trigger_dispatcher_searching: Suche nach Automatisierung…
+trigger_dispatcher_executing: Automatisierung wird ausgeführt…
+trigger_dispatcher_bad_input: Fehlende Auslöserinformationen
+trigger_dispatcher_not_registered: Kein zugehöriger Auslöser gefunden
+trigger_dispatcher_no_automation: Keine Automatisierung gefunden
+shortcut_dispatcher_title: Verknüpfung angetippt
+shortcut_dispatcher_activity_label: Befehle beim Antippen der Verknüpfung ausführen
+nfc_dispatcher_title: Tag erkannt

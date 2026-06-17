@@ -52,14 +52,7 @@ nfc_editor_not_available: هذا الجهاز لا يدعم تقنية NFC
 nfc_editor_enable_to_autodetect: فعّل NFC للكشف التلقائي
 nfc_editor_autodetect_hint: قرب البطاقة للكشف التلقائي
 nfc_editor_scan_success: تم اكتشاف البطاقة ✓
-nfc_trigger_detected: تم اكتشاف العلامة
-nfc_trigger_no_tag: لم يتم اكتشاف علامة. انقر على علامة NFC لعرض معرفها.
-nfc_trigger_activity_label: تشغيل أمر باستخدام بطاقة NFC هذه
-nfc_trigger_searching: البحث عن أتمتة…
-nfc_trigger_executing: تشغيل الأتمتة…
-nfc_trigger_not_registered: هذه العلامة غير مسجلة
-nfc_trigger_no_automation: لا توجد أتمتة مرتبطة بهذه العلامة
-nfc_trigger_create_automation: إنشاء أتمتة
+nfc_dispatcher_activity_label: تنفيذ الأوامر عند اكتشاف NFC
 nfc_trigger_name_dialog_title: تسمية هذه العلامة
 nfc_trigger_name_dialog_confirm: حفظ ومتابعة
 nfc_trigger_name_dialog_cancel: إلغاء
@@ -359,3 +352,12 @@ import_confirm_dialog_ok: استيراد
 import_confirm_dialog_ko: إلغاء
 import_result_success: تم استيراد {count} عناصر
 import_result_failure: ملف استيراد غير صالح {error}
+trigger_dispatcher_create_automation: إنشاء أتمتة
+trigger_dispatcher_searching: البحث عن أتمتة…
+trigger_dispatcher_executing: تشغيل الأتمتة…
+trigger_dispatcher_bad_input: معلومات المُطلِق مفقودة
+trigger_dispatcher_not_registered: لم يتم العثور على مُطلِق مرتبط
+trigger_dispatcher_no_automation: لم يتم العثور على أتمتة
+shortcut_dispatcher_title: تم النقر على الاختصار
+shortcut_dispatcher_activity_label: تنفيذ الأوامر عند النقر على الاختصار
+nfc_dispatcher_title: تم اكتشاف العلامة

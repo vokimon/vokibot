@@ -52,14 +52,7 @@ nfc_editor_not_available: This device has no NFC support
 nfc_editor_enable_to_autodetect: Enable NFC to autodetect
 nfc_editor_autodetect_hint: Hold tag close to autodetect
 nfc_editor_scan_success: Tag detected ✓
-nfc_trigger_detected: Tag detected
-nfc_trigger_no_tag: No tag detected. Tap an NFC tag to see its ID.
-nfc_trigger_activity_label: Trigger a command with this NFC tag
-nfc_trigger_searching: Looking for automation…
-nfc_trigger_executing: Running automation…
-nfc_trigger_not_registered: This tag is not registered
-nfc_trigger_no_automation: No automation linked to this tag
-nfc_trigger_create_automation: Create Automation
+nfc_dispatcher_activity_label: Dispatch commands on NFC detection
 nfc_trigger_name_dialog_title: Name this tag
 nfc_trigger_name_dialog_confirm: Save & Continue
 nfc_trigger_name_dialog_cancel: Cancel
@@ -359,3 +352,12 @@ import_confirm_dialog_ok: Import
 import_confirm_dialog_ko: Cancel
 import_result_success: Imported {count} items
 import_result_failure: Invalid import file {error}
+trigger_dispatcher_create_automation: Create Automation
+trigger_dispatcher_searching: Looking for automation…
+trigger_dispatcher_executing: Running automation…
+trigger_dispatcher_bad_input: Missing trigger information
+trigger_dispatcher_not_registered: No related trigger found
+trigger_dispatcher_no_automation: No automation found
+shortcut_dispatcher_title: Shortcut tapped
+shortcut_dispatcher_activity_label: Dispatch commands on shortcut tapping
+nfc_dispatcher_title: Tag detected

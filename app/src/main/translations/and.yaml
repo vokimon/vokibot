@@ -52,14 +52,7 @@ nfc_editor_not_available: Êtte dîppoçitibo no tiene çoporte pa NFC
 nfc_editor_enable_to_autodetect: Âttiba er NFC pa autodetêttâh
 nfc_editor_autodetect_hint: Açerca la etiqueta pa autodetêttâh
 nfc_editor_scan_success: Etiqueta detêttá ✓
-nfc_trigger_detected: Etiqueta detêttá
-nfc_trigger_no_tag: No çe detêttó ninguna etiqueta. Toca una etiqueta NFC pa bêh çu ID.
-nfc_trigger_activity_label: Ehecuta un comando con êtta etiqueta NFC
-nfc_trigger_searching: Bûccando automatiçaçión…
-nfc_trigger_executing: Ehecutando automatiçaçión…
-nfc_trigger_not_registered: Êtta etiqueta no êttá rehîttrá
-nfc_trigger_no_automation: Ninguna automatiçaçión binculá a êtta etiqueta
-nfc_trigger_create_automation: Creâh automatiçaçión
+nfc_dispatcher_activity_label: Ehecuta un comando con êtta etiqueta NFC
 nfc_trigger_name_dialog_title: Nombrâh êtta etiqueta
 nfc_trigger_name_dialog_confirm: Guardâh y continuâh
 nfc_trigger_name_dialog_cancel: Cançelâh
@@ -357,3 +350,12 @@ import_confirm_dialog_ok: Importâh
 import_confirm_dialog_ko: Cançelâh
 import_result_success: Çe an importao {count} elementô
 import_result_failure: Arxibo de importaçión no bálido {error}
+trigger_dispatcher_create_automation: Creâh automatiçaçión
+trigger_dispatcher_searching: Bûccando automatiçaçión…
+trigger_dispatcher_executing: Ehecutando automatiçaçión…
+trigger_dispatcher_bad_input: Farta informaçión der dîpparadôh
+trigger_dispatcher_not_registered: No çe a encontrao ningún dîpparadôh relaçionao
+trigger_dispatcher_no_automation: No çe a encontrao ninguna automatiçaçión
+shortcut_dispatcher_title: Âççeço dirêtto purçao
+shortcut_dispatcher_activity_label: Ehecutâh comandô ar purçâh el âççeço dirêtto
+nfc_dispatcher_title: Etiqueta detêttá

@@ -52,14 +52,7 @@ nfc_editor_not_available: Cet appareil ne prend pas en charge le NFC
 nfc_editor_enable_to_autodetect: Activez le NFC pour la détection automatique
 nfc_editor_autodetect_hint: Approchez l'étiquette pour autodétecter
 nfc_editor_scan_success: Étiquette détectée ✓
-nfc_trigger_detected: Étiquette détectée
-nfc_trigger_no_tag: Aucune étiquette détectée. Touchez une étiquette NFC pour voir son ID.
-nfc_trigger_activity_label: Exécutez une commande avec cette étiquette NFC
-nfc_trigger_searching: Recherche d'automatisation…
-nfc_trigger_executing: Exécution de l'automatisation…
-nfc_trigger_not_registered: Cette étiquette n'est pas enregistrée
-nfc_trigger_no_automation: Aucune automatisation liée à cette étiquette
-nfc_trigger_create_automation: Créer une automatisation
+nfc_dispatcher_activity_label: Exécuter les commandes lors de la détection NFC
 nfc_trigger_name_dialog_title: Nommer cette étiquette
 nfc_trigger_name_dialog_confirm: Enregistrer et continuer
 nfc_trigger_name_dialog_cancel: Annuler
@@ -359,3 +352,12 @@ import_confirm_dialog_ok: Importer
 import_confirm_dialog_ko: Annuler
 import_result_success: '{count} éléments importés'
 import_result_failure: Fichier d'importation invalide {error}
+trigger_dispatcher_create_automation: Créer une automatisation
+trigger_dispatcher_searching: Recherche d'automatisation…
+trigger_dispatcher_executing: Exécution de l'automatisation…
+trigger_dispatcher_bad_input: Informations de déclencheur manquantes
+trigger_dispatcher_not_registered: Aucun déclencheur associé trouvé
+trigger_dispatcher_no_automation: Aucune automatisation trouvée
+shortcut_dispatcher_title: Raccourci activé
+shortcut_dispatcher_activity_label: Exécuter les commandes lors de l'activation du raccourci
+nfc_dispatcher_title: Étiquette détectée

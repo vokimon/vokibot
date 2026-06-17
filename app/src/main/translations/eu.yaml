@@ -52,14 +52,7 @@ nfc_editor_not_available: Gailu honek ez du NFC euskarririk
 nfc_editor_enable_to_autodetect: Gaitu NFC automatikoki detektatzeko
 nfc_editor_autodetect_hint: Hurbildu etiketa automatikoki detektatzeko
 nfc_editor_scan_success: Etiketa detektatua ✓
-nfc_trigger_detected: Etiketa detektatua
-nfc_trigger_no_tag: Ez da etiketarik detektatu. Ukitu NFC etiketa bat bere IDa ikusteko.
-nfc_trigger_activity_label: Exekutatu komando bat NFC etiketa honekin
-nfc_trigger_searching: Automatizazioa bilatzen…
-nfc_trigger_executing: Automatizazioa exekutatzen…
-nfc_trigger_not_registered: Etiketa hau ez dago erregistratuta
-nfc_trigger_no_automation: Ez dago automatizaziorik etiketa honekin lotuta
-nfc_trigger_create_automation: Automatizazioa sortu
+nfc_dispatcher_activity_label: Exekutatu komandoak NFCa detektatzean
 nfc_trigger_name_dialog_title: Eman izena etiketa honi
 nfc_trigger_name_dialog_confirm: Gorde eta jarraitu
 nfc_trigger_name_dialog_cancel: Utzi
@@ -359,3 +352,12 @@ import_confirm_dialog_ok: Inportatu
 import_confirm_dialog_ko: Utzi
 import_result_success: '{count} elementu inportatu dira'
 import_result_failure: Inportazio-fitxategi baliogabea {error}
+trigger_dispatcher_create_automation: Automatizazioa sortu
+trigger_dispatcher_searching: Automatizazioa bilatzen…
+trigger_dispatcher_executing: Automatizazioa exekutatzen…
+trigger_dispatcher_bad_input: Abiarazlearen informazioa falta da
+trigger_dispatcher_not_registered: Ez da lotutako abiarazlerik aurkitu
+trigger_dispatcher_no_automation: Ez da automatizaziorik aurkitu
+shortcut_dispatcher_title: Lasterbidea ukitu da
+shortcut_dispatcher_activity_label: Exekutatu komandoak lasterbidea ukitzean
+nfc_dispatcher_title: Etiketa detektatua

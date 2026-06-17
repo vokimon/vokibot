@@ -81,13 +81,7 @@ class ShortcutDispatchActivity : ComponentActivity() {
                             }
                         },
                         iconRes = ShortcutTrigger.iconRes,
-                        badInputError = "Bad shortcut intent",
-                        searchingText = "Searching trigger...",
-                        executingText = "Executing automation...",
-                        notRegisteredTitle = "Shortcut tapped",
-                        notRegisteredHelp = "No trigger bound to this shortcut",
-                        noAutomationHelp = "No automation bound to the trigger",
-                        createAutomationText = "Automate",
+                        title = stringResource(R.string.shortcut_dispatcher_title),
                     )
                 }
             }

@@ -50,8 +50,7 @@ data class ShortcutTrigger(
                 id = id,
                 displayName =
                     info.longLabel?.toString()
-                        ?: info.shortLabel.toString()
-                        ?: id,
+                        ?: info.shortLabel.toString(),
             )
         }
 

@@ -10,9 +10,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import net.canvoki.vokibot.Automation
 import net.canvoki.vokibot.AutomationEditorActivity
 import net.canvoki.vokibot.FileDataRepository
+import net.canvoki.vokibot.R
 import net.canvoki.vokibot.Trigger
 
 sealed class ExecutionState {
@@ -39,14 +41,15 @@ fun TriggerDispatcher(
     onCreateTriggerAndAction: () -> Unit,
     iconRes: Int,
     description: String,
-    badInputError: String,
-    searchingText: String,
-    executingText: String,
-    notRegisteredTitle: String,
-    notRegisteredHelp: String,
-    noAutomationHelp: String,
-    createAutomationText: String,
+    title: String,
 ) {
+    val badInputError = stringResource(R.string.trigger_dispatcher_bad_input)
+    val searchingText = stringResource(R.string.trigger_dispatcher_searching)
+    val executingText = stringResource(R.string.trigger_dispatcher_executing)
+    val notRegisteredHelp = stringResource(R.string.trigger_dispatcher_not_registered)
+    val noAutomationHelp = stringResource(R.string.trigger_dispatcher_no_automation)
+    val createAutomationText = stringResource(R.string.trigger_dispatcher_create_automation)
+
     val context = LocalContext.current
     val repository = remember { FileDataRepository.fromContext(context) }
     var executionState by remember { mutableStateOf<ExecutionState>(ExecutionState.Idle) }
@@ -89,12 +92,12 @@ fun TriggerDispatcher(
             Loading(executingText)
         }
         is ExecutionState.Error -> {
-            ErrorSplash(text = (executionState as ExecutionState.Error)?.message ?: "...")
+            ErrorSplash(text = (executionState as? ExecutionState.Error)?.message ?: "...")
         }
         is ExecutionState.NoTrigger -> {
             NotAutomatedYet(
                 iconRes = iconRes,
-                title = notRegisteredTitle,
+                title = title,
                 subtitle = description,
                 help = notRegisteredHelp,
                 actionText = createAutomationText,
@@ -106,7 +109,7 @@ fun TriggerDispatcher(
         is ExecutionState.NoAutomation -> {
             NotAutomatedYet(
                 iconRes = iconRes,
-                title = trigger?.getTitle(context) ?: notRegisteredTitle,
+                title = trigger?.getTitle(context) ?: title,
                 subtitle = description,
                 help = noAutomationHelp,
                 actionText = createAutomationText,

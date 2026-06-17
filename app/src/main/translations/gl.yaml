@@ -52,14 +52,7 @@ nfc_editor_not_available: Este dispositivo non ten soporte para NFC
 nfc_editor_enable_to_autodetect: Activa o NFC para detectar automaticamente
 nfc_editor_autodetect_hint: Achega a etiqueta para autodetectar
 nfc_editor_scan_success: Etiqueta detectada ✓
-nfc_trigger_detected: Etiqueta detectada
-nfc_trigger_no_tag: Non se detectou ningunha etiqueta. Toca unha etiqueta NFC para ver o seu ID.
-nfc_trigger_activity_label: Executa unha orde con esta etiqueta NFC
-nfc_trigger_searching: Buscando automatización…
-nfc_trigger_executing: Executando automatización…
-nfc_trigger_not_registered: Esta etiqueta non está rexistrada
-nfc_trigger_no_automation: Ningunha automatización vinculada a esta etiqueta
-nfc_trigger_create_automation: Crear automatización
+nfc_dispatcher_activity_label: Executar comandos ao detectar NFC
 nfc_trigger_name_dialog_title: Pór nome a esta etiqueta
 nfc_trigger_name_dialog_confirm: Gardar e continuar
 nfc_trigger_name_dialog_cancel: Cancelar
@@ -359,3 +352,12 @@ import_confirm_dialog_ok: Importar
 import_confirm_dialog_ko: Cancelar
 import_result_success: Importáronse {count} elementos
 import_result_failure: Ficheiro de importación non válido {error}
+trigger_dispatcher_create_automation: Crear automatización
+trigger_dispatcher_searching: Buscando automatización…
+trigger_dispatcher_executing: Executando automatización…
+trigger_dispatcher_bad_input: Falta información do disparador
+trigger_dispatcher_not_registered: Non se atopou ningún disparador relacionado
+trigger_dispatcher_no_automation: Non se atopou ningunha automatización
+shortcut_dispatcher_title: Atallo pulsado
+shortcut_dispatcher_activity_label: Executar comandos ao pulsar o atallo
+nfc_dispatcher_title: Etiqueta detectada
