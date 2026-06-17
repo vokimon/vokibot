@@ -361,3 +361,6 @@ trigger_dispatcher_no_automation: Ez da automatizaziorik aurkitu
 shortcut_dispatcher_title: Lasterbidea ukitu da
 shortcut_dispatcher_activity_label: Exekutatu komandoak lasterbidea ukitzean
 nfc_dispatcher_title: Etiketa detektatua
+bluetooth_device_editor_no_bluetooth: Gailu honek ez du Bluetoothik onartzen
+bluetooth_device_editor_disabled: Bluetootha desgaituta dago
+bluetooth_device_editor_button_enable: Gaitu

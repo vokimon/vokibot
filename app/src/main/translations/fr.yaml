@@ -361,3 +361,6 @@ trigger_dispatcher_no_automation: Aucune automatisation trouvée
 shortcut_dispatcher_title: Raccourci activé
 shortcut_dispatcher_activity_label: Exécuter les commandes lors de l'activation du raccourci
 nfc_dispatcher_title: Étiquette détectée
+bluetooth_device_editor_no_bluetooth: Cet appareil ne prend pas en charge le Bluetooth
+bluetooth_device_editor_disabled: Le Bluetooth est désactivé
+bluetooth_device_editor_button_enable: Activer

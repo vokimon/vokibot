@@ -135,12 +135,12 @@ fun BluetoothDeviceChooser(
     HorizontalDivider()
     if (!state.isAdapterAvailable) {
         WarningBanner(
-            message = "This device has no Bluetooth support",
+            message = stringResource(R.string.bluetooth_device_editor_no_bluetooth),
         )
     } else if (!state.isEnabled) {
         WarningBanner(
-            message = "Bluetooth is disabled",
-            buttonText = "Enable",
+            message = stringResource(R.string.bluetooth_device_editor_disabled),
+            buttonText = stringResource(R.string.bluetooth_device_editor_button_enable),
             onClick = {
                 context.startActivity(Intent(Settings.ACTION_BLUETOOTH_SETTINGS))
             },

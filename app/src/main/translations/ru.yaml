@@ -361,3 +361,6 @@ trigger_dispatcher_no_automation: Автоматизация не найдена
 shortcut_dispatcher_title: Ярлык нажат
 shortcut_dispatcher_activity_label: Выполнение команд при нажатии ярлыка
 nfc_dispatcher_title: Метка обнаружена
+bluetooth_device_editor_no_bluetooth: Это устройство не поддерживает Bluetooth
+bluetooth_device_editor_disabled: Bluetooth отключен
+bluetooth_device_editor_button_enable: Включить

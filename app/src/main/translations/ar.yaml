@@ -361,3 +361,6 @@ trigger_dispatcher_no_automation: لم يتم العثور على أتمتة
 shortcut_dispatcher_title: تم النقر على الاختصار
 shortcut_dispatcher_activity_label: تنفيذ الأوامر عند النقر على الاختصار
 nfc_dispatcher_title: تم اكتشاف العلامة
+bluetooth_device_editor_no_bluetooth: هذا الجهاز لا يدعم البلوتوث
+bluetooth_device_editor_disabled: البلوتوث معطل
+bluetooth_device_editor_button_enable: تفعيل

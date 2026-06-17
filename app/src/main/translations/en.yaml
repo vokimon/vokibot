@@ -361,3 +361,6 @@ trigger_dispatcher_no_automation: No automation found
 shortcut_dispatcher_title: Shortcut tapped
 shortcut_dispatcher_activity_label: Dispatch commands on shortcut tapping
 nfc_dispatcher_title: Tag detected
+bluetooth_device_editor_no_bluetooth: This device has no Bluetooth support
+bluetooth_device_editor_disabled: Bluetooth is disabled
+bluetooth_device_editor_button_enable: Enable

@@ -361,3 +361,6 @@ trigger_dispatcher_no_automation: No s'ha trobat cap automatització
 shortcut_dispatcher_title: Drecera tocada
 shortcut_dispatcher_activity_label: Executa comandes en tocar la drecera
 nfc_dispatcher_title: Etiqueta detectada
+bluetooth_device_editor_no_bluetooth: Aquest dispositiu no té suport per a Bluetooth
+bluetooth_device_editor_disabled: El Bluetooth està desactivat
+bluetooth_device_editor_button_enable: Activa

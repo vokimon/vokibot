@@ -361,3 +361,6 @@ trigger_dispatcher_no_automation: No s'ha trobau garra automatización
 shortcut_dispatcher_title: Drecera tocada
 shortcut_dispatcher_activity_label: Executar comandos en tocar a drecera
 nfc_dispatcher_title: Etiqueta detectada
+bluetooth_device_editor_no_bluetooth: Iste dispositivo no tiene soporte ta Bluetooth
+bluetooth_device_editor_disabled: Bluetooth ye desactivau
+bluetooth_device_editor_button_enable: Activar

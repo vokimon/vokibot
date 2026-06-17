@@ -359,3 +359,6 @@ trigger_dispatcher_no_automation: No çe a encontrao ninguna automatiçaçión
 shortcut_dispatcher_title: Âççeço dirêtto purçao
 shortcut_dispatcher_activity_label: Ehecutâh comandô ar purçâh el âççeço dirêtto
 nfc_dispatcher_title: Etiqueta detêttá
+bluetooth_device_editor_no_bluetooth: Êtte dîppoçitibo no tiene çoporte pa Bluetoôh
+bluetooth_device_editor_disabled: Er Bluetoôh êttá deçâttibao
+bluetooth_device_editor_button_enable: Âttibâh

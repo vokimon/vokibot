@@ -361,3 +361,6 @@ trigger_dispatcher_no_automation: Non se atopou ningunha automatización
 shortcut_dispatcher_title: Atallo pulsado
 shortcut_dispatcher_activity_label: Executar comandos ao pulsar o atallo
 nfc_dispatcher_title: Etiqueta detectada
+bluetooth_device_editor_no_bluetooth: Este dispositivo non ten soporte para Bluetooth
+bluetooth_device_editor_disabled: O Bluetooth está desactivado
+bluetooth_device_editor_button_enable: Activar

@@ -361,3 +361,6 @@ trigger_dispatcher_no_automation: Keine Automatisierung gefunden
 shortcut_dispatcher_title: Verknüpfung angetippt
 shortcut_dispatcher_activity_label: Befehle beim Antippen der Verknüpfung ausführen
 nfc_dispatcher_title: Tag erkannt
+bluetooth_device_editor_no_bluetooth: Dieses Gerät unterstützt kein Bluetooth
+bluetooth_device_editor_disabled: Bluetooth ist deaktiviert
+bluetooth_device_editor_button_enable: Aktivieren
