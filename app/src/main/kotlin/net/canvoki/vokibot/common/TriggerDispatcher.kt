@@ -109,7 +109,7 @@ fun TriggerDispatcher(
         is ExecutionState.NoAutomation -> {
             NotAutomatedYet(
                 iconRes = iconRes,
-                title = trigger?.getTitle(context) ?: title,
+                title = title,
                 subtitle = description,
                 help = noAutomationHelp,
                 actionText = createAutomationText,

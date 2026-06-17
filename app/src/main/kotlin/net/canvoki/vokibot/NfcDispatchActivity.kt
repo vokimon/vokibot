@@ -47,13 +47,20 @@ class NfcDispatchActivity : ComponentActivity() {
             val triggerId = remember(uid) { uid?.let { NfcTrigger.idFromUid(it) } }
             val repository = remember { FileDataRepository.fromContext(context) }
             var showNameDialog by remember { mutableStateOf(false) }
+            val trigger =
+                remember(triggerId) {
+                    triggerId?.let {
+                        repository.trigger.load(triggerId)
+                    }
+                }
+
             AppScaffold {
                 WatermarkBox(
                     watermark = painterResource(R.drawable.ic_brand),
                 ) {
                     TriggerDispatcher(
                         triggerId = triggerId,
-                        description = uid ?: "???",
+                        description = trigger?.getTitle(context) ?: uid ?: "???",
                         onDone = { finish() },
                         onCreateAutomation = { id ->
                             editAutomationForTrigger(context = context, id)
