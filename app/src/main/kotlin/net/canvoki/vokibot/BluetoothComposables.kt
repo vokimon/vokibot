@@ -1,6 +1,10 @@
 package net.canvoki.vokibot
 
+import android.Manifest
+import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
+import android.bluetooth.BluetoothManager
+import android.os.Build
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -26,6 +30,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
+import net.canvoki.vokibot.common.rememberPermissionState
 import net.canvoki.vokibot.common.WarningBanner
 
 @Composable
@@ -35,6 +40,64 @@ fun PermissionBanner(onGrantClicked: () -> Unit) {
         buttonText = stringResource(R.string.bluetooth_device_editor_grant_permission),
         onClick = onGrantClicked,
     )
+}
+
+data class BluetoothUsabilityState(
+    val isPermissionGranted: Boolean,
+    val adapter: BluetoothAdapter?,
+    val requestPermission: () -> Unit,
+) {
+    val isAdapterAvailable: Boolean get() = adapter != null
+    val isUsable: Boolean get() = isAdapterAvailable && isPermissionGranted
+}
+
+@Composable
+fun rememberBluetoothUsabilityState(): BluetoothUsabilityState {
+    val connectPermState =
+        rememberPermissionState(
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) Manifest.permission.BLUETOOTH_CONNECT else null,
+        )
+    val context = LocalContext.current
+    val adapter =
+        remember {
+            val manager = context.getSystemService(BluetoothManager::class.java)
+            manager?.adapter
+        }
+    return BluetoothUsabilityState(
+        isPermissionGranted = connectPermState.isGranted,
+        adapter = adapter,
+        requestPermission = { connectPermState.request() },
+    )
+}
+
+@Composable
+fun BluetoothDeviceChooser(
+    state: BluetoothUsabilityState = rememberBluetoothUsabilityState(),
+    onDeviceSelected: (name: String, mac: String) -> Unit,
+) {
+    val bondedDevices =
+        remember(state.isPermissionGranted, state.adapter) {
+            if (!state.isPermissionGranted || state.adapter == null) {
+                emptyList()
+            } else {
+                @Suppress("MissingPermission")
+                state.adapter
+                    .bondedDevices
+                    ?.sortedBy { it.name?.lowercase() } ?: emptyList()
+            }
+        }
+
+    if (state.isAdapterAvailable) {
+        HorizontalDivider()
+        if (state.isPermissionGranted) {
+            PairedDevicesList(
+                devices = bondedDevices,
+                onDeviceSelected = onDeviceSelected,
+            )
+        } else {
+            PermissionBanner(onGrantClicked = state.requestPermission)
+        }
+    }
 }
 
 @Composable

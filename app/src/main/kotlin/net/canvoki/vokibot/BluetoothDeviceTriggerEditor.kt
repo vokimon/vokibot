@@ -1,8 +1,5 @@
 package net.canvoki.vokibot
 
-import android.Manifest
-import android.bluetooth.BluetoothManager
-import android.os.Build
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -11,7 +8,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -31,7 +27,6 @@ import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
 import net.canvoki.vokibot.common.EditorHeader
 import net.canvoki.vokibot.common.rememberDiscardableState
-import net.canvoki.vokibot.common.rememberPermissionState
 
 @Serializable
 data class BluetoothDeviceTriggerEditor(
@@ -58,34 +53,11 @@ fun BluetoothDeviceTriggerEditor(
     val discardState = rememberDiscardableState(screen = editor, nav = nav)
     var hasLoaded by rememberSaveable { mutableStateOf(false) }
 
-    val connectPermState =
-        rememberPermissionState(
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) Manifest.permission.BLUETOOTH_CONNECT else null,
-        )
-
-    val bluetoothAdapter =
-        remember {
-            val manager = context.getSystemService(BluetoothManager::class.java)
-            manager?.adapter
-        }
-
     fun buildTrigger() =
         BluetoothDeviceTrigger(
             name = name.trim(),
             macAddress = mac.trim(),
         )
-
-    val bondedDevices =
-        remember(connectPermState.isGranted) {
-            if (!connectPermState.isGranted) {
-                emptyList()
-            } else {
-                @Suppress("MissingPermission")
-                bluetoothAdapter
-                    ?.bondedDevices
-                    ?.sortedBy { it.name?.lowercase() } ?: emptyList()
-            }
-        }
 
     LaunchedEffect(editingId) {
         if (editingId != null && !hasLoaded) {
@@ -141,20 +113,12 @@ fun BluetoothDeviceTriggerEditor(
             },
         )
 
-        if (bluetoothAdapter != null) {
-            HorizontalDivider()
-            if (connectPermState.isGranted) {
-                PairedDevicesList(
-                    devices = bondedDevices,
-                    onDeviceSelected = { deviceName, macAddress ->
-                        name = deviceName
-                        mac = macAddress
-                        discardState.markDirty()
-                    },
-                )
-            } else {
-                PermissionBanner(onGrantClicked = { connectPermState.request() })
-            }
-        }
+        BluetoothDeviceChooser(
+            onDeviceSelected = { deviceName, macAddress ->
+                name = deviceName
+                mac = macAddress
+                discardState.markDirty()
+            },
+        )
     }
 }
