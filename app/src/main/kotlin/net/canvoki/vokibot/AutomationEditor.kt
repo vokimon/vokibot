@@ -20,7 +20,6 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -45,6 +44,7 @@ import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
 import net.canvoki.vokibot.common.BadgeDrawable
 import net.canvoki.vokibot.common.EditorHeader
+import net.canvoki.vokibot.common.MagicTextField
 import net.canvoki.vokibot.common.rememberDiscardableState
 
 @Serializable
@@ -77,7 +77,6 @@ data class AutomationEditor(
             } else if (prefillTriggerId != null) {
                 triggerId = prefillTriggerId
                 val trigger = repository.trigger.load(prefillTriggerId)
-                name = trigger?.let { "On ${it.getTitle(context)}" } ?: ""
                 discardState.isDirty = true
             }
         }
@@ -108,10 +107,15 @@ data class AutomationEditor(
                 actionEnabled = triggerId.isNotBlank() && commandIds.isNotEmpty(),
             )
 
-            OutlinedTextField(
+            MagicTextField(
                 value = name,
                 onValueChange = {
                     name = it
+                    discardState.markDirty()
+                },
+                onMagicClick = {
+                    val trigger = triggerId.ifBlank { null }?.let { repository.trigger.load(it) }
+                    name = trigger?.let { "On ${it.getTitle(context)}" } ?: ""
                     discardState.markDirty()
                 },
                 label = { Text(stringResource(R.string.automation_name_label)) },
