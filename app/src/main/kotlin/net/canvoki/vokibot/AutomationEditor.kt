@@ -50,6 +50,7 @@ import net.canvoki.vokibot.common.rememberDiscardableState
 @Serializable
 data class AutomationEditor(
     val editingId: String? = null,
+    val prefillTriggerId: String? = null,
 ) : StackedScreen<Unit>() {
     @Composable
     override fun Screen(nav: StackNavigatorState) {
@@ -73,6 +74,11 @@ data class AutomationEditor(
                     triggerId = existing.triggerId
                     commandIds = existing.commandIds
                 }
+            } else if (prefillTriggerId != null) {
+                triggerId = prefillTriggerId
+                val trigger = repository.trigger.load(prefillTriggerId)
+                name = trigger?.let { "On ${it.getTitle(context)}" } ?: ""
+                discardState.isDirty = true
             }
         }
 

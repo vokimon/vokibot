@@ -6,9 +6,6 @@
 
 - [ ] Weblate: create meta module
 - [ ] Weblate: create web module
-- [ ] ShortcutDispatcher: if no trigger related, create it
-- [ ] ShortcutDispatcher: if no action related, create and edit it
-- [ ] AutomationEditor: when launched from nfc detector, it has no padding
 - [ ] Import: warn newer versions
 - [ ] Import: warn older versions or give option to migrate
 - [ ] Import: warn on duplicated ids in the bundle
@@ -16,7 +13,7 @@
 - [ ] Import: DataChangeBus storm on big files (not relevant by now)
 - [ ] Import: Atomicity (not relevant by now)
 - [ ] Import: edge case: Ids dupplicated in the bundle.
-- [ ] Trigger/CommandList: Set a fix order (it changes on every refresh)
+- [ ] Trigger/CommandList: Set a fix group order (it changes on every refresh)
 - [ ] Export: Fix: UnknownEntity title is using command's
 - [ ] ComponentLst: Fix: Shown app icon instead of component icon
 - [ ] ComponentList: add help icon for each kind of component
@@ -66,6 +63,10 @@
     - [ ] List of system broadcasts: <https://github.com/flyskywhy/android-sdk/blob/master/platforms/android-10/data/broadcast_actions.txt>
 
 ## Done
+
+- [x] AutomationEditor: when launched from nfc detector, it has no padding
+- [x] ShortcutDispatcher: if no trigger related, create it
+- [x] ShortcutDispatcher: if no action related, create and edit it
 
 ## Done 0.6.0
 
