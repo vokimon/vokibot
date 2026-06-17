@@ -4,6 +4,8 @@
 
 ## Backlog
 
+- [ ] BT Trigger: Detect that bt is disabled or/and button to reenable it
+- [ ] BT Connect: Detect that bt is disabled or/and button to reenable it
 - [ ] Weblate: create meta module
 - [ ] Weblate: create web module
 - [ ] Import: warn newer versions
