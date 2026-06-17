@@ -43,6 +43,7 @@ import kotlinx.serialization.Serializable
 import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
 import net.canvoki.vokibot.common.EditorHeader
+import net.canvoki.vokibot.common.MagicTextField
 import net.canvoki.vokibot.common.rememberDiscardableState
 
 @Serializable
@@ -174,11 +175,17 @@ data class NfcTriggerEditor(
             )
 
             // Editable fields: always visible
-            OutlinedTextField(
+            MagicTextField(
                 value = displayName,
                 onValueChange = {
                     displayName = it
                     discardState.markDirty()
+                },
+                onMagicClick = {
+                    if (uid.isNotBlank()) {
+                        displayName = "NFC $uid"
+                        discardState.markDirty()
+                    }
                 },
                 label = { Text(stringResource(R.string.nfc_editor_name_label)) },
                 placeholder = { Text(stringResource(R.string.nfc_editor_name_placeholder)) },
