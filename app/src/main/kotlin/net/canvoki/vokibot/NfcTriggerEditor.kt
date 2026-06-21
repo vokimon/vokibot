@@ -3,6 +3,7 @@ package net.canvoki.vokibot
 import android.content.Context
 import android.content.Intent
 import android.nfc.NfcAdapter
+import android.os.Build
 import android.provider.Settings
 import androidx.activity.ComponentActivity
 import androidx.compose.foundation.layout.Arrangement
@@ -250,9 +251,28 @@ data class NfcTriggerEditor(
 }
 
 fun configNfc(context: Context) {
-    Intent(Settings.ACTION_NFC_SETTINGS)
-        .apply {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+        if (runActivity(context, Settings.Panel.ACTION_NFC)) {
+            return
+        }
+    }
+    runActivity(context, Settings.ACTION_NFC_SETTINGS)
+}
+
+private fun runActivity(
+    context: Context,
+    nfcConfig: String,
+): Boolean {
+    val intent =
+        Intent(nfcConfig).apply {
             addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-        }.takeIf { context.packageManager.resolveActivity(it, 0) != null }
-        ?.let { context.startActivity(it) }
+        }
+
+    if (context.packageManager.resolveActivity(intent, 0) == null) {
+        return false
+    }
+
+    return runCatching {
+        context.startActivity(intent)
+    }.isSuccess
 }
