@@ -63,16 +63,21 @@ Examples include:
 * Animation scale settings
 * Developer options settings
 * Various Secure and Global settings
+* Airplane mode
+* Mobile Data On/Off
+* Wifi On/Off
 
-Capabilities vary by Android version and OEM.
+### Versions limitations
 
-Not all settings remain writable on modern Android releases.
+Blocked since Android 8:
 
-Examples generally NOT allowed:
+- Mobile Data ON/OFF
+- GPS / Location Services ON/OFF
+- Airplane Mode ON/OFF
 
-* Airplane mode on recent Android versions
-* Fully controlling location services
-* Arbitrary system-level administration
+Blocked since Android 10:
+
+- Wi-Fi ON/OFF
 
 ### Kotlin examples
 
