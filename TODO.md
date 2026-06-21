@@ -4,6 +4,8 @@
 
 ## Backlog
 
+- [ ] Add System.Panel to Settings Pages to choose
+- [ ] Use System.Panel.ACTION_NFC to enable NFC instead of Settings page
 - [ ] Weblate: create meta module
 - [ ] Weblate: create web module
 - [ ] Import: warn newer versions
@@ -43,6 +45,7 @@
 - More commands:
     - [ ] Airplaine mode on/off
     - [ ] Enable/Disable/Connect Wi-Fi
+    - [ ] Set screen timeout
 
 - More triggers:
     - [ ] System Broadcast: As trigger to vokibot, system sends broadcasts to any listening app
