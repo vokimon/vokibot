@@ -199,7 +199,7 @@ sealed class ExtraValue {
             intent.putExtra(key, value)
         }
 
-        override fun toPersistedString(): String = value.toString()
+        override fun toPersistedString(): String = if (value) "1" else "0"
 
         @Composable
         override fun Editor(

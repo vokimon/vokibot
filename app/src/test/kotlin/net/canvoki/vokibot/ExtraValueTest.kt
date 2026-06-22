@@ -267,12 +267,12 @@ class ExtraValueTest {
 
     @Test
     fun `BooleanValue toPersistedString true`() {
-        assertEquals("true", ExtraValue.BooleanValue(true).toPersistedString())
+        assertEquals("1", ExtraValue.BooleanValue(true).toPersistedString())
     }
 
     @Test
     fun `BooleanValue toPersistedString false`() {
-        assertEquals("false", ExtraValue.BooleanValue(false).toPersistedString())
+        assertEquals("0", ExtraValue.BooleanValue(false).toPersistedString())
     }
 
     @Test
