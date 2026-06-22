@@ -4,8 +4,9 @@
 
 ## Backlog
 
-- [ ] Add System.Panel to Settings Pages to choose
-- [ ] Use System.Panel.ACTION_NFC to enable NFC instead of Settings page
+- [ ] Hide Dasher when option clicked
+- [x] Add System.Panel to Settings Pages to choose
+- [x] Use System.Panel.ACTION_NFC to enable NFC instead of Settings page
 - [ ] Weblate: create meta module
 - [ ] Weblate: create web module
 - [ ] Import: warn newer versions
