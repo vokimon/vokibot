@@ -77,7 +77,7 @@ fun ExtrasEditor(
 
             if (showDialog) {
                 var newKey by remember { mutableStateOf("") }
-                var newType by remember { mutableStateOf(ExtraType.STRING) }
+                var newType by remember { mutableStateOf<ExtraType>(ExtraType.STRING) }
                 var typeExpanded by remember { mutableStateOf(false) }
 
                 AlertDialog(

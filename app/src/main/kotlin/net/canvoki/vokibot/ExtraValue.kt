@@ -23,13 +23,19 @@ import kotlinx.serialization.Serializable
 import net.canvoki.vokibot.common.UriField
 
 @Serializable
-enum class ExtraType {
-    STRING,
-    URI,
-    INT,
-    BOOLEAN,
-    STRING_ARRAY,
-    URI_LIST,
+sealed class ExtraType {
+    override fun toString(): String = this::class.simpleName!!
+
+    @Serializable object STRING : ExtraType()
+    @Serializable object URI : ExtraType()
+    @Serializable object INT : ExtraType()
+    @Serializable object BOOLEAN : ExtraType()
+    @Serializable object STRING_ARRAY : ExtraType()
+    @Serializable object URI_LIST : ExtraType()
+
+    companion object {
+        val entries: List<ExtraType> = listOf(STRING, URI, INT, BOOLEAN, STRING_ARRAY, URI_LIST)
+    }
 }
 
 val ExtraType.labelRes get() =
