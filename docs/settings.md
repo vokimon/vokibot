@@ -7,21 +7,18 @@ Android settings are exposed through three main namespaces:
 - User-level configuration
 - UI and device behavior settings
 - Lowest restriction level
-- `WRITE_SETTINGS` permission
+- Permission: `WRITE_SETTINGS` (user grant required)
 
 `Settings.Secure`:
 
-- Sensitive system settings
-- Accessibility, location-related configuration, protected flags
-- Write requires `WRITE_SECURE_SETTINGS` (via ADB or system app)
-- or device owner privileges in some cases
+- Sensitive user-level configuration, protected settings
+- Permission: `WRITE_SECURE_SETTINGS` (ADB grant required)
 
 `Settings.Global`:
 
 - Device-wide system configuration
 - Developer options, network behavior, system-wide flags
-- `WRITE_SECURE_SETTINGS`
-- or system-level privileges / ADB-granted access
+- Permission: `WRITE_SECURE_SETTINGS` (ADB grant required)
 
 
 Internally, all settings are stored as a simple **key -> string value map**, without a strict typed schema at the system level.
@@ -154,27 +151,15 @@ Permissions depend on the settings namespace:
 
 ### Settings.System
 
-* Requires: `WRITE_SETTINGS`
-* User must explicitly grant via system settings screen
-* Cannot be granted via normal runtime permission dialog
+- Requires: `WRITE_SETTINGS`
+- User grant required
 
 ---
 
-### Settings.Secure
+### Settings.Secure / Settings.Global
 
-* Requires: `WRITE_SECURE_SETTINGS`
-* Can only be granted via:
-
-  * ADB (`pm grant`)
-  * System app signature
-  * Device Owner policies (limited cases)
-
----
-
-### Settings.Global
-
-* Requires: `WRITE_SECURE_SETTINGS`
-* Often further restricted depending on Android version
+- Requires: `WRITE_SECURE_SETTINGS`
+- ADB: `adb shell pm grant <pkg> android.permission.WRITE_SECURE_SETTINGS`
 
 ---
 
@@ -330,6 +315,7 @@ AOSP source:
     - UI: Toggle
 - `ACCESSIBILITY_SPEAK_PASSWORD`: (Int) 0=off, 1=on, speak passwords aloud
     - UI: Toggle
+    - DISCARDED: Deprecated in API 26. Individual accessibility services now control this behavior
 - `TOUCH_EXPLORATION_ENABLED`: (Int) 0=off, 1=on, Touch exploration (TalkBack)
     - UI: Toggle
 
@@ -348,15 +334,19 @@ AOSP source:
 
 - `LOCATION_PROVIDERS_ALLOWED`: (String, comma-separated list) Allowed providers
     - UI: Dynamic list (comma-separated, from LocationManager.getProviders())
+    - DISCARDED: Deprecated in API 19. Use `LocationManager.isProviderEnabled()` or `LocationManager.isLocationEnabled()`
 - `ALLOW_MOCK_LOCATION`: (Int) 0=off, 1=on, allow mock locations
     - UI: Toggle
+    - DISCARDED: Deprecated in API 23, no longer used
 
 ### Lock Screen (Secure)
 
 - `LOCK_PATTERN_ENABLED`: (Int) 0=off, 1=on, autolock enabled
     - UI: Toggle
+    - DISCARDED: Deprecated in API 23, throws SecurityException. Use `KeyguardManager`
 - `LOCK_PATTERN_VISIBLE`: (Int) 0=off, 1=on, pattern visible while drawing
     - UI: Toggle
+    - DISCARDED: Deprecated in API 23, throws SecurityException. Use `KeyguardManager`
 
 ### Text-to-Speech (Secure)
 
@@ -433,6 +423,7 @@ AOSP source:
     - UI: Toggle
 - `INSTALL_NON_MARKET_APPS`: (Int) 0=off, 1=on, allow non-Market installs
     - UI: Toggle
+    - DISCARDED: Deprecated in API 21. Use `PackageManager.canRequestPackageInstalls()`
 - `USE_GOOGLE_MAIL`: (Int) 0=off, 1=on, show "Google Mail" instead of "Gmail"
     - UI: Toggle
 
@@ -440,6 +431,7 @@ AOSP source:
 
 - `WIFI_SLEEP_POLICY`: (Int) 0=default, 1=never while plugged, 2=never
     - UI: Enum("Default", "Never while plugged", "Never")
+    - Deprecated in API 30, no longer used by platform (still works on API 26-29)
 - `WIFI_MAX_DHCP_RETRY_COUNT`: (Int) Max DHCP retries
     - UI: Ranged value
 - `WIFI_NETWORKS_AVAILABLE_NOTIFICATION_ON`: (Int) 0=off, 1=on, notify open networks
