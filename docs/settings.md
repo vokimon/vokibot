@@ -243,18 +243,25 @@ AOSP source:
 
 - `VOLUME_SYSTEM`: (Int) System/notifications volume, 0-15
     - UI: Ranged value
+    - DISCARDED: not in public api TODO: Investigate
 - `VOLUME_RING`: (Int) Ringer volume, 0-15
     - UI: Ranged value
+    - DISCARDED: not in public api TODO: Investigate
 - `VOLUME_MUSIC`: (Int) Music/media/gaming volume, 0-15
     - UI: Ranged value
+    - DISCARDED: not in public api TODO: Investigate
 - `VOLUME_ALARM`: (Int) Alarm volume, 0-15
     - UI: Ranged value
+    - DISCARDED: not in public api TODO: Investigate
 - `VOLUME_NOTIFICATION`: (Int) Notification volume, 0-15
     - UI: Ranged value
+    - DISCARDED: not in public api TODO: Investigate
 - `VOLUME_VOICE`: (Int) Voice call volume, 0-15
     - UI: Ranged value
+    - DISCARDED: not in public api TODO: Investigate
 - `VOLUME_BLUETOOTH_SCO`: (Int) Bluetooth SCO volume, 0-15
     - UI: Ranged value
+    - DISCARDED: not in public api TODO: Investigate
 - `RINGTONE`: (String) Content URI of default ringtone
     - UI: URI
 - `NOTIFICATION_SOUND`: (String) Content URI of default notification sound
@@ -306,6 +313,7 @@ AOSP source:
 
 - `APPEND_FOR_LAST_AUDIBLE`: (Int) Bitmask: voice_call=1, system=2, ring=4, music=8, alarm=16, notification=32, bt_sco=64
     - UI: Flags("Voice call", "System", "Ring", "Music", "Alarm", "Notification", "BT SCO")
+    - DISCARDED: not in public api TODO: Investigate
 
 ### Accessibility (Secure)
 
