@@ -1,5 +1,9 @@
 # Change log
 
+## unreleased
+
+- ✨ Enable nfc using the panel instead settings page, when available
+
 ## 0.6.1 (2026-06-17)
 
 Usability enhancements
