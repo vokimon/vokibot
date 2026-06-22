@@ -37,6 +37,7 @@ data class BluetoothConnectCommand(
 
     override val type = typeKey
     override val iconRes: Int get() = BluetoothConnectCommand.iconRes
+
     override fun loadIcon(context: Context): Drawable {
         val device = bluetoothDeviceFromMac(context, macAddress)
         val deviceIcon = bluetoothDeviceIcon(device)
