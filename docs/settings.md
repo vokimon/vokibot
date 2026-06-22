@@ -243,25 +243,25 @@ AOSP source:
 
 - `VOLUME_SYSTEM`: (Int) System/notifications volume, 0-15
     - UI: Ranged value
-    - DISCARDED: not in public api TODO: Investigate
+    - DISCARDED: not in public api
 - `VOLUME_RING`: (Int) Ringer volume, 0-15
     - UI: Ranged value
-    - DISCARDED: not in public api TODO: Investigate
+    - DISCARDED: not in public api
 - `VOLUME_MUSIC`: (Int) Music/media/gaming volume, 0-15
     - UI: Ranged value
-    - DISCARDED: not in public api TODO: Investigate
+    - DISCARDED: not in public api
 - `VOLUME_ALARM`: (Int) Alarm volume, 0-15
     - UI: Ranged value
-    - DISCARDED: not in public api TODO: Investigate
+    - DISCARDED: not in public api
 - `VOLUME_NOTIFICATION`: (Int) Notification volume, 0-15
     - UI: Ranged value
-    - DISCARDED: not in public api TODO: Investigate
+    - DISCARDED: not in public api
 - `VOLUME_VOICE`: (Int) Voice call volume, 0-15
     - UI: Ranged value
-    - DISCARDED: not in public api TODO: Investigate
+    - DISCARDED: not in public api
 - `VOLUME_BLUETOOTH_SCO`: (Int) Bluetooth SCO volume, 0-15
     - UI: Ranged value
-    - DISCARDED: not in public api TODO: Investigate
+    - DISCARDED: not in public api
 - `RINGTONE`: (String) Content URI of default ringtone
     - UI: URI
 - `NOTIFICATION_SOUND`: (String) Content URI of default notification sound
@@ -296,6 +296,9 @@ AOSP source:
 
 - `TIME_12_24`: (String) "12" or "24" hour format
     - UI: Enum("12h", "24h")
+- `DATE_FORMAT`: (String) Date format string (mm/dd/yyyy, dd/mm/yyyy, yyyy/mm/dd)
+    - UI: Free text
+    - Deprecated in API 31, no longer used. Use `TIME_12_24` instead
 
 ### Bluetooth (System)
 
@@ -313,7 +316,7 @@ AOSP source:
 
 - `APPEND_FOR_LAST_AUDIBLE`: (Int) Bitmask: voice_call=1, system=2, ring=4, music=8, alarm=16, notification=32, bt_sco=64
     - UI: Flags("Voice call", "System", "Ring", "Music", "Alarm", "Notification", "BT SCO")
-    - DISCARDED: not in public api TODO: Investigate
+    - DISCARDED: not in public api
 
 ### Accessibility (Secure)
 
@@ -346,6 +349,9 @@ AOSP source:
 - `ALLOW_MOCK_LOCATION`: (Int) 0=off, 1=on, allow mock locations
     - UI: Toggle
     - DISCARDED: Deprecated in API 23, no longer used
+- `INSTALL_NON_MARKET_APPS`: (Int) 0=off, 1=on, allow non-Market installs
+    - UI: Toggle
+    - DISCARDED: Deprecated in API 26. Use `PackageManager.canRequestPackageInstalls()`
 
 ### Lock Screen (Secure)
 
@@ -429,9 +435,6 @@ AOSP source:
     - UI: Enum("Normal", "Vibrate", "Silent")
 - `USB_MASS_STORAGE_ENABLED`: (Int) 0=off, 1=on
     - UI: Toggle
-- `INSTALL_NON_MARKET_APPS`: (Int) 0=off, 1=on, allow non-Market installs
-    - UI: Toggle
-    - DISCARDED: Deprecated in API 21. Use `PackageManager.canRequestPackageInstalls()`
 - `USE_GOOGLE_MAIL`: (Int) 0=off, 1=on, show "Google Mail" instead of "Gmail"
     - UI: Toggle
 
@@ -444,12 +447,16 @@ AOSP source:
     - UI: Ranged value
 - `WIFI_NETWORKS_AVAILABLE_NOTIFICATION_ON`: (Int) 0=off, 1=on, notify open networks
     - UI: Toggle
+    - DISCARDED: Deprecated in API 26
 - `WIFI_NETWORKS_AVAILABLE_REPEAT_DELAY`: (Int) Seconds before repeating notification
     - UI: Ranged value
+    - Deprecated in API 30, no longer used by platform
 - `WIFI_NUM_OPEN_NETWORKS_KEPT`: (Int) Max open networks to remember
     - UI: Ranged value
+    - Deprecated in API 30, no longer used by platform
 - `WIFI_WATCHDOG_ON`: (Int) 0=off, 1=on, Wi-Fi watchdog
     - UI: Toggle
+    - DISCARDED: Deprecated in API 23
 - `WIFI_MOBILE_DATA_TRANSITION_WAKELOCK_TIMEOUT_MS`: (Int) Wakelock timeout in ms
     - UI: Ranged value
 
@@ -462,5 +469,6 @@ AOSP source:
 
 - `SHOW_PROCESSES`: (Int) 0=off, 1=on, show process CPU usage meter
     - UI: Toggle
+    - DISCARDED: Deprecated in API 25
 
 
