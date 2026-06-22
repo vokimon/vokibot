@@ -370,3 +370,5 @@ settings_page_name_quick_volume: Schnellzugriff-Lautstärke
 settings_page_name_quick_connection: Schnellzugriff-Verbindungen
 settings_page_name_quick_wifi: Schnellzugriff-WLAN
 settings_page_name_quick_nfc: Schnellzugriff-NFC
+command_change_setting_value_label: Einstellungswert ändern
+command_change_setting_value_help: Ändert einen spezifischen Wert in den Systemeinstellungen.

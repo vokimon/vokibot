@@ -370,3 +370,5 @@ settings_page_name_quick_volume: لوحة الصوت السريعة
 settings_page_name_quick_connection: لوحة الاتصالات السريعة
 settings_page_name_quick_wifi: لوحة الواي فاي السريعة
 settings_page_name_quick_nfc: لوحة NFC السريعة
+command_change_setting_value_label: تغيير قيمة الإعداد
+command_change_setting_value_help: يعدل قيمة محددة في إعدادات النظام.

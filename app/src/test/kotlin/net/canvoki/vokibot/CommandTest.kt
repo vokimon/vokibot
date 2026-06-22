@@ -13,6 +13,7 @@ class CommandTest {
             listOfNotNull(
                 "access_provider",
                 "bluetooth_connect",
+                "change_setting",
                 "launch_activity",
                 "send_broadcast",
                 "settings_page",

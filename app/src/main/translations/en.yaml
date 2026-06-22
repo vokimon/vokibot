@@ -370,3 +370,5 @@ settings_page_name_quick_volume: Quick volume panel
 settings_page_name_quick_connection: Quick connection panel
 settings_page_name_quick_wifi: Quick WiFi panel
 settings_page_name_quick_nfc: Quick NFC panel
+command_change_setting_value_label: Change setting value
+command_change_setting_value_help: Modifies a specific value in system settings.
