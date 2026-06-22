@@ -365,3 +365,8 @@ bluetooth_device_editor_no_bluetooth: Dieses Gerät unterstützt kein Bluetooth
 bluetooth_device_editor_disabled: Bluetooth ist deaktiviert
 bluetooth_device_editor_button_enable: Aktivieren
 bluetooth_device_editor_no_paired_devices: Keine gekoppelten Geräte gefunden.
+settings_page_category_panels: Schnellzugriff-Panels
+settings_page_name_quick_volume: Schnellzugriff-Lautstärke
+settings_page_name_quick_connection: Schnellzugriff-Verbindungen
+settings_page_name_quick_wifi: Schnellzugriff-WLAN
+settings_page_name_quick_nfc: Schnellzugriff-NFC

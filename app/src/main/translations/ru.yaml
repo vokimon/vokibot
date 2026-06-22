@@ -365,3 +365,8 @@ bluetooth_device_editor_no_bluetooth: Это устройство не подд�
 bluetooth_device_editor_disabled: Bluetooth отключен
 bluetooth_device_editor_button_enable: Включить
 bluetooth_device_editor_no_paired_devices: Сопряженные устройства не найдены.
+settings_page_category_panels: Быстрые панели
+settings_page_name_quick_volume: Быстрая панель громкости
+settings_page_name_quick_connection: Быстрая панель подключений
+settings_page_name_quick_wifi: Быстрая панель Wi-Fi
+settings_page_name_quick_nfc: Быстрая панель NFC

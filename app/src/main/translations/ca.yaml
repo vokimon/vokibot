@@ -365,3 +365,8 @@ bluetooth_device_editor_no_bluetooth: Aquest dispositiu no té suport per a Blue
 bluetooth_device_editor_disabled: El Bluetooth està desactivat
 bluetooth_device_editor_button_enable: Activa
 bluetooth_device_editor_no_paired_devices: No s'han trobat dispositius emparellats.
+settings_page_category_panels: Panells ràpids
+settings_page_name_quick_volume: Panell ràpid de volum
+settings_page_name_quick_connection: Panell ràpid de connexions
+settings_page_name_quick_wifi: Panell ràpid de Wi-Fi
+settings_page_name_quick_nfc: Panell ràpid de NFC

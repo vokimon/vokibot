@@ -64,6 +64,7 @@ data class SettingsPage(
 }
 
 enum class SettingsPageCategory {
+    PANELS,
     NETWORK,
     DISPLAY,
     SOUND,
@@ -76,6 +77,7 @@ enum class SettingsPageCategory {
     @get:StringRes
     val labelRes: Int get() =
         when (this) {
+            PANELS -> R.string.settings_page_category_panels
             NETWORK -> R.string.settings_page_category_network
             DISPLAY -> R.string.settings_page_category_display
             SOUND -> R.string.settings_page_category_sound
@@ -88,6 +90,31 @@ enum class SettingsPageCategory {
 
 val SETTINGS_PAGES: List<SettingsPage> =
     listOf(
+        // Panels
+        SettingsPage(
+            Settings.Panel.ACTION_WIFI,
+            SettingsPageCategory.PANELS,
+            true,
+            R.string.settings_page_name_quick_wifi,
+        ),
+        SettingsPage(
+            Settings.Panel.ACTION_NFC,
+            SettingsPageCategory.PANELS,
+            true,
+            R.string.settings_page_name_quick_nfc,
+        ),
+        SettingsPage(
+            Settings.Panel.ACTION_INTERNET_CONNECTIVITY,
+            SettingsPageCategory.PANELS,
+            true,
+            R.string.settings_page_name_quick_connection,
+        ),
+        SettingsPage(
+            Settings.Panel.ACTION_VOLUME,
+            SettingsPageCategory.PANELS,
+            true,
+            R.string.settings_page_name_quick_volume,
+        ),
         // Network
         SettingsPage(
             Settings.ACTION_WIFI_SETTINGS,

@@ -365,3 +365,8 @@ bluetooth_device_editor_no_bluetooth: This device has no Bluetooth support
 bluetooth_device_editor_disabled: Bluetooth is disabled
 bluetooth_device_editor_button_enable: Enable
 bluetooth_device_editor_no_paired_devices: No paired devices found.
+settings_page_category_panels: Quick panels
+settings_page_name_quick_volume: Quick volume panel
+settings_page_name_quick_connection: Quick connection panel
+settings_page_name_quick_wifi: Quick WiFi panel
+settings_page_name_quick_nfc: Quick NFC panel

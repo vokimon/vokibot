@@ -365,3 +365,8 @@ bluetooth_device_editor_no_bluetooth: Iste dispositivo no tiene soporte ta Bluet
 bluetooth_device_editor_disabled: Bluetooth ye desactivau
 bluetooth_device_editor_button_enable: Activar
 bluetooth_device_editor_no_paired_devices: No s'han trobau dispositivos emparellaus.
+settings_page_category_panels: Paneles rapidos
+settings_page_name_quick_volume: Panel rapido de volumen
+settings_page_name_quick_connection: Panel rapido de connexions
+settings_page_name_quick_wifi: Panel rapido de Wi-Fi
+settings_page_name_quick_nfc: Panel rapido de NFC

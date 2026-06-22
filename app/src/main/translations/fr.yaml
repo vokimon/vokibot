@@ -365,3 +365,8 @@ bluetooth_device_editor_no_bluetooth: Cet appareil ne prend pas en charge le Blu
 bluetooth_device_editor_disabled: Le Bluetooth est désactivé
 bluetooth_device_editor_button_enable: Activer
 bluetooth_device_editor_no_paired_devices: Aucun appareil appairé trouvé.
+settings_page_category_panels: Panneaux rapides
+settings_page_name_quick_volume: Panneau de volume rapide
+settings_page_name_quick_connection: Panneau de connexions rapide
+settings_page_name_quick_wifi: Panneau Wi-Fi rapide
+settings_page_name_quick_nfc: Panneau NFC rapide

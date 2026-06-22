@@ -365,3 +365,8 @@ bluetooth_device_editor_no_bluetooth: هذا الجهاز لا يدعم البل
 bluetooth_device_editor_disabled: البلوتوث معطل
 bluetooth_device_editor_button_enable: تفعيل
 bluetooth_device_editor_no_paired_devices: لم يتم العثور على أجهزة مقترنة.
+settings_page_category_panels: اللوحات السريعة
+settings_page_name_quick_volume: لوحة الصوت السريعة
+settings_page_name_quick_connection: لوحة الاتصالات السريعة
+settings_page_name_quick_wifi: لوحة الواي فاي السريعة
+settings_page_name_quick_nfc: لوحة NFC السريعة

@@ -2,7 +2,10 @@
 
 ## unreleased
 
-- ✨ Enable nfc using the panel instead settings page, when available
+Quick system settings panels
+
+- ✨ Using nfc panel instead settings page, when available, to enable NFC
+- ✨ Quick panels for Internet, Wifi, Nfc and Volume available as Settings Page
 
 ## 0.6.1 (2026-06-17)
 

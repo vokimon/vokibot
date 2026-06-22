@@ -365,3 +365,8 @@ bluetooth_device_editor_no_bluetooth: Gailu honek ez du Bluetoothik onartzen
 bluetooth_device_editor_disabled: Bluetootha desgaituta dago
 bluetooth_device_editor_button_enable: Gaitu
 bluetooth_device_editor_no_paired_devices: Ez da parekatutako gailurik aurkitu.
+settings_page_category_panels: Panel azkarrak
+settings_page_name_quick_volume: Bolumen-panel azkarra
+settings_page_name_quick_connection: Konexio-panel azkarra
+settings_page_name_quick_wifi: Wi-Fi panel azkarra
+settings_page_name_quick_nfc: NFC panel azkarra
