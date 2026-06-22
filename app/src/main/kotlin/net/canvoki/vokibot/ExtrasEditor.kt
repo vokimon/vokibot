@@ -116,7 +116,7 @@ fun ExtrasEditor(
                                     expanded = typeExpanded,
                                     onDismissRequest = { typeExpanded = false },
                                 ) {
-                                    ExtraType.entries.forEach { type ->
+                                    ExtraType.intentExtraTypes.forEach { type ->
                                         DropdownMenuItem(
                                             text = { Text(stringResource(type.labelRes)) },
                                             onClick = {

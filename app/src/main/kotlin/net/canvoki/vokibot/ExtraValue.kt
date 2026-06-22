@@ -34,7 +34,7 @@ sealed class ExtraType {
     @Serializable object URI_LIST : ExtraType()
 
     companion object {
-        val entries: List<ExtraType> = listOf(STRING, URI, INT, BOOLEAN, STRING_ARRAY, URI_LIST)
+        val intentExtraTypes: List<ExtraType> = listOf(STRING, URI, INT, BOOLEAN, STRING_ARRAY, URI_LIST)
     }
 }
 
