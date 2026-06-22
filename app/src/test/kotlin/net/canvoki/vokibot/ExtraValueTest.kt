@@ -238,6 +238,73 @@ class ExtraValueTest {
         checkExtraType(ExtraValue.UriListValue(emptyList()), ExtraType.URI_LIST)
     }
 
+    // ---------- toPersistedString ----------
+
+    @Test
+    fun `StringValue toPersistedString returns value`() {
+        assertEquals("hello", ExtraValue.StringValue("hello").toPersistedString())
+    }
+
+    @Test
+    fun `StringValue toPersistedString empty returns empty`() {
+        assertEquals("", ExtraValue.StringValue("").toPersistedString())
+    }
+
+    @Test
+    fun `IntValue toPersistedString returns number as string`() {
+        assertEquals("42", ExtraValue.IntValue(42).toPersistedString())
+    }
+
+    @Test
+    fun `IntValue toPersistedString zero`() {
+        assertEquals("0", ExtraValue.IntValue(0).toPersistedString())
+    }
+
+    @Test
+    fun `LongValue toPersistedString returns number as string`() {
+        assertEquals("123", ExtraValue.LongValue(123L).toPersistedString())
+    }
+
+    @Test
+    fun `BooleanValue toPersistedString true`() {
+        assertEquals("true", ExtraValue.BooleanValue(true).toPersistedString())
+    }
+
+    @Test
+    fun `BooleanValue toPersistedString false`() {
+        assertEquals("false", ExtraValue.BooleanValue(false).toPersistedString())
+    }
+
+    @Test
+    fun `FloatValue toPersistedString returns number as string`() {
+        assertEquals("3.14", ExtraValue.FloatValue(3.14f).toPersistedString())
+    }
+
+    @Test
+    fun `UriValue toPersistedString returns value`() {
+        assertEquals("geo:0,0", ExtraValue.UriValue("geo:0,0").toPersistedString())
+    }
+
+    @Test
+    fun `StringArrayValue toPersistedString returns comma-separated`() {
+        assertEquals("a,b", ExtraValue.StringArrayValue(listOf("a", "b")).toPersistedString())
+    }
+
+    @Test
+    fun `StringArrayValue toPersistedString empty returns empty`() {
+        assertEquals("", ExtraValue.StringArrayValue(emptyList()).toPersistedString())
+    }
+
+    @Test
+    fun `UriListValue toPersistedString returns comma-separated`() {
+        assertEquals("geo:0,0,tel:123", ExtraValue.UriListValue(listOf("geo:0,0", "tel:123")).toPersistedString())
+    }
+
+    @Test
+    fun `UriListValue toPersistedString empty returns empty`() {
+        assertEquals("", ExtraValue.UriListValue(emptyList()).toPersistedString())
+    }
+
     // ---------- computeNewCustomSpecs ----------
 
     private fun assertSpecs(

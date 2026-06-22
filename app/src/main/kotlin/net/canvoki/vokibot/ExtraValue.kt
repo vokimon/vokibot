@@ -73,6 +73,8 @@ sealed class ExtraValue {
         key: String,
     )
 
+    abstract fun toPersistedString(): String
+
     @Composable
     open fun Editor(
         spec: ExtraSpec,
@@ -91,6 +93,8 @@ sealed class ExtraValue {
         ) {
             intent.putExtra(key, value)
         }
+
+        override fun toPersistedString(): String = value
 
         @Composable
         override fun Editor(
@@ -123,6 +127,8 @@ sealed class ExtraValue {
             intent.putExtra(key, value)
         }
 
+        override fun toPersistedString(): String = value.toString()
+
         @Composable
         override fun Editor(
             spec: ExtraSpec,
@@ -153,6 +159,8 @@ sealed class ExtraValue {
         ) {
             intent.putExtra(key, value)
         }
+
+        override fun toPersistedString(): String = value.toString()
 
         @Composable
         override fun Editor(
@@ -185,6 +193,8 @@ sealed class ExtraValue {
             intent.putExtra(key, value)
         }
 
+        override fun toPersistedString(): String = value.toString()
+
         @Composable
         override fun Editor(
             spec: ExtraSpec,
@@ -208,6 +218,8 @@ sealed class ExtraValue {
         ) {
             intent.putExtra(key, value)
         }
+
+        override fun toPersistedString(): String = value.toString()
 
         @Composable
         override fun Editor(
@@ -240,6 +252,8 @@ sealed class ExtraValue {
             intent.putExtra(key, value.toUri())
         }
 
+        override fun toPersistedString(): String = value
+
         @Composable
         override fun Editor(
             spec: ExtraSpec,
@@ -264,6 +278,8 @@ sealed class ExtraValue {
         ) {
             intent.putExtra(key, values.toTypedArray())
         }
+
+        override fun toPersistedString(): String = values.joinToString(",")
 
         @Composable
         override fun Editor(
@@ -299,6 +315,8 @@ sealed class ExtraValue {
         ) {
             intent.putParcelableArrayListExtra(key, ArrayList(values.map { it.toUri() }))
         }
+
+        override fun toPersistedString(): String = values.joinToString(",")
 
         @Composable
         override fun Editor(
