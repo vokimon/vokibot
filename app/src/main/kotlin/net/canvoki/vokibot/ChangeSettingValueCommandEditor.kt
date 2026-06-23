@@ -1,18 +1,17 @@
 package net.canvoki.vokibot
 
 import android.provider.Settings
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.SegmentedButton
-import androidx.compose.material3.SegmentedButtonDefaults
-import androidx.compose.material3.SingleChoiceSegmentedButtonRow
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -56,6 +55,8 @@ fun ChangeSettingValueCommandEditor(
     val discardState = rememberDiscardableState(screen = editor, nav = nav)
     var hasLoaded by rememberSaveable { mutableStateOf(false) }
     var setting by remember { mutableStateOf<String>(Settings.System.SCREEN_BRIGHTNESS_MODE) }
+    val settingTitle = "Adaptive Brightness"
+    val settingHelp = "When enabled the screen brightness will adapt to environmental light"
     var value by remember { mutableStateOf<ExtraValue>(ExtraValue.BooleanValue(false)) }
 
     fun buildCommand() =
@@ -104,8 +105,32 @@ fun ChangeSettingValueCommandEditor(
             },
         )
 
+        OutlinedTextField(
+            value = settingTitle,
+            onValueChange = {},
+            label = { Text("Setting to change") },
+            readOnly = true,
+            trailingIcon = {
+                Icon(
+                    painter = painterResource(R.drawable.ic_arrow_drop_down),
+                    contentDescription = null,
+                )
+            },
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .clickable { /* TODO: push SettingPickerScreen */ },
+        )
+
+        Text(
+            text = settingHelp,
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier.padding(start = 16.dp),
+        )
+
         value.Editor(
-            spec = ExtraSpec(setting, ExtraType.BOOLEAN, labelRes = R.string.extra_value_type_boolean),
+            spec = ExtraSpec(key = "Value to set", type = ExtraType.BOOLEAN),
             onChanged = { value = it },
         )
 
