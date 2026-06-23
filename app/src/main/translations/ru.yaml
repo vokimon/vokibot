@@ -369,6 +369,15 @@ settings_page_name_quick_volume: Быстрая панель громкости
 settings_page_name_quick_connection: Быстрая панель подключений
 settings_page_name_quick_wifi: Быстрая панель Wi-Fi
 settings_page_name_quick_nfc: Быстрая панель NFC
-command_change_setting_label: Изменить значение настройки
+command_change_setting_label: Изменить настройку
 command_change_setting_help: Изменяет конкретное значение в системных настройках.
 missing_permission_banner_button_grant_permission: Предоставить разрешение
+setting_category_connectivity: Подключение
+setting_category_accessibility: Специальные возможности
+setting_category_text: Текст
+setting_category_time: Время
+setting_category_developer: Разработчик
+setting_category_power: Питание
+setting_category_device: Устройство
+setting_category_display: Экран
+setting_category_sound: Аудио

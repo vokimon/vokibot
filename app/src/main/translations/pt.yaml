@@ -369,6 +369,15 @@ settings_page_name_quick_volume: Painel rápido de volume
 settings_page_name_quick_connection: Painel rápido de ligações
 settings_page_name_quick_wifi: Painel rápido de Wi-Fi
 settings_page_name_quick_nfc: Painel rápido de NFC
-command_change_setting_label: Alterar valor de definição
+command_change_setting_label: Alterar definição
 command_change_setting_help: Modifica um valor específico nas definições do sistema.
 missing_permission_banner_button_grant_permission: Conceder permissão
+setting_category_connectivity: Conectividade
+setting_category_accessibility: Acessibilidade
+setting_category_text: Texto
+setting_category_time: Data e hora
+setting_category_developer: Programador
+setting_category_power: Energia
+setting_category_device: Dispositivo
+setting_category_display: Ecrã
+setting_category_sound: Áudio

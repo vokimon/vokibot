@@ -369,6 +369,15 @@ settings_page_name_quick_volume: Panell ràpid de volum
 settings_page_name_quick_connection: Panell ràpid de connexions
 settings_page_name_quick_wifi: Panell ràpid de Wi-Fi
 settings_page_name_quick_nfc: Panell ràpid de NFC
-command_change_setting_label: Canviar valor de configuració
+command_change_setting_label: Canviar configuració
 command_change_setting_help: Modifica un valor específic a la configuració del sistema.
 missing_permission_banner_button_grant_permission: Concedeix el permís
+setting_category_connectivity: Connectivitat
+setting_category_accessibility: Accessibilitat
+setting_category_text: Text
+setting_category_time: Data i hora
+setting_category_developer: Desenvolupador
+setting_category_power: Energia
+setting_category_device: Dispositiu
+setting_category_display: Pantalla
+setting_category_sound: So

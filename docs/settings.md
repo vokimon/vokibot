@@ -212,7 +212,7 @@ Where:
 ## Appendix: Settings Catalog
 
 Comprehensive list of non-deprecated settings documented in the Android SDK.
-Grouped by logical category. Namespace in parentheses after the category.
+Grouped by functional category. Namespace is an orthogonal field.
 
 Based on Android SDK API 36 (compileSdk 36).
 
@@ -224,251 +224,159 @@ AOSP source:
 
 - `frameworks/base/core/java/android/provider/Settings.java`
 
-### Display (System)
+### Display
 
-- `SCREEN_BRIGHTNESS`: (Int) Screen backlight brightness, 0-255
+- `SCREEN_BRIGHTNESS`: (Int) Screen backlight brightness, 0-255 (System)
     - UI: Ranged value
-- `SCREEN_BRIGHTNESS_MODE`: (Int) 0=manual, 1=automatic brightness
+- `SCREEN_BRIGHTNESS_MODE`: (Int) 0=manual, 1=automatic brightness (System)
     - UI: Toggle
-- `SCREEN_OFF_TIMEOUT`: (Int) Milliseconds before screen turns off
+- `SCREEN_OFF_TIMEOUT`: (Int) Milliseconds before screen turns off (System)
     - UI: Enum("15s"=15000, "30s"=30000, "1m"=60000, "2m"=120000, "5m"=300000, "10m"=600000, "30m"=1800000)
-- `USER_ROTATION`: (Int) Default rotation: 0=0deg, 1=90deg, 2=180deg, 3=270deg
+- `USER_ROTATION`: (Int) Default rotation: 0=0deg, 1=90deg, 2=180deg, 3=270deg (System)
     - UI: Enum("0°"=0, "90°"=1, "180°"=2, "270°"=3)
-- `ACCELEROMETER_ROTATION`: (Int) 0=manual, 1=accelerometer controls rotation
+- `ACCELEROMETER_ROTATION`: (Int) 0=manual, 1=accelerometer controls rotation (System)
     - UI: Enum("Manual", "Auto") maybe Toggle
-- `FONT_SCALE`: (Float) Font scaling factor, 1.0 is default
+- `FONT_SCALE`: (Float) Font scaling factor, 1.0 is default (System)
     - UI: Enum("0.5", "0.7", "0.85", "1.0"=1.0, "1.15", "1.3", "1.5", "2.0")
 
-### Sound (System)
+### Sound
 
-- `VOLUME_SYSTEM`: (Int) System/notifications volume, 0-15
-    - UI: Ranged value
-    - DISCARDED: not in public api
-- `VOLUME_RING`: (Int) Ringer volume, 0-15
-    - UI: Ranged value
-    - DISCARDED: not in public api
-- `VOLUME_MUSIC`: (Int) Music/media/gaming volume, 0-15
-    - UI: Ranged value
-    - DISCARDED: not in public api
-- `VOLUME_ALARM`: (Int) Alarm volume, 0-15
-    - UI: Ranged value
-    - DISCARDED: not in public api
-- `VOLUME_NOTIFICATION`: (Int) Notification volume, 0-15
-    - UI: Ranged value
-    - DISCARDED: not in public api
-- `VOLUME_VOICE`: (Int) Voice call volume, 0-15
-    - UI: Ranged value
-    - DISCARDED: not in public api
-- `VOLUME_BLUETOOTH_SCO`: (Int) Bluetooth SCO volume, 0-15
-    - UI: Ranged value
-    - DISCARDED: not in public api
-- `RINGTONE`: (String) Content URI of default ringtone
+- `RINGTONE`: (String) Content URI of default ringtone (System)
     - UI: URI
-- `NOTIFICATION_SOUND`: (String) Content URI of default notification sound
+- `NOTIFICATION_SOUND`: (String) Content URI of default notification sound (System)
     - UI: URI
-- `ALARM_ALERT`: (String) Content URI of default alarm alert
+- `ALARM_ALERT`: (String) Content URI of default alarm alert (System)
     - UI: URI
-- `DTMF_TONE_WHEN_DIALING`: (Int) 0=off, 1=on, audible DTMF tones
+- `DTMF_TONE_WHEN_DIALING`: (Int) 0=off, 1=on, audible DTMF tones (System)
     - UI: Toggle
-- `SOUND_EFFECTS_ENABLED`: (Int) 0=off, 1=on, key clicks and lid sounds
+- `SOUND_EFFECTS_ENABLED`: (Int) 0=off, 1=on, key clicks and lid sounds (System)
     - UI: Toggle
-- `HAPTIC_FEEDBACK_ENABLED`: (Int) 0=off, 1=on, haptic feedback on long press etc.
+- `HAPTIC_FEEDBACK_ENABLED`: (Int) 0=off, 1=on, haptic feedback on long press etc. (System)
     - UI: Toggle
-- `MODE_RINGER_STREAMS_AFFECTED`: (Int) Bitmask: voice_call=1, system=2, ring=4, music=8, alarm=16, notification=32, bt_sco=64
+- `MODE_RINGER_STREAMS_AFFECTED`: (Int) Bitmask: voice_call=1, system=2, ring=4, music=8, alarm=16, notification=32, bt_sco=64 (System)
     - UI: Flags("Voice call", "System", "Ring", "Music", "Alarm", "Notification", "BT SCO")
-- `MUTE_STREAMS_AFFECTED`: (Int) Bitmask: voice_call=1, system=2, ring=4, music=8, alarm=16, notification=32, bt_sco=64
+- `MUTE_STREAMS_AFFECTED`: (Int) Bitmask: voice_call=1, system=2, ring=4, music=8, alarm=16, notification=32, bt_sco=64 (System)
     - UI: Flags("Voice call", "System", "Ring", "Music", "Alarm", "Notification", "BT SCO")
-- `VIBRATE_ON`: (Int) Bitmask: call=1, call_cdma=2, notification=4, chat=8, calendar=16, hangup=32
+- `VIBRATE_ON`: (Int) Bitmask: call=1, call_cdma=2, notification=4, chat=8, calendar=16, hangup=32 (System)
     - UI: Flags("Incoming call", "CDMA call", "Notification", "Chat message", "Calendar", "Hang up")
-
-### Text Input (System)
-
-- `TEXT_AUTO_CAPS`: (Int) 0=off, 1=on, auto capitalize in text editors
-    - UI: Toggle
-- `TEXT_AUTO_PUNCTUATE`: (Int) 0=off, 1=on, auto punctuate in text editors
-    - UI: Toggle
-- `TEXT_AUTO_REPLACE`: (Int) 0=off, 1=on, auto replace (AutoText) in text editors
-    - UI: Toggle
-- `TEXT_SHOW_PASSWORD`: (Int) 0=off, 1=on, show password characters briefly
-    - UI: Toggle
-
-### Time (System)
-
-- `TIME_12_24`: (String) "12" or "24" hour format
-    - UI: Enum("12h", "24h")
-- `DATE_FORMAT`: (String) Date format string (mm/dd/yyyy, dd/mm/yyyy, yyyy/mm/dd)
-    - UI: Free text
-    - Deprecated in API 31, no longer used. Use `TIME_12_24` instead
-
-### Bluetooth (System)
-
-- `BLUETOOTH_DISCOVERABILITY`: (Int) 0=disabled, 1=enabled, discoverable mode
-    - UI: Enum("Disabled", "Enabled")
-- `BLUETOOTH_DISCOVERABILITY_TIMEOUT`: (Int) Discoverability timeout in seconds
-    - UI: Enum("120s", "300s", "600s")
-
-### Call (System)
-
-- `END_BUTTON_BEHAVIOR`: (Int) 0=end call, 1=go to caller log
-    - UI: Enum("End call", "Caller log")
-
-### System Misc (System)
-
-- `APPEND_FOR_LAST_AUDIBLE`: (Int) Bitmask: voice_call=1, system=2, ring=4, music=8, alarm=16, notification=32, bt_sco=64
-    - UI: Flags("Voice call", "System", "Ring", "Music", "Alarm", "Notification", "BT SCO")
-    - DISCARDED: not in public api
-
-### Accessibility (Secure)
-
-- `ACCESSIBILITY_ENABLED`: (Int) 0=off, 1=on
-    - UI: Toggle
-- `ACCESSIBILITY_DISPLAY_INVERSION_ENABLED`: (Int) 0=off, 1=on, color inversion
-    - UI: Toggle
-- `ACCESSIBILITY_SPEAK_PASSWORD`: (Int) 0=off, 1=on, speak passwords aloud
-    - UI: Toggle
-    - DISCARDED: Deprecated in API 26. Individual accessibility services now control this behavior
-- `TOUCH_EXPLORATION_ENABLED`: (Int) 0=off, 1=on, Touch exploration (TalkBack)
-    - UI: Toggle
-
-### Input (Secure)
-
-- `DEFAULT_INPUT_METHOD`: (String) Component ID of default IME
-    - UI: Dynamic list (from InputMethodManager enabled input methods)
-- `ENABLED_INPUT_METHODS`: (String, colon-separated list) Enabled input methods
-    - UI: Dynamic list (colon-separated, from InputMethodManager enabled input methods)
-- `SELECTED_INPUT_METHOD_SUBTYPE`: (String) Default IME subtype
-    - UI: Dynamic list (from InputMethodManager input method subtypes)
-- `INPUT_METHOD_SELECTOR_VISIBILITY`: (Int) 0=auto, 1=always show, IME selector
-    - UI: Enum("Auto", "Always show")
-
-### Location (Secure)
-
-- `LOCATION_PROVIDERS_ALLOWED`: (String, comma-separated list) Allowed providers
-    - UI: Dynamic list (comma-separated, from LocationManager.getProviders())
-    - DISCARDED: Deprecated in API 19. Use `LocationManager.isProviderEnabled()` or `LocationManager.isLocationEnabled()`
-- `ALLOW_MOCK_LOCATION`: (Int) 0=off, 1=on, allow mock locations
-    - UI: Toggle
-    - DISCARDED: Deprecated in API 23, no longer used
-- `INSTALL_NON_MARKET_APPS`: (Int) 0=off, 1=on, allow non-Market installs
-    - UI: Toggle
-    - DISCARDED: Deprecated in API 26. Use `PackageManager.canRequestPackageInstalls()`
-
-### Lock Screen (Secure)
-
-- `LOCK_PATTERN_ENABLED`: (Int) 0=off, 1=on, autolock enabled
-    - UI: Toggle
-    - DISCARDED: Deprecated in API 23, throws SecurityException. Use `KeyguardManager`
-- `LOCK_PATTERN_VISIBLE`: (Int) 0=off, 1=on, pattern visible while drawing
-    - UI: Toggle
-    - DISCARDED: Deprecated in API 23, throws SecurityException. Use `KeyguardManager`
-
-### Text-to-Speech (Secure)
-
-- `TTS_DEFAULT_PITCH`: (Int) Pitch value, 10-500
+- `MODE_RINGER`: (Int) 0=normal, 1=vibrate, 2=silent (Global)
+    - UI: Enum("Normal", "Vibrate", "Silent")
+- `TTS_DEFAULT_PITCH`: (Int) Pitch value, 10-500 (Secure)
     - UI: Ranged value
-- `TTS_DEFAULT_RATE`: (Int) Speech rate, 10-300
+- `TTS_DEFAULT_RATE`: (Int) Speech rate, 10-300 (Secure)
     - UI: Ranged value
-- `TTS_DEFAULT_SYNTH`: (String) Package name of default TTS engine
+- `TTS_DEFAULT_SYNTH`: (String) Package name of default TTS engine (Secure)
     - UI: Dynamic list (from TextToSpeech.Engine available engines)
-- `TTS_ENABLED_PLUGINS`: (String, space-separated list) Enabled TTS plugins
+- `TTS_ENABLED_PLUGINS`: (String, space-separated list) Enabled TTS plugins (Secure)
     - UI: Dynamic list (space-separated, from TextToSpeech.Engine available plugins)
 
-### Accessibility Services (Secure)
+### Text
 
-- `ENABLED_ACCESSIBILITY_SERVICES`: (String, colon-separated list) Enabled services
-    - UI: Dynamic list (colon-separated, from AccessibilityManager enabled services)
+- `TEXT_AUTO_CAPS`: (Int) 0=off, 1=on, auto capitalize in text editors (System)
+    - UI: Toggle
+- `TEXT_AUTO_PUNCTUATE`: (Int) 0=off, 1=on, auto punctuate in text editors (System)
+    - UI: Toggle
+- `TEXT_AUTO_REPLACE`: (Int) 0=off, 1=on, auto replace (AutoText) in text editors (System)
+    - UI: Toggle
+- `TEXT_SHOW_PASSWORD`: (Int) 0=off, 1=on, show password characters briefly (System)
+    - UI: Toggle
 
-### Connectivity (Global)
+### Time
 
-- `AIRPLANE_MODE_ON`: (Int) 0=off, 1=on
+- `TIME_12_24`: (String) "12" or "24" hour format (System)
+    - UI: Enum("12h", "24h")
+- `DATE_FORMAT`: (String) Date format string (mm/dd/yyyy, dd/mm/yyyy, yyyy/mm/dd) (System)
+    - UI: Free text
+    - Deprecated in API 31, no longer used. Use `TIME_12_24` instead
+- `AUTO_TIME`: (Int) 0=off, 1=on, auto-set clock from network (Global)
     - UI: Toggle
-- `BLUETOOTH_ON`: (Int) 0=off, 1=on
+- `AUTO_TIME_ZONE`: (Int) 0=off, 1=on, auto-set time zone from network (Global)
     - UI: Toggle
-- `WIFI_ON`: (Int) 0=off, 1=on
+
+### Connectivity
+
+- `AIRPLANE_MODE_ON`: (Int) 0=off, 1=on (Global)
     - UI: Toggle
-- `DATA_ROAMING`: (Int) 0=off, 1=on
+- `BLUETOOTH_ON`: (Int) 0=off, 1=on (Global)
     - UI: Toggle
-- `NETWORK_PREFERENCE`: (Int) Preferred network(s)
+- `WIFI_ON`: (Int) 0=off, 1=on (Global)
+    - UI: Toggle
+- `DATA_ROAMING`: (Int) 0=off, 1=on (Global)
+    - UI: Toggle
+- `NETWORK_PREFERENCE`: (Int) Preferred network(s) (Global)
     - UI: Ranged value
-- `HTTP_PROXY`: (String) Global HTTP proxy as host:port
+- `HTTP_PROXY`: (String) Global HTTP proxy as host:port (Global)
     - UI: Free text
-
-### Developer (Global)
-
-- `ADB_ENABLED`: (Int) 0=off, 1=on, ADB over USB
-    - UI: Toggle
-- `DEVELOPMENT_SETTINGS_ENABLED`: (Int) 0=off, 1=on, developer options
-    - UI: Toggle
-- `WAIT_FOR_DEBUGGER`: (Int) 0=off, 1=on, wait for debugger on launch
-    - UI: Toggle
-- `ALWAYS_FINISH_ACTIVITIES`: (Int) 0=off, 1=on, finish activities aggressively
-    - UI: Toggle
-
-### Animation (Global)
-
-- `WINDOW_ANIMATION_SCALE`: (Float) Scale factor for window animations
-    - UI: Enum("Off"=0.0, "0.5x"=0.5, "1x"=1.0, "1.5x"=1.5, "2x"=2.0, "5x"=5.0, "10x"=10.0)
-- `TRANSITION_ANIMATION_SCALE`: (Float) Scale factor for activity transitions
-    - UI: Enum("Off"=0.0, "0.5x"=0.5, "1x"=1.0, "1.5x"=1.5, "2x"=2.0, "5x"=5.0, "10x"=10.0)
-- `ANIMATOR_DURATION_SCALE`: (Float) Scale factor for Animator-based animations
-    - UI: Enum("Off"=0.0, "0.5x"=0.5, "1x"=1.0, "1.5x"=1.5, "2x"=2.0, "5x"=5.0, "10x"=10.0)
-
-### Time (Global)
-
-- `AUTO_TIME`: (Int) 0=off, 1=on, auto-set clock from network
-    - UI: Toggle
-- `AUTO_TIME_ZONE`: (Int) 0=off, 1=on, auto-set time zone from network
-    - UI: Toggle
-
-### Power (Global)
-
-- `STAY_ON_WHILE_PLUGGED_IN`: (Int) Bitmask: usb=1, ac=2, wireless=4
-    - UI: Flags("USB", "AC", "Wireless")
-
-### Device (Global)
-
-- `DEVICE_NAME`: (String) Bluetooth/device name
-    - UI: Free text
-- `DEVICE_PROVISIONED`: (Int) 0=not provisioned, 1=provisioned
-    - UI: Toggle
-- `MODE_RINGER`: (Int) 0=normal, 1=vibrate, 2=silent
-    - UI: Enum("Normal", "Vibrate", "Silent")
-- `USB_MASS_STORAGE_ENABLED`: (Int) 0=off, 1=on
-    - UI: Toggle
-- `USE_GOOGLE_MAIL`: (Int) 0=off, 1=on, show "Google Mail" instead of "Gmail"
-    - UI: Toggle
-
-### Wi-Fi (Global)
-
-- `WIFI_SLEEP_POLICY`: (Int) 0=default, 1=never while plugged, 2=never
+- `AIRPLANE_MODE_RADIOS`: (String, comma-separated list) Radios disabled in airplane mode (Global)
+    - UI: Dynamic list (comma-separated, from Settings.Global RADIO_BLUETOOTH, RADIO_CELL, RADIO_NFC, RADIO_WIFI)
+- `WIFI_SLEEP_POLICY`: (Int) 0=default, 1=never while plugged, 2=never (Global)
     - UI: Enum("Default", "Never while plugged", "Never")
     - Deprecated in API 30, no longer used by platform (still works on API 26-29)
-- `WIFI_MAX_DHCP_RETRY_COUNT`: (Int) Max DHCP retries
+- `WIFI_MAX_DHCP_RETRY_COUNT`: (Int) Max DHCP retries (Global)
     - UI: Ranged value
-- `WIFI_NETWORKS_AVAILABLE_NOTIFICATION_ON`: (Int) 0=off, 1=on, notify open networks
-    - UI: Toggle
-    - DISCARDED: Deprecated in API 26
-- `WIFI_NETWORKS_AVAILABLE_REPEAT_DELAY`: (Int) Seconds before repeating notification
+- `WIFI_NETWORKS_AVAILABLE_REPEAT_DELAY`: (Int) Seconds before repeating notification (Global)
     - UI: Ranged value
     - Deprecated in API 30, no longer used by platform
-- `WIFI_NUM_OPEN_NETWORKS_KEPT`: (Int) Max open networks to remember
+- `WIFI_NUM_OPEN_NETWORKS_KEPT`: (Int) Max open networks to remember (Global)
     - UI: Ranged value
     - Deprecated in API 30, no longer used by platform
-- `WIFI_WATCHDOG_ON`: (Int) 0=off, 1=on, Wi-Fi watchdog
-    - UI: Toggle
-    - DISCARDED: Deprecated in API 23
-- `WIFI_MOBILE_DATA_TRANSITION_WAKELOCK_TIMEOUT_MS`: (Int) Wakelock timeout in ms
+- `WIFI_MOBILE_DATA_TRANSITION_WAKELOCK_TIMEOUT_MS`: (Int) Wakelock timeout in ms (Global)
     - UI: Ranged value
+- `BLUETOOTH_DISCOVERABILITY`: (Int) 0=disabled, 1=enabled, discoverable mode (System)
+    - UI: Enum("Disabled", "Enabled")
+- `BLUETOOTH_DISCOVERABILITY_TIMEOUT`: (Int) Discoverability timeout in seconds (System)
+    - UI: Enum("120s", "300s", "600s")
+- `END_BUTTON_BEHAVIOR`: (Int) 0=end call, 1=go to caller log (System)
+    - UI: Enum("End call", "Caller log")
 
-### Radio (Global)
+### Accessibility
 
-- `AIRPLANE_MODE_RADIOS`: (String, comma-separated list) Radios disabled in airplane mode
-    - UI: Dynamic list (comma-separated, from Settings.Global RADIO_BLUETOOTH, RADIO_CELL, RADIO_NFC, RADIO_WIFI)
-
-### Other (Global)
-
-- `SHOW_PROCESSES`: (Int) 0=off, 1=on, show process CPU usage meter
+- `ACCESSIBILITY_ENABLED`: (Int) 0=off, 1=on (Secure)
     - UI: Toggle
-    - DISCARDED: Deprecated in API 25
+- `ACCESSIBILITY_DISPLAY_INVERSION_ENABLED`: (Int) 0=off, 1=on, color inversion (Secure)
+    - UI: Toggle
+- `TOUCH_EXPLORATION_ENABLED`: (Int) 0=off, 1=on, Touch exploration (TalkBack) (Secure)
+    - UI: Toggle
+- `ENABLED_ACCESSIBILITY_SERVICES`: (String, colon-separated list) Enabled services (Secure)
+    - UI: Dynamic list (colon-separated, from AccessibilityManager enabled services)
+- `DEFAULT_INPUT_METHOD`: (String) Component ID of default IME (Secure)
+    - UI: Dynamic list (from InputMethodManager enabled input methods)
+- `ENABLED_INPUT_METHODS`: (String, colon-separated list) Enabled input methods (Secure)
+    - UI: Dynamic list (colon-separated, from InputMethodManager enabled input methods)
+- `SELECTED_INPUT_METHOD_SUBTYPE`: (String) Default IME subtype (Secure)
+    - UI: Dynamic list (from InputMethodManager input method subtypes)
+- `INPUT_METHOD_SELECTOR_VISIBILITY`: (Int) 0=auto, 1=always show, IME selector (Secure)
+    - UI: Enum("Auto", "Always show")
 
+### Developer
 
+- `ADB_ENABLED`: (Int) 0=off, 1=on, ADB over USB (Global)
+    - UI: Toggle
+- `DEVELOPMENT_SETTINGS_ENABLED`: (Int) 0=off, 1=on, developer options (Global)
+    - UI: Toggle
+- `WAIT_FOR_DEBUGGER`: (Int) 0=off, 1=on, wait for debugger on launch (Global)
+    - UI: Toggle
+- `ALWAYS_FINISH_ACTIVITIES`: (Int) 0=off, 1=on, finish activities aggressively (Global)
+    - UI: Toggle
+- `WINDOW_ANIMATION_SCALE`: (Float) Scale factor for window animations (Global)
+    - UI: Enum("Off"=0.0, "0.5x"=0.5, "1x"=1.0, "1.5x"=1.5, "2x"=2.0, "5x"=5.0, "10x"=10.0)
+- `TRANSITION_ANIMATION_SCALE`: (Float) Scale factor for activity transitions (Global)
+    - UI: Enum("Off"=0.0, "0.5x"=0.5, "1x"=1.0, "1.5x"=1.5, "2x"=2.0, "5x"=5.0, "10x"=10.0)
+- `ANIMATOR_DURATION_SCALE`: (Float) Scale factor for Animator-based animations (Global)
+    - UI: Enum("Off"=0.0, "0.5x"=0.5, "1x"=1.0, "1.5x"=1.5, "2x"=2.0, "5x"=5.0, "10x"=10.0)
+
+### Power
+
+- `STAY_ON_WHILE_PLUGGED_IN`: (Int) Bitmask: usb=1, ac=2, wireless=4 (Global)
+    - UI: Flags("USB", "AC", "Wireless")
+- `USB_MASS_STORAGE_ENABLED`: (Int) 0=off, 1=on (Global)
+    - UI: Toggle
+
+### Device
+
+- `DEVICE_NAME`: (String) Bluetooth/device name (Global)
+    - UI: Free text
+- `DEVICE_PROVISIONED`: (Int) 0=not provisioned, 1=provisioned (Global)
+    - UI: Toggle
+- `USE_GOOGLE_MAIL`: (Int) 0=off, 1=on, show "Google Mail" instead of "Gmail" (Global)
+    - UI: Toggle

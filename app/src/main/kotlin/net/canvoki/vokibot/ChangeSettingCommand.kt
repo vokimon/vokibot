@@ -79,25 +79,29 @@ data class SettingValue(
 }
 
 enum class SettingCategory {
-    NETWORK,
     DISPLAY,
     SOUND,
-    APPS,
-    SECURITY,
-    PERSONAL,
-    SYSTEM,
+    CONNECTIVITY,
+    ACCESSIBILITY,
+    TEXT,
+    TIME,
+    DEVELOPER,
+    POWER,
+    DEVICE,
     ;
 
     @get:StringRes
     val labelRes: Int get() =
         when (this) {
-            NETWORK -> R.string.settings_page_category_network
-            DISPLAY -> R.string.settings_page_category_display
-            SOUND -> R.string.settings_page_category_sound
-            APPS -> R.string.settings_page_category_apps
-            SECURITY -> R.string.settings_page_category_security
-            PERSONAL -> R.string.settings_page_category_personal
-            SYSTEM -> R.string.settings_page_category_system
+            DISPLAY -> R.string.setting_category_display
+            SOUND -> R.string.setting_category_sound
+            CONNECTIVITY -> R.string.setting_category_connectivity
+            ACCESSIBILITY -> R.string.setting_category_accessibility
+            TEXT -> R.string.setting_category_text
+            TIME -> R.string.setting_category_time
+            DEVELOPER -> R.string.setting_category_developer
+            POWER -> R.string.setting_category_power
+            DEVICE -> R.string.setting_category_device
         }
 }
 

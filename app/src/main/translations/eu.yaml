@@ -369,6 +369,15 @@ settings_page_name_quick_volume: Bolumen-panel azkarra
 settings_page_name_quick_connection: Konexio-panel azkarra
 settings_page_name_quick_wifi: Wi-Fi panel azkarra
 settings_page_name_quick_nfc: NFC panel azkarra
-command_change_setting_label: Aldatu ezarpen-balioa
+command_change_setting_label: Aldatu ezarpena
 command_change_setting_help: Sistemako ezarpenetako balio zehatz bat aldatzen du.
 missing_permission_banner_button_grant_permission: Eman baimena
+setting_category_connectivity: Konektibitatea
+setting_category_accessibility: Irisgarritasuna
+setting_category_text: Testua
+setting_category_time: Data eta ordua
+setting_category_developer: Garatzailea
+setting_category_power: Energia
+setting_category_device: Gailua
+setting_category_display: Pantaila
+setting_category_sound: Audioa

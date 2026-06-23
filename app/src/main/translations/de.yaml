@@ -369,6 +369,15 @@ settings_page_name_quick_volume: Schnellzugriff-Lautstärke
 settings_page_name_quick_connection: Schnellzugriff-Verbindungen
 settings_page_name_quick_wifi: Schnellzugriff-WLAN
 settings_page_name_quick_nfc: Schnellzugriff-NFC
-command_change_setting_label: Einstellungswert ändern
+command_change_setting_label: Einstellung ändern
 command_change_setting_help: Ändert einen spezifischen Wert in den Systemeinstellungen.
 missing_permission_banner_button_grant_permission: Berechtigung erteilen
+setting_category_connectivity: Konnektivität
+setting_category_accessibility: Barrierefreiheit
+setting_category_text: Text
+setting_category_time: Zeit
+setting_category_developer: Entwickler
+setting_category_power: Energie
+setting_category_device: Gerät
+setting_category_display: Anzeige
+setting_category_sound: Ton

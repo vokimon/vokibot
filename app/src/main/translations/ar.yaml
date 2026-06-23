@@ -369,6 +369,15 @@ settings_page_name_quick_volume: لوحة الصوت السريعة
 settings_page_name_quick_connection: لوحة الاتصالات السريعة
 settings_page_name_quick_wifi: لوحة الواي فاي السريعة
 settings_page_name_quick_nfc: لوحة NFC السريعة
-command_change_setting_label: تغيير قيمة الإعداد
+command_change_setting_label: تغيير الإعداد
 command_change_setting_help: يعدل قيمة محددة في إعدادات النظام.
 missing_permission_banner_button_grant_permission: منح الإذن
+setting_category_connectivity: الاتصال
+setting_category_accessibility: إمكانية الوصول
+setting_category_text: النص
+setting_category_time: الوقت
+setting_category_developer: المطور
+setting_category_power: الطاقة
+setting_category_device: الجهاز
+setting_category_display: العرض
+setting_category_sound: الصوت
