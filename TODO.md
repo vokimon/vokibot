@@ -2,16 +2,25 @@
 
 ## Sprinted
 
+
 - Change Setting Command:
     - [ ] Select a setting
-    - [ ] Very short description (Brighness) to be used as title, short enough to be also composed as command title "Brightness=100"
-    - [ ] Long description: user centered to be shown in the editor when modifying (Sets the brightness of the screen)
-    - [ ] Raw value description: to be used in raw edition, describes string format (Integer between 0 and 300)
+    - [x] Very short description (Brighness) to be used as title, short enough to be also composed as command title "Brightness=100"
+    - [x] Long description: user centered to be shown in the editor when modifying (Sets the brightness of the screen)
+    - [x] Raw value description: to be used in raw edition, describes string format (Integer between 0 and 300)a
+    - [ ] Change Settings Editor: rememberDirtyState
+    - [ ] Change Settings Editor: if dirty show discard dialog before leaving
+    - [ ] Change Settings Editor: isReadyToSave requires setting not null
+    - [ ] Change Settings Editor: isReadyToTry requires setting not null
     - [ ] Deprecation: Hide deprecated settings according to device android version
     - [ ] Deprecation: When editing a deprecated setting (because device upgraded) show a warning
-    - [ ] Typed editor for Boolean (Toggle)
-    - [ ] Permissions warning and asker (reuse stuff from nfc)
-    - [ ] Raw editor: Text editor with help on formatting this settings.
+    - [x] Typed editor for Boolean (Toggle)
+    - [x] Raw editor: Text editor with help on formatting this settings.
+    - [x] Permissions warning: and asker (reuse stuff from bluetooth)
+    - [ ] Permissions warning: for Secure and Global settings
+    - [ ] Permissions warning: Generalize for other strict permissions
+    - [ ] Permissions warning: Move to shared
+    - [ ] Editor header: Fix: long titles move the done button out the screen.
 
 ## Backlog
 

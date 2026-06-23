@@ -61,7 +61,7 @@ fun ChangeSettingValueCommandEditor(
     var isSaving by rememberSaveable { mutableStateOf(false) }
     val discardState = rememberDiscardableState(screen = editor, nav = nav)
     var hasLoaded by rememberSaveable { mutableStateOf(false) }
-    var setting by remember { mutableStateOf<String>(Settings.System.SCREEN_BRIGHTNESS_MODE) }
+    var setting by remember { mutableStateOf<String?>(Settings.System.SCREEN_BRIGHTNESS_MODE) }
     val settingTitle = "Adaptive Brightness"
     val settingHelp = "When enabled the screen brightness will adapt to environmental light"
     val settingDev = "1 for enabled, 0 for disabled"
@@ -69,14 +69,16 @@ fun ChangeSettingValueCommandEditor(
     var rawEdit by rememberSaveable { mutableStateOf(false) }
     var value by remember { mutableStateOf<ExtraValue>(ExtraValue.BooleanValue(false)) }
 
-    fun buildCommand() =
-        ChangeSettingValueCommand(
+    fun buildCommand(): ChangeSettingValueCommand {
+        require(setting != null)
+        return ChangeSettingValueCommand(
             id = editingId,
-            key = setting,
+            key = setting!!,
             value = value,
         )
-    val isReadyToRun = writeSettingsPerm.isGranted
-    val isReadyToSave = true // TODO
+    }
+    val isReadyToRun = writeSettingsPerm.isGranted && setting != null
+    val isReadyToSave = setting != null
 
     LaunchedEffect(editingId) {
         if (editingId != null && !hasLoaded) {
@@ -139,48 +141,50 @@ fun ChangeSettingValueCommandEditor(
             modifier = Modifier.padding(start = 16.dp),
         )
 
-        if (rawEdit) {
-            OutlinedTextField(
-                value = if ((value as? ExtraValue.BooleanValue)?.value == true) "1" else "0",
-                onValueChange = { raw ->
-                    value = ExtraValue.BooleanValue(raw == "1")
+        if (setting != null) {
+            if (rawEdit) {
+                OutlinedTextField(
+                    value = if ((value as? ExtraValue.BooleanValue)?.value == true) "1" else "0",
+                    onValueChange = { raw ->
+                        value = ExtraValue.BooleanValue(raw == "1")
+                    },
+                    label = { Text("Value") },
+                    supportingText = { Text(settingDev) },
+                    modifier = Modifier.fillMaxWidth(),
+                )
+                OneTimeNotice(
+                    noticeId = "raw_edit_warning_5", // TODO: clean up for production
+                    title = "Raw edit",
+                    message = "This option enables writing any value, even broken ones. Use with care!",
+                )
+            } else {
+                value.Editor(
+                    spec = ExtraSpec(key = "Value", type = ExtraType.Boolean),
+                    onChanged = { value = it },
+                )
+            }
+
+            FilterChip(
+                selected = rawEdit,
+                onClick = { rawEdit = !rawEdit },
+                label = { Text("Raw edit") },
+                leadingIcon = {
+                    if (rawEdit) {
+                        Icon(
+                            painter = painterResource(R.drawable.ic_check),
+                            contentDescription = null,
+                            modifier = Modifier.size(FilterChipDefaults.IconSize),
+                        )
+                    }
                 },
-                label = { Text("Value") },
-                supportingText = { Text(settingDev) },
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.align(Alignment.End),
             )
-            OneTimeNotice(
-                noticeId = "raw_edit_warning_5", // TODO: clean up for production
-                title = "Raw edit",
-                message = "This option enables writing any value, even broken ones. Use with care!",
-            )
-        } else {
-            value.Editor(
-                spec = ExtraSpec(key = "Value", type = ExtraType.Boolean),
-                onChanged = { value = it },
+
+            MissingPermissionBanner(
+                state = writeSettingsPerm,
+                message = "Permission required to modify system settings.",
             )
         }
-
-        FilterChip(
-            selected = rawEdit,
-            onClick = { rawEdit = !rawEdit },
-            label = { Text("Raw edit") },
-            leadingIcon = {
-                if (rawEdit) {
-                    Icon(
-                        painter = painterResource(R.drawable.ic_check),
-                        contentDescription = null,
-                        modifier = Modifier.size(FilterChipDefaults.IconSize),
-                    )
-                }
-            },
-            modifier = Modifier.align(Alignment.End),
-        )
-
-        MissingPermissionBanner(
-            state = writeSettingsPerm,
-            message = "Permission required to modify system settings.",
-        )
 
         TryCommandButton(
             enabled = isReadyToRun,
