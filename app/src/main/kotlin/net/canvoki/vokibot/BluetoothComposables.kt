@@ -36,17 +36,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
+import net.canvoki.vokibot.common.MissingPermissionBanner
+import net.canvoki.vokibot.common.PermissionState
 import net.canvoki.vokibot.common.WarningBanner
 import net.canvoki.vokibot.common.rememberPermissionState
-
-@Composable
-fun PermissionBanner(onGrantClicked: () -> Unit) {
-    WarningBanner(
-        message = stringResource(R.string.bluetooth_device_editor_permission_warning),
-        buttonText = stringResource(R.string.bluetooth_device_editor_grant_permission),
-        onClick = onGrantClicked,
-    )
-}
 
 private fun isBluetoothEnabled(adapter: BluetoothAdapter): Boolean =
     try {
@@ -58,11 +51,11 @@ private fun isBluetoothEnabled(adapter: BluetoothAdapter): Boolean =
     }
 
 data class BluetoothUsabilityState(
-    val isPermissionGranted: Boolean,
+    val permissionState: PermissionState,
     val adapter: BluetoothAdapter?,
-    val requestPermission: () -> Unit,
     val isEnabled: Boolean,
 ) {
+    val isPermissionGranted: Boolean get() = permissionState.isGranted
     val isAdapterAvailable: Boolean get() = adapter != null
     val isUsable: Boolean get() = isAdapterAvailable && isPermissionGranted && isEnabled
 }
@@ -107,9 +100,8 @@ fun rememberBluetoothUsabilityState(): BluetoothUsabilityState {
     }
 
     return BluetoothUsabilityState(
-        isPermissionGranted = connectPermState.isGranted,
+        permissionState = connectPermState,
         adapter = adapter,
-        requestPermission = { connectPermState.request() },
         isEnabled = isEnabled,
     )
 }
@@ -146,7 +138,10 @@ fun BluetoothDeviceChooser(
             },
         )
     } else if (!state.isPermissionGranted) {
-        PermissionBanner(onGrantClicked = state.requestPermission)
+        MissingPermissionBanner(
+            state = state.permissionState,
+            message = stringResource(R.string.bluetooth_device_editor_permission_warning),
+        )
     } else {
         PairedDevicesList(
             devices = bondedDevices,

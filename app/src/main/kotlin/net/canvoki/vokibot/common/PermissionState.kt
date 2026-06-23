@@ -6,6 +6,7 @@ import android.net.Uri
 import android.provider.Settings
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
@@ -13,13 +14,17 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
+import net.canvoki.vokibot.R
 
 interface PermissionState {
     val isGranted: Boolean
+
+    @get:StringRes val actionLabelRes: Int
 
     fun request()
 }
@@ -27,6 +32,7 @@ interface PermissionState {
 private val alwaysGranted =
     object : PermissionState {
         override val isGranted: Boolean get() = true
+        override val actionLabelRes: Int = 0
 
         override fun request() {}
     }
@@ -75,6 +81,7 @@ fun rememberPermissionState(permission: String?): PermissionState {
 
     return object : PermissionState {
         override val isGranted: Boolean get() = isGranted
+        override val actionLabelRes: Int = R.string.bluetooth_device_editor_grant_permission
 
         override fun request() {
             if (deniedOnce) {
@@ -83,5 +90,19 @@ fun rememberPermissionState(permission: String?): PermissionState {
                 launcher.launch(permission)
             }
         }
+    }
+}
+
+@Composable
+fun MissingPermissionBanner(
+    state: PermissionState,
+    message: String,
+) {
+    if (!state.isGranted) {
+        WarningBanner(
+            message = message,
+            buttonText = stringResource(state.actionLabelRes),
+            onClick = { state.request() },
+        )
     }
 }
