@@ -188,14 +188,14 @@ fun ChangeSettingCommandEditor(
             },
         )
 
-        Text(
-            text = settingHelp,
-            style = MaterialTheme.typography.bodySmall,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-            modifier = Modifier.padding(start = 16.dp),
-        )
-
         if (setting != null) {
+            Text(
+                text = settingHelp,
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.padding(start = 16.dp),
+            )
+
             if (rawEdit) {
                 OutlinedTextField(
                     value = if ((value as? ExtraValue.BooleanValue)?.value == true) "1" else "0",
