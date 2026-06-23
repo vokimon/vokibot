@@ -4,13 +4,14 @@ import android.provider.Settings
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Checkbox
+import androidx.compose.material3.FilterChip
+import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -29,6 +30,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import kotlinx.serialization.Serializable
+import net.canvoki.shared.component.OneTimeNotice
 import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
 import net.canvoki.vokibot.common.EditorHeader
@@ -147,6 +149,11 @@ fun ChangeSettingValueCommandEditor(
                 supportingText = { Text(settingDev) },
                 modifier = Modifier.fillMaxWidth(),
             )
+            OneTimeNotice(
+                noticeId = "raw_edit_warning_5", // TODO: clean up for production
+                title = "Raw edit",
+                message = "This option enables writing any value, even broken ones. Use with care!",
+            )
         } else {
             value.Editor(
                 spec = ExtraSpec(key = "Value", type = ExtraType.Boolean),
@@ -154,18 +161,21 @@ fun ChangeSettingValueCommandEditor(
             )
         }
 
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
-            verticalAlignment = Alignment.Top,
-        ) {
-            Checkbox(checked = rawEdit, onCheckedChange = { rawEdit = it })
-            Text(
-                "Raw edit to write any value.\nEven invalid ones! Use with care!",
-                style = MaterialTheme.typography.bodySmall,
-                modifier = Modifier.weight(1f),
-            )
-        }
+        FilterChip(
+            selected = rawEdit,
+            onClick = { rawEdit = !rawEdit },
+            label = { Text("Raw edit") },
+            leadingIcon = {
+                if (rawEdit) {
+                    Icon(
+                        painter = painterResource(R.drawable.ic_check),
+                        contentDescription = null,
+                        modifier = Modifier.size(FilterChipDefaults.IconSize),
+                    )
+                }
+            },
+            modifier = Modifier.align(Alignment.End),
+        )
 
         MissingPermissionBanner(
             state = writeSettingsPerm,
