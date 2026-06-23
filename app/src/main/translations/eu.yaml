@@ -369,6 +369,6 @@ settings_page_name_quick_volume: Bolumen-panel azkarra
 settings_page_name_quick_connection: Konexio-panel azkarra
 settings_page_name_quick_wifi: Wi-Fi panel azkarra
 settings_page_name_quick_nfc: NFC panel azkarra
-command_change_setting_value_label: Aldatu ezarpen-balioa
-command_change_setting_value_help: Sistemako ezarpenetako balio zehatz bat aldatzen du.
+command_change_setting_label: Aldatu ezarpen-balioa
+command_change_setting_help: Sistemako ezarpenetako balio zehatz bat aldatzen du.
 missing_permission_banner_button_grant_permission: Eman baimena

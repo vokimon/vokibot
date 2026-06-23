@@ -128,6 +128,6 @@ object EntityBootstrap {
         AccessProviderCommand.register()
         SettingsPageCommand.register()
         BluetoothConnectCommand.register()
-        ChangeSettingValueCommand.register()
+        ChangeSettingCommand.register()
     }
 }

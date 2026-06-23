@@ -40,19 +40,19 @@ import net.canvoki.vokibot.common.rememberDiscardableState
 import net.canvoki.vokibot.common.rememberPermissionState
 
 @Serializable
-data class ChangeSettingValueCommandEditor(
+data class ChangeSettingCommandEditor(
     val editingId: String? = null,
 ) : StackedScreen<Unit>() {
     @Composable
     override fun Screen(nav: StackNavigatorState) {
-        ChangeSettingValueCommandEditor(nav, this, editingId)
+        ChangeSettingCommandEditor(nav, this, editingId)
     }
 }
 
 @Composable
-fun ChangeSettingValueCommandEditor(
+fun ChangeSettingCommandEditor(
     nav: StackNavigatorState,
-    editor: ChangeSettingValueCommandEditor,
+    editor: ChangeSettingCommandEditor,
     editingId: String?,
 ) {
     val context = LocalContext.current
@@ -69,9 +69,9 @@ fun ChangeSettingValueCommandEditor(
     var rawEdit by rememberSaveable { mutableStateOf(false) }
     var value by remember { mutableStateOf<ExtraValue>(ExtraValue.BooleanValue(false)) }
 
-    fun buildCommand(): ChangeSettingValueCommand {
+    fun buildCommand(): ChangeSettingCommand {
         require(setting != null)
-        return ChangeSettingValueCommand(
+        return ChangeSettingCommand(
             id = editingId,
             key = setting!!,
             value = value,
@@ -83,7 +83,7 @@ fun ChangeSettingValueCommandEditor(
     LaunchedEffect(editingId) {
         if (editingId != null && !hasLoaded) {
             val existing =
-                repository.command.load(editingId) as? ChangeSettingValueCommand
+                repository.command.load(editingId) as? ChangeSettingCommand
             existing?.let {
                 value = it.value
             }
@@ -101,8 +101,8 @@ fun ChangeSettingValueCommandEditor(
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         EditorHeader(
-            icon = painterResource(ChangeSettingValueCommand.iconRes),
-            title = stringResource(ChangeSettingValueCommand.labelRes),
+            icon = painterResource(ChangeSettingCommand.iconRes),
+            title = stringResource(ChangeSettingCommand.labelRes),
             actionText = stringResource(R.string.bluetooth_device_editor_save),
             actionEnabled = isReadyToSave && !isSaving,
             actionIsRunning = isSaving,

@@ -367,6 +367,6 @@ settings_page_name_quick_volume: Panêh rápido de bolumen
 settings_page_name_quick_connection: Panêh rápido de conêççionê
 settings_page_name_quick_wifi: Panêh rápido de Wi-Fi
 settings_page_name_quick_nfc: Panêh rápido de NFC
-command_change_setting_value_label: Cambiâh balôh de ahûtte
-command_change_setting_value_help: Modifica un balôh êppeçífico en lô ahûttê der çîttema.
+command_change_setting_label: Cambiâh balôh de ahûtte
+command_change_setting_help: Modifica un balôh êppeçífico en lô ahûttê der çîttema.
 missing_permission_banner_button_grant_permission: Conçedêh permiço

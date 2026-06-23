@@ -369,6 +369,6 @@ settings_page_name_quick_volume: Painel rápido de volume
 settings_page_name_quick_connection: Painel rápido de ligações
 settings_page_name_quick_wifi: Painel rápido de Wi-Fi
 settings_page_name_quick_nfc: Painel rápido de NFC
-command_change_setting_value_label: Alterar valor de definição
-command_change_setting_value_help: Modifica um valor específico nas definições do sistema.
+command_change_setting_label: Alterar valor de definição
+command_change_setting_help: Modifica um valor específico nas definições do sistema.
 missing_permission_banner_button_grant_permission: Conceder permissão

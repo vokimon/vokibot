@@ -12,7 +12,7 @@ import java.util.UUID
  * Command to set a system setting value
  */
 @Serializable
-data class ChangeSettingValueCommand(
+data class ChangeSettingCommand(
     override val id: String,
     val key: String,
     val value: ExtraValue,
@@ -29,20 +29,20 @@ data class ChangeSettingValueCommand(
 
     companion object : EntityMetadata {
         override val typeKey = "change_setting"
-        override val entityClass = ChangeSettingValueCommand::class
-        override val labelRes = R.string.command_change_setting_value_label
+        override val entityClass = ChangeSettingCommand::class
+        override val labelRes = R.string.command_change_setting_label
         override val iconRes = R.drawable.ic_toggle_on
-        override val editorFactory = { id: String? -> ChangeSettingValueCommandEditor(id) }
+        override val editorFactory = { id: String? -> ChangeSettingCommandEditor(id) }
         override val deserializer = { jsonString: String -> fromJson(jsonString) }
-        override val helpRes = R.string.command_change_setting_value_help
+        override val helpRes = R.string.command_change_setting_help
 
         fun register() = StorableEntity.register(this)
 
         fun fromJson(jsonString: String): Command = JsonConfig.decodeFromString(serializer(), jsonString)
     }
 
-    override val type = ChangeSettingValueCommand.typeKey
-    override val iconRes = ChangeSettingValueCommand.iconRes
+    override val type = ChangeSettingCommand.typeKey
+    override val iconRes = ChangeSettingCommand.iconRes
 
     override fun getTitle(context: Context): String {
         val setting = SETTING_VALUES.find { it.id == key }
