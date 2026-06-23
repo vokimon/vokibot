@@ -55,11 +55,11 @@ data class ChangeSettingValueCommand(
     override fun toJson(): String = JsonConfig.encodeToString(serializer(), this)
 
     override suspend fun execute(context: Context) {
-        log(value.toPersistedString())
+        log(value.toStoredSettingValue())
         Settings.System.putString(
             context.contentResolver,
             key,
-            value.toPersistedString(),
+            value.toStoredSettingValue(),
         )
     }
 

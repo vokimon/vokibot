@@ -55,8 +55,8 @@ fun ChangeSettingValueCommandEditor(
     var isSaving by rememberSaveable { mutableStateOf(false) }
     val discardState = rememberDiscardableState(screen = editor, nav = nav)
     var hasLoaded by rememberSaveable { mutableStateOf(false) }
-    var setting by remember { mutableStateOf<String>(Settings.System.SCREEN_BRIGHTNESS) }
-    var value by remember { mutableStateOf<ExtraValue>(ExtraValue.LongValue(20)) }
+    var setting by remember { mutableStateOf<String>(Settings.System.SCREEN_BRIGHTNESS_MODE) }
+    var value by remember { mutableStateOf<ExtraValue>(ExtraValue.BooleanValue(false)) }
 
     fun buildCommand() =
         ChangeSettingValueCommand(
@@ -102,6 +102,11 @@ fun ChangeSettingValueCommandEditor(
                     nav.pop()
                 }
             },
+        )
+
+        value.Editor(
+            spec = ExtraSpec(setting, ExtraType.BOOLEAN, labelRes = R.string.extra_value_type_boolean),
+            onChanged = { value = it },
         )
 
         TryCommandButton(

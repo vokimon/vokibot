@@ -238,71 +238,71 @@ class ExtraValueTest {
         checkExtraType(ExtraValue.UriListValue(emptyList()), ExtraType.URI_LIST)
     }
 
-    // ---------- toPersistedString ----------
+    // ---------- toStoredSettingValue ----------
 
     @Test
-    fun `StringValue toPersistedString returns value`() {
-        assertEquals("hello", ExtraValue.StringValue("hello").toPersistedString())
+    fun `StringValue toStoredSettingValue returns value`() {
+        assertEquals("hello", ExtraValue.StringValue("hello").toStoredSettingValue())
     }
 
     @Test
-    fun `StringValue toPersistedString empty returns empty`() {
-        assertEquals("", ExtraValue.StringValue("").toPersistedString())
+    fun `StringValue toStoredSettingValue empty returns empty`() {
+        assertEquals("", ExtraValue.StringValue("").toStoredSettingValue())
     }
 
     @Test
-    fun `IntValue toPersistedString returns number as string`() {
-        assertEquals("42", ExtraValue.IntValue(42).toPersistedString())
+    fun `IntValue toStoredSettingValue returns number as string`() {
+        assertEquals("42", ExtraValue.IntValue(42).toStoredSettingValue())
     }
 
     @Test
-    fun `IntValue toPersistedString zero`() {
-        assertEquals("0", ExtraValue.IntValue(0).toPersistedString())
+    fun `IntValue toStoredSettingValue zero`() {
+        assertEquals("0", ExtraValue.IntValue(0).toStoredSettingValue())
     }
 
     @Test
-    fun `LongValue toPersistedString returns number as string`() {
-        assertEquals("123", ExtraValue.LongValue(123L).toPersistedString())
+    fun `LongValue toStoredSettingValue returns number as string`() {
+        assertEquals("123", ExtraValue.LongValue(123L).toStoredSettingValue())
     }
 
     @Test
-    fun `BooleanValue toPersistedString true`() {
-        assertEquals("1", ExtraValue.BooleanValue(true).toPersistedString())
+    fun `BooleanValue toStoredSettingValue true`() {
+        assertEquals("1", ExtraValue.BooleanValue(true).toStoredSettingValue())
     }
 
     @Test
-    fun `BooleanValue toPersistedString false`() {
-        assertEquals("0", ExtraValue.BooleanValue(false).toPersistedString())
+    fun `BooleanValue toStoredSettingValue false`() {
+        assertEquals("0", ExtraValue.BooleanValue(false).toStoredSettingValue())
     }
 
     @Test
-    fun `FloatValue toPersistedString returns number as string`() {
-        assertEquals("3.14", ExtraValue.FloatValue(3.14f).toPersistedString())
+    fun `FloatValue toStoredSettingValue returns number as string`() {
+        assertEquals("3.14", ExtraValue.FloatValue(3.14f).toStoredSettingValue())
     }
 
     @Test
-    fun `UriValue toPersistedString returns value`() {
-        assertEquals("geo:0,0", ExtraValue.UriValue("geo:0,0").toPersistedString())
+    fun `UriValue toStoredSettingValue returns value`() {
+        assertEquals("geo:0,0", ExtraValue.UriValue("geo:0,0").toStoredSettingValue())
     }
 
     @Test
-    fun `StringArrayValue toPersistedString returns comma-separated`() {
-        assertEquals("a,b", ExtraValue.StringArrayValue(listOf("a", "b")).toPersistedString())
+    fun `StringArrayValue toStoredSettingValue returns comma-separated`() {
+        assertEquals("a,b", ExtraValue.StringArrayValue(listOf("a", "b")).toStoredSettingValue())
     }
 
     @Test
-    fun `StringArrayValue toPersistedString empty returns empty`() {
-        assertEquals("", ExtraValue.StringArrayValue(emptyList()).toPersistedString())
+    fun `StringArrayValue toStoredSettingValue empty returns empty`() {
+        assertEquals("", ExtraValue.StringArrayValue(emptyList()).toStoredSettingValue())
     }
 
     @Test
-    fun `UriListValue toPersistedString returns comma-separated`() {
-        assertEquals("geo:0,0,tel:123", ExtraValue.UriListValue(listOf("geo:0,0", "tel:123")).toPersistedString())
+    fun `UriListValue toStoredSettingValue returns comma-separated`() {
+        assertEquals("geo:0,0,tel:123", ExtraValue.UriListValue(listOf("geo:0,0", "tel:123")).toStoredSettingValue())
     }
 
     @Test
-    fun `UriListValue toPersistedString empty returns empty`() {
-        assertEquals("", ExtraValue.UriListValue(emptyList()).toPersistedString())
+    fun `UriListValue toStoredSettingValue empty returns empty`() {
+        assertEquals("", ExtraValue.UriListValue(emptyList()).toStoredSettingValue())
     }
 
     // ---------- computeNewCustomSpecs ----------

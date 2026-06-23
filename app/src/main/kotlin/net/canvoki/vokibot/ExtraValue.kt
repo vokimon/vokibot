@@ -79,7 +79,7 @@ sealed class ExtraValue {
         key: String,
     )
 
-    abstract fun toPersistedString(): String
+    abstract fun toStoredSettingValue(): String
 
     @Composable
     open fun Editor(
@@ -100,7 +100,7 @@ sealed class ExtraValue {
             intent.putExtra(key, value)
         }
 
-        override fun toPersistedString(): String = value
+        override fun toStoredSettingValue(): String = value
 
         @Composable
         override fun Editor(
@@ -133,7 +133,7 @@ sealed class ExtraValue {
             intent.putExtra(key, value)
         }
 
-        override fun toPersistedString(): String = value.toString()
+        override fun toStoredSettingValue(): String = value.toString()
 
         @Composable
         override fun Editor(
@@ -166,7 +166,7 @@ sealed class ExtraValue {
             intent.putExtra(key, value)
         }
 
-        override fun toPersistedString(): String = value.toString()
+        override fun toStoredSettingValue(): String = value.toString()
 
         @Composable
         override fun Editor(
@@ -199,7 +199,7 @@ sealed class ExtraValue {
             intent.putExtra(key, value)
         }
 
-        override fun toPersistedString(): String = if (value) "1" else "0"
+        override fun toStoredSettingValue(): String = if (value) "1" else "0"
 
         @Composable
         override fun Editor(
@@ -225,7 +225,7 @@ sealed class ExtraValue {
             intent.putExtra(key, value)
         }
 
-        override fun toPersistedString(): String = value.toString()
+        override fun toStoredSettingValue(): String = value.toString()
 
         @Composable
         override fun Editor(
@@ -258,7 +258,7 @@ sealed class ExtraValue {
             intent.putExtra(key, value.toUri())
         }
 
-        override fun toPersistedString(): String = value
+        override fun toStoredSettingValue(): String = value
 
         @Composable
         override fun Editor(
@@ -285,7 +285,7 @@ sealed class ExtraValue {
             intent.putExtra(key, values.toTypedArray())
         }
 
-        override fun toPersistedString(): String = values.joinToString(",")
+        override fun toStoredSettingValue(): String = values.joinToString(",")
 
         @Composable
         override fun Editor(
@@ -322,7 +322,7 @@ sealed class ExtraValue {
             intent.putParcelableArrayListExtra(key, ArrayList(values.map { it.toUri() }))
         }
 
-        override fun toPersistedString(): String = values.joinToString(",")
+        override fun toStoredSettingValue(): String = values.joinToString(",")
 
         @Composable
         override fun Editor(
