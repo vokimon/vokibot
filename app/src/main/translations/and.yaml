@@ -307,7 +307,6 @@ bluetooth_device_editor_name_label: Nombre der dîppoçitibo
 bluetooth_device_editor_name_placeholder: p. ej. Manô librê der coxe
 bluetooth_device_editor_mac_label: Dirêççión MAC
 bluetooth_device_editor_permission_warning: Êtte dîpparadôh requiere permiço pa âççedêh ar çûççîttema Bluetooth.
-bluetooth_device_editor_grant_permission: Conçedêh permiço
 bluetooth_device_editor_paired_devices: Dîppoçitibô empareháô
 command_bluetooth_connect_label: Conêttâh Bluetoôh
 command_bluetooth_connect_help: |
@@ -370,3 +369,4 @@ settings_page_name_quick_wifi: Panêh rápido de Wi-Fi
 settings_page_name_quick_nfc: Panêh rápido de NFC
 command_change_setting_value_label: Cambiâh balôh de ahûtte
 command_change_setting_value_help: Modifica un balôh êppeçífico en lô ahûttê der çîttema.
+missing_permission_banner_button_grant_permission: Conçedêh permiço

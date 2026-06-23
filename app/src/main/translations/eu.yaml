@@ -309,7 +309,6 @@ bluetooth_device_editor_name_label: Gailuaren izena
 bluetooth_device_editor_name_placeholder: adib. Autoako esku askeak
 bluetooth_device_editor_mac_label: MAC helbidea
 bluetooth_device_editor_permission_warning: Abiarazle honek baimena behar du Bluetooth azpisistemara sartzeko.
-bluetooth_device_editor_grant_permission: Eman baimena
 bluetooth_device_editor_paired_devices: Parekatutako gailuak
 command_bluetooth_connect_label: Konektatu Bluetooth
 command_bluetooth_connect_help: |
@@ -372,3 +371,4 @@ settings_page_name_quick_wifi: Wi-Fi panel azkarra
 settings_page_name_quick_nfc: NFC panel azkarra
 command_change_setting_value_label: Aldatu ezarpen-balioa
 command_change_setting_value_help: Sistemako ezarpenetako balio zehatz bat aldatzen du.
+missing_permission_banner_button_grant_permission: Eman baimena

@@ -309,7 +309,6 @@ bluetooth_device_editor_name_label: Имя устройства
 bluetooth_device_editor_name_placeholder: например, Автомобильная гарнитура
 bluetooth_device_editor_mac_label: MAC-адрес
 bluetooth_device_editor_permission_warning: Этот триггер требует разрешения на доступ к подсистеме Bluetooth.
-bluetooth_device_editor_grant_permission: Предоставить разрешение
 bluetooth_device_editor_paired_devices: Сопряженные устройства
 command_bluetooth_connect_label: Подключить Bluetooth
 command_bluetooth_connect_help: |
@@ -372,3 +371,4 @@ settings_page_name_quick_wifi: Быстрая панель Wi-Fi
 settings_page_name_quick_nfc: Быстрая панель NFC
 command_change_setting_value_label: Изменить значение настройки
 command_change_setting_value_help: Изменяет конкретное значение в системных настройках.
+missing_permission_banner_button_grant_permission: Предоставить разрешение

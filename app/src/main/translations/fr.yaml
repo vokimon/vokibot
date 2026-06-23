@@ -309,7 +309,6 @@ bluetooth_device_editor_name_label: Nom de l'appareil
 bluetooth_device_editor_name_placeholder: par ex. Kit piéton voiture
 bluetooth_device_editor_mac_label: Adresse MAC
 bluetooth_device_editor_permission_warning: Ce déclencheur nécessite l'autorisation d'accéder au sous-système Bluetooth.
-bluetooth_device_editor_grant_permission: Accorder l'autorisation
 bluetooth_device_editor_paired_devices: Appareils appairés
 command_bluetooth_connect_label: Connecter Bluetooth
 command_bluetooth_connect_help: |
@@ -372,3 +371,4 @@ settings_page_name_quick_wifi: Panneau Wi-Fi rapide
 settings_page_name_quick_nfc: Panneau NFC rapide
 command_change_setting_value_label: Changer la valeur du paramètre
 command_change_setting_value_help: Modifie une valeur spécifique dans les paramètres système.
+missing_permission_banner_button_grant_permission: Accorder l'autorisation

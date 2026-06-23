@@ -29,8 +29,10 @@ import kotlinx.serialization.Serializable
 import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
 import net.canvoki.vokibot.common.EditorHeader
+import net.canvoki.vokibot.common.MissingPermissionBanner
 import net.canvoki.vokibot.common.TryCommandButton
 import net.canvoki.vokibot.common.rememberDiscardableState
+import net.canvoki.vokibot.common.rememberPermissionState
 
 @Serializable
 data class ChangeSettingValueCommandEditor(
@@ -57,6 +59,7 @@ fun ChangeSettingValueCommandEditor(
     var setting by remember { mutableStateOf<String>(Settings.System.SCREEN_BRIGHTNESS_MODE) }
     val settingTitle = "Adaptive Brightness"
     val settingHelp = "When enabled the screen brightness will adapt to environmental light"
+    val writeSettingsPerm = rememberPermissionState("android.permission.WRITE_SETTINGS")
     var value by remember { mutableStateOf<ExtraValue>(ExtraValue.BooleanValue(false)) }
 
     fun buildCommand() =
@@ -65,7 +68,7 @@ fun ChangeSettingValueCommandEditor(
             key = setting,
             value = value,
         )
-    val isReadyToRun = true // TODO
+    val isReadyToRun = writeSettingsPerm.isGranted
     val isReadyToSave = true // TODO
 
     LaunchedEffect(editingId) {
@@ -132,6 +135,11 @@ fun ChangeSettingValueCommandEditor(
         value.Editor(
             spec = ExtraSpec(key = "Value to set", type = ExtraType.Boolean),
             onChanged = { value = it },
+        )
+
+        MissingPermissionBanner(
+            state = writeSettingsPerm,
+            message = "Permission required to modify system settings.",
         )
 
         TryCommandButton(

@@ -309,7 +309,6 @@ bluetooth_device_editor_name_label: Device name
 bluetooth_device_editor_name_placeholder: e.g. Car hands-free
 bluetooth_device_editor_mac_label: MAC address
 bluetooth_device_editor_permission_warning: This trigger requires permission to access Bluetooth subsystem.
-bluetooth_device_editor_grant_permission: Grant permission
 bluetooth_device_editor_paired_devices: Paired devices
 command_bluetooth_connect_label: Connect Bluetooth
 command_bluetooth_connect_help: |
@@ -372,3 +371,4 @@ settings_page_name_quick_wifi: Quick WiFi panel
 settings_page_name_quick_nfc: Quick NFC panel
 command_change_setting_value_label: Change setting value
 command_change_setting_value_help: Modifies a specific value in system settings.
+missing_permission_banner_button_grant_permission: Grant permission

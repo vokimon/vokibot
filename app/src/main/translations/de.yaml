@@ -309,7 +309,6 @@ bluetooth_device_editor_name_label: Gerätename
 bluetooth_device_editor_name_placeholder: z. B. Auto-Freisprechanlage
 bluetooth_device_editor_mac_label: MAC-Adresse
 bluetooth_device_editor_permission_warning: Dieser Auslöser erfordert die Berechtigung zum Zugriff auf das Bluetooth-Subsystem.
-bluetooth_device_editor_grant_permission: Berechtigung erteilen
 bluetooth_device_editor_paired_devices: Gekoppelte Geräte
 command_bluetooth_connect_label: Bluetooth verbinden
 command_bluetooth_connect_help: |
@@ -372,3 +371,4 @@ settings_page_name_quick_wifi: Schnellzugriff-WLAN
 settings_page_name_quick_nfc: Schnellzugriff-NFC
 command_change_setting_value_label: Einstellungswert ändern
 command_change_setting_value_help: Ändert einen spezifischen Wert in den Systemeinstellungen.
+missing_permission_banner_button_grant_permission: Berechtigung erteilen

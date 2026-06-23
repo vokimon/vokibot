@@ -309,7 +309,6 @@ bluetooth_device_editor_name_label: اسم الجهاز
 bluetooth_device_editor_name_placeholder: 'مثلاً: نظام اليدين الحرتين في السيارة'
 bluetooth_device_editor_mac_label: عنوان MAC
 bluetooth_device_editor_permission_warning: يتطلب هذا المُطلِق إذنًا للوصول إلى نظام البلوتوث الفرعي.
-bluetooth_device_editor_grant_permission: منح الإذن
 bluetooth_device_editor_paired_devices: الأجهزة المقترنة
 command_bluetooth_connect_label: بلوتوث
 command_bluetooth_connect_help: |
@@ -372,3 +371,4 @@ settings_page_name_quick_wifi: لوحة الواي فاي السريعة
 settings_page_name_quick_nfc: لوحة NFC السريعة
 command_change_setting_value_label: تغيير قيمة الإعداد
 command_change_setting_value_help: يعدل قيمة محددة في إعدادات النظام.
+missing_permission_banner_button_grant_permission: منح الإذن

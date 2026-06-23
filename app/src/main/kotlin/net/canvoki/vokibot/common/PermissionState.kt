@@ -6,7 +6,6 @@ import android.net.Uri
 import android.provider.Settings
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
@@ -24,15 +23,12 @@ import net.canvoki.vokibot.R
 interface PermissionState {
     val isGranted: Boolean
 
-    @get:StringRes val actionLabelRes: Int
-
     fun request()
 }
 
 private val alwaysGranted =
     object : PermissionState {
         override val isGranted: Boolean get() = true
-        override val actionLabelRes: Int = 0
 
         override fun request() {}
     }
@@ -40,6 +36,11 @@ private val alwaysGranted =
 @Composable
 fun rememberPermissionState(permission: String?): PermissionState {
     if (permission == null) return alwaysGranted
+
+    when (permission) {
+        "android.permission.WRITE_SETTINGS" ->
+            return rememberWriteSettingsPermissionState()
+    }
 
     val context = LocalContext.current
     val lifecycleOwner = LocalLifecycleOwner.current
@@ -81,7 +82,6 @@ fun rememberPermissionState(permission: String?): PermissionState {
 
     return object : PermissionState {
         override val isGranted: Boolean get() = isGranted
-        override val actionLabelRes: Int = R.string.bluetooth_device_editor_grant_permission
 
         override fun request() {
             if (deniedOnce) {
@@ -94,6 +94,39 @@ fun rememberPermissionState(permission: String?): PermissionState {
 }
 
 @Composable
+private fun rememberWriteSettingsPermissionState(): PermissionState {
+    val context = LocalContext.current
+    val lifecycleOwner = LocalLifecycleOwner.current
+
+    var isGranted by remember {
+        mutableStateOf(Settings.System.canWrite(context))
+    }
+
+    DisposableEffect(lifecycleOwner) {
+        val observer =
+            LifecycleEventObserver { _, event ->
+                if (event == Lifecycle.Event.ON_RESUME) {
+                    isGranted = Settings.System.canWrite(context)
+                }
+            }
+        lifecycleOwner.lifecycle.addObserver(observer)
+        onDispose { lifecycleOwner.lifecycle.removeObserver(observer) }
+    }
+
+    return object : PermissionState {
+        override val isGranted: Boolean get() = isGranted
+
+        override fun request() {
+            context.startActivity(
+                Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS).apply {
+                    data = Uri.fromParts("package", context.packageName, null)
+                },
+            )
+        }
+    }
+}
+
+@Composable
 fun MissingPermissionBanner(
     state: PermissionState,
     message: String,
@@ -101,7 +134,7 @@ fun MissingPermissionBanner(
     if (!state.isGranted) {
         WarningBanner(
             message = message,
-            buttonText = stringResource(state.actionLabelRes),
+            buttonText = stringResource(R.string.missing_permission_banner_button_grant_permission),
             onClick = { state.request() },
         )
     }

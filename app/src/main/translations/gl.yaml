@@ -309,7 +309,6 @@ bluetooth_device_editor_name_label: Nome do dispositivo
 bluetooth_device_editor_name_placeholder: p. ex. Mans libres do coche
 bluetooth_device_editor_mac_label: Enderezo MAC
 bluetooth_device_editor_permission_warning: Este disparador require permiso para acceder ao subsistema Bluetooth.
-bluetooth_device_editor_grant_permission: Conceder permiso
 bluetooth_device_editor_paired_devices: Dispositivos emparellados
 command_bluetooth_connect_label: Conectar Bluetooth
 command_bluetooth_connect_help: |
@@ -372,3 +371,4 @@ settings_page_name_quick_wifi: Panel rápido de Wi-Fi
 settings_page_name_quick_nfc: Panel rápido de NFC
 command_change_setting_value_label: Cambiar valor de axuste
 command_change_setting_value_help: Modifica un valor específico nos axustes do sistema.
+missing_permission_banner_button_grant_permission: Conceder permiso

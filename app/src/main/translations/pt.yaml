@@ -309,7 +309,6 @@ bluetooth_device_editor_name_label: Nome do dispositivo
 bluetooth_device_editor_name_placeholder: p. ex. Vivas voz do carro
 bluetooth_device_editor_mac_label: Endereço MAC
 bluetooth_device_editor_permission_warning: Este acionador requer permissão para aceder ao subsistema Bluetooth.
-bluetooth_device_editor_grant_permission: Conceder permissão
 bluetooth_device_editor_paired_devices: Dispositivos emparelhados
 command_bluetooth_connect_label: Ligar Bluetooth
 command_bluetooth_connect_help: |
@@ -372,3 +371,4 @@ settings_page_name_quick_wifi: Painel rápido de Wi-Fi
 settings_page_name_quick_nfc: Painel rápido de NFC
 command_change_setting_value_label: Alterar valor de definição
 command_change_setting_value_help: Modifica um valor específico nas definições do sistema.
+missing_permission_banner_button_grant_permission: Conceder permissão
