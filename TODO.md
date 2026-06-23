@@ -10,8 +10,8 @@
     - [x] Raw value description: to be used in raw edition, describes string format (Integer between 0 and 300)a
     - [ ] Change Settings Editor: rememberDirtyState
     - [ ] Change Settings Editor: if dirty show discard dialog before leaving
-    - [ ] Change Settings Editor: isReadyToSave requires setting not null
-    - [ ] Change Settings Editor: isReadyToTry requires setting not null
+    - [x] Change Settings Editor: isReadyToSave requires setting not null
+    - [x] Change Settings Editor: isReadyToTry requires setting not null
     - [ ] Deprecation: Hide deprecated settings according to device android version
     - [ ] Deprecation: When editing a deprecated setting (because device upgraded) show a warning
     - [x] Typed editor for Boolean (Toggle)
@@ -19,6 +19,11 @@
     - [x] Permissions warning: and asker (reuse stuff from bluetooth)
     - [ ] Permissions warning: for Secure and Global settings
     - [ ] Permissions warning: Generalize for other strict permissions
+        - [ ] WRITE_SETTINGS	Settings.System.canWrite()	ACTION_MANAGE_WRITE_SETTINGS
+        - [ ] SYSTEM_ALERT_WINDOW	Settings.canDrawOverlays()	ACTION_MANAGE_OVERLAY_PERMISSION
+        - [ ] REQUEST_IGNORE_BATTERY_OPTIMIZATIONS	PowerManager.isIgnoringBatteryOptimizations()	ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS
+        - [ ] PACKAGE_USAGE_STATS	Consultar AppOpsManager	ACTION_USAGE_ACCESS_SETTINGS
+        - [ ] MANAGE_EXTERNAL_STORAGE	Environment.isExternalStorageManager()	ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION
     - [ ] Permissions warning: Move to shared
     - [ ] Editor header: Fix: long titles move the done button out the screen.
 

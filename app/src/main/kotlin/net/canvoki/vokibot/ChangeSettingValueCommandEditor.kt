@@ -131,7 +131,10 @@ fun ChangeSettingValueCommandEditor(
             modifier =
                 Modifier
                     .fillMaxWidth()
-                    .clickable { /* TODO: push SettingPickerScreen */ },
+                    .clickable {
+                        discardState.markDirty()
+                        // TODO: push SettingPickerScreen
+                    },
         )
 
         Text(
@@ -147,6 +150,7 @@ fun ChangeSettingValueCommandEditor(
                     value = if ((value as? ExtraValue.BooleanValue)?.value == true) "1" else "0",
                     onValueChange = { raw ->
                         value = ExtraValue.BooleanValue(raw == "1")
+                        discardState.markDirty()
                     },
                     label = { Text("Value") },
                     supportingText = { Text(settingDev) },
@@ -160,7 +164,10 @@ fun ChangeSettingValueCommandEditor(
             } else {
                 value.Editor(
                     spec = ExtraSpec(key = "Value", type = ExtraType.Boolean),
-                    onChanged = { value = it },
+                    onChanged = {
+                        value = it
+                        discardState.markDirty()
+                    },
                 )
             }
 
