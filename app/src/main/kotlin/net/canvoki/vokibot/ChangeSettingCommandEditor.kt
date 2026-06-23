@@ -1,15 +1,23 @@
 package net.canvoki.vokibot
 
 import android.provider.Settings
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.material3.Icon
@@ -25,6 +33,8 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -50,6 +60,49 @@ data class ChangeSettingCommandEditor(
 }
 
 @Composable
+fun SelectButton(
+    text: String?,
+    label: String,
+    onClick: () -> Unit = {},
+    modifier: Modifier = Modifier,
+) {
+    Box(modifier = modifier) {
+        Card(
+            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
+            modifier =
+                Modifier.fillMaxWidth().clickable { onClick() },
+        ) {
+            Row(
+                modifier = Modifier.fillMaxWidth().padding(start = 16.dp, end = 16.dp, top = 24.dp, bottom = 16.dp),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Text(
+                    text = text ?: "Tap to select",
+                    style = MaterialTheme.typography.bodyLarge,
+                    color =
+                        text?.let { MaterialTheme.colorScheme.onSurfaceVariant }
+                            ?: MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f),
+                    modifier = Modifier.weight(1f),
+                )
+                Icon(
+                    painter = painterResource(R.drawable.ic_arrow_drop_down),
+                    contentDescription = null,
+                )
+            }
+        }
+        Text(
+            text = label,
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.primary,
+            modifier =
+                Modifier
+                    .offset(x = 8.dp, y = 4.dp)
+                    .padding(horizontal = 4.dp),
+        )
+    }
+}
+
+@Composable
 fun ChangeSettingCommandEditor(
     nav: StackNavigatorState,
     editor: ChangeSettingCommandEditor,
@@ -61,8 +114,12 @@ fun ChangeSettingCommandEditor(
     var isSaving by rememberSaveable { mutableStateOf(false) }
     val discardState = rememberDiscardableState(screen = editor, nav = nav)
     var hasLoaded by rememberSaveable { mutableStateOf(false) }
-    var setting by remember { mutableStateOf<String?>(Settings.System.SCREEN_BRIGHTNESS_MODE) }
-    val settingTitle = "Adaptive Brightness"
+    var setting by remember { mutableStateOf<String?>(null) }
+    val settingTitle =
+        setting?.let {
+            // TODO: resolve from SETTING_VALUES
+            "Adaptive Brightness"
+        }
     val settingHelp = "When enabled the screen brightness will adapt to environmental light"
     val settingDev = "1 for enabled, 0 for disabled"
     val writeSettingsPerm = rememberPermissionState("android.permission.WRITE_SETTINGS")
@@ -117,24 +174,18 @@ fun ChangeSettingCommandEditor(
             },
         )
 
-        OutlinedTextField(
-            value = settingTitle,
-            onValueChange = {},
-            label = { Text("Setting") },
-            readOnly = true,
-            trailingIcon = {
-                Icon(
-                    painter = painterResource(R.drawable.ic_arrow_drop_down),
-                    contentDescription = null,
-                )
-            },
-            modifier =
-                Modifier
-                    .fillMaxWidth()
-                    .clickable {
+        SelectButton(
+            text = settingTitle,
+            label = "Setting",
+            modifier = Modifier.fillMaxWidth(),
+            onClick = {
+                nav.push(SettingList) { result ->
+                    result?.let {
+                        setting = it
                         discardState.markDirty()
-                        // TODO: push SettingPickerScreen
-                    },
+                    }
+                }
+            },
         )
 
         Text(

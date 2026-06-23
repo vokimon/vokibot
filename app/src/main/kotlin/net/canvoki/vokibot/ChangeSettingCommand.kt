@@ -70,7 +70,6 @@ data class ChangeSettingCommand(
 data class SettingValue(
     val id: String,
     val categoryId: SettingCategory,
-    val isMain: Boolean,
     @get:StringRes val nameRes: Int = 0,
 ) {
     @get:StringRes
@@ -80,7 +79,6 @@ data class SettingValue(
 }
 
 enum class SettingCategory {
-    PANELS,
     NETWORK,
     DISPLAY,
     SOUND,
@@ -93,7 +91,6 @@ enum class SettingCategory {
     @get:StringRes
     val labelRes: Int get() =
         when (this) {
-            PANELS -> R.string.settings_page_category_panels
             NETWORK -> R.string.settings_page_category_network
             DISPLAY -> R.string.settings_page_category_display
             SOUND -> R.string.settings_page_category_sound
@@ -106,11 +103,8 @@ enum class SettingCategory {
 
 val SETTING_VALUES: List<SettingValue> =
     listOf(
-        // Panels
         SettingValue(
-            Settings.Panel.ACTION_WIFI,
-            SettingCategory.PANELS,
-            true,
-            R.string.settings_page_name_quick_wifi,
+            id = Settings.System.SCREEN_BRIGHTNESS_MODE,
+            categoryId = SettingCategory.DISPLAY,
         ),
     )
