@@ -130,7 +130,7 @@ fun ChangeSettingValueCommandEditor(
         )
 
         value.Editor(
-            spec = ExtraSpec(key = "Value to set", type = ExtraType.BOOLEAN),
+            spec = ExtraSpec(key = "Value to set", type = ExtraType.Boolean),
             onChanged = { value = it },
         )
 

@@ -49,12 +49,12 @@ object StandardActions {
                 iconRes = R.drawable.ic_send,
                 extras =
                     listOf(
-                        ExtraSpec(Intent.EXTRA_TEXT, ExtraType.STRING, labelRes = R.string.standard_extra_text),
-                        ExtraSpec(Intent.EXTRA_SUBJECT, ExtraType.STRING, labelRes = R.string.standard_extra_subject),
-                        ExtraSpec(Intent.EXTRA_STREAM, ExtraType.URI, labelRes = R.string.standard_extra_attachment),
-                        ExtraSpec(Intent.EXTRA_EMAIL, ExtraType.STRING_ARRAY, labelRes = R.string.standard_extra_to),
-                        ExtraSpec(Intent.EXTRA_CC, ExtraType.STRING_ARRAY, labelRes = R.string.standard_extra_cc),
-                        ExtraSpec(Intent.EXTRA_BCC, ExtraType.STRING_ARRAY, labelRes = R.string.standard_extra_bcc),
+                        ExtraSpec(Intent.EXTRA_TEXT, ExtraType.String, labelRes = R.string.standard_extra_text),
+                        ExtraSpec(Intent.EXTRA_SUBJECT, ExtraType.String, labelRes = R.string.standard_extra_subject),
+                        ExtraSpec(Intent.EXTRA_STREAM, ExtraType.Uri, labelRes = R.string.standard_extra_attachment),
+                        ExtraSpec(Intent.EXTRA_EMAIL, ExtraType.StringArray, labelRes = R.string.standard_extra_to),
+                        ExtraSpec(Intent.EXTRA_CC, ExtraType.StringArray, labelRes = R.string.standard_extra_cc),
+                        ExtraSpec(Intent.EXTRA_BCC, ExtraType.StringArray, labelRes = R.string.standard_extra_bcc),
                     ),
             ),
             ActionDefinition(
@@ -65,13 +65,13 @@ object StandardActions {
                     listOf(
                         ExtraSpec(
                             key = Intent.EXTRA_STREAM,
-                            type = ExtraType.URI_LIST,
+                            type = ExtraType.UriList,
                             required = true,
                             labelRes = R.string.standard_extra_attachments,
                         ),
                         ExtraSpec(
                             key = Intent.EXTRA_TEXT,
-                            type = ExtraType.STRING,
+                            type = ExtraType.String,
                             labelRes = R.string.standard_extra_text,
                         ),
                     ),
@@ -84,8 +84,8 @@ object StandardActions {
                 allowedSchemes = listOf("mailto", "smsto"),
                 extras =
                     listOf(
-                        ExtraSpec(Intent.EXTRA_SUBJECT, ExtraType.STRING, labelRes = R.string.standard_extra_subject),
-                        ExtraSpec(Intent.EXTRA_TEXT, ExtraType.STRING, labelRes = R.string.standard_extra_body),
+                        ExtraSpec(Intent.EXTRA_SUBJECT, ExtraType.String, labelRes = R.string.standard_extra_subject),
+                        ExtraSpec(Intent.EXTRA_TEXT, ExtraType.String, labelRes = R.string.standard_extra_body),
                     ),
             ),
             ActionDefinition(
@@ -130,7 +130,7 @@ object StandardActions {
                     listOf(
                         ExtraSpec(
                             key = MediaStore.EXTRA_OUTPUT,
-                            type = ExtraType.URI,
+                            type = ExtraType.Uri,
                             required = true,
                             labelRes = R.string.standard_extra_output_uri,
                         ),
@@ -145,17 +145,17 @@ object StandardActions {
                     listOf(
                         ExtraSpec(
                             key = MediaStore.EXTRA_OUTPUT,
-                            type = ExtraType.URI,
+                            type = ExtraType.Uri,
                             labelRes = R.string.standard_extra_output_uri,
                         ),
                         ExtraSpec(
                             key = MediaStore.EXTRA_DURATION_LIMIT,
-                            type = ExtraType.INT,
+                            type = ExtraType.Int,
                             labelRes = R.string.standard_extra_max_duration,
                         ),
                         ExtraSpec(
                             key = MediaStore.EXTRA_VIDEO_QUALITY,
-                            type = ExtraType.INT,
+                            type = ExtraType.Int,
                             labelRes = R.string.standard_extra_quality,
                         ),
                     ),
@@ -169,18 +169,18 @@ object StandardActions {
                     listOf(
                         ExtraSpec(
                             key = RecognizerIntent.EXTRA_LANGUAGE_MODEL,
-                            type = ExtraType.STRING,
+                            type = ExtraType.String,
                             required = true,
                             labelRes = R.string.standard_extra_language_model,
                         ),
                         ExtraSpec(
                             key = RecognizerIntent.EXTRA_PROMPT,
-                            type = ExtraType.STRING,
+                            type = ExtraType.String,
                             labelRes = R.string.standard_extra_prompt,
                         ),
                         ExtraSpec(
                             key = RecognizerIntent.EXTRA_MAX_RESULTS,
-                            type = ExtraType.INT,
+                            type = ExtraType.Int,
                             labelRes = R.string.standard_extra_max_results,
                         ),
                     ),

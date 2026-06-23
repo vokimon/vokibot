@@ -16,32 +16,32 @@ class ExtraValueTest {
 
     @Test
     fun `defaultValue for URI returns UriValue`() {
-        checkDefaultValue(ExtraSpec("k", ExtraType.URI), ExtraValue.UriValue::class)
+        checkDefaultValue(ExtraSpec("k", ExtraType.Uri), ExtraValue.UriValue::class)
     }
 
     @Test
     fun `defaultValue for STRING returns StringValue`() {
-        checkDefaultValue(ExtraSpec("k", ExtraType.STRING), ExtraValue.StringValue::class)
+        checkDefaultValue(ExtraSpec("k", ExtraType.String), ExtraValue.StringValue::class)
     }
 
     @Test
     fun `defaultValue for INT returns IntValue`() {
-        checkDefaultValue(ExtraSpec("k", ExtraType.INT), ExtraValue.IntValue::class)
+        checkDefaultValue(ExtraSpec("k", ExtraType.Int), ExtraValue.IntValue::class)
     }
 
     @Test
     fun `defaultValue for BOOLEAN returns BooleanValue`() {
-        checkDefaultValue(ExtraSpec("k", ExtraType.BOOLEAN), ExtraValue.BooleanValue::class)
+        checkDefaultValue(ExtraSpec("k", ExtraType.Boolean), ExtraValue.BooleanValue::class)
     }
 
     @Test
     fun `defaultValue for STRING_ARRAY returns StringArrayValue`() {
-        checkDefaultValue(ExtraSpec("k", ExtraType.STRING_ARRAY), ExtraValue.StringArrayValue::class)
+        checkDefaultValue(ExtraSpec("k", ExtraType.StringArray), ExtraValue.StringArrayValue::class)
     }
 
     @Test
     fun `defaultValue for URI_LIST returns UriListValue`() {
-        checkDefaultValue(ExtraSpec("k", ExtraType.URI_LIST), ExtraValue.UriListValue::class)
+        checkDefaultValue(ExtraSpec("k", ExtraType.UriList), ExtraValue.UriListValue::class)
     }
 
     // ---------- Serialization discriminators ----------
@@ -200,42 +200,42 @@ class ExtraValueTest {
 
     @Test
     fun `StringValue toExtraType is STRING`() {
-        checkExtraType(ExtraValue.StringValue(""), ExtraType.STRING)
+        checkExtraType(ExtraValue.StringValue(""), ExtraType.String)
     }
 
     @Test
     fun `IntValue toExtraType is INT`() {
-        checkExtraType(ExtraValue.IntValue(0), ExtraType.INT)
+        checkExtraType(ExtraValue.IntValue(0), ExtraType.Int)
     }
 
     @Test
     fun `LongValue toExtraType is INT`() {
-        checkExtraType(ExtraValue.LongValue(0L), ExtraType.INT)
+        checkExtraType(ExtraValue.LongValue(0L), ExtraType.Int)
     }
 
     @Test
     fun `BooleanValue toExtraType is BOOLEAN`() {
-        checkExtraType(ExtraValue.BooleanValue(false), ExtraType.BOOLEAN)
+        checkExtraType(ExtraValue.BooleanValue(false), ExtraType.Boolean)
     }
 
     @Test
     fun `FloatValue toExtraType is STRING`() {
-        checkExtraType(ExtraValue.FloatValue(0f), ExtraType.STRING)
+        checkExtraType(ExtraValue.FloatValue(0f), ExtraType.String)
     }
 
     @Test
     fun `UriValue toExtraType is URI`() {
-        checkExtraType(ExtraValue.UriValue(""), ExtraType.URI)
+        checkExtraType(ExtraValue.UriValue(""), ExtraType.Uri)
     }
 
     @Test
     fun `StringArrayValue toExtraType is STRING_ARRAY`() {
-        checkExtraType(ExtraValue.StringArrayValue(emptyList()), ExtraType.STRING_ARRAY)
+        checkExtraType(ExtraValue.StringArrayValue(emptyList()), ExtraType.StringArray)
     }
 
     @Test
     fun `UriListValue toExtraType is URI_LIST`() {
-        checkExtraType(ExtraValue.UriListValue(emptyList()), ExtraType.URI_LIST)
+        checkExtraType(ExtraValue.UriListValue(emptyList()), ExtraType.UriList)
     }
 
     // ---------- toStoredSettingValue ----------
@@ -330,7 +330,7 @@ class ExtraValueTest {
     @Test
     fun `computeNewCustomSpecs not in command, include it`() {
         assertSpecs(
-            expected = "extra1: STRING",
+            expected = "extra1: String",
             actual =
                 computeNewCustomSpecs(
                     extrasState = mapOf("extra1" to ExtraValue.StringValue("value1")),
@@ -346,7 +346,7 @@ class ExtraValueTest {
             actual =
                 computeNewCustomSpecs(
                     extrasState = mapOf("extra1" to ExtraValue.StringValue("value1")),
-                    newActionExtras = listOf(ExtraSpec("extra1", ExtraType.STRING)),
+                    newActionExtras = listOf(ExtraSpec("extra1", ExtraType.String)),
                 ),
         )
     }
@@ -366,7 +366,7 @@ class ExtraValueTest {
     @Test
     fun `computeNewCustomSpecs multiple orphans not in command, include all`() {
         assertSpecs(
-            expected = "extra1: STRING\nextra2: INT",
+            expected = "extra1: String\nextra2: Int",
             actual =
                 computeNewCustomSpecs(
                     extrasState =
@@ -415,7 +415,7 @@ class ExtraValueTest {
                 ),
             actionSpecs =
                 listOf(
-                    ExtraSpec("extra1", ExtraType.STRING),
+                    ExtraSpec("extra1", ExtraType.String),
                 ),
             customSpecs = emptyList(),
             expected = """{"extra1": {"type": "string", "value": "value1"}}""",
@@ -432,8 +432,8 @@ class ExtraValueTest {
                 ),
             actionSpecs =
                 listOf(
-                    ExtraSpec("extra1", ExtraType.STRING),
-                    ExtraSpec("extra2", ExtraType.INT),
+                    ExtraSpec("extra1", ExtraType.String),
+                    ExtraSpec("extra2", ExtraType.Int),
                 ),
             customSpecs = emptyList(),
             expected =
@@ -448,7 +448,7 @@ class ExtraValueTest {
             values = emptyMap(),
             actionSpecs =
                 listOf(
-                    ExtraSpec("extra1", ExtraType.STRING),
+                    ExtraSpec("extra1", ExtraType.String),
                 ),
             customSpecs = emptyList(),
             expected = """{"extra1": {"type": "string", "value": ""}}""",
@@ -459,7 +459,7 @@ class ExtraValueTest {
     fun `rebuildExtras default is type aware`() {
         assertRebuiltExtras(
             values = emptyMap(),
-            actionSpecs = listOf(ExtraSpec("extra1", ExtraType.INT)),
+            actionSpecs = listOf(ExtraSpec("extra1", ExtraType.Int)),
             customSpecs = emptyList(),
             expected = """{"extra1": {"type": "int", "value": 0}}""",
         )
@@ -472,7 +472,7 @@ class ExtraValueTest {
             actionSpecs = emptyList(),
             customSpecs =
                 listOf(
-                    ExtraSpec("extra1", ExtraType.STRING),
+                    ExtraSpec("extra1", ExtraType.String),
                 ),
             expected = """{"extra1": {"type": "string", "value": ""}}""",
         )
@@ -486,11 +486,11 @@ class ExtraValueTest {
             values = emptyMap(),
             actionSpecs =
                 listOf(
-                    ExtraSpec("extra1", ExtraType.STRING),
+                    ExtraSpec("extra1", ExtraType.String),
                 ),
             customSpecs =
                 listOf(
-                    ExtraSpec("extra1", ExtraType.INT),
+                    ExtraSpec("extra1", ExtraType.Int),
                 ),
             expected = """{"extra1": {"type": "int", "value": 0}}""",
         )
@@ -505,7 +505,7 @@ class ExtraValueTest {
                 ),
             actionSpecs =
                 listOf(
-                    ExtraSpec("extra1", ExtraType.INT),
+                    ExtraSpec("extra1", ExtraType.Int),
                 ),
             customSpecs = emptyList(),
             expected = """{"extra1": {"type": "int", "value": 0}}""",

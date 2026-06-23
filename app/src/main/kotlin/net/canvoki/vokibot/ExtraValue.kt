@@ -24,28 +24,45 @@ import net.canvoki.vokibot.common.UriField
 
 @Serializable
 sealed class ExtraType {
-    override fun toString(): String = this::class.simpleName!!
+    override fun toString(): kotlin.String = this::class.simpleName!!
 
-    @Serializable object STRING : ExtraType()
-    @Serializable object URI : ExtraType()
-    @Serializable object INT : ExtraType()
-    @Serializable object BOOLEAN : ExtraType()
-    @Serializable object STRING_ARRAY : ExtraType()
-    @Serializable object URI_LIST : ExtraType()
+    @Serializable
+    @SerialName("STRING")
+    object String : ExtraType()
+
+    @Serializable
+    @SerialName("URI")
+    object Uri : ExtraType()
+
+    @Serializable
+    @SerialName("INT")
+    object Int : ExtraType()
+
+    @Serializable
+    @SerialName("BOOLEAN")
+    object Boolean : ExtraType()
+
+    @Serializable
+    @SerialName("STRING_ARRAY")
+    object StringArray : ExtraType()
+
+    @Serializable
+    @SerialName("URI_LIST")
+    object UriList : ExtraType()
 
     companion object {
-        val intentExtraTypes: List<ExtraType> = listOf(STRING, URI, INT, BOOLEAN, STRING_ARRAY, URI_LIST)
+        val intentExtraTypes: List<ExtraType> = listOf(String, Uri, Int, Boolean, StringArray, UriList)
     }
 }
 
 val ExtraType.labelRes get() =
     when (this) {
-        ExtraType.STRING -> R.string.extra_value_type_text
-        ExtraType.URI -> R.string.extra_value_type_uri
-        ExtraType.INT -> R.string.extra_value_type_number
-        ExtraType.BOOLEAN -> R.string.extra_value_type_boolean
-        ExtraType.STRING_ARRAY -> R.string.extra_value_type_text_list
-        ExtraType.URI_LIST -> R.string.extra_value_type_uri_list
+        ExtraType.String -> R.string.extra_value_type_text
+        ExtraType.Uri -> R.string.extra_value_type_uri
+        ExtraType.Int -> R.string.extra_value_type_number
+        ExtraType.Boolean -> R.string.extra_value_type_boolean
+        ExtraType.StringArray -> R.string.extra_value_type_text_list
+        ExtraType.UriList -> R.string.extra_value_type_uri_list
     }
 
 @Serializable
@@ -61,12 +78,12 @@ fun ExtraSpec.displayLabel(): String = if (labelRes != 0) stringResource(labelRe
 
 fun ExtraSpec.defaultValue(): ExtraValue =
     when (type) {
-        ExtraType.STRING -> ExtraValue.StringValue("")
-        ExtraType.URI -> ExtraValue.UriValue("")
-        ExtraType.INT -> ExtraValue.IntValue(0)
-        ExtraType.BOOLEAN -> ExtraValue.BooleanValue(false)
-        ExtraType.STRING_ARRAY -> ExtraValue.StringArrayValue(emptyList())
-        ExtraType.URI_LIST -> ExtraValue.UriListValue(emptyList())
+        ExtraType.String -> ExtraValue.StringValue("")
+        ExtraType.Uri -> ExtraValue.UriValue("")
+        ExtraType.Int -> ExtraValue.IntValue(0)
+        ExtraType.Boolean -> ExtraValue.BooleanValue(false)
+        ExtraType.StringArray -> ExtraValue.StringArrayValue(emptyList())
+        ExtraType.UriList -> ExtraValue.UriListValue(emptyList())
     }
 
 /**
@@ -362,13 +379,13 @@ fun ExtraValue.isDefault(): Boolean =
 
 fun ExtraValue.toExtraType(): ExtraType =
     when (this) {
-        is ExtraValue.StringValue -> ExtraType.STRING
-        is ExtraValue.IntValue, is ExtraValue.LongValue -> ExtraType.INT
-        is ExtraValue.BooleanValue -> ExtraType.BOOLEAN
-        is ExtraValue.FloatValue -> ExtraType.STRING
-        is ExtraValue.UriValue -> ExtraType.URI
-        is ExtraValue.StringArrayValue -> ExtraType.STRING_ARRAY
-        is ExtraValue.UriListValue -> ExtraType.URI_LIST
+        is ExtraValue.StringValue -> ExtraType.String
+        is ExtraValue.IntValue, is ExtraValue.LongValue -> ExtraType.Int
+        is ExtraValue.BooleanValue -> ExtraType.Boolean
+        is ExtraValue.FloatValue -> ExtraType.String
+        is ExtraValue.UriValue -> ExtraType.Uri
+        is ExtraValue.StringArrayValue -> ExtraType.StringArray
+        is ExtraValue.UriListValue -> ExtraType.UriList
     }
 
 fun computeNewCustomSpecs(
