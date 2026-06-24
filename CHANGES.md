@@ -6,6 +6,7 @@ Quick system settings panels
 
 - ✨ Using nfc panel instead settings page, when available, to enable NFC
 - ✨ Quick panels for Internet, Wifi, Nfc and Volume available as Settings Page
+- 🐛 FAB hid the last component in scrolled lists, pad added
 - 💄 App component list group headers deindented left
 
 ## 0.6.1 (2026-06-17)
