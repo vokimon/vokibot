@@ -76,7 +76,13 @@ fun TriggerList(
                 loader = { repository.trigger.all() },
                 itemKey = { it.id },
                 groupBy = { it.type },
-                headerContent = { key -> TriggerGroupHeader(key) },
+                headerContent = { key ->
+                    val helpResId = StorableEntity.helpResId(key)
+                    TriggerGroupHeader(
+                        title = StorableEntity.label(key),
+                        helpDescription = helpResId.takeIf { it != 0 }?.let { stringResource(it) },
+                    )
+                },
                 notFoundMessage = stringResource(R.string.triggerlist_not_found),
             ) { trigger ->
                 var menuExpanded by remember { mutableStateOf(false) }
@@ -179,9 +185,11 @@ fun TriggerList(
 }
 
 @Composable
-private fun TriggerGroupHeader(groupKey: String) {
+private fun TriggerGroupHeader(
+    title: String,
+    helpDescription: String?,
+) {
     val verticalPadding = 8.dp
-    val helpResId = StorableEntity.helpResId(groupKey)
     Row(
         modifier =
             Modifier
@@ -189,7 +197,7 @@ private fun TriggerGroupHeader(groupKey: String) {
                 .background(MaterialTheme.colorScheme.surface),
     ) {
         Text(
-            text = StorableEntity.label(groupKey),
+            text = title,
             style = MaterialTheme.typography.titleSmall,
             color = MaterialTheme.colorScheme.primary,
             modifier =
@@ -197,10 +205,10 @@ private fun TriggerGroupHeader(groupKey: String) {
                     .weight(1f)
                     .padding(vertical = verticalPadding),
         )
-        if (helpResId != 0) {
+        if (helpDescription != null) {
             ContextualHelpButton(
-                title = StorableEntity.label(groupKey),
-                description = stringResource(helpResId),
+                title = title,
+                description = helpDescription,
                 modifier = Modifier.padding(vertical = verticalPadding),
             )
         }

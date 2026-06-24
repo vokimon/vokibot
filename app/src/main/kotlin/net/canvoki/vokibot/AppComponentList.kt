@@ -61,7 +61,16 @@ fun ComponentListContent(
         itemKey = { it.name },
         groupBy = { it.type.name },
         headerContent = { groupKey: String ->
-            ComponentGroupHeader(groupKey)
+            val type = ComponentType.valueOf(groupKey)
+            ComponentGroupHeader(
+                title =
+                    when (type) {
+                        ComponentType.ACTIVITY -> stringResource(R.string.command_type_launch_activity)
+                        ComponentType.RECEIVER -> stringResource(R.string.command_type_send_broadcast)
+                        ComponentType.SERVICE -> stringResource(R.string.command_type_start_service)
+                        ComponentType.PROVIDER -> stringResource(R.string.command_type_access_provider)
+                    },
+            )
         },
         notFoundMessage = stringResource(R.string.activitylist_not_found),
     ) { component ->
@@ -97,16 +106,9 @@ private fun ActionIcons(actions: List<String>) {
  * Maps the string group key back to ComponentType for translation.
  */
 @Composable
-private fun ComponentGroupHeader(groupKey: String) {
-    val type = ComponentType.valueOf(groupKey)
+private fun ComponentGroupHeader(title: String) {
     Text(
-        text =
-            when (type) {
-                ComponentType.ACTIVITY -> stringResource(R.string.command_type_launch_activity)
-                ComponentType.RECEIVER -> stringResource(R.string.command_type_send_broadcast)
-                ComponentType.SERVICE -> stringResource(R.string.command_type_start_service)
-                ComponentType.PROVIDER -> stringResource(R.string.command_type_access_provider)
-            },
+        text = title,
         style = MaterialTheme.typography.titleSmall,
         color = MaterialTheme.colorScheme.primary,
         modifier =

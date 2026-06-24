@@ -107,7 +107,11 @@ data class SettingsPageCommandEditor(
                 loader = { displayedPages },
                 itemKey = { it.id },
                 groupBy = { it.categoryId.name },
-                headerContent = { groupKey -> SettingsPageGroupHeader(SettingsPageCategory.valueOf(groupKey)) },
+                headerContent = { groupKey ->
+                    SettingsPageGroupHeader(
+                        title = stringResource(SettingsPageCategory.valueOf(groupKey).labelRes),
+                    )
+                },
                 notFoundMessage = stringResource(R.string.settings_page_no_pages),
             ) { page ->
                 val command = remember(page.id) { SettingsPageCommand(pageId = page.id) }
@@ -175,7 +179,7 @@ data class SettingsPageCommandEditor(
 }
 
 @Composable
-private fun SettingsPageGroupHeader(groupKey: SettingsPageCategory) {
+private fun SettingsPageGroupHeader(title: String) {
     Row(
         modifier =
             Modifier
@@ -183,7 +187,7 @@ private fun SettingsPageGroupHeader(groupKey: SettingsPageCategory) {
                 .background(MaterialTheme.colorScheme.surface),
     ) {
         Text(
-            text = stringResource(groupKey.labelRes),
+            text = title,
             style = MaterialTheme.typography.titleSmall,
             color = MaterialTheme.colorScheme.primary,
             modifier =

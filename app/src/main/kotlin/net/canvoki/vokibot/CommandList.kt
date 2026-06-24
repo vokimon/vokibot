@@ -83,7 +83,11 @@ fun CommandList(
                 itemKey = { it.id },
                 groupBy = { command -> command.type },
                 headerContent = { key: String ->
-                    CommandGroupHeader(key)
+                    val helpResId = StorableEntity.helpResId(key)
+                    CommandGroupHeader(
+                        title = StorableEntity.label(key),
+                        helpDescription = helpResId.takeIf { it != 0 }?.let { stringResource(it) },
+                    )
                 },
                 notFoundMessage = stringResource(R.string.commandlist_not_found),
             ) { command ->
@@ -213,9 +217,11 @@ fun CommandList(
  * Uses StorableEntity.label to get localized type name from registry.
  */
 @Composable
-private fun CommandGroupHeader(key: String) {
+private fun CommandGroupHeader(
+    title: String,
+    helpDescription: String?,
+) {
     val verticalPadding = 8.dp
-    val helpResId = StorableEntity.helpResId(key)
     Row(
         modifier =
             Modifier
@@ -223,7 +229,7 @@ private fun CommandGroupHeader(key: String) {
                 .background(MaterialTheme.colorScheme.surface),
     ) {
         Text(
-            text = StorableEntity.label(key),
+            text = title,
             style = MaterialTheme.typography.titleSmall,
             color = MaterialTheme.colorScheme.primary,
             modifier =
@@ -231,10 +237,10 @@ private fun CommandGroupHeader(key: String) {
                     .weight(1f)
                     .padding(vertical = verticalPadding),
         )
-        if (helpResId != 0) {
+        if (helpDescription != null) {
             ContextualHelpButton(
-                title = StorableEntity.label(key),
-                description = stringResource(helpResId),
+                title = title,
+                description = helpDescription,
                 modifier = Modifier.padding(vertical = verticalPadding),
             )
         }

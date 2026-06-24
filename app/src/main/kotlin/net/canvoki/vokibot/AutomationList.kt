@@ -47,7 +47,11 @@ data object AutomationList : StackedScreen<Unit>() {
                 loader = { repository.automation.all() },
                 itemKey = { it.id },
                 groupBy = { "automation" },
-                headerContent = { key -> AutomationGroupHeader(key) },
+                headerContent = {
+                    AutomationGroupHeader(
+                        title = stringResource(R.string.automation_group_automation),
+                    )
+                },
                 notFoundMessage = stringResource(R.string.automationlist_not_found),
             ) { automation ->
                 var menuExpanded by remember { mutableStateOf(false) }
@@ -155,9 +159,9 @@ data object AutomationList : StackedScreen<Unit>() {
 }
 
 @Composable
-private fun AutomationGroupHeader(groupKey: String) {
+private fun AutomationGroupHeader(title: String) {
     Text(
-        text = stringResource(R.string.automation_group_automation),
+        text = title,
         style = MaterialTheme.typography.titleSmall,
         color = MaterialTheme.colorScheme.primary,
         modifier =
