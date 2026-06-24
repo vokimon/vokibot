@@ -38,7 +38,6 @@ import net.canvoki.shared.component.ChooserDialog
 import net.canvoki.shared.component.ChooserOption
 import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
-import net.canvoki.shared.usermessage.UserMessage
 import net.canvoki.vokibot.common.EditorHeader
 import net.canvoki.vokibot.common.ListGroupHeader
 import net.canvoki.vokibot.common.tintIfFlat
@@ -62,8 +61,6 @@ fun CommandList(
     val repository = remember { FileDataRepository.fromContext(context) }
     var commandToDelete by remember { mutableStateOf<String?>(null) }
     val dataVersion = repository.rememberDataVersion()
-
-    val fallbacErrorMessage = stringResource(R.string.command_run_error_fallback)
 
     Box(modifier = modifier.fillMaxSize()) {
         Column(
@@ -147,14 +144,7 @@ fun CommandList(
                                 },
                                 onClick = {
                                     menuExpanded = false
-                                    scope.launch {
-                                        try {
-                                            command.execute(context)
-                                        } catch (e: Exception) {
-                                            e.printStackTrace()
-                                            UserMessage.Info(e.message ?: fallbacErrorMessage).post()
-                                        }
-                                    }
+                                    command.execute(context, scope)
                                 },
                             )
                             DropdownMenuItem(

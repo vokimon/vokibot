@@ -13,8 +13,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import kotlinx.coroutines.launch
-import net.canvoki.shared.usermessage.UserMessage
 import net.canvoki.vokibot.Command
 import net.canvoki.vokibot.R
 
@@ -25,19 +23,11 @@ fun TryCommandButton(
 ) {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
-    val fallbackErrorMessage = stringResource(R.string.command_run_error_fallback)
 
     OutlinedButton(
         onClick = {
-            scope.launch {
-                val command = buildCommand()
-                try {
-                    command.execute(context)
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                    UserMessage.Info(e.message ?: fallbackErrorMessage).post()
-                }
-            }
+            val command = buildCommand()
+            command.execute(context, scope)
         },
         enabled = enabled,
         modifier = Modifier.fillMaxWidth(),

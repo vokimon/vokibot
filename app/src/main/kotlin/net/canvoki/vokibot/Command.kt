@@ -1,7 +1,10 @@
 package net.canvoki.vokibot
 
 import android.content.Context
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
+import net.canvoki.shared.usermessage.UserMessage
 
 /**
  * Abstract class for all the actions you can perform as response to a trigger
@@ -12,6 +15,23 @@ abstract class Command : StorableEntity {
      * Execute this command.
      */
     abstract suspend fun execute(context: Context)
+
+    /**
+     * Execute this command, showing a toast on error.
+     */
+    fun execute(
+        context: Context,
+        scope: CoroutineScope,
+    ) {
+        scope.launch {
+            try {
+                execute(context)
+            } catch (e: Exception) {
+                e.printStackTrace()
+                UserMessage.Info(e.message ?: context.getString(R.string.command_run_error_fallback)).post()
+            }
+        }
+    }
 
     companion object {
         val iconRes = R.drawable.ic_task_alt
