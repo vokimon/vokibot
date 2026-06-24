@@ -34,7 +34,6 @@ commandlist_create_command_title: Создать команду
 commandlist_launch_app_option: Запустить приложение
 commandlist_run: Запустить
 commandlist_remove: Удалить
-commandlist_options_desc: Параметры
 commandlist_delete_title: Удалить команду?
 commandlist_delete_message: Это действие нельзя отменить.
 commandlist_delete: Удалить
@@ -61,7 +60,6 @@ triggerlist_create_fab_desc: Создать триггер
 triggerlist_create_title: Создать триггер
 triggerlist_option_nfc: NFC-метка
 triggerlist_option_shortcut: Ярлык
-triggerlist_options_desc: Параметры
 triggerlist_edit: Редактировать
 triggerlist_delete: Удалить
 triggerlist_delete_title: Удалить метку?
@@ -80,7 +78,6 @@ automation_remove_command_desc: Удалить команду
 automation_save: Сохранить автоматизацию
 automationlist_not_found: Автоматизации не настроены
 automationlist_create_fab_desc: Создать автоматизацию
-automationlist_options_desc: Параметры
 automationlist_delete: Удалить
 automationlist_delete_title: Удалить автоматизацию?
 automationlist_delete_message: Это действие нельзя отменить.
@@ -381,3 +378,4 @@ setting_category_power: Питание
 setting_category_device: Устройство
 setting_category_display: Экран
 setting_category_sound: Аудио
+item_menu_options_desc: Параметры

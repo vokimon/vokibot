@@ -6,11 +6,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -30,6 +28,7 @@ import kotlinx.serialization.Serializable
 import net.canvoki.shared.component.AsyncList
 import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
+import net.canvoki.vokibot.common.ItemMenu
 import net.canvoki.vokibot.common.ListGroupHeader
 
 @Serializable
@@ -54,7 +53,6 @@ data object AutomationList : StackedScreen<Unit>() {
                 },
                 notFoundMessage = stringResource(R.string.automationlist_not_found),
             ) { automation ->
-                var menuExpanded by remember { mutableStateOf(false) }
                 var automationDescription =
                     remember(automation.triggerId, automation.commandIds) {
                         buildString {
@@ -98,16 +96,7 @@ data object AutomationList : StackedScreen<Unit>() {
                             nav.push(AutomationEditor(automation.id))
                         },
                     trailingContent = {
-                        IconButton(onClick = { menuExpanded = true }) {
-                            Icon(
-                                painter = painterResource(R.drawable.ic_more_vert),
-                                contentDescription = stringResource(R.string.automationlist_options_desc),
-                            )
-                        }
-                        DropdownMenu(
-                            expanded = menuExpanded,
-                            onDismissRequest = { menuExpanded = false },
-                        ) {
+                        ItemMenu { onDismiss ->
                             DropdownMenuItem(
                                 text = { Text(stringResource(R.string.automationlist_delete)) },
                                 leadingIcon = {
@@ -117,7 +106,7 @@ data object AutomationList : StackedScreen<Unit>() {
                                     )
                                 },
                                 onClick = {
-                                    menuExpanded = false
+                                    onDismiss()
                                     automationToDelete = automation
                                 },
                             )

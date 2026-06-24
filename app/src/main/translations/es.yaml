@@ -34,7 +34,6 @@ commandlist_create_command_title: Crear comando
 commandlist_launch_app_option: Ejecutar una app
 commandlist_run: Ejecutar
 commandlist_remove: Eliminar
-commandlist_options_desc: Opciones
 commandlist_delete_title: ¿Eliminar comando?
 commandlist_delete_message: Esta acción no se puede deshacer.
 commandlist_delete: Eliminar
@@ -61,7 +60,6 @@ triggerlist_create_fab_desc: Crear disparador
 triggerlist_create_title: Crear disparador
 triggerlist_option_nfc: Etiqueta NFC
 triggerlist_option_shortcut: Acceso directo
-triggerlist_options_desc: Opciones
 triggerlist_edit: Editar
 triggerlist_delete: Eliminar
 triggerlist_delete_title: ¿Eliminar etiqueta?
@@ -80,7 +78,6 @@ automation_remove_command_desc: Eliminar comando
 automation_save: Guardar automatización
 automationlist_not_found: No hay automatizaciones configuradas
 automationlist_create_fab_desc: Crear automatización
-automationlist_options_desc: Opciones
 automationlist_delete: Eliminar
 automationlist_delete_title: ¿Eliminar automatización?
 automationlist_delete_message: Esta acción no se puede deshacer.
@@ -381,3 +378,4 @@ setting_category_power: Energía
 setting_category_device: Dispositivo
 setting_category_display: Pantalla
 setting_category_sound: Audio
+item_menu_options_desc: Opciones

@@ -34,7 +34,6 @@ commandlist_create_command_title: Create Command
 commandlist_launch_app_option: Launch an app
 commandlist_run: Run
 commandlist_remove: Remove
-commandlist_options_desc: Options
 commandlist_delete_title: Delete Command?
 commandlist_delete_message: This action cannot be undone.
 commandlist_delete: Delete
@@ -61,7 +60,6 @@ triggerlist_create_fab_desc: Create trigger
 triggerlist_create_title: Create Trigger
 triggerlist_option_nfc: NFC Tag
 triggerlist_option_shortcut: Shortcut
-triggerlist_options_desc: Options
 triggerlist_edit: Edit
 triggerlist_delete: Delete
 triggerlist_delete_title: Delete tag?
@@ -80,7 +78,6 @@ automation_remove_command_desc: Remove command
 automation_save: Save Automation
 automationlist_not_found: No automations configured
 automationlist_create_fab_desc: Create automation
-automationlist_options_desc: Options
 automationlist_delete: Delete
 automationlist_delete_title: Delete automation?
 automationlist_delete_message: This action cannot be undone.
@@ -381,3 +378,4 @@ setting_category_power: Power
 setting_category_device: Device
 setting_category_display: Display
 setting_category_sound: Audio
+item_menu_options_desc: Options

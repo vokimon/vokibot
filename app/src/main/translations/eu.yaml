@@ -34,7 +34,6 @@ commandlist_create_command_title: Komandoa sortu
 commandlist_launch_app_option: Aplikazio bat abiarazi
 commandlist_run: Exekutatu
 commandlist_remove: Kendu
-commandlist_options_desc: Aukerak
 commandlist_delete_title: Komandoa ezabatu?
 commandlist_delete_message: Ekintza hau ezin da desegin.
 commandlist_delete: Ezabatu
@@ -61,7 +60,6 @@ triggerlist_create_fab_desc: Abiarazlea sortu
 triggerlist_create_title: Abiarazlea sortu
 triggerlist_option_nfc: NFC etiketa
 triggerlist_option_shortcut: Lasterbidea
-triggerlist_options_desc: Aukerak
 triggerlist_edit: Editatu
 triggerlist_delete: Ezabatu
 triggerlist_delete_title: Etiketa ezabatu?
@@ -80,7 +78,6 @@ automation_remove_command_desc: Kendu komandoa
 automation_save: Gorde automatizazioa
 automationlist_not_found: Ez dago automatizaziorik konfiguratuta
 automationlist_create_fab_desc: Automatizazioa sortu
-automationlist_options_desc: Aukerak
 automationlist_delete: Ezabatu
 automationlist_delete_title: Automatizazioa ezabatu?
 automationlist_delete_message: Ekintza hau ezin da desegin.
@@ -381,3 +378,4 @@ setting_category_power: Energia
 setting_category_device: Gailua
 setting_category_display: Pantaila
 setting_category_sound: Audioa
+item_menu_options_desc: Aukerak

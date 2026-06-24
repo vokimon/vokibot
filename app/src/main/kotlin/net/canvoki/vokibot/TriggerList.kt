@@ -8,11 +8,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.MaterialTheme
@@ -37,6 +35,7 @@ import net.canvoki.shared.component.ChooserOption
 import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
 import net.canvoki.vokibot.common.EditorHeader
+import net.canvoki.vokibot.common.ItemMenu
 import net.canvoki.vokibot.common.ListGroupHeader
 import net.canvoki.vokibot.common.tintIfFlat
 import net.canvoki.vokibot.drawableToPainter
@@ -82,8 +81,6 @@ fun TriggerList(
                 },
                 notFoundMessage = stringResource(R.string.triggerlist_not_found),
             ) { trigger ->
-                var menuExpanded by remember { mutableStateOf(false) }
-
                 ListItem(
                     headlineContent = { Text(trigger.getTitle(context)) },
                     supportingContent = { Text(trigger.description) },
@@ -102,16 +99,7 @@ fun TriggerList(
                             nav.pop(trigger.id)
                         },
                     trailingContent = {
-                        IconButton(onClick = { menuExpanded = true }) {
-                            Icon(
-                                painter = painterResource(R.drawable.ic_more_vert),
-                                contentDescription = stringResource(R.string.triggerlist_options_desc),
-                            )
-                        }
-                        DropdownMenu(
-                            expanded = menuExpanded,
-                            onDismissRequest = { menuExpanded = false },
-                        ) {
+                        ItemMenu { onDismiss ->
                             DropdownMenuItem(
                                 text = { Text(stringResource(R.string.triggerlist_edit)) },
                                 leadingIcon = {
@@ -121,7 +109,7 @@ fun TriggerList(
                                     )
                                 },
                                 onClick = {
-                                    menuExpanded = false
+                                    onDismiss()
                                     val editorScreen = StorableEntity.getEditorScreen(trigger.type, trigger.id)
                                     editorScreen?.let {
                                         nav.push(it)
@@ -137,7 +125,7 @@ fun TriggerList(
                                     )
                                 },
                                 onClick = {
-                                    menuExpanded = false
+                                    onDismiss()
                                     triggerToDelete = trigger
                                 },
                             )

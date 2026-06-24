@@ -8,11 +8,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -39,6 +37,7 @@ import net.canvoki.shared.component.ChooserOption
 import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
 import net.canvoki.vokibot.common.EditorHeader
+import net.canvoki.vokibot.common.ItemMenu
 import net.canvoki.vokibot.common.ListGroupHeader
 import net.canvoki.vokibot.common.tintIfFlat
 import net.canvoki.vokibot.common.toPainter
@@ -85,8 +84,6 @@ fun CommandList(
                 },
                 notFoundMessage = stringResource(R.string.commandlist_not_found),
             ) { command ->
-                var menuExpanded by remember { mutableStateOf(false) }
-
                 val componentIcon = remember(command.id) { command.loadIcon(context) }
                 val iconPainter = remember(componentIcon) { componentIcon.toPainter() }
                 val tint = componentIcon.tintIfFlat()
@@ -110,32 +107,21 @@ fun CommandList(
                         )
                     },
                     trailingContent = {
-                        IconButton(onClick = { menuExpanded = true }) {
-                            Icon(
-                                painter = painterResource(R.drawable.ic_more_vert),
-                                contentDescription = stringResource(R.string.commandlist_options_desc),
-                            )
-                        }
-                        DropdownMenu(
-                            expanded = menuExpanded,
-                            onDismissRequest = { menuExpanded = false },
-                        ) {
+                        ItemMenu { onDismiss ->
                             DropdownMenuItem(
                                 text = { Text(stringResource(R.string.commandlist_item_menu_edit)) },
                                 leadingIcon = {
                                     Icon(painter = painterResource(R.drawable.ic_edit), contentDescription = null)
                                 },
                                 onClick = {
-                                    menuExpanded = false
+                                    onDismiss()
                                     StorableEntity.getEditorScreen(command.type, command.id)?.let {
                                         nav.push(it)
                                     }
                                 },
                             )
                             DropdownMenuItem(
-                                text = {
-                                    Text(stringResource(R.string.commandlist_run))
-                                },
+                                text = { Text(stringResource(R.string.commandlist_run)) },
                                 leadingIcon = {
                                     Icon(
                                         painter = painterResource(R.drawable.ic_play_arrow),
@@ -143,7 +129,7 @@ fun CommandList(
                                     )
                                 },
                                 onClick = {
-                                    menuExpanded = false
+                                    onDismiss()
                                     command.execute(context, scope)
                                 },
                             )
@@ -156,7 +142,7 @@ fun CommandList(
                                     )
                                 },
                                 onClick = {
-                                    menuExpanded = false
+                                    onDismiss()
                                     commandToDelete = command.id
                                 },
                             )

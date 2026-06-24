@@ -34,7 +34,6 @@ commandlist_create_command_title: Crear orden
 commandlist_launch_app_option: Executar una app
 commandlist_run: Executar
 commandlist_remove: Borrar
-commandlist_options_desc: Opcions
 commandlist_delete_title: Borrar orden?
 commandlist_delete_message: Esta acción no se puede desfer.
 commandlist_delete: Borrar
@@ -61,7 +60,6 @@ triggerlist_create_fab_desc: Crear disparador
 triggerlist_create_title: Crear disparador
 triggerlist_option_nfc: Etiqueta NFC
 triggerlist_option_shortcut: Drecera
-triggerlist_options_desc: Opcions
 triggerlist_edit: Editar
 triggerlist_delete: Borrar
 triggerlist_delete_title: Borrar etiqueta?
@@ -80,7 +78,6 @@ automation_remove_command_desc: Borrar orden
 automation_save: Alzar automatización
 automationlist_not_found: No i ha garra automatización configurada
 automationlist_create_fab_desc: Crear automatización
-automationlist_options_desc: Opcions
 automationlist_delete: Borrar
 automationlist_delete_title: Borrar automatización?
 automationlist_delete_message: Esta acción no se puede desfer.
@@ -381,3 +378,4 @@ setting_category_power: Enerchía
 setting_category_device: Dispositivo
 setting_category_display: Pantalla
 setting_category_sound: Soniu
+item_menu_options_desc: Opcions

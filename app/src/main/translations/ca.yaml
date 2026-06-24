@@ -34,7 +34,6 @@ commandlist_create_command_title: Crea una ordre
 commandlist_launch_app_option: Executa una app
 commandlist_run: Executa
 commandlist_remove: Suprimeix
-commandlist_options_desc: Opcions
 commandlist_delete_title: Realment vols suprimir l'ordre?
 commandlist_delete_message: Aquesta acció no es pot desfer.
 commandlist_delete: Suprimir
@@ -61,7 +60,6 @@ triggerlist_create_fab_desc: Crea un disparador
 triggerlist_create_title: Crea un disparador
 triggerlist_option_nfc: Etiqueta NFC
 triggerlist_option_shortcut: Drecera
-triggerlist_options_desc: Opcions
 triggerlist_edit: Edita
 triggerlist_delete: Suprimeix
 triggerlist_delete_title: Suprimir l'etiqueta?
@@ -80,7 +78,6 @@ automation_remove_command_desc: Suprimeix l'ordre
 automation_save: Desa l'automatització
 automationlist_not_found: No hi ha automatitzacions configurades
 automationlist_create_fab_desc: Crea una automatització
-automationlist_options_desc: Opcions
 automationlist_delete: Suprimeix
 automationlist_delete_title: Suprimir l'automatització?
 automationlist_delete_message: Aquesta acció no es pot desfer.
@@ -381,3 +378,4 @@ setting_category_power: Energia
 setting_category_device: Dispositiu
 setting_category_display: Pantalla
 setting_category_sound: So
+item_menu_options_desc: Opcions
