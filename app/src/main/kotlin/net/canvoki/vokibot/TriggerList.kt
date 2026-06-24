@@ -1,6 +1,5 @@
 package net.canvoki.vokibot
 
-import android.graphics.drawable.VectorDrawable
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -37,9 +36,9 @@ import net.canvoki.shared.component.ChooserDialog
 import net.canvoki.shared.component.ChooserOption
 import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
-import net.canvoki.vokibot.common.BadgeDrawable
 import net.canvoki.vokibot.common.EditorHeader
 import net.canvoki.vokibot.common.ListGroupHeader
+import net.canvoki.vokibot.common.tintIfFlat
 import net.canvoki.vokibot.drawableToPainter
 
 @Serializable
@@ -94,11 +93,7 @@ fun TriggerList(
                             painter = drawableToPainter(triggerIcon),
                             contentDescription = null,
                             modifier = Modifier.size(40.dp),
-                            tint =
-                                when (triggerIcon) {
-                                    is VectorDrawable, is BadgeDrawable -> MaterialTheme.colorScheme.primary
-                                    else -> Color.Unspecified
-                                },
+                            tint = triggerIcon.tintIfFlat(),
                         )
                     },
                     colors = ListItemDefaults.colors(containerColor = Color.Transparent),

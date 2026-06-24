@@ -1,6 +1,5 @@
 package net.canvoki.vokibot
 
-import android.graphics.drawable.VectorDrawable
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -40,9 +39,9 @@ import net.canvoki.shared.component.ChooserOption
 import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
 import net.canvoki.shared.usermessage.UserMessage
-import net.canvoki.vokibot.common.BadgeDrawable
 import net.canvoki.vokibot.common.EditorHeader
 import net.canvoki.vokibot.common.ListGroupHeader
+import net.canvoki.vokibot.common.tintIfFlat
 import net.canvoki.vokibot.common.toPainter
 
 @Serializable
@@ -93,11 +92,7 @@ fun CommandList(
 
                 val componentIcon = remember(command.id) { command.loadIcon(context) }
                 val iconPainter = remember(componentIcon) { componentIcon.toPainter() }
-                val tint =
-                    when (componentIcon) {
-                        is VectorDrawable, is BadgeDrawable -> MaterialTheme.colorScheme.primary
-                        else -> Color.Unspecified
-                    }
+                val tint = componentIcon.tintIfFlat()
 
                 ListItem(
                     headlineContent = { Text(command.getTitle(context)) },

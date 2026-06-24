@@ -1,6 +1,5 @@
 package net.canvoki.vokibot
 
-import android.graphics.drawable.VectorDrawable
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -42,10 +41,10 @@ import androidx.compose.ui.unit.dp
 import kotlinx.serialization.Serializable
 import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
-import net.canvoki.vokibot.common.BadgeDrawable
 import net.canvoki.vokibot.common.EditorHeader
 import net.canvoki.vokibot.common.MagicTextField
 import net.canvoki.vokibot.common.rememberDiscardableState
+import net.canvoki.vokibot.common.tintIfFlat
 
 @Serializable
 data class AutomationEditor(
@@ -159,12 +158,7 @@ data class AutomationEditor(
                     Icon(
                         painter = icon?.let { drawableToPainter(it) } ?: painterResource(Trigger.iconRes),
                         contentDescription = null,
-                        tint =
-                            when (icon) {
-                                null -> MaterialTheme.colorScheme.primary
-                                is VectorDrawable, is BadgeDrawable -> MaterialTheme.colorScheme.primary
-                                else -> Color.Unspecified
-                            },
+                        tint = icon?.let { it.tintIfFlat() } ?: MaterialTheme.colorScheme.primary,
                         modifier = Modifier.size(40.dp),
                     )
                     Spacer(Modifier.width(12.dp))
@@ -247,11 +241,7 @@ data class AutomationEditor(
                                         painter = drawableToPainter(icon),
                                         contentDescription = null,
                                         modifier = Modifier.size(40.dp),
-                                        tint =
-                                            when (icon) {
-                                                is VectorDrawable, is BadgeDrawable -> MaterialTheme.colorScheme.primary
-                                                else -> Color.Unspecified
-                                            },
+                                        tint = icon.tintIfFlat(),
                                     )
                                     Column {
                                         Text(
