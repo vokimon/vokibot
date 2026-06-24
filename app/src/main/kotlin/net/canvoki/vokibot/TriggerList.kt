@@ -1,12 +1,10 @@
 package net.canvoki.vokibot
 
 import android.graphics.drawable.VectorDrawable
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -37,11 +35,11 @@ import kotlinx.serialization.Serializable
 import net.canvoki.shared.component.AsyncList
 import net.canvoki.shared.component.ChooserDialog
 import net.canvoki.shared.component.ChooserOption
-import net.canvoki.shared.component.ContextualHelpButton
 import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
 import net.canvoki.vokibot.common.BadgeDrawable
 import net.canvoki.vokibot.common.EditorHeader
+import net.canvoki.vokibot.common.ListGroupHeader
 import net.canvoki.vokibot.drawableToPainter
 
 @Serializable
@@ -78,7 +76,7 @@ fun TriggerList(
                 groupBy = { it.type },
                 headerContent = { key ->
                     val helpResId = StorableEntity.helpResId(key)
-                    TriggerGroupHeader(
+                    ListGroupHeader(
                         title = StorableEntity.label(key),
                         helpDescription = helpResId.takeIf { it != 0 }?.let { stringResource(it) },
                     )
@@ -182,35 +180,4 @@ fun TriggerList(
             }
         },
     )
-}
-
-@Composable
-private fun TriggerGroupHeader(
-    title: String,
-    helpDescription: String?,
-) {
-    val verticalPadding = 8.dp
-    Row(
-        modifier =
-            Modifier
-                .fillMaxWidth()
-                .background(MaterialTheme.colorScheme.surface),
-    ) {
-        Text(
-            text = title,
-            style = MaterialTheme.typography.titleSmall,
-            color = MaterialTheme.colorScheme.primary,
-            modifier =
-                Modifier
-                    .weight(1f)
-                    .padding(vertical = verticalPadding),
-        )
-        if (helpDescription != null) {
-            ContextualHelpButton(
-                title = title,
-                description = helpDescription,
-                modifier = Modifier.padding(vertical = verticalPadding),
-            )
-        }
-    }
 }

@@ -4,7 +4,6 @@ import android.content.ComponentName
 import android.content.Context
 import android.graphics.drawable.Drawable
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -32,6 +31,7 @@ import kotlinx.serialization.Serializable
 import net.canvoki.shared.component.AsyncList
 import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
+import net.canvoki.vokibot.common.ListGroupHeader
 
 @Serializable
 data class AppComponentList(
@@ -62,7 +62,7 @@ fun ComponentListContent(
         groupBy = { it.type.name },
         headerContent = { groupKey: String ->
             val type = ComponentType.valueOf(groupKey)
-            ComponentGroupHeader(
+            ListGroupHeader(
                 title =
                     when (type) {
                         ComponentType.ACTIVITY -> stringResource(R.string.command_type_launch_activity)
@@ -99,24 +99,6 @@ private fun ActionIcons(actions: List<String>) {
             )
         }
     }
-}
-
-/**
- * Renders a translated, styled header for a component type group.
- * Maps the string group key back to ComponentType for translation.
- */
-@Composable
-private fun ComponentGroupHeader(title: String) {
-    Text(
-        text = title,
-        style = MaterialTheme.typography.titleSmall,
-        color = MaterialTheme.colorScheme.primary,
-        modifier =
-            Modifier
-                .fillMaxWidth()
-                .background(MaterialTheme.colorScheme.surface)
-                .padding(horizontal = 16.dp, vertical = 8.dp),
-    )
 }
 
 @Composable

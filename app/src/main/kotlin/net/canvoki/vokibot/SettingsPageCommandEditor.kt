@@ -1,7 +1,6 @@
 package net.canvoki.vokibot
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -36,12 +35,12 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
 import net.canvoki.shared.component.AsyncList
-import net.canvoki.shared.component.ContextualHelpButton
 import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
 import net.canvoki.shared.component.preferences.rememberMutablePreference
 import net.canvoki.shared.usermessage.UserMessage
 import net.canvoki.vokibot.common.EditorHeader
+import net.canvoki.vokibot.common.ListGroupHeader
 import net.canvoki.vokibot.common.toPainter
 
 @Serializable
@@ -108,7 +107,7 @@ data class SettingsPageCommandEditor(
                 itemKey = { it.id },
                 groupBy = { it.categoryId.name },
                 headerContent = { groupKey ->
-                    SettingsPageGroupHeader(
+                    ListGroupHeader(
                         title = stringResource(SettingsPageCategory.valueOf(groupKey).labelRes),
                     )
                 },
@@ -175,25 +174,5 @@ data class SettingsPageCommandEditor(
                 }
             }
         }
-    }
-}
-
-@Composable
-private fun SettingsPageGroupHeader(title: String) {
-    Row(
-        modifier =
-            Modifier
-                .fillMaxWidth()
-                .background(MaterialTheme.colorScheme.surface),
-    ) {
-        Text(
-            text = title,
-            style = MaterialTheme.typography.titleSmall,
-            color = MaterialTheme.colorScheme.primary,
-            modifier =
-                Modifier
-                    .weight(1f)
-                    .padding(vertical = 8.dp),
-        )
     }
 }

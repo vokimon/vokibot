@@ -1,6 +1,5 @@
 package net.canvoki.vokibot
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -31,6 +30,7 @@ import kotlinx.serialization.Serializable
 import net.canvoki.shared.component.AsyncList
 import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
+import net.canvoki.vokibot.common.ListGroupHeader
 
 @Serializable
 data object AutomationList : StackedScreen<Unit>() {
@@ -48,7 +48,7 @@ data object AutomationList : StackedScreen<Unit>() {
                 itemKey = { it.id },
                 groupBy = { "automation" },
                 headerContent = {
-                    AutomationGroupHeader(
+                    ListGroupHeader(
                         title = stringResource(R.string.automation_group_automation),
                     )
                 },
@@ -156,18 +156,4 @@ data object AutomationList : StackedScreen<Unit>() {
             },
         )
     }
-}
-
-@Composable
-private fun AutomationGroupHeader(title: String) {
-    Text(
-        text = title,
-        style = MaterialTheme.typography.titleSmall,
-        color = MaterialTheme.colorScheme.primary,
-        modifier =
-            Modifier
-                .fillMaxWidth()
-                .background(MaterialTheme.colorScheme.surface)
-                .padding(horizontal = 16.dp, vertical = 8.dp),
-    )
 }
