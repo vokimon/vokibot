@@ -370,3 +370,12 @@ settings_page_name_quick_nfc: Panêh rápido de NFC
 command_change_setting_label: Cambiâh balôh de ahûtte
 command_change_setting_help: Modifica un balôh êppeçífico en lô ahûttê der çîttema.
 missing_permission_banner_button_grant_permission: Conçedêh permiço
+setting_category_connectivity: Conêttibidá
+setting_category_accessibility: Âççeçibilidá
+setting_category_text: Têtto
+setting_category_time: Fexa y ora
+setting_category_developer: Deçarroyadôh
+setting_category_power: Enerhía
+setting_category_device: Dîppoçitibo
+setting_category_display: Pantaya
+setting_category_sound: Audio
