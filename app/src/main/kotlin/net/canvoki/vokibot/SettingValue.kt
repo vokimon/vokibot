@@ -104,7 +104,7 @@ val SETTING_VALUES: List<SettingValue> =
             name = "Ringtone",
             description = "Content URI of default ringtone",
             rawHelp = "Content URI string",
-            type = ExtraType.String, // TODO: Uri
+            type = ExtraType.Uri,
         ),
         SettingValue(
             id = Settings.System.NOTIFICATION_SOUND,
@@ -112,7 +112,7 @@ val SETTING_VALUES: List<SettingValue> =
             name = "Notification Sound",
             description = "Content URI of default notification sound",
             rawHelp = "Content URI string",
-            type = ExtraType.String, // TODO: Uri
+            type = ExtraType.Uri,
         ),
         SettingValue(
             id = Settings.System.ALARM_ALERT,
@@ -120,7 +120,7 @@ val SETTING_VALUES: List<SettingValue> =
             name = "Alarm Alert",
             description = "Content URI of default alarm alert",
             rawHelp = "Content URI string",
-            type = ExtraType.String, // TODO: Uri
+            type = ExtraType.Uri,
         ),
         SettingValue(
             id = Settings.System.DTMF_TONE_WHEN_DIALING,
