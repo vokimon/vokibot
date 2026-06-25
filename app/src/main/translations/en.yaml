@@ -32,8 +32,7 @@ commandlist_not_found: No saved commands
 commandlist_create_fab_desc: Create command
 commandlist_create_command_title: Create Command
 commandlist_launch_app_option: Launch an app
-commandlist_run: Run
-commandlist_remove: Remove
+item_menu_run: Run
 commandlist_delete_title: Delete Command?
 command_type_launch_activity: Open an app
 command_type_send_broadcast: Notify an app
@@ -57,7 +56,6 @@ triggerlist_create_fab_desc: Create trigger
 triggerlist_create_title: Create Trigger
 triggerlist_option_nfc: NFC Tag
 triggerlist_option_shortcut: Shortcut
-triggerlist_edit: Edit
 triggerlist_delete_title: Delete tag?
 automation_header: Automation
 automation_help: Bind commands to run when a trigger fires
@@ -131,7 +129,7 @@ settings_page_no_pages: No pages available
 settings_page_try: Try
 triggerlist_header: Saved Triggers
 commandlist_header: Saved Commands
-commandlist_item_menu_edit: Edit
+item_menu_edit: Edit
 command_run_error_fallback: Command execution failed
 intent_data_editor_data_header: Data
 intent_data_editor_data_uri: URI

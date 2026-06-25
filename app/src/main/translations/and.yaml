@@ -32,7 +32,7 @@ commandlist_not_found: No ay comandô guardáô
 commandlist_create_fab_desc: Creâh comando
 commandlist_create_command_title: Creâh comando
 commandlist_launch_app_option: Ehecutâh una app
-commandlist_run: Ehecutâh
+item_menu_run: Ehecutâh
 commandlist_delete_title: ¿Eliminâh comando?
 command_type_launch_activity: Abrîh una app
 command_type_send_broadcast: Notificâh una app
@@ -56,7 +56,6 @@ triggerlist_create_fab_desc: Creâh dîpparadôh
 triggerlist_create_title: Creâh dîpparadôh
 triggerlist_option_nfc: Etiqueta NFC
 triggerlist_option_shortcut: Âççeço dirêtto
-triggerlist_edit: Editâh
 triggerlist_delete_title: ¿Eliminâh etiqueta?
 automation_header: Automatiçaçión
 automation_help: Bincula âççionê pa ehecutarçe cuando çe dîppara un trîhhêh
@@ -128,7 +127,7 @@ settings_page_no_pages: No ay páhinâ dîpponiblê
 settings_page_try: Probâh
 triggerlist_header: Dîpparadorê guardáô
 commandlist_header: Âççionê guardâh
-commandlist_item_menu_edit: Editâh
+item_menu_edit: Editâh
 command_run_error_fallback: Fayó la ehecuçión der comando
 intent_data_editor_data_header: Datô
 intent_data_editor_data_uri: URI
@@ -373,3 +372,4 @@ item_menu_options_desc: Ôççionê
 item_menu_delete: Eliminâh
 item_menu_delete_confirmation_message: Êtta âççión no çe puede deçaçêh.
 item_menu_delete_confirmation_cancel: Cançelâh
+item_menu_delete_confirmation_title: ¿Borrâh elemento?

@@ -56,6 +56,36 @@ fun ItemMenu(content: @Composable (onDismiss: () -> Unit, onConfirm: (String, ()
 }
 
 @Composable
+fun ItemMenuEditOption(
+    onDismiss: () -> Unit,
+    onClick: () -> Unit,
+) {
+    DropdownMenuItem(
+        text = { Text(stringResource(R.string.item_menu_edit)) },
+        leadingIcon = { Icon(painter = painterResource(R.drawable.ic_edit), contentDescription = null) },
+        onClick = {
+            onDismiss()
+            onClick()
+        },
+    )
+}
+
+@Composable
+fun ItemMenuRunOption(
+    onDismiss: () -> Unit,
+    onClick: () -> Unit,
+) {
+    DropdownMenuItem(
+        text = { Text(stringResource(R.string.item_menu_run)) },
+        leadingIcon = { Icon(painter = painterResource(R.drawable.ic_play_arrow), contentDescription = null) },
+        onClick = {
+            onDismiss()
+            onClick()
+        },
+    )
+}
+
+@Composable
 fun ItemMenuDeleteOption(
     confirmationMessage: String,
     onDismiss: () -> Unit,

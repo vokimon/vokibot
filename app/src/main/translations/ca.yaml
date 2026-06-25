@@ -32,7 +32,7 @@ commandlist_not_found: No hi ha ordres desades
 commandlist_create_fab_desc: Crea una ordre
 commandlist_create_command_title: Crea una ordre
 commandlist_launch_app_option: Executa una app
-commandlist_run: Executa
+item_menu_run: Executa
 commandlist_delete_title: Realment vols suprimir l'ordre?
 command_type_launch_activity: Obrir una app
 command_type_send_broadcast: Notificar una app
@@ -56,7 +56,6 @@ triggerlist_create_fab_desc: Crea un disparador
 triggerlist_create_title: Crea un disparador
 triggerlist_option_nfc: Etiqueta NFC
 triggerlist_option_shortcut: Drecera
-triggerlist_edit: Edita
 triggerlist_delete_title: Suprimir l'etiqueta?
 automation_header: Automatització
 automation_help: Vincula accions per executar-les quan es dispara un disparador
@@ -130,7 +129,7 @@ settings_page_no_pages: No hi ha pàgines disponibles
 settings_page_try: Prova
 triggerlist_header: Disparadors desats
 commandlist_header: Accions desades
-commandlist_item_menu_edit: Edita
+item_menu_edit: Edita
 command_run_error_fallback: Ha fallat l'execució de la comanda
 intent_data_editor_data_header: Dades
 intent_data_editor_data_uri: URI
@@ -375,4 +374,4 @@ item_menu_options_desc: Opcions
 item_menu_delete: Suprimeix
 item_menu_delete_confirmation_message: Aquesta acció no es pot desfer.
 item_menu_delete_confirmation_cancel: Cancel·la
-item_menu_delete_confirmation_title: "Voleu suprimir l'element?"
+item_menu_delete_confirmation_title: Voleu suprimir l'element?

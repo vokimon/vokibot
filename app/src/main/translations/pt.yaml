@@ -32,7 +32,7 @@ commandlist_not_found: Nenhum comando salvo
 commandlist_create_fab_desc: Criar comando
 commandlist_create_command_title: Criar comando
 commandlist_launch_app_option: Abrir uma app
-commandlist_run: Executar
+item_menu_run: Executar
 commandlist_delete_title: Excluir comando?
 command_type_launch_activity: Abrir uma app
 command_type_send_broadcast: Notificar uma app
@@ -56,7 +56,6 @@ triggerlist_create_fab_desc: Criar gatilho
 triggerlist_create_title: Criar gatilho
 triggerlist_option_nfc: Etiqueta NFC
 triggerlist_option_shortcut: Atalho
-triggerlist_edit: Editar
 triggerlist_delete_title: Excluir etiqueta?
 automation_header: Automatização
 automation_help: Vincula comandos para executar quando um acionador é ativado
@@ -130,7 +129,7 @@ settings_page_no_pages: Nenhuma página disponível
 settings_page_try: Experimentar
 triggerlist_header: Acionadores guardados
 commandlist_header: Comandos guardados
-commandlist_item_menu_edit: Editar
+item_menu_edit: Editar
 command_run_error_fallback: Falha na execução do comando
 intent_data_editor_data_header: Dados
 intent_data_editor_data_uri: URI
@@ -375,4 +374,4 @@ item_menu_options_desc: Opções
 item_menu_delete: Excluir
 item_menu_delete_confirmation_message: Esta ação não pode ser desfeita.
 item_menu_delete_confirmation_cancel: Cancelar
-item_menu_delete_confirmation_title: "Eliminar item?"
+item_menu_delete_confirmation_title: Eliminar item?

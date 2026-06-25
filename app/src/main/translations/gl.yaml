@@ -32,7 +32,7 @@ commandlist_not_found: Non hai comandos gardados
 commandlist_create_fab_desc: Crear comando
 commandlist_create_command_title: Crear comando
 commandlist_launch_app_option: Executar unha app
-commandlist_run: Executar
+item_menu_run: Executar
 commandlist_delete_title: Eliminar comando?
 command_type_launch_activity: Abrir unha app
 command_type_send_broadcast: Notificar unha app
@@ -56,7 +56,6 @@ triggerlist_create_fab_desc: Crear disparador
 triggerlist_create_title: Crear disparador
 triggerlist_option_nfc: Etiqueta NFC
 triggerlist_option_shortcut: Atallo
-triggerlist_edit: Editar
 triggerlist_delete_title: Eliminar etiqueta?
 automation_header: Automatización
 automation_help: Vincula accións para executalas cando se dispara un disparador
@@ -130,7 +129,7 @@ settings_page_no_pages: Non hai páxinas dispoñibles
 settings_page_try: Probar
 triggerlist_header: Disparadores gardados
 commandlist_header: Accións gardadas
-commandlist_item_menu_edit: Editar
+item_menu_edit: Editar
 command_run_error_fallback: Fallou a execución do comando
 intent_data_editor_data_header: Datos
 intent_data_editor_data_uri: URI
@@ -375,4 +374,4 @@ item_menu_options_desc: Opcións
 item_menu_delete: Eliminar
 item_menu_delete_confirmation_message: Esta acción non se pode desfacer.
 item_menu_delete_confirmation_cancel: Cancelar
-item_menu_delete_confirmation_title: "Borrar elemento?"
+item_menu_delete_confirmation_title: Borrar elemento?

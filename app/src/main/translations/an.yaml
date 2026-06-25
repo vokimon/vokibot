@@ -32,8 +32,7 @@ commandlist_not_found: No i ha órdenes alzadas
 commandlist_create_fab_desc: Crear orden
 commandlist_create_command_title: Crear orden
 commandlist_launch_app_option: Executar una app
-commandlist_run: Executar
-commandlist_remove: Borrar
+item_menu_run: Executar
 commandlist_delete_title: Borrar orden?
 command_type_launch_activity: Ubrir una app
 command_type_send_broadcast: Notificar a una app
@@ -57,7 +56,6 @@ triggerlist_create_fab_desc: Crear disparador
 triggerlist_create_title: Crear disparador
 triggerlist_option_nfc: Etiqueta NFC
 triggerlist_option_shortcut: Drecera
-triggerlist_edit: Editar
 triggerlist_delete_title: Borrar etiqueta?
 automation_header: Automatización
 automation_help: Vincula accions ta executar-se quan se dispara un trigger
@@ -131,7 +129,7 @@ settings_page_no_pages: No i ha pachinas disponibles
 settings_page_try: Prebar
 triggerlist_header: Disparadors alzacaus
 commandlist_header: Accions alzacadas
-commandlist_item_menu_edit: Editar
+item_menu_edit: Editar
 command_run_error_fallback: Ha fallau l'execución d'a comando
 intent_data_editor_data_header: Datos
 intent_data_editor_data_uri: URI
@@ -376,4 +374,4 @@ item_menu_options_desc: Opcions
 item_menu_delete: Borrar
 item_menu_delete_confirmation_message: Esta acción no se puede desfer.
 item_menu_delete_confirmation_cancel: Cancelar
-item_menu_delete_confirmation_title: "Borrar elemento?"
+item_menu_delete_confirmation_title: Borrar elemento?

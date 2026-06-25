@@ -32,7 +32,7 @@ commandlist_not_found: Aucune commande enregistrée
 commandlist_create_fab_desc: Créer une commande
 commandlist_create_command_title: Créer une commande
 commandlist_launch_app_option: Lancer une app
-commandlist_run: Exécuter
+item_menu_run: Exécuter
 commandlist_delete_title: Supprimer la commande ?
 command_type_launch_activity: Ouvrir une app
 command_type_send_broadcast: Notifier une app
@@ -56,7 +56,6 @@ triggerlist_create_fab_desc: Créer un déclencheur
 triggerlist_create_title: Créer un déclencheur
 triggerlist_option_nfc: Étiquette NFC
 triggerlist_option_shortcut: Raccourci
-triggerlist_edit: Modifier
 triggerlist_delete_title: Supprimer l'étiquette ?
 automation_header: Automatisation
 automation_help: Liez des commandes à exécuter lorsqu'un déclencheur s'active
@@ -130,7 +129,7 @@ settings_page_no_pages: Aucune page disponible
 settings_page_try: Essayer
 triggerlist_header: Déclencheurs enregistrés
 commandlist_header: Commandes enregistrées
-commandlist_item_menu_edit: Modifier
+item_menu_edit: Modifier
 command_run_error_fallback: L'exécution de la commande a échoué
 intent_data_editor_data_header: Données
 intent_data_editor_data_uri: URI
@@ -375,4 +374,4 @@ item_menu_options_desc: Options
 item_menu_delete: Supprimer
 item_menu_delete_confirmation_message: Cette action est irréversible.
 item_menu_delete_confirmation_cancel: Annuler
-item_menu_delete_confirmation_title: "Supprimer l'élément ?"
+item_menu_delete_confirmation_title: Supprimer l'élément ?

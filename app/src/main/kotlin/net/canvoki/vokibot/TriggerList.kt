@@ -37,6 +37,7 @@ import net.canvoki.shared.component.StackedScreen
 import net.canvoki.vokibot.common.EditorHeader
 import net.canvoki.vokibot.common.ItemMenu
 import net.canvoki.vokibot.common.ItemMenuDeleteOption
+import net.canvoki.vokibot.common.ItemMenuEditOption
 import net.canvoki.vokibot.common.ListGroupHeader
 import net.canvoki.vokibot.common.tintIfFlat
 import net.canvoki.vokibot.drawableToPainter
@@ -100,18 +101,10 @@ fun TriggerList(
                         },
                     trailingContent = {
                         ItemMenu { onDismiss, onConfirm ->
-                            DropdownMenuItem(
-                                text = { Text(stringResource(R.string.triggerlist_edit)) },
-                                leadingIcon = {
-                                    Icon(
-                                        painter = painterResource(R.drawable.ic_edit),
-                                        contentDescription = null,
-                                    )
-                                },
+                            ItemMenuEditOption(
+                                onDismiss = onDismiss,
                                 onClick = {
-                                    onDismiss()
-                                    val editorScreen = StorableEntity.getEditorScreen(trigger.type, trigger.id)
-                                    editorScreen?.let {
+                                    StorableEntity.getEditorScreen(trigger.type, trigger.id)?.let {
                                         nav.push(it)
                                     }
                                 },

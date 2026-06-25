@@ -32,7 +32,7 @@ commandlist_not_found: Нет сохранённых команд
 commandlist_create_fab_desc: Создать команду
 commandlist_create_command_title: Создать команду
 commandlist_launch_app_option: Запустить приложение
-commandlist_run: Запустить
+item_menu_run: Запустить
 commandlist_delete_title: Удалить команду?
 command_type_launch_activity: Открыть приложение
 command_type_send_broadcast: Уведомить приложение
@@ -56,7 +56,6 @@ triggerlist_create_fab_desc: Создать триггер
 triggerlist_create_title: Создать триггер
 triggerlist_option_nfc: NFC-метка
 triggerlist_option_shortcut: Ярлык
-triggerlist_edit: Редактировать
 triggerlist_delete_title: Удалить метку?
 automation_header: Автоматизация
 automation_help: Привяжите команды для запуска при срабатывании триггера
@@ -130,7 +129,7 @@ settings_page_no_pages: Нет доступных страниц
 settings_page_try: Попробовать
 triggerlist_header: Сохранённые триггеры
 commandlist_header: Сохранённые команды
-commandlist_item_menu_edit: Изменить
+item_menu_edit: Изменить
 command_run_error_fallback: Не удалось выполнить команду
 intent_data_editor_data_header: Данные
 intent_data_editor_data_uri: URI
@@ -375,4 +374,4 @@ item_menu_options_desc: Параметры
 item_menu_delete: Удалить
 item_menu_delete_confirmation_message: Это действие нельзя отменить.
 item_menu_delete_confirmation_cancel: Отмена
-item_menu_delete_confirmation_title: "Удалить элемент?"
+item_menu_delete_confirmation_title: Удалить элемент?

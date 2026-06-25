@@ -39,6 +39,8 @@ import net.canvoki.shared.component.StackedScreen
 import net.canvoki.vokibot.common.EditorHeader
 import net.canvoki.vokibot.common.ItemMenu
 import net.canvoki.vokibot.common.ItemMenuDeleteOption
+import net.canvoki.vokibot.common.ItemMenuEditOption
+import net.canvoki.vokibot.common.ItemMenuRunOption
 import net.canvoki.vokibot.common.ListGroupHeader
 import net.canvoki.vokibot.common.tintIfFlat
 import net.canvoki.vokibot.common.toPainter
@@ -108,30 +110,17 @@ fun CommandList(
                     },
                     trailingContent = {
                         ItemMenu { onDismiss, onConfirm ->
-                            DropdownMenuItem(
-                                text = { Text(stringResource(R.string.commandlist_item_menu_edit)) },
-                                leadingIcon = {
-                                    Icon(painter = painterResource(R.drawable.ic_edit), contentDescription = null)
-                                },
+                            ItemMenuEditOption(
+                                onDismiss = onDismiss,
                                 onClick = {
-                                    onDismiss()
                                     StorableEntity.getEditorScreen(command.type, command.id)?.let {
                                         nav.push(it)
                                     }
                                 },
                             )
-                            DropdownMenuItem(
-                                text = { Text(stringResource(R.string.commandlist_run)) },
-                                leadingIcon = {
-                                    Icon(
-                                        painter = painterResource(R.drawable.ic_play_arrow),
-                                        contentDescription = null,
-                                    )
-                                },
-                                onClick = {
-                                    onDismiss()
-                                    command.execute(context, scope)
-                                },
+                            ItemMenuRunOption(
+                                onDismiss = onDismiss,
+                                onClick = { command.execute(context, scope) },
                             )
                             ItemMenuDeleteOption(
                                 confirmationMessage = stringResource(R.string.commandlist_delete_title),

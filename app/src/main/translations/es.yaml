@@ -32,7 +32,7 @@ commandlist_not_found: No hay comandos guardados
 commandlist_create_fab_desc: Crear comando
 commandlist_create_command_title: Crear comando
 commandlist_launch_app_option: Ejecutar una app
-commandlist_run: Ejecutar
+item_menu_run: Ejecutar
 commandlist_delete_title: ¿Eliminar comando?
 command_type_launch_activity: Abrir una app
 command_type_send_broadcast: Notificar una app
@@ -56,7 +56,6 @@ triggerlist_create_fab_desc: Crear disparador
 triggerlist_create_title: Crear disparador
 triggerlist_option_nfc: Etiqueta NFC
 triggerlist_option_shortcut: Acceso directo
-triggerlist_edit: Editar
 triggerlist_delete_title: ¿Eliminar etiqueta?
 automation_header: Automatización
 automation_help: Vincula acciones para ejecutarse cuando se dispara un trigger
@@ -130,7 +129,7 @@ settings_page_no_pages: No hay páginas disponibles
 settings_page_try: Probar
 triggerlist_header: Disparadores guardados
 commandlist_header: Acciones guardadas
-commandlist_item_menu_edit: Editar
+item_menu_edit: Editar
 command_run_error_fallback: Falló la ejecución del comando
 intent_data_editor_data_header: Datos
 intent_data_editor_data_uri: URI
@@ -375,4 +374,4 @@ item_menu_options_desc: Opciones
 item_menu_delete: Eliminar
 item_menu_delete_confirmation_message: Esta acción no se puede deshacer.
 item_menu_delete_confirmation_cancel: Cancelar
-item_menu_delete_confirmation_title: "¿Borrar elemento?"
+item_menu_delete_confirmation_title: ¿Borrar elemento?
