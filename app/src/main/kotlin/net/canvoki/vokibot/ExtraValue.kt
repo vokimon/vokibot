@@ -32,6 +32,13 @@ sealed class ExtraType {
 
     abstract fun fromRawString(raw: kotlin.String): ExtraValue
 
+    @Composable
+    abstract fun Editor(
+        label: kotlin.String,
+        value: ExtraValue,
+        onChanged: (ExtraValue) -> Unit,
+    )
+
     @Serializable
     @SerialName("STRING")
     object String : ExtraType() {
@@ -42,7 +49,7 @@ sealed class ExtraType {
         override fun fromRawString(raw: kotlin.String) = ExtraValue.StringValue(raw)
 
         @Composable
-        fun Editor(
+        override fun Editor(
             label: kotlin.String,
             value: ExtraValue,
             onChanged: (ExtraValue) -> Unit,
@@ -72,7 +79,7 @@ sealed class ExtraType {
         override fun fromRawString(raw: kotlin.String) = ExtraValue.UriValue(raw)
 
         @Composable
-        fun Editor(
+        override fun Editor(
             label: kotlin.String,
             value: ExtraValue,
             onChanged: (ExtraValue) -> Unit,
@@ -96,7 +103,7 @@ sealed class ExtraType {
         override fun fromRawString(raw: kotlin.String) = ExtraValue.IntValue(raw.toIntOrNull() ?: 0)
 
         @Composable
-        fun Editor(
+        override fun Editor(
             label: kotlin.String,
             value: ExtraValue,
             onChanged: (ExtraValue) -> Unit,
@@ -126,7 +133,7 @@ sealed class ExtraType {
         override fun fromRawString(raw: kotlin.String) = ExtraValue.BooleanValue(raw == "1")
 
         @Composable
-        fun Editor(
+        override fun Editor(
             label: kotlin.String,
             value: ExtraValue,
             onChanged: (ExtraValue) -> Unit,
@@ -149,7 +156,7 @@ sealed class ExtraType {
         override fun fromRawString(raw: kotlin.String) = ExtraValue.StringArrayValue(raw.split(",").map { it.trim() })
 
         @Composable
-        fun Editor(
+        override fun Editor(
             label: kotlin.String,
             value: ExtraValue,
             onChanged: (ExtraValue) -> Unit,
@@ -181,7 +188,7 @@ sealed class ExtraType {
         override fun fromRawString(raw: kotlin.String) = ExtraValue.UriListValue(raw.split(",").map { it.trim() })
 
         @Composable
-        fun Editor(
+        override fun Editor(
             label: kotlin.String,
             value: ExtraValue,
             onChanged: (ExtraValue) -> Unit,
