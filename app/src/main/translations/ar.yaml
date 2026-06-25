@@ -33,11 +33,7 @@ commandlist_create_fab_desc: إنشاء أمر
 commandlist_create_command_title: إنشاء أمر
 commandlist_launch_app_option: تشغيل تطبيق
 commandlist_run: تشغيل
-commandlist_remove: إزالة
 commandlist_delete_title: حذف الأمر؟
-commandlist_delete_message: لا يمكن التراجع عن هذا الإجراء.
-commandlist_delete: حذف
-commandlist_cancel: إلغاء
 command_type_launch_activity: فتح تطبيق
 command_type_send_broadcast: إشعار تطبيق
 command_type_start_service: بدء/إيقاف خدمة
@@ -61,10 +57,7 @@ triggerlist_create_title: إنشاء مشغل
 triggerlist_option_nfc: علامة NFC
 triggerlist_option_shortcut: اختصار
 triggerlist_edit: تحرير
-triggerlist_delete: حذف
 triggerlist_delete_title: حذف العلامة؟
-triggerlist_delete_message: لا يمكن التراجع عن هذا الإجراء.
-triggerlist_cancel: إلغاء
 automation_header: أتمتة
 automation_help: اربط الأوامر لتشغيلها عند إطلاق مُطلِق
 automation_name_label: اسم الأتمتة
@@ -379,3 +372,7 @@ setting_category_device: الجهاز
 setting_category_display: العرض
 setting_category_sound: الصوت
 item_menu_options_desc: خيارات
+item_menu_delete: حذف
+item_menu_delete_confirmation_message: لا يمكن التراجع عن هذا الإجراء.
+item_menu_delete_confirmation_cancel: إلغاء
+item_menu_delete_confirmation_title: "حذف العنصر؟"

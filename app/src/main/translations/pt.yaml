@@ -33,11 +33,7 @@ commandlist_create_fab_desc: Criar comando
 commandlist_create_command_title: Criar comando
 commandlist_launch_app_option: Abrir uma app
 commandlist_run: Executar
-commandlist_remove: Remover
 commandlist_delete_title: Excluir comando?
-commandlist_delete_message: Esta ação não pode ser desfeita.
-commandlist_delete: Excluir
-commandlist_cancel: Cancelar
 command_type_launch_activity: Abrir uma app
 command_type_send_broadcast: Notificar uma app
 command_type_start_service: Iniciar/parar um serviço
@@ -61,10 +57,7 @@ triggerlist_create_title: Criar gatilho
 triggerlist_option_nfc: Etiqueta NFC
 triggerlist_option_shortcut: Atalho
 triggerlist_edit: Editar
-triggerlist_delete: Excluir
 triggerlist_delete_title: Excluir etiqueta?
-triggerlist_delete_message: Esta ação não pode ser desfeita.
-triggerlist_cancel: Cancelar
 automation_header: Automatização
 automation_help: Vincula comandos para executar quando um acionador é ativado
 automation_name_label: Nome da automação
@@ -379,3 +372,7 @@ setting_category_device: Dispositivo
 setting_category_display: Ecrã
 setting_category_sound: Áudio
 item_menu_options_desc: Opções
+item_menu_delete: Excluir
+item_menu_delete_confirmation_message: Esta ação não pode ser desfeita.
+item_menu_delete_confirmation_cancel: Cancelar
+item_menu_delete_confirmation_title: "Eliminar item?"

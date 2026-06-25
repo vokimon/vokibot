@@ -33,11 +33,7 @@ commandlist_create_fab_desc: Befehl erstellen
 commandlist_create_command_title: Befehl erstellen
 commandlist_launch_app_option: App starten
 commandlist_run: Ausführen
-commandlist_remove: Entfernen
 commandlist_delete_title: Befehl löschen?
-commandlist_delete_message: Diese Aktion kann nicht rückgängig gemacht werden.
-commandlist_delete: Löschen
-commandlist_cancel: Abbrechen
 command_type_launch_activity: App öffnen
 command_type_send_broadcast: App benachrichtigen
 command_type_start_service: Dienst starten/stoppen
@@ -61,10 +57,7 @@ triggerlist_create_title: Trigger erstellen
 triggerlist_option_nfc: NFC-Tag
 triggerlist_option_shortcut: Kurztaste
 triggerlist_edit: Bearbeiten
-triggerlist_delete: Löschen
 triggerlist_delete_title: Tag löschen?
-triggerlist_delete_message: Diese Aktion kann nicht rückgängig gemacht werden.
-triggerlist_cancel: Abbrechen
 automation_header: Automatisierung
 automation_help: Verknüpfe Aktionen, die ausgeführt werden, wenn ein Auslöser feuert
 automation_name_label: Automatisierungsname
@@ -379,3 +372,7 @@ setting_category_device: Gerät
 setting_category_display: Anzeige
 setting_category_sound: Ton
 item_menu_options_desc: Optionen
+item_menu_delete: Löschen
+item_menu_delete_confirmation_message: Diese Aktion kann nicht rückgängig gemacht werden.
+item_menu_delete_confirmation_cancel: Abbrechen
+item_menu_delete_confirmation_title: "Element löschen?"

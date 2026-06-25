@@ -29,6 +29,7 @@ import net.canvoki.shared.component.AsyncList
 import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
 import net.canvoki.vokibot.common.ItemMenu
+import net.canvoki.vokibot.common.ItemMenuDeleteOption
 import net.canvoki.vokibot.common.ListGroupHeader
 
 @Serializable
@@ -37,7 +38,6 @@ data object AutomationList : StackedScreen<Unit>() {
     override fun Screen(nav: StackNavigatorState) {
         val context = LocalContext.current
         val repository = remember { FileDataRepository.fromContext(context) }
-        var automationToDelete by remember { mutableStateOf<Automation?>(null) }
         val dataVersion = repository.rememberDataVersion()
 
         Box(modifier = Modifier.fillMaxSize()) {
@@ -96,19 +96,12 @@ data object AutomationList : StackedScreen<Unit>() {
                             nav.push(AutomationEditor(automation.id))
                         },
                     trailingContent = {
-                        ItemMenu { onDismiss ->
-                            DropdownMenuItem(
-                                text = { Text(stringResource(R.string.automationlist_delete)) },
-                                leadingIcon = {
-                                    Icon(
-                                        painter = painterResource(R.drawable.ic_delete),
-                                        contentDescription = null,
-                                    )
-                                },
-                                onClick = {
-                                    onDismiss()
-                                    automationToDelete = automation
-                                },
+                        ItemMenu { onDismiss, onConfirm ->
+                            ItemMenuDeleteOption(
+                                confirmationMessage = stringResource(R.string.automationlist_delete_title),
+                                onDismiss = onDismiss,
+                                onConfirm = onConfirm,
+                                onDelete = { repository.automation.remove(automation.id) },
                             )
                         }
                     },
@@ -127,22 +120,5 @@ data object AutomationList : StackedScreen<Unit>() {
                 )
             }
         }
-
-        ConfirmDialog(
-            show = automationToDelete != null,
-            title = stringResource(R.string.automationlist_delete_title),
-            text = stringResource(R.string.automationlist_delete_message),
-            confirmText = stringResource(R.string.automationlist_delete),
-            dismissText = stringResource(R.string.automationlist_cancel),
-            onConfirm = {
-                automationToDelete?.let { auto ->
-                    repository.automation.remove(auto.id)
-                    automationToDelete = null
-                }
-            },
-            onDismiss = {
-                automationToDelete = null
-            },
-        )
     }
 }

@@ -33,11 +33,7 @@ commandlist_create_fab_desc: Komandoa sortu
 commandlist_create_command_title: Komandoa sortu
 commandlist_launch_app_option: Aplikazio bat abiarazi
 commandlist_run: Exekutatu
-commandlist_remove: Kendu
 commandlist_delete_title: Komandoa ezabatu?
-commandlist_delete_message: Ekintza hau ezin da desegin.
-commandlist_delete: Ezabatu
-commandlist_cancel: Utzi
 command_type_launch_activity: Aplikazio bat ireki
 command_type_send_broadcast: Aplikazio bati jakinarazi
 command_type_start_service: Zerbitzu bat hasi/gelditu
@@ -61,10 +57,7 @@ triggerlist_create_title: Abiarazlea sortu
 triggerlist_option_nfc: NFC etiketa
 triggerlist_option_shortcut: Lasterbidea
 triggerlist_edit: Editatu
-triggerlist_delete: Ezabatu
 triggerlist_delete_title: Etiketa ezabatu?
-triggerlist_delete_message: Ekintza hau ezin da desegin.
-triggerlist_cancel: Utzi
 automation_header: Automatizazio
 automation_help: Lotu ekintzak abiarazle bat aktibatzen denean exekutatzeko
 automation_name_label: Automatizazioaren izena
@@ -379,3 +372,7 @@ setting_category_device: Gailua
 setting_category_display: Pantaila
 setting_category_sound: Audioa
 item_menu_options_desc: Aukerak
+item_menu_delete: Ezabatu
+item_menu_delete_confirmation_message: Ekintza hau ezin da desegin.
+item_menu_delete_confirmation_cancel: Utzi
+item_menu_delete_confirmation_title: "Elementua ezabatu?"

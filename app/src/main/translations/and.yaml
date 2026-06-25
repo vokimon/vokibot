@@ -33,11 +33,7 @@ commandlist_create_fab_desc: Creâh comando
 commandlist_create_command_title: Creâh comando
 commandlist_launch_app_option: Ehecutâh una app
 commandlist_run: Ehecutâh
-commandlist_remove: Eliminâh
 commandlist_delete_title: ¿Eliminâh comando?
-commandlist_delete_message: Êtta âççión no çe puede deçaçêh.
-commandlist_delete: Eliminâh
-commandlist_cancel: Cançelâh
 command_type_launch_activity: Abrîh una app
 command_type_send_broadcast: Notificâh una app
 command_type_start_service: 'Aplicaçión: Iniçiâh proçeço'
@@ -61,10 +57,7 @@ triggerlist_create_title: Creâh dîpparadôh
 triggerlist_option_nfc: Etiqueta NFC
 triggerlist_option_shortcut: Âççeço dirêtto
 triggerlist_edit: Editâh
-triggerlist_delete: Eliminâh
 triggerlist_delete_title: ¿Eliminâh etiqueta?
-triggerlist_delete_message: Êtta âççión no çe puede deçaçêh.
-triggerlist_cancel: Cançelâh
 automation_header: Automatiçaçión
 automation_help: Bincula âççionê pa ehecutarçe cuando çe dîppara un trîhhêh
 automation_name_label: Nombre de la automatiçaçión
@@ -367,7 +360,6 @@ settings_page_name_quick_nfc: Panêh rápido de NFC
 command_change_setting_label: Cambiâh balôh de ahûtte
 command_change_setting_help: Modifica un balôh êppeçífico en lô ahûttê der çîttema.
 missing_permission_banner_button_grant_permission: Conçedêh permiço
-item_menu_options_desc: Ôççionê
 setting_category_connectivity: Conêttibidá
 setting_category_accessibility: Âççeçibilidá
 setting_category_text: Têtto
@@ -377,3 +369,7 @@ setting_category_power: Enerhía
 setting_category_device: Dîppoçitibo
 setting_category_display: Pantaya
 setting_category_sound: Audio
+item_menu_options_desc: Ôççionê
+item_menu_delete: Eliminâh
+item_menu_delete_confirmation_message: Êtta âççión no çe puede deçaçêh.
+item_menu_delete_confirmation_cancel: Cançelâh

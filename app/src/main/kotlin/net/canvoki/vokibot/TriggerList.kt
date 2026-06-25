@@ -36,6 +36,7 @@ import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
 import net.canvoki.vokibot.common.EditorHeader
 import net.canvoki.vokibot.common.ItemMenu
+import net.canvoki.vokibot.common.ItemMenuDeleteOption
 import net.canvoki.vokibot.common.ListGroupHeader
 import net.canvoki.vokibot.common.tintIfFlat
 import net.canvoki.vokibot.drawableToPainter
@@ -55,7 +56,6 @@ fun TriggerList(
 ) {
     val context = LocalContext.current
     val repository = remember { FileDataRepository.fromContext(context) }
-    var triggerToDelete by remember { mutableStateOf<Trigger?>(null) }
     val dataVersion = repository.rememberDataVersion()
 
     Box(modifier = modifier.fillMaxSize()) {
@@ -99,7 +99,7 @@ fun TriggerList(
                             nav.pop(trigger.id)
                         },
                     trailingContent = {
-                        ItemMenu { onDismiss ->
+                        ItemMenu { onDismiss, onConfirm ->
                             DropdownMenuItem(
                                 text = { Text(stringResource(R.string.triggerlist_edit)) },
                                 leadingIcon = {
@@ -116,18 +116,11 @@ fun TriggerList(
                                     }
                                 },
                             )
-                            DropdownMenuItem(
-                                text = { Text(stringResource(R.string.triggerlist_delete)) },
-                                leadingIcon = {
-                                    Icon(
-                                        painter = painterResource(R.drawable.ic_delete),
-                                        contentDescription = null,
-                                    )
-                                },
-                                onClick = {
-                                    onDismiss()
-                                    triggerToDelete = trigger
-                                },
+                            ItemMenuDeleteOption(
+                                confirmationMessage = stringResource(R.string.triggerlist_delete_title),
+                                onDismiss = onDismiss,
+                                onConfirm = onConfirm,
+                                onDelete = { repository.trigger.remove(trigger.id) },
                             )
                         }
                     },
@@ -145,22 +138,4 @@ fun TriggerList(
             )
         }
     }
-
-    // Delete confirmation dialog
-    ConfirmDialog(
-        show = triggerToDelete != null,
-        title = stringResource(R.string.triggerlist_delete_title),
-        text = stringResource(R.string.triggerlist_delete_message),
-        confirmText = stringResource(R.string.triggerlist_delete),
-        dismissText = stringResource(R.string.triggerlist_cancel),
-        onDismiss = {
-            triggerToDelete = null
-        },
-        onConfirm = {
-            triggerToDelete?.let { t ->
-                repository.trigger.remove(t.id)
-                triggerToDelete = null
-            }
-        },
-    )
 }

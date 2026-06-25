@@ -38,6 +38,7 @@ import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
 import net.canvoki.vokibot.common.EditorHeader
 import net.canvoki.vokibot.common.ItemMenu
+import net.canvoki.vokibot.common.ItemMenuDeleteOption
 import net.canvoki.vokibot.common.ListGroupHeader
 import net.canvoki.vokibot.common.tintIfFlat
 import net.canvoki.vokibot.common.toPainter
@@ -58,7 +59,6 @@ fun CommandList(
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
     val repository = remember { FileDataRepository.fromContext(context) }
-    var commandToDelete by remember { mutableStateOf<String?>(null) }
     val dataVersion = repository.rememberDataVersion()
 
     Box(modifier = modifier.fillMaxSize()) {
@@ -107,7 +107,7 @@ fun CommandList(
                         )
                     },
                     trailingContent = {
-                        ItemMenu { onDismiss ->
+                        ItemMenu { onDismiss, onConfirm ->
                             DropdownMenuItem(
                                 text = { Text(stringResource(R.string.commandlist_item_menu_edit)) },
                                 leadingIcon = {
@@ -133,18 +133,11 @@ fun CommandList(
                                     command.execute(context, scope)
                                 },
                             )
-                            DropdownMenuItem(
-                                text = { Text(stringResource(R.string.commandlist_remove)) },
-                                leadingIcon = {
-                                    Icon(
-                                        painter = painterResource(R.drawable.ic_delete),
-                                        contentDescription = null,
-                                    )
-                                },
-                                onClick = {
-                                    onDismiss()
-                                    commandToDelete = command.id
-                                },
+                            ItemMenuDeleteOption(
+                                confirmationMessage = stringResource(R.string.commandlist_delete_title),
+                                onDismiss = onDismiss,
+                                onConfirm = onConfirm,
+                                onDelete = { repository.removeCommand(command.id) },
                             )
                         }
                     },
@@ -162,21 +155,4 @@ fun CommandList(
             )
         }
     }
-
-    ConfirmDialog(
-        show = commandToDelete != null,
-        title = stringResource(R.string.commandlist_delete_title),
-        text = stringResource(R.string.commandlist_delete_message),
-        confirmText = stringResource(R.string.commandlist_delete),
-        dismissText = stringResource(R.string.commandlist_cancel),
-        onDismiss = {
-            commandToDelete = null
-        },
-        onConfirm = {
-            commandToDelete?.let { id ->
-                repository.removeCommand(id)
-                commandToDelete = null
-            }
-        },
-    )
 }

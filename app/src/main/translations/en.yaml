@@ -35,9 +35,6 @@ commandlist_launch_app_option: Launch an app
 commandlist_run: Run
 commandlist_remove: Remove
 commandlist_delete_title: Delete Command?
-commandlist_delete_message: This action cannot be undone.
-commandlist_delete: Delete
-commandlist_cancel: Cancel
 command_type_launch_activity: Open an app
 command_type_send_broadcast: Notify an app
 command_type_start_service: Start/stop a service
@@ -61,10 +58,7 @@ triggerlist_create_title: Create Trigger
 triggerlist_option_nfc: NFC Tag
 triggerlist_option_shortcut: Shortcut
 triggerlist_edit: Edit
-triggerlist_delete: Delete
 triggerlist_delete_title: Delete tag?
-triggerlist_delete_message: This action cannot be undone.
-triggerlist_cancel: Cancel
 automation_header: Automation
 automation_help: Bind commands to run when a trigger fires
 automation_name_label: Automation name
@@ -379,3 +373,7 @@ setting_category_device: Device
 setting_category_display: Display
 setting_category_sound: Audio
 item_menu_options_desc: Options
+item_menu_delete: Delete
+item_menu_delete_confirmation_message: This action cannot be undone.
+item_menu_delete_confirmation_cancel: Cancel
+item_menu_delete_confirmation_title: Delete item?

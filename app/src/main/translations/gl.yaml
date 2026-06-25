@@ -33,11 +33,7 @@ commandlist_create_fab_desc: Crear comando
 commandlist_create_command_title: Crear comando
 commandlist_launch_app_option: Executar unha app
 commandlist_run: Executar
-commandlist_remove: Eliminar
 commandlist_delete_title: Eliminar comando?
-commandlist_delete_message: Esta acción non se pode desfacer.
-commandlist_delete: Eliminar
-commandlist_cancel: Cancelar
 command_type_launch_activity: Abrir unha app
 command_type_send_broadcast: Notificar unha app
 command_type_start_service: Iniciar/deter un servizo
@@ -61,10 +57,7 @@ triggerlist_create_title: Crear disparador
 triggerlist_option_nfc: Etiqueta NFC
 triggerlist_option_shortcut: Atallo
 triggerlist_edit: Editar
-triggerlist_delete: Eliminar
 triggerlist_delete_title: Eliminar etiqueta?
-triggerlist_delete_message: Esta acción non se pode desfacer.
-triggerlist_cancel: Cancelar
 automation_header: Automatización
 automation_help: Vincula accións para executalas cando se dispara un disparador
 automation_name_label: Nome da automatización
@@ -379,3 +372,7 @@ setting_category_device: Dispositivo
 setting_category_display: Pantalla
 setting_category_sound: Audio
 item_menu_options_desc: Opcións
+item_menu_delete: Eliminar
+item_menu_delete_confirmation_message: Esta acción non se pode desfacer.
+item_menu_delete_confirmation_cancel: Cancelar
+item_menu_delete_confirmation_title: "Borrar elemento?"
