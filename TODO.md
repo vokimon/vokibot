@@ -4,15 +4,18 @@
 
 
 - Change Setting Command:
-    - [ ] Select a setting
+    - [x] Select a setting
     - [x] Setting List: Screen skeletton returning a setting
-    - [ ] Setting List: Build the Category list and translations
-    - [ ] Setting List: Add non-secure toggle settings
-    - [ ] Setting List: Add new types
+    - [x] Setting List: Build the Category list and translations
+    - [x] Setting List: Settings database
+    - [ ] Setting List: Navigate settings database
+    - [ ] Setting List: Group by category
+    - [ ] Setting DB: Add new types
+    - [ ] Different icon for each value type?
     - [ ] Setting Editor: Add new types
-    - [x] Very short description (Brighness) to be used as title, short enough to be also composed as command title "Brightness=100"
-    - [x] Long description: user centered to be shown in the editor when modifying (Sets the brightness of the screen)
-    - [x] Raw value description: to be used in raw edition, describes string format (Integer between 0 and 300)a
+    - [ ] Very short description (Brighness) to be used as title, short enough to be also composed as command title "Brightness=100"
+    - [ ] Long description: user centered to be shown in the editor when modifying (Sets the brightness of the screen)
+    - [ ] Raw value description: to be used in raw edition, describes string format (Integer between 0 and 300)a
     - [x] Change Settings Editor: rememberDiscardableState
     - [x] Change Settings Editor: if dirty show discard dialog before leaving
     - [x] Change Settings Editor: isReadyToSave requires setting not null

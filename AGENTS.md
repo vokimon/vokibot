@@ -141,6 +141,7 @@ Since all the steps are stable, we could stop an ongoing refactor and focus on T
 - Names should provide meaning and purpose, names should sufice to avoid comments most of the time
 - Meaningfull names use to be long, avoid including empty significants (Manager, Object...)
 - Meaningfull names use to be long, avoid repeating implied context, ie, `agentName` attribute in an `Agent` class.
+- Suppressions and Opt-in clausules should be limited to the statements that require them. Do not apply to a function or class if just one statement needs it.
 
 ## Exception Handling
 

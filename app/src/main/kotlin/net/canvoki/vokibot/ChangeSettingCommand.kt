@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.provider.Settings
-import androidx.annotation.StringRes
 import kotlinx.serialization.Serializable
 import java.util.UUID
 
@@ -44,11 +43,7 @@ data class ChangeSettingCommand(
     override val type = ChangeSettingCommand.typeKey
     override val iconRes = ChangeSettingCommand.iconRes
 
-    override fun getTitle(context: Context): String {
-        val setting = SETTING_VALUES.find { it.id == key }
-        return setting?.nameRes?.takeIf { it != 0 }?.let { context.getString(it) }
-            ?: key
-    }
+    override fun getTitle(context: Context): String = SETTING_VALUES.find { it.id == key }?.name ?: key
 
     override val description: String get() = key
 
@@ -66,49 +61,3 @@ data class ChangeSettingCommand(
     override fun loadIcon(context: Context): Drawable =
         resolveIntentIcon(context, Intent(key)) ?: context.getDrawable(iconRes)!!
 }
-
-data class SettingValue(
-    val id: String,
-    val categoryId: SettingCategory,
-    @get:StringRes val nameRes: Int = 0,
-) {
-    @get:StringRes
-    val labelRes: Int get() = categoryId.labelRes
-
-    fun isAvailable(context: Context): Boolean = context.packageManager.resolveActivity(Intent(id), 0) != null
-}
-
-enum class SettingCategory {
-    DISPLAY,
-    SOUND,
-    CONNECTIVITY,
-    ACCESSIBILITY,
-    TEXT,
-    TIME,
-    DEVELOPER,
-    POWER,
-    DEVICE,
-    ;
-
-    @get:StringRes
-    val labelRes: Int get() =
-        when (this) {
-            DISPLAY -> R.string.setting_category_display
-            SOUND -> R.string.setting_category_sound
-            CONNECTIVITY -> R.string.setting_category_connectivity
-            ACCESSIBILITY -> R.string.setting_category_accessibility
-            TEXT -> R.string.setting_category_text
-            TIME -> R.string.setting_category_time
-            DEVELOPER -> R.string.setting_category_developer
-            POWER -> R.string.setting_category_power
-            DEVICE -> R.string.setting_category_device
-        }
-}
-
-val SETTING_VALUES: List<SettingValue> =
-    listOf(
-        SettingValue(
-            id = Settings.System.SCREEN_BRIGHTNESS_MODE,
-            categoryId = SettingCategory.DISPLAY,
-        ),
-    )
