@@ -118,7 +118,7 @@ fun ChangeSettingCommandEditor(
     val settingValue = setting?.let { id -> SETTING_VALUES.find { it.id == id } }
     val settingTitle = settingValue?.name
     val settingHelp = settingValue?.description ?: ""
-    val settingDev = settingValue?.dev ?: ""
+    val settingRawHelp = settingValue?.rawHelp ?: ""
     val writeSettingsPerm = rememberPermissionState("android.permission.WRITE_SETTINGS")
     var rawEdit by rememberSaveable { mutableStateOf(false) }
     var value by remember { mutableStateOf<ExtraValue>(ExtraValue.BooleanValue(false)) }
@@ -201,7 +201,7 @@ fun ChangeSettingCommandEditor(
                         discardState.markDirty()
                     },
                     label = { Text("Value") },
-                    supportingText = { Text(settingDev) },
+                    supportingText = { Text(settingRawHelp) },
                     modifier = Modifier.fillMaxWidth(),
                 )
                 OneTimeNotice(
