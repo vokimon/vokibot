@@ -46,7 +46,7 @@ Settings.System.putInt(
 Notice:
 
 - API is typed but the underlying storage is string based
-- You could write whichever type, consumers try to parse the expected type and fallback to default
+- You could write whichever type, consumers try to parse the expected type and fallback to default if it fails
 
 
 ## Where to Find Available Settings
@@ -56,7 +56,8 @@ There is no complete official registry of all settings.
 ### Official (partial) documentation
 
 - Global <https://developer.android.com/reference/android/provider/Settings.Global>
-- System <
+- System <https://developer.android.com/reference/android/provider/Settings.System>
+- Secure <https://developer.android.com/reference/android/provider/Settings.Secure>
 
 * Android SDK: `android.provider.Settings`
 * AOSP documentation (incomplete and version-dependent)
@@ -74,7 +75,6 @@ These define:
 * Default behavior
 * Permission checks (partially)
 
----
 
 ## 4. Runtime Inspection of Available Settings
 
@@ -380,3 +380,60 @@ AOSP source:
     - UI: Toggle
 - `USE_GOOGLE_MAIL`: (Int) 0=off, 1=on, show "Google Mail" instead of "Gmail" (Global)
     - UI: Toggle
+
+### Discarded
+
+Settings already discarded to be included in the app.
+Usually because they are ignored on every Android beyond API 26.
+
+- `VOLUME_SYSTEM`: (Int) System/notifications volume, 0-15 (System)
+    - UI: Ranged value
+    - DISCARDED: not in public api
+- `VOLUME_RING`: (Int) Ringer volume, 0-15 (System)
+    - UI: Ranged value
+    - DISCARDED: not in public api
+- `VOLUME_MUSIC`: (Int) Music/media/gaming volume, 0-15 (System)
+    - UI: Ranged value
+    - DISCARDED: not in public api
+- `VOLUME_ALARM`: (Int) Alarm volume, 0-15 (System)
+    - UI: Ranged value
+    - DISCARDED: not in public api
+- `VOLUME_NOTIFICATION`: (Int) Notification volume, 0-15 (System)
+    - UI: Ranged value
+    - DISCARDED: not in public api
+- `VOLUME_VOICE`: (Int) Voice call volume, 0-15 (System)
+    - UI: Ranged value
+    - DISCARDED: not in public api
+- `VOLUME_BLUETOOTH_SCO`: (Int) Bluetooth SCO volume, 0-15 (System)
+    - UI: Ranged value
+    - DISCARDED: not in public api
+- `APPEND_FOR_LAST_AUDIBLE`: (Int) Bitmask: voice_call=1, system=2, ring=4, music=8, alarm=16, notification=32, bt_sco=64 (System)
+    - UI: Flags("Voice call", "System", "Ring", "Music", "Alarm", "Notification", "BT SCO")
+    - DISCARDED: not in public api
+- `ACCESSIBILITY_SPEAK_PASSWORD`: (Int) 0=off, 1=on, speak passwords aloud (Secure)
+    - UI: Toggle
+    - DISCARDED: Deprecated in API 26. Individual accessibility services now control this behavior
+- `LOCATION_PROVIDERS_ALLOWED`: (String, comma-separated list) Allowed providers (Secure)
+    - UI: Dynamic list (comma-separated, from LocationManager.getProviders())
+    - DISCARDED: Deprecated in API 19. Use `LocationManager.isProviderEnabled()` or `LocationManager.isLocationEnabled()`
+- `ALLOW_MOCK_LOCATION`: (Int) 0=off, 1=on, allow mock locations (Secure)
+    - UI: Toggle
+    - DISCARDED: Deprecated in API 23, no longer used
+- `INSTALL_NON_MARKET_APPS`: (Int) 0=off, 1=on, allow non-Market installs (Secure)
+    - UI: Toggle
+    - DISCARDED: Deprecated in API 26. Use `PackageManager.canRequestPackageInstalls()`
+- `LOCK_PATTERN_ENABLED`: (Int) 0=off, 1=on, autolock enabled (Secure)
+    - UI: Toggle
+    - DISCARDED: Deprecated in API 23, throws SecurityException. Use `KeyguardManager`
+- `LOCK_PATTERN_VISIBLE`: (Int) 0=off, 1=on, pattern visible while drawing (Secure)
+    - UI: Toggle
+    - DISCARDED: Deprecated in API 23, throws SecurityException. Use `KeyguardManager`
+- `WIFI_NETWORKS_AVAILABLE_NOTIFICATION_ON`: (Int) 0=off, 1=on, notify open networks (Global)
+    - UI: Toggle
+    - DISCARDED: Deprecated in API 26
+- `WIFI_WATCHDOG_ON`: (Int) 0=off, 1=on, Wi-Fi watchdog (Global)
+    - UI: Toggle
+    - DISCARDED: Deprecated in API 23
+- `SHOW_PROCESSES`: (Int) 0=off, 1=on, show process CPU usage meter (Global)
+    - UI: Toggle
+    - DISCARDED: Deprecated in API 25
