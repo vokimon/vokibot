@@ -246,14 +246,6 @@ sealed class ExtraValue {
 
     abstract fun toStoredSettingValue(): String
 
-    @Composable
-    open fun Editor(
-        spec: ExtraSpec,
-        onChanged: (ExtraValue) -> Unit,
-    ) {
-        getExtraType().Editor(label = spec.displayLabel(), value = this, onChanged = onChanged)
-    }
-
     @Serializable
     @SerialName("string")
     data class StringValue(

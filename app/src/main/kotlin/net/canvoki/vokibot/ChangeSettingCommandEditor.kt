@@ -220,8 +220,9 @@ fun ChangeSettingCommandEditor(
                     message = "This option enables writing any value, even broken ones. Use with care!",
                 )
             } else {
-                value.Editor(
-                    spec = ExtraSpec(key = "Value", type = settingValue?.type ?: ExtraType.String),
+                (settingValue?.type ?: ExtraType.String).Editor(
+                    label = "Value",
+                    value = value,
                     onChanged = {
                         value = it
                         discardState.markDirty()

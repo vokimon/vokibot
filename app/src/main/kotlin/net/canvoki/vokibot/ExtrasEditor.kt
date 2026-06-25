@@ -61,8 +61,9 @@ fun ExtrasEditor(
         SectionHeader(stringResource(R.string.intent_extras_editor_header))
         specs.forEach { spec ->
             val value = extras[spec.key] ?: spec.defaultValue()
-            value.Editor(
-                spec = spec,
+            spec.type.Editor(
+                label = spec.displayLabel(),
+                value = value,
                 onChanged = { newValue -> onExtraChanged(spec.key, newValue) },
             )
             Spacer(modifier = Modifier.height(8.dp))
