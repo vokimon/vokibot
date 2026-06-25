@@ -183,11 +183,11 @@ fun ChangeSettingCommandEditor(
                 nav.push(SettingList) { result ->
                     result?.let {
                         setting = it
-                        value =
-                            when (SETTING_VALUES.find { sv -> sv.id == it }?.type) {
-                                ExtraType.Boolean -> ExtraValue.BooleanValue(false)
-                                else -> ExtraValue.StringValue("")
-                            }
+                        value = SETTING_VALUES
+                            .find { sv -> sv.id == it }
+                            ?.type
+                            ?.defaultValue()
+                            ?: ExtraValue.StringValue("")
                         rawEdit = false
                         discardState.markDirty()
                     }
@@ -207,11 +207,7 @@ fun ChangeSettingCommandEditor(
                 OutlinedTextField(
                     value = value.toStoredSettingValue(),
                     onValueChange = { raw ->
-                        value =
-                            when (settingValue?.type) {
-                                ExtraType.Boolean -> ExtraValue.BooleanValue(raw == "1")
-                                else -> ExtraValue.StringValue(raw)
-                            }
+                        value = (settingValue?.type ?: ExtraType.String).fromRawString(raw)
                         discardState.markDirty()
                     },
                     label = { Text("Value") },

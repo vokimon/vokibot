@@ -26,29 +26,57 @@ import net.canvoki.vokibot.common.UriField
 sealed class ExtraType {
     override fun toString(): kotlin.String = this::class.simpleName!!
 
+    abstract fun defaultValue(): ExtraValue
+
+    abstract fun fromRawString(raw: kotlin.String): ExtraValue
+
     @Serializable
     @SerialName("STRING")
-    object String : ExtraType()
+    object String : ExtraType() {
+        override fun defaultValue() = ExtraValue.StringValue("")
+
+        override fun fromRawString(raw: kotlin.String) = ExtraValue.StringValue(raw)
+    }
 
     @Serializable
     @SerialName("URI")
-    object Uri : ExtraType()
+    object Uri : ExtraType() {
+        override fun defaultValue() = ExtraValue.UriValue("")
+
+        override fun fromRawString(raw: kotlin.String) = ExtraValue.UriValue(raw)
+    }
 
     @Serializable
     @SerialName("INT")
-    object Int : ExtraType()
+    object Int : ExtraType() {
+        override fun defaultValue() = ExtraValue.IntValue(0)
+
+        override fun fromRawString(raw: kotlin.String) = ExtraValue.IntValue(raw.toIntOrNull() ?: 0)
+    }
 
     @Serializable
     @SerialName("BOOLEAN")
-    object Boolean : ExtraType()
+    object Boolean : ExtraType() {
+        override fun defaultValue() = ExtraValue.BooleanValue(false)
+
+        override fun fromRawString(raw: kotlin.String) = ExtraValue.BooleanValue(raw == "1")
+    }
 
     @Serializable
     @SerialName("STRING_ARRAY")
-    object StringArray : ExtraType()
+    object StringArray : ExtraType() {
+        override fun defaultValue() = ExtraValue.StringArrayValue(emptyList())
+
+        override fun fromRawString(raw: kotlin.String) = ExtraValue.StringArrayValue(raw.split(",").map { it.trim() })
+    }
 
     @Serializable
     @SerialName("URI_LIST")
-    object UriList : ExtraType()
+    object UriList : ExtraType() {
+        override fun defaultValue() = ExtraValue.UriListValue(emptyList())
+
+        override fun fromRawString(raw: kotlin.String) = ExtraValue.UriListValue(raw.split(",").map { it.trim() })
+    }
 
     companion object {
         val intentExtraTypes: List<ExtraType> = listOf(String, Uri, Int, Boolean, StringArray, UriList)
@@ -76,15 +104,7 @@ data class ExtraSpec(
 @Composable
 fun ExtraSpec.displayLabel(): String = if (labelRes != 0) stringResource(labelRes) else key
 
-fun ExtraSpec.defaultValue(): ExtraValue =
-    when (type) {
-        ExtraType.String -> ExtraValue.StringValue("")
-        ExtraType.Uri -> ExtraValue.UriValue("")
-        ExtraType.Int -> ExtraValue.IntValue(0)
-        ExtraType.Boolean -> ExtraValue.BooleanValue(false)
-        ExtraType.StringArray -> ExtraValue.StringArrayValue(emptyList())
-        ExtraType.UriList -> ExtraValue.UriListValue(emptyList())
-    }
+fun ExtraSpec.defaultValue(): ExtraValue = type.defaultValue()
 
 /**
  * Type-safe extra values for Intents.
