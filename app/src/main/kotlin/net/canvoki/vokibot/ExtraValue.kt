@@ -27,14 +27,18 @@ sealed class ExtraType {
     override fun toString(): kotlin.String = this::class.simpleName!!
 
     @get:StringRes abstract val labelRes: kotlin.Int
+
     abstract fun defaultValue(): ExtraValue
+
     abstract fun fromRawString(raw: kotlin.String): ExtraValue
 
     @Serializable
     @SerialName("STRING")
     object String : ExtraType() {
         override val labelRes = R.string.extra_value_type_text
+
         override fun defaultValue() = ExtraValue.StringValue("")
+
         override fun fromRawString(raw: kotlin.String) = ExtraValue.StringValue(raw)
     }
 
@@ -42,7 +46,9 @@ sealed class ExtraType {
     @SerialName("URI")
     object Uri : ExtraType() {
         override val labelRes = R.string.extra_value_type_uri
+
         override fun defaultValue() = ExtraValue.UriValue("")
+
         override fun fromRawString(raw: kotlin.String) = ExtraValue.UriValue(raw)
     }
 
@@ -50,7 +56,9 @@ sealed class ExtraType {
     @SerialName("INT")
     object Int : ExtraType() {
         override val labelRes = R.string.extra_value_type_number
+
         override fun defaultValue() = ExtraValue.IntValue(0)
+
         override fun fromRawString(raw: kotlin.String) = ExtraValue.IntValue(raw.toIntOrNull() ?: 0)
     }
 
@@ -58,7 +66,9 @@ sealed class ExtraType {
     @SerialName("BOOLEAN")
     object Boolean : ExtraType() {
         override val labelRes = R.string.extra_value_type_boolean
+
         override fun defaultValue() = ExtraValue.BooleanValue(false)
+
         override fun fromRawString(raw: kotlin.String) = ExtraValue.BooleanValue(raw == "1")
     }
 
@@ -66,7 +76,9 @@ sealed class ExtraType {
     @SerialName("STRING_ARRAY")
     object StringArray : ExtraType() {
         override val labelRes = R.string.extra_value_type_text_list
+
         override fun defaultValue() = ExtraValue.StringArrayValue(emptyList())
+
         override fun fromRawString(raw: kotlin.String) = ExtraValue.StringArrayValue(raw.split(",").map { it.trim() })
     }
 
@@ -74,7 +86,9 @@ sealed class ExtraType {
     @SerialName("URI_LIST")
     object UriList : ExtraType() {
         override val labelRes = R.string.extra_value_type_uri_list
+
         override fun defaultValue() = ExtraValue.UriListValue(emptyList())
+
         override fun fromRawString(raw: kotlin.String) = ExtraValue.UriListValue(raw.split(",").map { it.trim() })
     }
 
@@ -106,6 +120,8 @@ sealed class ExtraValue {
         key: String,
     )
 
+    abstract fun isDefault(): Boolean
+
     abstract fun toStoredSettingValue(): String
 
     @Composable
@@ -126,6 +142,8 @@ sealed class ExtraValue {
         ) {
             intent.putExtra(key, value)
         }
+
+        override fun isDefault(): Boolean = value.isEmpty()
 
         override fun toStoredSettingValue(): String = value
 
@@ -160,6 +178,8 @@ sealed class ExtraValue {
             intent.putExtra(key, value)
         }
 
+        override fun isDefault(): Boolean = value == 0
+
         override fun toStoredSettingValue(): String = value.toString()
 
         @Composable
@@ -192,6 +212,8 @@ sealed class ExtraValue {
         ) {
             intent.putExtra(key, value)
         }
+
+        override fun isDefault(): Boolean = value == 0L
 
         override fun toStoredSettingValue(): String = value.toString()
 
@@ -226,6 +248,8 @@ sealed class ExtraValue {
             intent.putExtra(key, value)
         }
 
+        override fun isDefault(): Boolean = value == false
+
         override fun toStoredSettingValue(): String = if (value) "1" else "0"
 
         @Composable
@@ -251,6 +275,8 @@ sealed class ExtraValue {
         ) {
             intent.putExtra(key, value)
         }
+
+        override fun isDefault(): Boolean = value == 0f
 
         override fun toStoredSettingValue(): String = value.toString()
 
@@ -285,6 +311,8 @@ sealed class ExtraValue {
             intent.putExtra(key, value.toUri())
         }
 
+        override fun isDefault(): Boolean = value.isEmpty()
+
         override fun toStoredSettingValue(): String = value
 
         @Composable
@@ -311,6 +339,8 @@ sealed class ExtraValue {
         ) {
             intent.putExtra(key, values.toTypedArray())
         }
+
+        override fun isDefault(): Boolean = values.isEmpty()
 
         override fun toStoredSettingValue(): String = values.joinToString(",")
 
@@ -349,6 +379,8 @@ sealed class ExtraValue {
             intent.putParcelableArrayListExtra(key, ArrayList(values.map { it.toUri() }))
         }
 
+        override fun isDefault(): Boolean = values.isEmpty()
+
         override fun toStoredSettingValue(): String = values.joinToString(",")
 
         @Composable
@@ -374,18 +406,6 @@ sealed class ExtraValue {
         }
     }
 }
-
-fun ExtraValue.isDefault(): Boolean =
-    when (this) {
-        is ExtraValue.StringValue -> value.isEmpty()
-        is ExtraValue.IntValue -> value == 0
-        is ExtraValue.LongValue -> value == 0L
-        is ExtraValue.BooleanValue -> !value
-        is ExtraValue.FloatValue -> value == 0f
-        is ExtraValue.UriValue -> value.isEmpty()
-        is ExtraValue.StringArrayValue -> values.isEmpty()
-        is ExtraValue.UriListValue -> values.isEmpty()
-    }
 
 fun ExtraValue.toExtraType(): ExtraType =
     when (this) {
