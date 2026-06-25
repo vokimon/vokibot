@@ -36,6 +36,12 @@ val ExtraValueMapSaver: Saver<Map<String, ExtraValue>, String> =
         restore = { JsonConfig.decodeFromString(MapSerializer(serializer(), serializer()), it) },
     )
 
+val ExtraValueSaver: Saver<ExtraValue, String> =
+    Saver(
+        save = { JsonConfig.encodeToString(serializer(), it) },
+        restore = { JsonConfig.decodeFromString(serializer(), it) },
+    )
+
 val ExtraSpecListSaver: Saver<List<ExtraSpec>, String> =
     Saver(
         save = { JsonConfig.encodeToString(it) },

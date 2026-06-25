@@ -43,6 +43,7 @@ import kotlinx.serialization.Serializable
 import net.canvoki.shared.component.OneTimeNotice
 import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
+import net.canvoki.vokibot.ExtraValueSaver
 import net.canvoki.vokibot.common.EditorHeader
 import net.canvoki.vokibot.common.MissingPermissionBanner
 import net.canvoki.vokibot.common.TryCommandButton
@@ -114,14 +115,16 @@ fun ChangeSettingCommandEditor(
     var isSaving by rememberSaveable { mutableStateOf(false) }
     val discardState = rememberDiscardableState(screen = editor, nav = nav)
     var hasLoaded by rememberSaveable { mutableStateOf(false) }
-    var setting by remember { mutableStateOf<String?>(null) }
+    var setting by rememberSaveable { mutableStateOf<String?>(null) }
     val settingValue = setting?.let { id -> SETTING_VALUES.find { it.id == id } }
     val settingTitle = settingValue?.name
     val settingHelp = settingValue?.description ?: ""
     val settingRawHelp = settingValue?.rawHelp ?: ""
     val writeSettingsPerm = rememberPermissionState("android.permission.WRITE_SETTINGS")
     var rawEdit by rememberSaveable { mutableStateOf(false) }
-    var value by remember { mutableStateOf<ExtraValue>(ExtraValue.BooleanValue(false)) }
+    var value by rememberSaveable(stateSaver = ExtraValueSaver) {
+        mutableStateOf<ExtraValue>(ExtraValue.BooleanValue(false))
+    }
 
     fun buildCommand(): ChangeSettingCommand {
         require(setting != null)
