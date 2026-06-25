@@ -115,13 +115,10 @@ fun ChangeSettingCommandEditor(
     val discardState = rememberDiscardableState(screen = editor, nav = nav)
     var hasLoaded by rememberSaveable { mutableStateOf(false) }
     var setting by remember { mutableStateOf<String?>(null) }
-    val settingTitle =
-        setting?.let {
-            // TODO: resolve from SETTING_VALUES
-            "Adaptive Brightness"
-        }
-    val settingHelp = "When enabled the screen brightness will adapt to environmental light"
-    val settingDev = "1 for enabled, 0 for disabled"
+    val settingValue = setting?.let { id -> SETTING_VALUES.find { it.id == id } }
+    val settingTitle = settingValue?.name
+    val settingHelp = settingValue?.description ?: ""
+    val settingDev = settingValue?.dev ?: ""
     val writeSettingsPerm = rememberPermissionState("android.permission.WRITE_SETTINGS")
     var rawEdit by rememberSaveable { mutableStateOf(false) }
     var value by remember { mutableStateOf<ExtraValue>(ExtraValue.BooleanValue(false)) }
