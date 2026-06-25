@@ -122,6 +122,8 @@ sealed class ExtraValue {
 
     abstract fun isDefault(): Boolean
 
+    abstract fun getExtraType(): ExtraType
+
     abstract fun toStoredSettingValue(): String
 
     @Composable
@@ -144,6 +146,8 @@ sealed class ExtraValue {
         }
 
         override fun isDefault(): Boolean = value.isEmpty()
+
+        override fun getExtraType() = ExtraType.String
 
         override fun toStoredSettingValue(): String = value
 
@@ -180,6 +184,8 @@ sealed class ExtraValue {
 
         override fun isDefault(): Boolean = value == 0
 
+        override fun getExtraType() = ExtraType.Int
+
         override fun toStoredSettingValue(): String = value.toString()
 
         @Composable
@@ -214,6 +220,8 @@ sealed class ExtraValue {
         }
 
         override fun isDefault(): Boolean = value == 0L
+
+        override fun getExtraType() = ExtraType.Int
 
         override fun toStoredSettingValue(): String = value.toString()
 
@@ -250,6 +258,8 @@ sealed class ExtraValue {
 
         override fun isDefault(): Boolean = value == false
 
+        override fun getExtraType() = ExtraType.Boolean
+
         override fun toStoredSettingValue(): String = if (value) "1" else "0"
 
         @Composable
@@ -277,6 +287,8 @@ sealed class ExtraValue {
         }
 
         override fun isDefault(): Boolean = value == 0f
+
+        override fun getExtraType() = ExtraType.String
 
         override fun toStoredSettingValue(): String = value.toString()
 
@@ -313,6 +325,8 @@ sealed class ExtraValue {
 
         override fun isDefault(): Boolean = value.isEmpty()
 
+        override fun getExtraType() = ExtraType.Uri
+
         override fun toStoredSettingValue(): String = value
 
         @Composable
@@ -341,6 +355,8 @@ sealed class ExtraValue {
         }
 
         override fun isDefault(): Boolean = values.isEmpty()
+
+        override fun getExtraType() = ExtraType.StringArray
 
         override fun toStoredSettingValue(): String = values.joinToString(",")
 
@@ -381,6 +397,8 @@ sealed class ExtraValue {
 
         override fun isDefault(): Boolean = values.isEmpty()
 
+        override fun getExtraType() = ExtraType.UriList
+
         override fun toStoredSettingValue(): String = values.joinToString(",")
 
         @Composable
@@ -407,17 +425,6 @@ sealed class ExtraValue {
     }
 }
 
-fun ExtraValue.toExtraType(): ExtraType =
-    when (this) {
-        is ExtraValue.StringValue -> ExtraType.String
-        is ExtraValue.IntValue, is ExtraValue.LongValue -> ExtraType.Int
-        is ExtraValue.BooleanValue -> ExtraType.Boolean
-        is ExtraValue.FloatValue -> ExtraType.String
-        is ExtraValue.UriValue -> ExtraType.Uri
-        is ExtraValue.StringArrayValue -> ExtraType.StringArray
-        is ExtraValue.UriListValue -> ExtraType.UriList
-    }
-
 fun computeNewCustomSpecs(
     extrasState: Map<String, ExtraValue>,
     newActionExtras: List<ExtraSpec>,
@@ -426,7 +433,7 @@ fun computeNewCustomSpecs(
     return extrasState
         .filterKeys { it !in actionKeys }
         .filterValues { !it.isDefault() }
-        .map { (k, v) -> ExtraSpec(k, v.toExtraType()) }
+        .map { (k, v) -> ExtraSpec(k, v.getExtraType()) }
 }
 
 fun rebuildExtras(
@@ -437,5 +444,5 @@ fun rebuildExtras(
     (actionSpecs + customSpecs)
         .map { spec ->
             val existing = values[spec.key]
-            spec.key to if (existing != null && existing.toExtraType() == spec.type) existing else spec.defaultValue()
+            spec.key to if (existing != null && existing.getExtraType() == spec.type) existing else spec.defaultValue()
         }.toMap()

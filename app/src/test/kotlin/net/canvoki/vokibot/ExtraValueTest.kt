@@ -191,50 +191,50 @@ class ExtraValueTest {
         checkDefault(ExtraValue.UriListValue(listOf("geo:0,0")), false)
     }
 
-    // ---------- toExtraType ----------
+    // ---------- getExtraType ----------
 
     private fun checkExtraType(
         value: ExtraValue,
         expected: ExtraType,
-    ) = assertEquals(expected, value.toExtraType())
+    ) = assertEquals(expected, value.getExtraType())
 
     @Test
-    fun `StringValue toExtraType is STRING`() {
+    fun `StringValue getExtraType is STRING`() {
         checkExtraType(ExtraValue.StringValue(""), ExtraType.String)
     }
 
     @Test
-    fun `IntValue toExtraType is INT`() {
+    fun `IntValue getExtraType is INT`() {
         checkExtraType(ExtraValue.IntValue(0), ExtraType.Int)
     }
 
     @Test
-    fun `LongValue toExtraType is INT`() {
+    fun `LongValue getExtraType is INT`() {
         checkExtraType(ExtraValue.LongValue(0L), ExtraType.Int)
     }
 
     @Test
-    fun `BooleanValue toExtraType is BOOLEAN`() {
+    fun `BooleanValue getExtraType is BOOLEAN`() {
         checkExtraType(ExtraValue.BooleanValue(false), ExtraType.Boolean)
     }
 
     @Test
-    fun `FloatValue toExtraType is STRING`() {
+    fun `FloatValue getExtraType is STRING`() {
         checkExtraType(ExtraValue.FloatValue(0f), ExtraType.String)
     }
 
     @Test
-    fun `UriValue toExtraType is URI`() {
+    fun `UriValue getExtraType is URI`() {
         checkExtraType(ExtraValue.UriValue(""), ExtraType.Uri)
     }
 
     @Test
-    fun `StringArrayValue toExtraType is STRING_ARRAY`() {
+    fun `StringArrayValue getExtraType is STRING_ARRAY`() {
         checkExtraType(ExtraValue.StringArrayValue(emptyList()), ExtraType.StringArray)
     }
 
     @Test
-    fun `UriListValue toExtraType is URI_LIST`() {
+    fun `UriListValue getExtraType is URI_LIST`() {
         checkExtraType(ExtraValue.UriListValue(emptyList()), ExtraType.UriList)
     }
 

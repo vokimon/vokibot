@@ -10,8 +10,7 @@
     - [x] Setting List: Settings database
     - [x] Setting List: Navigate settings database
     - [x] Setting List: Group by category
-    - [ ] Setting DB: Add new types
-    - [ ] Setting Editor: Add new types
+    - [ ] Settings: Add type URI
     - [ ] Different icon for each value type?
     - [ ] Build the page explaining adb scalation for secure settings
     - [ ] Display ChangeSettings commands in command list (description, icon...)
@@ -36,6 +35,8 @@
         - [ ] MANAGE_EXTERNAL_STORAGE	Environment.isExternalStorageManager()	ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION
     - [ ] Permissions warning: Move to shared
     - [ ] Editor header: Fix: long titles move the done button out the screen.
+    - [ ] Review all settings database texts
+    - [ ] Translate all settings database texts
 
 ## Backlog
 
