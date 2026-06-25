@@ -12,8 +12,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.vokibot.ConfirmDialog
 import net.canvoki.vokibot.R
+import net.canvoki.vokibot.StorableEntity
 
 @Composable
 fun ItemMenu(content: @Composable (onDismiss: () -> Unit, onConfirm: (String, () -> Unit) -> Unit) -> Unit) {
@@ -57,15 +59,19 @@ fun ItemMenu(content: @Composable (onDismiss: () -> Unit, onConfirm: (String, ()
 
 @Composable
 fun ItemMenuEditOption(
+    type: String,
+    id: String,
+    nav: StackNavigatorState,
     onDismiss: () -> Unit,
-    onClick: () -> Unit,
 ) {
     DropdownMenuItem(
         text = { Text(stringResource(R.string.item_menu_edit)) },
         leadingIcon = { Icon(painter = painterResource(R.drawable.ic_edit), contentDescription = null) },
         onClick = {
             onDismiss()
-            onClick()
+            StorableEntity.getEditorScreen(type, id)?.let {
+                nav.push(it)
+            }
         },
     )
 }

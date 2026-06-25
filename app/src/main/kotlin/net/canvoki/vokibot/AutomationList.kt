@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.DropdownMenuItem
-import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
@@ -30,6 +29,7 @@ import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
 import net.canvoki.vokibot.common.ItemMenu
 import net.canvoki.vokibot.common.ItemMenuDeleteOption
+import net.canvoki.vokibot.common.ListFab
 import net.canvoki.vokibot.common.ListGroupHeader
 
 @Serializable
@@ -108,17 +108,12 @@ data object AutomationList : StackedScreen<Unit>() {
                 )
             }
 
-            FloatingActionButton(
-                onClick = {
-                    nav.push(AutomationEditor(null))
-                },
-                modifier = Modifier.align(Alignment.BottomEnd).padding(16.dp),
-            ) {
-                Icon(
-                    painter = painterResource(R.drawable.ic_add),
-                    contentDescription = stringResource(R.string.automationlist_create_fab_desc),
-                )
-            }
+            ListFab(
+                onClick = { nav.push(AutomationEditor(null)) },
+                icon = painterResource(R.drawable.ic_add),
+                contentDescription = stringResource(R.string.automationlist_create_fab_desc),
+                modifier = Modifier.align(Alignment.BottomEnd),
+            )
         }
     }
 }

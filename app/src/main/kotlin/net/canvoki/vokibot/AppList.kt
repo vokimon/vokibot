@@ -18,7 +18,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.Checkbox
-import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -50,6 +49,7 @@ import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
 import net.canvoki.shared.component.preferences.rememberMutablePreference
 import net.canvoki.vokibot.R
+import net.canvoki.vokibot.common.ListFab
 import net.canvoki.vokibot.common.toPainter
 
 data class AppInfo(
@@ -200,15 +200,12 @@ fun AppList(
             AppListItem(app, onClick = { onSelected(app) })
         }
 
-        FloatingActionButton(
+        ListFab(
             onClick = { showSheet = true },
-            modifier = Modifier.align(Alignment.BottomEnd).padding(16.dp),
-        ) {
-            Icon(
-                painter = painterResource(R.drawable.ic_filter_list),
-                contentDescription = stringResource(R.string.app_list_filter_fab_cd),
-            )
-        }
+            icon = painterResource(R.drawable.ic_filter_list),
+            contentDescription = stringResource(R.string.app_list_filter_fab_cd),
+            modifier = Modifier.align(Alignment.BottomEnd),
+        )
     }
 
     if (showSheet) {

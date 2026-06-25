@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.DropdownMenuItem
-import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
@@ -41,6 +40,7 @@ import net.canvoki.vokibot.common.ItemMenu
 import net.canvoki.vokibot.common.ItemMenuDeleteOption
 import net.canvoki.vokibot.common.ItemMenuEditOption
 import net.canvoki.vokibot.common.ItemMenuRunOption
+import net.canvoki.vokibot.common.ListFab
 import net.canvoki.vokibot.common.ListGroupHeader
 import net.canvoki.vokibot.common.tintIfFlat
 import net.canvoki.vokibot.common.toPainter
@@ -111,12 +111,10 @@ fun CommandList(
                     trailingContent = {
                         ItemMenu { onDismiss, onConfirm ->
                             ItemMenuEditOption(
+                                type = command.type,
+                                id = command.id,
+                                nav = nav,
                                 onDismiss = onDismiss,
-                                onClick = {
-                                    StorableEntity.getEditorScreen(command.type, command.id)?.let {
-                                        nav.push(it)
-                                    }
-                                },
                             )
                             ItemMenuRunOption(
                                 onDismiss = onDismiss,
@@ -126,7 +124,7 @@ fun CommandList(
                                 confirmationMessage = stringResource(R.string.commandlist_delete_title),
                                 onDismiss = onDismiss,
                                 onConfirm = onConfirm,
-                                onDelete = { repository.removeCommand(command.id) },
+                                onDelete = { repository.command.remove(command.id) },
                             )
                         }
                     },
@@ -134,14 +132,11 @@ fun CommandList(
             }
         }
 
-        FloatingActionButton(
+        ListFab(
             onClick = { nav.push(CommandTypePicker) },
-            modifier = Modifier.align(Alignment.BottomEnd).padding(16.dp),
-        ) {
-            Icon(
-                painter = painterResource(R.drawable.ic_add),
-                contentDescription = stringResource(R.string.commandlist_create_fab_desc),
-            )
-        }
+            icon = painterResource(R.drawable.ic_add),
+            contentDescription = stringResource(R.string.commandlist_create_fab_desc),
+            modifier = Modifier.align(Alignment.BottomEnd),
+        )
     }
 }
