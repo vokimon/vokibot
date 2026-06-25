@@ -139,6 +139,7 @@ fun ChangeSettingCommandEditor(
             val existing =
                 repository.command.load(editingId) as? ChangeSettingCommand
             existing?.let {
+                setting = it.key
                 value = it.value
             }
             hasLoaded = true
@@ -179,6 +180,12 @@ fun ChangeSettingCommandEditor(
                 nav.push(SettingList) { result ->
                     result?.let {
                         setting = it
+                        value =
+                            when (SETTING_VALUES.find { sv -> sv.id == it }?.type) {
+                                ExtraType.Boolean -> ExtraValue.BooleanValue(false)
+                                else -> ExtraValue.StringValue("")
+                            }
+                        rawEdit = false
                         discardState.markDirty()
                     }
                 }
@@ -195,9 +202,13 @@ fun ChangeSettingCommandEditor(
 
             if (rawEdit) {
                 OutlinedTextField(
-                    value = if ((value as? ExtraValue.BooleanValue)?.value == true) "1" else "0",
+                    value = value.toStoredSettingValue(),
                     onValueChange = { raw ->
-                        value = ExtraValue.BooleanValue(raw == "1")
+                        value =
+                            when (settingValue?.type) {
+                                ExtraType.Boolean -> ExtraValue.BooleanValue(raw == "1")
+                                else -> ExtraValue.StringValue(raw)
+                            }
                         discardState.markDirty()
                     },
                     label = { Text("Value") },
@@ -211,7 +222,7 @@ fun ChangeSettingCommandEditor(
                 )
             } else {
                 value.Editor(
-                    spec = ExtraSpec(key = "Value", type = ExtraType.Boolean),
+                    spec = ExtraSpec(key = "Value", type = settingValue?.type ?: ExtraType.String),
                     onChanged = {
                         value = it
                         discardState.markDirty()
