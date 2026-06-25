@@ -118,8 +118,6 @@ fun ChangeSettingCommandEditor(
     var setting by rememberSaveable { mutableStateOf<String?>(null) }
     val settingValue = setting?.let { id -> SETTING_VALUES.find { it.id == id } }
     val settingTitle = settingValue?.name
-    val settingHelp = settingValue?.description ?: ""
-    val settingRawHelp = settingValue?.rawHelp ?: ""
     val writeSettingsPerm = rememberPermissionState("android.permission.WRITE_SETTINGS")
     var rawEdit by rememberSaveable { mutableStateOf(false) }
     var value by rememberSaveable(stateSaver = ExtraValueSaver) {
@@ -195,9 +193,9 @@ fun ChangeSettingCommandEditor(
             },
         )
 
-        if (setting != null) {
+        if (settingValue != null) {
             Text(
-                text = settingHelp,
+                text = settingValue.description,
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(start = 16.dp),
@@ -207,11 +205,11 @@ fun ChangeSettingCommandEditor(
                 OutlinedTextField(
                     value = value.toStoredSettingValue(),
                     onValueChange = { raw ->
-                        value = (settingValue?.type ?: ExtraType.String).fromRawString(raw)
+                        value = settingValue.type.fromRawString(raw)
                         discardState.markDirty()
                     },
                     label = { Text("Value") },
-                    supportingText = { Text(settingRawHelp) },
+                    supportingText = { Text(settingValue.rawHelp) },
                     modifier = Modifier.fillMaxWidth(),
                 )
                 OneTimeNotice(
@@ -220,7 +218,7 @@ fun ChangeSettingCommandEditor(
                     message = "This option enables writing any value, even broken ones. Use with care!",
                 )
             } else {
-                (settingValue?.type ?: ExtraType.String).Editor(
+                settingValue.type.Editor(
                     label = "Value",
                     value = value,
                     onChanged = {
