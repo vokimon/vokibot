@@ -70,6 +70,20 @@ sealed class ExtraType {
         override fun defaultValue() = ExtraValue.UriValue("")
 
         override fun fromRawString(raw: kotlin.String) = ExtraValue.UriValue(raw)
+
+        @Composable
+        fun Editor(
+            label: kotlin.String,
+            value: ExtraValue,
+            onChanged: (ExtraValue) -> Unit,
+        ) {
+            val uriValue = (value as? ExtraValue.UriValue)?.value ?: ""
+            UriField(
+                uri = uriValue.ifBlank { null },
+                onUriChanged = { onChanged(ExtraValue.UriValue(it.orEmpty())) },
+                label = label,
+            )
+        }
     }
 
     @Serializable
@@ -80,6 +94,26 @@ sealed class ExtraType {
         override fun defaultValue() = ExtraValue.IntValue(0)
 
         override fun fromRawString(raw: kotlin.String) = ExtraValue.IntValue(raw.toIntOrNull() ?: 0)
+
+        @Composable
+        fun Editor(
+            label: kotlin.String,
+            value: ExtraValue,
+            onChanged: (ExtraValue) -> Unit,
+        ) {
+            val intValue = (value as? ExtraValue.IntValue)?.value ?: 0
+            var text by remember { mutableStateOf(intValue.toString()) }
+            LaunchedEffect(intValue) { text = intValue.toString() }
+            OutlinedTextField(
+                value = text,
+                onValueChange = {
+                    text = it
+                    it.toIntOrNull()?.let { v -> onChanged(ExtraValue.IntValue(v)) }
+                },
+                label = { Text(label) },
+                modifier = Modifier.fillMaxWidth(),
+            )
+        }
     }
 
     @Serializable
@@ -90,6 +124,19 @@ sealed class ExtraType {
         override fun defaultValue() = ExtraValue.BooleanValue(false)
 
         override fun fromRawString(raw: kotlin.String) = ExtraValue.BooleanValue(raw == "1")
+
+        @Composable
+        fun Editor(
+            label: kotlin.String,
+            value: ExtraValue,
+            onChanged: (ExtraValue) -> Unit,
+        ) {
+            val boolValue = (value as? ExtraValue.BooleanValue)?.value ?: false
+            Row {
+                Text(label, modifier = Modifier.weight(1f))
+                Switch(checked = boolValue, onCheckedChange = { onChanged(ExtraValue.BooleanValue(it)) })
+            }
+        }
     }
 
     @Serializable
@@ -100,6 +147,28 @@ sealed class ExtraType {
         override fun defaultValue() = ExtraValue.StringArrayValue(emptyList())
 
         override fun fromRawString(raw: kotlin.String) = ExtraValue.StringArrayValue(raw.split(",").map { it.trim() })
+
+        @Composable
+        fun Editor(
+            label: kotlin.String,
+            value: ExtraValue,
+            onChanged: (ExtraValue) -> Unit,
+        ) {
+            val arrayValue = (value as? ExtraValue.StringArrayValue)?.values ?: emptyList()
+            var text by remember { mutableStateOf(arrayValue.joinToString(", ")) }
+            LaunchedEffect(arrayValue) { text = arrayValue.joinToString(", ") }
+            OutlinedTextField(
+                value = text,
+                onValueChange = {
+                    text = it
+                    onChanged(ExtraValue.StringArrayValue(it.split(",").map { it.trim() }.filter { it.isNotEmpty() }))
+                },
+                label = {
+                    Text("$label ${stringResource(R.string.intent_extras_editor_comma_separated)}")
+                },
+                modifier = Modifier.fillMaxWidth(),
+            )
+        }
     }
 
     @Serializable
@@ -110,6 +179,28 @@ sealed class ExtraType {
         override fun defaultValue() = ExtraValue.UriListValue(emptyList())
 
         override fun fromRawString(raw: kotlin.String) = ExtraValue.UriListValue(raw.split(",").map { it.trim() })
+
+        @Composable
+        fun Editor(
+            label: kotlin.String,
+            value: ExtraValue,
+            onChanged: (ExtraValue) -> Unit,
+        ) {
+            val listValue = (value as? ExtraValue.UriListValue)?.values ?: emptyList()
+            var text by remember { mutableStateOf(listValue.joinToString(", ")) }
+            LaunchedEffect(listValue) { text = listValue.joinToString(", ") }
+            OutlinedTextField(
+                value = text,
+                onValueChange = {
+                    text = it
+                    onChanged(ExtraValue.UriListValue(it.split(",").map { it.trim() }.filter { it.isNotEmpty() }))
+                },
+                label = {
+                    Text("$label ${stringResource(R.string.intent_extras_editor_comma_separated)}")
+                },
+                modifier = Modifier.fillMaxWidth(),
+            )
+        }
     }
 
     companion object {
@@ -209,16 +300,10 @@ sealed class ExtraValue {
             spec: ExtraSpec,
             onChanged: (ExtraValue) -> Unit,
         ) {
-            var text by remember { mutableStateOf(value.toString()) }
-            LaunchedEffect(value) { text = value.toString() }
-            OutlinedTextField(
-                value = text,
-                onValueChange = {
-                    text = it
-                    it.toIntOrNull()?.let { v -> onChanged(copy(value = v)) }
-                },
-                label = { Text(spec.displayLabel()) },
-                modifier = Modifier.fillMaxWidth(),
+            ExtraType.Int.Editor(
+                label = spec.displayLabel(),
+                value = this,
+                onChanged = onChanged,
             )
         }
     }
@@ -246,10 +331,11 @@ sealed class ExtraValue {
             spec: ExtraSpec,
             onChanged: (ExtraValue) -> Unit,
         ) {
-            Row {
-                Text(spec.displayLabel(), modifier = Modifier.weight(1f))
-                Switch(checked = value, onCheckedChange = { onChanged(copy(value = it)) })
-            }
+            ExtraType.Boolean.Editor(
+                label = spec.displayLabel(),
+                value = this,
+                onChanged = onChanged,
+            )
         }
     }
 
@@ -276,10 +362,10 @@ sealed class ExtraValue {
             spec: ExtraSpec,
             onChanged: (ExtraValue) -> Unit,
         ) {
-            UriField(
-                uri = value.ifBlank { null },
-                onUriChanged = { onChanged(copy(value = it.orEmpty())) },
+            ExtraType.Uri.Editor(
                 label = spec.displayLabel(),
+                value = this,
+                onChanged = onChanged,
             )
         }
     }
@@ -307,20 +393,10 @@ sealed class ExtraValue {
             spec: ExtraSpec,
             onChanged: (ExtraValue) -> Unit,
         ) {
-            var text by remember { mutableStateOf(values.joinToString(", ")) }
-            LaunchedEffect(values) { text = values.joinToString(", ") }
-            OutlinedTextField(
-                value = text,
-                onValueChange = {
-                    text = it
-                    onChanged(copy(values = it.split(",").map { it.trim() }.filter { it.isNotEmpty() }))
-                },
-                label = {
-                    Text(
-                        "${spec.displayLabel()} ${stringResource(R.string.intent_extras_editor_comma_separated)}",
-                    )
-                },
-                modifier = Modifier.fillMaxWidth(),
+            ExtraType.StringArray.Editor(
+                label = spec.displayLabel(),
+                value = this,
+                onChanged = onChanged,
             )
         }
     }
@@ -348,20 +424,10 @@ sealed class ExtraValue {
             spec: ExtraSpec,
             onChanged: (ExtraValue) -> Unit,
         ) {
-            var text by remember { mutableStateOf(values.joinToString(", ")) }
-            LaunchedEffect(values) { text = values.joinToString(", ") }
-            OutlinedTextField(
-                value = text,
-                onValueChange = {
-                    text = it
-                    onChanged(copy(values = it.split(",").map { it.trim() }.filter { it.isNotEmpty() }))
-                },
-                label = {
-                    Text(
-                        "${spec.displayLabel()} ${stringResource(R.string.intent_extras_editor_comma_separated)}",
-                    )
-                },
-                modifier = Modifier.fillMaxWidth(),
+            ExtraType.UriList.Editor(
+                label = spec.displayLabel(),
+                value = this,
+                onChanged = onChanged,
             )
         }
     }
