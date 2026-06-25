@@ -26,55 +26,55 @@ import net.canvoki.vokibot.common.UriField
 sealed class ExtraType {
     override fun toString(): kotlin.String = this::class.simpleName!!
 
+    @get:StringRes abstract val labelRes: kotlin.Int
     abstract fun defaultValue(): ExtraValue
-
     abstract fun fromRawString(raw: kotlin.String): ExtraValue
 
     @Serializable
     @SerialName("STRING")
     object String : ExtraType() {
+        override val labelRes = R.string.extra_value_type_text
         override fun defaultValue() = ExtraValue.StringValue("")
-
         override fun fromRawString(raw: kotlin.String) = ExtraValue.StringValue(raw)
     }
 
     @Serializable
     @SerialName("URI")
     object Uri : ExtraType() {
+        override val labelRes = R.string.extra_value_type_uri
         override fun defaultValue() = ExtraValue.UriValue("")
-
         override fun fromRawString(raw: kotlin.String) = ExtraValue.UriValue(raw)
     }
 
     @Serializable
     @SerialName("INT")
     object Int : ExtraType() {
+        override val labelRes = R.string.extra_value_type_number
         override fun defaultValue() = ExtraValue.IntValue(0)
-
         override fun fromRawString(raw: kotlin.String) = ExtraValue.IntValue(raw.toIntOrNull() ?: 0)
     }
 
     @Serializable
     @SerialName("BOOLEAN")
     object Boolean : ExtraType() {
+        override val labelRes = R.string.extra_value_type_boolean
         override fun defaultValue() = ExtraValue.BooleanValue(false)
-
         override fun fromRawString(raw: kotlin.String) = ExtraValue.BooleanValue(raw == "1")
     }
 
     @Serializable
     @SerialName("STRING_ARRAY")
     object StringArray : ExtraType() {
+        override val labelRes = R.string.extra_value_type_text_list
         override fun defaultValue() = ExtraValue.StringArrayValue(emptyList())
-
         override fun fromRawString(raw: kotlin.String) = ExtraValue.StringArrayValue(raw.split(",").map { it.trim() })
     }
 
     @Serializable
     @SerialName("URI_LIST")
     object UriList : ExtraType() {
+        override val labelRes = R.string.extra_value_type_uri_list
         override fun defaultValue() = ExtraValue.UriListValue(emptyList())
-
         override fun fromRawString(raw: kotlin.String) = ExtraValue.UriListValue(raw.split(",").map { it.trim() })
     }
 
@@ -82,16 +82,6 @@ sealed class ExtraType {
         val intentExtraTypes: List<ExtraType> = listOf(String, Uri, Int, Boolean, StringArray, UriList)
     }
 }
-
-val ExtraType.labelRes get() =
-    when (this) {
-        ExtraType.String -> R.string.extra_value_type_text
-        ExtraType.Uri -> R.string.extra_value_type_uri
-        ExtraType.Int -> R.string.extra_value_type_number
-        ExtraType.Boolean -> R.string.extra_value_type_boolean
-        ExtraType.StringArray -> R.string.extra_value_type_text_list
-        ExtraType.UriList -> R.string.extra_value_type_uri_list
-    }
 
 @Serializable
 data class ExtraSpec(
