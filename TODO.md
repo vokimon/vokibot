@@ -11,6 +11,8 @@
     - [x] Setting List: Navigate settings database
     - [x] Setting List: Group by category
     - [ ] Settings: Add type URI
+    - [ ] Settings: Add type Enum
+    - [ ] Settings: Add type ScopedInt
     - [ ] Different icon for each value type?
     - [ ] Build the page explaining adb scalation for secure settings
     - [ ] Display ChangeSettings commands in command list (description, icon...)
@@ -43,6 +45,7 @@
 - [ ] Hide Dasher when option clicked
 - [x] Add System.Panel to Settings Pages to choose
 - [x] Use System.Panel.ACTION_NFC to enable NFC instead of Settings page
+- [ ] Extra: Numeric fields being numeric
 - [ ] Weblate: create meta module
 - [ ] Weblate: create web module
 - [ ] Import: warn newer versions

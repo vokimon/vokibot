@@ -40,6 +40,26 @@ sealed class ExtraType {
         override fun defaultValue() = ExtraValue.StringValue("")
 
         override fun fromRawString(raw: kotlin.String) = ExtraValue.StringValue(raw)
+
+        @Composable
+        fun Editor(
+            label: kotlin.String,
+            value: ExtraValue,
+            onChanged: (ExtraValue) -> Unit,
+        ) {
+            val textValue = (value as? ExtraValue.StringValue)?.value ?: ""
+            var text by remember { mutableStateOf(textValue) }
+            LaunchedEffect(textValue) { text = textValue }
+            OutlinedTextField(
+                value = text,
+                onValueChange = {
+                    text = it
+                    onChanged(ExtraValue.StringValue(it))
+                },
+                label = { Text(label) },
+                modifier = Modifier.fillMaxWidth(),
+            )
+        }
     }
 
     @Serializable
@@ -158,16 +178,10 @@ sealed class ExtraValue {
             spec: ExtraSpec,
             onChanged: (ExtraValue) -> Unit,
         ) {
-            var text by remember { mutableStateOf(value) }
-            LaunchedEffect(value) { text = value }
-            OutlinedTextField(
-                value = text,
-                onValueChange = {
-                    text = it
-                    onChanged(copy(value = it))
-                },
-                label = { Text(spec.displayLabel()) },
-                modifier = Modifier.fillMaxWidth(),
+            ExtraType.String.Editor(
+                label = spec.displayLabel(),
+                value = this,
+                onChanged = onChanged,
             )
         }
     }
