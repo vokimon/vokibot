@@ -251,6 +251,7 @@ sealed class ExtraValue {
         spec: ExtraSpec,
         onChanged: (ExtraValue) -> Unit,
     ) {
+        getExtraType().Editor(label = spec.displayLabel(), value = this, onChanged = onChanged)
     }
 
     @Serializable
@@ -270,18 +271,6 @@ sealed class ExtraValue {
         override fun getExtraType() = ExtraType.String
 
         override fun toStoredSettingValue(): String = value
-
-        @Composable
-        override fun Editor(
-            spec: ExtraSpec,
-            onChanged: (ExtraValue) -> Unit,
-        ) {
-            ExtraType.String.Editor(
-                label = spec.displayLabel(),
-                value = this,
-                onChanged = onChanged,
-            )
-        }
     }
 
     @Serializable
@@ -301,18 +290,6 @@ sealed class ExtraValue {
         override fun getExtraType() = ExtraType.Int
 
         override fun toStoredSettingValue(): String = value.toString()
-
-        @Composable
-        override fun Editor(
-            spec: ExtraSpec,
-            onChanged: (ExtraValue) -> Unit,
-        ) {
-            ExtraType.Int.Editor(
-                label = spec.displayLabel(),
-                value = this,
-                onChanged = onChanged,
-            )
-        }
     }
 
     @Serializable
@@ -332,18 +309,6 @@ sealed class ExtraValue {
         override fun getExtraType() = ExtraType.Boolean
 
         override fun toStoredSettingValue(): String = if (value) "1" else "0"
-
-        @Composable
-        override fun Editor(
-            spec: ExtraSpec,
-            onChanged: (ExtraValue) -> Unit,
-        ) {
-            ExtraType.Boolean.Editor(
-                label = spec.displayLabel(),
-                value = this,
-                onChanged = onChanged,
-            )
-        }
     }
 
     @Serializable
@@ -363,18 +328,6 @@ sealed class ExtraValue {
         override fun getExtraType() = ExtraType.Uri
 
         override fun toStoredSettingValue(): String = value
-
-        @Composable
-        override fun Editor(
-            spec: ExtraSpec,
-            onChanged: (ExtraValue) -> Unit,
-        ) {
-            ExtraType.Uri.Editor(
-                label = spec.displayLabel(),
-                value = this,
-                onChanged = onChanged,
-            )
-        }
     }
 
     @Serializable
@@ -394,18 +347,6 @@ sealed class ExtraValue {
         override fun getExtraType() = ExtraType.StringArray
 
         override fun toStoredSettingValue(): String = values.joinToString(",")
-
-        @Composable
-        override fun Editor(
-            spec: ExtraSpec,
-            onChanged: (ExtraValue) -> Unit,
-        ) {
-            ExtraType.StringArray.Editor(
-                label = spec.displayLabel(),
-                value = this,
-                onChanged = onChanged,
-            )
-        }
     }
 
     @Serializable
@@ -425,18 +366,6 @@ sealed class ExtraValue {
         override fun getExtraType() = ExtraType.UriList
 
         override fun toStoredSettingValue(): String = values.joinToString(",")
-
-        @Composable
-        override fun Editor(
-            spec: ExtraSpec,
-            onChanged: (ExtraValue) -> Unit,
-        ) {
-            ExtraType.UriList.Editor(
-                label = spec.displayLabel(),
-                value = this,
-                onChanged = onChanged,
-            )
-        }
     }
 }
 
