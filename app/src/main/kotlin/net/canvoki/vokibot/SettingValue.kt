@@ -343,8 +343,7 @@ val SETTING_VALUES: List<SettingValue> =
             description = "Radios disabled when airplane mode is on",
             rawHelp = "Comma-separated list (e.g. bluetooth,cell,nfc,wifi)",
             type = ExtraType.String,
-            // TODO: StringArray flags
-            // ("bluetooth", "cell", "nfc", "wifi")
+            // TODO: StringArray flags("bluetooth", "cell", "nfc", "wifi")
         ),
         SettingValue(
             id = @Suppress("DEPRECATION") Settings.Global.WIFI_SLEEP_POLICY,
@@ -353,8 +352,7 @@ val SETTING_VALUES: List<SettingValue> =
             description = "When Wi-Fi goes to sleep. Deprecated API 30.",
             rawHelp = "0=default, 1=never while plugged, 2=never",
             type = ExtraType.String,
-            // TODO: Int enum
-            // ("Default"=0, "Never while plugged"=1, "Never"=2)
+            // TODO: Int enum("Default"=0, "Never while plugged"=1, "Never"=2)
         ),
         SettingValue(
             id = Settings.Global.WIFI_MAX_DHCP_RETRY_COUNT,
@@ -520,8 +518,7 @@ val SETTING_VALUES: List<SettingValue> =
             description = "Scale factor for window open/close animations",
             rawHelp = "Float (0.0=off, 0.5, 1.0, 1.5, 2.0, 5.0, 10.0)",
             type = ExtraType.String,
-            // TODO: Float enum
-            // ("Off"=0.0, "0.5x"=0.5, "1x"=1.0, "1.5x"=1.5,
+            // TODO: Float enum("Off"=0.0, "0.5x"=0.5, "1x"=1.0, "1.5x"=1.5,
             //  "2x"=2.0, "5x"=5.0, "10x"=10.0)
         ),
         SettingValue(
@@ -531,8 +528,7 @@ val SETTING_VALUES: List<SettingValue> =
             description = "Scale factor for activity transition animations",
             rawHelp = "Float (0.0=off, 0.5, 1.0, 1.5, 2.0, 5.0, 10.0)",
             type = ExtraType.String,
-            // TODO: Float enum
-            // ("Off"=0.0, "0.5x"=0.5, "1x"=1.0, "1.5x"=1.5,
+            // TODO: Float enum("Off"=0.0, "0.5x"=0.5, "1x"=1.0, "1.5x"=1.5,
             //  "2x"=2.0, "5x"=5.0, "10x"=10.0)
         ),
         SettingValue(
@@ -542,8 +538,7 @@ val SETTING_VALUES: List<SettingValue> =
             description = "Scale factor for all animator-based animations",
             rawHelp = "Float (0.0=off, 0.5, 1.0, 1.5, 2.0, 5.0, 10.0)",
             type = ExtraType.String,
-            // TODO: Float enum
-            // ("Off"=0.0, "0.5x"=0.5, "1x"=1.0, "1.5x"=1.5,
+            // TODO: Float enum("Off"=0.0, "0.5x"=0.5, "1x"=1.0, "1.5x"=1.5,
             //  "2x"=2.0, "5x"=5.0, "10x"=10.0)
         ),
         // Power
