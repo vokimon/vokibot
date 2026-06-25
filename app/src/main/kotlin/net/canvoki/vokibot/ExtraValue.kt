@@ -224,43 +224,6 @@ sealed class ExtraValue {
     }
 
     @Serializable
-    @SerialName("long")
-    data class LongValue(
-        val value: Long,
-    ) : ExtraValue() {
-        override fun addToIntent(
-            intent: Intent,
-            key: String,
-        ) {
-            intent.putExtra(key, value)
-        }
-
-        override fun isDefault(): Boolean = value == 0L
-
-        override fun getExtraType() = ExtraType.Int
-
-        override fun toStoredSettingValue(): String = value.toString()
-
-        @Composable
-        override fun Editor(
-            spec: ExtraSpec,
-            onChanged: (ExtraValue) -> Unit,
-        ) {
-            var text by remember { mutableStateOf(value.toString()) }
-            LaunchedEffect(value) { text = value.toString() }
-            OutlinedTextField(
-                value = text,
-                onValueChange = {
-                    text = it
-                    it.toLongOrNull()?.let { v -> onChanged(copy(value = v)) }
-                },
-                label = { Text(spec.displayLabel()) },
-                modifier = Modifier.fillMaxWidth(),
-            )
-        }
-    }
-
-    @Serializable
     @SerialName("boolean")
     data class BooleanValue(
         val value: Boolean,
@@ -287,43 +250,6 @@ sealed class ExtraValue {
                 Text(spec.displayLabel(), modifier = Modifier.weight(1f))
                 Switch(checked = value, onCheckedChange = { onChanged(copy(value = it)) })
             }
-        }
-    }
-
-    @Serializable
-    @SerialName("float")
-    data class FloatValue(
-        val value: Float,
-    ) : ExtraValue() {
-        override fun addToIntent(
-            intent: Intent,
-            key: String,
-        ) {
-            intent.putExtra(key, value)
-        }
-
-        override fun isDefault(): Boolean = value == 0f
-
-        override fun getExtraType() = ExtraType.String
-
-        override fun toStoredSettingValue(): String = value.toString()
-
-        @Composable
-        override fun Editor(
-            spec: ExtraSpec,
-            onChanged: (ExtraValue) -> Unit,
-        ) {
-            var text by remember { mutableStateOf(value.toString()) }
-            LaunchedEffect(value) { text = value.toString() }
-            OutlinedTextField(
-                value = text,
-                onValueChange = {
-                    text = it
-                    it.toFloatOrNull()?.let { v -> onChanged(copy(value = v)) }
-                },
-                label = { Text(spec.displayLabel()) },
-                modifier = Modifier.fillMaxWidth(),
-            )
         }
     }
 

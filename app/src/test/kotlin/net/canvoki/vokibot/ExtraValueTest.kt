@@ -52,17 +52,13 @@ class ExtraValueTest {
             mapOf(
                 "str" to ExtraValue.StringValue("hello"),
                 "num" to ExtraValue.IntValue(42),
-                "lng" to ExtraValue.LongValue(123L),
                 "bool" to ExtraValue.BooleanValue(true),
-                "flt" to ExtraValue.FloatValue(3.14f),
             )
 
         val serialized = JsonConfig.encodeToString(extras)
         assertTrue(serialized.contains("\"string\""))
         assertTrue(serialized.contains("\"int\""))
-        assertTrue(serialized.contains("\"long\""))
         assertTrue(serialized.contains("\"boolean\""))
-        assertTrue(serialized.contains("\"float\""))
 
         val deserialized = JsonConfig.decodeFromString<Map<String, ExtraValue>>(serialized)
         assertEquals(
@@ -89,21 +85,9 @@ class ExtraValueTest {
     }
 
     @Test
-    fun `LongValue serializes with long discriminator`() {
-        val json = JsonConfig.encodeToString(ExtraValue.LongValue(123L) as ExtraValue)
-        assertJsonEqual("""{"type": "long", "value": 123}""", json)
-    }
-
-    @Test
     fun `BooleanValue serializes with boolean discriminator`() {
         val json = JsonConfig.encodeToString(ExtraValue.BooleanValue(true) as ExtraValue)
         assertJsonEqual("""{"type": "boolean", "value": true}""", json)
-    }
-
-    @Test
-    fun `FloatValue serializes with float discriminator`() {
-        val json = JsonConfig.encodeToString(ExtraValue.FloatValue(3.14f) as ExtraValue)
-        assertJsonEqual("""{"type": "float", "value": 3.14}""", json)
     }
 
     @Test
@@ -209,18 +193,8 @@ class ExtraValueTest {
     }
 
     @Test
-    fun `LongValue getExtraType is INT`() {
-        checkExtraType(ExtraValue.LongValue(0L), ExtraType.Int)
-    }
-
-    @Test
     fun `BooleanValue getExtraType is BOOLEAN`() {
         checkExtraType(ExtraValue.BooleanValue(false), ExtraType.Boolean)
-    }
-
-    @Test
-    fun `FloatValue getExtraType is STRING`() {
-        checkExtraType(ExtraValue.FloatValue(0f), ExtraType.String)
     }
 
     @Test
@@ -261,11 +235,6 @@ class ExtraValueTest {
     }
 
     @Test
-    fun `LongValue toStoredSettingValue returns number as string`() {
-        assertEquals("123", ExtraValue.LongValue(123L).toStoredSettingValue())
-    }
-
-    @Test
     fun `BooleanValue toStoredSettingValue true`() {
         assertEquals("1", ExtraValue.BooleanValue(true).toStoredSettingValue())
     }
@@ -273,11 +242,6 @@ class ExtraValueTest {
     @Test
     fun `BooleanValue toStoredSettingValue false`() {
         assertEquals("0", ExtraValue.BooleanValue(false).toStoredSettingValue())
-    }
-
-    @Test
-    fun `FloatValue toStoredSettingValue returns number as string`() {
-        assertEquals("3.14", ExtraValue.FloatValue(3.14f).toStoredSettingValue())
     }
 
     @Test
