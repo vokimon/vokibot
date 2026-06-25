@@ -93,7 +93,9 @@ sealed class ExtraType {
     }
 
     companion object {
-        val intentExtraTypes: List<ExtraType> = listOf(String, Uri, Int, Boolean, StringArray, UriList)
+        val intentExtraTypes by lazy {
+            listOf<ExtraType>(String, Uri, Int, Boolean, StringArray, UriList)
+        }
     }
 }
 
