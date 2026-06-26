@@ -376,3 +376,10 @@ item_menu_delete: Ezabatu
 item_menu_delete_confirmation_message: Ekintza hau ezin da desegin.
 item_menu_delete_confirmation_cancel: Utzi
 item_menu_delete_confirmation_title: Elementua ezabatu?
+select_button_placeholder: Ukitu hautatzeko
+change_setting_field_setting: Ezarpena
+change_setting_field_value: Balioa
+change_setting_raw_edit: Edizio gordinak
+change_setting_raw_edit_warning: Aukera honek edozein balio idaztea ahalbidetzen du, baliogabeak direnak ere. Erabili kontuz!
+change_setting_permission_required: Baimena behar da sistemako ezarpenak aldatzeko.
+setting_list_not_found: Ez da ezarpenik aurkitu

@@ -376,3 +376,10 @@ item_menu_delete: حذف
 item_menu_delete_confirmation_message: لا يمكن التراجع عن هذا الإجراء.
 item_menu_delete_confirmation_cancel: إلغاء
 item_menu_delete_confirmation_title: حذف العنصر؟
+select_button_placeholder: انقر للتحديد
+change_setting_field_setting: الإعداد
+change_setting_field_value: القيمة
+change_setting_raw_edit: تعديل خام
+change_setting_raw_edit_warning: يتيح هذا الخيار كتابة أي قيمة، حتى تلك غير الصالحة. استخدمه بحذر!
+change_setting_permission_required: مطلوب إذن لتعديل إعدادات النظام.
+setting_list_not_found: لم يتم العثور على إعدادات

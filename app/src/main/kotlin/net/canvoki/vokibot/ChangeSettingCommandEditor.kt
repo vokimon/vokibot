@@ -78,7 +78,7 @@ fun SelectButton(
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Text(
-                    text = text ?: "Tap to select",
+                    text = text ?: stringResource(R.string.select_button_placeholder),
                     style = MaterialTheme.typography.bodyLarge,
                     color =
                         text?.let { MaterialTheme.colorScheme.onSurfaceVariant }
@@ -175,7 +175,7 @@ fun ChangeSettingCommandEditor(
 
         SelectButton(
             text = settingTitle,
-            label = "Setting",
+            label = stringResource(R.string.change_setting_field_setting),
             modifier = Modifier.fillMaxWidth(),
             onClick = {
                 nav.push(SettingList) { result ->
@@ -208,18 +208,18 @@ fun ChangeSettingCommandEditor(
                         value = settingValue.type.fromRawString(raw)
                         discardState.markDirty()
                     },
-                    label = { Text("Value") },
+                    label = { Text(stringResource(R.string.change_setting_field_value)) },
                     supportingText = { Text(settingValue.rawHelp) },
                     modifier = Modifier.fillMaxWidth(),
                 )
                 OneTimeNotice(
                     noticeId = "raw_edit_warning_5", // TODO: clean up for production
-                    title = "Raw edit",
-                    message = "This option enables writing any value, even broken ones. Use with care!",
+                    title = stringResource(R.string.change_setting_raw_edit),
+                    message = stringResource(R.string.change_setting_raw_edit_warning),
                 )
             } else {
                 settingValue.type.Editor(
-                    label = "Value",
+                    label = stringResource(R.string.change_setting_field_value),
                     value = value,
                     onChanged = {
                         value = it
@@ -231,7 +231,7 @@ fun ChangeSettingCommandEditor(
             FilterChip(
                 selected = rawEdit,
                 onClick = { rawEdit = !rawEdit },
-                label = { Text("Raw edit") },
+                label = { Text(stringResource(R.string.change_setting_raw_edit)) },
                 leadingIcon = {
                     if (rawEdit) {
                         Icon(
@@ -246,7 +246,7 @@ fun ChangeSettingCommandEditor(
 
             MissingPermissionBanner(
                 state = writeSettingsPerm,
-                message = "Permission required to modify system settings.",
+                message = stringResource(R.string.change_setting_permission_required),
             )
         }
 

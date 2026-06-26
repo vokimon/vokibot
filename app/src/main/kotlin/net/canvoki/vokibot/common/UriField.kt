@@ -45,7 +45,7 @@ private val schemes =
 fun UriField(
     uri: String?,
     onUriChanged: (String?) -> Unit,
-    label: String = "URI", // TODO: translate
+    label: String,
     allowedSchemes: List<String>? = null,
     onFilePicked: ((Uri) -> Unit)? = null,
 ) {

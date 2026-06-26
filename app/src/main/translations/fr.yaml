@@ -376,3 +376,10 @@ item_menu_delete: Supprimer
 item_menu_delete_confirmation_message: Cette action est irréversible.
 item_menu_delete_confirmation_cancel: Annuler
 item_menu_delete_confirmation_title: Supprimer l'élément ?
+select_button_placeholder: Appuyer pour sélectionner
+change_setting_field_setting: Paramètre
+change_setting_field_value: Valeur
+change_setting_raw_edit: Édition brute
+change_setting_raw_edit_warning: Cette option permet d'écrire n'importe quelle valeur, même invalide. À utiliser avec précaution !
+change_setting_permission_required: Autorisation requise pour modifier les paramètres système.
+setting_list_not_found: Aucun paramètre trouvé

@@ -376,3 +376,10 @@ item_menu_delete: Eliminar
 item_menu_delete_confirmation_message: Esta acción non se pode desfacer.
 item_menu_delete_confirmation_cancel: Cancelar
 item_menu_delete_confirmation_title: Borrar elemento?
+select_button_placeholder: Tocar para seleccionar
+change_setting_field_setting: Axuste
+change_setting_field_value: Valor
+change_setting_raw_edit: Edición en bruto
+change_setting_raw_edit_warning: Esta opción permite escribir calquera valor, mesmo os non válidos. Úsaa con coidado!
+change_setting_permission_required: Requírese permiso para modificar os axustes do sistema.
+setting_list_not_found: Non se atoparon axustes

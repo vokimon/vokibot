@@ -376,3 +376,10 @@ item_menu_delete: Delete
 item_menu_delete_confirmation_message: This action cannot be undone.
 item_menu_delete_confirmation_cancel: Cancel
 item_menu_delete_confirmation_title: Delete item?
+select_button_placeholder: Tap to select
+change_setting_field_setting: Setting
+change_setting_field_value: Value
+change_setting_raw_edit: Raw edit
+change_setting_raw_edit_warning: This option allows writing any value, even invalid ones. Use with care!
+change_setting_permission_required: Permission required to modify system settings.
+setting_list_not_found: No settings found

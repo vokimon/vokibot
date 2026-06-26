@@ -376,3 +376,10 @@ item_menu_delete: Удалить
 item_menu_delete_confirmation_message: Это действие нельзя отменить.
 item_menu_delete_confirmation_cancel: Отмена
 item_menu_delete_confirmation_title: Удалить элемент?
+select_button_placeholder: Нажмите для выбора
+change_setting_field_setting: Настройка
+change_setting_field_value: Значение
+change_setting_raw_edit: Сырое редактирование
+change_setting_raw_edit_warning: Эта опция позволяет записывать любые значения, даже некорректные. Используйте с осторожностью!
+change_setting_permission_required: Требуется разрешение на изменение системных настроек.
+setting_list_not_found: Настройки не найдены

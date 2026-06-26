@@ -40,7 +40,7 @@ fun SettingList(nav: StackNavigatorState) {
                 val category = SettingCategory.valueOf(key)
                 ListGroupHeader(title = stringResource(category.labelRes))
             },
-            notFoundMessage = "No settings found",
+            notFoundMessage = stringResource(R.string.setting_list_not_found),
         ) { setting ->
             ListItem(
                 headlineContent = { Text(setting.name) },

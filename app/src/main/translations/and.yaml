@@ -374,3 +374,10 @@ item_menu_delete: Eliminâh
 item_menu_delete_confirmation_message: Êtta âççión no çe puede deçaçêh.
 item_menu_delete_confirmation_cancel: Cançelâh
 item_menu_delete_confirmation_title: ¿Borrâh elemento?
+select_button_placeholder: Tocâh pa çelêççionâh
+change_setting_field_setting: Ahûtte
+change_setting_field_value: Balôh
+change_setting_raw_edit: Ediçión a pelo
+change_setting_raw_edit_warning: Êtta ôççión permite êccribîh cuarquiêh balôh, incluço lô no bálidô. ¡Úçala con cuidao!
+change_setting_permission_required: Çe requiere permiço pa modificâh lô ahûttê der çîttema.
+setting_list_not_found: No çe an encontrao ahûttê

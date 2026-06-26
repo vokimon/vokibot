@@ -376,3 +376,10 @@ item_menu_delete: Löschen
 item_menu_delete_confirmation_message: Diese Aktion kann nicht rückgängig gemacht werden.
 item_menu_delete_confirmation_cancel: Abbrechen
 item_menu_delete_confirmation_title: Element löschen?
+select_button_placeholder: Tippen zum Auswählen
+change_setting_field_setting: Einstellung
+change_setting_field_value: Wert
+change_setting_raw_edit: Rohbearbeitung
+change_setting_raw_edit_warning: Diese Option ermöglicht das Schreiben beliebiger Werte, auch ungültiger. Mit Vorsicht verwenden!
+change_setting_permission_required: Berechtigung erforderlich, um Systemeinstellungen zu ändern.
+setting_list_not_found: Keine Einstellungen gefunden

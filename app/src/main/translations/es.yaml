@@ -376,3 +376,10 @@ item_menu_delete: Eliminar
 item_menu_delete_confirmation_message: Esta acción no se puede deshacer.
 item_menu_delete_confirmation_cancel: Cancelar
 item_menu_delete_confirmation_title: ¿Borrar elemento?
+select_button_placeholder: Tocar para seleccionar
+change_setting_field_setting: Ajuste
+change_setting_field_value: Valor
+change_setting_raw_edit: Edición en crudo
+change_setting_raw_edit_warning: Esta opción permite escribir cualquier valor, incluso los no válidos. ¡Úsala con cuidado!
+change_setting_permission_required: Se requiere permiso para modificar los ajustes del sistema.
+setting_list_not_found: No se han encontrado ajustes
