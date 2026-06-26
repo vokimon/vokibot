@@ -575,3 +575,14 @@ setting_device_provisioned_description: Se o dispositivo foi provisionado
 setting_device_provisioned_raw_help: 0=não provisionado, 1=provisionado
 setting_use_google_mail_name: Usar Google Mail
 setting_use_google_mail_description: 'Mostrar "Google Mail" em vez de "Gmail"'
+extra_value_type_flags: Seleção múltipla
+setting_audio_stream_voice_call: Chamada de voz
+setting_audio_stream_system: Sistema
+setting_audio_stream_ring: Toque
+setting_audio_stream_music: Música
+setting_audio_stream_alarm: Alarme
+setting_audio_stream_notification: Notificação
+setting_audio_stream_bt_sco: Chamadas Bluetooth
+setting_plugged_usb: USB
+setting_plugged_ac: "Corrente"
+setting_plugged_wireless: Sem fios

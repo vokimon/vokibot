@@ -575,3 +575,14 @@ setting_device_provisioned_description: Gailua hornitu den
 setting_device_provisioned_raw_help: 0=hornitu gabe, 1=hornituta
 setting_use_google_mail_name: Erabili Google Mail
 setting_use_google_mail_description: 'Erakutsi "Google Mail" "Gmail" ordez'
+extra_value_type_flags: Hautaketa anitz
+setting_audio_stream_voice_call: Ahots-dei
+setting_audio_stream_system: Sistema
+setting_audio_stream_ring: Dei-tonua
+setting_audio_stream_music: Musika
+setting_audio_stream_alarm: Alarma
+setting_audio_stream_notification: Jakinarazpena
+setting_audio_stream_bt_sco: Bluetooth deiak
+setting_plugged_usb: USB
+setting_plugged_ac: "Sarea"
+setting_plugged_wireless: Harigabe

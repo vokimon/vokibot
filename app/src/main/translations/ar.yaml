@@ -575,3 +575,14 @@ setting_device_provisioned_description: ما إذا كان الجهاز قد ت�
 setting_device_provisioned_raw_help: 0=غير مهيأ، 1=مهيأ
 setting_use_google_mail_name: استخدام Google Mail
 setting_use_google_mail_description: 'إظهار "Google Mail" بدلاً من "Gmail"'
+extra_value_type_flags: اختيار متعدد
+setting_audio_stream_voice_call: مكالمة صوتية
+setting_audio_stream_system: النظام
+setting_audio_stream_ring: الرنين
+setting_audio_stream_music: موسيقى
+setting_audio_stream_alarm: المنبه
+setting_audio_stream_notification: الإشعار
+setting_audio_stream_bt_sco: مكالمات البلوتوث
+setting_plugged_usb: USB
+setting_plugged_ac: "الشبكة"
+setting_plugged_wireless: لاسلكي

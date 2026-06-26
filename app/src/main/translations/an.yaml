@@ -575,3 +575,14 @@ setting_device_provisioned_description: Si o dispositivo ha estau aprovisionau
 setting_device_provisioned_raw_help: 0=no aprovisionau, 1=aprovisionau
 setting_use_google_mail_name: Usar Google Mail
 setting_use_google_mail_description: 'Amostrar "Google Mail" en cuenta de "Gmail"'
+extra_value_type_flags: Multiselección
+setting_audio_stream_voice_call: Clamada de voz
+setting_audio_stream_system: Sistema
+setting_audio_stream_ring: Timbre
+setting_audio_stream_music: Mosica
+setting_audio_stream_alarm: Alarma
+setting_audio_stream_notification: Notificación
+setting_audio_stream_bt_sco: Clamadas Bluetooth
+setting_plugged_usb: USB
+setting_plugged_ac: "Corrient"
+setting_plugged_wireless: Inalambrico

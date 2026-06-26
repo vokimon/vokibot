@@ -22,6 +22,8 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import net.canvoki.vokibot.common.EnumField
 import net.canvoki.vokibot.common.EnumOption
+import net.canvoki.vokibot.common.FlagField
+import net.canvoki.vokibot.common.FlagOption
 import net.canvoki.vokibot.common.UriField
 
 @Serializable
@@ -237,6 +239,38 @@ sealed class ExtraType {
                 options = options,
                 selectedValue = rawValue,
                 onValueChanged = { onChanged(ExtraValue.StringValue(it)) },
+                label = label,
+            )
+        }
+    }
+
+    @Serializable
+    @SerialName("FLAG")
+    data class Flags(
+        val options: List<FlagOption>,
+    ) : ExtraType() {
+        override val labelRes = R.string.extra_value_type_flags
+
+        override fun defaultValue() = ExtraValue.IntValue(0)
+
+        override fun fromRawString(raw: kotlin.String) = ExtraValue.IntValue(raw.toIntOrNull() ?: 0)
+
+        @Composable
+        override fun Editor(
+            label: kotlin.String,
+            value: ExtraValue,
+            onChanged: (ExtraValue) -> Unit,
+        ) {
+            val intValue =
+                when (value) {
+                    is ExtraValue.IntValue -> value.value
+                    is ExtraValue.StringValue -> value.value.toIntOrNull() ?: 0
+                    else -> 0
+                }
+            FlagField(
+                options = options,
+                selectedFlags = intValue,
+                onFlagsChanged = { onChanged(ExtraValue.IntValue(it)) },
                 label = label,
             )
         }

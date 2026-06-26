@@ -575,3 +575,14 @@ setting_device_provisioned_description: Ob das Gerät bereitgestellt wurde
 setting_device_provisioned_raw_help: 0=nicht bereitgestellt, 1=bereitgestellt
 setting_use_google_mail_name: Google Mail verwenden
 setting_use_google_mail_description: '"Google Mail" anstelle von "Gmail" anzeigen'
+extra_value_type_flags: Mehrfachauswahl
+setting_audio_stream_voice_call: Sprachanruf
+setting_audio_stream_system: System
+setting_audio_stream_ring: Klingeln
+setting_audio_stream_music: Musik
+setting_audio_stream_alarm: Wecker
+setting_audio_stream_notification: Benachrichtigung
+setting_audio_stream_bt_sco: Bluetooth-Anrufe
+setting_plugged_usb: USB
+setting_plugged_ac: "Netz"
+setting_plugged_wireless: Kabellos

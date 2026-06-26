@@ -181,6 +181,7 @@ extra_value_type_boolean: Boolean
 extra_value_type_text_list: Text list
 extra_value_type_uri_list: URI list
 extra_value_type_enum: Select
+extra_value_type_flags: Multiselect
 settings_page_category_network: Network
 settings_page_category_display: Display
 settings_page_category_sound: Sound
@@ -575,3 +576,13 @@ setting_device_provisioned_description: Whether the device has been provisioned
 setting_device_provisioned_raw_help: 0=not provisioned, 1=provisioned
 setting_use_google_mail_name: Use Google Mail
 setting_use_google_mail_description: 'Show "Google Mail" instead of "Gmail"'
+setting_audio_stream_voice_call: Voice Call
+setting_audio_stream_system: System
+setting_audio_stream_ring: Ring
+setting_audio_stream_music: Music
+setting_audio_stream_alarm: Alarm
+setting_audio_stream_notification: Notification
+setting_audio_stream_bt_sco: Bluetooth calls
+setting_plugged_usb: USB
+setting_plugged_ac: AC
+setting_plugged_wireless: Wireless

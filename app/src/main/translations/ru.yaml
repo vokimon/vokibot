@@ -575,3 +575,14 @@ setting_device_provisioned_description: Было ли устройство на�
 setting_device_provisioned_raw_help: 0=не настроено, 1=настроено
 setting_use_google_mail_name: Использовать Google Mail
 setting_use_google_mail_description: 'Показывать "Google Mail" вместо "Gmail"'
+extra_value_type_flags: Множественный выбор
+setting_audio_stream_voice_call: Голосовой вызов
+setting_audio_stream_system: Система
+setting_audio_stream_ring: Звонок
+setting_audio_stream_music: Музыка
+setting_audio_stream_alarm: Будильник
+setting_audio_stream_notification: Уведомление
+setting_audio_stream_bt_sco: Вызовы Bluetooth
+setting_plugged_usb: USB
+setting_plugged_ac: "Сеть"
+setting_plugged_wireless: Беспроводная
