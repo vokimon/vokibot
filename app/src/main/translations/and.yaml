@@ -419,3 +419,157 @@ setting_end_button_behavior_end_call: "End call"
 setting_end_button_behavior_caller_log: "Caller log"
 setting_input_method_selector_auto: "Auto"
 setting_input_method_selector_always_show: "Always show"
+enum_option_custom_value: '"{0}" (Perçonaliçao)'
+setting_toggle_raw_help: 0 pa deçâttibao, 1 pa âttibao
+setting_audio_uri_raw_help: URI de un arxibo de audio (p. ej. content://media/intênnâh/audio/123)
+setting_animation_scale_raw_help: Floâh (0.0=deçâttibao, 0.5, 1.0, 1.5, 2.0, 5.0, 10.0)
+setting_stream_bitmask_raw_help: 'Máccara de bits: boiçe_cay=1, system=2, rin=4, muçîh=8, alarm=16, notification=32, bt_sco=64'
+setting_component_names_raw_help: Nombrê de componentê çeparáô por dôh puntô
+setting_component_name_raw_help: Cadena de nombre de componente
+setting_screen_brightness_mode_name: Briyo adâttatibo
+setting_screen_brightness_mode_description: Cuando êttá âttibao, er briyo de la pantaya çe adâttará a la lûh ambientâh
+setting_screen_brightness_name: Briyo de la pantaya
+setting_screen_brightness_description: Briyo de la lûh de fondo de la pantaya
+setting_screen_brightness_raw_help: Entero 0-255
+setting_screen_off_timeout_name: Tiempo de êppera de apagao de la pantaya
+setting_screen_off_timeout_description: Tiempo de êppera antê de que la pantaya çe apage
+setting_screen_off_timeout_raw_help: Entero en miliçegundô (p. ej. 60000 pa 1 minuto)
+setting_user_rotation_name: Rotaçión del uçuario
+setting_user_rotation_description: Rotaçión predeterminá de la pantaya
+setting_user_rotation_raw_help: 0=0°, 1=90°, 2=180°, 3=270°
+setting_accelerometer_rotation_name: Rotaçión por açelerómetro
+setting_accelerometer_rotation_description: Çi la rotaçión êh controlá por el açelerómetro
+setting_accelerometer_rotation_raw_help: 0=manuâh, 1=el açelerómetro controla la rotaçión
+setting_font_scale_name: Êccala de la fuente
+setting_font_scale_description: Fâttôh de êccala de la fuente
+setting_font_scale_raw_help: Fâttôh floâh, 1.0 çin êccala
+setting_ringtone_name: Tono de yamá
+setting_ringtone_description: URI de contenío der tono de yamá predeterminao
+setting_notification_sound_name: Çonido de notificaçión
+setting_notification_sound_description: URI de contenío der çonido de notificaçión predeterminao
+setting_alarm_alert_name: Çonido de alarma
+setting_alarm_alert_description: URI de contenío der çonido de alarma predeterminao
+setting_dtmf_tone_when_dialing_name: Tonô DTMF
+setting_dtmf_tone_when_dialing_description: Cuando êttá âttibao, açe audiblê lô tonô DTMF ar marcâh
+setting_sound_effects_enabled_name: Efêttô de çonido
+setting_sound_effects_enabled_description: Clics de teclâ y çoníô de tapa
+setting_haptic_feedback_enabled_name: Rêppuêtta áttica
+setting_haptic_feedback_enabled_description: Proporçiona rêppuêtta áttica ar mantenêh purçao y en otrâ interâççionê
+setting_mode_ringer_streams_affected_name: Fluhô de audio afêttáô por er modo de tono
+setting_mode_ringer_streams_affected_description: Qué fluhô de audio çon afêttáô por er modo de tono
+setting_mute_streams_affected_name: Fluhô de audio afêttáô por er çilençio
+setting_mute_streams_affected_description: Qué fluhô de audio çon afêttáô por er çilençio
+setting_mode_ringer_name: Modo de tono
+setting_mode_ringer_description: Modo de tono âttuâh
+setting_mode_ringer_raw_help: 0=normâh, 1=bibrâh, 2=çilençio
+setting_tts_default_pitch_name: Tono predeterminao der TTS
+setting_tts_default_pitch_description: Tono predeterminao pa er çintetiçadôh de bôh
+setting_tts_default_pitch_raw_help: Entero 10-500
+setting_tts_default_rate_name: Beloçidá predeterminá der TTS
+setting_tts_default_rate_description: Beloçidá de bôh predeterminá pa er çintetiçadôh de bôh
+setting_tts_default_rate_raw_help: Entero 10-300
+setting_tts_default_synth_name: Çintetiçadôh predeterminao der TTS
+setting_tts_default_synth_description: Nombre der paquete der motôh TTS predeterminao
+setting_tts_default_synth_raw_help: Cadena de nombre de paquete
+setting_tts_enabled_plugins_name: Complementô TTS âttibáô
+setting_tts_enabled_plugins_description: Lîtta de complementô TTS âttibáô çeparáô por êppaçiô
+setting_tts_enabled_plugins_raw_help: Nombrê de paquetê çeparáô por êppaçiô
+setting_text_auto_caps_name: Mayúcculâ automáticâ
+setting_text_auto_caps_description: Pone en mayúccula automáticamente la primera letra de lâ fraçê
+setting_text_auto_punctuate_name: Puntuaçión automática
+setting_text_auto_punctuate_description: Añade un punto automáticamente dêppuêh de doble êppaçio
+setting_text_auto_replace_name: Çûttituçión automática
+setting_text_auto_replace_description: Çûttituye automáticamente er têtto uçando AutoTêtt
+setting_text_show_password_name: Môttrâh contraçeña
+setting_text_show_password_description: Muêttra brebemente lô carâtterê de la contraçeña al êccribîh
+setting_time_12_24_name: Formato de ora
+setting_time_12_24_description: Çi el relôh uça formato de 12 o 24 orâ
+setting_time_12_24_raw_help: 12 o 24
+setting_date_format_name: Formato de fexa
+setting_date_format_description: Cadena de formato de fexa der çîttema. API 31 ôççoleta.
+setting_date_format_raw_help: Cadena de formato (p. ej. mm/dd/yyyy, dd/mm/yyyy, yyyy/mm/dd)
+setting_auto_time_name: Ora automática
+setting_auto_time_description: Pone automáticamente el relôh dêdde la ré
+setting_auto_time_zone_name: Çona oraria automática
+setting_auto_time_zone_description: Pone automáticamente la çona oraria dêdde la ré
+setting_airplane_mode_on_name: Modo abión
+setting_airplane_mode_on_description: Çi er modo abión êttá âttibo
+setting_bluetooth_on_name: Bluetoôh
+setting_bluetooth_on_description: Çi er Bluetoôh êttá âttibao
+setting_wifi_on_name: Wi-Fi
+setting_wifi_on_description: Çi er Wi-Fi êttá âttibao
+setting_data_roaming_name: Itinerançia de datô
+setting_data_roaming_description: Çi la itinerançia de datô móbilê êttá âttibá
+setting_http_proxy_name: Prôççy TTP
+setting_http_proxy_description: Prôççy TTP globâh
+setting_http_proxy_raw_help: Cadena ôtt:port
+setting_airplane_mode_radios_name: Radiô der modo abión
+setting_airplane_mode_radios_description: Radiô deçâttibâh cuando er modo abión êttá âttibao
+setting_airplane_mode_radios_raw_help: Lîtta çepará por comâ (p. ej. bluetoôh,çey,nfc,wifi)
+setting_wifi_sleep_policy_name: Política de çûppençión de Wi-Fi
+setting_wifi_sleep_policy_description: Cuándo entra er Wi-Fi en çûppençión. API 30 ôççoleta.
+setting_wifi_sleep_policy_raw_help: 0=predeterminao, 1=nunca mientrâ carga, 2=nunca
+setting_wifi_max_dhcp_retry_count_name: Reintentô máççimô de DCP de Wi-Fi
+setting_wifi_max_dhcp_retry_count_description: Número máççimo de intentô de reintento de DCP
+setting_wifi_max_dhcp_retry_count_raw_help: Entero poçitibo, 0 = çin reintentô
+setting_wifi_networks_available_repeat_delay_name: Retardo de repetiçión de êccaneo de Wi-Fi
+setting_wifi_networks_available_repeat_delay_description: Çegundô antê de repetîh la notificaçión de ré abierta. API 30 ôççoleta.
+setting_wifi_networks_available_repeat_delay_raw_help: Entero en çegundô
+setting_wifi_num_open_networks_kept_name: Redê abiertâ de Wi-Fi guardâh
+setting_wifi_num_open_networks_kept_description: Máççimo de redê abiertâ a recordâh. API 30 ôççoleta.
+setting_wifi_num_open_networks_kept_raw_help: Entero poçitibo, 0 = ninguna recordá
+setting_wifi_mobile_data_transition_wakelock_timeout_ms_name: Tiempo de êppera de Wake Lock de Wi-Fi/Datô
+setting_wifi_mobile_data_transition_wakelock_timeout_ms_description: Tiempo de êppera de Wake Lock ar cambiâh entre Wi-Fi y datô móbilê
+setting_wifi_mobile_data_transition_wakelock_timeout_ms_raw_help: Entero en miliçegundô
+setting_bluetooth_discoverability_name: Biçibilidá Bluetoôh
+setting_bluetooth_discoverability_description: Çi er dîppoçitibo êh biçible bía Bluetoôh
+setting_bluetooth_discoverability_timeout_name: Tiempo de êppera de biçibilidá Bluetoôh
+setting_bluetooth_discoverability_timeout_description: Cuánto tiempo permaneçe er dîppoçitibo biçible bía Bluetoôh
+setting_bluetooth_discoverability_timeout_raw_help: Entero en çegundô (p. ej. 120, 300, 600)
+setting_end_button_behavior_name: Comportamiento der botón de corgâh
+setting_end_button_behavior_description: Âççión der botón de corgâh yamá
+setting_end_button_behavior_raw_help: 0=corgâh yamá, 1=îh al rehîttro de yamâh
+setting_accessibility_enabled_name: Çerbiçiô de âççeçibilidá
+setting_accessibility_enabled_description: Çi lô çerbiçiô de âççeçibilidá êttán âttibáô
+setting_accessibility_display_inversion_enabled_name: Imberçión de pantaya
+setting_accessibility_display_inversion_enabled_description: Çi lô colorê de la pantaya êttán imbertíô
+setting_touch_exploration_enabled_name: Êpploraçión táttî
+setting_touch_exploration_enabled_description: Çi la êpploraçión táttî (TarkBack) êttá âttibá
+setting_enabled_accessibility_services_name: Lîtta de çerbiçiô de âççeçibilidá
+setting_enabled_accessibility_services_description: Lîtta de çerbiçiô de âççeçibilidá âttibáô
+setting_default_input_method_name: Método de entrá predeterminao
+setting_default_input_method_description: ID de componente der teclao predeterminao
+setting_enabled_input_methods_name: Lîtta de métodô de entrá
+setting_enabled_input_methods_description: Lîtta de tecláô y métodô de entrá âttibáô
+setting_selected_input_method_subtype_name: Çûttipo de método de entrá çelêççionao
+setting_selected_input_method_subtype_description: Çûttipo predeterminao der método de entrá âttuâh
+setting_input_method_selector_visibility_name: Çelêttôh de método de entrá
+setting_input_method_selector_visibility_description: Çi er çelêttôh de método de entrá çe muêttra çiempre
+setting_input_method_selector_visibility_raw_help: 0=auto, 1=môttrâh çiempre
+setting_adb_enabled_name: ÂBB
+setting_adb_enabled_description: Çi el ÂBB por ÛBB êttá âttibao
+setting_development_settings_enabled_name: Ahûttê de deçarroyo
+setting_development_settings_enabled_description: Çi er menú de ôççionê de deçarroyo êttá dîpponible
+setting_wait_for_debugger_name: Êpperâh ar depuradôh
+setting_wait_for_debugger_description: Êpperâh a que er depuradôh çe âhhunte antê de lançâh aplicaçionê
+setting_always_finish_activities_name: Finaliçâh âttibidadê çiempre
+setting_always_finish_activities_description: Dêttruîh cá âttibidá en cuanto el uçuario la deha
+setting_window_animation_scale_name: Êccala de animaçión de bentana
+setting_window_animation_scale_description: Fâttôh de êccala pa lâ animaçionê de abrîh/çerrâh bentana
+setting_transition_animation_scale_name: Êccala de animaçión de trançiçión
+setting_transition_animation_scale_description: Fâttôh de êccala pa lâ animaçionê de trançiçión de âttibidá
+setting_animator_duration_scale_name: Êccala de duraçión del animadôh
+setting_animator_duration_scale_description: Fâttôh de êccala pa toâ lâ animaçionê baçâh en animadôh
+setting_stay_on_while_plugged_in_name: Mantenêh âttibo ar cargâh
+setting_stay_on_while_plugged_in_description: Mantenêh la pantaya âttiba ar cargâh
+setting_stay_on_while_plugged_in_raw_help: 'Máccara de bits: ûbb=1, ac=2, wireless=4'
+setting_usb_mass_storage_enabled_name: Armaçenamiento maçibo ÛBB
+setting_usb_mass_storage_enabled_description: Çi el armaçenamiento maçibo ÛBB êttá âttibao
+setting_device_name_name: Nombre der dîppoçitibo
+setting_device_name_description: Nombre der dîppoçitibo Bluetoôh y der çîttema
+setting_device_name_raw_help: Cuarquiêh cadena
+setting_device_provisioned_name: Dîppoçitibo aprobiçionao
+setting_device_provisioned_description: Çi er dîppoçitibo a çido aprobiçionao
+setting_device_provisioned_raw_help: 0=no aprobiçionao, 1=aprobiçionao
+setting_use_google_mail_name: Uçâh Google Maîh
+setting_use_google_mail_description: Môttrâh "Google Maîh" en lugâh de "Gmaîh"
