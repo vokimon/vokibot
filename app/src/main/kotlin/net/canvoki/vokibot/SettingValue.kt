@@ -3,6 +3,7 @@ package net.canvoki.vokibot
 import android.provider.Settings
 import androidx.annotation.StringRes
 import net.canvoki.vokibot.common.EnumOption
+import net.canvoki.vokibot.common.FlagOption
 
 data class SettingValue(
     val id: String,
@@ -180,10 +181,18 @@ val SETTING_VALUES: List<SettingValue> =
             name = R.string.setting_mode_ringer_streams_affected_name,
             description = R.string.setting_mode_ringer_streams_affected_description,
             rawHelp = R.string.setting_stream_bitmask_raw_help,
-            type = ExtraType.String,
-            // TODO: Int flags
-            // ("Voice call"=1, "System"=2, "Ring"=4,
-            //  "Music"=8, "Alarm"=16, "Notification"=32, "BT SCO"=64)
+            type =
+                ExtraType.Flags(
+                    listOf(
+                        FlagOption(1, R.string.setting_audio_stream_voice_call),
+                        FlagOption(2, R.string.setting_audio_stream_system),
+                        FlagOption(4, R.string.setting_audio_stream_ring),
+                        FlagOption(8, R.string.setting_audio_stream_music),
+                        FlagOption(16, R.string.setting_audio_stream_alarm),
+                        FlagOption(32, R.string.setting_audio_stream_notification),
+                        FlagOption(64, R.string.setting_audio_stream_bt_sco),
+                    ),
+                ),
         ),
         SettingValue(
             id = Settings.System.MUTE_STREAMS_AFFECTED,
@@ -191,10 +200,18 @@ val SETTING_VALUES: List<SettingValue> =
             name = R.string.setting_mute_streams_affected_name,
             description = R.string.setting_mute_streams_affected_description,
             rawHelp = R.string.setting_stream_bitmask_raw_help,
-            type = ExtraType.String,
-            // TODO: Int flags
-            // ("Voice call"=1, "System"=2, "Ring"=4,
-            //  "Music"=8, "Alarm"=16, "Notification"=32, "BT SCO"=64)
+            type =
+                ExtraType.Flags(
+                    listOf(
+                        FlagOption(1, R.string.setting_audio_stream_voice_call),
+                        FlagOption(2, R.string.setting_audio_stream_system),
+                        FlagOption(4, R.string.setting_audio_stream_ring),
+                        FlagOption(8, R.string.setting_audio_stream_music),
+                        FlagOption(16, R.string.setting_audio_stream_alarm),
+                        FlagOption(32, R.string.setting_audio_stream_notification),
+                        FlagOption(64, R.string.setting_audio_stream_bt_sco),
+                    ),
+                ),
         ),
         SettingValue(
             id = Settings.Global.MODE_RINGER,
@@ -617,8 +634,14 @@ val SETTING_VALUES: List<SettingValue> =
             name = R.string.setting_stay_on_while_plugged_in_name,
             description = R.string.setting_stay_on_while_plugged_in_description,
             rawHelp = R.string.setting_stay_on_while_plugged_in_raw_help,
-            type = ExtraType.String,
-            // TODO: Int flags("USB"=1, "AC"=2, "Wireless"=4)
+            type =
+                ExtraType.Flags(
+                    listOf(
+                        FlagOption(1, R.string.setting_plugged_usb),
+                        FlagOption(2, R.string.setting_plugged_ac),
+                        FlagOption(4, R.string.setting_plugged_wireless),
+                    ),
+                ),
         ),
         SettingValue(
             id = Settings.Global.USB_MASS_STORAGE_ENABLED,

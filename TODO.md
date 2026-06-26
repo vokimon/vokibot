@@ -39,6 +39,7 @@
     - [ ] Editor header: Fix: long titles move the done button out the screen.
     - [ ] Review all settings database texts
     - [ ] Translate all settings database texts
+    - [ ] Consider natural rotations: None (0) Left (90) Upside down (180) Right (270)
 
 ## Backlog
 
