@@ -180,6 +180,7 @@ extra_value_type_number: رقمي
 extra_value_type_boolean: قيمة منطقية
 extra_value_type_text_list: قائمة نصوص
 extra_value_type_uri_list: قائمة معرفات الموارد الموحدة
+extra_value_type_enum: اختيار
 settings_page_category_network: الشبكة
 settings_page_category_display: العرض
 settings_page_category_sound: الصوت

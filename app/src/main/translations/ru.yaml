@@ -180,6 +180,7 @@ extra_value_type_number: Числовой
 extra_value_type_boolean: Логическое значение
 extra_value_type_text_list: Список текста
 extra_value_type_uri_list: Список URI
+extra_value_type_enum: Выбор
 settings_page_category_network: Сеть
 settings_page_category_display: Экран
 settings_page_category_sound: Звук

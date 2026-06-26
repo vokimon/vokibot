@@ -180,6 +180,7 @@ extra_value_type_number: Numérique
 extra_value_type_boolean: Booléen
 extra_value_type_text_list: Liste de texte
 extra_value_type_uri_list: Liste d'URI
+extra_value_type_enum: Sélection
 settings_page_category_network: Réseau
 settings_page_category_display: Affichage
 settings_page_category_sound: Son
