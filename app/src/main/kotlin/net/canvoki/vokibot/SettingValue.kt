@@ -2,6 +2,7 @@ package net.canvoki.vokibot
 
 import android.provider.Settings
 import androidx.annotation.StringRes
+import net.canvoki.vokibot.common.EnumOption
 
 data class SettingValue(
     val id: String,
@@ -64,10 +65,18 @@ val SETTING_VALUES: List<SettingValue> =
             name = "Screen Off Timeout",
             description = "Milliseconds before screen turns off",
             rawHelp = "Integer in milliseconds (e.g. 60000 for 1 minute)",
-            type = ExtraType.String,
-            // TODO: Int enum
-            // ("15s"=15000, "30s"=30000, "1m"=60000, "2m"=120000,
-            //  "5m"=300000, "10m"=600000, "30m"=1800000)
+            type =
+                ExtraType.Enum(
+                    listOf(
+                        EnumOption("15000", "15 seconds"),
+                        EnumOption("30000", "30 seconds"),
+                        EnumOption("60000", "1 minute"),
+                        EnumOption("120000", "2 minutes"),
+                        EnumOption("300000", "5 minutes"),
+                        EnumOption("600000", "10 minutes"),
+                        EnumOption("1800000", "30 minutes"),
+                    ),
+                ),
         ),
         SettingValue(
             id = Settings.System.USER_ROTATION,

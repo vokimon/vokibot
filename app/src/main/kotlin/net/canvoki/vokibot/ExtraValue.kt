@@ -20,6 +20,8 @@ import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import net.canvoki.vokibot.common.EnumField
+import net.canvoki.vokibot.common.EnumOption
 import net.canvoki.vokibot.common.UriField
 
 @Serializable
@@ -206,6 +208,36 @@ sealed class ExtraType {
                     Text("$label ${stringResource(R.string.intent_extras_editor_comma_separated)}")
                 },
                 modifier = Modifier.fillMaxWidth(),
+            )
+        }
+    }
+
+    @Serializable
+    @SerialName("ENUM")
+    data class Enum(
+        val options: List<EnumOption>,
+    ) : ExtraType() {
+        override val labelRes = R.string.extra_value_type_enum
+
+        override fun defaultValue() =
+            ExtraValue.StringValue(
+                options.firstOrNull()?.value ?: "",
+            )
+
+        override fun fromRawString(raw: kotlin.String) = ExtraValue.StringValue(raw)
+
+        @Composable
+        override fun Editor(
+            label: kotlin.String,
+            value: ExtraValue,
+            onChanged: (ExtraValue) -> Unit,
+        ) {
+            val rawValue = (value as? ExtraValue.StringValue)?.value ?: ""
+            EnumField(
+                options = options,
+                selectedValue = rawValue,
+                onValueChanged = { onChanged(ExtraValue.StringValue(it)) },
+                label = label,
             )
         }
     }
