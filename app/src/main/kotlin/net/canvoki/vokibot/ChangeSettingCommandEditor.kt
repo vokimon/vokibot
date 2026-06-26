@@ -117,7 +117,7 @@ fun ChangeSettingCommandEditor(
     var hasLoaded by rememberSaveable { mutableStateOf(false) }
     var setting by rememberSaveable { mutableStateOf<String?>(null) }
     val settingValue = setting?.let { id -> SETTING_VALUES.find { it.id == id } }
-    val settingTitle = settingValue?.name
+    val settingTitle = settingValue?.let { stringResource(it.name) }
     val writeSettingsPerm = rememberPermissionState("android.permission.WRITE_SETTINGS")
     var rawEdit by rememberSaveable { mutableStateOf(false) }
     var value by rememberSaveable(stateSaver = ExtraValueSaver) {
@@ -195,7 +195,7 @@ fun ChangeSettingCommandEditor(
 
         if (settingValue != null) {
             Text(
-                text = settingValue.description,
+                text = stringResource(settingValue.description),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(start = 16.dp),
@@ -209,7 +209,7 @@ fun ChangeSettingCommandEditor(
                         discardState.markDirty()
                     },
                     label = { Text(stringResource(R.string.change_setting_field_value)) },
-                    supportingText = { Text(settingValue.rawHelp) },
+                    supportingText = { Text(stringResource(settingValue.rawHelp)) },
                     modifier = Modifier.fillMaxWidth(),
                 )
                 OneTimeNotice(

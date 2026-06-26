@@ -43,8 +43,8 @@ fun SettingList(nav: StackNavigatorState) {
             notFoundMessage = stringResource(R.string.setting_list_not_found),
         ) { setting ->
             ListItem(
-                headlineContent = { Text(setting.name) },
-                supportingContent = { Text(setting.description) },
+                headlineContent = { Text(stringResource(setting.name)) },
+                supportingContent = { Text(stringResource(setting.description)) },
                 modifier =
                     Modifier
                         .fillMaxWidth()

@@ -422,3 +422,163 @@ setting_end_button_behavior_caller_log: "Journal d'appels"
 setting_input_method_selector_auto: "Automatique"
 setting_input_method_selector_always_show: "Toujours afficher"
 enum_option_custom_value: "\"{0}\" (Personnalisé)"
+setting_toggle_raw_help: "0 pour désactivé, 1 pour activé"
+setting_audio_uri_raw_help: URI d'un fichier audio (par ex. content://media/internal/audio/123)
+setting_animation_scale_raw_help: "Flottant (0.0=désactivé, 0.5, 1.0, 1.5, 2.0, 5.0, 10.0)"
+setting_stream_bitmask_raw_help: "Masque de bits : voice_call=1, system=2, ring=4, music=8, alarm=16, notification=32, bt_sco=64"
+setting_component_names_raw_help: Noms de composants séparés par des deux-points
+setting_component_name_raw_help: Chaîne de nom de composant
+setting_screen_brightness_mode_name: Luminosité adaptative
+setting_screen_brightness_mode_description: Lorsque cette option est activée, la luminosité de l'écran s'adapte à la lumière ambiante
+setting_screen_brightness_name: Luminosité de l'écran
+setting_screen_brightness_description: Luminosité du rétroéclairage de l'écran
+setting_screen_brightness_raw_help: "Entier 0-255"
+setting_screen_off_timeout_name: Délai d'extinction de l'écran
+setting_screen_off_timeout_description: Délai avant l'extinction de l'écran
+setting_screen_off_timeout_raw_help: "Entier en millisecondes (par ex. 60000 pour 1 minute)"
+setting_user_rotation_name: Rotation de l'utilisateur
+setting_user_rotation_description: Rotation par défaut de l'écran
+setting_user_rotation_raw_help: "0=0°, 1=90°, 2=180°, 3=270°"
+setting_accelerometer_rotation_name: Rotation par accéléromètre
+setting_accelerometer_rotation_description: Si la rotation est contrôlée par l'accéléromètre
+setting_accelerometer_rotation_raw_help: "0=manuel, 1=l'accéléromètre contrôle la rotation"
+setting_font_scale_name: Échelle de police
+setting_font_scale_description: Facteur d'échelle de la police
+setting_font_scale_raw_help: "Facteur flottant, 1.0 pas d'échelle"
+setting_ringtone_name: Sonnerie
+setting_ringtone_description: URI de contenu de la sonnerie par défaut
+setting_notification_sound_name: Son de notification
+setting_notification_sound_description: URI de contenu du son de notification par défaut
+setting_alarm_alert_name: Son de l'alarme
+setting_alarm_alert_description: URI de contenu du son de l'alarme par défaut
+setting_dtmf_tone_when_dialing_name: Tons DTMF
+setting_dtmf_tone_when_dialing_description: Lorsque cette option est activée, les tons DTMF sont audibles lors de la numérotation
+setting_sound_effects_enabled_name: Effets sonores
+setting_sound_effects_enabled_description: Clics de touches et sons du couvercle
+setting_haptic_feedback_enabled_name: Retour haptique
+setting_haptic_feedback_enabled_description: Fournit un retour haptique lors d'appuis longs et d'autres interactions
+setting_mode_ringer_streams_affected_name: Flux audio affectés par le mode de sonnerie
+setting_mode_ringer_streams_affected_description: Quels flux audio sont affectés par le mode de sonnerie
+setting_mute_streams_affected_name: Flux audio affectés par la mise en sourdine
+setting_mute_streams_affected_description: Quels flux audio sont affectés par la mise en sourdine
+setting_vibrate_on_name: Vibration activée
+setting_vibrate_on_description: Quand vibrer pour les appels et notifications entrants
+setting_vibrate_on_raw_help: "Masque de bits : call=1, call_cdma=2, notification=4, chat=8, calendar=16, hangup=32"
+setting_mode_ringer_name: Mode de sonnerie
+setting_mode_ringer_description: Mode de sonnerie actuel
+setting_mode_ringer_raw_help: "0=normal, 1=vibreur, 2=silencieux"
+setting_tts_default_pitch_name: Tonalité par défaut du TTS
+setting_tts_default_pitch_description: Tonalité par défaut pour la synthèse vocale
+setting_tts_default_pitch_raw_help: Entier 10-500
+setting_tts_default_rate_name: Vitesse par défaut du TTS
+setting_tts_default_rate_description: Vitesse d'élocution par défaut pour la synthèse vocale
+setting_tts_default_rate_raw_help: "Entier 10-300"
+setting_tts_default_synth_name: Synthétiseur par défaut du TTS
+setting_tts_default_synth_description: Nom du paquet du moteur TTS par défaut
+setting_tts_default_synth_raw_help: Chaîne de nom de paquet
+setting_tts_enabled_plugins_name: Plugins TTS activés
+setting_tts_enabled_plugins_description: Liste séparée par des espaces des plugins TTS activés
+setting_tts_enabled_plugins_raw_help: Noms de paquets séparés par des espaces
+setting_text_auto_caps_name: Majuscules automatiques
+setting_text_auto_caps_description: Met automatiquement la première lettre des phrases en majuscule
+setting_text_auto_punctuate_name: Ponctuation automatique
+setting_text_auto_punctuate_description: Ajoute automatiquement un point après une double espace
+setting_text_auto_replace_name: Remplacement automatique
+setting_text_auto_replace_description: Remplace automatiquement le texte en utilisant AutoText
+setting_text_show_password_name: Afficher le mot de passe
+setting_text_show_password_description: Affiche brièvement les caractères du mot de passe lors de la saisie
+setting_time_12_24_name: Format de l'heure
+setting_time_12_24_description: Si l'horloge utilise le format 12 ou 24 heures
+setting_time_12_24_raw_help: 12 ou 24
+setting_date_format_name: Format de la date
+setting_date_format_description: Chaîne de format de date du système. Obsolète depuis l'API 31.
+setting_date_format_raw_help: "Chaîne de format (par ex. mm/dd/yyyy, dd/mm/yyyy, yyyy/mm/dd)"
+setting_auto_time_name: Heure automatique
+setting_auto_time_description: Règle automatiquement l'horloge depuis le réseau
+setting_auto_time_zone_name: Fuseau horaire automatique
+setting_auto_time_zone_description: Règle automatiquement le fuseau horaire depuis le réseau
+setting_airplane_mode_on_name: Mode avion
+setting_airplane_mode_on_description: Si le mode avion est actif
+setting_bluetooth_on_name: Bluetooth
+setting_bluetooth_on_description: Si le Bluetooth est activé
+setting_wifi_on_name: Wi-Fi
+setting_wifi_on_description: Si le Wi-Fi est activé
+setting_data_roaming_name: Itinérance des données
+setting_data_roaming_description: Si l'itinérance des données mobiles est activée
+setting_network_preference_name: Préférence de réseau
+setting_network_preference_description: Types de réseau préférés
+setting_network_preference_raw_help: Masque de bits entier pour les réseaux préférés
+setting_http_proxy_name: Proxy HTTP
+setting_http_proxy_description: Proxy HTTP global
+setting_http_proxy_raw_help: "Chaîne hôte:port"
+setting_airplane_mode_radios_name: Radios du mode avion
+setting_airplane_mode_radios_description: Radios désactivées lorsque le mode avion est activé
+setting_airplane_mode_radios_raw_help: Liste séparée par des virgules (par ex. bluetooth,cell,nfc,wifi)
+setting_wifi_sleep_policy_name: Politique de mise en veille du Wi-Fi
+setting_wifi_sleep_policy_description: Quand le Wi-Fi passe en veille. Obsolète depuis l'API 30.
+setting_wifi_sleep_policy_raw_help: 0=par défaut, 1=jamais en charge, 2=jamais
+setting_wifi_max_dhcp_retry_count_name: Tentatives DHCP max du Wi-Fi
+setting_wifi_max_dhcp_retry_count_description: Nombre maximal de tentatives de réessai DHCP
+setting_wifi_max_dhcp_retry_count_raw_help: Entier positif, 0 = aucune tentative
+setting_wifi_networks_available_repeat_delay_name: Délai de répétition d'analyse Wi-Fi
+setting_wifi_networks_available_repeat_delay_description: Secondes avant de répéter la notification de réseau ouvert. Obsolète depuis l'API 30.
+setting_wifi_networks_available_repeat_delay_raw_help: Entier en secondes
+setting_wifi_num_open_networks_kept_name: Réseaux ouverts Wi-Fi conservés
+setting_wifi_num_open_networks_kept_description: Maximum de réseaux ouverts à mémoriser. Obsolète depuis l'API 30.
+setting_wifi_num_open_networks_kept_raw_help: Entier positif, 0 = aucun mémorisé
+setting_wifi_mobile_data_transition_wakelock_timeout_ms_name: Délai d'expiration du Wake Lock Wi-Fi/Données
+setting_wifi_mobile_data_transition_wakelock_timeout_ms_description: Délai d'expiration du Wake Lock lors du passage entre Wi-Fi et données mobiles
+setting_wifi_mobile_data_transition_wakelock_timeout_ms_raw_help: Entier en millisecondes
+setting_bluetooth_discoverability_name: Découvrabilité Bluetooth
+setting_bluetooth_discoverability_description: Si l'appareil est détectable via Bluetooth
+setting_bluetooth_discoverability_raw_help: 0=désactivé, 1=activé
+setting_bluetooth_discoverability_timeout_name: Délai de découvrabilité Bluetooth
+setting_bluetooth_discoverability_timeout_description: Durée pendant laquelle l'appareil reste détectable via Bluetooth
+setting_bluetooth_discoverability_timeout_raw_help: Entier en secondes (par ex. 120, 300, 600)
+setting_end_button_behavior_name: Comportement du bouton de fin
+setting_end_button_behavior_description: Action du bouton de fin d'appel
+setting_end_button_behavior_raw_help: 0=raccrocher, 1=aller au journal d'appels
+setting_accessibility_enabled_name: Services d'accessibilité
+setting_accessibility_enabled_description: Si les services d'accessibilité sont activés
+setting_accessibility_display_inversion_enabled_name: Inversion des couleurs
+setting_accessibility_display_inversion_enabled_description: Si les couleurs de l'écran sont inversées
+setting_touch_exploration_enabled_name: Exploration tactile
+setting_touch_exploration_enabled_description: Si l'exploration tactile (TalkBack) est activée
+setting_enabled_accessibility_services_name: Liste des services d'accessibilité
+setting_enabled_accessibility_services_description: Liste des services d'accessibilité activés
+setting_default_input_method_name: Méthode de saisie par défaut
+setting_default_input_method_description: ID de composant du clavier par défaut
+setting_enabled_input_methods_name: Liste des méthodes de saisie
+setting_enabled_input_methods_description: Liste des claviers et méthodes de saisie activés
+setting_selected_input_method_subtype_name: Sous-type de méthode de saisie sélectionné
+setting_selected_input_method_subtype_description: Sous-type par défaut de la méthode de saisie actuelle
+setting_input_method_selector_visibility_name: Sélecteur de méthode de saisie
+setting_input_method_selector_visibility_description: Si le sélecteur de méthode de saisie est toujours affiché
+setting_input_method_selector_visibility_raw_help: 0=auto, 1=toujours afficher
+setting_adb_enabled_name: ADB
+setting_adb_enabled_description: Si l'ADB par USB est activé
+setting_development_settings_enabled_name: Paramètres développeur
+setting_development_settings_enabled_description: Si le menu des options développeur est disponible
+setting_wait_for_debugger_name: Attendre le débogueur
+setting_wait_for_debugger_description: Attendre que le débogueur se connecte avant de lancer les applications
+setting_always_finish_activities_name: Toujours terminer les activités
+setting_always_finish_activities_description: Détruire chaque activité dès que l'utilisateur la quitte
+setting_window_animation_scale_name: Échelle d'animation des fenêtres
+setting_window_animation_scale_description: Facteur d'échelle pour les animations d'ouverture/fermeture des fenêtres
+setting_transition_animation_scale_name: Échelle d'animation de transition
+setting_transition_animation_scale_description: Facteur d'échelle pour les animations de transition d'activité
+setting_animator_duration_scale_name: Échelle de durée de l'animateur
+setting_animator_duration_scale_description: Facteur d'échelle pour toutes les animations basées sur l'animateur
+setting_stay_on_while_plugged_in_name: Rester actif en charge
+setting_stay_on_while_plugged_in_description: Garder l'écran actif pendant la charge
+setting_stay_on_while_plugged_in_raw_help: "Masque de bits : usb=1, ac=2, wireless=4"
+setting_usb_mass_storage_enabled_name: Stockage de masse USB
+setting_usb_mass_storage_enabled_description: Si le stockage de masse USB est activé
+setting_device_name_name: Nom de l'appareil
+setting_device_name_description: Nom de l'appareil Bluetooth et du système
+setting_device_name_raw_help: N'importe quelle chaîne
+setting_device_provisioned_name: Appareil configuré
+setting_device_provisioned_description: Si l'appareil a été configuré
+setting_device_provisioned_raw_help: 0=non configuré, 1=configuré
+setting_use_google_mail_name: Utiliser Google Mail
+setting_use_google_mail_description: 'Afficher "Google Mail" au lieu de "Gmail"'

@@ -422,3 +422,163 @@ setting_end_button_behavior_caller_log: "Caller log"
 setting_input_method_selector_auto: "Auto"
 setting_input_method_selector_always_show: "Always show"
 enum_option_custom_value: "\"{0}\" (Custom)"
+setting_toggle_raw_help: "0 for disabled, 1 for enabled"
+setting_audio_uri_raw_help: URI of an audio file (e.g. content://media/internal/audio/123)
+setting_animation_scale_raw_help: "Float (0.0=off, 0.5, 1.0, 1.5, 2.0, 5.0, 10.0)"
+setting_stream_bitmask_raw_help: "Bitmask: voice_call=1, system=2, ring=4, music=8, alarm=16, notification=32, bt_sco=64"
+setting_component_names_raw_help: Colon-separated component names
+setting_component_name_raw_help: Component name string
+setting_screen_brightness_mode_name: Adaptive Brightness
+setting_screen_brightness_mode_description: When enabled the screen brightness will adapt to environmental light
+setting_screen_brightness_name: Screen Brightness
+setting_screen_brightness_description: Screen backlight brightness
+setting_screen_brightness_raw_help: "Integer 0-255"
+setting_screen_off_timeout_name: Screen Off Timeout
+setting_screen_off_timeout_description: Time-out before screen turns off
+setting_screen_off_timeout_raw_help: "Integer in milliseconds (e.g. 60000 for 1 minute)"
+setting_user_rotation_name: User Rotation
+setting_user_rotation_description: Default screen rotation
+setting_user_rotation_raw_help: "0=0°, 1=90°, 2=180°, 3=270°"
+setting_accelerometer_rotation_name: Accelerometer Rotation
+setting_accelerometer_rotation_description: Whether rotation is controlled by accelerometer
+setting_accelerometer_rotation_raw_help: "0=manual, 1=accelerometer controls rotation"
+setting_font_scale_name: Font Scale
+setting_font_scale_description: Font scaling factor
+setting_font_scale_raw_help: "Float factor, 1.0 no scaling"
+setting_ringtone_name: Ringtone
+setting_ringtone_description: Content URI of default ringtone
+setting_notification_sound_name: Notification Sound
+setting_notification_sound_description: Content URI of default notification sound
+setting_alarm_alert_name: Alarm Alert Sound
+setting_alarm_alert_description: Content URI of default alarm alert
+setting_dtmf_tone_when_dialing_name: DTMF Tones
+setting_dtmf_tone_when_dialing_description: When enabled makes audible DTMF tones when dialing
+setting_sound_effects_enabled_name: Sound Effects
+setting_sound_effects_enabled_description: Key clicks and lid sounds
+setting_haptic_feedback_enabled_name: Haptic Feedback
+setting_haptic_feedback_enabled_description: Provide haptic feedback on long press and other interactions
+setting_mode_ringer_streams_affected_name: Ringer Streams Affected
+setting_mode_ringer_streams_affected_description: Which audio streams are affected by ringer mode
+setting_mute_streams_affected_name: Mute Streams Affected
+setting_mute_streams_affected_description: Which audio streams are affected by mute
+setting_vibrate_on_name: Vibrate On
+setting_vibrate_on_description: When to vibrate for incoming calls and notifications
+setting_vibrate_on_raw_help: "Bitmask: call=1, call_cdma=2, notification=4, chat=8, calendar=16, hangup=32"
+setting_mode_ringer_name: Ringer Mode
+setting_mode_ringer_description: Current ringer mode
+setting_mode_ringer_raw_help: "0=normal, 1=vibrate, 2=silent"
+setting_tts_default_pitch_name: TTS Default Pitch
+setting_tts_default_pitch_description: Default pitch for text-to-speech
+setting_tts_default_pitch_raw_help: Integer 10-500
+setting_tts_default_rate_name: TTS Default Rate
+setting_tts_default_rate_description: Default speech rate for text-to-speech
+setting_tts_default_rate_raw_help: "Integer 10-300"
+setting_tts_default_synth_name: TTS Default Synth
+setting_tts_default_synth_description: Package name of default TTS engine
+setting_tts_default_synth_raw_help: Package name string
+setting_tts_enabled_plugins_name: TTS Enabled Plugins
+setting_tts_enabled_plugins_description: Space-separated list of enabled TTS plugins
+setting_tts_enabled_plugins_raw_help: Space-separated package names
+setting_text_auto_caps_name: Auto Capitalize
+setting_text_auto_caps_description: Automatically capitalize first letter of sentences
+setting_text_auto_punctuate_name: Auto Punctuate
+setting_text_auto_punctuate_description: Automatically add period after double space
+setting_text_auto_replace_name: Auto Replace
+setting_text_auto_replace_description: Automatically replace text using AutoText
+setting_text_show_password_name: Show Password
+setting_text_show_password_description: Briefly show password characters when typing
+setting_time_12_24_name: Hour Format
+setting_time_12_24_description: Whether clock uses 12 or 24 hour format
+setting_time_12_24_raw_help: 12 or 24
+setting_date_format_name: Date Format
+setting_date_format_description: System date format string. Deprecated API 31.
+setting_date_format_raw_help: "Format string (e.g. mm/dd/yyyy, dd/mm/yyyy, yyyy/mm/dd)"
+setting_auto_time_name: Auto Time
+setting_auto_time_description: Automatically set clock from network
+setting_auto_time_zone_name: Auto Time Zone
+setting_auto_time_zone_description: Automatically set time zone from network
+setting_airplane_mode_on_name: Airplane Mode
+setting_airplane_mode_on_description: Whether airplane mode is active
+setting_bluetooth_on_name: Bluetooth
+setting_bluetooth_on_description: Whether Bluetooth is enabled
+setting_wifi_on_name: Wi-Fi
+setting_wifi_on_description: Whether Wi-Fi is enabled
+setting_data_roaming_name: Data Roaming
+setting_data_roaming_description: Whether mobile data roaming is enabled
+setting_network_preference_name: Network Preference
+setting_network_preference_description: Preferred network types
+setting_network_preference_raw_help: Integer bitmask for preferred networks
+setting_http_proxy_name: HTTP Proxy
+setting_http_proxy_description: Global HTTP proxy
+setting_http_proxy_raw_help: "host:port string"
+setting_airplane_mode_radios_name: Airplane Mode Radios
+setting_airplane_mode_radios_description: Radios disabled when airplane mode is on
+setting_airplane_mode_radios_raw_help: Comma-separated list (e.g. bluetooth,cell,nfc,wifi)
+setting_wifi_sleep_policy_name: Wi-Fi Sleep Policy
+setting_wifi_sleep_policy_description: When Wi-Fi goes to sleep. Deprecated API 30.
+setting_wifi_sleep_policy_raw_help: 0=default, 1=never while plugged, 2=never
+setting_wifi_max_dhcp_retry_count_name: Wi-Fi Max DHCP Retries
+setting_wifi_max_dhcp_retry_count_description: Maximum number of DHCP retry attempts
+setting_wifi_max_dhcp_retry_count_raw_help: Positive integer, 0 = no retries
+setting_wifi_networks_available_repeat_delay_name: Wi-Fi Repeat Scan Delay
+setting_wifi_networks_available_repeat_delay_description: Seconds before repeating open network notification. Deprecated API 30.
+setting_wifi_networks_available_repeat_delay_raw_help: Integer in seconds
+setting_wifi_num_open_networks_kept_name: Wi-Fi Open Networks Kept
+setting_wifi_num_open_networks_kept_description: Maximum open networks to remember. Deprecated API 30.
+setting_wifi_num_open_networks_kept_raw_help: Positive integer, 0 = none remembered
+setting_wifi_mobile_data_transition_wakelock_timeout_ms_name: Wi-Fi/Data Wake Lock Timeout
+setting_wifi_mobile_data_transition_wakelock_timeout_ms_description: Wakelock timeout when switching between Wi-Fi and mobile data
+setting_wifi_mobile_data_transition_wakelock_timeout_ms_raw_help: Integer in milliseconds
+setting_bluetooth_discoverability_name: Bluetooth Discoverability
+setting_bluetooth_discoverability_description: Whether the device is discoverable via Bluetooth
+setting_bluetooth_discoverability_raw_help: 0=disabled, 1=enabled
+setting_bluetooth_discoverability_timeout_name: Bluetooth Discoverability Timeout
+setting_bluetooth_discoverability_timeout_description: How long the device remains Bluetooth discoverable
+setting_bluetooth_discoverability_timeout_raw_help: Integer in seconds (e.g. 120, 300, 600)
+setting_end_button_behavior_name: End Button Behavior
+setting_end_button_behavior_description: Action of the end call button
+setting_end_button_behavior_raw_help: 0=end call, 1=go to caller log
+setting_accessibility_enabled_name: Accessibility Services
+setting_accessibility_enabled_description: Whether accessibility services are enabled
+setting_accessibility_display_inversion_enabled_name: Display Inversion
+setting_accessibility_display_inversion_enabled_description: Whether screen colors are inverted
+setting_touch_exploration_enabled_name: Touch Exploration
+setting_touch_exploration_enabled_description: Whether touch exploration (TalkBack) is enabled
+setting_enabled_accessibility_services_name: Accessibility Service List
+setting_enabled_accessibility_services_description: List of enabled accessibility services
+setting_default_input_method_name: Default Input Method
+setting_default_input_method_description: Component ID of the default keyboard
+setting_enabled_input_methods_name: Input Method List
+setting_enabled_input_methods_description: List of enabled keyboards and input methods
+setting_selected_input_method_subtype_name: Selected Input Method Subtype
+setting_selected_input_method_subtype_description: Default subtype of the current input method
+setting_input_method_selector_visibility_name: Input Method Selector
+setting_input_method_selector_visibility_description: Whether the input method selector is always shown
+setting_input_method_selector_visibility_raw_help: 0=auto, 1=always show
+setting_adb_enabled_name: ADB
+setting_adb_enabled_description: Whether ADB over USB is enabled
+setting_development_settings_enabled_name: Development Settings
+setting_development_settings_enabled_description: Whether developer options menu is available
+setting_wait_for_debugger_name: Wait For Debugger
+setting_wait_for_debugger_description: Wait for debugger to attach before launching apps
+setting_always_finish_activities_name: Always Finish Activities
+setting_always_finish_activities_description: Destroy every activity as soon as the user leaves it
+setting_window_animation_scale_name: Window Animation Scale
+setting_window_animation_scale_description: Scale factor for window open/close animations
+setting_transition_animation_scale_name: Transition Animation Scale
+setting_transition_animation_scale_description: Scale factor for activity transition animations
+setting_animator_duration_scale_name: Animator Duration Scale
+setting_animator_duration_scale_description: Scale factor for all animator-based animations
+setting_stay_on_while_plugged_in_name: Stay On While Plugged In
+setting_stay_on_while_plugged_in_description: Keep screen on while charging
+setting_stay_on_while_plugged_in_raw_help: "Bitmask: usb=1, ac=2, wireless=4"
+setting_usb_mass_storage_enabled_name: USB Mass Storage
+setting_usb_mass_storage_enabled_description: Whether USB mass storage is enabled
+setting_device_name_name: Device Name
+setting_device_name_description: Bluetooth and system device name
+setting_device_name_raw_help: Any string
+setting_device_provisioned_name: Device Provisioned
+setting_device_provisioned_description: Whether the device has been provisioned
+setting_device_provisioned_raw_help: 0=not provisioned, 1=provisioned
+setting_use_google_mail_name: Use Google Mail
+setting_use_google_mail_description: 'Show "Google Mail" instead of "Gmail"'

@@ -422,3 +422,163 @@ setting_end_button_behavior_caller_log: "سجل المكالمات"
 setting_input_method_selector_auto: "تلقائي"
 setting_input_method_selector_always_show: "إظهار دائماً"
 enum_option_custom_value: "\"{0}\" (مخصص)"
+setting_toggle_raw_help: "0 معطل، 1 مفعّل"
+setting_audio_uri_raw_help: URI لملف صوتي (مثل content://media/internal/audio/123)
+setting_animation_scale_raw_help: "عدد عشري (0.0=معطل، 0.5، 1.0، 1.5، 2.0، 5.0، 10.0)"
+setting_stream_bitmask_raw_help: "قناع بت: voice_call=1، system=2، ring=4، music=8، alarm=16، notification=32، bt_sco=64"
+setting_component_names_raw_help: أسماء المكونات مفصولة بنقطتين
+setting_component_name_raw_help: سلسلة اسم المكون
+setting_screen_brightness_mode_name: السطوع التكيفي
+setting_screen_brightness_mode_description: عند التفعيل، سيتكيف سطوع الشاشة مع الضوء المحيط
+setting_screen_brightness_name: سطوع الشاشة
+setting_screen_brightness_description: سطوع الإضاءة الخلفية للشاشة
+setting_screen_brightness_raw_help: "عدد صحيح 0-255"
+setting_screen_off_timeout_name: مهلة إيقاف تشغيل الشاشة
+setting_screen_off_timeout_description: المهلة قبل إيقاف تشغيل الشاشة
+setting_screen_off_timeout_raw_help: "عدد صحيح بالميلي ثانية (مثل 60000 لدقيقة واحدة)"
+setting_user_rotation_name: تدوير المستخدم
+setting_user_rotation_description: تدوير الشاشة الافتراضي
+setting_user_rotation_raw_help: "0=0°، 1=90°، 2=180°، 3=270°"
+setting_accelerometer_rotation_name: تدوير مقياس التسارع
+setting_accelerometer_rotation_description: ما إذا كان التدوير يتم التحكم فيه بواسطة مقياس التسارع
+setting_accelerometer_rotation_raw_help: "0=يدوي، 1=مقياس التسارع يتحكم في التدوير"
+setting_font_scale_name: مقياس الخط
+setting_font_scale_description: عامل مقياس الخط
+setting_font_scale_raw_help: "عامل عشري، 1.0 بدون تغيير في المقياس"
+setting_ringtone_name: نغمة الرنين
+setting_ringtone_description: URI محتوى نغمة الرنين الافتراضية
+setting_notification_sound_name: صوت الإشعار
+setting_notification_sound_description: URI محتوى صوت الإشعار الافتراضي
+setting_alarm_alert_name: صوت تنبيه المنبه
+setting_alarm_alert_description: URI محتوى صوت تنبيه المنبه الافتراضي
+setting_dtmf_tone_when_dialing_name: نغمات DTMF
+setting_dtmf_tone_when_dialing_description: عند التفعيل، يجعل نغمات DTMF مسموعة عند الطلب
+setting_sound_effects_enabled_name: المؤثرات الصوتية
+setting_sound_effects_enabled_description: نقرات المفاتيح وأصوات الغطاء
+setting_haptic_feedback_enabled_name: اللمس الاهتزازي
+setting_haptic_feedback_enabled_description: يوفر ردود فعل لمسية عند الضغط المطول والتفاعلات الأخرى
+setting_mode_ringer_streams_affected_name: تدفقات الصوت المتأثرة بوضع الرنين
+setting_mode_ringer_streams_affected_description: ما هي تدفقات الصوت المتأثرة بوضع الرنين
+setting_mute_streams_affected_name: تدفقات الصوت المتأثرة بكتم الصوت
+setting_mute_streams_affected_description: ما هي تدفقات الصوت المتأثرة بكتم الصوت
+setting_vibrate_on_name: تشغيل الاهتزاز
+setting_vibrate_on_description: متى تهتز للمكالمات والإشعارات الواردة
+setting_vibrate_on_raw_help: "قناع بت: call=1، call_cdma=2، notification=4، chat=8، calendar=16، hangup=32"
+setting_mode_ringer_name: وضع الرنين
+setting_mode_ringer_description: وضع الرنين الحالي
+setting_mode_ringer_raw_help: "0=عادي، 1=اهتزاز، 2=صامت"
+setting_tts_default_pitch_name: درجة الصوت الافتراضية لتحويل النص إلى كلام
+setting_tts_default_pitch_description: درجة الصوت الافتراضية لتحويل النص إلى كلام
+setting_tts_default_pitch_raw_help: عدد صحيح 10-500
+setting_tts_default_rate_name: معدل الكلام الافتراضي لتحويل النص إلى كلام
+setting_tts_default_rate_description: معدل سرعة الكلام الافتراضي لتحويل النص إلى كلام
+setting_tts_default_rate_raw_help: "عدد صحيح 10-300"
+setting_tts_default_synth_name: المحرك الافتراضي لتحويل النص إلى كلام
+setting_tts_default_synth_description: اسم حزمة محرك تحويل النص إلى كلام الافتراضي
+setting_tts_default_synth_raw_help: سلسلة اسم الحزمة
+setting_tts_enabled_plugins_name: المكونات الإضافية المفعلة لتحويل النص إلى كلام
+setting_tts_enabled_plugins_description: قائمة بالمكونات الإضافية المفعلة لتحويل النص إلى كلام مفصولة بمسافات
+setting_tts_enabled_plugins_raw_help: أسماء حزم مفصولة بمسافات
+setting_text_auto_caps_name: تكبير تلقائي
+setting_text_auto_caps_description: تكبير الحرف الأول من الجمل تلقائياً
+setting_text_auto_punctuate_name: ترقيم تلقائي
+setting_text_auto_punctuate_description: إضافة نقطة تلقائياً بعد مسافتين
+setting_text_auto_replace_name: استبدال تلقائي
+setting_text_auto_replace_description: استبدال النص تلقائياً باستخدام النص التلقائي
+setting_text_show_password_name: إظهار كلمة المرور
+setting_text_show_password_description: إظهار أحرف كلمة المرور لفترة وجيزة عند الكتابة
+setting_time_12_24_name: تنسيق الساعة
+setting_time_12_24_description: ما إذا كانت الساعة تستخدم تنسيق 12 أو 24 ساعة
+setting_time_12_24_raw_help: 12 أو 24
+setting_date_format_name: تنسيق التاريخ
+setting_date_format_description: سلسلة تنسيق تاريخ النظام. واجهة برمجة التطبيقات 31 مهملة.
+setting_date_format_raw_help: "سلسلة التنسيق (مثل mm/dd/yyyy، dd/mm/yyyy، yyyy/mm/dd)"
+setting_auto_time_name: الوقت التلقائي
+setting_auto_time_description: ضبط الساعة تلقائياً من الشبكة
+setting_auto_time_zone_name: المنطقة الزمنية التلقائية
+setting_auto_time_zone_description: ضبط المنطقة الزمنية تلقائياً من الشبكة
+setting_airplane_mode_on_name: وضع الطائرة
+setting_airplane_mode_on_description: ما إذا كان وضع الطائرة نشطاً
+setting_bluetooth_on_name: البلوتوث
+setting_bluetooth_on_description: ما إذا كان البلوتوث مفعلاً
+setting_wifi_on_name: الواي فاي
+setting_wifi_on_description: ما إذا كان الواي فاي مفعلاً
+setting_data_roaming_name: تجوال البيانات
+setting_data_roaming_description: ما إذا كان تجوال بيانات الجوال مفعلاً
+setting_network_preference_name: تفضيل الشبكة
+setting_network_preference_description: أنواع الشبكات المفضلة
+setting_network_preference_raw_help: قناع بت صحيح للشبكات المفضلة
+setting_http_proxy_name: وكيل HTTP
+setting_http_proxy_description: وكيل HTTP العام
+setting_http_proxy_raw_help: "سلسلة المضيف:المنفذ"
+setting_airplane_mode_radios_name: أجهزة إرسال وضع الطائرة
+setting_airplane_mode_radios_description: الأجهزة التي يتم تعطيلها عند تشغيل وضع الطائرة
+setting_airplane_mode_radios_raw_help: قائمة مفصولة بفواصل (مثل bluetooth,cell,nfc,wifi)
+setting_wifi_sleep_policy_name: سياسة نوم الواي فاي
+setting_wifi_sleep_policy_description: متى يدخل الواي فاي في وضع السكون. واجهة برمجة التطبيقات 30 مهملة.
+setting_wifi_sleep_policy_raw_help: 0=افتراضي، 1=أبداً عند الشحن، 2=أبداً
+setting_wifi_max_dhcp_retry_count_name: الحد الأقصى لإعادة محاولة DHCP للواي فاي
+setting_wifi_max_dhcp_retry_count_description: الحد الأقصى لعدد محاولات إعادة DHCP
+setting_wifi_max_dhcp_retry_count_raw_help: عدد صحيح موجب، 0 = بدون إعادة محاولة
+setting_wifi_networks_available_repeat_delay_name: تأخير تكرار مسح الواي فاي
+setting_wifi_networks_available_repeat_delay_description: ثوانٍ قبل تكرار إشعار الشبكة المفتوحة. واجهة برمجة التطبيقات 30 مهملة.
+setting_wifi_networks_available_repeat_delay_raw_help: عدد صحيح بالثواني
+setting_wifi_num_open_networks_kept_name: الشبكات المفتوحة المحفوظة للواي فاي
+setting_wifi_num_open_networks_kept_description: الحد الأقصى للشبكات المفتوحة المراد تذكرها. واجهة برمجة التطبيقات 30 مهملة.
+setting_wifi_num_open_networks_kept_raw_help: عدد صحيح موجب، 0 = لا شيء محفوظ
+setting_wifi_mobile_data_transition_wakelock_timeout_ms_name: مهلة قفل الاستيقاظ للواي فاي/البيانات
+setting_wifi_mobile_data_transition_wakelock_timeout_ms_description: مهلة قفل الاستيقاظ عند التبديل بين الواي فاي وبيانات الجوال
+setting_wifi_mobile_data_transition_wakelock_timeout_ms_raw_help: عدد صحيح بالميلي ثانية
+setting_bluetooth_discoverability_name: قابلية اكتشاف البلوتوث
+setting_bluetooth_discoverability_description: ما إذا كان الجهاز قابلاً للاكتشاف عبر البلوتوث
+setting_bluetooth_discoverability_raw_help: 0=معطل، 1=مفعّل
+setting_bluetooth_discoverability_timeout_name: مهلة قابلية اكتشاف البلوتوث
+setting_bluetooth_discoverability_timeout_description: المدة التي يبقى فيها الجهاز قابلاً للاكتشاف عبر البلوتوث
+setting_bluetooth_discoverability_timeout_raw_help: عدد صحيح بالثواني (مثل 120، 300، 600)
+setting_end_button_behavior_name: سلوك زر الإنهاء
+setting_end_button_behavior_description: إجراء زر إنهاء المكالمة
+setting_end_button_behavior_raw_help: 0=إنهاء المكالمة، 1=الانتقال إلى سجل المكالمات
+setting_accessibility_enabled_name: خدمات إمكانية الوصول
+setting_accessibility_enabled_description: ما إذا كانت خدمات إمكانية الوصول مفعلة
+setting_accessibility_display_inversion_enabled_name: عكس الألوان
+setting_accessibility_display_inversion_enabled_description: ما إذا كانت ألوان الشاشة معكوسة
+setting_touch_exploration_enabled_name: استكشاف اللمس
+setting_touch_exploration_enabled_description: ما إذا كان استكشاف اللمس (TalkBack) مفعلاً
+setting_enabled_accessibility_services_name: قائمة خدمات إمكانية الوصول
+setting_enabled_accessibility_services_description: قائمة بخدمات إمكانية الوصول المفعلة
+setting_default_input_method_name: طريقة الإدخال الافتراضية
+setting_default_input_method_description: معرف المكون للوحة المفاتيح الافتراضية
+setting_enabled_input_methods_name: قائمة طرق الإدخال
+setting_enabled_input_methods_description: قائمة بلوحات المفاتيح وطرق الإدخال المفعلة
+setting_selected_input_method_subtype_name: النوع الفرعي لطريقة الإدخال المحدد
+setting_selected_input_method_subtype_description: النوع الفرعي الافتراضي لطريقة الإدخال الحالية
+setting_input_method_selector_visibility_name: محدد طريقة الإدخال
+setting_input_method_selector_visibility_description: ما إذا كان محدد طريقة الإدخال يظهر دائماً
+setting_input_method_selector_visibility_raw_help: 0=تلقائي، 1=إظهار دائماً
+setting_adb_enabled_name: ADB
+setting_adb_enabled_description: ما إذا كان ADB عبر USB مفعلاً
+setting_development_settings_enabled_name: إعدادات المطور
+setting_development_settings_enabled_description: ما إذا كانت قائمة خيارات المطور متاحة
+setting_wait_for_debugger_name: انتظار المنقح
+setting_wait_for_debugger_description: انتظار إرفاق المنقح قبل تشغيل التطبيقات
+setting_always_finish_activities_name: إنهاء الأنشطة دائماً
+setting_always_finish_activities_description: تدمير كل نشاط بمجرد مغادرة المستخدم له
+setting_window_animation_scale_name: مقياس رسوم النافذة المتحركة
+setting_window_animation_scale_description: عامل المقياس لرسوم فتح/إغلاق النافذة المتحركة
+setting_transition_animation_scale_name: مقياس رسوم الانتقال المتحركة
+setting_transition_animation_scale_description: عامل المقياس لرسوم انتقال النشاط المتحركة
+setting_animator_duration_scale_name: مقياس مدة الرسوم المتحركة
+setting_animator_duration_scale_description: عامل المقياس لجميع الرسوم المتحركة المستندة إلى الرسوم المتحركة
+setting_stay_on_while_plugged_in_name: البقاء نشطاً عند الشحن
+setting_stay_on_while_plugged_in_description: إبقاء الشاشة قيد التشغيل أثناء الشحن
+setting_stay_on_while_plugged_in_raw_help: "قناع بت: usb=1، ac=2، wireless=4"
+setting_usb_mass_storage_enabled_name: وحدة تخزين USB
+setting_usb_mass_storage_enabled_description: ما إذا كان تخزين USB الشامل مفعلاً
+setting_device_name_name: اسم الجهاز
+setting_device_name_description: اسم جهاز البلوتوث والنظام
+setting_device_name_raw_help: أي سلسلة
+setting_device_provisioned_name: الجهاز مهيأ
+setting_device_provisioned_description: ما إذا كان الجهاز قد تم تجهيزه
+setting_device_provisioned_raw_help: 0=غير مهيأ، 1=مهيأ
+setting_use_google_mail_name: استخدام Google Mail
+setting_use_google_mail_description: 'إظهار "Google Mail" بدلاً من "Gmail"'

@@ -422,3 +422,163 @@ setting_end_button_behavior_caller_log: "Registre de trucades"
 setting_input_method_selector_auto: "Automàtic"
 setting_input_method_selector_always_show: "Mostra sempre"
 enum_option_custom_value: "\"{0}\" (Personalitzat)"
+setting_toggle_raw_help: "0 per a desactivat, 1 per a activat"
+setting_audio_uri_raw_help: URI d'un fitxer d'àudio (p. ex. content://media/internal/audio/123)
+setting_animation_scale_raw_help: "Float (0.0=desactivat, 0.5, 1.0, 1.5, 2.0, 5.0, 10.0)"
+setting_stream_bitmask_raw_help: "Màscara de bits: voice_call=1, system=2, ring=4, music=8, alarm=16, notification=32, bt_sco=64"
+setting_component_names_raw_help: Noms de components separats per dos punts
+setting_component_name_raw_help: Cadena de nom de component
+setting_screen_brightness_mode_name: Brillantor adaptativa
+setting_screen_brightness_mode_description: Quan està activat, la brillantor de la pantalla s'adaptarà a la llum ambiental
+setting_screen_brightness_name: Brillantor de la pantalla
+setting_screen_brightness_description: Brillantor de la llum de fons de la pantalla
+setting_screen_brightness_raw_help: "Enter 0-255"
+setting_screen_off_timeout_name: Temps d'espera d'apagada de la pantalla
+setting_screen_off_timeout_description: Temps d'espera abans que la pantalla s'apagui
+setting_screen_off_timeout_raw_help: "Enter en mil·lisegons (p. ex. 60000 per a 1 minut)"
+setting_user_rotation_name: Rotació de l'usuari
+setting_user_rotation_description: Rotació predeterminada de la pantalla
+setting_user_rotation_raw_help: "0=0°, 1=90°, 2=180°, 3=270°"
+setting_accelerometer_rotation_name: Rotació per acceleròmetre
+setting_accelerometer_rotation_description: Si la rotació és controlada per l'acceleròmetre
+setting_accelerometer_rotation_raw_help: "0=manual, 1=l'acceleròmetre controla la rotació"
+setting_font_scale_name: Escala de la lletra
+setting_font_scale_description: Factor d'escala de la lletra
+setting_font_scale_raw_help: "Factor float, 1.0 sense escala"
+setting_ringtone_name: To de trucada
+setting_ringtone_description: URI de contingut del to de trucada predeterminat
+setting_notification_sound_name: So de notificació
+setting_notification_sound_description: URI de contingut del so de notificació predeterminat
+setting_alarm_alert_name: So d'alarma
+setting_alarm_alert_description: URI de contingut del so d'alarma predeterminat
+setting_dtmf_tone_when_dialing_name: Tons DTMF
+setting_dtmf_tone_when_dialing_description: Quan està activat, fa audibles els tons DTMF en marcar
+setting_sound_effects_enabled_name: Efectes de so
+setting_sound_effects_enabled_description: Clics de tecles i sons de tapa
+setting_haptic_feedback_enabled_name: Resposta hàptica
+setting_haptic_feedback_enabled_description: Proporciona resposta hàptica en prémer llarg i altres interaccions
+setting_mode_ringer_streams_affected_name: Fluxos d'àudio afectats pel mode del to
+setting_mode_ringer_streams_affected_description: Quins fluxos d'àudio són afectats pel mode del to
+setting_mute_streams_affected_name: Fluxos d'àudio afectats pel silenci
+setting_mute_streams_affected_description: Quins fluxos d'àudio són afectats pel silenci
+setting_vibrate_on_name: Vibració activada
+setting_vibrate_on_description: Quan vibrar per a trucades i notificacions entrants
+setting_vibrate_on_raw_help: "Màscara de bits: call=1, call_cdma=2, notification=4, chat=8, calendar=16, hangup=32"
+setting_mode_ringer_name: Mode del to
+setting_mode_ringer_description: Mode del to actual
+setting_mode_ringer_raw_help: "0=normal, 1=vibració, 2=silenci"
+setting_tts_default_pitch_name: To predeterminat del TTS
+setting_tts_default_pitch_description: To predeterminat per al sintetitzador de veu
+setting_tts_default_pitch_raw_help: Enter 10-500
+setting_tts_default_rate_name: Velocitat predeterminada del TTS
+setting_tts_default_rate_description: Velocitat de veu predeterminada per al sintetitzador de veu
+setting_tts_default_rate_raw_help: "Enter 10-300"
+setting_tts_default_synth_name: Sintetitzador predeterminat del TTS
+setting_tts_default_synth_description: Nom del paquet del motor TTS predeterminat
+setting_tts_default_synth_raw_help: Cadena de nom de paquet
+setting_tts_enabled_plugins_name: Connectors TTS activats
+setting_tts_enabled_plugins_description: Llista de connectors TTS activats separats per espais
+setting_tts_enabled_plugins_raw_help: Noms de paquets separats per espais
+setting_text_auto_caps_name: Majúscules automàtiques
+setting_text_auto_caps_description: Posa en majúscula automàticament la primera lletra de les frases
+setting_text_auto_punctuate_name: Puntuació automàtica
+setting_text_auto_punctuate_description: Afegeix un punt automàticament després de doble espai
+setting_text_auto_replace_name: Substitució automàtica
+setting_text_auto_replace_description: Substitueix automàticament el text usant AutoText
+setting_text_show_password_name: Mostra la contrasenya
+setting_text_show_password_description: Mostra breument els caràcters de la contrasenya en escriure
+setting_time_12_24_name: Format de l'hora
+setting_time_12_24_description: Si el rellotge usa format de 12 o 24 hores
+setting_time_12_24_raw_help: 12 o 24
+setting_date_format_name: Format de la data
+setting_date_format_description: Cadena de format de la data del sistema. API 31 obsoleta.
+setting_date_format_raw_help: "Cadena de format (p. ex. mm/dd/yyyy, dd/mm/yyyy, yyyy/mm/dd)"
+setting_auto_time_name: Hora automàtica
+setting_auto_time_description: Posa automàticament el rellotge des de la xarxa
+setting_auto_time_zone_name: Zona horària automàtica
+setting_auto_time_zone_description: Posa automàticament la zona horària des de la xarxa
+setting_airplane_mode_on_name: Mode avió
+setting_airplane_mode_on_description: Si el mode avió està actiu
+setting_bluetooth_on_name: Bluetooth
+setting_bluetooth_on_description: Si el Bluetooth està activat
+setting_wifi_on_name: Wi-Fi
+setting_wifi_on_description: Si el Wi-Fi està activat
+setting_data_roaming_name: Itinerància de dades
+setting_data_roaming_description: Si la itinerància de dades mòbils està activada
+setting_network_preference_name: Preferència de xarxa
+setting_network_preference_description: Tipus de xarxa preferits
+setting_network_preference_raw_help: Màscara de bits entera per a xarxes preferides
+setting_http_proxy_name: Proxy HTTP
+setting_http_proxy_description: Proxy HTTP global
+setting_http_proxy_raw_help: "Cadena host:port"
+setting_airplane_mode_radios_name: Ràdios del mode avió
+setting_airplane_mode_radios_description: Ràdios desactivades quan el mode avió està activat
+setting_airplane_mode_radios_raw_help: Llista separada per comes (p. ex. bluetooth,cell,nfc,wifi)
+setting_wifi_sleep_policy_name: Política de suspensió del Wi-Fi
+setting_wifi_sleep_policy_description: Quan el Wi-Fi entra en suspensió. API 30 obsoleta.
+setting_wifi_sleep_policy_raw_help: 0=predeterminat, 1=mai quan s'està carregant, 2=mai
+setting_wifi_max_dhcp_retry_count_name: Reintents màxims de DHCP del Wi-Fi
+setting_wifi_max_dhcp_retry_count_description: Nombre màxim d'intents de reintents de DHCP
+setting_wifi_max_dhcp_retry_count_raw_help: Enter positiu, 0 = sense reintents
+setting_wifi_networks_available_repeat_delay_name: Retard de repetició d'escaneig del Wi-Fi
+setting_wifi_networks_available_repeat_delay_description: Segons abans de repetir la notificació de xarxa oberta. API 30 obsoleta.
+setting_wifi_networks_available_repeat_delay_raw_help: Enter en segons
+setting_wifi_num_open_networks_kept_name: Xarxes obertes del Wi-Fi conservades
+setting_wifi_num_open_networks_kept_description: Màxim de xarxes obertes a recordar. API 30 obsoleta.
+setting_wifi_num_open_networks_kept_raw_help: Enter positiu, 0 = cap recordada
+setting_wifi_mobile_data_transition_wakelock_timeout_ms_name: Temps d'espera de Wake Lock de Wi-Fi/Dades
+setting_wifi_mobile_data_transition_wakelock_timeout_ms_description: Temps d'espera de Wake Lock en canviar entre Wi-Fi i dades mòbils
+setting_wifi_mobile_data_transition_wakelock_timeout_ms_raw_help: Enter en mil·lisegons
+setting_bluetooth_discoverability_name: Visibilitat Bluetooth
+setting_bluetooth_discoverability_description: Si el dispositiu és visible via Bluetooth
+setting_bluetooth_discoverability_raw_help: 0=desactivat, 1=activat
+setting_bluetooth_discoverability_timeout_name: Temps d'espera de visibilitat Bluetooth
+setting_bluetooth_discoverability_timeout_description: Quant de temps el dispositiu roman visible via Bluetooth
+setting_bluetooth_discoverability_timeout_raw_help: Enter en segons (p. ex. 120, 300, 600)
+setting_end_button_behavior_name: Comportament del botó de penjar
+setting_end_button_behavior_description: Acció del botó de penjar trucada
+setting_end_button_behavior_raw_help: 0=penjar trucada, 1=anar al registre de trucades
+setting_accessibility_enabled_name: Serveis d'accessibilitat
+setting_accessibility_enabled_description: Si els serveis d'accessibilitat estan activats
+setting_accessibility_display_inversion_enabled_name: Inversió de pantalla
+setting_accessibility_display_inversion_enabled_description: Si els colors de la pantalla estan invertits
+setting_touch_exploration_enabled_name: Exploració tàctil
+setting_touch_exploration_enabled_description: Si l'exploració tàctil (TalkBack) està activada
+setting_enabled_accessibility_services_name: Llista de serveis d'accessibilitat
+setting_enabled_accessibility_services_description: Llista de serveis d'accessibilitat activats
+setting_default_input_method_name: Mètode d'entrada predeterminat
+setting_default_input_method_description: ID de component del teclat predeterminat
+setting_enabled_input_methods_name: Llista de mètodes d'entrada
+setting_enabled_input_methods_description: Llista de teclats i mètodes d'entrada activats
+setting_selected_input_method_subtype_name: Subtipus de mètode d'entrada seleccionat
+setting_selected_input_method_subtype_description: Subtipus predeterminat del mètode d'entrada actual
+setting_input_method_selector_visibility_name: Selector de mètode d'entrada
+setting_input_method_selector_visibility_description: Si el selector de mètode d'entrada es mostra sempre
+setting_input_method_selector_visibility_raw_help: 0=auto, 1=mostra sempre
+setting_adb_enabled_name: ADB
+setting_adb_enabled_description: Si l'ADB per USB està activat
+setting_development_settings_enabled_name: Configuració de desenvolupament
+setting_development_settings_enabled_description: Si el menú d'opcions de desenvolupament està disponible
+setting_wait_for_debugger_name: Esperar el depurador
+setting_wait_for_debugger_description: Esperar que el depurador s'adjunti abans de llançar aplicacions
+setting_always_finish_activities_name: Finalitzar activitats sempre
+setting_always_finish_activities_description: Destruir cada activitat quan l'usuari la deixa
+setting_window_animation_scale_name: Escala d'animació de finestra
+setting_window_animation_scale_description: Factor d'escala per a les animacions d'obrir/tancar finestra
+setting_transition_animation_scale_name: Escala d'animació de transició
+setting_transition_animation_scale_description: Factor d'escala per a les animacions de transició d'activitat
+setting_animator_duration_scale_name: Escala de durada de l'animador
+setting_animator_duration_scale_description: Factor d'escala per a totes les animacions basades en animador
+setting_stay_on_while_plugged_in_name: Mantenir actiu quan es carrega
+setting_stay_on_while_plugged_in_description: Mantenir la pantalla activa quan es carrega
+setting_stay_on_while_plugged_in_raw_help: "Màscara de bits: usb=1, ac=2, wireless=4"
+setting_usb_mass_storage_enabled_name: Emmagatzematge massiu USB
+setting_usb_mass_storage_enabled_description: Si l'emmagatzematge massiu USB està activat
+setting_device_name_name: Nom del dispositiu
+setting_device_name_description: Nom del dispositiu Bluetooth i del sistema
+setting_device_name_raw_help: Qualsevol cadena
+setting_device_provisioned_name: Dispositiu aprovisionat
+setting_device_provisioned_description: Si el dispositiu ha estat aprovisionat
+setting_device_provisioned_raw_help: 0=no aprovisionat, 1=aprovisionat
+setting_use_google_mail_name: Utilitzar Google Mail
+setting_use_google_mail_description: 'Mostrar "Google Mail" en lloc de "Gmail"'

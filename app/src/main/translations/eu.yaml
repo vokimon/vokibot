@@ -422,3 +422,163 @@ setting_end_button_behavior_caller_log: "Deien erregistroa"
 setting_input_method_selector_auto: "Automatikoa"
 setting_input_method_selector_always_show: "Beti erakutsi"
 enum_option_custom_value: "\"{0}\" (Pertsonalizatua)"
+setting_toggle_raw_help: "0 desaktibatuta, 1 aktibatuta"
+setting_audio_uri_raw_help: Audio-fitxategi baten URIa (adib. content://media/internal/audio/123)
+setting_animation_scale_raw_help: "Mugikor (0.0=itzalita, 0.5, 1.0, 1.5, 2.0, 5.0, 10.0)"
+setting_stream_bitmask_raw_help: "Bit maskara: voice_call=1, system=2, ring=4, music=8, alarm=16, notification=32, bt_sco=64"
+setting_component_names_raw_help: Komaz bereizitako osagai-izenak
+setting_component_name_raw_help: Osagai-izenaren katea
+setting_screen_brightness_mode_name: Distira adaptatiboa
+setting_screen_brightness_mode_description: Gaituta dagoenean, pantailaren distira inguruko argira egokituko da
+setting_screen_brightness_name: Pantailaren distira
+setting_screen_brightness_description: Pantailaren atzeko argiaren distira
+setting_screen_brightness_raw_help: "Osoko zenbakia 0-255"
+setting_screen_off_timeout_name: Pantaila itzaltzeko denbora-muga
+setting_screen_off_timeout_description: Pantaila itzali aurretiko denbora-muga
+setting_screen_off_timeout_raw_help: "Osoko zenbakia milisegundotan (adib. 60000 minutu 1erako)"
+setting_user_rotation_name: Erabiltzailearen biraketa
+setting_user_rotation_description: Pantailaren biraketa lehenetsia
+setting_user_rotation_raw_help: "0=0°, 1=90°, 2=180°, 3=270°"
+setting_accelerometer_rotation_name: Azelerometroaren bidezko biraketa
+setting_accelerometer_rotation_description: Biraketa azelerometroak kontrolatzen duen edo ez
+setting_accelerometer_rotation_raw_help: "0=eskuz, 1=azelerometroak biraketa kontrolatzen du"
+setting_font_scale_name: Letra-tamainaren eskala
+setting_font_scale_description: Letra-tamainaren eskala-faktorea
+setting_font_scale_raw_help: "Faktore mugikorra, 1.0 eskalarik gabe"
+setting_ringtone_name: Dei-tonua
+setting_ringtone_description: Tono lehenetsiaren edukiaren URIa
+setting_notification_sound_name: Jakinarazpen-soinua
+setting_notification_sound_description: Jakinarazpen-soinu lehenetsiaren edukiaren URIa
+setting_alarm_alert_name: Alarma-soinua
+setting_alarm_alert_description: Alarma-soinu lehenetsiaren edukiaren URIa
+setting_dtmf_tone_when_dialing_name: DTMF tonuak
+setting_dtmf_tone_when_dialing_description: Gaituta dagoenean, DTMF tonuak entzun daitezke markatzean
+setting_sound_effects_enabled_name: Soinu-efektuak
+setting_sound_effects_enabled_description: Tekla-klikak eta estalki-soinuak
+setting_haptic_feedback_enabled_name: Erantzun haptikoa
+setting_haptic_feedback_enabled_description: Erantzun haptikoa eskaintzen du sakaketa luzeetan eta beste interakzio batzuetan
+setting_mode_ringer_streams_affected_name: Tonu moduak eragiten dien audio-fluxuak
+setting_mode_ringer_streams_affected_description: Zein audio-fluxuri eragiten dien tonu moduak
+setting_mute_streams_affected_name: Isiltzeak eragiten dien audio-fluxuak
+setting_mute_streams_affected_description: Zein audio-fluxuri eragiten dien isiltzeak
+setting_vibrate_on_name: Bibrazioa aktibatuta
+setting_vibrate_on_description: Noiz bibratu sarrerako dei eta jakinarazpenetarako
+setting_vibrate_on_raw_help: "Bit maskara: call=1, call_cdma=2, notification=4, chat=8, calendar=16, hangup=32"
+setting_mode_ringer_name: Tonu modua
+setting_mode_ringer_description: Uneko tonu modua
+setting_mode_ringer_raw_help: "0=normala, 1=bibrazioa, 2=isila"
+setting_tts_default_pitch_name: TTS tonu lehenetsia
+setting_tts_default_pitch_description: Testu-hitzaurrekoaren tonu lehenetsia
+setting_tts_default_pitch_raw_help: Osoko zenbakia 10-500
+setting_tts_default_rate_name: TTS abiadura lehenetsia
+setting_tts_default_rate_description: Testu-hitzaurrekoaren ahots-abiadura lehenetsia
+setting_tts_default_rate_raw_help: "Osoko zenbakia 10-300"
+setting_tts_default_synth_name: TTS sintesi-motorea lehenetsia
+setting_tts_default_synth_description: TTS motor lehenetsiaren pakete-izena
+setting_tts_default_synth_raw_help: Pakete-izenaren katea
+setting_tts_enabled_plugins_name: Gaitutako TTS pluginak
+setting_tts_enabled_plugins_description: Gaitutako TTS pluginen zerrenda, espazioz bereizita
+setting_tts_enabled_plugins_raw_help: Espazioz bereizitako pakete-izenak
+setting_text_auto_caps_name: Maiuskula automatikoak
+setting_text_auto_caps_description: Esaldien lehen letra automatikoki maiuskulaz jarri
+setting_text_auto_punctuate_name: Puntuazio automatikoa
+setting_text_auto_punctuate_description: Puntu bat gehitu automatikoki bi zuriunen ondoren
+setting_text_auto_replace_name: Ordezkapen automatikoa
+setting_text_auto_replace_description: Testua automatikoki ordezkatu AutoText erabiliz
+setting_text_show_password_name: Erakutsi pasahitza
+setting_text_show_password_description: Erakutsi labur pasahitzaren karaktereak idaztean
+setting_time_12_24_name: Ordu-formatua
+setting_time_12_24_description: Erlojuak 12 edo 24 orduko formatua erabiltzen duen
+setting_time_12_24_raw_help: 12 edo 24
+setting_date_format_name: Data-formatua
+setting_date_format_description: Sistemako data-formatuaren katea. API 31 zaharkitua.
+setting_date_format_raw_help: "Formatu-katea (adib. mm/dd/yyyy, dd/mm/yyyy, yyyy/mm/dd)"
+setting_auto_time_name: Ordu automatikoa
+setting_auto_time_description: Ezarri erlojua automatikoki saretik
+setting_auto_time_zone_name: Ordu-zona automatikoa
+setting_auto_time_zone_description: Ezarri ordu-zona automatikoki saretik
+setting_airplane_mode_on_name: Hegazkin modua
+setting_airplane_mode_on_description: Hegazkin modua aktibo dagoen
+setting_bluetooth_on_name: Bluetootha
+setting_bluetooth_on_description: Bluetootha gaituta dagoen
+setting_wifi_on_name: Wi-Fia
+setting_wifi_on_description: Wi-Fia gaituta dagoen
+setting_data_roaming_name: Datuak ibiltaritza
+setting_data_roaming_description: Mugikorreko datuen ibiltaritza gaituta dagoen
+setting_network_preference_name: Sare-lehentasuna
+setting_network_preference_description: Sare mota hobetsiak
+setting_network_preference_raw_help: Osoko zenbakizko bit maskara hobetsitako saretarako
+setting_http_proxy_name: HTTP proxya
+setting_http_proxy_description: HTTP proxy orokorra
+setting_http_proxy_raw_help: "ostalaria:ataka katea"
+setting_airplane_mode_radios_name: Hegazkin moduko irratiak
+setting_airplane_mode_radios_description: Hegazkin modua aktibatuta dagoenean desgaitzen diren irratiak
+setting_airplane_mode_radios_raw_help: Komaz bereizitako zerrenda (adib. bluetooth,cell,nfc,wifi)
+setting_wifi_sleep_policy_name: Wi-Fi lo-politika
+setting_wifi_sleep_policy_description: Wi-Fi-a noiz pasatzen den lokartzera. API 30 zaharkitua.
+setting_wifi_sleep_policy_raw_help: 0=lehenetsia, 1=inoiz ez kargatzean, 2=inoiz ez
+setting_wifi_max_dhcp_retry_count_name: Wi-Fi DHCP saiakera maximoak
+setting_wifi_max_dhcp_retry_count_description: DHCP saiakera kopuru maximoa
+setting_wifi_max_dhcp_retry_count_raw_help: Osoko zenbaki positiboa, 0 = saiakerarik ez
+setting_wifi_networks_available_repeat_delay_name: Wi-Fi eskaneatze errepikapen atzerapena
+setting_wifi_networks_available_repeat_delay_description: Segunduak sare irekiaren jakinarazpena errepikatu aurretik. API 30 zaharkitua.
+setting_wifi_networks_available_repeat_delay_raw_help: Osoko zenbakia segundotan
+setting_wifi_num_open_networks_kept_name: Gorde diren Wi-Fi sare irekiak
+setting_wifi_num_open_networks_kept_description: Gogoratu beharreko sare irekien kopuru maximoa. API 30 zaharkitua.
+setting_wifi_num_open_networks_kept_raw_help: Osoko zenbaki positiboa, 0 = bat ere ez gogoratzea
+setting_wifi_mobile_data_transition_wakelock_timeout_ms_name: Wi-Fi/Datuen Wake Lock denbora-muga
+setting_wifi_mobile_data_transition_wakelock_timeout_ms_description: Wake Lock denbora-muga Wi-Fi eta mugikorreko datuen artean aldatzean
+setting_wifi_mobile_data_transition_wakelock_timeout_ms_raw_help: Osoko zenbakia milisegundotan
+setting_bluetooth_discoverability_name: Bluetooth ikusgarritasuna
+setting_bluetooth_discoverability_description: Gailua Bluetooth bidez aurki daitekeen
+setting_bluetooth_discoverability_raw_help: 0=desaktibatuta, 1=aktibatuta
+setting_bluetooth_discoverability_timeout_name: Bluetooth ikusgarritasunaren denbora-muga
+setting_bluetooth_discoverability_timeout_description: Zenbat denboran geratzen den gailua Bluetooth bidez aurki daitekeen
+setting_bluetooth_discoverability_timeout_raw_help: Osoko zenbakia segundotan (adib. 120, 300, 600)
+setting_end_button_behavior_name: Amaiera botoiaren portaera
+setting_end_button_behavior_description: Deiari uzteko botoiaren ekintza
+setting_end_button_behavior_raw_help: 0=deiari utzi, 1=joan deien erregistrora
+setting_accessibility_enabled_name: Irisgarritasun-zerbitzuak
+setting_accessibility_enabled_description: Irisgarritasun-zerbitzuak gaituta dauden
+setting_accessibility_display_inversion_enabled_name: Pantaila alderantzizkatzea
+setting_accessibility_display_inversion_enabled_description: Pantailaren koloreak alderantziz dauden
+setting_touch_exploration_enabled_name: Ukipen-azterketa
+setting_touch_exploration_enabled_description: Ukipen-azterketa (TalkBack) gaituta dagoen
+setting_enabled_accessibility_services_name: Irisgarritasun-zerbitzuen zerrenda
+setting_enabled_accessibility_services_description: Gaitutako irisgarritasun-zerbitzuen zerrenda
+setting_default_input_method_name: Idazteko metodo lehenetsia
+setting_default_input_method_description: Teklatu lehenetsiaren osagai-IDa
+setting_enabled_input_methods_name: Idazteko metodoen zerrenda
+setting_enabled_input_methods_description: Gaitutako teklatu eta idazteko metodoen zerrenda
+setting_selected_input_method_subtype_name: Hautatutako idazteko metodoaren azpimota
+setting_selected_input_method_subtype_description: Uneko idazteko metodoaren azpimota lehenetsia
+setting_input_method_selector_visibility_name: Idazteko metodo hautatzailea
+setting_input_method_selector_visibility_description: Idazteko metodo hautatzailea beti erakusten den
+setting_input_method_selector_visibility_raw_help: 0=auto, 1=beti erakutsi
+setting_adb_enabled_name: ADB
+setting_adb_enabled_description: USB bidezko ADB gaituta dagoen
+setting_development_settings_enabled_name: Garatzaile-ezarpenak
+setting_development_settings_enabled_description: Garatzaile-aukeren menua eskuragarri dagoen
+setting_wait_for_debugger_name: Arazteari itxaron
+setting_wait_for_debugger_description: Itxaron araztailea erantsi arte aplikazioak abiarazi aurretik
+setting_always_finish_activities_name: Beti amaitu jarduerak
+setting_always_finish_activities_description: Suntsitu jarduera bakoitza erabiltzaileak uzten duen bezain pronto
+setting_window_animation_scale_name: Leiho-animazioen eskala
+setting_window_animation_scale_description: Leihoak irekitze/ixteko animazioen eskala-faktorea
+setting_transition_animation_scale_name: Trantsizio-animazioen eskala
+setting_transition_animation_scale_description: Jarduera-trantsizioen animazioen eskala-faktorea
+setting_animator_duration_scale_name: Animatzailearen iraupenaren eskala
+setting_animator_duration_scale_description: Animatzailean oinarritutako animazio guztien eskala-faktorea
+setting_stay_on_while_plugged_in_name: Aktibo mantendu kargatzean
+setting_stay_on_while_plugged_in_description: Mantendu pantaila aktibo kargatzean
+setting_stay_on_while_plugged_in_raw_help: "Bit maskara: usb=1, ac=2, wireless=4"
+setting_usb_mass_storage_enabled_name: USB masibo biltegiratzea
+setting_usb_mass_storage_enabled_description: USB masibo biltegiratzea gaituta dagoen
+setting_device_name_name: Gailuaren izena
+setting_device_name_description: Bluetooth eta sistemako gailuaren izena
+setting_device_name_raw_help: Edozein kate
+setting_device_provisioned_name: Gailua hornituta
+setting_device_provisioned_description: Gailua hornitu den
+setting_device_provisioned_raw_help: 0=hornitu gabe, 1=hornituta
+setting_use_google_mail_name: Erabili Google Mail
+setting_use_google_mail_description: 'Erakutsi "Google Mail" "Gmail" ordez'
