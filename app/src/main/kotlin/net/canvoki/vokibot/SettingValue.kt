@@ -84,9 +84,15 @@ val SETTING_VALUES: List<SettingValue> =
             name = "User Rotation",
             description = "Default screen rotation",
             rawHelp = "0=0°, 1=90°, 2=180°, 3=270°",
-            type = ExtraType.String,
-            // TODO: Int enum
-            // ("0°"=0, "90°"=1, "180°"=2, "270°"=3)
+            type =
+                ExtraType.Enum(
+                    listOf(
+                        EnumOption("0", "0°"),
+                        EnumOption("1", "90°"),
+                        EnumOption("2", "180°"),
+                        EnumOption("3", "270°"),
+                    ),
+                ),
         ),
         SettingValue(
             id = Settings.System.ACCELEROMETER_ROTATION,
@@ -102,9 +108,19 @@ val SETTING_VALUES: List<SettingValue> =
             name = "Font Scale",
             description = "Font scaling factor",
             rawHelp = "Float, 1.0 is default",
-            type = ExtraType.String,
-            // TODO: Float enum
-            // (0.5, 0.7, 0.85, 1.0, 1.15, 1.3, 1.5, 2.0)
+            type =
+                ExtraType.Enum(
+                    listOf(
+                        EnumOption("0.5", "0.5"),
+                        EnumOption("0.7", "0.7"),
+                        EnumOption("0.85", "0.85"),
+                        EnumOption("1.0", "1.0"),
+                        EnumOption("1.15", "1.15"),
+                        EnumOption("1.3", "1.3"),
+                        EnumOption("1.5", "1.5"),
+                        EnumOption("2.0", "2.0"),
+                    ),
+                ),
         ),
         // Sound
         SettingValue(
@@ -194,8 +210,14 @@ val SETTING_VALUES: List<SettingValue> =
             name = "Ringer Mode",
             description = "Current ringer mode",
             rawHelp = "0=normal, 1=vibrate, 2=silent",
-            type = ExtraType.String,
-            // TODO: Int enum("Normal"=0, "Vibrate"=1, "Silent"=2)
+            type =
+                ExtraType.Enum(
+                    listOf(
+                        EnumOption("0", "Normal"),
+                        EnumOption("1", "Vibrate"),
+                        EnumOption("2", "Silent"),
+                    ),
+                ),
         ),
         SettingValue(
             id = Settings.Secure.TTS_DEFAULT_PITCH,
@@ -269,8 +291,13 @@ val SETTING_VALUES: List<SettingValue> =
             name = "Hour Format",
             description = "Whether clock uses 12 or 24 hour format",
             rawHelp = "\"12\" or \"24\"",
-            type = ExtraType.String,
-            // TODO: Int enum("12h"="12", "24h"="24")
+            type =
+                ExtraType.Enum(
+                    listOf(
+                        EnumOption("12", "12h"),
+                        EnumOption("24", "24h"),
+                    ),
+                ),
         ),
         SettingValue(
             id = @Suppress("DEPRECATION") Settings.System.DATE_FORMAT,
@@ -360,8 +387,14 @@ val SETTING_VALUES: List<SettingValue> =
             name = "Wi-Fi Sleep Policy",
             description = "When Wi-Fi goes to sleep. Deprecated API 30.",
             rawHelp = "0=default, 1=never while plugged, 2=never",
-            type = ExtraType.String,
-            // TODO: Int enum("Default"=0, "Never while plugged"=1, "Never"=2)
+            type =
+                ExtraType.Enum(
+                    listOf(
+                        EnumOption("0", "Default"),
+                        EnumOption("1", "Never while plugged"),
+                        EnumOption("2", "Never"),
+                    ),
+                ),
         ),
         SettingValue(
             id = Settings.Global.WIFI_MAX_DHCP_RETRY_COUNT,
@@ -409,8 +442,14 @@ val SETTING_VALUES: List<SettingValue> =
             name = "Bluetooth Discoverability Timeout",
             description = "How long the device remains Bluetooth discoverable",
             rawHelp = "Integer in seconds (e.g. 120, 300, 600)",
-            type = ExtraType.String,
-            // TODO: Int enum("120s"=120, "300s"=300, "600s"=600)
+            type =
+                ExtraType.Enum(
+                    listOf(
+                        EnumOption("120", "2 minutes"),
+                        EnumOption("300", "5 minutes"),
+                        EnumOption("600", "10 minutes"),
+                    ),
+                ),
         ),
         SettingValue(
             id = Settings.System.END_BUTTON_BEHAVIOR,
@@ -418,8 +457,13 @@ val SETTING_VALUES: List<SettingValue> =
             name = "End Button Behavior",
             description = "Action of the end call button",
             rawHelp = "0=end call, 1=go to caller log",
-            type = ExtraType.String,
-            // TODO: Int enum("End call"=0, "Caller log"=1)
+            type =
+                ExtraType.Enum(
+                    listOf(
+                        EnumOption("0", "End call"),
+                        EnumOption("1", "Caller log"),
+                    ),
+                ),
         ),
         // Accessibility
         SettingValue(
@@ -484,8 +528,13 @@ val SETTING_VALUES: List<SettingValue> =
             name = "Input Method Selector",
             description = "Whether the input method selector is always shown",
             rawHelp = "0=auto, 1=always show",
-            type = ExtraType.String,
-            // TODO: Int enum("Auto"=0, "Always show"=1)
+            type =
+                ExtraType.Enum(
+                    listOf(
+                        EnumOption("0", "Auto"),
+                        EnumOption("1", "Always show"),
+                    ),
+                ),
         ),
         // Developer
         SettingValue(
@@ -526,9 +575,18 @@ val SETTING_VALUES: List<SettingValue> =
             name = "Window Animation Scale",
             description = "Scale factor for window open/close animations",
             rawHelp = "Float (0.0=off, 0.5, 1.0, 1.5, 2.0, 5.0, 10.0)",
-            type = ExtraType.String,
-            // TODO: Float enum("Off"=0.0, "0.5x"=0.5, "1x"=1.0, "1.5x"=1.5,
-            //  "2x"=2.0, "5x"=5.0, "10x"=10.0)
+            type =
+                ExtraType.Enum(
+                    listOf(
+                        EnumOption("0.0", "Off"),
+                        EnumOption("0.5", "0.5x"),
+                        EnumOption("1.0", "1x"),
+                        EnumOption("1.5", "1.5x"),
+                        EnumOption("2.0", "2x"),
+                        EnumOption("5.0", "5x"),
+                        EnumOption("10.0", "10x"),
+                    ),
+                ),
         ),
         SettingValue(
             id = Settings.Global.TRANSITION_ANIMATION_SCALE,
@@ -536,9 +594,18 @@ val SETTING_VALUES: List<SettingValue> =
             name = "Transition Animation Scale",
             description = "Scale factor for activity transition animations",
             rawHelp = "Float (0.0=off, 0.5, 1.0, 1.5, 2.0, 5.0, 10.0)",
-            type = ExtraType.String,
-            // TODO: Float enum("Off"=0.0, "0.5x"=0.5, "1x"=1.0, "1.5x"=1.5,
-            //  "2x"=2.0, "5x"=5.0, "10x"=10.0)
+            type =
+                ExtraType.Enum(
+                    listOf(
+                        EnumOption("0.0", "Off"),
+                        EnumOption("0.5", "0.5x"),
+                        EnumOption("1.0", "1x"),
+                        EnumOption("1.5", "1.5x"),
+                        EnumOption("2.0", "2x"),
+                        EnumOption("5.0", "5x"),
+                        EnumOption("10.0", "10x"),
+                    ),
+                ),
         ),
         SettingValue(
             id = Settings.Global.ANIMATOR_DURATION_SCALE,
@@ -546,9 +613,18 @@ val SETTING_VALUES: List<SettingValue> =
             name = "Animator Duration Scale",
             description = "Scale factor for all animator-based animations",
             rawHelp = "Float (0.0=off, 0.5, 1.0, 1.5, 2.0, 5.0, 10.0)",
-            type = ExtraType.String,
-            // TODO: Float enum("Off"=0.0, "0.5x"=0.5, "1x"=1.0, "1.5x"=1.5,
-            //  "2x"=2.0, "5x"=5.0, "10x"=10.0)
+            type =
+                ExtraType.Enum(
+                    listOf(
+                        EnumOption("0.0", "Off"),
+                        EnumOption("0.5", "0.5x"),
+                        EnumOption("1.0", "1x"),
+                        EnumOption("1.5", "1.5x"),
+                        EnumOption("2.0", "2x"),
+                        EnumOption("5.0", "5x"),
+                        EnumOption("10.0", "10x"),
+                    ),
+                ),
         ),
         // Power
         SettingValue(
