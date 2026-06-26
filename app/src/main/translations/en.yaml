@@ -563,7 +563,7 @@ setting_transition_animation_scale_name: Transition Animation Scale
 setting_transition_animation_scale_description: Scale factor for activity transition animations
 setting_animator_duration_scale_name: Animator Duration Scale
 setting_animator_duration_scale_description: Scale factor for all animator-based animations
-setting_stay_on_while_plugged_in_name: Stay On While Plugged In
+setting_stay_on_while_plugged_in_name: Awake when charging
 setting_stay_on_while_plugged_in_description: Which power sources prevent the device from sleeping while plugged in
 setting_stay_on_while_plugged_in_raw_help: "Bitmask: ac=1, usb=2, wireless=4"
 setting_usb_mass_storage_enabled_name: USB Mass Storage

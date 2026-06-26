@@ -562,7 +562,7 @@ setting_transition_animation_scale_name: Escala d'animación de transición
 setting_transition_animation_scale_description: Factor d'escala ta as animacions de transición d'actividat
 setting_animator_duration_scale_name: Escala de duración d'animador
 setting_animator_duration_scale_description: Factor d'escala ta totas as animacions basadas en animador
-setting_stay_on_while_plugged_in_name: Mantener activo quan se carga
+setting_stay_on_while_plugged_in_name: Activo quan se carga
 setting_stay_on_while_plugged_in_description: Qué fuentes de energía impiden que er dispositiu entre en suspensión mientras ye en carga
 setting_stay_on_while_plugged_in_raw_help: "Mascara de bits: ac=1, usb=2, wireless=4"
 setting_usb_mass_storage_enabled_name: Almacenamiento masivo USB

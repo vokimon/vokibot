@@ -562,7 +562,7 @@ setting_transition_animation_scale_name: Trantsizio-animazioen eskala
 setting_transition_animation_scale_description: Jarduera-trantsizioen animazioen eskala-faktorea
 setting_animator_duration_scale_name: Animatzailearen iraupenaren eskala
 setting_animator_duration_scale_description: Animatzailean oinarritutako animazio guztien eskala-faktorea
-setting_stay_on_while_plugged_in_name: Aktibo mantendu kargatzean
+setting_stay_on_while_plugged_in_name: Aktibo kargatzean
 setting_stay_on_while_plugged_in_description: Zein iturri-kk eragotzi dezakeen gailua lo moduan sartzea konektatuta dagoenean
 setting_stay_on_while_plugged_in_raw_help: "Bit maskara: ac=1, usb=2, wireless=4"
 setting_usb_mass_storage_enabled_name: USB masibo biltegiratzea

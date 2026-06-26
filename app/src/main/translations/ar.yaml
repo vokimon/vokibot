@@ -562,7 +562,7 @@ setting_transition_animation_scale_name: مقياس رسوم الانتقال ا
 setting_transition_animation_scale_description: عامل المقياس لرسوم انتقال النشاط المتحركة
 setting_animator_duration_scale_name: مقياس مدة الرسوم المتحركة
 setting_animator_duration_scale_description: عامل المقياس لجميع الرسوم المتحركة المستندة إلى الرسوم المتحركة
-setting_stay_on_while_plugged_in_name: البقاء نشطاً عند الشحن
+setting_stay_on_while_plugged_in_name: نشط عند الشحن
 setting_stay_on_while_plugged_in_description: ما مصادر الطاقة التي تمنع الجهاز من الانتقال إلى وضع السبات أثناء التوصيل
 setting_stay_on_while_plugged_in_raw_help: "قناع بت: ac=1، usb=2، wireless=4"
 setting_usb_mass_storage_enabled_name: وحدة تخزين USB
