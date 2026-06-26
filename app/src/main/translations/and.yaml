@@ -562,7 +562,7 @@ setting_animator_duration_scale_name: Êccala de duraçión del animadôh
 setting_animator_duration_scale_description: Fâttôh de êccala pa toâ lâ animaçionê baçâh en animadôh
 setting_stay_on_while_plugged_in_name: Mantenêh âttibo ar cargâh
 setting_stay_on_while_plugged_in_description: Mantenêh la pantaya âttiba ar cargâh
-setting_stay_on_while_plugged_in_raw_help: 'Máccara de bits: ûbb=1, ac=2, wireless=4'
+setting_stay_on_while_plugged_in_raw_help: 'Máccara de bits: ac=1, usb=2, wireless=4'
 setting_usb_mass_storage_enabled_name: Armaçenamiento maçibo ÛBB
 setting_usb_mass_storage_enabled_description: Çi el armaçenamiento maçibo ÛBB êttá âttibao
 setting_device_name_name: Nombre der dîppoçitibo

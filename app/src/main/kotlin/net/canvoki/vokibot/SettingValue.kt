@@ -637,8 +637,8 @@ val SETTING_VALUES: List<SettingValue> =
             type =
                 ExtraType.Flags(
                     listOf(
-                        FlagOption(1, R.string.setting_plugged_usb),
-                        FlagOption(2, R.string.setting_plugged_ac),
+                        FlagOption(1, R.string.setting_plugged_ac),
+                        FlagOption(2, R.string.setting_plugged_usb),
                         FlagOption(4, R.string.setting_plugged_wireless),
                     ),
                 ),

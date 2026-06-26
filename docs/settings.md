@@ -363,8 +363,8 @@ AOSP source:
 
 ### Power
 
-- `STAY_ON_WHILE_PLUGGED_IN`: (Int) Bitmask: usb=1, ac=2, wireless=4 (Global)
-    - UI: Flags("USB", "AC", "Wireless")
+- `STAY_ON_WHILE_PLUGGED_IN`: (Int) Bitmask: ac=1, usb=2, wireless=4 (Global)
+    - UI: Flags("AC", "USB", "Wireless")
 - `USB_MASS_STORAGE_ENABLED`: (Int) 0=off, 1=on (Global)
     - UI: Toggle
 

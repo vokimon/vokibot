@@ -564,7 +564,7 @@ setting_animator_duration_scale_name: Animator-Dauer-Skala
 setting_animator_duration_scale_description: Skalierungsfaktor für alle animatorbasierten Animationen
 setting_stay_on_while_plugged_in_name: Aktiviert lassen beim Laden
 setting_stay_on_while_plugged_in_description: Bildschirm beim Laden aktiviert lassen
-setting_stay_on_while_plugged_in_raw_help: "Bitmaske: usb=1, ac=2, wireless=4"
+setting_stay_on_while_plugged_in_raw_help: "Bitmaske: ac=1, usb=2, wireless=4"
 setting_usb_mass_storage_enabled_name: USB-Massenspeicher
 setting_usb_mass_storage_enabled_description: Ob der USB-Massenspeicher aktiviert ist
 setting_device_name_name: Gerätename

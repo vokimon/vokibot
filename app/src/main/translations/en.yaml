@@ -565,7 +565,7 @@ setting_animator_duration_scale_name: Animator Duration Scale
 setting_animator_duration_scale_description: Scale factor for all animator-based animations
 setting_stay_on_while_plugged_in_name: Stay On While Plugged In
 setting_stay_on_while_plugged_in_description: Keep screen on while charging
-setting_stay_on_while_plugged_in_raw_help: "Bitmask: usb=1, ac=2, wireless=4"
+setting_stay_on_while_plugged_in_raw_help: "Bitmask: ac=1, usb=2, wireless=4"
 setting_usb_mass_storage_enabled_name: USB Mass Storage
 setting_usb_mass_storage_enabled_description: Whether USB mass storage is enabled
 setting_device_name_name: Device Name

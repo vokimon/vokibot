@@ -564,7 +564,7 @@ setting_animator_duration_scale_name: Échelle de durée de l'animateur
 setting_animator_duration_scale_description: Facteur d'échelle pour toutes les animations basées sur l'animateur
 setting_stay_on_while_plugged_in_name: Rester actif en charge
 setting_stay_on_while_plugged_in_description: Garder l'écran actif pendant la charge
-setting_stay_on_while_plugged_in_raw_help: "Masque de bits : usb=1, ac=2, wireless=4"
+setting_stay_on_while_plugged_in_raw_help: "Masque de bits : ac=1, usb=2, wireless=4"
 setting_usb_mass_storage_enabled_name: Stockage de masse USB
 setting_usb_mass_storage_enabled_description: Si le stockage de masse USB est activé
 setting_device_name_name: Nom de l'appareil

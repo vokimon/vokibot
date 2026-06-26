@@ -564,7 +564,7 @@ setting_animator_duration_scale_name: Масштаб длительности а
 setting_animator_duration_scale_description: Коэффициент масштаба для всех анимаций на основе аниматора
 setting_stay_on_while_plugged_in_name: Не выключать при зарядке
 setting_stay_on_while_plugged_in_description: Не выключать экран при зарядке
-setting_stay_on_while_plugged_in_raw_help: "Битовая маска: usb=1, ac=2, wireless=4"
+setting_stay_on_while_plugged_in_raw_help: "Битовая маска: ac=1, usb=2, wireless=4"
 setting_usb_mass_storage_enabled_name: USB-накопитель
 setting_usb_mass_storage_enabled_description: Включен ли режим USB-накопителя
 setting_device_name_name: Имя устройства

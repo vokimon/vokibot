@@ -564,7 +564,7 @@ setting_animator_duration_scale_name: مقياس مدة الرسوم المتح�
 setting_animator_duration_scale_description: عامل المقياس لجميع الرسوم المتحركة المستندة إلى الرسوم المتحركة
 setting_stay_on_while_plugged_in_name: البقاء نشطاً عند الشحن
 setting_stay_on_while_plugged_in_description: إبقاء الشاشة قيد التشغيل أثناء الشحن
-setting_stay_on_while_plugged_in_raw_help: "قناع بت: usb=1، ac=2، wireless=4"
+setting_stay_on_while_plugged_in_raw_help: "قناع بت: ac=1، usb=2، wireless=4"
 setting_usb_mass_storage_enabled_name: وحدة تخزين USB
 setting_usb_mass_storage_enabled_description: ما إذا كان تخزين USB الشامل مفعلاً
 setting_device_name_name: اسم الجهاز
