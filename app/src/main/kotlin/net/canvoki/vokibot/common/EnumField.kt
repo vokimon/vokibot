@@ -15,6 +15,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import net.canvoki.vokibot.R
 import androidx.compose.ui.res.stringResource
 import kotlinx.serialization.Serializable
 
@@ -40,7 +41,8 @@ fun EnumField(
         onExpandedChange = { expanded = it },
     ) {
         OutlinedTextField(
-            value = selected?.let { stringResource(it.labelRes) } ?: "",
+            value = selected?.let { stringResource(it.labelRes) }
+                    ?: stringResource(R.string.enum_option_custom_value, selectedValue),
             onValueChange = {},
             readOnly = true,
             label = { Text(label) },
