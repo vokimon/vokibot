@@ -461,9 +461,6 @@ setting_mode_ringer_streams_affected_name: Flujos de audio afectados por el modo
 setting_mode_ringer_streams_affected_description: Qué flujos de audio son afectados por el modo de tono
 setting_mute_streams_affected_name: Flujos de audio afectados por el silencio
 setting_mute_streams_affected_description: Qué flujos de audio son afectados por el silencio
-setting_vibrate_on_name: Vibración activada
-setting_vibrate_on_description: Cuándo vibrar para llamadas y notificaciones entrantes
-setting_vibrate_on_raw_help: "Máscara de bits: call=1, call_cdma=2, notification=4, chat=8, calendar=16, hangup=32"
 setting_mode_ringer_name: Modo de tono
 setting_mode_ringer_description: Modo de tono actual
 setting_mode_ringer_raw_help: "0=normal, 1=vibrar, 2=silencio"
@@ -505,9 +502,6 @@ setting_wifi_on_name: Wi-Fi
 setting_wifi_on_description: Si el Wi-Fi está activado
 setting_data_roaming_name: Itinerancia de datos
 setting_data_roaming_description: Si la itinerancia de datos móviles está activada
-setting_network_preference_name: Preferencia de red
-setting_network_preference_description: Tipos de red preferidos
-setting_network_preference_raw_help: Máscara de bits entera para redes preferidas
 setting_http_proxy_name: Proxy HTTP
 setting_http_proxy_description: Proxy HTTP global
 setting_http_proxy_raw_help: "Cadena host:port"

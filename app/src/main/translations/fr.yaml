@@ -461,9 +461,6 @@ setting_mode_ringer_streams_affected_name: Flux audio affectés par le mode de s
 setting_mode_ringer_streams_affected_description: Quels flux audio sont affectés par le mode de sonnerie
 setting_mute_streams_affected_name: Flux audio affectés par la mise en sourdine
 setting_mute_streams_affected_description: Quels flux audio sont affectés par la mise en sourdine
-setting_vibrate_on_name: Vibration activée
-setting_vibrate_on_description: Quand vibrer pour les appels et notifications entrants
-setting_vibrate_on_raw_help: "Masque de bits : call=1, call_cdma=2, notification=4, chat=8, calendar=16, hangup=32"
 setting_mode_ringer_name: Mode de sonnerie
 setting_mode_ringer_description: Mode de sonnerie actuel
 setting_mode_ringer_raw_help: "0=normal, 1=vibreur, 2=silencieux"
@@ -505,9 +502,6 @@ setting_wifi_on_name: Wi-Fi
 setting_wifi_on_description: Si le Wi-Fi est activé
 setting_data_roaming_name: Itinérance des données
 setting_data_roaming_description: Si l'itinérance des données mobiles est activée
-setting_network_preference_name: Préférence de réseau
-setting_network_preference_description: Types de réseau préférés
-setting_network_preference_raw_help: Masque de bits entier pour les réseaux préférés
 setting_http_proxy_name: Proxy HTTP
 setting_http_proxy_description: Proxy HTTP global
 setting_http_proxy_raw_help: "Chaîne hôte:port"

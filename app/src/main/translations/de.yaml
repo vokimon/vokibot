@@ -461,9 +461,6 @@ setting_mode_ringer_streams_affected_name: Vom Klingelmodus betroffene Audiostre
 setting_mode_ringer_streams_affected_description: Welche Audiostreams vom Klingelmodus betroffen sind
 setting_mute_streams_affected_name: Vom Stummschalten betroffene Audiostreams
 setting_mute_streams_affected_description: Welche Audiostreams vom Stummschalten betroffen sind
-setting_vibrate_on_name: Vibration an
-setting_vibrate_on_description: Wann bei eingehenden Anrufen und Benachrichtigungen vibriert wird
-setting_vibrate_on_raw_help: "Bitmaske: call=1, call_cdma=2, notification=4, chat=8, calendar=16, hangup=32"
 setting_mode_ringer_name: Klingelmodus
 setting_mode_ringer_description: Aktueller Klingelmodus
 setting_mode_ringer_raw_help: "0=normal, 1=vibrieren, 2=lautlos"
@@ -505,9 +502,6 @@ setting_wifi_on_name: WLAN
 setting_wifi_on_description: Ob WLAN aktiviert ist
 setting_data_roaming_name: Datenroaming
 setting_data_roaming_description: Ob mobiles Datenroaming aktiviert ist
-setting_network_preference_name: Netzwerkeinstellung
-setting_network_preference_description: Bevorzugte Netzwerktypen
-setting_network_preference_raw_help: Ganzzahl-Bitmaske für bevorzugte Netzwerke
 setting_http_proxy_name: HTTP-Proxy
 setting_http_proxy_description: Globaler HTTP-Proxy
 setting_http_proxy_raw_help: "host:port-Zeichenkette"

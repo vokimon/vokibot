@@ -461,9 +461,6 @@ setting_mode_ringer_streams_affected_name: Fluxos d'àudio afectats pel mode del
 setting_mode_ringer_streams_affected_description: Quins fluxos d'àudio són afectats pel mode del to
 setting_mute_streams_affected_name: Fluxos d'àudio afectats pel silenci
 setting_mute_streams_affected_description: Quins fluxos d'àudio són afectats pel silenci
-setting_vibrate_on_name: Vibració activada
-setting_vibrate_on_description: Quan vibrar per a trucades i notificacions entrants
-setting_vibrate_on_raw_help: "Màscara de bits: call=1, call_cdma=2, notification=4, chat=8, calendar=16, hangup=32"
 setting_mode_ringer_name: Mode del to
 setting_mode_ringer_description: Mode del to actual
 setting_mode_ringer_raw_help: "0=normal, 1=vibració, 2=silenci"
@@ -505,9 +502,6 @@ setting_wifi_on_name: Wi-Fi
 setting_wifi_on_description: Si el Wi-Fi està activat
 setting_data_roaming_name: Itinerància de dades
 setting_data_roaming_description: Si la itinerància de dades mòbils està activada
-setting_network_preference_name: Preferència de xarxa
-setting_network_preference_description: Tipus de xarxa preferits
-setting_network_preference_raw_help: Màscara de bits entera per a xarxes preferides
 setting_http_proxy_name: Proxy HTTP
 setting_http_proxy_description: Proxy HTTP global
 setting_http_proxy_raw_help: "Cadena host:port"

@@ -257,8 +257,6 @@ AOSP source:
     - UI: Flags("Voice call", "System", "Ring", "Music", "Alarm", "Notification", "BT SCO")
 - `MUTE_STREAMS_AFFECTED`: (Int) Bitmask: voice_call=1, system=2, ring=4, music=8, alarm=16, notification=32, bt_sco=64 (System)
     - UI: Flags("Voice call", "System", "Ring", "Music", "Alarm", "Notification", "BT SCO")
-- `VIBRATE_ON`: (Int) Bitmask: call=1, call_cdma=2, notification=4, chat=8, calendar=16, hangup=32 (System)
-    - UI: Flags("Incoming call", "CDMA call", "Notification", "Chat message", "Calendar", "Hang up")
 - `MODE_RINGER`: (Int) 0=normal, 1=vibrate, 2=silent (Global)
     - UI: Enum("Normal", "Vibrate", "Silent")
 - `TTS_DEFAULT_PITCH`: (Int) Pitch value, 10-500 (Secure)
@@ -303,8 +301,6 @@ AOSP source:
     - UI: Toggle
 - `DATA_ROAMING`: (Int) 0=off, 1=on (Global)
     - UI: Toggle
-- `NETWORK_PREFERENCE`: (Int) Preferred network(s) (Global)
-    - UI: Ranged value
 - `HTTP_PROXY`: (String) Global HTTP proxy as host:port (Global)
     - UI: Free text
 - `AIRPLANE_MODE_RADIOS`: (String, comma-separated list) Radios disabled in airplane mode (Global)
@@ -437,3 +433,9 @@ Usually because they are ignored on every Android beyond API 26.
 - `SHOW_PROCESSES`: (Int) 0=off, 1=on, show process CPU usage meter (Global)
     - UI: Toggle
     - DISCARDED: Deprecated in API 25
+- `VIBRATE_ON`: (Int) Bitmask: call=1, call_cdma=2, notification=4, chat=8, calendar=16, hangup=32 (System)
+    - UI: Flags("Incoming call", "CDMA call", "Notification", "Chat message", "Calendar", "Hang up")
+    - DISCARDED: Internal read-only reflection of AudioManager state. Deprecated in API 16. Cannot be written to change behavior.
+- `NETWORK_PREFERENCE`: (Int) Preferred network(s) (Global)
+    - UI: Ranged value
+    - DISCARDED: Deprecated in API 15. No public values documented. No standard write API.

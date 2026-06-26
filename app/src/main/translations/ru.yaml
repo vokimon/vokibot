@@ -461,9 +461,6 @@ setting_mode_ringer_streams_affected_name: Потоки, на которые в�
 setting_mode_ringer_streams_affected_description: Какие аудиопотоки зависят от режима звонка
 setting_mute_streams_affected_name: Потоки, на которые влияет отключение звука
 setting_mute_streams_affected_description: Какие аудиопотоки зависят от отключения звука
-setting_vibrate_on_name: Вибрация включена
-setting_vibrate_on_description: Когда вибрировать при входящих вызовах и уведомлениях
-setting_vibrate_on_raw_help: "Битовая маска: call=1, call_cdma=2, notification=4, chat=8, calendar=16, hangup=32"
 setting_mode_ringer_name: Режим звонка
 setting_mode_ringer_description: Текущий режим звонка
 setting_mode_ringer_raw_help: "0=обычный, 1=вибрация, 2=без звука"
@@ -505,9 +502,6 @@ setting_wifi_on_name: Wi-Fi
 setting_wifi_on_description: Включен ли Wi-Fi
 setting_data_roaming_name: Роуминг данных
 setting_data_roaming_description: Включен ли роуминг мобильных данных
-setting_network_preference_name: Предпочтительная сеть
-setting_network_preference_description: Предпочтительные типы сетей
-setting_network_preference_raw_help: Целочисленная битовая маска для предпочтительных сетей
 setting_http_proxy_name: HTTP-прокси
 setting_http_proxy_description: Глобальный HTTP-прокси
 setting_http_proxy_raw_help: "Строка хост:порт"

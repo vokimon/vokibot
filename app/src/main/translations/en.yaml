@@ -461,9 +461,6 @@ setting_mode_ringer_streams_affected_name: Ringer Streams Affected
 setting_mode_ringer_streams_affected_description: Which audio streams are affected by ringer mode
 setting_mute_streams_affected_name: Mute Streams Affected
 setting_mute_streams_affected_description: Which audio streams are affected by mute
-setting_vibrate_on_name: Vibrate On
-setting_vibrate_on_description: When to vibrate for incoming calls and notifications
-setting_vibrate_on_raw_help: "Bitmask: call=1, call_cdma=2, notification=4, chat=8, calendar=16, hangup=32"
 setting_mode_ringer_name: Ringer Mode
 setting_mode_ringer_description: Current ringer mode
 setting_mode_ringer_raw_help: "0=normal, 1=vibrate, 2=silent"
@@ -505,9 +502,6 @@ setting_wifi_on_name: Wi-Fi
 setting_wifi_on_description: Whether Wi-Fi is enabled
 setting_data_roaming_name: Data Roaming
 setting_data_roaming_description: Whether mobile data roaming is enabled
-setting_network_preference_name: Network Preference
-setting_network_preference_description: Preferred network types
-setting_network_preference_raw_help: Integer bitmask for preferred networks
 setting_http_proxy_name: HTTP Proxy
 setting_http_proxy_description: Global HTTP proxy
 setting_http_proxy_raw_help: "host:port string"

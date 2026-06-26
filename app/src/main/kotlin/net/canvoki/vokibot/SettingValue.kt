@@ -197,17 +197,6 @@ val SETTING_VALUES: List<SettingValue> =
             //  "Music"=8, "Alarm"=16, "Notification"=32, "BT SCO"=64)
         ),
         SettingValue(
-            id = Settings.System.VIBRATE_ON,
-            category = SettingCategory.SOUND,
-            name = R.string.setting_vibrate_on_name,
-            description = R.string.setting_vibrate_on_description,
-            rawHelp = R.string.setting_vibrate_on_raw_help,
-            type = ExtraType.String,
-            // TODO: Int flags
-            // ("Incoming call"=1, "CDMA call"=2, "Notification"=4,
-            //  "Chat message"=8, "Calendar"=16, "Hang up"=32)
-        ),
-        SettingValue(
             id = Settings.Global.MODE_RINGER,
             category = SettingCategory.SOUND,
             name = R.string.setting_mode_ringer_name,
@@ -358,14 +347,6 @@ val SETTING_VALUES: List<SettingValue> =
             description = R.string.setting_data_roaming_description,
             rawHelp = R.string.setting_toggle_raw_help,
             type = ExtraType.Boolean,
-        ),
-        SettingValue(
-            id = Settings.Global.NETWORK_PREFERENCE,
-            category = SettingCategory.CONNECTIVITY,
-            name = R.string.setting_network_preference_name,
-            description = R.string.setting_network_preference_description,
-            rawHelp = R.string.setting_network_preference_raw_help,
-            type = ExtraType.String, // TODO: Int ranged
         ),
         SettingValue(
             id = Settings.Global.HTTP_PROXY,

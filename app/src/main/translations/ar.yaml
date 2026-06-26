@@ -461,9 +461,6 @@ setting_mode_ringer_streams_affected_name: تدفقات الصوت المتأث�
 setting_mode_ringer_streams_affected_description: ما هي تدفقات الصوت المتأثرة بوضع الرنين
 setting_mute_streams_affected_name: تدفقات الصوت المتأثرة بكتم الصوت
 setting_mute_streams_affected_description: ما هي تدفقات الصوت المتأثرة بكتم الصوت
-setting_vibrate_on_name: تشغيل الاهتزاز
-setting_vibrate_on_description: متى تهتز للمكالمات والإشعارات الواردة
-setting_vibrate_on_raw_help: "قناع بت: call=1، call_cdma=2، notification=4، chat=8، calendar=16، hangup=32"
 setting_mode_ringer_name: وضع الرنين
 setting_mode_ringer_description: وضع الرنين الحالي
 setting_mode_ringer_raw_help: "0=عادي، 1=اهتزاز، 2=صامت"
@@ -505,9 +502,6 @@ setting_wifi_on_name: الواي فاي
 setting_wifi_on_description: ما إذا كان الواي فاي مفعلاً
 setting_data_roaming_name: تجوال البيانات
 setting_data_roaming_description: ما إذا كان تجوال بيانات الجوال مفعلاً
-setting_network_preference_name: تفضيل الشبكة
-setting_network_preference_description: أنواع الشبكات المفضلة
-setting_network_preference_raw_help: قناع بت صحيح للشبكات المفضلة
 setting_http_proxy_name: وكيل HTTP
 setting_http_proxy_description: وكيل HTTP العام
 setting_http_proxy_raw_help: "سلسلة المضيف:المنفذ"

@@ -461,9 +461,6 @@ setting_mode_ringer_streams_affected_name: Tonu moduak eragiten dien audio-fluxu
 setting_mode_ringer_streams_affected_description: Zein audio-fluxuri eragiten dien tonu moduak
 setting_mute_streams_affected_name: Isiltzeak eragiten dien audio-fluxuak
 setting_mute_streams_affected_description: Zein audio-fluxuri eragiten dien isiltzeak
-setting_vibrate_on_name: Bibrazioa aktibatuta
-setting_vibrate_on_description: Noiz bibratu sarrerako dei eta jakinarazpenetarako
-setting_vibrate_on_raw_help: "Bit maskara: call=1, call_cdma=2, notification=4, chat=8, calendar=16, hangup=32"
 setting_mode_ringer_name: Tonu modua
 setting_mode_ringer_description: Uneko tonu modua
 setting_mode_ringer_raw_help: "0=normala, 1=bibrazioa, 2=isila"
@@ -505,9 +502,6 @@ setting_wifi_on_name: Wi-Fia
 setting_wifi_on_description: Wi-Fia gaituta dagoen
 setting_data_roaming_name: Datuak ibiltaritza
 setting_data_roaming_description: Mugikorreko datuen ibiltaritza gaituta dagoen
-setting_network_preference_name: Sare-lehentasuna
-setting_network_preference_description: Sare mota hobetsiak
-setting_network_preference_raw_help: Osoko zenbakizko bit maskara hobetsitako saretarako
 setting_http_proxy_name: HTTP proxya
 setting_http_proxy_description: HTTP proxy orokorra
 setting_http_proxy_raw_help: "ostalaria:ataka katea"
