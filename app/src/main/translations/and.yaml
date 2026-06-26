@@ -381,3 +381,41 @@ change_setting_raw_edit: Ediçión a pelo
 change_setting_raw_edit_warning: Êtta ôççión permite êccribîh cuarquiêh balôh, incluço lô no bálidô. ¡Úçala con cuidao!
 change_setting_permission_required: Çe requiere permiço pa modificâh lô ahûttê der çîttema.
 setting_list_not_found: No çe an encontrao ahûttê
+setting_animation_scale_off: Off
+setting_animation_scale_0_5x: "0.5x"
+setting_animation_scale_1x: "1x"
+setting_animation_scale_1_5x: "1.5x"
+setting_animation_scale_2x: "2x"
+setting_animation_scale_5x: "5x"
+setting_animation_scale_10x: "10x"
+setting_font_scale_0_5: "0.5"
+setting_font_scale_0_7: "0.7"
+setting_font_scale_0_85: "0.85"
+setting_font_scale_1_0: "1.0"
+setting_font_scale_1_15: "1.15"
+setting_font_scale_1_3: "1.3"
+setting_font_scale_1_5: "1.5"
+setting_font_scale_2_0: "2.0"
+setting_duration_15_seconds: 15 seconds
+setting_duration_30_seconds: 30 seconds
+setting_duration_1_minute: 1 minute
+setting_duration_2_minutes: 2 minutes
+setting_duration_5_minutes: 5 minutes
+setting_duration_10_minutes: 10 minutes
+setting_duration_30_minutes: 30 minutes
+setting_rotation_0: "0°"
+setting_rotation_90: "90°"
+setting_rotation_180: "180°"
+setting_rotation_270: "270°"
+setting_ringer_mode_normal: Normal
+setting_ringer_mode_vibrate: Vibrate
+setting_ringer_mode_silent: Silent
+setting_hour_format_12h: 12h
+setting_hour_format_24h: 24h
+setting_wifi_sleep_policy_default: Default
+setting_wifi_sleep_policy_never_while_plugged: Never while plugged
+setting_wifi_sleep_policy_never: Never
+setting_end_button_behavior_end_call: End call
+setting_end_button_behavior_caller_log: Caller log
+setting_input_method_selector_auto: Auto
+setting_input_method_selector_always_show: Always show

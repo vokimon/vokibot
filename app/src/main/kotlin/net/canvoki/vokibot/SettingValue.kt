@@ -68,13 +68,13 @@ val SETTING_VALUES: List<SettingValue> =
             type =
                 ExtraType.Enum(
                     listOf(
-                        EnumOption("15000", "15 seconds"),
-                        EnumOption("30000", "30 seconds"),
-                        EnumOption("60000", "1 minute"),
-                        EnumOption("120000", "2 minutes"),
-                        EnumOption("300000", "5 minutes"),
-                        EnumOption("600000", "10 minutes"),
-                        EnumOption("1800000", "30 minutes"),
+                        EnumOption("15000", R.string.setting_duration_15_seconds),
+                        EnumOption("30000", R.string.setting_duration_30_seconds),
+                        EnumOption("60000", R.string.setting_duration_1_minute),
+                        EnumOption("120000", R.string.setting_duration_2_minutes),
+                        EnumOption("300000", R.string.setting_duration_5_minutes),
+                        EnumOption("600000", R.string.setting_duration_10_minutes),
+                        EnumOption("1800000", R.string.setting_duration_30_minutes),
                     ),
                 ),
         ),
@@ -87,10 +87,10 @@ val SETTING_VALUES: List<SettingValue> =
             type =
                 ExtraType.Enum(
                     listOf(
-                        EnumOption("0", "0°"),
-                        EnumOption("1", "90°"),
-                        EnumOption("2", "180°"),
-                        EnumOption("3", "270°"),
+                        EnumOption("0", R.string.setting_rotation_0),
+                        EnumOption("1", R.string.setting_rotation_90),
+                        EnumOption("2", R.string.setting_rotation_180),
+                        EnumOption("3", R.string.setting_rotation_270),
                     ),
                 ),
         ),
@@ -111,14 +111,14 @@ val SETTING_VALUES: List<SettingValue> =
             type =
                 ExtraType.Enum(
                     listOf(
-                        EnumOption("0.5", "0.5"),
-                        EnumOption("0.7", "0.7"),
-                        EnumOption("0.85", "0.85"),
-                        EnumOption("1.0", "1.0"),
-                        EnumOption("1.15", "1.15"),
-                        EnumOption("1.3", "1.3"),
-                        EnumOption("1.5", "1.5"),
-                        EnumOption("2.0", "2.0"),
+                        EnumOption("0.5", R.string.setting_font_scale_0_5),
+                        EnumOption("0.7", R.string.setting_font_scale_0_7),
+                        EnumOption("0.85", R.string.setting_font_scale_0_85),
+                        EnumOption("1.0", R.string.setting_font_scale_1_0),
+                        EnumOption("1.15", R.string.setting_font_scale_1_15),
+                        EnumOption("1.3", R.string.setting_font_scale_1_3),
+                        EnumOption("1.5", R.string.setting_font_scale_1_5),
+                        EnumOption("2.0", R.string.setting_font_scale_2_0),
                     ),
                 ),
         ),
@@ -213,9 +213,9 @@ val SETTING_VALUES: List<SettingValue> =
             type =
                 ExtraType.Enum(
                     listOf(
-                        EnumOption("0", "Normal"),
-                        EnumOption("1", "Vibrate"),
-                        EnumOption("2", "Silent"),
+                        EnumOption("0", R.string.setting_ringer_mode_normal),
+                        EnumOption("1", R.string.setting_ringer_mode_vibrate),
+                        EnumOption("2", R.string.setting_ringer_mode_silent),
                     ),
                 ),
         ),
@@ -294,8 +294,8 @@ val SETTING_VALUES: List<SettingValue> =
             type =
                 ExtraType.Enum(
                     listOf(
-                        EnumOption("12", "12h"),
-                        EnumOption("24", "24h"),
+                        EnumOption("12", R.string.setting_hour_format_12h),
+                        EnumOption("24", R.string.setting_hour_format_24h),
                     ),
                 ),
         ),
@@ -390,9 +390,9 @@ val SETTING_VALUES: List<SettingValue> =
             type =
                 ExtraType.Enum(
                     listOf(
-                        EnumOption("0", "Default"),
-                        EnumOption("1", "Never while plugged"),
-                        EnumOption("2", "Never"),
+                        EnumOption("0", R.string.setting_wifi_sleep_policy_default),
+                        EnumOption("1", R.string.setting_wifi_sleep_policy_never_while_plugged),
+                        EnumOption("2", R.string.setting_wifi_sleep_policy_never),
                     ),
                 ),
         ),
@@ -445,9 +445,9 @@ val SETTING_VALUES: List<SettingValue> =
             type =
                 ExtraType.Enum(
                     listOf(
-                        EnumOption("120", "2 minutes"),
-                        EnumOption("300", "5 minutes"),
-                        EnumOption("600", "10 minutes"),
+                        EnumOption("120", R.string.setting_duration_2_minutes),
+                        EnumOption("300", R.string.setting_duration_5_minutes),
+                        EnumOption("600", R.string.setting_duration_10_minutes),
                     ),
                 ),
         ),
@@ -460,8 +460,8 @@ val SETTING_VALUES: List<SettingValue> =
             type =
                 ExtraType.Enum(
                     listOf(
-                        EnumOption("0", "End call"),
-                        EnumOption("1", "Caller log"),
+                        EnumOption("0", R.string.setting_end_button_behavior_end_call),
+                        EnumOption("1", R.string.setting_end_button_behavior_caller_log),
                     ),
                 ),
         ),
@@ -531,8 +531,8 @@ val SETTING_VALUES: List<SettingValue> =
             type =
                 ExtraType.Enum(
                     listOf(
-                        EnumOption("0", "Auto"),
-                        EnumOption("1", "Always show"),
+                        EnumOption("0", R.string.setting_input_method_selector_auto),
+                        EnumOption("1", R.string.setting_input_method_selector_always_show),
                     ),
                 ),
         ),
@@ -578,13 +578,13 @@ val SETTING_VALUES: List<SettingValue> =
             type =
                 ExtraType.Enum(
                     listOf(
-                        EnumOption("0.0", "Off"),
-                        EnumOption("0.5", "0.5x"),
-                        EnumOption("1.0", "1x"),
-                        EnumOption("1.5", "1.5x"),
-                        EnumOption("2.0", "2x"),
-                        EnumOption("5.0", "5x"),
-                        EnumOption("10.0", "10x"),
+                        EnumOption("0.0", R.string.setting_animation_scale_off),
+                        EnumOption("0.5", R.string.setting_animation_scale_0_5x),
+                        EnumOption("1.0", R.string.setting_animation_scale_1x),
+                        EnumOption("1.5", R.string.setting_animation_scale_1_5x),
+                        EnumOption("2.0", R.string.setting_animation_scale_2x),
+                        EnumOption("5.0", R.string.setting_animation_scale_5x),
+                        EnumOption("10.0", R.string.setting_animation_scale_10x),
                     ),
                 ),
         ),
@@ -597,13 +597,13 @@ val SETTING_VALUES: List<SettingValue> =
             type =
                 ExtraType.Enum(
                     listOf(
-                        EnumOption("0.0", "Off"),
-                        EnumOption("0.5", "0.5x"),
-                        EnumOption("1.0", "1x"),
-                        EnumOption("1.5", "1.5x"),
-                        EnumOption("2.0", "2x"),
-                        EnumOption("5.0", "5x"),
-                        EnumOption("10.0", "10x"),
+                        EnumOption("0.0", R.string.setting_animation_scale_off),
+                        EnumOption("0.5", R.string.setting_animation_scale_0_5x),
+                        EnumOption("1.0", R.string.setting_animation_scale_1x),
+                        EnumOption("1.5", R.string.setting_animation_scale_1_5x),
+                        EnumOption("2.0", R.string.setting_animation_scale_2x),
+                        EnumOption("5.0", R.string.setting_animation_scale_5x),
+                        EnumOption("10.0", R.string.setting_animation_scale_10x),
                     ),
                 ),
         ),
@@ -616,13 +616,13 @@ val SETTING_VALUES: List<SettingValue> =
             type =
                 ExtraType.Enum(
                     listOf(
-                        EnumOption("0.0", "Off"),
-                        EnumOption("0.5", "0.5x"),
-                        EnumOption("1.0", "1x"),
-                        EnumOption("1.5", "1.5x"),
-                        EnumOption("2.0", "2x"),
-                        EnumOption("5.0", "5x"),
-                        EnumOption("10.0", "10x"),
+                        EnumOption("0.0", R.string.setting_animation_scale_off),
+                        EnumOption("0.5", R.string.setting_animation_scale_0_5x),
+                        EnumOption("1.0", R.string.setting_animation_scale_1x),
+                        EnumOption("1.5", R.string.setting_animation_scale_1_5x),
+                        EnumOption("2.0", R.string.setting_animation_scale_2x),
+                        EnumOption("5.0", R.string.setting_animation_scale_5x),
+                        EnumOption("10.0", R.string.setting_animation_scale_10x),
                     ),
                 ),
         ),

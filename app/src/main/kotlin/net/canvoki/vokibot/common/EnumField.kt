@@ -1,5 +1,6 @@
 package net.canvoki.vokibot.common
 
+import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -14,12 +15,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class EnumOption(
     val value: String,
-    val label: String,
+    @get:StringRes val labelRes: Int,
 )
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -38,7 +40,7 @@ fun EnumField(
         onExpandedChange = { expanded = it },
     ) {
         OutlinedTextField(
-            value = selected?.label ?: "",
+            value = selected?.let { stringResource(it.labelRes) } ?: "",
             onValueChange = {},
             readOnly = true,
             label = { Text(label) },
@@ -57,7 +59,7 @@ fun EnumField(
         ) {
             options.forEach { option ->
                 DropdownMenuItem(
-                    text = { Text(option.label) },
+                    text = { Text(stringResource(option.labelRes)) },
                     onClick = {
                         onValueChanged(option.value)
                         expanded = false
