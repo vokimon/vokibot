@@ -563,7 +563,7 @@ setting_transition_animation_scale_description: Facteur d'échelle pour les anim
 setting_animator_duration_scale_name: Échelle de durée de l'animateur
 setting_animator_duration_scale_description: Facteur d'échelle pour toutes les animations basées sur l'animateur
 setting_stay_on_while_plugged_in_name: Actif en charge
-setting_stay_on_while_plugged_in_description: Quelles sources d'énergie empêchent l'appareil de se mettre en veille branché
+setting_stay_on_while_plugged_in_description: Quelles sources d'énergie empêchent l'appareil de se mettre en veille lorsqu'il est branché
 setting_stay_on_while_plugged_in_raw_help: "Masque de bits : ac=1, usb=2, wireless=4"
 setting_usb_mass_storage_enabled_name: Stockage de masse USB
 setting_usb_mass_storage_enabled_description: Si le stockage de masse USB est activé

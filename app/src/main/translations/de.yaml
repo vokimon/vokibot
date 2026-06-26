@@ -563,7 +563,7 @@ setting_transition_animation_scale_description: Skalierungsfaktor für Aktivitä
 setting_animator_duration_scale_name: Animator-Dauer-Skala
 setting_animator_duration_scale_description: Skalierungsfaktor für alle animatorbasierten Animationen
 setting_stay_on_while_plugged_in_name: Aktiv beim Laden
-setting_stay_on_while_plugged_in_description: Welche Energiequellen verhindern, dass das Gerät im Netzmodus in den Ruhezustand wechselt
+setting_stay_on_while_plugged_in_description: Welche Energiequellen verhindern, dass das Gerät beim Laden in den Ruhezustand wechselt
 setting_stay_on_while_plugged_in_raw_help: "Bitmaske: ac=1, usb=2, wireless=4"
 setting_usb_mass_storage_enabled_name: USB-Massenspeicher
 setting_usb_mass_storage_enabled_description: Ob der USB-Massenspeicher aktiviert ist
