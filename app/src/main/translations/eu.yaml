@@ -531,7 +531,6 @@ setting_wifi_mobile_data_transition_wakelock_timeout_ms_description: Wake Lock d
 setting_wifi_mobile_data_transition_wakelock_timeout_ms_raw_help: Osoko zenbakia milisegundotan
 setting_bluetooth_discoverability_name: Bluetooth ikusgarritasuna
 setting_bluetooth_discoverability_description: Gailua Bluetooth bidez aurki daitekeen
-setting_bluetooth_discoverability_raw_help: 0=desaktibatuta, 1=aktibatuta
 setting_bluetooth_discoverability_timeout_name: Bluetooth ikusgarritasunaren denbora-muga
 setting_bluetooth_discoverability_timeout_description: Zenbat denboran geratzen den gailua Bluetooth bidez aurki daitekeen
 setting_bluetooth_discoverability_timeout_raw_help: Osoko zenbakia segundotan (adib. 120, 300, 600)

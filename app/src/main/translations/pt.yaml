@@ -531,7 +531,6 @@ setting_wifi_mobile_data_transition_wakelock_timeout_ms_description: Tempo limit
 setting_wifi_mobile_data_transition_wakelock_timeout_ms_raw_help: Inteiro em milissegundos
 setting_bluetooth_discoverability_name: Detetabilidade Bluetooth
 setting_bluetooth_discoverability_description: Se o dispositivo é detetável via Bluetooth
-setting_bluetooth_discoverability_raw_help: 0=desativado, 1=ativado
 setting_bluetooth_discoverability_timeout_name: Tempo limite de detetabilidade Bluetooth
 setting_bluetooth_discoverability_timeout_description: Quanto tempo o dispositivo permanece detetável via Bluetooth
 setting_bluetooth_discoverability_timeout_raw_help: Inteiro em segundos (p. ex. 120, 300, 600)

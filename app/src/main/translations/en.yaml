@@ -531,7 +531,6 @@ setting_wifi_mobile_data_transition_wakelock_timeout_ms_description: Wakelock ti
 setting_wifi_mobile_data_transition_wakelock_timeout_ms_raw_help: Integer in milliseconds
 setting_bluetooth_discoverability_name: Bluetooth Discoverability
 setting_bluetooth_discoverability_description: Whether the device is discoverable via Bluetooth
-setting_bluetooth_discoverability_raw_help: 0=disabled, 1=enabled
 setting_bluetooth_discoverability_timeout_name: Bluetooth Discoverability Timeout
 setting_bluetooth_discoverability_timeout_description: How long the device remains Bluetooth discoverable
 setting_bluetooth_discoverability_timeout_raw_help: Integer in seconds (e.g. 120, 300, 600)

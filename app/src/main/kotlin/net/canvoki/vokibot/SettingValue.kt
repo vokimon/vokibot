@@ -436,7 +436,7 @@ val SETTING_VALUES: List<SettingValue> =
             category = SettingCategory.CONNECTIVITY,
             name = R.string.setting_bluetooth_discoverability_name,
             description = R.string.setting_bluetooth_discoverability_description,
-            rawHelp = R.string.setting_bluetooth_discoverability_raw_help,
+            rawHelp = R.string.setting_toggle_raw_help,
             type = ExtraType.Boolean,
         ),
         SettingValue(

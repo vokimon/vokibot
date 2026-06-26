@@ -531,7 +531,6 @@ setting_wifi_mobile_data_transition_wakelock_timeout_ms_description: Tiempo d'es
 setting_wifi_mobile_data_transition_wakelock_timeout_ms_raw_help: Entero en milisegundos
 setting_bluetooth_discoverability_name: Visibilidat Bluetooth
 setting_bluetooth_discoverability_description: Si o dispositivo ye visible vía Bluetooth
-setting_bluetooth_discoverability_raw_help: 0=desactivau, 1=activau
 setting_bluetooth_discoverability_timeout_name: Tiempo d'aspera de visibilidat Bluetooth
 setting_bluetooth_discoverability_timeout_description: Quanto tiempo o dispositivo remane visible vía Bluetooth
 setting_bluetooth_discoverability_timeout_raw_help: Entero en segundos (p. ex. 120, 300, 600)
