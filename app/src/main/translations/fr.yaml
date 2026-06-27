@@ -489,7 +489,11 @@ setting_time_12_24_description: Si l'horloge utilise le format 12 ou 24 heures
 setting_time_12_24_raw_help: 12 ou 24
 setting_date_format_name: Format de la date
 setting_date_format_description: Chaîne de format de date du système. Obsolète depuis l'API 31.
-setting_date_format_raw_help: "Chaîne de format (par ex. mm/dd/yyyy, dd/mm/yyyy, yyyy/mm/dd)"
+setting_date_format_raw_help: "Chaîne de format (par ex. MM/dd/yyyy, dd/MM/yyyy, yyyy/MM/dd)"
+setting_date_format_mdy: Mois/Jour/Année
+setting_date_format_dmy: Jour/Mois/Année
+setting_date_format_ymd: Année/Mois/Jour
+setting_date_format_iso: Année-Mois-Jour (ISO)
 setting_auto_time_name: Heure automatique
 setting_auto_time_description: Règle automatiquement l'horloge depuis le réseau
 setting_auto_time_zone_name: Fuseau horaire automatique

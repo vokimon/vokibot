@@ -489,7 +489,11 @@ setting_time_12_24_description: Ob die Uhr das 12- oder 24-Stunden-Format verwen
 setting_time_12_24_raw_help: 12 oder 24
 setting_date_format_name: Datumsformat
 setting_date_format_description: Systemdatumsformat-Zeichenkette. Veraltet ab API 31.
-setting_date_format_raw_help: "Formatzeichenkette (z. B. mm/dd/yyyy, dd/mm/yyyy, yyyy/mm/dd)"
+setting_date_format_raw_help: "Formatzeichenkette (z. B. MM/dd/yyyy, dd/MM/yyyy, yyyy/MM/dd)"
+setting_date_format_mdy: Monat/Tag/Jahr
+setting_date_format_dmy: Tag/Monat/Jahr
+setting_date_format_ymd: Jahr/Monat/Tag
+setting_date_format_iso: Jahr-Monat-Tag (ISO)
 setting_auto_time_name: Automatische Zeit
 setting_auto_time_description: Stellt die Uhrzeit automatisch aus dem Netzwerk ein
 setting_auto_time_zone_name: Automatische Zeitzone

@@ -490,7 +490,11 @@ setting_time_12_24_description: Whether clock uses 12 or 24 hour format
 setting_time_12_24_raw_help: 12 or 24
 setting_date_format_name: Date Format
 setting_date_format_description: System date format string. Deprecated API 31.
-setting_date_format_raw_help: "Format string (e.g. mm/dd/yyyy, dd/mm/yyyy, yyyy/mm/dd)"
+setting_date_format_raw_help: "Format string (e.g. MM/dd/yyyy, dd/MM/yyyy, yyyy/MM/dd)"
+setting_date_format_mdy: Month/Day/Year
+setting_date_format_dmy: Day/Month/Year
+setting_date_format_ymd: Year/Month/Day
+setting_date_format_iso: Year-Month-Day (ISO)
 setting_auto_time_name: Auto Time
 setting_auto_time_description: Automatically set clock from network
 setting_auto_time_zone_name: Auto Time Zone

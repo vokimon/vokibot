@@ -489,7 +489,11 @@ setting_time_12_24_description: Se o reloxo usa formato de 12 ou 24 horas
 setting_time_12_24_raw_help: 12 ou 24
 setting_date_format_name: Formato da data
 setting_date_format_description: Cadea de formato de data do sistema. API 31 obsoleta.
-setting_date_format_raw_help: "Cadea de formato (p. ex. mm/dd/yyyy, dd/mm/yyyy, yyyy/mm/dd)"
+setting_date_format_raw_help: "Cadea de formato (p. ex. MM/dd/yyyy, dd/MM/yyyy, yyyy/MM/dd)"
+setting_date_format_mdy: Mes/Día/Ano
+setting_date_format_dmy: Día/Mes/Ano
+setting_date_format_ymd: Ano/Mes/Día
+setting_date_format_iso: Ano-Mes-Día (ISO)
 setting_auto_time_name: Hora automática
 setting_auto_time_description: Pon automaticamente o reloxo desde a rede
 setting_auto_time_zone_name: Zona horaria automática

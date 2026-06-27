@@ -314,7 +314,15 @@ val SETTING_VALUES: List<SettingValue> =
             name = R.string.setting_date_format_name,
             description = R.string.setting_date_format_description,
             rawHelp = R.string.setting_date_format_raw_help,
-            type = ExtraType.String,
+            type =
+                ExtraType.Enum(
+                    listOf(
+                        EnumOption("MM/dd/yyyy", R.string.setting_date_format_mdy),
+                        EnumOption("dd/MM/yyyy", R.string.setting_date_format_dmy),
+                        EnumOption("yyyy/MM/dd", R.string.setting_date_format_ymd),
+                        EnumOption("yyyy-MM-dd", R.string.setting_date_format_iso),
+                    ),
+                ),
         ),
         SettingValue(
             id = Settings.Global.AUTO_TIME,

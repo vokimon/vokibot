@@ -489,7 +489,11 @@ setting_time_12_24_description: ما إذا كانت الساعة تستخدم �
 setting_time_12_24_raw_help: 12 أو 24
 setting_date_format_name: تنسيق التاريخ
 setting_date_format_description: سلسلة تنسيق تاريخ النظام. واجهة برمجة التطبيقات 31 مهملة.
-setting_date_format_raw_help: "سلسلة التنسيق (مثل mm/dd/yyyy، dd/mm/yyyy، yyyy/mm/dd)"
+setting_date_format_raw_help: "سلسلة التنسيق (مثل MM/dd/yyyy، dd/MM/yyyy، yyyy/MM/dd)"
+setting_date_format_mdy: شهر/يوم/سنة
+setting_date_format_dmy: يوم/شهر/سنة
+setting_date_format_ymd: سنة/شهر/يوم
+setting_date_format_iso: سنة-شهر-يوم (ISO)
 setting_auto_time_name: الوقت التلقائي
 setting_auto_time_description: ضبط الساعة تلقائياً من الشبكة
 setting_auto_time_zone_name: المنطقة الزمنية التلقائية

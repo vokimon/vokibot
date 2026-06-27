@@ -489,7 +489,11 @@ setting_time_12_24_description: Использует ли часы 12- или 24
 setting_time_12_24_raw_help: 12 или 24
 setting_date_format_name: Формат даты
 setting_date_format_description: Строка формата даты системы. Устарело в API 31.
-setting_date_format_raw_help: "Строка формата (напр. mm/dd/yyyy, dd/mm/yyyy, yyyy/mm/dd)"
+setting_date_format_raw_help: "Строка формата (напр. MM/dd/yyyy, dd/MM/yyyy, yyyy/MM/dd)"
+setting_date_format_mdy: Месяц/День/Год
+setting_date_format_dmy: День/Месяц/Год
+setting_date_format_ymd: Год/Месяц/День
+setting_date_format_iso: Год-Месяц-День (ISO)
 setting_auto_time_name: Авто время
 setting_auto_time_description: Автоматически устанавливает время из сети
 setting_auto_time_zone_name: Авто часовой пояс

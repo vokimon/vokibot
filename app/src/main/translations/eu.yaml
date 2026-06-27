@@ -489,7 +489,11 @@ setting_time_12_24_description: Erlojuak 12 edo 24 orduko formatua erabiltzen du
 setting_time_12_24_raw_help: 12 edo 24
 setting_date_format_name: Data-formatua
 setting_date_format_description: Sistemako data-formatuaren katea. API 31 zaharkitua.
-setting_date_format_raw_help: "Formatu-katea (adib. mm/dd/yyyy, dd/mm/yyyy, yyyy/mm/dd)"
+setting_date_format_raw_help: "Formatu-katea (adib. MM/dd/yyyy, dd/MM/yyyy, yyyy/MM/dd)"
+setting_date_format_mdy: Hilabete/Egun/Urte
+setting_date_format_dmy: Egun/Hilabete/Urte
+setting_date_format_ymd: Urte/Hilabete/Egun
+setting_date_format_iso: Urte-Hilabete-Egun (ISO)
 setting_auto_time_name: Ordu automatikoa
 setting_auto_time_description: Ezarri erlojua automatikoki saretik
 setting_auto_time_zone_name: Ordu-zona automatikoa
