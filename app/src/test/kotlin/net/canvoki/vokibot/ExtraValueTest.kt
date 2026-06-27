@@ -560,4 +560,13 @@ class ExtraValueTest {
             expected = 0,
         )
     }
+
+    @Test
+    fun `toBitmask with many options choose the proper`() {
+        checkToBitmask(
+            options = listOf(FlagOption("1", 0), FlagOption("2", 0)),
+            values = listOf("2"),
+            expected = 2,
+        )
+    }
 }
