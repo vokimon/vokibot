@@ -578,4 +578,13 @@ class ExtraValueTest {
             expected = 2,
         )
     }
+
+    @Test
+    fun `toBitmask multiple matching values ored`() {
+        checkToBitmask(
+            options = listOf(FlagOption("1", 0), FlagOption("2", 0)),
+            values = listOf("1", "2"),
+            expected = 3,
+        )
+    }
 }
