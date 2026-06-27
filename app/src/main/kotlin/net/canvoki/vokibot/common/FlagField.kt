@@ -30,6 +30,8 @@ data class FlagOption(
 fun List<FlagOption>.toSelectedValues(bitmask: Int): List<String> =
     mapNotNull { if (it.bitmask and bitmask != 0) it.value else null }
 
+fun List<FlagOption>.toBitmask(values: List<String>): Int = first().value.toInt() and values.first().toInt()
+
 @Composable
 fun FlagField(
     options: List<FlagOption>,

@@ -3,6 +3,7 @@ package net.canvoki.vokibot
 import net.canvoki.shared.test.assertEquals
 import net.canvoki.shared.test.assertJsonEqual
 import net.canvoki.vokibot.common.FlagOption
+import net.canvoki.vokibot.common.toBitmask
 import net.canvoki.vokibot.common.toSelectedValues
 import org.junit.Assert.assertTrue
 import org.junit.Test
@@ -531,6 +532,32 @@ class ExtraValueTest {
             options = listOf(FlagOption("1", 0), FlagOption("2", 0)),
             bitmask = 3,
             expected = listOf("1", "2"),
+        )
+    }
+
+    // ---------- toBitmask ----------
+
+    private fun checkToBitmask(
+        options: List<FlagOption>,
+        values: List<String>,
+        expected: Int,
+    ) = assertEquals(expected, options.toBitmask(values))
+
+    @Test
+    fun `toBitmask with single value returns its bitmask`() {
+        checkToBitmask(
+            options = listOf(FlagOption("2", 0)),
+            values = listOf("2"),
+            expected = 2,
+        )
+    }
+
+    @Test
+    fun `toBitmask with single value not matching`() {
+        checkToBitmask(
+            options = listOf(FlagOption("1", 0)),
+            values = listOf("2"),
+            expected = 0,
         )
     }
 }
