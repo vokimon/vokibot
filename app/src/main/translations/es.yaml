@@ -181,6 +181,7 @@ extra_value_type_boolean: Booleano
 extra_value_type_text_list: Lista de texto
 extra_value_type_uri_list: Lista de URI
 extra_value_type_enum: Selección
+extra_value_type_flags: Multiselección
 settings_page_category_network: Red
 settings_page_category_display: Pantalla
 settings_page_category_sound: Sonido
@@ -232,8 +233,8 @@ settings_page_name_battery: Batería
 settings_page_name_notifications: Notificaciones
 settings_page_name_all_settings: Todos los ajustes
 settings_page_name_quick_launch: Inicio rápido
-unknown_command_title: "Comando no soportado"
-unknown_trigger_title: "Disparador no soportado"
+unknown_command_title: Comando no soportado
+unknown_trigger_title: Disparador no soportado
 common_notice_title: Aviso
 common_experimental_title: Función experimental
 application_command_editor_not_implemented: Este tipo de componente de aplicación aún no está implementado
@@ -384,12 +385,12 @@ change_setting_raw_edit_warning: Esta opción permite escribir cualquier valor, 
 change_setting_permission_required: Se requiere permiso para modificar los ajustes del sistema.
 setting_list_not_found: No se han encontrado ajustes
 setting_animation_scale_off: "Desactivado"
-setting_animation_scale_0_5x: "0.5x"
-setting_animation_scale_1x: "1x"
-setting_animation_scale_1_5x: "1.5x"
-setting_animation_scale_2x: "2x"
-setting_animation_scale_5x: "5x"
-setting_animation_scale_10x: "10x"
+setting_animation_scale_0_5x: 0.5x
+setting_animation_scale_1x: 1x
+setting_animation_scale_1_5x: 1.5x
+setting_animation_scale_2x: 2x
+setting_animation_scale_5x: 5x
+setting_animation_scale_10x: 10x
 setting_font_scale_0_5: "0.5"
 setting_font_scale_0_7: "0.7"
 setting_font_scale_0_85: "0.85"
@@ -398,33 +399,33 @@ setting_font_scale_1_15: "1.15"
 setting_font_scale_1_3: "1.3"
 setting_font_scale_1_5: "1.5"
 setting_font_scale_2_0: "2.0"
-setting_duration_15_seconds: "15 segundos"
-setting_duration_30_seconds: "30 segundos"
-setting_duration_1_minute: "1 minuto"
-setting_duration_2_minutes: "2 minutos"
-setting_duration_5_minutes: "5 minutos"
-setting_duration_10_minutes: "10 minutos"
-setting_duration_30_minutes: "30 minutos"
-setting_rotation_0: "0°"
-setting_rotation_90: "90°"
-setting_rotation_180: "180°"
-setting_rotation_270: "270°"
-setting_ringer_mode_normal: "Normal"
-setting_ringer_mode_vibrate: "Vibrar"
-setting_ringer_mode_silent: "Silencio"
-setting_hour_format_12h: "12h"
-setting_hour_format_24h: "24h"
-setting_wifi_sleep_policy_default: "Predeterminado"
-setting_wifi_sleep_policy_never_while_plugged: "Nunca mientras carga"
-setting_wifi_sleep_policy_never: "Nunca"
-setting_end_button_behavior_end_call: "Colgar llamada"
-setting_end_button_behavior_caller_log: "Registro de llamadas"
-setting_input_method_selector_auto: "Automático"
-setting_input_method_selector_always_show: "Mostrar siempre"
+setting_duration_15_seconds: 15 segundos
+setting_duration_30_seconds: 30 segundos
+setting_duration_1_minute: 1 minuto
+setting_duration_2_minutes: 2 minutos
+setting_duration_5_minutes: 5 minutos
+setting_duration_10_minutes: 10 minutos
+setting_duration_30_minutes: 30 minutos
+setting_rotation_0: 0°
+setting_rotation_90: 90°
+setting_rotation_180: 180°
+setting_rotation_270: 270°
+setting_ringer_mode_normal: Normal
+setting_ringer_mode_vibrate: Vibrar
+setting_ringer_mode_silent: Silencio
+setting_hour_format_12h: 12h
+setting_hour_format_24h: 24h
+setting_wifi_sleep_policy_default: Predeterminado
+setting_wifi_sleep_policy_never_while_plugged: Nunca mientras carga
+setting_wifi_sleep_policy_never: Nunca
+setting_end_button_behavior_end_call: Colgar llamada
+setting_end_button_behavior_caller_log: Registro de llamadas
+setting_input_method_selector_auto: Automático
+setting_input_method_selector_always_show: Mostrar siempre
 enum_option_custom_value: "\"{0}\" (Personalizado)"
-setting_toggle_raw_help: "0 para desactivado, 1 para activado"
+setting_toggle_raw_help: 0 para desactivado, 1 para activado
 setting_audio_uri_raw_help: URI de un archivo de audio (p. ej. content://media/internal/audio/123)
-setting_animation_scale_raw_help: "Float (0.0=desactivado, 0.5, 1.0, 1.5, 2.0, 5.0, 10.0)"
+setting_animation_scale_raw_help: Float (0.0=desactivado, 0.5, 1.0, 1.5, 2.0, 5.0, 10.0)
 setting_stream_bitmask_raw_help: "Máscara de bits: voice_call=1, system=2, ring=4, music=8, alarm=16, notification=32, bt_sco=64"
 setting_component_names_raw_help: Nombres de componentes separados por dos puntos
 setting_component_name_raw_help: Cadena de nombre de componente
@@ -432,19 +433,19 @@ setting_screen_brightness_mode_name: Brillo adaptativo
 setting_screen_brightness_mode_description: Cuando está activado, el brillo de la pantalla se adaptará a la luz ambiental
 setting_screen_brightness_name: Brillo de la pantalla
 setting_screen_brightness_description: Brillo de la luz de fondo de la pantalla
-setting_screen_brightness_raw_help: "Entero 0-255"
+setting_screen_brightness_raw_help: Entero 0-255
 setting_screen_off_timeout_name: Tiempo de espera de apagado de la pantalla
 setting_screen_off_timeout_description: Tiempo de espera antes de que la pantalla se apague
-setting_screen_off_timeout_raw_help: "Entero en milisegundos (p. ej. 60000 para 1 minuto)"
+setting_screen_off_timeout_raw_help: Entero en milisegundos (p. ej. 60000 para 1 minuto)
 setting_user_rotation_name: Rotación del usuario
 setting_user_rotation_description: Rotación predeterminada de la pantalla
-setting_user_rotation_raw_help: "0=0°, 1=90°, 2=180°, 3=270°"
+setting_user_rotation_raw_help: 0=0°, 1=90°, 2=180°, 3=270°
 setting_accelerometer_rotation_name: Rotación por acelerómetro
 setting_accelerometer_rotation_description: Si la rotación es controlada por el acelerómetro
-setting_accelerometer_rotation_raw_help: "0=manual, 1=el acelerómetro controla la rotación"
+setting_accelerometer_rotation_raw_help: 0=manual, 1=el acelerómetro controla la rotación
 setting_font_scale_name: Escala de la fuente
 setting_font_scale_description: Factor de escala de la fuente
-setting_font_scale_raw_help: "Factor float, 1.0 sin escala"
+setting_font_scale_raw_help: Factor float, 1.0 sin escala
 setting_ringtone_name: Tono de llamada
 setting_ringtone_description: URI de contenido del tono de llamada predeterminado
 setting_notification_sound_name: Sonido de notificación
@@ -463,13 +464,13 @@ setting_mute_streams_affected_name: Flujos de audio afectados por el silencio
 setting_mute_streams_affected_description: Qué flujos de audio son afectados por el silencio
 setting_mode_ringer_name: Modo de tono
 setting_mode_ringer_description: Modo de tono actual
-setting_mode_ringer_raw_help: "0=normal, 1=vibrar, 2=silencio"
+setting_mode_ringer_raw_help: 0=normal, 1=vibrar, 2=silencio
 setting_tts_default_pitch_name: Tono predeterminado del TTS
 setting_tts_default_pitch_description: Tono predeterminado para el sintetizador de voz
 setting_tts_default_pitch_raw_help: Entero 10-500
 setting_tts_default_rate_name: Velocidad predeterminada del TTS
 setting_tts_default_rate_description: Velocidad de voz predeterminada para el sintetizador de voz
-setting_tts_default_rate_raw_help: "Entero 10-300"
+setting_tts_default_rate_raw_help: Entero 10-300
 setting_tts_default_synth_name: Sintetizador predeterminado del TTS
 setting_tts_default_synth_description: Nombre del paquete del motor TTS predeterminado
 setting_tts_default_synth_raw_help: Cadena de nombre de paquete
@@ -489,7 +490,7 @@ setting_time_12_24_description: Si el reloj usa formato de 12 o 24 horas
 setting_time_12_24_raw_help: 12 o 24
 setting_date_format_name: Formato de fecha
 setting_date_format_description: Cadena de formato de fecha del sistema. API 31 obsoleta.
-setting_date_format_raw_help: "Cadena de formato (p. ej. MM/dd/yyyy, dd/MM/yyyy, yyyy/MM/dd)"
+setting_date_format_raw_help: Cadena de formato (p. ej. MM/dd/yyyy, dd/MM/yyyy, yyyy/MM/dd)
 setting_date_format_mdy: Mes/Día/Año
 setting_date_format_dmy: Día/Mes/Año
 setting_date_format_ymd: Año/Mes/Día
@@ -579,7 +580,6 @@ setting_device_provisioned_description: Si el dispositivo ha sido aprovisionado
 setting_device_provisioned_raw_help: 0=no aprovisionado, 1=aprovisionado
 setting_use_google_mail_name: Usar Google Mail
 setting_use_google_mail_description: 'Mostrar "Google Mail" en lugar de "Gmail"'
-extra_value_type_flags: Multiselección
 setting_audio_stream_voice_call: Llamada de voz
 setting_audio_stream_system: Sistema
 setting_audio_stream_ring: Timbre
@@ -588,5 +588,5 @@ setting_audio_stream_alarm: Alarma
 setting_audio_stream_notification: Notificación
 setting_audio_stream_bt_sco: Llamadas Bluetooth
 setting_plugged_usb: USB
-setting_plugged_ac: "Corriente"
+setting_plugged_ac: Corriente
 setting_plugged_wireless: Inalámbrico

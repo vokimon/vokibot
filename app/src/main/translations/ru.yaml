@@ -181,6 +181,7 @@ extra_value_type_boolean: Логическое значение
 extra_value_type_text_list: Список текста
 extra_value_type_uri_list: Список URI
 extra_value_type_enum: Выбор
+extra_value_type_flags: Множественный выбор
 settings_page_category_network: Сеть
 settings_page_category_display: Экран
 settings_page_category_sound: Звук
@@ -232,8 +233,8 @@ settings_page_name_battery: Батарея
 settings_page_name_notifications: Уведомления
 settings_page_name_all_settings: Все настройки
 settings_page_name_quick_launch: Быстрый запуск
-unknown_command_title: "Команда не поддерживается"
-unknown_trigger_title: "Триггер не поддерживается"
+unknown_command_title: Команда не поддерживается
+unknown_trigger_title: Триггер не поддерживается
 common_notice_title: Внимание
 common_experimental_title: Экспериментальная функция
 application_command_editor_not_implemented: Этот тип компонента приложения ещё не реализован
@@ -384,12 +385,12 @@ change_setting_raw_edit_warning: Эта опция позволяет запис
 change_setting_permission_required: Требуется разрешение на изменение системных настроек.
 setting_list_not_found: Настройки не найдены
 setting_animation_scale_off: "Выкл."
-setting_animation_scale_0_5x: "0.5x"
-setting_animation_scale_1x: "1x"
-setting_animation_scale_1_5x: "1.5x"
-setting_animation_scale_2x: "2x"
-setting_animation_scale_5x: "5x"
-setting_animation_scale_10x: "10x"
+setting_animation_scale_0_5x: 0.5x
+setting_animation_scale_1x: 1x
+setting_animation_scale_1_5x: 1.5x
+setting_animation_scale_2x: 2x
+setting_animation_scale_5x: 5x
+setting_animation_scale_10x: 10x
 setting_font_scale_0_5: "0.5"
 setting_font_scale_0_7: "0.7"
 setting_font_scale_0_85: "0.85"
@@ -398,33 +399,33 @@ setting_font_scale_1_15: "1.15"
 setting_font_scale_1_3: "1.3"
 setting_font_scale_1_5: "1.5"
 setting_font_scale_2_0: "2.0"
-setting_duration_15_seconds: "15 секунд"
-setting_duration_30_seconds: "30 секунд"
-setting_duration_1_minute: "1 минута"
-setting_duration_2_minutes: "2 минуты"
-setting_duration_5_minutes: "5 минут"
-setting_duration_10_minutes: "10 минут"
-setting_duration_30_minutes: "30 минут"
-setting_rotation_0: "0°"
-setting_rotation_90: "90°"
-setting_rotation_180: "180°"
-setting_rotation_270: "270°"
-setting_ringer_mode_normal: "Обычный"
-setting_ringer_mode_vibrate: "Вибрация"
-setting_ringer_mode_silent: "Без звука"
-setting_hour_format_12h: "12ч"
-setting_hour_format_24h: "24ч"
-setting_wifi_sleep_policy_default: "По умолчанию"
-setting_wifi_sleep_policy_never_while_plugged: "Никогда при подключении"
-setting_wifi_sleep_policy_never: "Никогда"
-setting_end_button_behavior_end_call: "Завершить вызов"
-setting_end_button_behavior_caller_log: "Журнал вызовов"
-setting_input_method_selector_auto: "Авто"
-setting_input_method_selector_always_show: "Всегда показывать"
+setting_duration_15_seconds: 15 секунд
+setting_duration_30_seconds: 30 секунд
+setting_duration_1_minute: 1 минута
+setting_duration_2_minutes: 2 минуты
+setting_duration_5_minutes: 5 минут
+setting_duration_10_minutes: 10 минут
+setting_duration_30_minutes: 30 минут
+setting_rotation_0: 0°
+setting_rotation_90: 90°
+setting_rotation_180: 180°
+setting_rotation_270: 270°
+setting_ringer_mode_normal: Обычный
+setting_ringer_mode_vibrate: Вибрация
+setting_ringer_mode_silent: Без звука
+setting_hour_format_12h: 12ч
+setting_hour_format_24h: 24ч
+setting_wifi_sleep_policy_default: По умолчанию
+setting_wifi_sleep_policy_never_while_plugged: Никогда при подключении
+setting_wifi_sleep_policy_never: Никогда
+setting_end_button_behavior_end_call: Завершить вызов
+setting_end_button_behavior_caller_log: Журнал вызовов
+setting_input_method_selector_auto: Авто
+setting_input_method_selector_always_show: Всегда показывать
 enum_option_custom_value: "\"{0}\" (Пользовательский)"
-setting_toggle_raw_help: "0 — выкл., 1 — вкл."
+setting_toggle_raw_help: 0 — выкл., 1 — вкл.
 setting_audio_uri_raw_help: URI аудиофайла (напр. content://media/internal/audio/123)
-setting_animation_scale_raw_help: "Дробное число (0.0=выкл., 0.5, 1.0, 1.5, 2.0, 5.0, 10.0)"
+setting_animation_scale_raw_help: Дробное число (0.0=выкл., 0.5, 1.0, 1.5, 2.0, 5.0, 10.0)
 setting_stream_bitmask_raw_help: "Битовая маска: voice_call=1, system=2, ring=4, music=8, alarm=16, notification=32, bt_sco=64"
 setting_component_names_raw_help: Имена компонентов, разделенные двоеточиями
 setting_component_name_raw_help: Строка имени компонента
@@ -432,19 +433,19 @@ setting_screen_brightness_mode_name: Адаптивная яркость
 setting_screen_brightness_mode_description: При включении яркость экрана адаптируется к окружающему освещению
 setting_screen_brightness_name: Яркость экрана
 setting_screen_brightness_description: Яркость подсветки экрана
-setting_screen_brightness_raw_help: "Целое число 0-255"
+setting_screen_brightness_raw_help: Целое число 0-255
 setting_screen_off_timeout_name: Тайм-аут отключения экрана
 setting_screen_off_timeout_description: Тайм-аут перед отключением экрана
-setting_screen_off_timeout_raw_help: "Целое число в миллисекундах (напр. 60000 для 1 минуты)"
+setting_screen_off_timeout_raw_help: Целое число в миллисекундах (напр. 60000 для 1 минуты)
 setting_user_rotation_name: Поворот пользователем
 setting_user_rotation_description: Поворот экрана по умолчанию
-setting_user_rotation_raw_help: "0=0°, 1=90°, 2=180°, 3=270°"
+setting_user_rotation_raw_help: 0=0°, 1=90°, 2=180°, 3=270°
 setting_accelerometer_rotation_name: Поворот акселерометром
 setting_accelerometer_rotation_description: Управляется ли поворот акселерометром
-setting_accelerometer_rotation_raw_help: "0=вручную, 1=акселерометр управляет поворотом"
+setting_accelerometer_rotation_raw_help: 0=вручную, 1=акселерометр управляет поворотом
 setting_font_scale_name: Масштаб шрифта
 setting_font_scale_description: Коэффициент масштабирования шрифта
-setting_font_scale_raw_help: "Дробный коэффициент, 1.0 — без масштабирования"
+setting_font_scale_raw_help: Дробный коэффициент, 1.0 — без масштабирования
 setting_ringtone_name: Рингтон
 setting_ringtone_description: URI контента рингтона по умолчанию
 setting_notification_sound_name: Звук уведомления
@@ -463,13 +464,13 @@ setting_mute_streams_affected_name: Потоки, на которые влияе
 setting_mute_streams_affected_description: Какие аудиопотоки зависят от отключения звука
 setting_mode_ringer_name: Режим звонка
 setting_mode_ringer_description: Текущий режим звонка
-setting_mode_ringer_raw_help: "0=обычный, 1=вибрация, 2=без звука"
+setting_mode_ringer_raw_help: 0=обычный, 1=вибрация, 2=без звука
 setting_tts_default_pitch_name: Тон TTS по умолчанию
 setting_tts_default_pitch_description: Высота тона по умолчанию для синтеза речи
 setting_tts_default_pitch_raw_help: Целое число 10-500
 setting_tts_default_rate_name: Скорость TTS по умолчанию
 setting_tts_default_rate_description: Скорость речи по умолчанию для синтеза речи
-setting_tts_default_rate_raw_help: "Целое число 10-300"
+setting_tts_default_rate_raw_help: Целое число 10-300
 setting_tts_default_synth_name: Движок TTS по умолчанию
 setting_tts_default_synth_description: Имя пакета движка TTS по умолчанию
 setting_tts_default_synth_raw_help: Строка имени пакета
@@ -489,7 +490,7 @@ setting_time_12_24_description: Использует ли часы 12- или 24
 setting_time_12_24_raw_help: 12 или 24
 setting_date_format_name: Формат даты
 setting_date_format_description: Строка формата даты системы. Устарело в API 31.
-setting_date_format_raw_help: "Строка формата (напр. MM/dd/yyyy, dd/MM/yyyy, yyyy/MM/dd)"
+setting_date_format_raw_help: Строка формата (напр. MM/dd/yyyy, dd/MM/yyyy, yyyy/MM/dd)
 setting_date_format_mdy: Месяц/День/Год
 setting_date_format_dmy: День/Месяц/Год
 setting_date_format_ymd: Год/Месяц/День
@@ -579,7 +580,6 @@ setting_device_provisioned_description: Было ли устройство на�
 setting_device_provisioned_raw_help: 0=не настроено, 1=настроено
 setting_use_google_mail_name: Использовать Google Mail
 setting_use_google_mail_description: 'Показывать "Google Mail" вместо "Gmail"'
-extra_value_type_flags: Множественный выбор
 setting_audio_stream_voice_call: Голосовой вызов
 setting_audio_stream_system: Система
 setting_audio_stream_ring: Звонок
@@ -588,5 +588,5 @@ setting_audio_stream_alarm: Будильник
 setting_audio_stream_notification: Уведомление
 setting_audio_stream_bt_sco: Вызовы Bluetooth
 setting_plugged_usb: USB
-setting_plugged_ac: "Сеть"
+setting_plugged_ac: Сеть
 setting_plugged_wireless: Беспроводная

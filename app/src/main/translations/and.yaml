@@ -230,8 +230,8 @@ settings_page_name_battery: Batería
 settings_page_name_notifications: Notificaçionê
 settings_page_name_all_settings: Tôh lô ahûttê
 settings_page_name_quick_launch: Iniçio rápido
-unknown_command_title: "Comando no çoportao"
-unknown_trigger_title: "Dîpparadôh no çoportao"
+unknown_command_title: Comando no çoportao
+unknown_trigger_title: Dîpparadôh no çoportao
 common_notice_title: Abiço
 common_experimental_title: Funçión êpperimentâh
 application_command_editor_not_implemented: Êtte tipo de componente de aplicaçión aún no êttá implementao
@@ -382,12 +382,12 @@ change_setting_raw_edit_warning: Êtta ôççión permite êccribîh cuarquiêh 
 change_setting_permission_required: Çe requiere permiço pa modificâh lô ahûttê der çîttema.
 setting_list_not_found: No çe an encontrao ahûttê
 setting_animation_scale_off: "Off"
-setting_animation_scale_0_5x: "0.5x"
-setting_animation_scale_1x: "1x"
-setting_animation_scale_1_5x: "1.5x"
-setting_animation_scale_2x: "2x"
-setting_animation_scale_5x: "5x"
-setting_animation_scale_10x: "10x"
+setting_animation_scale_0_5x: 0.5x
+setting_animation_scale_1x: 1x
+setting_animation_scale_1_5x: 1.5x
+setting_animation_scale_2x: 2x
+setting_animation_scale_5x: 5x
+setting_animation_scale_10x: 10x
 setting_font_scale_0_5: "0.5"
 setting_font_scale_0_7: "0.7"
 setting_font_scale_0_85: "0.85"
@@ -396,34 +396,34 @@ setting_font_scale_1_15: "1.15"
 setting_font_scale_1_3: "1.3"
 setting_font_scale_1_5: "1.5"
 setting_font_scale_2_0: "2.0"
-setting_duration_15_seconds: "15 seconds"
-setting_duration_30_seconds: "30 seconds"
-setting_duration_1_minute: "1 minute"
-setting_duration_2_minutes: "2 minutes"
-setting_duration_5_minutes: "5 minutes"
-setting_duration_10_minutes: "10 minutes"
-setting_duration_30_minutes: "30 minutes"
-setting_rotation_0: "0°"
-setting_rotation_90: "90°"
-setting_rotation_180: "180°"
-setting_rotation_270: "270°"
-setting_ringer_mode_normal: "Normal"
-setting_ringer_mode_vibrate: "Vibrate"
-setting_ringer_mode_silent: "Silent"
-setting_hour_format_12h: "12h"
-setting_hour_format_24h: "24h"
-setting_wifi_sleep_policy_default: "Default"
-setting_wifi_sleep_policy_never_while_plugged: "Never while plugged"
-setting_wifi_sleep_policy_never: "Never"
-setting_end_button_behavior_end_call: "End call"
-setting_end_button_behavior_caller_log: "Caller log"
-setting_input_method_selector_auto: "Auto"
-setting_input_method_selector_always_show: "Always show"
-enum_option_custom_value: '"{0}" (Perçonaliçao)'
+setting_duration_15_seconds: 15 seconds
+setting_duration_30_seconds: 30 seconds
+setting_duration_1_minute: 1 minute
+setting_duration_2_minutes: 2 minutes
+setting_duration_5_minutes: 5 minutes
+setting_duration_10_minutes: 10 minutes
+setting_duration_30_minutes: 30 minutes
+setting_rotation_0: 0°
+setting_rotation_90: 90°
+setting_rotation_180: 180°
+setting_rotation_270: 270°
+setting_ringer_mode_normal: Normal
+setting_ringer_mode_vibrate: Vibrate
+setting_ringer_mode_silent: Silent
+setting_hour_format_12h: 12h
+setting_hour_format_24h: 24h
+setting_wifi_sleep_policy_default: Default
+setting_wifi_sleep_policy_never_while_plugged: Never while plugged
+setting_wifi_sleep_policy_never: Never
+setting_end_button_behavior_end_call: End call
+setting_end_button_behavior_caller_log: Caller log
+setting_input_method_selector_auto: Auto
+setting_input_method_selector_always_show: Always show
+enum_option_custom_value: "\"{0}\" (Perçonaliçao)"
 setting_toggle_raw_help: 0 pa deçâttibao, 1 pa âttibao
 setting_audio_uri_raw_help: URI de un arxibo de audio (p. ej. content://media/intênnâh/audio/123)
 setting_animation_scale_raw_help: Floâh (0.0=deçâttibao, 0.5, 1.0, 1.5, 2.0, 5.0, 10.0)
-setting_stream_bitmask_raw_help: 'Máccara de bits: voice_call=1, system=2, ring=4, music=8, alarm=16, notification=32, bt_sco=64'
+setting_stream_bitmask_raw_help: "Máccara de bits: voice_call=1, system=2, ring=4, music=8, alarm=16, notification=32, bt_sco=64"
 setting_component_names_raw_help: Nombrê de componentê çeparáô por dôh puntô
 setting_component_name_raw_help: Cadena de nombre de componente
 setting_screen_brightness_mode_name: Briyo adâttatibo
@@ -506,7 +506,7 @@ setting_data_roaming_name: Itinerançia de datô
 setting_data_roaming_description: Çi la itinerançia de datô móbilê êttá âttibá
 setting_http_proxy_name: Proxy HTTP
 setting_http_proxy_description: Proxy HTTP globâh
-setting_http_proxy_raw_help: Cadena ôtt:port
+setting_http_proxy_raw_help: "Cadena ôtt:port"
 setting_airplane_mode_radios_name: Radiô der modo abión
 setting_airplane_mode_radios_description: Radiô deçâttibâh cuando er modo abión êttá âttibao
 setting_airplane_mode_radios_raw_help: Lîtta çepará por comâ (p. ej. bluetooth,çey,nfc,wifi)
@@ -564,7 +564,7 @@ setting_transition_animation_scale_name: Êccala de animaçión de trançiçión
 setting_transition_animation_scale_description: Fâttôh de êccala pa lâ animaçionê de trançiçión de âttibidá
 setting_animator_duration_scale_name: Êccala de duraçión del animadôh
 setting_animator_duration_scale_description: Fâttôh de êccala pa toâ lâ animaçionê baçâh en animadôh
-setting_stay_on_while_plugged_in_raw_help: 'Máccara de bits: ac=1, usb=2, wireless=4'
+setting_stay_on_while_plugged_in_raw_help: "Máccara de bits: ac=1, usb=2, wireless=4"
 setting_usb_mass_storage_enabled_name: Armaçenamiento maçibo USB
 setting_usb_mass_storage_enabled_description: Çi el armaçenamiento maçibo USB êttá âttibao
 setting_device_name_name: Nombre der dîppoçitibo
@@ -574,4 +574,4 @@ setting_device_provisioned_name: Dîppoçitibo aprobiçionao
 setting_device_provisioned_description: Çi er dîppoçitibo a çido aprobiçionao
 setting_device_provisioned_raw_help: 0=no aprobiçionao, 1=aprobiçionao
 setting_use_google_mail_name: Uçâh Google Maîh
-setting_use_google_mail_description: Môttrâh "Google Maîh" en lugâh de "Gmaîh"
+setting_use_google_mail_description: 'Môttrâh "Google Maîh" en lugâh de "Gmaîh"'

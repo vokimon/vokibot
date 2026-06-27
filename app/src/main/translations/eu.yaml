@@ -181,6 +181,7 @@ extra_value_type_boolean: Boolearra
 extra_value_type_text_list: Testu zerrenda
 extra_value_type_uri_list: URI zerrenda
 extra_value_type_enum: Hautaketa
+extra_value_type_flags: Hautaketa anitz
 settings_page_category_network: Sarea
 settings_page_category_display: Pantaila
 settings_page_category_sound: Soinua
@@ -232,8 +233,8 @@ settings_page_name_battery: Bateria
 settings_page_name_notifications: Jakinarazpenak
 settings_page_name_all_settings: Ezarpen guztiak
 settings_page_name_quick_launch: Abiarazte azkarra
-unknown_command_title: "Komandoa ez da onartzen"
-unknown_trigger_title: "Abiarazlea ez da onartzen"
+unknown_command_title: Komandoa ez da onartzen
+unknown_trigger_title: Abiarazlea ez da onartzen
 common_notice_title: Oharra
 common_experimental_title: Funtsio esperimentala
 application_command_editor_not_implemented: Aplikazio-osagai mota hau ez da oraindik inplementatu
@@ -384,12 +385,12 @@ change_setting_raw_edit_warning: Aukera honek edozein balio idaztea ahalbidetzen
 change_setting_permission_required: Baimena behar da sistemako ezarpenak aldatzeko.
 setting_list_not_found: Ez da ezarpenik aurkitu
 setting_animation_scale_off: "Desaktibatuta"
-setting_animation_scale_0_5x: "0.5x"
-setting_animation_scale_1x: "1x"
-setting_animation_scale_1_5x: "1.5x"
-setting_animation_scale_2x: "2x"
-setting_animation_scale_5x: "5x"
-setting_animation_scale_10x: "10x"
+setting_animation_scale_0_5x: 0.5x
+setting_animation_scale_1x: 1x
+setting_animation_scale_1_5x: 1.5x
+setting_animation_scale_2x: 2x
+setting_animation_scale_5x: 5x
+setting_animation_scale_10x: 10x
 setting_font_scale_0_5: "0.5"
 setting_font_scale_0_7: "0.7"
 setting_font_scale_0_85: "0.85"
@@ -398,33 +399,33 @@ setting_font_scale_1_15: "1.15"
 setting_font_scale_1_3: "1.3"
 setting_font_scale_1_5: "1.5"
 setting_font_scale_2_0: "2.0"
-setting_duration_15_seconds: "15 segundo"
-setting_duration_30_seconds: "30 segundo"
-setting_duration_1_minute: "minutu 1"
-setting_duration_2_minutes: "2 minutu"
-setting_duration_5_minutes: "5 minutu"
-setting_duration_10_minutes: "10 minutu"
-setting_duration_30_minutes: "30 minutu"
-setting_rotation_0: "0°"
-setting_rotation_90: "90°"
-setting_rotation_180: "180°"
-setting_rotation_270: "270°"
-setting_ringer_mode_normal: "Normal"
-setting_ringer_mode_vibrate: "Bibratu"
-setting_ringer_mode_silent: "Isilik"
-setting_hour_format_12h: "12h"
-setting_hour_format_24h: "24h"
-setting_wifi_sleep_policy_default: "Lehenetsia"
-setting_wifi_sleep_policy_never_while_plugged: "Inoiz ez konektatuta"
-setting_wifi_sleep_policy_never: "Inoiz"
-setting_end_button_behavior_end_call: "Deiari utzi"
-setting_end_button_behavior_caller_log: "Deien erregistroa"
-setting_input_method_selector_auto: "Automatikoa"
-setting_input_method_selector_always_show: "Beti erakutsi"
+setting_duration_15_seconds: 15 segundo
+setting_duration_30_seconds: 30 segundo
+setting_duration_1_minute: minutu 1
+setting_duration_2_minutes: 2 minutu
+setting_duration_5_minutes: 5 minutu
+setting_duration_10_minutes: 10 minutu
+setting_duration_30_minutes: 30 minutu
+setting_rotation_0: 0°
+setting_rotation_90: 90°
+setting_rotation_180: 180°
+setting_rotation_270: 270°
+setting_ringer_mode_normal: Normal
+setting_ringer_mode_vibrate: Bibratu
+setting_ringer_mode_silent: Isilik
+setting_hour_format_12h: 12h
+setting_hour_format_24h: 24h
+setting_wifi_sleep_policy_default: Lehenetsia
+setting_wifi_sleep_policy_never_while_plugged: Inoiz ez konektatuta
+setting_wifi_sleep_policy_never: Inoiz
+setting_end_button_behavior_end_call: Deiari utzi
+setting_end_button_behavior_caller_log: Deien erregistroa
+setting_input_method_selector_auto: Automatikoa
+setting_input_method_selector_always_show: Beti erakutsi
 enum_option_custom_value: "\"{0}\" (Pertsonalizatua)"
-setting_toggle_raw_help: "0 desaktibatuta, 1 aktibatuta"
+setting_toggle_raw_help: 0 desaktibatuta, 1 aktibatuta
 setting_audio_uri_raw_help: Audio-fitxategi baten URIa (adib. content://media/internal/audio/123)
-setting_animation_scale_raw_help: "Mugikor (0.0=itzalita, 0.5, 1.0, 1.5, 2.0, 5.0, 10.0)"
+setting_animation_scale_raw_help: Mugikor (0.0=itzalita, 0.5, 1.0, 1.5, 2.0, 5.0, 10.0)
 setting_stream_bitmask_raw_help: "Bit maskara: voice_call=1, system=2, ring=4, music=8, alarm=16, notification=32, bt_sco=64"
 setting_component_names_raw_help: Komaz bereizitako osagai-izenak
 setting_component_name_raw_help: Osagai-izenaren katea
@@ -432,19 +433,19 @@ setting_screen_brightness_mode_name: Distira adaptatiboa
 setting_screen_brightness_mode_description: Gaituta dagoenean, pantailaren distira inguruko argira egokituko da
 setting_screen_brightness_name: Pantailaren distira
 setting_screen_brightness_description: Pantailaren atzeko argiaren distira
-setting_screen_brightness_raw_help: "Osoko zenbakia 0-255"
+setting_screen_brightness_raw_help: Osoko zenbakia 0-255
 setting_screen_off_timeout_name: Pantaila itzaltzeko denbora-muga
 setting_screen_off_timeout_description: Pantaila itzali aurretiko denbora-muga
-setting_screen_off_timeout_raw_help: "Osoko zenbakia milisegundotan (adib. 60000 minutu 1erako)"
+setting_screen_off_timeout_raw_help: Osoko zenbakia milisegundotan (adib. 60000 minutu 1erako)
 setting_user_rotation_name: Erabiltzailearen biraketa
 setting_user_rotation_description: Pantailaren biraketa lehenetsia
-setting_user_rotation_raw_help: "0=0°, 1=90°, 2=180°, 3=270°"
+setting_user_rotation_raw_help: 0=0°, 1=90°, 2=180°, 3=270°
 setting_accelerometer_rotation_name: Azelerometroaren bidezko biraketa
 setting_accelerometer_rotation_description: Biraketa azelerometroak kontrolatzen duen edo ez
-setting_accelerometer_rotation_raw_help: "0=eskuz, 1=azelerometroak biraketa kontrolatzen du"
+setting_accelerometer_rotation_raw_help: 0=eskuz, 1=azelerometroak biraketa kontrolatzen du
 setting_font_scale_name: Letra-tamainaren eskala
 setting_font_scale_description: Letra-tamainaren eskala-faktorea
-setting_font_scale_raw_help: "Faktore mugikorra, 1.0 eskalarik gabe"
+setting_font_scale_raw_help: Faktore mugikorra, 1.0 eskalarik gabe
 setting_ringtone_name: Dei-tonua
 setting_ringtone_description: Tono lehenetsiaren edukiaren URIa
 setting_notification_sound_name: Jakinarazpen-soinua
@@ -463,13 +464,13 @@ setting_mute_streams_affected_name: Isiltzeak eragiten dien audio-fluxuak
 setting_mute_streams_affected_description: Zein audio-fluxuri eragiten dien isiltzeak
 setting_mode_ringer_name: Tonu modua
 setting_mode_ringer_description: Uneko tonu modua
-setting_mode_ringer_raw_help: "0=normala, 1=bibrazioa, 2=isila"
+setting_mode_ringer_raw_help: 0=normala, 1=bibrazioa, 2=isila
 setting_tts_default_pitch_name: TTS tonu lehenetsia
 setting_tts_default_pitch_description: Testu-hitzaurrekoaren tonu lehenetsia
 setting_tts_default_pitch_raw_help: Osoko zenbakia 10-500
 setting_tts_default_rate_name: TTS abiadura lehenetsia
 setting_tts_default_rate_description: Testu-hitzaurrekoaren ahots-abiadura lehenetsia
-setting_tts_default_rate_raw_help: "Osoko zenbakia 10-300"
+setting_tts_default_rate_raw_help: Osoko zenbakia 10-300
 setting_tts_default_synth_name: TTS sintesi-motorea lehenetsia
 setting_tts_default_synth_description: TTS motor lehenetsiaren pakete-izena
 setting_tts_default_synth_raw_help: Pakete-izenaren katea
@@ -489,7 +490,7 @@ setting_time_12_24_description: Erlojuak 12 edo 24 orduko formatua erabiltzen du
 setting_time_12_24_raw_help: 12 edo 24
 setting_date_format_name: Data-formatua
 setting_date_format_description: Sistemako data-formatuaren katea. API 31 zaharkitua.
-setting_date_format_raw_help: "Formatu-katea (adib. MM/dd/yyyy, dd/MM/yyyy, yyyy/MM/dd)"
+setting_date_format_raw_help: Formatu-katea (adib. MM/dd/yyyy, dd/MM/yyyy, yyyy/MM/dd)
 setting_date_format_mdy: Hilabete/Egun/Urte
 setting_date_format_dmy: Egun/Hilabete/Urte
 setting_date_format_ymd: Urte/Hilabete/Egun
@@ -579,7 +580,6 @@ setting_device_provisioned_description: Gailua hornitu den
 setting_device_provisioned_raw_help: 0=hornitu gabe, 1=hornituta
 setting_use_google_mail_name: Erabili Google Mail
 setting_use_google_mail_description: 'Erakutsi "Google Mail" "Gmail" ordez'
-extra_value_type_flags: Hautaketa anitz
 setting_audio_stream_voice_call: Ahots-dei
 setting_audio_stream_system: Sistema
 setting_audio_stream_ring: Dei-tonua
@@ -588,5 +588,5 @@ setting_audio_stream_alarm: Alarma
 setting_audio_stream_notification: Jakinarazpena
 setting_audio_stream_bt_sco: Bluetooth deiak
 setting_plugged_usb: USB
-setting_plugged_ac: "Sarea"
+setting_plugged_ac: Sarea
 setting_plugged_wireless: Harigabe

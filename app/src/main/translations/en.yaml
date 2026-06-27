@@ -233,8 +233,8 @@ settings_page_name_battery: Battery
 settings_page_name_notifications: Notifications
 settings_page_name_all_settings: All settings
 settings_page_name_quick_launch: Quick launch
-unknown_command_title: "Unsupported Command"
-unknown_trigger_title: "Unsupported Trigger"
+unknown_command_title: Unsupported Command
+unknown_trigger_title: Unsupported Trigger
 common_notice_title: Notice
 common_experimental_title: Experimental feature
 application_command_editor_not_implemented: This kind of application component is not implemented yet
@@ -385,12 +385,12 @@ change_setting_raw_edit_warning: This option allows writing any value, even inva
 change_setting_permission_required: Permission required to modify system settings.
 setting_list_not_found: No settings found
 setting_animation_scale_off: "Off"
-setting_animation_scale_0_5x: "0.5x"
-setting_animation_scale_1x: "1x"
-setting_animation_scale_1_5x: "1.5x"
-setting_animation_scale_2x: "2x"
-setting_animation_scale_5x: "5x"
-setting_animation_scale_10x: "10x"
+setting_animation_scale_0_5x: 0.5x
+setting_animation_scale_1x: 1x
+setting_animation_scale_1_5x: 1.5x
+setting_animation_scale_2x: 2x
+setting_animation_scale_5x: 5x
+setting_animation_scale_10x: 10x
 setting_font_scale_0_5: "0.5"
 setting_font_scale_0_7: "0.7"
 setting_font_scale_0_85: "0.85"
@@ -399,33 +399,33 @@ setting_font_scale_1_15: "1.15"
 setting_font_scale_1_3: "1.3"
 setting_font_scale_1_5: "1.5"
 setting_font_scale_2_0: "2.0"
-setting_duration_15_seconds: "15 seconds"
-setting_duration_30_seconds: "30 seconds"
-setting_duration_1_minute: "1 minute"
-setting_duration_2_minutes: "2 minutes"
-setting_duration_5_minutes: "5 minutes"
-setting_duration_10_minutes: "10 minutes"
-setting_duration_30_minutes: "30 minutes"
-setting_rotation_0: "0°"
-setting_rotation_90: "90°"
-setting_rotation_180: "180°"
-setting_rotation_270: "270°"
-setting_ringer_mode_normal: "Normal"
-setting_ringer_mode_vibrate: "Vibrate"
-setting_ringer_mode_silent: "Silent"
-setting_hour_format_12h: "12h"
-setting_hour_format_24h: "24h"
-setting_wifi_sleep_policy_default: "Default"
-setting_wifi_sleep_policy_never_while_plugged: "Never while plugged"
-setting_wifi_sleep_policy_never: "Never"
-setting_end_button_behavior_end_call: "End call"
-setting_end_button_behavior_caller_log: "Caller log"
-setting_input_method_selector_auto: "Auto"
-setting_input_method_selector_always_show: "Always show"
+setting_duration_15_seconds: 15 seconds
+setting_duration_30_seconds: 30 seconds
+setting_duration_1_minute: 1 minute
+setting_duration_2_minutes: 2 minutes
+setting_duration_5_minutes: 5 minutes
+setting_duration_10_minutes: 10 minutes
+setting_duration_30_minutes: 30 minutes
+setting_rotation_0: 0°
+setting_rotation_90: 90°
+setting_rotation_180: 180°
+setting_rotation_270: 270°
+setting_ringer_mode_normal: Normal
+setting_ringer_mode_vibrate: Vibrate
+setting_ringer_mode_silent: Silent
+setting_hour_format_12h: 12h
+setting_hour_format_24h: 24h
+setting_wifi_sleep_policy_default: Default
+setting_wifi_sleep_policy_never_while_plugged: Never while plugged
+setting_wifi_sleep_policy_never: Never
+setting_end_button_behavior_end_call: End call
+setting_end_button_behavior_caller_log: Caller log
+setting_input_method_selector_auto: Auto
+setting_input_method_selector_always_show: Always show
 enum_option_custom_value: "\"{0}\" (Custom)"
-setting_toggle_raw_help: "0 for disabled, 1 for enabled"
+setting_toggle_raw_help: 0 for disabled, 1 for enabled
 setting_audio_uri_raw_help: URI of an audio file (e.g. content://media/internal/audio/123)
-setting_animation_scale_raw_help: "Float (0.0=off, 0.5, 1.0, 1.5, 2.0, 5.0, 10.0)"
+setting_animation_scale_raw_help: Float (0.0=off, 0.5, 1.0, 1.5, 2.0, 5.0, 10.0)
 setting_stream_bitmask_raw_help: "Bitmask: voice_call=1, system=2, ring=4, music=8, alarm=16, notification=32, bt_sco=64"
 setting_component_names_raw_help: Colon-separated component names
 setting_component_name_raw_help: Component name string
@@ -433,19 +433,19 @@ setting_screen_brightness_mode_name: Adaptive Brightness
 setting_screen_brightness_mode_description: When enabled the screen brightness will adapt to environmental light
 setting_screen_brightness_name: Screen Brightness
 setting_screen_brightness_description: Screen backlight brightness
-setting_screen_brightness_raw_help: "Integer 0-255"
+setting_screen_brightness_raw_help: Integer 0-255
 setting_screen_off_timeout_name: Screen Off Timeout
 setting_screen_off_timeout_description: Time-out before screen turns off
-setting_screen_off_timeout_raw_help: "Integer in milliseconds (e.g. 60000 for 1 minute)"
+setting_screen_off_timeout_raw_help: Integer in milliseconds (e.g. 60000 for 1 minute)
 setting_user_rotation_name: User Rotation
 setting_user_rotation_description: Default screen rotation
-setting_user_rotation_raw_help: "0=0°, 1=90°, 2=180°, 3=270°"
+setting_user_rotation_raw_help: 0=0°, 1=90°, 2=180°, 3=270°
 setting_accelerometer_rotation_name: Accelerometer Rotation
 setting_accelerometer_rotation_description: Whether rotation is controlled by accelerometer
-setting_accelerometer_rotation_raw_help: "0=manual, 1=accelerometer controls rotation"
+setting_accelerometer_rotation_raw_help: 0=manual, 1=accelerometer controls rotation
 setting_font_scale_name: Font Scale
 setting_font_scale_description: Font scaling factor
-setting_font_scale_raw_help: "Float factor, 1.0 no scaling"
+setting_font_scale_raw_help: Float factor, 1.0 no scaling
 setting_ringtone_name: Ringtone
 setting_ringtone_description: Content URI of default ringtone
 setting_notification_sound_name: Notification Sound
@@ -464,13 +464,13 @@ setting_mute_streams_affected_name: Mute Streams Affected
 setting_mute_streams_affected_description: Which audio streams are affected by mute
 setting_mode_ringer_name: Ringer Mode
 setting_mode_ringer_description: Current ringer mode
-setting_mode_ringer_raw_help: "0=normal, 1=vibrate, 2=silent"
+setting_mode_ringer_raw_help: 0=normal, 1=vibrate, 2=silent
 setting_tts_default_pitch_name: TTS Default Pitch
 setting_tts_default_pitch_description: Default pitch for text-to-speech
 setting_tts_default_pitch_raw_help: Integer 10-500
 setting_tts_default_rate_name: TTS Default Rate
 setting_tts_default_rate_description: Default speech rate for text-to-speech
-setting_tts_default_rate_raw_help: "Integer 10-300"
+setting_tts_default_rate_raw_help: Integer 10-300
 setting_tts_default_synth_name: TTS Default Synth
 setting_tts_default_synth_description: Package name of default TTS engine
 setting_tts_default_synth_raw_help: Package name string
@@ -490,7 +490,7 @@ setting_time_12_24_description: Whether clock uses 12 or 24 hour format
 setting_time_12_24_raw_help: 12 or 24
 setting_date_format_name: Date Format
 setting_date_format_description: System date format string. Deprecated API 31.
-setting_date_format_raw_help: "Format string (e.g. MM/dd/yyyy, dd/MM/yyyy, yyyy/MM/dd)"
+setting_date_format_raw_help: Format string (e.g. MM/dd/yyyy, dd/MM/yyyy, yyyy/MM/dd)
 setting_date_format_mdy: Month/Day/Year
 setting_date_format_dmy: Day/Month/Year
 setting_date_format_ymd: Year/Month/Day

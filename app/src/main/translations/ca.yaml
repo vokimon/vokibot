@@ -181,6 +181,7 @@ extra_value_type_boolean: Booleà
 extra_value_type_text_list: Llista de text
 extra_value_type_uri_list: Llista d'URI
 extra_value_type_enum: Selecció
+extra_value_type_flags: Multiselecció
 settings_page_category_network: Xarxa
 settings_page_category_display: Pantalla
 settings_page_category_sound: So
@@ -232,8 +233,8 @@ settings_page_name_battery: Bateria
 settings_page_name_notifications: Notificacions
 settings_page_name_all_settings: Tots els ajustos
 settings_page_name_quick_launch: Inici ràpid
-unknown_command_title: "Comandament no suportat"
-unknown_trigger_title: "Disparament no suportat"
+unknown_command_title: Comandament no suportat
+unknown_trigger_title: Disparament no suportat
 common_notice_title: Avís
 common_experimental_title: Funcionalitat experimental
 application_command_editor_not_implemented: Aquest tipus de component d'aplicació encara no està implementat
@@ -384,12 +385,12 @@ change_setting_raw_edit_warning: Aquesta opció permet escriure qualsevol valor,
 change_setting_permission_required: Cal permís per modificar la configuració del sistema.
 setting_list_not_found: No s'han trobat configuracions
 setting_animation_scale_off: "Desactivat"
-setting_animation_scale_0_5x: "0.5x"
-setting_animation_scale_1x: "1x"
-setting_animation_scale_1_5x: "1.5x"
-setting_animation_scale_2x: "2x"
-setting_animation_scale_5x: "5x"
-setting_animation_scale_10x: "10x"
+setting_animation_scale_0_5x: 0.5x
+setting_animation_scale_1x: 1x
+setting_animation_scale_1_5x: 1.5x
+setting_animation_scale_2x: 2x
+setting_animation_scale_5x: 5x
+setting_animation_scale_10x: 10x
 setting_font_scale_0_5: "0.5"
 setting_font_scale_0_7: "0.7"
 setting_font_scale_0_85: "0.85"
@@ -398,33 +399,33 @@ setting_font_scale_1_15: "1.15"
 setting_font_scale_1_3: "1.3"
 setting_font_scale_1_5: "1.5"
 setting_font_scale_2_0: "2.0"
-setting_duration_15_seconds: "15 segons"
-setting_duration_30_seconds: "30 segons"
-setting_duration_1_minute: "1 minut"
-setting_duration_2_minutes: "2 minuts"
-setting_duration_5_minutes: "5 minuts"
-setting_duration_10_minutes: "10 minuts"
-setting_duration_30_minutes: "30 minuts"
-setting_rotation_0: "0°"
-setting_rotation_90: "90°"
-setting_rotation_180: "180°"
-setting_rotation_270: "270°"
-setting_ringer_mode_normal: "Normal"
-setting_ringer_mode_vibrate: "Vibració"
-setting_ringer_mode_silent: "Silenci"
-setting_hour_format_12h: "12h"
-setting_hour_format_24h: "24h"
-setting_wifi_sleep_policy_default: "Predeterminat"
-setting_wifi_sleep_policy_never_while_plugged: "Mai quan s'està carregant"
-setting_wifi_sleep_policy_never: "Mai"
-setting_end_button_behavior_end_call: "Penjar trucada"
-setting_end_button_behavior_caller_log: "Registre de trucades"
-setting_input_method_selector_auto: "Automàtic"
-setting_input_method_selector_always_show: "Mostra sempre"
+setting_duration_15_seconds: 15 segons
+setting_duration_30_seconds: 30 segons
+setting_duration_1_minute: 1 minut
+setting_duration_2_minutes: 2 minuts
+setting_duration_5_minutes: 5 minuts
+setting_duration_10_minutes: 10 minuts
+setting_duration_30_minutes: 30 minuts
+setting_rotation_0: 0°
+setting_rotation_90: 90°
+setting_rotation_180: 180°
+setting_rotation_270: 270°
+setting_ringer_mode_normal: Normal
+setting_ringer_mode_vibrate: Vibració
+setting_ringer_mode_silent: Silenci
+setting_hour_format_12h: 12h
+setting_hour_format_24h: 24h
+setting_wifi_sleep_policy_default: Predeterminat
+setting_wifi_sleep_policy_never_while_plugged: Mai quan s'està carregant
+setting_wifi_sleep_policy_never: Mai
+setting_end_button_behavior_end_call: Penjar trucada
+setting_end_button_behavior_caller_log: Registre de trucades
+setting_input_method_selector_auto: Automàtic
+setting_input_method_selector_always_show: Mostra sempre
 enum_option_custom_value: "\"{0}\" (Personalitzat)"
-setting_toggle_raw_help: "0 per a desactivat, 1 per a activat"
+setting_toggle_raw_help: 0 per a desactivat, 1 per a activat
 setting_audio_uri_raw_help: URI d'un fitxer d'àudio (p. ex. content://media/internal/audio/123)
-setting_animation_scale_raw_help: "Float (0.0=desactivat, 0.5, 1.0, 1.5, 2.0, 5.0, 10.0)"
+setting_animation_scale_raw_help: Float (0.0=desactivat, 0.5, 1.0, 1.5, 2.0, 5.0, 10.0)
 setting_stream_bitmask_raw_help: "Màscara de bits: voice_call=1, system=2, ring=4, music=8, alarm=16, notification=32, bt_sco=64"
 setting_component_names_raw_help: Noms de components separats per dos punts
 setting_component_name_raw_help: Cadena de nom de component
@@ -432,19 +433,19 @@ setting_screen_brightness_mode_name: Brillantor adaptativa
 setting_screen_brightness_mode_description: Quan està activat, la brillantor de la pantalla s'adaptarà a la llum ambiental
 setting_screen_brightness_name: Brillantor de la pantalla
 setting_screen_brightness_description: Brillantor de la llum de fons de la pantalla
-setting_screen_brightness_raw_help: "Enter 0-255"
+setting_screen_brightness_raw_help: Enter 0-255
 setting_screen_off_timeout_name: Temps d'espera d'apagada de la pantalla
 setting_screen_off_timeout_description: Temps d'espera abans que la pantalla s'apagui
-setting_screen_off_timeout_raw_help: "Enter en mil·lisegons (p. ex. 60000 per a 1 minut)"
+setting_screen_off_timeout_raw_help: Enter en mil·lisegons (p. ex. 60000 per a 1 minut)
 setting_user_rotation_name: Rotació de l'usuari
 setting_user_rotation_description: Rotació predeterminada de la pantalla
-setting_user_rotation_raw_help: "0=0°, 1=90°, 2=180°, 3=270°"
+setting_user_rotation_raw_help: 0=0°, 1=90°, 2=180°, 3=270°
 setting_accelerometer_rotation_name: Rotació per acceleròmetre
 setting_accelerometer_rotation_description: Si la rotació és controlada per l'acceleròmetre
-setting_accelerometer_rotation_raw_help: "0=manual, 1=l'acceleròmetre controla la rotació"
+setting_accelerometer_rotation_raw_help: 0=manual, 1=l'acceleròmetre controla la rotació
 setting_font_scale_name: Escala de la lletra
 setting_font_scale_description: Factor d'escala de la lletra
-setting_font_scale_raw_help: "Factor float, 1.0 sense escala"
+setting_font_scale_raw_help: Factor float, 1.0 sense escala
 setting_ringtone_name: To de trucada
 setting_ringtone_description: URI de contingut del to de trucada predeterminat
 setting_notification_sound_name: So de notificació
@@ -463,13 +464,13 @@ setting_mute_streams_affected_name: Fluxos d'àudio afectats pel silenci
 setting_mute_streams_affected_description: Quins fluxos d'àudio són afectats pel silenci
 setting_mode_ringer_name: Mode del to
 setting_mode_ringer_description: Mode del to actual
-setting_mode_ringer_raw_help: "0=normal, 1=vibració, 2=silenci"
+setting_mode_ringer_raw_help: 0=normal, 1=vibració, 2=silenci
 setting_tts_default_pitch_name: To predeterminat del TTS
 setting_tts_default_pitch_description: To predeterminat per al sintetitzador de veu
 setting_tts_default_pitch_raw_help: Enter 10-500
 setting_tts_default_rate_name: Velocitat predeterminada del TTS
 setting_tts_default_rate_description: Velocitat de veu predeterminada per al sintetitzador de veu
-setting_tts_default_rate_raw_help: "Enter 10-300"
+setting_tts_default_rate_raw_help: Enter 10-300
 setting_tts_default_synth_name: Sintetitzador predeterminat del TTS
 setting_tts_default_synth_description: Nom del paquet del motor TTS predeterminat
 setting_tts_default_synth_raw_help: Cadena de nom de paquet
@@ -489,7 +490,7 @@ setting_time_12_24_description: Si el rellotge usa format de 12 o 24 hores
 setting_time_12_24_raw_help: 12 o 24
 setting_date_format_name: Format de la data
 setting_date_format_description: Cadena de format de la data del sistema. API 31 obsoleta.
-setting_date_format_raw_help: "Cadena de format (p. ex. MM/dd/yyyy, dd/MM/yyyy, yyyy/MM/dd)"
+setting_date_format_raw_help: Cadena de format (p. ex. MM/dd/yyyy, dd/MM/yyyy, yyyy/MM/dd)
 setting_date_format_mdy: Mes/Dia/Any
 setting_date_format_dmy: Dia/Mes/Any
 setting_date_format_ymd: Any/Mes/Dia
@@ -579,7 +580,6 @@ setting_device_provisioned_description: Si el dispositiu ha estat aprovisionat
 setting_device_provisioned_raw_help: 0=no aprovisionat, 1=aprovisionat
 setting_use_google_mail_name: Utilitzar Google Mail
 setting_use_google_mail_description: 'Mostrar "Google Mail" en lloc de "Gmail"'
-extra_value_type_flags: Multiselecció
 setting_audio_stream_voice_call: Trucada de veu
 setting_audio_stream_system: Sistema
 setting_audio_stream_ring: Timbre
@@ -588,5 +588,5 @@ setting_audio_stream_alarm: Alarma
 setting_audio_stream_notification: Notificació
 setting_audio_stream_bt_sco: Trucades Bluetooth
 setting_plugged_usb: USB
-setting_plugged_ac: "Corrent"
+setting_plugged_ac: Corrent
 setting_plugged_wireless: Sense fil

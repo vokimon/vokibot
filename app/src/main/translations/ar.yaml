@@ -181,6 +181,7 @@ extra_value_type_boolean: قيمة منطقية
 extra_value_type_text_list: قائمة نصوص
 extra_value_type_uri_list: قائمة معرفات الموارد الموحدة
 extra_value_type_enum: اختيار
+extra_value_type_flags: اختيار متعدد
 settings_page_category_network: الشبكة
 settings_page_category_display: العرض
 settings_page_category_sound: الصوت
@@ -232,8 +233,8 @@ settings_page_name_battery: البطارية
 settings_page_name_notifications: الإشعارات
 settings_page_name_all_settings: جميع الإعدادات
 settings_page_name_quick_launch: التشغيل السريع
-unknown_command_title: "أمر غير مدعوم"
-unknown_trigger_title: "محفز غير مدعوم"
+unknown_command_title: أمر غير مدعوم
+unknown_trigger_title: محفز غير مدعوم
 common_notice_title: تنبيه
 common_experimental_title: ميزة تجريبية
 application_command_editor_not_implemented: لم يتم تنفيذ نوع مكون التطبيق هذا بعد
@@ -384,12 +385,12 @@ change_setting_raw_edit_warning: يتيح هذا الخيار كتابة أي ق
 change_setting_permission_required: مطلوب إذن لتعديل إعدادات النظام.
 setting_list_not_found: لم يتم العثور على إعدادات
 setting_animation_scale_off: "معطل"
-setting_animation_scale_0_5x: "0.5x"
-setting_animation_scale_1x: "1x"
-setting_animation_scale_1_5x: "1.5x"
-setting_animation_scale_2x: "2x"
-setting_animation_scale_5x: "5x"
-setting_animation_scale_10x: "10x"
+setting_animation_scale_0_5x: 0.5x
+setting_animation_scale_1x: 1x
+setting_animation_scale_1_5x: 1.5x
+setting_animation_scale_2x: 2x
+setting_animation_scale_5x: 5x
+setting_animation_scale_10x: 10x
 setting_font_scale_0_5: "0.5"
 setting_font_scale_0_7: "0.7"
 setting_font_scale_0_85: "0.85"
@@ -398,33 +399,33 @@ setting_font_scale_1_15: "1.15"
 setting_font_scale_1_3: "1.3"
 setting_font_scale_1_5: "1.5"
 setting_font_scale_2_0: "2.0"
-setting_duration_15_seconds: "15 ثانية"
-setting_duration_30_seconds: "30 ثانية"
-setting_duration_1_minute: "دقيقة واحدة"
-setting_duration_2_minutes: "دقيقتان"
-setting_duration_5_minutes: "5 دقائق"
-setting_duration_10_minutes: "10 دقائق"
-setting_duration_30_minutes: "30 دقيقة"
-setting_rotation_0: "0°"
-setting_rotation_90: "90°"
-setting_rotation_180: "180°"
-setting_rotation_270: "270°"
-setting_ringer_mode_normal: "عادي"
-setting_ringer_mode_vibrate: "اهتزاز"
-setting_ringer_mode_silent: "صامت"
-setting_hour_format_12h: "12h"
-setting_hour_format_24h: "24h"
-setting_wifi_sleep_policy_default: "افتراضي"
-setting_wifi_sleep_policy_never_while_plugged: "عدم الإيقاف عند الشحن"
-setting_wifi_sleep_policy_never: "أبداً"
-setting_end_button_behavior_end_call: "إنهاء المكالمة"
-setting_end_button_behavior_caller_log: "سجل المكالمات"
-setting_input_method_selector_auto: "تلقائي"
-setting_input_method_selector_always_show: "إظهار دائماً"
+setting_duration_15_seconds: 15 ثانية
+setting_duration_30_seconds: 30 ثانية
+setting_duration_1_minute: دقيقة واحدة
+setting_duration_2_minutes: دقيقتان
+setting_duration_5_minutes: 5 دقائق
+setting_duration_10_minutes: 10 دقائق
+setting_duration_30_minutes: 30 دقيقة
+setting_rotation_0: 0°
+setting_rotation_90: 90°
+setting_rotation_180: 180°
+setting_rotation_270: 270°
+setting_ringer_mode_normal: عادي
+setting_ringer_mode_vibrate: اهتزاز
+setting_ringer_mode_silent: صامت
+setting_hour_format_12h: 12h
+setting_hour_format_24h: 24h
+setting_wifi_sleep_policy_default: افتراضي
+setting_wifi_sleep_policy_never_while_plugged: عدم الإيقاف عند الشحن
+setting_wifi_sleep_policy_never: أبداً
+setting_end_button_behavior_end_call: إنهاء المكالمة
+setting_end_button_behavior_caller_log: سجل المكالمات
+setting_input_method_selector_auto: تلقائي
+setting_input_method_selector_always_show: إظهار دائماً
 enum_option_custom_value: "\"{0}\" (مخصص)"
-setting_toggle_raw_help: "0 معطل، 1 مفعّل"
+setting_toggle_raw_help: 0 معطل، 1 مفعّل
 setting_audio_uri_raw_help: URI لملف صوتي (مثل content://media/internal/audio/123)
-setting_animation_scale_raw_help: "عدد عشري (0.0=معطل، 0.5، 1.0، 1.5، 2.0، 5.0، 10.0)"
+setting_animation_scale_raw_help: عدد عشري (0.0=معطل، 0.5، 1.0، 1.5، 2.0، 5.0، 10.0)
 setting_stream_bitmask_raw_help: "قناع بت: voice_call=1، system=2، ring=4، music=8، alarm=16، notification=32، bt_sco=64"
 setting_component_names_raw_help: أسماء المكونات مفصولة بنقطتين
 setting_component_name_raw_help: سلسلة اسم المكون
@@ -432,19 +433,19 @@ setting_screen_brightness_mode_name: السطوع التكيفي
 setting_screen_brightness_mode_description: عند التفعيل، سيتكيف سطوع الشاشة مع الضوء المحيط
 setting_screen_brightness_name: سطوع الشاشة
 setting_screen_brightness_description: سطوع الإضاءة الخلفية للشاشة
-setting_screen_brightness_raw_help: "عدد صحيح 0-255"
+setting_screen_brightness_raw_help: عدد صحيح 0-255
 setting_screen_off_timeout_name: مهلة إيقاف تشغيل الشاشة
 setting_screen_off_timeout_description: المهلة قبل إيقاف تشغيل الشاشة
-setting_screen_off_timeout_raw_help: "عدد صحيح بالميلي ثانية (مثل 60000 لدقيقة واحدة)"
+setting_screen_off_timeout_raw_help: عدد صحيح بالميلي ثانية (مثل 60000 لدقيقة واحدة)
 setting_user_rotation_name: تدوير المستخدم
 setting_user_rotation_description: تدوير الشاشة الافتراضي
-setting_user_rotation_raw_help: "0=0°، 1=90°، 2=180°، 3=270°"
+setting_user_rotation_raw_help: 0=0°، 1=90°، 2=180°، 3=270°
 setting_accelerometer_rotation_name: تدوير مقياس التسارع
 setting_accelerometer_rotation_description: ما إذا كان التدوير يتم التحكم فيه بواسطة مقياس التسارع
-setting_accelerometer_rotation_raw_help: "0=يدوي، 1=مقياس التسارع يتحكم في التدوير"
+setting_accelerometer_rotation_raw_help: 0=يدوي، 1=مقياس التسارع يتحكم في التدوير
 setting_font_scale_name: مقياس الخط
 setting_font_scale_description: عامل مقياس الخط
-setting_font_scale_raw_help: "عامل عشري، 1.0 بدون تغيير في المقياس"
+setting_font_scale_raw_help: عامل عشري، 1.0 بدون تغيير في المقياس
 setting_ringtone_name: نغمة الرنين
 setting_ringtone_description: URI محتوى نغمة الرنين الافتراضية
 setting_notification_sound_name: صوت الإشعار
@@ -463,13 +464,13 @@ setting_mute_streams_affected_name: تدفقات الصوت المتأثرة ب�
 setting_mute_streams_affected_description: ما هي تدفقات الصوت المتأثرة بكتم الصوت
 setting_mode_ringer_name: وضع الرنين
 setting_mode_ringer_description: وضع الرنين الحالي
-setting_mode_ringer_raw_help: "0=عادي، 1=اهتزاز، 2=صامت"
+setting_mode_ringer_raw_help: 0=عادي، 1=اهتزاز، 2=صامت
 setting_tts_default_pitch_name: درجة الصوت الافتراضية لتحويل النص إلى كلام
 setting_tts_default_pitch_description: درجة الصوت الافتراضية لتحويل النص إلى كلام
 setting_tts_default_pitch_raw_help: عدد صحيح 10-500
 setting_tts_default_rate_name: معدل الكلام الافتراضي لتحويل النص إلى كلام
 setting_tts_default_rate_description: معدل سرعة الكلام الافتراضي لتحويل النص إلى كلام
-setting_tts_default_rate_raw_help: "عدد صحيح 10-300"
+setting_tts_default_rate_raw_help: عدد صحيح 10-300
 setting_tts_default_synth_name: المحرك الافتراضي لتحويل النص إلى كلام
 setting_tts_default_synth_description: اسم حزمة محرك تحويل النص إلى كلام الافتراضي
 setting_tts_default_synth_raw_help: سلسلة اسم الحزمة
@@ -489,7 +490,7 @@ setting_time_12_24_description: ما إذا كانت الساعة تستخدم �
 setting_time_12_24_raw_help: 12 أو 24
 setting_date_format_name: تنسيق التاريخ
 setting_date_format_description: سلسلة تنسيق تاريخ النظام. واجهة برمجة التطبيقات 31 مهملة.
-setting_date_format_raw_help: "سلسلة التنسيق (مثل MM/dd/yyyy، dd/MM/yyyy، yyyy/MM/dd)"
+setting_date_format_raw_help: سلسلة التنسيق (مثل MM/dd/yyyy، dd/MM/yyyy، yyyy/MM/dd)
 setting_date_format_mdy: شهر/يوم/سنة
 setting_date_format_dmy: يوم/شهر/سنة
 setting_date_format_ymd: سنة/شهر/يوم
@@ -579,7 +580,6 @@ setting_device_provisioned_description: ما إذا كان الجهاز قد ت�
 setting_device_provisioned_raw_help: 0=غير مهيأ، 1=مهيأ
 setting_use_google_mail_name: استخدام Google Mail
 setting_use_google_mail_description: 'إظهار "Google Mail" بدلاً من "Gmail"'
-extra_value_type_flags: اختيار متعدد
 setting_audio_stream_voice_call: مكالمة صوتية
 setting_audio_stream_system: النظام
 setting_audio_stream_ring: الرنين
@@ -588,5 +588,5 @@ setting_audio_stream_alarm: المنبه
 setting_audio_stream_notification: الإشعار
 setting_audio_stream_bt_sco: مكالمات البلوتوث
 setting_plugged_usb: USB
-setting_plugged_ac: "الشبكة"
+setting_plugged_ac: الشبكة
 setting_plugged_wireless: لاسلكي
