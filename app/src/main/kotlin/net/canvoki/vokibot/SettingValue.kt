@@ -435,7 +435,18 @@ val SETTING_VALUES: List<SettingValue> =
             name = R.string.setting_wifi_mobile_data_transition_wakelock_timeout_ms_name,
             description = R.string.setting_wifi_mobile_data_transition_wakelock_timeout_ms_description,
             rawHelp = R.string.setting_wifi_mobile_data_transition_wakelock_timeout_ms_raw_help,
-            type = ExtraType.String, // TODO: Int ranged
+            type =
+                ExtraType.Enum(
+                    listOf(
+                        EnumOption("15000", R.string.setting_duration_15_seconds),
+                        EnumOption("30000", R.string.setting_duration_30_seconds),
+                        EnumOption("60000", R.string.setting_duration_1_minute),
+                        EnumOption("120000", R.string.setting_duration_2_minutes),
+                        EnumOption("300000", R.string.setting_duration_5_minutes),
+                        EnumOption("600000", R.string.setting_duration_10_minutes),
+                        EnumOption("1800000", R.string.setting_duration_30_minutes),
+                    ),
+                ),
         ),
         SettingValue(
             id = Settings.System.BLUETOOTH_DISCOVERABILITY,

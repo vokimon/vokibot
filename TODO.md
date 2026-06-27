@@ -10,9 +10,11 @@
     - [x] Setting List: Settings database
     - [x] Setting List: Navigate settings database
     - [x] Setting List: Group by category
-    - [ ] Settings: Add type URI
-    - [ ] Settings: Add type Enum
+    - [x] Settings: Add type URI
+    - [x] Settings: Add type Enum
+    - [x] Settings: Add type Flags
     - [ ] Settings: Add type ScopedInt
+    - [ ] Settings: Add type Media for audio
     - [ ] Different icon for each value type?
     - [ ] Build the page explaining adb scalation for secure settings
     - [ ] Display ChangeSettings commands in command list (description, icon...)
@@ -38,8 +40,18 @@
     - [ ] Permissions warning: Move to shared
     - [ ] Editor header: Fix: long titles move the done button out the screen.
     - [ ] Review all settings database texts
-    - [ ] Translate all settings database texts
-    - [ ] Consider natural rotations: None (0) Left (90) Upside down (180) Right (270)
+    - [x] Translate all settings database texts
+    - [ ] Settings cases
+        - [ ] Consider natural rotations: None (0) Left (90) Upside down (180) Right (270)
+        - [ ] ExtraType.Int(min, max): New data class for ranged integers (SCREEN_BRIGHTNESS 0-255, TTS_DEFAULT_PITCH 10-500, TTS_DEFAULT_RATE 10-300)
+        - [ ] String valued Flags for AIRPLANE_MODE_RADIOS (instead bitwise ints) 
+        - [ ] WIFI_MOBILE_DATA_TRANSITION_WAKELOCK_TIMEOUT_MS: ExtraType.Enum: Reuse setting_duration_* labels, subset of screen timeout values
+        - [ ] ExtraType.Uri parametrization: Add mimeType: String? parameter; update RINGTONE, NOTIFICATION_SOUND, ALARM_ALERT to ExtraType.Uri("audio/*")
+        - [ ] Add Flags test: ExtraValueTest.kt test case for ExtraType.Flags bitmask round-trip
+        - [ ] Finalize BT SCO label: Research MODE_RINGER_STREAMS_AFFECTED semantics for proper label
+        - [ ] EU (Basque) description review: "iturri-kk" needs native speaker correction
+        - [ ] Evaluate 6 dynamic list settings: TTS_DEFAULT_SYNTH, TTS_ENABLED_PLUGINS, ENABLED_ACCESSIBILITY_SERVICES, DEFAULT_INPUT_METHOD, ENABLED_INPUT_METHODS, SELECTED_INPUT_METHOD_SUBTYPE
+
 
 ## Backlog
 

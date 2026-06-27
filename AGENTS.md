@@ -57,6 +57,7 @@ with the only exception of `spotlessApply`.
   This requires strategic thinking:
   break the task into incremental steps
   (each must compile; all tests must pass except the new test during TDD RED phase).
+- Before entering to build mode and edit files, the user wants to see a full diff of the change
 
 ## TDD (Test-Driven Development)
 
