@@ -184,13 +184,13 @@ val SETTING_VALUES: List<SettingValue> =
             type =
                 ExtraType.Flags(
                     listOf(
-                        FlagOption(1, R.string.setting_audio_stream_voice_call),
-                        FlagOption(2, R.string.setting_audio_stream_system),
-                        FlagOption(4, R.string.setting_audio_stream_ring),
-                        FlagOption(8, R.string.setting_audio_stream_music),
-                        FlagOption(16, R.string.setting_audio_stream_alarm),
-                        FlagOption(32, R.string.setting_audio_stream_notification),
-                        FlagOption(64, R.string.setting_audio_stream_bt_sco),
+                        FlagOption("1", R.string.setting_audio_stream_voice_call),
+                        FlagOption("2", R.string.setting_audio_stream_system),
+                        FlagOption("4", R.string.setting_audio_stream_ring),
+                        FlagOption("8", R.string.setting_audio_stream_music),
+                        FlagOption("16", R.string.setting_audio_stream_alarm),
+                        FlagOption("32", R.string.setting_audio_stream_notification),
+                        FlagOption("64", R.string.setting_audio_stream_bt_sco),
                     ),
                 ),
         ),
@@ -203,13 +203,13 @@ val SETTING_VALUES: List<SettingValue> =
             type =
                 ExtraType.Flags(
                     listOf(
-                        FlagOption(1, R.string.setting_audio_stream_voice_call),
-                        FlagOption(2, R.string.setting_audio_stream_system),
-                        FlagOption(4, R.string.setting_audio_stream_ring),
-                        FlagOption(8, R.string.setting_audio_stream_music),
-                        FlagOption(16, R.string.setting_audio_stream_alarm),
-                        FlagOption(32, R.string.setting_audio_stream_notification),
-                        FlagOption(64, R.string.setting_audio_stream_bt_sco),
+                        FlagOption("1", R.string.setting_audio_stream_voice_call),
+                        FlagOption("2", R.string.setting_audio_stream_system),
+                        FlagOption("4", R.string.setting_audio_stream_ring),
+                        FlagOption("8", R.string.setting_audio_stream_music),
+                        FlagOption("16", R.string.setting_audio_stream_alarm),
+                        FlagOption("32", R.string.setting_audio_stream_notification),
+                        FlagOption("64", R.string.setting_audio_stream_bt_sco),
                     ),
                 ),
         ),
@@ -656,9 +656,9 @@ val SETTING_VALUES: List<SettingValue> =
             type =
                 ExtraType.Flags(
                     listOf(
-                        FlagOption(1, R.string.setting_plugged_ac),
-                        FlagOption(2, R.string.setting_plugged_usb),
-                        FlagOption(4, R.string.setting_plugged_wireless),
+                        FlagOption("1", R.string.setting_plugged_ac),
+                        FlagOption("2", R.string.setting_plugged_usb),
+                        FlagOption("4", R.string.setting_plugged_wireless),
                     ),
                 ),
         ),
