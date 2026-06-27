@@ -48,7 +48,9 @@ fun FlagField(
                 val isSelected = selectedFlags and option.bitmask != 0
                 FilterChip(
                     selected = isSelected,
-                    onClick = { onFlagsChanged(selectedFlags xor option.bitmask) },
+                    onClick = {
+                        onFlagsChanged(selectedFlags xor option.bitmask)
+                    },
                     label = {
                         Text(
                             stringResource(option.label),

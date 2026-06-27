@@ -2,6 +2,7 @@ package net.canvoki.vokibot
 
 import net.canvoki.shared.test.assertEquals
 import net.canvoki.shared.test.assertJsonEqual
+import net.canvoki.vokibot.common.FlagOption
 import org.junit.Assert.assertTrue
 import org.junit.Test
 import kotlin.reflect.KClass
@@ -474,5 +475,15 @@ class ExtraValueTest {
             customSpecs = emptyList(),
             expected = """{"extra1": {"type": "int", "value": 0}}""",
         )
+    }
+
+    @Test
+    fun `FlagOption bitmask when int`() {
+        assertEquals(FlagOption("3", 0).bitmask, 3)
+    }
+
+    @Test
+    fun `FlagOption bitmask when not int is zero`() {
+        assertEquals(FlagOption("not int", 0).bitmask, 0)
     }
 }
