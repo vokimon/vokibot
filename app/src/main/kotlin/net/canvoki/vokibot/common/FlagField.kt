@@ -27,7 +27,8 @@ data class FlagOption(
     val bitmask: Int = value.toIntOrNull() ?: 0
 }
 
-fun List<FlagOption>.toSelectedValues(bitmask: Int): List<String> = listOf(first().value)
+fun List<FlagOption>.toSelectedValues(bitmask: Int): List<String> =
+    if (first().bitmask and bitmask != 0) listOf(first().value) else emptyList()
 
 @Composable
 fun FlagField(

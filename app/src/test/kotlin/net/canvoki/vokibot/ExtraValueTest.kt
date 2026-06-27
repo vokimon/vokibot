@@ -506,4 +506,13 @@ class ExtraValueTest {
             expected = listOf("2"),
         )
     }
+
+    @Test
+    fun `toSelectedValues with no matching flag returns empty`() {
+        checkToSelectedValues(
+            options = listOf(FlagOption("2", 0)),
+            bitmask = 1,
+            expected = emptyList(),
+        )
+    }
 }
