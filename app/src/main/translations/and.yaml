@@ -179,6 +179,7 @@ extra_value_type_boolean: Booleano
 extra_value_type_text_list: Lîtta de têtto
 extra_value_type_uri_list: Lîtta de URI
 extra_value_type_enum: Çelêççión
+extra_value_type_flags: Murtiçelêççión
 settings_page_category_network: Ré
 settings_page_category_display: Pantaya
 settings_page_category_sound: Çonido
@@ -564,6 +565,8 @@ setting_transition_animation_scale_name: Êccala de animaçión de trançiçión
 setting_transition_animation_scale_description: Fâttôh de êccala pa lâ animaçionê de trançiçión de âttibidá
 setting_animator_duration_scale_name: Êccala de duraçión del animadôh
 setting_animator_duration_scale_description: Fâttôh de êccala pa toâ lâ animaçionê baçâh en animadôh
+setting_stay_on_while_plugged_in_name: Âttibo ar cargâh
+setting_stay_on_while_plugged_in_description: Qué fuentê de enerhía impiden que er dîppoçitibo entre en çûppençión mientrâ êttá conêttao
 setting_stay_on_while_plugged_in_raw_help: "Máccara de bits: ac=1, usb=2, wireless=4"
 setting_usb_mass_storage_enabled_name: Armaçenamiento maçibo USB
 setting_usb_mass_storage_enabled_description: Çi el armaçenamiento maçibo USB êttá âttibao
@@ -575,3 +578,13 @@ setting_device_provisioned_description: Çi er dîppoçitibo a çido aprobiçion
 setting_device_provisioned_raw_help: 0=no aprobiçionao, 1=aprobiçionao
 setting_use_google_mail_name: Uçâh Google Maîh
 setting_use_google_mail_description: 'Môttrâh "Google Maîh" en lugâh de "Gmaîh"'
+setting_audio_stream_voice_call: Yamá de bôh
+setting_audio_stream_system: Çîttema
+setting_audio_stream_ring: Timbre
+setting_audio_stream_music: Múçica
+setting_audio_stream_alarm: Alarma
+setting_audio_stream_notification: Notificaçión
+setting_audio_stream_bt_sco: Yamâh Bluetooth
+setting_plugged_usb: USB
+setting_plugged_ac: Corriente
+setting_plugged_wireless: Inalámbrico
