@@ -25,6 +25,8 @@ import net.canvoki.vokibot.common.EnumOption
 import net.canvoki.vokibot.common.FlagField
 import net.canvoki.vokibot.common.FlagOption
 import net.canvoki.vokibot.common.UriField
+import net.canvoki.vokibot.common.toBitmask
+import net.canvoki.vokibot.common.toSelectedValues
 
 @Serializable
 sealed class ExtraType {
@@ -261,16 +263,19 @@ sealed class ExtraType {
             value: ExtraValue,
             onChanged: (ExtraValue) -> Unit,
         ) {
-            val intValue =
+            val bitmask =
                 when (value) {
                     is ExtraValue.IntValue -> value.value
                     is ExtraValue.StringValue -> value.value.toIntOrNull() ?: 0
                     else -> 0
                 }
+            val selectedValues = options.toSelectedValues(bitmask)
             FlagField(
                 options = options,
-                selectedFlags = intValue,
-                onFlagsChanged = { onChanged(ExtraValue.IntValue(it)) },
+                selection = selectedValues,
+                onSelectionChanged = { newSelection ->
+                    onChanged(ExtraValue.IntValue(options.toBitmask(newSelection)))
+                },
                 label = label,
             )
         }

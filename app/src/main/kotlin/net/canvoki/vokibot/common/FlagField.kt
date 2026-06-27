@@ -36,8 +36,8 @@ fun List<FlagOption>.toBitmask(values: List<String>): Int =
 @Composable
 fun FlagField(
     options: List<FlagOption>,
-    selectedFlags: Int,
-    onFlagsChanged: (Int) -> Unit,
+    selection: List<String>,
+    onSelectionChanged: (List<String>) -> Unit,
     label: String,
 ) {
     Column(modifier = Modifier.fillMaxWidth()) {
@@ -51,11 +51,16 @@ fun FlagField(
             verticalArrangement = Arrangement.spacedBy(0.dp),
         ) {
             options.forEach { option ->
-                val isSelected = selectedFlags and option.bitmask != 0
+                val isSelected = option.value in selection
                 FilterChip(
                     selected = isSelected,
                     onClick = {
-                        onFlagsChanged(selectedFlags xor option.bitmask)
+                        onSelectionChanged(
+                            if (option.value in selection)
+                                selection - option.value
+                            else
+                                selection + option.value
+                        )
                     },
                     label = {
                         Text(
