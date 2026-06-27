@@ -3,6 +3,7 @@ package net.canvoki.vokibot
 import net.canvoki.shared.test.assertEquals
 import net.canvoki.shared.test.assertJsonEqual
 import net.canvoki.vokibot.common.FlagOption
+import net.canvoki.vokibot.common.toSelectedValues
 import org.junit.Assert.assertTrue
 import org.junit.Test
 import kotlin.reflect.KClass
@@ -477,6 +478,8 @@ class ExtraValueTest {
         )
     }
 
+    // ---------- FlagOption.bitmask ----------
+
     @Test
     fun `FlagOption bitmask when int`() {
         assertEquals(FlagOption("3", 0).bitmask, 3)
@@ -485,5 +488,22 @@ class ExtraValueTest {
     @Test
     fun `FlagOption bitmask when not int is zero`() {
         assertEquals(FlagOption("not int", 0).bitmask, 0)
+    }
+
+    // ---------- toSelectedValues ----------
+
+    private fun checkToSelectedValues(
+        options: List<FlagOption>,
+        bitmask: Int,
+        expected: List<String>,
+    ) = assertEquals(expected, options.toSelectedValues(bitmask))
+
+    @Test
+    fun `toSelectedValues with single option chosen`() {
+        checkToSelectedValues(
+            options = listOf(FlagOption("2", 0)),
+            bitmask = 2,
+            expected = listOf("2"),
+        )
     }
 }
