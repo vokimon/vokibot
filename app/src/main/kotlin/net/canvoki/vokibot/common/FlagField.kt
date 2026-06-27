@@ -23,7 +23,12 @@ import net.canvoki.vokibot.R
 data class FlagOption(
     val bitmask: Int,
     @get:StringRes val label: Int,
-)
+) {
+    constructor(
+        value: String,
+        @StringRes label: Int,
+    ) : this(value.toIntOrNull() ?: 0, label)
+}
 
 @Composable
 fun FlagField(
