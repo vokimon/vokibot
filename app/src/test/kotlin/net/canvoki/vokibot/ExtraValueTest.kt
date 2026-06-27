@@ -515,4 +515,13 @@ class ExtraValueTest {
             expected = emptyList(),
         )
     }
+
+    @Test
+    fun `toSelectedValues with two options matches second`() {
+        checkToSelectedValues(
+            options = listOf(FlagOption("1", 0), FlagOption("2", 0)),
+            bitmask = 2,
+            expected = listOf("2"),
+        )
+    }
 }
