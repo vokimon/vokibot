@@ -21,13 +21,10 @@ import net.canvoki.vokibot.R
 
 @Serializable
 data class FlagOption(
-    val bitmask: Int,
+    val value: String,
     @get:StringRes val label: Int,
 ) {
-    constructor(
-        value: String,
-        @StringRes label: Int,
-    ) : this(value.toIntOrNull() ?: 0, label)
+    val bitmask: Int = value.toIntOrNull() ?: 0
 }
 
 @Composable

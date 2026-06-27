@@ -42,6 +42,7 @@
     - [ ] Review all settings database texts
     - [x] Translate all settings database texts
     - [ ] Settings cases
+        - [ ] Take FlagOption values from API constants
         - [ ] Consider natural rotations: None (0) Left (90) Upside down (180) Right (270)
         - [ ] ExtraType.Int(min, max): New data class for ranged integers (SCREEN_BRIGHTNESS 0-255, TTS_DEFAULT_PITCH 10-500, TTS_DEFAULT_RATE 10-300)
         - [ ] String valued Flags for AIRPLANE_MODE_RADIOS (instead bitwise ints) 
