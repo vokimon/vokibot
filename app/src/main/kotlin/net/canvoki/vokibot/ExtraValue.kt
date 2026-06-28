@@ -110,6 +110,7 @@ sealed class ExtraType {
     @SerialName("INT")
     data class Int(
         val min: kotlin.Int? = null,
+        val max: kotlin.Int? = null,
     ) : ExtraType() {
         override fun toString(): kotlin.String = "Int"
 

@@ -75,7 +75,7 @@ private val SETTING_SPECS: List<SettingSpec> =
             name = R.string.setting_screen_brightness_name,
             description = R.string.setting_screen_brightness_description,
             rawHelp = R.string.setting_screen_brightness_raw_help,
-            type = ExtraType.String, // TODO: Int ranged 0..255
+            type = ExtraType.Int(min = 0, max = 255),
         ),
         SettingSpec(
             id = Settings.System.SCREEN_OFF_TIMEOUT,
@@ -248,7 +248,7 @@ private val SETTING_SPECS: List<SettingSpec> =
             name = R.string.setting_tts_default_pitch_name,
             description = R.string.setting_tts_default_pitch_description,
             rawHelp = R.string.setting_tts_default_pitch_raw_help,
-            type = ExtraType.String, // TODO: Int ranged 10..500
+            type = ExtraType.Int(min = 10, max = 500),
         ),
         SettingSpec(
             id = Settings.Secure.TTS_DEFAULT_RATE,
@@ -256,7 +256,7 @@ private val SETTING_SPECS: List<SettingSpec> =
             name = R.string.setting_tts_default_rate_name,
             description = R.string.setting_tts_default_rate_description,
             rawHelp = R.string.setting_tts_default_rate_raw_help,
-            type = ExtraType.String, // TODO: Int ranged 10..300
+            type = ExtraType.Int(min = 10, max = 300),
         ),
         SettingSpec(
             id = Settings.Secure.TTS_DEFAULT_SYNTH,
@@ -434,7 +434,7 @@ private val SETTING_SPECS: List<SettingSpec> =
             name = R.string.setting_wifi_max_dhcp_retry_count_name,
             description = R.string.setting_wifi_max_dhcp_retry_count_description,
             rawHelp = R.string.setting_wifi_max_dhcp_retry_count_raw_help,
-            type = ExtraType.String, // TODO: Int ranged
+            type = ExtraType.Int(min = 0),
         ),
         SettingSpec(
             id = @Suppress("DEPRECATION") Settings.Global.WIFI_NETWORKS_AVAILABLE_REPEAT_DELAY,
@@ -442,7 +442,7 @@ private val SETTING_SPECS: List<SettingSpec> =
             name = R.string.setting_wifi_networks_available_repeat_delay_name,
             description = R.string.setting_wifi_networks_available_repeat_delay_description,
             rawHelp = R.string.setting_wifi_networks_available_repeat_delay_raw_help,
-            type = ExtraType.String, // TODO: Int ranged
+            type = ExtraType.Int(min = 0),
         ),
         SettingSpec(
             id = @Suppress("DEPRECATION") Settings.Global.WIFI_NUM_OPEN_NETWORKS_KEPT,
@@ -450,7 +450,7 @@ private val SETTING_SPECS: List<SettingSpec> =
             name = R.string.setting_wifi_num_open_networks_kept_name,
             description = R.string.setting_wifi_num_open_networks_kept_description,
             rawHelp = R.string.setting_wifi_num_open_networks_kept_raw_help,
-            type = ExtraType.String, // TODO: Int ranged
+            type = ExtraType.Int(min = 0),
         ),
         SettingSpec(
             id = Settings.Global.WIFI_MOBILE_DATA_TRANSITION_WAKELOCK_TIMEOUT_MS,
