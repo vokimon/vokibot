@@ -5,6 +5,7 @@ import android.net.Uri
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
@@ -16,6 +17,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
 import kotlinx.serialization.SerialName
@@ -132,10 +134,13 @@ sealed class ExtraType {
             OutlinedTextField(
                 value = text,
                 onValueChange = {
-                    text = it
-                    it.toIntOrNull()?.let { v -> onChanged(ExtraValue.IntValue(v)) }
+                    val filtered = it.filter { char -> char.isDigit() }
+                    text = filtered
+                    filtered.toIntOrNull()?.let { v -> onChanged(ExtraValue.IntValue(v)) }
                 },
                 label = { Text(label) },
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                maxLines = 1,
                 modifier = Modifier.fillMaxWidth(),
             )
         }
