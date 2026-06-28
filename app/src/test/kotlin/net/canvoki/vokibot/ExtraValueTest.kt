@@ -2,9 +2,8 @@ package net.canvoki.vokibot
 
 import net.canvoki.shared.test.assertEquals
 import net.canvoki.shared.test.assertJsonEqual
+import net.canvoki.vokibot.common.FlagSerialization
 import net.canvoki.vokibot.common.FlagOption
-import net.canvoki.vokibot.common.toBitmask
-import net.canvoki.vokibot.common.toSelectedValues
 import org.junit.Assert.assertTrue
 import org.junit.Test
 import kotlin.reflect.KClass
@@ -497,7 +496,7 @@ class ExtraValueTest {
         options: List<FlagOption>,
         bitmask: Int,
         expected: List<String>,
-    ) = assertEquals(expected, options.toSelectedValues(bitmask))
+    ) = assertEquals(expected, FlagSerialization.BitMask().fromString(bitmask.toString(), options))
 
     @Test
     fun `toSelectedValues with single option chosen`() {
@@ -540,15 +539,15 @@ class ExtraValueTest {
     private fun checkToBitmask(
         options: List<FlagOption>,
         values: List<String>,
-        expected: Int,
-    ) = assertEquals(expected, options.toBitmask(values))
+        expected: String,
+    ) = assertEquals(expected, FlagSerialization.BitMask().toString(values, options))
 
     @Test
     fun `toBitmask with single value returns its bitmask`() {
         checkToBitmask(
             options = listOf(FlagOption("2", 0)),
             values = listOf("2"),
-            expected = 2,
+            expected = "2",
         )
     }
 
@@ -557,7 +556,7 @@ class ExtraValueTest {
         checkToBitmask(
             options = listOf(FlagOption("1", 0)),
             values = listOf("2"),
-            expected = 0,
+            expected = "0",
         )
     }
 
@@ -566,7 +565,7 @@ class ExtraValueTest {
         checkToBitmask(
             options = listOf(FlagOption("2", 0)),
             values = listOf("1", "2"),
-            expected = 2,
+            expected = "2",
         )
     }
 
@@ -575,7 +574,7 @@ class ExtraValueTest {
         checkToBitmask(
             options = listOf(FlagOption("1", 0), FlagOption("2", 0)),
             values = listOf("2"),
-            expected = 2,
+            expected = "2",
         )
     }
 
@@ -584,7 +583,7 @@ class ExtraValueTest {
         checkToBitmask(
             options = listOf(FlagOption("1", 0), FlagOption("2", 0)),
             values = listOf("1", "2"),
-            expected = 3,
+            expected = "3",
         )
     }
 }

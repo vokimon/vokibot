@@ -27,11 +27,29 @@ data class FlagOption(
     val bitmask: Int = value.toIntOrNull() ?: 0
 }
 
-fun List<FlagOption>.toSelectedValues(bitmask: Int): List<String> =
+private fun List<FlagOption>.toSelectedValues(bitmask: Int): List<String> =
     mapNotNull { if (it.bitmask and bitmask != 0) it.value else null }
 
-fun List<FlagOption>.toBitmask(values: List<String>): Int =
+private fun List<FlagOption>.toBitmask(values: List<String>): Int =
     map { it.value }.intersect(values.toSet()).mapNotNull { it.toInt() }.fold(0) { a, b -> a or b }
+
+
+sealed interface FlagSerialization {
+
+    abstract fun toString(values: List<String>, options: List<FlagOption>): String
+
+    abstract fun fromString(value: String, options: List<FlagOption>): List<String>
+
+    class BitMask: FlagSerialization {
+        override fun toString(values: List<String>, options: List<FlagOption>): String {
+            return options.toBitmask(values).toString()
+        }
+
+        override fun fromString(value: String, options: List<FlagOption>): List<String> {
+            return options.toSelectedValues(value.toInt())
+        }
+    }
+}
 
 @Composable
 fun FlagField(

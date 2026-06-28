@@ -116,8 +116,8 @@ fun ChangeSettingCommandEditor(
     val discardState = rememberDiscardableState(screen = editor, nav = nav)
     var hasLoaded by rememberSaveable { mutableStateOf(false) }
     var settingKey by rememberSaveable { mutableStateOf<String?>(null) }
-    val settingValue = settingKey?.let { id -> SettingSpec.get(id) }
-    val settingTitle = settingValue?.let { stringResource(it.name) }
+    val settingSpec = settingKey?.let { id -> SettingSpec.get(id) }
+    val settingTitle = settingSpec?.let { stringResource(it.name) }
     val writeSettingsPerm = rememberPermissionState("android.permission.WRITE_SETTINGS")
     var rawEdit by rememberSaveable { mutableStateOf(false) }
     var value by rememberSaveable(stateSaver = ExtraValueSaver) {
@@ -193,9 +193,9 @@ fun ChangeSettingCommandEditor(
             },
         )
 
-        if (settingValue != null) {
+        if (settingSpec != null) {
             Text(
-                text = stringResource(settingValue.description),
+                text = stringResource(settingSpec.description),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(start = 16.dp),
@@ -205,11 +205,11 @@ fun ChangeSettingCommandEditor(
                 OutlinedTextField(
                     value = value.toStoredSettingValue(),
                     onValueChange = { raw ->
-                        value = settingValue.type.fromRawString(raw)
+                        value = settingSpec.type.fromRawString(raw)
                         discardState.markDirty()
                     },
                     label = { Text(stringResource(R.string.change_setting_field_value)) },
-                    supportingText = { Text(stringResource(settingValue.rawHelp)) },
+                    supportingText = { Text(stringResource(settingSpec.rawHelp)) },
                     modifier = Modifier.fillMaxWidth(),
                 )
                 OneTimeNotice(
@@ -218,7 +218,7 @@ fun ChangeSettingCommandEditor(
                     message = stringResource(R.string.change_setting_raw_edit_warning),
                 )
             } else {
-                settingValue.type.Editor(
+                settingSpec.type.Editor(
                     label = stringResource(R.string.change_setting_field_value),
                     value = value,
                     onChanged = {
