@@ -203,7 +203,7 @@ fun ChangeSettingCommandEditor(
 
             if (rawEdit) {
                 OutlinedTextField(
-                    value = value.toStoredSettingValue(),
+                    value = settingSpec.type.toStoredSettingValue(value),
                     onValueChange = { raw ->
                         value = settingSpec.type.fromRawString(raw)
                         discardState.markDirty()

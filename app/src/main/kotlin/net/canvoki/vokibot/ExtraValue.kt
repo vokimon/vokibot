@@ -44,6 +44,8 @@ sealed class ExtraType {
         onChanged: (ExtraValue) -> Unit,
     )
 
+    abstract fun toStoredSettingValue(value: ExtraValue): kotlin.String
+
     @Serializable
     @SerialName("STRING")
     object String : ExtraType() {
@@ -72,6 +74,9 @@ sealed class ExtraType {
                 modifier = Modifier.fillMaxWidth(),
             )
         }
+
+        override fun toStoredSettingValue(value: ExtraValue): kotlin.String =
+            (value as? ExtraValue.StringValue)?.value ?: ""
     }
 
     @Serializable
@@ -96,6 +101,9 @@ sealed class ExtraType {
                 label = label,
             )
         }
+
+        override fun toStoredSettingValue(value: ExtraValue): kotlin.String =
+            (value as? ExtraValue.UriValue)?.value ?: ""
     }
 
     @Serializable
@@ -126,6 +134,9 @@ sealed class ExtraType {
                 modifier = Modifier.fillMaxWidth(),
             )
         }
+
+        override fun toStoredSettingValue(value: ExtraValue): kotlin.String =
+            (value as? ExtraValue.IntValue)?.value?.toString() ?: "0"
     }
 
     @Serializable
@@ -149,6 +160,9 @@ sealed class ExtraType {
                 Switch(checked = boolValue, onCheckedChange = { onChanged(ExtraValue.BooleanValue(it)) })
             }
         }
+
+        override fun toStoredSettingValue(value: ExtraValue): kotlin.String =
+            if ((value as? ExtraValue.BooleanValue)?.value == true) "1" else "0"
     }
 
     @Serializable
@@ -181,6 +195,9 @@ sealed class ExtraType {
                 modifier = Modifier.fillMaxWidth(),
             )
         }
+
+        override fun toStoredSettingValue(value: ExtraValue): kotlin.String =
+            (value as? ExtraValue.StringArrayValue)?.values?.joinToString(",") ?: ""
     }
 
     @Serializable
@@ -213,6 +230,9 @@ sealed class ExtraType {
                 modifier = Modifier.fillMaxWidth(),
             )
         }
+
+        override fun toStoredSettingValue(value: ExtraValue): kotlin.String =
+            (value as? ExtraValue.UriListValue)?.values?.joinToString(",") ?: ""
     }
 
     @Serializable
@@ -243,6 +263,9 @@ sealed class ExtraType {
                 label = label,
             )
         }
+
+        override fun toStoredSettingValue(value: ExtraValue): kotlin.String =
+            (value as? ExtraValue.StringValue)?.value ?: ""
     }
 
     @Serializable
@@ -275,6 +298,11 @@ sealed class ExtraType {
                     onChanged(ExtraValue.StringArrayValue(newSelection))
                 },
             )
+        }
+
+        override fun toStoredSettingValue(value: ExtraValue): kotlin.String {
+            val values = (value as? ExtraValue.StringArrayValue)?.values ?: emptyList()
+            return FlagSerialization.BitMask().toString(values, options)
         }
     }
 
@@ -312,8 +340,6 @@ sealed class ExtraValue {
 
     abstract fun getExtraType(): ExtraType
 
-    abstract fun toStoredSettingValue(): String
-
     @Serializable
     @SerialName("string")
     data class StringValue(
@@ -329,8 +355,6 @@ sealed class ExtraValue {
         override fun isDefault(): Boolean = value.isEmpty()
 
         override fun getExtraType() = ExtraType.String
-
-        override fun toStoredSettingValue(): String = value
     }
 
     @Serializable
@@ -348,8 +372,6 @@ sealed class ExtraValue {
         override fun isDefault(): Boolean = value == 0
 
         override fun getExtraType() = ExtraType.Int
-
-        override fun toStoredSettingValue(): String = value.toString()
     }
 
     @Serializable
@@ -367,8 +389,6 @@ sealed class ExtraValue {
         override fun isDefault(): Boolean = value == false
 
         override fun getExtraType() = ExtraType.Boolean
-
-        override fun toStoredSettingValue(): String = if (value) "1" else "0"
     }
 
     @Serializable
@@ -386,8 +406,6 @@ sealed class ExtraValue {
         override fun isDefault(): Boolean = value.isEmpty()
 
         override fun getExtraType() = ExtraType.Uri
-
-        override fun toStoredSettingValue(): String = value
     }
 
     @Serializable
@@ -405,8 +423,6 @@ sealed class ExtraValue {
         override fun isDefault(): Boolean = values.isEmpty()
 
         override fun getExtraType() = ExtraType.StringArray
-
-        override fun toStoredSettingValue(): String = values.joinToString(",")
     }
 
     @Serializable
@@ -424,8 +440,6 @@ sealed class ExtraValue {
         override fun isDefault(): Boolean = values.isEmpty()
 
         override fun getExtraType() = ExtraType.UriList
-
-        override fun toStoredSettingValue(): String = values.joinToString(",")
     }
 }
 

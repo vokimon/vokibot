@@ -2,8 +2,8 @@ package net.canvoki.vokibot
 
 import net.canvoki.shared.test.assertEquals
 import net.canvoki.shared.test.assertJsonEqual
-import net.canvoki.vokibot.common.FlagSerialization
 import net.canvoki.vokibot.common.FlagOption
+import net.canvoki.vokibot.common.FlagSerialization
 import org.junit.Assert.assertTrue
 import org.junit.Test
 import kotlin.reflect.KClass
@@ -216,59 +216,104 @@ class ExtraValueTest {
 
     // ---------- toStoredSettingValue ----------
 
+    private fun checkTypeStoredValue(
+        type: ExtraType,
+        value: ExtraValue,
+        expected: String,
+    ) = assertEquals(expected, type.toStoredSettingValue(value))
+
+    private fun checkTypeStoredValueDefault(
+        type: ExtraType,
+        wrongValue: ExtraValue,
+    ) = checkTypeStoredValue(type, wrongValue, type.toStoredSettingValue(type.defaultValue()))
+
     @Test
     fun `StringValue toStoredSettingValue returns value`() {
-        assertEquals("hello", ExtraValue.StringValue("hello").toStoredSettingValue())
+        checkTypeStoredValue(ExtraType.String, ExtraValue.StringValue("hello"), "hello")
     }
 
     @Test
     fun `StringValue toStoredSettingValue empty returns empty`() {
-        assertEquals("", ExtraValue.StringValue("").toStoredSettingValue())
+        checkTypeStoredValue(ExtraType.String, ExtraValue.StringValue(""), "")
+    }
+
+    @Test
+    fun `StringValue toStoredSettingValue with wrong type returns default`() {
+        checkTypeStoredValueDefault(ExtraType.String, ExtraValue.IntValue(0))
     }
 
     @Test
     fun `IntValue toStoredSettingValue returns number as string`() {
-        assertEquals("42", ExtraValue.IntValue(42).toStoredSettingValue())
+        checkTypeStoredValue(ExtraType.Int, ExtraValue.IntValue(42), "42")
     }
 
     @Test
     fun `IntValue toStoredSettingValue zero`() {
-        assertEquals("0", ExtraValue.IntValue(0).toStoredSettingValue())
+        checkTypeStoredValue(ExtraType.Int, ExtraValue.IntValue(0), "0")
+    }
+
+    @Test
+    fun `IntValue toStoredSettingValue with wrong type returns default`() {
+        checkTypeStoredValueDefault(ExtraType.Int, ExtraValue.StringValue("hello"))
     }
 
     @Test
     fun `BooleanValue toStoredSettingValue true`() {
-        assertEquals("1", ExtraValue.BooleanValue(true).toStoredSettingValue())
+        checkTypeStoredValue(ExtraType.Boolean, ExtraValue.BooleanValue(true), "1")
     }
 
     @Test
     fun `BooleanValue toStoredSettingValue false`() {
-        assertEquals("0", ExtraValue.BooleanValue(false).toStoredSettingValue())
+        checkTypeStoredValue(ExtraType.Boolean, ExtraValue.BooleanValue(false), "0")
+    }
+
+    @Test
+    fun `BooleanValue toStoredSettingValue with wrong type returns default`() {
+        checkTypeStoredValueDefault(ExtraType.Boolean, ExtraValue.IntValue(0))
     }
 
     @Test
     fun `UriValue toStoredSettingValue returns value`() {
-        assertEquals("geo:0,0", ExtraValue.UriValue("geo:0,0").toStoredSettingValue())
+        checkTypeStoredValue(ExtraType.Uri, ExtraValue.UriValue("geo:0,0"), "geo:0,0")
+    }
+
+    @Test
+    fun `UriValue toStoredSettingValue with wrong type returns default`() {
+        checkTypeStoredValueDefault(ExtraType.Uri, ExtraValue.StringValue("hello"))
     }
 
     @Test
     fun `StringArrayValue toStoredSettingValue returns comma-separated`() {
-        assertEquals("a,b", ExtraValue.StringArrayValue(listOf("a", "b")).toStoredSettingValue())
+        checkTypeStoredValue(ExtraType.StringArray, ExtraValue.StringArrayValue(listOf("a", "b")), "a,b")
     }
 
     @Test
     fun `StringArrayValue toStoredSettingValue empty returns empty`() {
-        assertEquals("", ExtraValue.StringArrayValue(emptyList()).toStoredSettingValue())
+        checkTypeStoredValue(ExtraType.StringArray, ExtraValue.StringArrayValue(emptyList()), "")
+    }
+
+    @Test
+    fun `StringArrayValue toStoredSettingValue with wrong type returns default`() {
+        checkTypeStoredValueDefault(ExtraType.StringArray, ExtraValue.IntValue(0))
     }
 
     @Test
     fun `UriListValue toStoredSettingValue returns comma-separated`() {
-        assertEquals("geo:0,0,tel:123", ExtraValue.UriListValue(listOf("geo:0,0", "tel:123")).toStoredSettingValue())
+        checkTypeStoredValue(
+            ExtraType.UriList,
+            ExtraValue.UriListValue(listOf("geo:0,0", "tel:123")),
+            "geo:0,0,tel:123",
+        )
     }
 
     @Test
     fun `UriListValue toStoredSettingValue empty returns empty`() {
-        assertEquals("", ExtraValue.UriListValue(emptyList()).toStoredSettingValue())
+        checkTypeStoredValue(ExtraType.UriList, ExtraValue.UriListValue(emptyList()), "")
+    }
+
+    @Test
+    fun `UriListValue toStoredSettingValue with wrong type returns default`() {
+        checkTypeStoredValueDefault(ExtraType.UriList, ExtraValue.StringValue("hello"))
     }
 
     // ---------- computeNewCustomSpecs ----------

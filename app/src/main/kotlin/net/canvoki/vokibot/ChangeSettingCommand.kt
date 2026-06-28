@@ -50,11 +50,15 @@ data class ChangeSettingCommand(
     override fun toJson(): String = JsonConfig.encodeToString(serializer(), this)
 
     override suspend fun execute(context: Context) {
-        log(value.toStoredSettingValue())
+        val spec =
+            SettingSpec.get(key)
+                ?: throw IllegalArgumentException("Unsupported setting: $key")
+        val stored = spec.type.toStoredSettingValue(value)
+        log(stored)
         Settings.System.putString(
             context.contentResolver,
             key,
-            value.toStoredSettingValue(),
+            stored,
         )
     }
 
