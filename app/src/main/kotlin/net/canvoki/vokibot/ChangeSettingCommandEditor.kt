@@ -116,7 +116,7 @@ fun ChangeSettingCommandEditor(
     val discardState = rememberDiscardableState(screen = editor, nav = nav)
     var hasLoaded by rememberSaveable { mutableStateOf(false) }
     var setting by rememberSaveable { mutableStateOf<String?>(null) }
-    val settingValue = setting?.let { id -> SETTING_VALUES.find { it.id == id } }
+    val settingValue = setting?.let { id -> SettingDb.get(id) }
     val settingTitle = settingValue?.let { stringResource(it.name) }
     val writeSettingsPerm = rememberPermissionState("android.permission.WRITE_SETTINGS")
     var rawEdit by rememberSaveable { mutableStateOf(false) }
@@ -181,8 +181,8 @@ fun ChangeSettingCommandEditor(
                 nav.push(SettingList) { result ->
                     result?.let {
                         setting = it
-                        value = SETTING_VALUES
-                            .find { sv -> sv.id == it }
+                        value = SettingDb
+                            .get(it)
                             ?.type
                             ?.defaultValue()
                             ?: ExtraValue.StringValue("")

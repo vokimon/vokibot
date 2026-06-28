@@ -44,7 +44,7 @@ enum class SettingCategory {
         }
 }
 
-val SETTING_VALUES: List<SettingValue> =
+private val SETTING_VALUES: List<SettingValue> =
     listOf(
         // Display
         SettingValue(
@@ -696,3 +696,11 @@ val SETTING_VALUES: List<SettingValue> =
             type = ExtraType.Boolean,
         ),
     )
+
+object SettingDb {
+    fun get(key: String) = SETTING_VALUES.firstOrNull { it.id == key }
+
+    fun all() = SETTING_VALUES
+}
+
+fun settingByKey(key: String) = SettingDb.get(key)
