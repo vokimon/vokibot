@@ -535,9 +535,9 @@ class ExtraValueTest {
         assertEquals(FlagOption("not int", 0).bitmask, 0)
     }
 
-    // ---------- toSelectedValues ----------
+    // ---------- FlagSerialization.BitMask.fromString ----------
 
-    private fun checkToSelectedValues(
+    private fun checkFromBitMask(
         options: List<FlagOption>,
         bitmask: Int,
         expected: List<String>,
@@ -545,7 +545,7 @@ class ExtraValueTest {
 
     @Test
     fun `toSelectedValues with single option chosen`() {
-        checkToSelectedValues(
+        checkFromBitMask(
             options = listOf(FlagOption("2", 0)),
             bitmask = 2,
             expected = listOf("2"),
@@ -554,7 +554,7 @@ class ExtraValueTest {
 
     @Test
     fun `toSelectedValues with no matching flag returns empty`() {
-        checkToSelectedValues(
+        checkFromBitMask(
             options = listOf(FlagOption("2", 0)),
             bitmask = 1,
             expected = emptyList(),
@@ -563,7 +563,7 @@ class ExtraValueTest {
 
     @Test
     fun `toSelectedValues with two options matches second`() {
-        checkToSelectedValues(
+        checkFromBitMask(
             options = listOf(FlagOption("1", 0), FlagOption("2", 0)),
             bitmask = 2,
             expected = listOf("2"),
@@ -572,14 +572,14 @@ class ExtraValueTest {
 
     @Test
     fun `toSelectedValues with two matching flags returns both`() {
-        checkToSelectedValues(
+        checkFromBitMask(
             options = listOf(FlagOption("1", 0), FlagOption("2", 0)),
             bitmask = 3,
             expected = listOf("1", "2"),
         )
     }
 
-    // ---------- toBitmask ----------
+    // ---------- FlagSerialization.BitMask.toString ----------
 
     private fun checkToBitmask(
         options: List<FlagOption>,
