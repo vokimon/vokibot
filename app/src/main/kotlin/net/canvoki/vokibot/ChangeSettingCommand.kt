@@ -53,7 +53,7 @@ data class ChangeSettingCommand(
         val spec =
             SettingSpec.get(key)
                 ?: throw IllegalArgumentException("Unsupported setting: $key")
-        val stored = spec.type.toStoredSettingValue(value)
+        val stored = spec.type.toStoredSetting(value)
         log(stored)
         Settings.System.putString(
             context.contentResolver,

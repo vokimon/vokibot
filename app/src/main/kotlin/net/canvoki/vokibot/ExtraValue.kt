@@ -35,7 +35,9 @@ sealed class ExtraType {
 
     abstract fun defaultValue(): ExtraValue
 
-    abstract fun fromRawString(raw: kotlin.String): ExtraValue
+    abstract fun fromStoredSetting(raw: kotlin.String): ExtraValue
+
+    abstract fun toStoredSetting(value: ExtraValue): kotlin.String
 
     @Composable
     abstract fun Editor(
@@ -44,8 +46,6 @@ sealed class ExtraType {
         onChanged: (ExtraValue) -> Unit,
     )
 
-    abstract fun toStoredSettingValue(value: ExtraValue): kotlin.String
-
     @Serializable
     @SerialName("STRING")
     object String : ExtraType() {
@@ -53,7 +53,9 @@ sealed class ExtraType {
 
         override fun defaultValue() = ExtraValue.StringValue("")
 
-        override fun fromRawString(raw: kotlin.String) = ExtraValue.StringValue(raw)
+        override fun fromStoredSetting(raw: kotlin.String) = ExtraValue.StringValue(raw)
+
+        override fun toStoredSetting(value: ExtraValue): kotlin.String = (value as? ExtraValue.StringValue)?.value ?: ""
 
         @Composable
         override fun Editor(
@@ -74,9 +76,6 @@ sealed class ExtraType {
                 modifier = Modifier.fillMaxWidth(),
             )
         }
-
-        override fun toStoredSettingValue(value: ExtraValue): kotlin.String =
-            (value as? ExtraValue.StringValue)?.value ?: ""
     }
 
     @Serializable
@@ -86,7 +85,9 @@ sealed class ExtraType {
 
         override fun defaultValue() = ExtraValue.UriValue("")
 
-        override fun fromRawString(raw: kotlin.String) = ExtraValue.UriValue(raw)
+        override fun fromStoredSetting(raw: kotlin.String) = ExtraValue.UriValue(raw)
+
+        override fun toStoredSetting(value: ExtraValue): kotlin.String = (value as? ExtraValue.UriValue)?.value ?: ""
 
         @Composable
         override fun Editor(
@@ -101,9 +102,6 @@ sealed class ExtraType {
                 label = label,
             )
         }
-
-        override fun toStoredSettingValue(value: ExtraValue): kotlin.String =
-            (value as? ExtraValue.UriValue)?.value ?: ""
     }
 
     @Serializable
@@ -113,7 +111,10 @@ sealed class ExtraType {
 
         override fun defaultValue() = ExtraValue.IntValue(0)
 
-        override fun fromRawString(raw: kotlin.String) = ExtraValue.IntValue(raw.toIntOrNull() ?: 0)
+        override fun fromStoredSetting(raw: kotlin.String) = ExtraValue.IntValue(raw.toIntOrNull() ?: 0)
+
+        override fun toStoredSetting(value: ExtraValue): kotlin.String =
+            (value as? ExtraValue.IntValue)?.value?.toString() ?: "0"
 
         @Composable
         override fun Editor(
@@ -134,9 +135,6 @@ sealed class ExtraType {
                 modifier = Modifier.fillMaxWidth(),
             )
         }
-
-        override fun toStoredSettingValue(value: ExtraValue): kotlin.String =
-            (value as? ExtraValue.IntValue)?.value?.toString() ?: "0"
     }
 
     @Serializable
@@ -146,7 +144,10 @@ sealed class ExtraType {
 
         override fun defaultValue() = ExtraValue.BooleanValue(false)
 
-        override fun fromRawString(raw: kotlin.String) = ExtraValue.BooleanValue(raw == "1")
+        override fun fromStoredSetting(raw: kotlin.String) = ExtraValue.BooleanValue(raw == "1")
+
+        override fun toStoredSetting(value: ExtraValue): kotlin.String =
+            if ((value as? ExtraValue.BooleanValue)?.value == true) "1" else "0"
 
         @Composable
         override fun Editor(
@@ -160,9 +161,6 @@ sealed class ExtraType {
                 Switch(checked = boolValue, onCheckedChange = { onChanged(ExtraValue.BooleanValue(it)) })
             }
         }
-
-        override fun toStoredSettingValue(value: ExtraValue): kotlin.String =
-            if ((value as? ExtraValue.BooleanValue)?.value == true) "1" else "0"
     }
 
     @Serializable
@@ -172,7 +170,11 @@ sealed class ExtraType {
 
         override fun defaultValue() = ExtraValue.StringArrayValue(emptyList())
 
-        override fun fromRawString(raw: kotlin.String) = ExtraValue.StringArrayValue(raw.split(",").map { it.trim() })
+        override fun fromStoredSetting(raw: kotlin.String) =
+            ExtraValue.StringArrayValue(raw.split(",").map { it.trim() })
+
+        override fun toStoredSetting(value: ExtraValue): kotlin.String =
+            (value as? ExtraValue.StringArrayValue)?.values?.joinToString(",") ?: ""
 
         @Composable
         override fun Editor(
@@ -195,9 +197,6 @@ sealed class ExtraType {
                 modifier = Modifier.fillMaxWidth(),
             )
         }
-
-        override fun toStoredSettingValue(value: ExtraValue): kotlin.String =
-            (value as? ExtraValue.StringArrayValue)?.values?.joinToString(",") ?: ""
     }
 
     @Serializable
@@ -207,7 +206,10 @@ sealed class ExtraType {
 
         override fun defaultValue() = ExtraValue.UriListValue(emptyList())
 
-        override fun fromRawString(raw: kotlin.String) = ExtraValue.UriListValue(raw.split(",").map { it.trim() })
+        override fun fromStoredSetting(raw: kotlin.String) = ExtraValue.UriListValue(raw.split(",").map { it.trim() })
+
+        override fun toStoredSetting(value: ExtraValue): kotlin.String =
+            (value as? ExtraValue.UriListValue)?.values?.joinToString(",") ?: ""
 
         @Composable
         override fun Editor(
@@ -230,9 +232,6 @@ sealed class ExtraType {
                 modifier = Modifier.fillMaxWidth(),
             )
         }
-
-        override fun toStoredSettingValue(value: ExtraValue): kotlin.String =
-            (value as? ExtraValue.UriListValue)?.values?.joinToString(",") ?: ""
     }
 
     @Serializable
@@ -247,7 +246,9 @@ sealed class ExtraType {
                 options.firstOrNull()?.value ?: "",
             )
 
-        override fun fromRawString(raw: kotlin.String) = ExtraValue.StringValue(raw)
+        override fun fromStoredSetting(raw: kotlin.String) = ExtraValue.StringValue(raw)
+
+        override fun toStoredSetting(value: ExtraValue): kotlin.String = (value as? ExtraValue.StringValue)?.value ?: ""
 
         @Composable
         override fun Editor(
@@ -263,9 +264,6 @@ sealed class ExtraType {
                 label = label,
             )
         }
-
-        override fun toStoredSettingValue(value: ExtraValue): kotlin.String =
-            (value as? ExtraValue.StringValue)?.value ?: ""
     }
 
     @Serializable
@@ -277,10 +275,15 @@ sealed class ExtraType {
 
         override fun defaultValue() = ExtraValue.StringArrayValue(emptyList())
 
-        override fun fromRawString(raw: kotlin.String) =
+        override fun fromStoredSetting(raw: kotlin.String) =
             ExtraValue.StringArrayValue(
                 FlagSerialization.BitMask().fromString(raw, options),
             )
+
+        override fun toStoredSetting(value: ExtraValue): kotlin.String {
+            val values = (value as? ExtraValue.StringArrayValue)?.values ?: emptyList()
+            return FlagSerialization.BitMask().toString(values, options)
+        }
 
         @Composable
         override fun Editor(
@@ -298,11 +301,6 @@ sealed class ExtraType {
                     onChanged(ExtraValue.StringArrayValue(newSelection))
                 },
             )
-        }
-
-        override fun toStoredSettingValue(value: ExtraValue): kotlin.String {
-            val values = (value as? ExtraValue.StringArrayValue)?.values ?: emptyList()
-            return FlagSerialization.BitMask().toString(values, options)
         }
     }
 

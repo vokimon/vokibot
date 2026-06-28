@@ -214,91 +214,91 @@ class ExtraValueTest {
         checkExtraType(ExtraValue.UriListValue(emptyList()), ExtraType.UriList)
     }
 
-    // ---------- toStoredSettingValue ----------
+    // ---------- toStoredSetting ----------
 
     private fun checkTypeStoredValue(
         type: ExtraType,
         value: ExtraValue,
         expected: String,
-    ) = assertEquals(expected, type.toStoredSettingValue(value))
+    ) = assertEquals(expected, type.toStoredSetting(value))
 
     private fun checkTypeStoredValueDefault(
         type: ExtraType,
         wrongValue: ExtraValue,
-    ) = checkTypeStoredValue(type, wrongValue, type.toStoredSettingValue(type.defaultValue()))
+    ) = checkTypeStoredValue(type, wrongValue, type.toStoredSetting(type.defaultValue()))
 
     @Test
-    fun `StringValue toStoredSettingValue returns value`() {
+    fun `StringValue toStoredSetting returns value`() {
         checkTypeStoredValue(ExtraType.String, ExtraValue.StringValue("hello"), "hello")
     }
 
     @Test
-    fun `StringValue toStoredSettingValue empty returns empty`() {
+    fun `StringValue toStoredSetting empty returns empty`() {
         checkTypeStoredValue(ExtraType.String, ExtraValue.StringValue(""), "")
     }
 
     @Test
-    fun `StringValue toStoredSettingValue with wrong type returns default`() {
+    fun `StringValue toStoredSetting with wrong type returns default`() {
         checkTypeStoredValueDefault(ExtraType.String, ExtraValue.IntValue(0))
     }
 
     @Test
-    fun `IntValue toStoredSettingValue returns number as string`() {
+    fun `IntValue toStoredSetting returns number as string`() {
         checkTypeStoredValue(ExtraType.Int, ExtraValue.IntValue(42), "42")
     }
 
     @Test
-    fun `IntValue toStoredSettingValue zero`() {
+    fun `IntValue toStoredSetting zero`() {
         checkTypeStoredValue(ExtraType.Int, ExtraValue.IntValue(0), "0")
     }
 
     @Test
-    fun `IntValue toStoredSettingValue with wrong type returns default`() {
+    fun `IntValue toStoredSetting with wrong type returns default`() {
         checkTypeStoredValueDefault(ExtraType.Int, ExtraValue.StringValue("hello"))
     }
 
     @Test
-    fun `BooleanValue toStoredSettingValue true`() {
+    fun `BooleanValue toStoredSetting true`() {
         checkTypeStoredValue(ExtraType.Boolean, ExtraValue.BooleanValue(true), "1")
     }
 
     @Test
-    fun `BooleanValue toStoredSettingValue false`() {
+    fun `BooleanValue toStoredSetting false`() {
         checkTypeStoredValue(ExtraType.Boolean, ExtraValue.BooleanValue(false), "0")
     }
 
     @Test
-    fun `BooleanValue toStoredSettingValue with wrong type returns default`() {
+    fun `BooleanValue toStoredSetting with wrong type returns default`() {
         checkTypeStoredValueDefault(ExtraType.Boolean, ExtraValue.IntValue(0))
     }
 
     @Test
-    fun `UriValue toStoredSettingValue returns value`() {
+    fun `UriValue toStoredSetting returns value`() {
         checkTypeStoredValue(ExtraType.Uri, ExtraValue.UriValue("geo:0,0"), "geo:0,0")
     }
 
     @Test
-    fun `UriValue toStoredSettingValue with wrong type returns default`() {
+    fun `UriValue toStoredSetting with wrong type returns default`() {
         checkTypeStoredValueDefault(ExtraType.Uri, ExtraValue.StringValue("hello"))
     }
 
     @Test
-    fun `StringArrayValue toStoredSettingValue returns comma-separated`() {
+    fun `StringArrayValue toStoredSetting returns comma-separated`() {
         checkTypeStoredValue(ExtraType.StringArray, ExtraValue.StringArrayValue(listOf("a", "b")), "a,b")
     }
 
     @Test
-    fun `StringArrayValue toStoredSettingValue empty returns empty`() {
+    fun `StringArrayValue toStoredSetting empty returns empty`() {
         checkTypeStoredValue(ExtraType.StringArray, ExtraValue.StringArrayValue(emptyList()), "")
     }
 
     @Test
-    fun `StringArrayValue toStoredSettingValue with wrong type returns default`() {
+    fun `StringArrayValue toStoredSetting with wrong type returns default`() {
         checkTypeStoredValueDefault(ExtraType.StringArray, ExtraValue.IntValue(0))
     }
 
     @Test
-    fun `UriListValue toStoredSettingValue returns comma-separated`() {
+    fun `UriListValue toStoredSetting returns comma-separated`() {
         checkTypeStoredValue(
             ExtraType.UriList,
             ExtraValue.UriListValue(listOf("geo:0,0", "tel:123")),
@@ -307,12 +307,12 @@ class ExtraValueTest {
     }
 
     @Test
-    fun `UriListValue toStoredSettingValue empty returns empty`() {
+    fun `UriListValue toStoredSetting empty returns empty`() {
         checkTypeStoredValue(ExtraType.UriList, ExtraValue.UriListValue(emptyList()), "")
     }
 
     @Test
-    fun `UriListValue toStoredSettingValue with wrong type returns default`() {
+    fun `UriListValue toStoredSetting with wrong type returns default`() {
         checkTypeStoredValueDefault(ExtraType.UriList, ExtraValue.StringValue("hello"))
     }
 

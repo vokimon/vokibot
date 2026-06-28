@@ -203,9 +203,9 @@ fun ChangeSettingCommandEditor(
 
             if (rawEdit) {
                 OutlinedTextField(
-                    value = settingSpec.type.toStoredSettingValue(value),
+                    value = settingSpec.type.toStoredSetting(value),
                     onValueChange = { raw ->
-                        value = settingSpec.type.fromRawString(raw)
+                        value = settingSpec.type.fromStoredSetting(raw)
                         discardState.markDirty()
                     },
                     label = { Text(stringResource(R.string.change_setting_field_value)) },
