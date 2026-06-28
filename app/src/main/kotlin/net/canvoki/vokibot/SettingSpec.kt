@@ -5,6 +5,9 @@ import androidx.annotation.StringRes
 import net.canvoki.vokibot.common.EnumOption
 import net.canvoki.vokibot.common.FlagOption
 
+/**
+ * Specification of a Settings parameter.
+ */
 data class SettingSpec(
     val id: String,
     val category: SettingCategory,
@@ -19,8 +22,10 @@ data class SettingSpec(
     companion object {
         private val specsByKey by lazy { SETTING_SPECS.associateBy { it.id } }
 
+        /** Get a spec by key */
         fun get(key: String) = specsByKey[key]
 
+        /** Get all the specs */
         fun all() = SETTING_SPECS
     }
 }
