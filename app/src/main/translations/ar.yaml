@@ -590,3 +590,7 @@ setting_audio_stream_bt_sco: مكالمات البلوتوث
 setting_plugged_usb: USB
 setting_plugged_ac: الشبكة
 setting_plugged_wireless: لاسلكي
+setting_airplane_mode_option_bluetooth: بلوتوث
+setting_airplane_mode_option_cell: الهاتف المحمول
+setting_airplane_mode_option_nfc: اتصال NFC
+setting_airplane_mode_option_wifi: واي فاي

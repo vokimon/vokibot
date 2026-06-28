@@ -4,6 +4,7 @@ import android.provider.Settings
 import androidx.annotation.StringRes
 import net.canvoki.vokibot.common.EnumOption
 import net.canvoki.vokibot.common.FlagOption
+import net.canvoki.vokibot.common.FlagSerialization
 
 /**
  * Specification of a Settings parameter.
@@ -400,8 +401,17 @@ private val SETTING_SPECS: List<SettingSpec> =
             name = R.string.setting_airplane_mode_radios_name,
             description = R.string.setting_airplane_mode_radios_description,
             rawHelp = R.string.setting_airplane_mode_radios_raw_help,
-            type = ExtraType.String,
-            // TODO: StringArray flags("bluetooth", "cell", "nfc", "wifi")
+            type =
+                ExtraType.Flags(
+                    options =
+                        listOf(
+                            FlagOption("bluetooth", R.string.setting_airplane_mode_option_bluetooth),
+                            FlagOption("cell", R.string.setting_airplane_mode_option_cell),
+                            FlagOption("nfc", R.string.setting_airplane_mode_option_nfc),
+                            FlagOption("wifi", R.string.setting_airplane_mode_option_wifi),
+                        ),
+                    serial = FlagSerialization.CommaSeparated,
+                ),
         ),
         SettingSpec(
             id = @Suppress("DEPRECATION") Settings.Global.WIFI_SLEEP_POLICY,

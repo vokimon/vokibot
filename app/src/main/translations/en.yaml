@@ -590,3 +590,7 @@ setting_audio_stream_bt_sco: Bluetooth calls
 setting_plugged_usb: USB
 setting_plugged_ac: AC
 setting_plugged_wireless: Wireless
+setting_airplane_mode_option_bluetooth: Bluetooth
+setting_airplane_mode_option_cell: Cell
+setting_airplane_mode_option_nfc: NFC
+setting_airplane_mode_option_wifi: Wi-Fi

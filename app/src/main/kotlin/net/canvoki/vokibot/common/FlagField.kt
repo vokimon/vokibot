@@ -55,6 +55,18 @@ sealed interface FlagSerialization {
             options: List<FlagOption>,
         ): List<String> = options.toSelectedValues(value.toInt())
     }
+
+    object CommaSeparated : FlagSerialization {
+        override fun toString(
+            values: List<String>,
+            options: List<FlagOption>,
+        ): String = values.joinToString(",")
+
+        override fun fromString(
+            value: String,
+            options: List<FlagOption>,
+        ): List<String> = value.split(",").map { it.trim() }.filter { it.isNotEmpty() }
+    }
 }
 
 @Composable

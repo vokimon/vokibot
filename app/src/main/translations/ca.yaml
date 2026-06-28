@@ -590,3 +590,7 @@ setting_audio_stream_bt_sco: Trucades Bluetooth
 setting_plugged_usb: USB
 setting_plugged_ac: Corrent
 setting_plugged_wireless: Sense fil
+setting_airplane_mode_option_bluetooth: Bluetooth
+setting_airplane_mode_option_cell: Mòbil
+setting_airplane_mode_option_nfc: NFC
+setting_airplane_mode_option_wifi: Wi-Fi

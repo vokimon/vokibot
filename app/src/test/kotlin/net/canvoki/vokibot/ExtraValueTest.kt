@@ -631,4 +631,64 @@ class ExtraValueTest {
             expected = "3",
         )
     }
+
+    // ---------- FlagSerialization.CommaSeparated ----------
+
+    private val defaultFlagOptions =
+        listOf(
+            FlagOption("option1", 0),
+            FlagOption("option2", 0),
+        )
+
+    private fun checkToCommaSeparated(
+        values: List<String>,
+        expected: String,
+        options: List<FlagOption> = defaultFlagOptions,
+    ) = assertEquals(expected, FlagSerialization.CommaSeparated.toString(values, options))
+
+    private fun checkFromCommaSeparated(
+        input: String,
+        expected: List<String>,
+        options: List<FlagOption> = defaultFlagOptions,
+    ) = assertEquals(expected, FlagSerialization.CommaSeparated.fromString(input, options))
+
+    @Test
+    fun `CommaSeparated toString with none returns empty`() {
+        checkToCommaSeparated(values = emptyList(), expected = "")
+    }
+
+    @Test
+    fun `CommaSeparated toString with single value`() {
+        checkToCommaSeparated(values = listOf("option1"), expected = "option1")
+    }
+
+    @Test
+    fun `CommaSeparated toString with multiple values`() {
+        checkToCommaSeparated(values = listOf("option1", "option2"), expected = "option1,option2")
+    }
+
+    @Test
+    fun `CommaSeparated fromString with empty returns empty`() {
+        checkFromCommaSeparated(input = "", expected = emptyList())
+    }
+
+    @Test
+    fun `CommaSeparated fromString with single value`() {
+        checkFromCommaSeparated(input = "option1", expected = listOf("option1"))
+    }
+
+    @Test
+    fun `CommaSeparated fromString with multiple values`() {
+        checkFromCommaSeparated(input = "option1,option2", expected = listOf("option1", "option2"))
+    }
+
+    @Test
+    fun `CommaSeparated toString does not filter values not in options (intentional)`() {
+        checkToCommaSeparated(values = listOf("unknown"), expected = "unknown")
+    }
+
+    @Test
+    fun `CommaSeparated fromString does not filter values not in options (intentional)`() {
+        checkFromCommaSeparated(input = "unknown", expected = listOf("unknown"))
+    }
 }

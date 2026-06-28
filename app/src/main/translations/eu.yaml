@@ -590,3 +590,7 @@ setting_audio_stream_bt_sco: Bluetooth deiak
 setting_plugged_usb: USB
 setting_plugged_ac: Sarea
 setting_plugged_wireless: Harigabe
+setting_airplane_mode_option_bluetooth: Bluetooth
+setting_airplane_mode_option_cell: Mugikorra
+setting_airplane_mode_option_nfc: NFC
+setting_airplane_mode_option_wifi: Wi-Fi
