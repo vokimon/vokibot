@@ -31,7 +31,7 @@ fun List<FlagOption>.toSelectedValues(bitmask: Int): List<String> =
     mapNotNull { if (it.bitmask and bitmask != 0) it.value else null }
 
 fun List<FlagOption>.toBitmask(values: List<String>): Int =
-    map { it.value }.intersect(values.toSet()).mapNotNull{ it.toInt() }.fold(0) { a, b -> a or b }
+    map { it.value }.intersect(values.toSet()).mapNotNull { it.toInt() }.fold(0) { a, b -> a or b }
 
 @Composable
 fun FlagField(
@@ -56,10 +56,11 @@ fun FlagField(
                     selected = isSelected,
                     onClick = {
                         onSelectionChanged(
-                            if (option.value in selection)
+                            if (option.value in selection) {
                                 selection - option.value
-                            else
+                            } else {
                                 selection + option.value
+                            },
                         )
                     },
                     label = {
