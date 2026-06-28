@@ -115,8 +115,8 @@ fun ChangeSettingCommandEditor(
     var isSaving by rememberSaveable { mutableStateOf(false) }
     val discardState = rememberDiscardableState(screen = editor, nav = nav)
     var hasLoaded by rememberSaveable { mutableStateOf(false) }
-    var setting by rememberSaveable { mutableStateOf<String?>(null) }
-    val settingValue = setting?.let { id -> SettingDb.get(id) }
+    var settingKey by rememberSaveable { mutableStateOf<String?>(null) }
+    val settingValue = settingKey?.let { id -> SettingSpec.get(id) }
     val settingTitle = settingValue?.let { stringResource(it.name) }
     val writeSettingsPerm = rememberPermissionState("android.permission.WRITE_SETTINGS")
     var rawEdit by rememberSaveable { mutableStateOf(false) }
@@ -125,22 +125,22 @@ fun ChangeSettingCommandEditor(
     }
 
     fun buildCommand(): ChangeSettingCommand {
-        require(setting != null)
+        require(settingKey != null)
         return ChangeSettingCommand(
             id = editingId,
-            key = setting!!,
+            key = settingKey!!,
             value = value,
         )
     }
-    val isReadyToRun = writeSettingsPerm.isGranted && setting != null
-    val isReadyToSave = setting != null
+    val isReadyToRun = writeSettingsPerm.isGranted && settingKey != null
+    val isReadyToSave = settingKey != null
 
     LaunchedEffect(editingId) {
         if (editingId != null && !hasLoaded) {
             val existing =
                 repository.command.load(editingId) as? ChangeSettingCommand
             existing?.let {
-                setting = it.key
+                settingKey = it.key
                 value = it.value
             }
             hasLoaded = true
@@ -180,8 +180,8 @@ fun ChangeSettingCommandEditor(
             onClick = {
                 nav.push(SettingList) { result ->
                     result?.let {
-                        setting = it
-                        value = SettingDb
+                        settingKey = it
+                        value = SettingSpec
                             .get(it)
                             ?.type
                             ?.defaultValue()

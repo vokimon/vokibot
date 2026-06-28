@@ -43,7 +43,7 @@ data class ChangeSettingCommand(
     override val type = ChangeSettingCommand.typeKey
     override val iconRes = ChangeSettingCommand.iconRes
 
-    override fun getTitle(context: Context): String = SettingDb.get(key)?.let { context.getString(it.name) } ?: key
+    override fun getTitle(context: Context): String = SettingSpec.get(key)?.let { context.getString(it.name) } ?: key
 
     override val description: String get() = key
 

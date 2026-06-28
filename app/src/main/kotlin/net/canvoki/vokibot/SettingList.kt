@@ -33,7 +33,7 @@ fun SettingList(nav: StackNavigatorState) {
             title = stringResource(ChangeSettingCommand.labelRes),
         )
         AsyncList(
-            loader = { SettingDb.all() },
+            loader = { SettingSpec.all() },
             itemKey = { it.id },
             groupBy = { it.category.name },
             headerContent = { key ->

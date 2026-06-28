@@ -5,7 +5,7 @@ import androidx.annotation.StringRes
 import net.canvoki.vokibot.common.EnumOption
 import net.canvoki.vokibot.common.FlagOption
 
-data class SettingValue(
+data class SettingSpec(
     val id: String,
     val category: SettingCategory,
     @get:StringRes
@@ -15,7 +15,13 @@ data class SettingValue(
     @get:StringRes
     val rawHelp: Int,
     val type: ExtraType,
-)
+) {
+    companion object {
+        fun get(key: String) = SETTING_SPECS.firstOrNull { it.id == key }
+
+        fun all() = SETTING_SPECS
+    }
+}
 
 enum class SettingCategory {
     DISPLAY,
@@ -44,10 +50,10 @@ enum class SettingCategory {
         }
 }
 
-private val SETTING_VALUES: List<SettingValue> =
+private val SETTING_SPECS: List<SettingSpec> =
     listOf(
         // Display
-        SettingValue(
+        SettingSpec(
             id = Settings.System.SCREEN_BRIGHTNESS_MODE,
             category = SettingCategory.DISPLAY,
             name = R.string.setting_screen_brightness_mode_name,
@@ -55,7 +61,7 @@ private val SETTING_VALUES: List<SettingValue> =
             rawHelp = R.string.setting_toggle_raw_help,
             type = ExtraType.Boolean,
         ),
-        SettingValue(
+        SettingSpec(
             id = Settings.System.SCREEN_BRIGHTNESS,
             category = SettingCategory.DISPLAY,
             name = R.string.setting_screen_brightness_name,
@@ -63,7 +69,7 @@ private val SETTING_VALUES: List<SettingValue> =
             rawHelp = R.string.setting_screen_brightness_raw_help,
             type = ExtraType.String, // TODO: Int ranged 0..255
         ),
-        SettingValue(
+        SettingSpec(
             id = Settings.System.SCREEN_OFF_TIMEOUT,
             category = SettingCategory.DISPLAY,
             name = R.string.setting_screen_off_timeout_name,
@@ -82,7 +88,7 @@ private val SETTING_VALUES: List<SettingValue> =
                     ),
                 ),
         ),
-        SettingValue(
+        SettingSpec(
             id = Settings.System.USER_ROTATION,
             category = SettingCategory.DISPLAY,
             name = R.string.setting_user_rotation_name,
@@ -98,7 +104,7 @@ private val SETTING_VALUES: List<SettingValue> =
                     ),
                 ),
         ),
-        SettingValue(
+        SettingSpec(
             id = Settings.System.ACCELEROMETER_ROTATION,
             category = SettingCategory.DISPLAY,
             name = R.string.setting_accelerometer_rotation_name,
@@ -106,7 +112,7 @@ private val SETTING_VALUES: List<SettingValue> =
             rawHelp = R.string.setting_accelerometer_rotation_raw_help,
             type = ExtraType.Boolean,
         ),
-        SettingValue(
+        SettingSpec(
             id = Settings.System.FONT_SCALE,
             category = SettingCategory.DISPLAY,
             name = R.string.setting_font_scale_name,
@@ -127,7 +133,7 @@ private val SETTING_VALUES: List<SettingValue> =
                 ),
         ),
         // Sound
-        SettingValue(
+        SettingSpec(
             id = Settings.System.RINGTONE,
             category = SettingCategory.SOUND,
             name = R.string.setting_ringtone_name,
@@ -135,7 +141,7 @@ private val SETTING_VALUES: List<SettingValue> =
             rawHelp = R.string.setting_audio_uri_raw_help,
             type = ExtraType.Uri,
         ),
-        SettingValue(
+        SettingSpec(
             id = Settings.System.NOTIFICATION_SOUND,
             category = SettingCategory.SOUND,
             name = R.string.setting_notification_sound_name,
@@ -143,7 +149,7 @@ private val SETTING_VALUES: List<SettingValue> =
             rawHelp = R.string.setting_audio_uri_raw_help,
             type = ExtraType.Uri,
         ),
-        SettingValue(
+        SettingSpec(
             id = Settings.System.ALARM_ALERT,
             category = SettingCategory.SOUND,
             name = R.string.setting_alarm_alert_name,
@@ -151,7 +157,7 @@ private val SETTING_VALUES: List<SettingValue> =
             rawHelp = R.string.setting_audio_uri_raw_help,
             type = ExtraType.Uri,
         ),
-        SettingValue(
+        SettingSpec(
             id = Settings.System.DTMF_TONE_WHEN_DIALING,
             category = SettingCategory.SOUND,
             name = R.string.setting_dtmf_tone_when_dialing_name,
@@ -159,7 +165,7 @@ private val SETTING_VALUES: List<SettingValue> =
             rawHelp = R.string.setting_toggle_raw_help,
             type = ExtraType.Boolean,
         ),
-        SettingValue(
+        SettingSpec(
             id = Settings.System.SOUND_EFFECTS_ENABLED,
             category = SettingCategory.SOUND,
             name = R.string.setting_sound_effects_enabled_name,
@@ -167,7 +173,7 @@ private val SETTING_VALUES: List<SettingValue> =
             rawHelp = R.string.setting_toggle_raw_help,
             type = ExtraType.Boolean,
         ),
-        SettingValue(
+        SettingSpec(
             id = @Suppress("DEPRECATION") Settings.System.HAPTIC_FEEDBACK_ENABLED,
             category = SettingCategory.SOUND,
             name = R.string.setting_haptic_feedback_enabled_name,
@@ -175,7 +181,7 @@ private val SETTING_VALUES: List<SettingValue> =
             rawHelp = R.string.setting_toggle_raw_help,
             type = ExtraType.Boolean,
         ),
-        SettingValue(
+        SettingSpec(
             id = Settings.System.MODE_RINGER_STREAMS_AFFECTED,
             category = SettingCategory.SOUND,
             name = R.string.setting_mode_ringer_streams_affected_name,
@@ -194,7 +200,7 @@ private val SETTING_VALUES: List<SettingValue> =
                     ),
                 ),
         ),
-        SettingValue(
+        SettingSpec(
             id = Settings.System.MUTE_STREAMS_AFFECTED,
             category = SettingCategory.SOUND,
             name = R.string.setting_mute_streams_affected_name,
@@ -213,7 +219,7 @@ private val SETTING_VALUES: List<SettingValue> =
                     ),
                 ),
         ),
-        SettingValue(
+        SettingSpec(
             id = Settings.Global.MODE_RINGER,
             category = SettingCategory.SOUND,
             name = R.string.setting_mode_ringer_name,
@@ -228,7 +234,7 @@ private val SETTING_VALUES: List<SettingValue> =
                     ),
                 ),
         ),
-        SettingValue(
+        SettingSpec(
             id = Settings.Secure.TTS_DEFAULT_PITCH,
             category = SettingCategory.SOUND,
             name = R.string.setting_tts_default_pitch_name,
@@ -236,7 +242,7 @@ private val SETTING_VALUES: List<SettingValue> =
             rawHelp = R.string.setting_tts_default_pitch_raw_help,
             type = ExtraType.String, // TODO: Int ranged 10..500
         ),
-        SettingValue(
+        SettingSpec(
             id = Settings.Secure.TTS_DEFAULT_RATE,
             category = SettingCategory.SOUND,
             name = R.string.setting_tts_default_rate_name,
@@ -244,7 +250,7 @@ private val SETTING_VALUES: List<SettingValue> =
             rawHelp = R.string.setting_tts_default_rate_raw_help,
             type = ExtraType.String, // TODO: Int ranged 10..300
         ),
-        SettingValue(
+        SettingSpec(
             id = Settings.Secure.TTS_DEFAULT_SYNTH,
             category = SettingCategory.SOUND,
             name = R.string.setting_tts_default_synth_name,
@@ -252,7 +258,7 @@ private val SETTING_VALUES: List<SettingValue> =
             rawHelp = R.string.setting_tts_default_synth_raw_help,
             type = ExtraType.String, // TODO: dynamic list from TextToSpeech.Engine
         ),
-        SettingValue(
+        SettingSpec(
             id = Settings.Secure.TTS_ENABLED_PLUGINS,
             category = SettingCategory.SOUND,
             name = R.string.setting_tts_enabled_plugins_name,
@@ -261,7 +267,7 @@ private val SETTING_VALUES: List<SettingValue> =
             type = ExtraType.String, // TODO: dynamic list from TextToSpeech.Engine
         ),
         // Text
-        SettingValue(
+        SettingSpec(
             id = Settings.System.TEXT_AUTO_CAPS,
             category = SettingCategory.TEXT,
             name = R.string.setting_text_auto_caps_name,
@@ -269,7 +275,7 @@ private val SETTING_VALUES: List<SettingValue> =
             rawHelp = R.string.setting_toggle_raw_help,
             type = ExtraType.Boolean,
         ),
-        SettingValue(
+        SettingSpec(
             id = Settings.System.TEXT_AUTO_PUNCTUATE,
             category = SettingCategory.TEXT,
             name = R.string.setting_text_auto_punctuate_name,
@@ -277,7 +283,7 @@ private val SETTING_VALUES: List<SettingValue> =
             rawHelp = R.string.setting_toggle_raw_help,
             type = ExtraType.Boolean,
         ),
-        SettingValue(
+        SettingSpec(
             id = Settings.System.TEXT_AUTO_REPLACE,
             category = SettingCategory.TEXT,
             name = R.string.setting_text_auto_replace_name,
@@ -285,7 +291,7 @@ private val SETTING_VALUES: List<SettingValue> =
             rawHelp = R.string.setting_toggle_raw_help,
             type = ExtraType.Boolean,
         ),
-        SettingValue(
+        SettingSpec(
             id = Settings.System.TEXT_SHOW_PASSWORD,
             category = SettingCategory.TEXT,
             name = R.string.setting_text_show_password_name,
@@ -294,7 +300,7 @@ private val SETTING_VALUES: List<SettingValue> =
             type = ExtraType.Boolean,
         ),
         // Time
-        SettingValue(
+        SettingSpec(
             id = Settings.System.TIME_12_24,
             category = SettingCategory.TIME,
             name = R.string.setting_time_12_24_name,
@@ -308,7 +314,7 @@ private val SETTING_VALUES: List<SettingValue> =
                     ),
                 ),
         ),
-        SettingValue(
+        SettingSpec(
             id = @Suppress("DEPRECATION") Settings.System.DATE_FORMAT,
             category = SettingCategory.TIME,
             name = R.string.setting_date_format_name,
@@ -324,7 +330,7 @@ private val SETTING_VALUES: List<SettingValue> =
                     ),
                 ),
         ),
-        SettingValue(
+        SettingSpec(
             id = Settings.Global.AUTO_TIME,
             category = SettingCategory.TIME,
             name = R.string.setting_auto_time_name,
@@ -332,7 +338,7 @@ private val SETTING_VALUES: List<SettingValue> =
             rawHelp = R.string.setting_toggle_raw_help,
             type = ExtraType.Boolean,
         ),
-        SettingValue(
+        SettingSpec(
             id = Settings.Global.AUTO_TIME_ZONE,
             category = SettingCategory.TIME,
             name = R.string.setting_auto_time_zone_name,
@@ -341,7 +347,7 @@ private val SETTING_VALUES: List<SettingValue> =
             type = ExtraType.Boolean,
         ),
         // Connectivity
-        SettingValue(
+        SettingSpec(
             id = Settings.Global.AIRPLANE_MODE_ON,
             category = SettingCategory.CONNECTIVITY,
             name = R.string.setting_airplane_mode_on_name,
@@ -349,7 +355,7 @@ private val SETTING_VALUES: List<SettingValue> =
             rawHelp = R.string.setting_toggle_raw_help,
             type = ExtraType.Boolean,
         ),
-        SettingValue(
+        SettingSpec(
             id = Settings.Global.BLUETOOTH_ON,
             category = SettingCategory.CONNECTIVITY,
             name = R.string.setting_bluetooth_on_name,
@@ -357,7 +363,7 @@ private val SETTING_VALUES: List<SettingValue> =
             rawHelp = R.string.setting_toggle_raw_help,
             type = ExtraType.Boolean,
         ),
-        SettingValue(
+        SettingSpec(
             id = Settings.Global.WIFI_ON,
             category = SettingCategory.CONNECTIVITY,
             name = R.string.setting_wifi_on_name,
@@ -365,7 +371,7 @@ private val SETTING_VALUES: List<SettingValue> =
             rawHelp = R.string.setting_toggle_raw_help,
             type = ExtraType.Boolean,
         ),
-        SettingValue(
+        SettingSpec(
             id = Settings.Global.DATA_ROAMING,
             category = SettingCategory.CONNECTIVITY,
             name = R.string.setting_data_roaming_name,
@@ -373,7 +379,7 @@ private val SETTING_VALUES: List<SettingValue> =
             rawHelp = R.string.setting_toggle_raw_help,
             type = ExtraType.Boolean,
         ),
-        SettingValue(
+        SettingSpec(
             id = Settings.Global.HTTP_PROXY,
             category = SettingCategory.CONNECTIVITY,
             name = R.string.setting_http_proxy_name,
@@ -381,7 +387,7 @@ private val SETTING_VALUES: List<SettingValue> =
             rawHelp = R.string.setting_http_proxy_raw_help,
             type = ExtraType.String,
         ),
-        SettingValue(
+        SettingSpec(
             id = Settings.Global.AIRPLANE_MODE_RADIOS,
             category = SettingCategory.CONNECTIVITY,
             name = R.string.setting_airplane_mode_radios_name,
@@ -390,7 +396,7 @@ private val SETTING_VALUES: List<SettingValue> =
             type = ExtraType.String,
             // TODO: StringArray flags("bluetooth", "cell", "nfc", "wifi")
         ),
-        SettingValue(
+        SettingSpec(
             id = @Suppress("DEPRECATION") Settings.Global.WIFI_SLEEP_POLICY,
             category = SettingCategory.CONNECTIVITY,
             name = R.string.setting_wifi_sleep_policy_name,
@@ -405,7 +411,7 @@ private val SETTING_VALUES: List<SettingValue> =
                     ),
                 ),
         ),
-        SettingValue(
+        SettingSpec(
             id = Settings.Global.WIFI_MAX_DHCP_RETRY_COUNT,
             category = SettingCategory.CONNECTIVITY,
             name = R.string.setting_wifi_max_dhcp_retry_count_name,
@@ -413,7 +419,7 @@ private val SETTING_VALUES: List<SettingValue> =
             rawHelp = R.string.setting_wifi_max_dhcp_retry_count_raw_help,
             type = ExtraType.String, // TODO: Int ranged
         ),
-        SettingValue(
+        SettingSpec(
             id = @Suppress("DEPRECATION") Settings.Global.WIFI_NETWORKS_AVAILABLE_REPEAT_DELAY,
             category = SettingCategory.CONNECTIVITY,
             name = R.string.setting_wifi_networks_available_repeat_delay_name,
@@ -421,7 +427,7 @@ private val SETTING_VALUES: List<SettingValue> =
             rawHelp = R.string.setting_wifi_networks_available_repeat_delay_raw_help,
             type = ExtraType.String, // TODO: Int ranged
         ),
-        SettingValue(
+        SettingSpec(
             id = @Suppress("DEPRECATION") Settings.Global.WIFI_NUM_OPEN_NETWORKS_KEPT,
             category = SettingCategory.CONNECTIVITY,
             name = R.string.setting_wifi_num_open_networks_kept_name,
@@ -429,7 +435,7 @@ private val SETTING_VALUES: List<SettingValue> =
             rawHelp = R.string.setting_wifi_num_open_networks_kept_raw_help,
             type = ExtraType.String, // TODO: Int ranged
         ),
-        SettingValue(
+        SettingSpec(
             id = Settings.Global.WIFI_MOBILE_DATA_TRANSITION_WAKELOCK_TIMEOUT_MS,
             category = SettingCategory.CONNECTIVITY,
             name = R.string.setting_wifi_mobile_data_transition_wakelock_timeout_ms_name,
@@ -448,7 +454,7 @@ private val SETTING_VALUES: List<SettingValue> =
                     ),
                 ),
         ),
-        SettingValue(
+        SettingSpec(
             id = Settings.System.BLUETOOTH_DISCOVERABILITY,
             category = SettingCategory.CONNECTIVITY,
             name = R.string.setting_bluetooth_discoverability_name,
@@ -456,7 +462,7 @@ private val SETTING_VALUES: List<SettingValue> =
             rawHelp = R.string.setting_toggle_raw_help,
             type = ExtraType.Boolean,
         ),
-        SettingValue(
+        SettingSpec(
             id = Settings.System.BLUETOOTH_DISCOVERABILITY_TIMEOUT,
             category = SettingCategory.CONNECTIVITY,
             name = R.string.setting_bluetooth_discoverability_timeout_name,
@@ -471,7 +477,7 @@ private val SETTING_VALUES: List<SettingValue> =
                     ),
                 ),
         ),
-        SettingValue(
+        SettingSpec(
             id = Settings.System.END_BUTTON_BEHAVIOR,
             category = SettingCategory.CONNECTIVITY,
             name = R.string.setting_end_button_behavior_name,
@@ -486,7 +492,7 @@ private val SETTING_VALUES: List<SettingValue> =
                 ),
         ),
         // Accessibility
-        SettingValue(
+        SettingSpec(
             id = Settings.Secure.ACCESSIBILITY_ENABLED,
             category = SettingCategory.ACCESSIBILITY,
             name = R.string.setting_accessibility_enabled_name,
@@ -494,7 +500,7 @@ private val SETTING_VALUES: List<SettingValue> =
             rawHelp = R.string.setting_toggle_raw_help,
             type = ExtraType.Boolean,
         ),
-        SettingValue(
+        SettingSpec(
             id = Settings.Secure.ACCESSIBILITY_DISPLAY_INVERSION_ENABLED,
             category = SettingCategory.ACCESSIBILITY,
             name = R.string.setting_accessibility_display_inversion_enabled_name,
@@ -502,7 +508,7 @@ private val SETTING_VALUES: List<SettingValue> =
             rawHelp = R.string.setting_toggle_raw_help,
             type = ExtraType.Boolean,
         ),
-        SettingValue(
+        SettingSpec(
             id = Settings.Secure.TOUCH_EXPLORATION_ENABLED,
             category = SettingCategory.ACCESSIBILITY,
             name = R.string.setting_touch_exploration_enabled_name,
@@ -510,7 +516,7 @@ private val SETTING_VALUES: List<SettingValue> =
             rawHelp = R.string.setting_toggle_raw_help,
             type = ExtraType.Boolean,
         ),
-        SettingValue(
+        SettingSpec(
             id = Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES,
             category = SettingCategory.ACCESSIBILITY,
             name = R.string.setting_enabled_accessibility_services_name,
@@ -518,7 +524,7 @@ private val SETTING_VALUES: List<SettingValue> =
             rawHelp = R.string.setting_component_names_raw_help,
             type = ExtraType.String, // TODO: dynamic list from AccessibilityManager
         ),
-        SettingValue(
+        SettingSpec(
             id = Settings.Secure.DEFAULT_INPUT_METHOD,
             category = SettingCategory.ACCESSIBILITY,
             name = R.string.setting_default_input_method_name,
@@ -526,7 +532,7 @@ private val SETTING_VALUES: List<SettingValue> =
             rawHelp = R.string.setting_component_name_raw_help,
             type = ExtraType.String, // TODO: dynamic list from InputMethodManager
         ),
-        SettingValue(
+        SettingSpec(
             id = Settings.Secure.ENABLED_INPUT_METHODS,
             category = SettingCategory.ACCESSIBILITY,
             name = R.string.setting_enabled_input_methods_name,
@@ -534,7 +540,7 @@ private val SETTING_VALUES: List<SettingValue> =
             rawHelp = R.string.setting_component_names_raw_help,
             type = ExtraType.String, // TODO: dynamic list from InputMethodManager
         ),
-        SettingValue(
+        SettingSpec(
             id = Settings.Secure.SELECTED_INPUT_METHOD_SUBTYPE,
             category = SettingCategory.ACCESSIBILITY,
             name = R.string.setting_selected_input_method_subtype_name,
@@ -542,7 +548,7 @@ private val SETTING_VALUES: List<SettingValue> =
             rawHelp = R.string.setting_component_name_raw_help,
             type = ExtraType.String, // TODO: dynamic list from InputMethodManager
         ),
-        SettingValue(
+        SettingSpec(
             id = Settings.Secure.INPUT_METHOD_SELECTOR_VISIBILITY,
             category = SettingCategory.ACCESSIBILITY,
             name = R.string.setting_input_method_selector_visibility_name,
@@ -557,7 +563,7 @@ private val SETTING_VALUES: List<SettingValue> =
                 ),
         ),
         // Developer
-        SettingValue(
+        SettingSpec(
             id = Settings.Global.ADB_ENABLED,
             category = SettingCategory.DEVELOPER,
             name = R.string.setting_adb_enabled_name,
@@ -565,7 +571,7 @@ private val SETTING_VALUES: List<SettingValue> =
             rawHelp = R.string.setting_toggle_raw_help,
             type = ExtraType.Boolean,
         ),
-        SettingValue(
+        SettingSpec(
             id = Settings.Global.DEVELOPMENT_SETTINGS_ENABLED,
             category = SettingCategory.DEVELOPER,
             name = R.string.setting_development_settings_enabled_name,
@@ -573,7 +579,7 @@ private val SETTING_VALUES: List<SettingValue> =
             rawHelp = R.string.setting_toggle_raw_help,
             type = ExtraType.Boolean,
         ),
-        SettingValue(
+        SettingSpec(
             id = Settings.Global.WAIT_FOR_DEBUGGER,
             category = SettingCategory.DEVELOPER,
             name = R.string.setting_wait_for_debugger_name,
@@ -581,7 +587,7 @@ private val SETTING_VALUES: List<SettingValue> =
             rawHelp = R.string.setting_toggle_raw_help,
             type = ExtraType.Boolean,
         ),
-        SettingValue(
+        SettingSpec(
             id = Settings.Global.ALWAYS_FINISH_ACTIVITIES,
             category = SettingCategory.DEVELOPER,
             name = R.string.setting_always_finish_activities_name,
@@ -589,7 +595,7 @@ private val SETTING_VALUES: List<SettingValue> =
             rawHelp = R.string.setting_toggle_raw_help,
             type = ExtraType.Boolean,
         ),
-        SettingValue(
+        SettingSpec(
             id = Settings.Global.WINDOW_ANIMATION_SCALE,
             category = SettingCategory.DEVELOPER,
             name = R.string.setting_window_animation_scale_name,
@@ -608,7 +614,7 @@ private val SETTING_VALUES: List<SettingValue> =
                     ),
                 ),
         ),
-        SettingValue(
+        SettingSpec(
             id = Settings.Global.TRANSITION_ANIMATION_SCALE,
             category = SettingCategory.DEVELOPER,
             name = R.string.setting_transition_animation_scale_name,
@@ -627,7 +633,7 @@ private val SETTING_VALUES: List<SettingValue> =
                     ),
                 ),
         ),
-        SettingValue(
+        SettingSpec(
             id = Settings.Global.ANIMATOR_DURATION_SCALE,
             category = SettingCategory.DEVELOPER,
             name = R.string.setting_animator_duration_scale_name,
@@ -647,7 +653,7 @@ private val SETTING_VALUES: List<SettingValue> =
                 ),
         ),
         // Power
-        SettingValue(
+        SettingSpec(
             id = Settings.Global.STAY_ON_WHILE_PLUGGED_IN,
             category = SettingCategory.POWER,
             name = R.string.setting_stay_on_while_plugged_in_name,
@@ -662,7 +668,7 @@ private val SETTING_VALUES: List<SettingValue> =
                     ),
                 ),
         ),
-        SettingValue(
+        SettingSpec(
             id = Settings.Global.USB_MASS_STORAGE_ENABLED,
             category = SettingCategory.POWER,
             name = R.string.setting_usb_mass_storage_enabled_name,
@@ -671,7 +677,7 @@ private val SETTING_VALUES: List<SettingValue> =
             type = ExtraType.Boolean,
         ),
         // Device
-        SettingValue(
+        SettingSpec(
             id = Settings.Global.DEVICE_NAME,
             category = SettingCategory.DEVICE,
             name = R.string.setting_device_name_name,
@@ -679,7 +685,7 @@ private val SETTING_VALUES: List<SettingValue> =
             rawHelp = R.string.setting_device_name_raw_help,
             type = ExtraType.String,
         ),
-        SettingValue(
+        SettingSpec(
             id = Settings.Global.DEVICE_PROVISIONED,
             category = SettingCategory.DEVICE,
             name = R.string.setting_device_provisioned_name,
@@ -687,7 +693,7 @@ private val SETTING_VALUES: List<SettingValue> =
             rawHelp = R.string.setting_device_provisioned_raw_help,
             type = ExtraType.Boolean,
         ),
-        SettingValue(
+        SettingSpec(
             id = Settings.Global.USE_GOOGLE_MAIL,
             category = SettingCategory.DEVICE,
             name = R.string.setting_use_google_mail_name,
@@ -696,11 +702,3 @@ private val SETTING_VALUES: List<SettingValue> =
             type = ExtraType.Boolean,
         ),
     )
-
-object SettingDb {
-    fun get(key: String) = SETTING_VALUES.firstOrNull { it.id == key }
-
-    fun all() = SETTING_VALUES
-}
-
-fun settingByKey(key: String) = SettingDb.get(key)
