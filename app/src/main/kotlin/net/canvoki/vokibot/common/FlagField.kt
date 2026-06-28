@@ -44,7 +44,7 @@ sealed interface FlagSerialization {
         options: List<FlagOption>,
     ): List<String>
 
-    class BitMask : FlagSerialization {
+    object BitMask : FlagSerialization {
         override fun toString(
             values: List<String>,
             options: List<FlagOption>,

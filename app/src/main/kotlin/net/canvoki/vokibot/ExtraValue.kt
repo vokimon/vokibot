@@ -277,12 +277,12 @@ sealed class ExtraType {
 
         override fun fromStoredSetting(raw: kotlin.String) =
             ExtraValue.StringArrayValue(
-                FlagSerialization.BitMask().fromString(raw, options),
+                FlagSerialization.BitMask.fromString(raw, options),
             )
 
         override fun toStoredSetting(value: ExtraValue): kotlin.String {
             val values = (value as? ExtraValue.StringArrayValue)?.values ?: emptyList()
-            return FlagSerialization.BitMask().toString(values, options)
+            return FlagSerialization.BitMask.toString(values, options)
         }
 
         @Composable
@@ -291,7 +291,7 @@ sealed class ExtraType {
             value: ExtraValue,
             onChanged: (ExtraValue) -> Unit,
         ) {
-            val serial = FlagSerialization.BitMask()
+            val serial = FlagSerialization.BitMask
             val selection = (value as? ExtraValue.StringArrayValue)?.values ?: emptyList<kotlin.String>()
             FlagField(
                 label = label,

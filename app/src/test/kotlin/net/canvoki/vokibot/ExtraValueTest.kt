@@ -541,7 +541,7 @@ class ExtraValueTest {
         options: List<FlagOption>,
         bitmask: Int,
         expected: List<String>,
-    ) = assertEquals(expected, FlagSerialization.BitMask().fromString(bitmask.toString(), options))
+    ) = assertEquals(expected, FlagSerialization.BitMask.fromString(bitmask.toString(), options))
 
     @Test
     fun `toSelectedValues with single option chosen`() {
@@ -585,7 +585,7 @@ class ExtraValueTest {
         options: List<FlagOption>,
         values: List<String>,
         expected: String,
-    ) = assertEquals(expected, FlagSerialization.BitMask().toString(values, options))
+    ) = assertEquals(expected, FlagSerialization.BitMask.toString(values, options))
 
     @Test
     fun `toBitmask with single value returns its bitmask`() {
