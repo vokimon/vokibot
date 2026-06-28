@@ -28,7 +28,7 @@ class ExtraValueTest {
 
     @Test
     fun `defaultValue for INT returns IntValue`() {
-        checkDefaultValue(ExtraSpec("k", ExtraType.Int), ExtraValue.IntValue::class)
+        checkDefaultValue(ExtraSpec("k", ExtraType.Int()), ExtraValue.IntValue::class)
     }
 
     @Test
@@ -191,7 +191,7 @@ class ExtraValueTest {
 
     @Test
     fun `IntValue getExtraType is INT`() {
-        checkExtraType(ExtraValue.IntValue(0), ExtraType.Int)
+        checkExtraType(ExtraValue.IntValue(0), ExtraType.Int())
     }
 
     @Test
@@ -244,17 +244,17 @@ class ExtraValueTest {
 
     @Test
     fun `IntValue toStoredSetting returns number as string`() {
-        checkTypeStoredValue(ExtraType.Int, ExtraValue.IntValue(42), "42")
+        checkTypeStoredValue(ExtraType.Int(), ExtraValue.IntValue(42), "42")
     }
 
     @Test
     fun `IntValue toStoredSetting zero`() {
-        checkTypeStoredValue(ExtraType.Int, ExtraValue.IntValue(0), "0")
+        checkTypeStoredValue(ExtraType.Int(), ExtraValue.IntValue(0), "0")
     }
 
     @Test
     fun `IntValue toStoredSetting with wrong type returns default`() {
-        checkTypeStoredValueDefault(ExtraType.Int, ExtraValue.StringValue("hello"))
+        checkTypeStoredValueDefault(ExtraType.Int(), ExtraValue.StringValue("hello"))
     }
 
     @Test
@@ -444,7 +444,7 @@ class ExtraValueTest {
             actionSpecs =
                 listOf(
                     ExtraSpec("extra1", ExtraType.String),
-                    ExtraSpec("extra2", ExtraType.Int),
+                    ExtraSpec("extra2", ExtraType.Int()),
                 ),
             customSpecs = emptyList(),
             expected =
@@ -470,7 +470,7 @@ class ExtraValueTest {
     fun `rebuildExtras default is type aware`() {
         assertRebuiltExtras(
             values = emptyMap(),
-            actionSpecs = listOf(ExtraSpec("extra1", ExtraType.Int)),
+            actionSpecs = listOf(ExtraSpec("extra1", ExtraType.Int())),
             customSpecs = emptyList(),
             expected = """{"extra1": {"type": "int", "value": 0}}""",
         )
@@ -501,7 +501,7 @@ class ExtraValueTest {
                 ),
             customSpecs =
                 listOf(
-                    ExtraSpec("extra1", ExtraType.Int),
+                    ExtraSpec("extra1", ExtraType.Int()),
                 ),
             expected = """{"extra1": {"type": "int", "value": 0}}""",
         )
@@ -516,7 +516,7 @@ class ExtraValueTest {
                 ),
             actionSpecs =
                 listOf(
-                    ExtraSpec("extra1", ExtraType.Int),
+                    ExtraSpec("extra1", ExtraType.Int()),
                 ),
             customSpecs = emptyList(),
             expected = """{"extra1": {"type": "int", "value": 0}}""",

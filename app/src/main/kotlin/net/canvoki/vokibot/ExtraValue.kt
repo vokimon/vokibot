@@ -106,7 +106,11 @@ sealed class ExtraType {
 
     @Serializable
     @SerialName("INT")
-    object Int : ExtraType() {
+    data class Int(
+        val min: kotlin.Int? = null,
+    ) : ExtraType() {
+        override fun toString(): kotlin.String = "Int"
+
         override val labelRes = R.string.extra_value_type_number
 
         override fun defaultValue() = ExtraValue.IntValue(0)
@@ -306,7 +310,7 @@ sealed class ExtraType {
 
     companion object {
         val intentExtraTypes by lazy {
-            listOf<ExtraType>(String, Uri, Int, Boolean, StringArray, UriList)
+            listOf<ExtraType>(String, Uri, Int(), Boolean, StringArray, UriList)
         }
     }
 }
@@ -369,7 +373,7 @@ sealed class ExtraValue {
 
         override fun isDefault(): Boolean = value == 0
 
-        override fun getExtraType() = ExtraType.Int
+        override fun getExtraType() = ExtraType.Int()
     }
 
     @Serializable

@@ -150,12 +150,12 @@ object StandardActions {
                         ),
                         ExtraSpec(
                             key = MediaStore.EXTRA_DURATION_LIMIT,
-                            type = ExtraType.Int,
+                            type = ExtraType.Int(),
                             labelRes = R.string.standard_extra_max_duration,
                         ),
                         ExtraSpec(
                             key = MediaStore.EXTRA_VIDEO_QUALITY,
-                            type = ExtraType.Int,
+                            type = ExtraType.Int(),
                             labelRes = R.string.standard_extra_quality,
                         ),
                     ),
@@ -180,7 +180,7 @@ object StandardActions {
                         ),
                         ExtraSpec(
                             key = RecognizerIntent.EXTRA_MAX_RESULTS,
-                            type = ExtraType.Int,
+                            type = ExtraType.Int(),
                             labelRes = R.string.standard_extra_max_results,
                         ),
                     ),
