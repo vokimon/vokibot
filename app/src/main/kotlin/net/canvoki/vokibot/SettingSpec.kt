@@ -17,7 +17,9 @@ data class SettingSpec(
     val type: ExtraType,
 ) {
     companion object {
-        fun get(key: String) = SETTING_SPECS.firstOrNull { it.id == key }
+        private val specsByKey by lazy { SETTING_SPECS.associateBy { it.id } }
+
+        fun get(key: String) = specsByKey[key]
 
         fun all() = SETTING_SPECS
     }
