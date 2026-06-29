@@ -17,6 +17,7 @@ import net.canvoki.vokibot.common.SelectableOption
  */
 data class SettingSpec(
     val id: String,
+    val namespace: SettingNamespace,
     val category: SettingCategory,
     @get:StringRes
     val name: Int,
@@ -35,6 +36,12 @@ data class SettingSpec(
         /** Get all the specs */
         fun all() = SETTING_SPECS
     }
+}
+
+enum class SettingNamespace {
+    SYSTEM,
+    SECURE,
+    GLOBAL,
 }
 
 enum class SettingCategory {
@@ -102,6 +109,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         // Display
         SettingSpec(
             id = Settings.System.SCREEN_BRIGHTNESS_MODE,
+            namespace = SettingNamespace.SYSTEM,
             category = SettingCategory.DISPLAY,
             name = R.string.setting_screen_brightness_mode_name,
             description = R.string.setting_screen_brightness_mode_description,
@@ -110,6 +118,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         ),
         SettingSpec(
             id = Settings.System.SCREEN_BRIGHTNESS,
+            namespace = SettingNamespace.SYSTEM,
             category = SettingCategory.DISPLAY,
             name = R.string.setting_screen_brightness_name,
             description = R.string.setting_screen_brightness_description,
@@ -118,6 +127,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         ),
         SettingSpec(
             id = Settings.System.SCREEN_OFF_TIMEOUT,
+            namespace = SettingNamespace.SYSTEM,
             category = SettingCategory.DISPLAY,
             name = R.string.setting_screen_off_timeout_name,
             description = R.string.setting_screen_off_timeout_description,
@@ -137,6 +147,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         ),
         SettingSpec(
             id = Settings.System.USER_ROTATION,
+            namespace = SettingNamespace.SYSTEM,
             category = SettingCategory.DISPLAY,
             name = R.string.setting_user_rotation_name,
             description = R.string.setting_user_rotation_description,
@@ -153,6 +164,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         ),
         SettingSpec(
             id = Settings.System.ACCELEROMETER_ROTATION,
+            namespace = SettingNamespace.SYSTEM,
             category = SettingCategory.DISPLAY,
             name = R.string.setting_accelerometer_rotation_name,
             description = R.string.setting_accelerometer_rotation_description,
@@ -161,6 +173,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         ),
         SettingSpec(
             id = Settings.System.FONT_SCALE,
+            namespace = SettingNamespace.SYSTEM,
             category = SettingCategory.DISPLAY,
             name = R.string.setting_font_scale_name,
             description = R.string.setting_font_scale_description,
@@ -182,6 +195,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         // Sound
         SettingSpec(
             id = Settings.System.RINGTONE,
+            namespace = SettingNamespace.SYSTEM,
             category = SettingCategory.SOUND,
             name = R.string.setting_ringtone_name,
             description = R.string.setting_ringtone_description,
@@ -190,6 +204,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         ),
         SettingSpec(
             id = Settings.System.NOTIFICATION_SOUND,
+            namespace = SettingNamespace.SYSTEM,
             category = SettingCategory.SOUND,
             name = R.string.setting_notification_sound_name,
             description = R.string.setting_notification_sound_description,
@@ -198,6 +213,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         ),
         SettingSpec(
             id = Settings.System.ALARM_ALERT,
+            namespace = SettingNamespace.SYSTEM,
             category = SettingCategory.SOUND,
             name = R.string.setting_alarm_alert_name,
             description = R.string.setting_alarm_alert_description,
@@ -206,6 +222,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         ),
         SettingSpec(
             id = Settings.System.DTMF_TONE_WHEN_DIALING,
+            namespace = SettingNamespace.SYSTEM,
             category = SettingCategory.SOUND,
             name = R.string.setting_dtmf_tone_when_dialing_name,
             description = R.string.setting_dtmf_tone_when_dialing_description,
@@ -214,6 +231,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         ),
         SettingSpec(
             id = Settings.System.SOUND_EFFECTS_ENABLED,
+            namespace = SettingNamespace.SYSTEM,
             category = SettingCategory.SOUND,
             name = R.string.setting_sound_effects_enabled_name,
             description = R.string.setting_sound_effects_enabled_description,
@@ -222,6 +240,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         ),
         SettingSpec(
             id = @Suppress("DEPRECATION") Settings.System.HAPTIC_FEEDBACK_ENABLED,
+            namespace = SettingNamespace.SYSTEM,
             category = SettingCategory.SOUND,
             name = R.string.setting_haptic_feedback_enabled_name,
             description = R.string.setting_haptic_feedback_enabled_description,
@@ -230,6 +249,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         ),
         SettingSpec(
             id = Settings.System.MODE_RINGER_STREAMS_AFFECTED,
+            namespace = SettingNamespace.SYSTEM,
             category = SettingCategory.SOUND,
             name = R.string.setting_mode_ringer_streams_affected_name,
             description = R.string.setting_mode_ringer_streams_affected_description,
@@ -241,6 +261,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         ),
         SettingSpec(
             id = Settings.System.MUTE_STREAMS_AFFECTED,
+            namespace = SettingNamespace.SYSTEM,
             category = SettingCategory.SOUND,
             name = R.string.setting_mute_streams_affected_name,
             description = R.string.setting_mute_streams_affected_description,
@@ -252,6 +273,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         ),
         SettingSpec(
             id = Settings.Global.MODE_RINGER,
+            namespace = SettingNamespace.GLOBAL,
             category = SettingCategory.SOUND,
             name = R.string.setting_mode_ringer_name,
             description = R.string.setting_mode_ringer_description,
@@ -276,6 +298,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         ),
         SettingSpec(
             id = Settings.Secure.TTS_DEFAULT_PITCH,
+            namespace = SettingNamespace.SECURE,
             category = SettingCategory.SOUND,
             name = R.string.setting_tts_default_pitch_name,
             description = R.string.setting_tts_default_pitch_description,
@@ -284,6 +307,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         ),
         SettingSpec(
             id = Settings.Secure.TTS_DEFAULT_RATE,
+            namespace = SettingNamespace.SECURE,
             category = SettingCategory.SOUND,
             name = R.string.setting_tts_default_rate_name,
             description = R.string.setting_tts_default_rate_description,
@@ -292,6 +316,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         ),
         SettingSpec(
             id = Settings.Secure.TTS_DEFAULT_SYNTH,
+            namespace = SettingNamespace.SECURE,
             category = SettingCategory.SOUND,
             name = R.string.setting_tts_default_synth_name,
             description = R.string.setting_tts_default_synth_description,
@@ -303,6 +328,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         ),
         SettingSpec(
             id = Settings.Secure.TTS_ENABLED_PLUGINS,
+            namespace = SettingNamespace.SECURE,
             category = SettingCategory.SOUND,
             name = R.string.setting_tts_enabled_plugins_name,
             description = R.string.setting_tts_enabled_plugins_description,
@@ -316,6 +342,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         // Text
         SettingSpec(
             id = Settings.System.TEXT_AUTO_CAPS,
+            namespace = SettingNamespace.SYSTEM,
             category = SettingCategory.TEXT,
             name = R.string.setting_text_auto_caps_name,
             description = R.string.setting_text_auto_caps_description,
@@ -324,6 +351,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         ),
         SettingSpec(
             id = Settings.System.TEXT_AUTO_PUNCTUATE,
+            namespace = SettingNamespace.SYSTEM,
             category = SettingCategory.TEXT,
             name = R.string.setting_text_auto_punctuate_name,
             description = R.string.setting_text_auto_punctuate_description,
@@ -332,6 +360,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         ),
         SettingSpec(
             id = Settings.System.TEXT_AUTO_REPLACE,
+            namespace = SettingNamespace.SYSTEM,
             category = SettingCategory.TEXT,
             name = R.string.setting_text_auto_replace_name,
             description = R.string.setting_text_auto_replace_description,
@@ -340,6 +369,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         ),
         SettingSpec(
             id = Settings.System.TEXT_SHOW_PASSWORD,
+            namespace = SettingNamespace.SYSTEM,
             category = SettingCategory.TEXT,
             name = R.string.setting_text_show_password_name,
             description = R.string.setting_text_show_password_description,
@@ -349,6 +379,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         // Time
         SettingSpec(
             id = Settings.System.TIME_12_24,
+            namespace = SettingNamespace.SYSTEM,
             category = SettingCategory.TIME,
             name = R.string.setting_time_12_24_name,
             description = R.string.setting_time_12_24_description,
@@ -363,6 +394,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         ),
         SettingSpec(
             id = @Suppress("DEPRECATION") Settings.System.DATE_FORMAT,
+            namespace = SettingNamespace.SYSTEM,
             category = SettingCategory.TIME,
             name = R.string.setting_date_format_name,
             description = R.string.setting_date_format_description,
@@ -379,6 +411,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         ),
         SettingSpec(
             id = Settings.Global.AUTO_TIME,
+            namespace = SettingNamespace.GLOBAL,
             category = SettingCategory.TIME,
             name = R.string.setting_auto_time_name,
             description = R.string.setting_auto_time_description,
@@ -387,6 +420,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         ),
         SettingSpec(
             id = Settings.Global.AUTO_TIME_ZONE,
+            namespace = SettingNamespace.GLOBAL,
             category = SettingCategory.TIME,
             name = R.string.setting_auto_time_zone_name,
             description = R.string.setting_auto_time_zone_description,
@@ -396,6 +430,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         // Connectivity
         SettingSpec(
             id = Settings.Global.AIRPLANE_MODE_ON,
+            namespace = SettingNamespace.GLOBAL,
             category = SettingCategory.CONNECTIVITY,
             name = R.string.setting_airplane_mode_on_name,
             description = R.string.setting_airplane_mode_on_description,
@@ -404,6 +439,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         ),
         SettingSpec(
             id = Settings.Global.BLUETOOTH_ON,
+            namespace = SettingNamespace.GLOBAL,
             category = SettingCategory.CONNECTIVITY,
             name = R.string.setting_bluetooth_on_name,
             description = R.string.setting_bluetooth_on_description,
@@ -412,6 +448,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         ),
         SettingSpec(
             id = Settings.Global.WIFI_ON,
+            namespace = SettingNamespace.GLOBAL,
             category = SettingCategory.CONNECTIVITY,
             name = R.string.setting_wifi_on_name,
             description = R.string.setting_wifi_on_description,
@@ -420,6 +457,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         ),
         SettingSpec(
             id = Settings.Global.DATA_ROAMING,
+            namespace = SettingNamespace.GLOBAL,
             category = SettingCategory.CONNECTIVITY,
             name = R.string.setting_data_roaming_name,
             description = R.string.setting_data_roaming_description,
@@ -428,6 +466,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         ),
         SettingSpec(
             id = Settings.Global.HTTP_PROXY,
+            namespace = SettingNamespace.GLOBAL,
             category = SettingCategory.CONNECTIVITY,
             name = R.string.setting_http_proxy_name,
             description = R.string.setting_http_proxy_description,
@@ -436,6 +475,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         ),
         SettingSpec(
             id = Settings.Global.AIRPLANE_MODE_RADIOS,
+            namespace = SettingNamespace.GLOBAL,
             category = SettingCategory.CONNECTIVITY,
             name = R.string.setting_airplane_mode_radios_name,
             description = R.string.setting_airplane_mode_radios_description,
@@ -454,6 +494,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         ),
         SettingSpec(
             id = @Suppress("DEPRECATION") Settings.Global.WIFI_SLEEP_POLICY,
+            namespace = SettingNamespace.GLOBAL,
             category = SettingCategory.CONNECTIVITY,
             name = R.string.setting_wifi_sleep_policy_name,
             description = R.string.setting_wifi_sleep_policy_description,
@@ -469,6 +510,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         ),
         SettingSpec(
             id = Settings.Global.WIFI_MAX_DHCP_RETRY_COUNT,
+            namespace = SettingNamespace.GLOBAL,
             category = SettingCategory.CONNECTIVITY,
             name = R.string.setting_wifi_max_dhcp_retry_count_name,
             description = R.string.setting_wifi_max_dhcp_retry_count_description,
@@ -477,6 +519,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         ),
         SettingSpec(
             id = @Suppress("DEPRECATION") Settings.Global.WIFI_NETWORKS_AVAILABLE_REPEAT_DELAY,
+            namespace = SettingNamespace.GLOBAL,
             category = SettingCategory.CONNECTIVITY,
             name = R.string.setting_wifi_networks_available_repeat_delay_name,
             description = R.string.setting_wifi_networks_available_repeat_delay_description,
@@ -485,6 +528,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         ),
         SettingSpec(
             id = @Suppress("DEPRECATION") Settings.Global.WIFI_NUM_OPEN_NETWORKS_KEPT,
+            namespace = SettingNamespace.GLOBAL,
             category = SettingCategory.CONNECTIVITY,
             name = R.string.setting_wifi_num_open_networks_kept_name,
             description = R.string.setting_wifi_num_open_networks_kept_description,
@@ -493,6 +537,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         ),
         SettingSpec(
             id = Settings.Global.WIFI_MOBILE_DATA_TRANSITION_WAKELOCK_TIMEOUT_MS,
+            namespace = SettingNamespace.GLOBAL,
             category = SettingCategory.CONNECTIVITY,
             name = R.string.setting_wifi_mobile_data_transition_wakelock_timeout_ms_name,
             description = R.string.setting_wifi_mobile_data_transition_wakelock_timeout_ms_description,
@@ -512,6 +557,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         ),
         SettingSpec(
             id = Settings.System.BLUETOOTH_DISCOVERABILITY,
+            namespace = SettingNamespace.SYSTEM,
             category = SettingCategory.CONNECTIVITY,
             name = R.string.setting_bluetooth_discoverability_name,
             description = R.string.setting_bluetooth_discoverability_description,
@@ -520,6 +566,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         ),
         SettingSpec(
             id = Settings.System.BLUETOOTH_DISCOVERABILITY_TIMEOUT,
+            namespace = SettingNamespace.SYSTEM,
             category = SettingCategory.CONNECTIVITY,
             name = R.string.setting_bluetooth_discoverability_timeout_name,
             description = R.string.setting_bluetooth_discoverability_timeout_description,
@@ -535,6 +582,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         ),
         SettingSpec(
             id = Settings.System.END_BUTTON_BEHAVIOR,
+            namespace = SettingNamespace.SYSTEM,
             category = SettingCategory.CONNECTIVITY,
             name = R.string.setting_end_button_behavior_name,
             description = R.string.setting_end_button_behavior_description,
@@ -550,6 +598,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         // Accessibility
         SettingSpec(
             id = Settings.Secure.ACCESSIBILITY_ENABLED,
+            namespace = SettingNamespace.SECURE,
             category = SettingCategory.ACCESSIBILITY,
             name = R.string.setting_accessibility_enabled_name,
             description = R.string.setting_accessibility_enabled_description,
@@ -558,6 +607,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         ),
         SettingSpec(
             id = Settings.Secure.ACCESSIBILITY_DISPLAY_INVERSION_ENABLED,
+            namespace = SettingNamespace.SECURE,
             category = SettingCategory.ACCESSIBILITY,
             name = R.string.setting_accessibility_display_inversion_enabled_name,
             description = R.string.setting_accessibility_display_inversion_enabled_description,
@@ -566,6 +616,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         ),
         SettingSpec(
             id = Settings.Secure.TOUCH_EXPLORATION_ENABLED,
+            namespace = SettingNamespace.SECURE,
             category = SettingCategory.ACCESSIBILITY,
             name = R.string.setting_touch_exploration_enabled_name,
             description = R.string.setting_touch_exploration_enabled_description,
@@ -574,6 +625,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         ),
         SettingSpec(
             id = Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES,
+            namespace = SettingNamespace.SECURE,
             category = SettingCategory.ACCESSIBILITY,
             name = R.string.setting_enabled_accessibility_services_name,
             description = R.string.setting_enabled_accessibility_services_description,
@@ -586,6 +638,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         ),
         SettingSpec(
             id = Settings.Secure.DEFAULT_INPUT_METHOD,
+            namespace = SettingNamespace.SECURE,
             category = SettingCategory.ACCESSIBILITY,
             name = R.string.setting_default_input_method_name,
             description = R.string.setting_default_input_method_description,
@@ -597,6 +650,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         ),
         SettingSpec(
             id = Settings.Secure.ENABLED_INPUT_METHODS,
+            namespace = SettingNamespace.SECURE,
             category = SettingCategory.ACCESSIBILITY,
             name = R.string.setting_enabled_input_methods_name,
             description = R.string.setting_enabled_input_methods_description,
@@ -609,6 +663,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         ),
         SettingSpec(
             id = Settings.Secure.SELECTED_INPUT_METHOD_SUBTYPE,
+            namespace = SettingNamespace.SECURE,
             category = SettingCategory.ACCESSIBILITY,
             name = R.string.setting_selected_input_method_subtype_name,
             description = R.string.setting_selected_input_method_subtype_description,
@@ -617,6 +672,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         ),
         SettingSpec(
             id = Settings.Secure.INPUT_METHOD_SELECTOR_VISIBILITY,
+            namespace = SettingNamespace.SECURE,
             category = SettingCategory.ACCESSIBILITY,
             name = R.string.setting_input_method_selector_visibility_name,
             description = R.string.setting_input_method_selector_visibility_description,
@@ -632,6 +688,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         // Developer
         SettingSpec(
             id = Settings.Global.ADB_ENABLED,
+            namespace = SettingNamespace.GLOBAL,
             category = SettingCategory.DEVELOPER,
             name = R.string.setting_adb_enabled_name,
             description = R.string.setting_adb_enabled_description,
@@ -640,6 +697,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         ),
         SettingSpec(
             id = Settings.Global.DEVELOPMENT_SETTINGS_ENABLED,
+            namespace = SettingNamespace.GLOBAL,
             category = SettingCategory.DEVELOPER,
             name = R.string.setting_development_settings_enabled_name,
             description = R.string.setting_development_settings_enabled_description,
@@ -648,6 +706,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         ),
         SettingSpec(
             id = Settings.Global.WAIT_FOR_DEBUGGER,
+            namespace = SettingNamespace.GLOBAL,
             category = SettingCategory.DEVELOPER,
             name = R.string.setting_wait_for_debugger_name,
             description = R.string.setting_wait_for_debugger_description,
@@ -656,6 +715,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         ),
         SettingSpec(
             id = Settings.Global.ALWAYS_FINISH_ACTIVITIES,
+            namespace = SettingNamespace.GLOBAL,
             category = SettingCategory.DEVELOPER,
             name = R.string.setting_always_finish_activities_name,
             description = R.string.setting_always_finish_activities_description,
@@ -664,6 +724,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         ),
         SettingSpec(
             id = Settings.Global.WINDOW_ANIMATION_SCALE,
+            namespace = SettingNamespace.GLOBAL,
             category = SettingCategory.DEVELOPER,
             name = R.string.setting_window_animation_scale_name,
             description = R.string.setting_window_animation_scale_description,
@@ -683,6 +744,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         ),
         SettingSpec(
             id = Settings.Global.TRANSITION_ANIMATION_SCALE,
+            namespace = SettingNamespace.GLOBAL,
             category = SettingCategory.DEVELOPER,
             name = R.string.setting_transition_animation_scale_name,
             description = R.string.setting_transition_animation_scale_description,
@@ -702,6 +764,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         ),
         SettingSpec(
             id = Settings.Global.ANIMATOR_DURATION_SCALE,
+            namespace = SettingNamespace.GLOBAL,
             category = SettingCategory.DEVELOPER,
             name = R.string.setting_animator_duration_scale_name,
             description = R.string.setting_animator_duration_scale_description,
@@ -722,6 +785,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         // Power
         SettingSpec(
             id = Settings.Global.STAY_ON_WHILE_PLUGGED_IN,
+            namespace = SettingNamespace.GLOBAL,
             category = SettingCategory.POWER,
             name = R.string.setting_stay_on_while_plugged_in_name,
             description = R.string.setting_stay_on_while_plugged_in_description,
@@ -740,6 +804,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         ),
         SettingSpec(
             id = Settings.Global.USB_MASS_STORAGE_ENABLED,
+            namespace = SettingNamespace.GLOBAL,
             category = SettingCategory.POWER,
             name = R.string.setting_usb_mass_storage_enabled_name,
             description = R.string.setting_usb_mass_storage_enabled_description,
@@ -749,6 +814,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         // Device
         SettingSpec(
             id = Settings.Global.DEVICE_NAME,
+            namespace = SettingNamespace.GLOBAL,
             category = SettingCategory.DEVICE,
             name = R.string.setting_device_name_name,
             description = R.string.setting_device_name_description,
@@ -757,6 +823,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         ),
         SettingSpec(
             id = Settings.Global.DEVICE_PROVISIONED,
+            namespace = SettingNamespace.GLOBAL,
             category = SettingCategory.DEVICE,
             name = R.string.setting_device_provisioned_name,
             description = R.string.setting_device_provisioned_description,
@@ -765,6 +832,7 @@ private val SETTING_SPECS: List<SettingSpec> =
         ),
         SettingSpec(
             id = Settings.Global.USE_GOOGLE_MAIL,
+            namespace = SettingNamespace.GLOBAL,
             category = SettingCategory.DEVICE,
             name = R.string.setting_use_google_mail_name,
             description = R.string.setting_use_google_mail_description,

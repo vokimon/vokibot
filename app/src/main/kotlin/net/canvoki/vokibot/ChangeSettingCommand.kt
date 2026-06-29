@@ -51,7 +51,13 @@ data class ChangeSettingCommand(
     override fun toJson(): String = JsonConfig.encodeToString(serializer(), this)
 
     override suspend fun execute(context: Context) {
-        Settings.System.putString(context.contentResolver, key, value)
+        val spec = SettingSpec.get(key)
+        when (spec?.namespace) {
+            SettingNamespace.SYSTEM -> Settings.System.putString(context.contentResolver, key, value)
+            SettingNamespace.SECURE -> Settings.Secure.putString(context.contentResolver, key, value)
+            SettingNamespace.GLOBAL -> Settings.Global.putString(context.contentResolver, key, value)
+            null -> throw IllegalArgumentException("Unsupported setting: $key")
+        }
     }
 
     override fun loadIcon(context: Context): Drawable =

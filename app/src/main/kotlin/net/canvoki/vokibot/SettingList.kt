@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.ListItem
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -45,6 +46,18 @@ fun SettingList(nav: StackNavigatorState) {
             ListItem(
                 headlineContent = { Text(stringResource(setting.name)) },
                 supportingContent = { Text(stringResource(setting.description)) },
+                trailingContent = {
+                    Text(
+                        text = setting.namespace.name,
+                        style = MaterialTheme.typography.labelSmall,
+                        color =
+                            when (setting.namespace) {
+                                SettingNamespace.SYSTEM -> MaterialTheme.colorScheme.primary
+                                SettingNamespace.SECURE -> MaterialTheme.colorScheme.error
+                                SettingNamespace.GLOBAL -> MaterialTheme.colorScheme.tertiary
+                            },
+                    )
+                },
                 modifier =
                     Modifier
                         .fillMaxWidth()
