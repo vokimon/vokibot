@@ -116,7 +116,11 @@ fun FlagField(
                     },
                     label = {
                         Text(
-                            stringResource(option.labelRes),
+                            if (option.labelRes != 0) {
+                                stringResource(option.labelRes)
+                            } else {
+                                option.value
+                            },
                             style = MaterialTheme.typography.labelSmall,
                         )
                     },

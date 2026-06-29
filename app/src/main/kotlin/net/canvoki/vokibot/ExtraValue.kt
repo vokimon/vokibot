@@ -1,5 +1,6 @@
 package net.canvoki.vokibot
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import androidx.annotation.StringRes
@@ -19,6 +20,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
@@ -31,6 +33,8 @@ import net.canvoki.vokibot.common.FlagSerialization
 import net.canvoki.vokibot.common.FreeStringSetField
 import net.canvoki.vokibot.common.SelectableOption
 import net.canvoki.vokibot.common.UriField
+
+typealias OptionsProvider = (Context) -> List<SelectableOption>
 
 @Serializable
 sealed class ExtraType {
@@ -304,6 +308,7 @@ sealed class ExtraType {
     data class Flags(
         val options: List<SelectableOption> = emptyList(),
         val serial: FlagSerialization = FlagSerialization.BitMask,
+        @Transient val optionsProvider: OptionsProvider? = null,
     ) : ExtraType() {
         override val labelRes = R.string.extra_value_type_flags
 
@@ -326,7 +331,9 @@ sealed class ExtraType {
             onChanged: (ExtraValue) -> Unit,
         ) {
             val selection = (value as? ExtraValue.StringArrayValue)?.values ?: emptyList<kotlin.String>()
-            if (options.isEmpty()) {
+            val context = LocalContext.current
+            val effectiveOptions = remember(context) { optionsProvider?.invoke(context) ?: options }
+            if (effectiveOptions.isEmpty()) {
                 FreeStringSetField(
                     label = label,
                     values = selection,
@@ -337,7 +344,7 @@ sealed class ExtraType {
             } else {
                 FlagField(
                     label = label,
-                    options = options,
+                    options = effectiveOptions,
                     selection = selection,
                     onSelectionChanged = { newSelection ->
                         onChanged(ExtraValue.StringArrayValue(newSelection))

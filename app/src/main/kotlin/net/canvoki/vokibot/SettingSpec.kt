@@ -1,6 +1,8 @@
 package net.canvoki.vokibot
 
+import android.content.Context
 import android.provider.Settings
+import android.view.accessibility.AccessibilityManager
 import androidx.annotation.StringRes
 import net.canvoki.vokibot.common.FlagSerialization
 import net.canvoki.vokibot.common.SelectableOption
@@ -55,6 +57,14 @@ enum class SettingCategory {
             POWER -> R.string.setting_category_power
             DEVICE -> R.string.setting_category_device
         }
+}
+
+private val accessibilityServicesProvider: OptionsProvider = { context ->
+    val am = context.getSystemService(Context.ACCESSIBILITY_SERVICE)
+        as AccessibilityManager
+    am.installedAccessibilityServiceList.map { info ->
+        SelectableOption(info.id, 0)
+    }
 }
 
 private val SETTING_SPECS: List<SettingSpec> =
@@ -541,8 +551,10 @@ private val SETTING_SPECS: List<SettingSpec> =
             description = R.string.setting_enabled_accessibility_services_description,
             rawHelp = R.string.setting_component_names_raw_help,
             type =
-                // TODO: dynamic list from AccessibilityManager
-                ExtraType.Flags(serial = FlagSerialization.ColonSeparated),
+                ExtraType.Flags(
+                    serial = FlagSerialization.ColonSeparated,
+                    optionsProvider = accessibilityServicesProvider,
+                ),
         ),
         SettingSpec(
             id = Settings.Secure.DEFAULT_INPUT_METHOD,
