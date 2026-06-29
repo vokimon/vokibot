@@ -14,7 +14,7 @@ import java.util.UUID
 data class ChangeSettingCommand(
     override val id: String,
     val key: String,
-    val value: ExtraValue,
+    val value: String,
 ) : Command() {
     companion object : EntityMetadata {
         override val typeKey = "change_setting"
@@ -29,7 +29,7 @@ data class ChangeSettingCommand(
 
         fun create(
             key: String,
-            value: ExtraValue,
+            value: String,
             id: String? = null,
         ): ChangeSettingCommand =
             ChangeSettingCommand(
@@ -51,16 +51,7 @@ data class ChangeSettingCommand(
     override fun toJson(): String = JsonConfig.encodeToString(serializer(), this)
 
     override suspend fun execute(context: Context) {
-        val spec =
-            SettingSpec.get(key)
-                ?: throw IllegalArgumentException("Unsupported setting: $key")
-        val stored = spec.type.toStoredSetting(value)
-        log(stored)
-        Settings.System.putString(
-            context.contentResolver,
-            key,
-            stored,
-        )
+        Settings.System.putString(context.contentResolver, key, value)
     }
 
     override fun loadIcon(context: Context): Drawable =

@@ -43,7 +43,6 @@ import kotlinx.serialization.Serializable
 import net.canvoki.shared.component.OneTimeNotice
 import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
-import net.canvoki.vokibot.ExtraValueSaver
 import net.canvoki.vokibot.common.EditorHeader
 import net.canvoki.vokibot.common.MissingPermissionBanner
 import net.canvoki.vokibot.common.TryCommandButton
@@ -120,15 +119,13 @@ fun ChangeSettingCommandEditor(
     val settingTitle = settingSpec?.let { stringResource(it.name) }
     val writeSettingsPerm = rememberPermissionState("android.permission.WRITE_SETTINGS")
     var rawEdit by rememberSaveable { mutableStateOf(false) }
-    var value by rememberSaveable(stateSaver = ExtraValueSaver) {
-        mutableStateOf<ExtraValue>(ExtraValue.BooleanValue(false))
-    }
+    var rawValue by rememberSaveable { mutableStateOf("") }
 
     fun buildCommand(): ChangeSettingCommand {
         require(settingKey != null)
         return ChangeSettingCommand.create(
             key = settingKey!!,
-            value = value,
+            value = rawValue,
             id = editingId,
         )
     }
@@ -141,7 +138,12 @@ fun ChangeSettingCommandEditor(
                 repository.command.load(editingId) as? ChangeSettingCommand
             existing?.let {
                 settingKey = it.key
-                value = it.value
+                rawValue = it.value
+                val spec = SettingSpec.get(it.key)
+                if (spec != null) {
+                    val typed = spec.type.fromStoredSetting(rawValue)
+                    rawEdit = spec.type.toStoredSetting(typed) != rawValue
+                }
             }
             hasLoaded = true
         }
@@ -181,11 +183,8 @@ fun ChangeSettingCommandEditor(
                 nav.push(SettingList) { result ->
                     result?.let {
                         settingKey = it
-                        value = SettingSpec
-                            .get(it)
-                            ?.type
-                            ?.defaultValue()
-                            ?: ExtraValue.StringValue("")
+                        val spec = SettingSpec.get(it)
+                        rawValue = spec?.type?.toStoredSetting(spec.type.defaultValue()) ?: ""
                         rawEdit = false
                         discardState.markDirty()
                     }
@@ -203,9 +202,9 @@ fun ChangeSettingCommandEditor(
 
             if (rawEdit) {
                 OutlinedTextField(
-                    value = settingSpec.type.toStoredSetting(value),
+                    value = rawValue,
                     onValueChange = { raw ->
-                        value = settingSpec.type.fromStoredSetting(raw)
+                        rawValue = raw
                         discardState.markDirty()
                     },
                     label = { Text(stringResource(R.string.change_setting_field_value)) },
@@ -218,11 +217,12 @@ fun ChangeSettingCommandEditor(
                     message = stringResource(R.string.change_setting_raw_edit_warning),
                 )
             } else {
+                val typedValue = settingSpec.type.fromStoredSetting(rawValue)
                 settingSpec.type.Editor(
                     label = stringResource(R.string.change_setting_field_value),
-                    value = value,
+                    value = typedValue,
                     onChanged = {
-                        value = it
+                        rawValue = settingSpec.type.toStoredSetting(it)
                         discardState.markDirty()
                     },
                 )
