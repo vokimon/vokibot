@@ -271,7 +271,7 @@ private val SETTING_SPECS: List<SettingSpec> =
             name = R.string.setting_tts_enabled_plugins_name,
             description = R.string.setting_tts_enabled_plugins_description,
             rawHelp = R.string.setting_tts_enabled_plugins_raw_help,
-            type = ExtraType.String, // TODO: dynamic list from TextToSpeech.Engine
+            type = ExtraType.Flags(serial = FlagSerialization.CommaSeparated), // TODO: dynamic list from TextToSpeech.Engine
         ),
         // Text
         SettingSpec(
@@ -538,7 +538,7 @@ private val SETTING_SPECS: List<SettingSpec> =
             name = R.string.setting_enabled_accessibility_services_name,
             description = R.string.setting_enabled_accessibility_services_description,
             rawHelp = R.string.setting_component_names_raw_help,
-            type = ExtraType.String, // TODO: dynamic list from AccessibilityManager
+            type = ExtraType.Flags(serial = FlagSerialization.CommaSeparated), // TODO: dynamic list from AccessibilityManager
         ),
         SettingSpec(
             id = Settings.Secure.DEFAULT_INPUT_METHOD,
@@ -554,7 +554,7 @@ private val SETTING_SPECS: List<SettingSpec> =
             name = R.string.setting_enabled_input_methods_name,
             description = R.string.setting_enabled_input_methods_description,
             rawHelp = R.string.setting_component_names_raw_help,
-            type = ExtraType.String, // TODO: dynamic list from InputMethodManager
+            type = ExtraType.Flags(serial = FlagSerialization.CommaSeparated), // TODO: dynamic list from InputMethodManager
         ),
         SettingSpec(
             id = Settings.Secure.SELECTED_INPUT_METHOD_SUBTYPE,

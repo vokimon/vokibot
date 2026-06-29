@@ -28,6 +28,7 @@ import kotlinx.serialization.Serializable
 import net.canvoki.vokibot.common.EnumField
 import net.canvoki.vokibot.common.FlagField
 import net.canvoki.vokibot.common.FlagSerialization
+import net.canvoki.vokibot.common.FreeStringSetField
 import net.canvoki.vokibot.common.SelectableOption
 import net.canvoki.vokibot.common.UriField
 
@@ -301,7 +302,7 @@ sealed class ExtraType {
     @Serializable
     @SerialName("FLAG")
     data class Flags(
-        val options: List<SelectableOption>,
+        val options: List<SelectableOption> = emptyList(),
         val serial: FlagSerialization = FlagSerialization.BitMask,
     ) : ExtraType() {
         override val labelRes = R.string.extra_value_type_flags
@@ -325,14 +326,24 @@ sealed class ExtraType {
             onChanged: (ExtraValue) -> Unit,
         ) {
             val selection = (value as? ExtraValue.StringArrayValue)?.values ?: emptyList<kotlin.String>()
-            FlagField(
-                label = label,
-                options = options,
-                selection = selection,
-                onSelectionChanged = { newSelection ->
-                    onChanged(ExtraValue.StringArrayValue(newSelection))
-                },
-            )
+            if (options.isEmpty()) {
+                FreeStringSetField(
+                    label = label,
+                    values = selection,
+                    onValuesChanged = { newSelection ->
+                        onChanged(ExtraValue.StringArrayValue(newSelection))
+                    },
+                )
+            } else {
+                FlagField(
+                    label = label,
+                    options = options,
+                    selection = selection,
+                    onSelectionChanged = { newSelection ->
+                        onChanged(ExtraValue.StringArrayValue(newSelection))
+                    },
+                )
+            }
         }
     }
 
