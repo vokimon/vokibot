@@ -16,16 +16,6 @@ data class ChangeSettingCommand(
     val key: String,
     val value: ExtraValue,
 ) : Command() {
-    constructor(
-        key: String,
-        value: ExtraValue,
-        id: String?,
-    ) : this(
-        id = id ?: "${typeKey}_${toFileSystemId(UUID.randomUUID().toString())}",
-        key = key,
-        value = value,
-    )
-
     companion object : EntityMetadata {
         override val typeKey = "change_setting"
         override val entityClass = ChangeSettingCommand::class
@@ -36,6 +26,17 @@ data class ChangeSettingCommand(
         override val helpRes = R.string.command_change_setting_help
 
         fun register() = StorableEntity.register(this)
+
+        fun create(
+            key: String,
+            value: ExtraValue,
+            id: String? = null,
+        ): ChangeSettingCommand =
+            ChangeSettingCommand(
+                id = id ?: "${typeKey}_${toFileSystemId(UUID.randomUUID().toString())}",
+                key = key,
+                value = value,
+            )
 
         fun fromJson(jsonString: String): Command = JsonConfig.decodeFromString(serializer(), jsonString)
     }

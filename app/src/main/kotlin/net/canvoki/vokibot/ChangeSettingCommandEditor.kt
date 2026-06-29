@@ -126,10 +126,10 @@ fun ChangeSettingCommandEditor(
 
     fun buildCommand(): ChangeSettingCommand {
         require(settingKey != null)
-        return ChangeSettingCommand(
-            id = editingId,
+        return ChangeSettingCommand.create(
             key = settingKey!!,
             value = value,
+            id = editingId,
         )
     }
     val isReadyToRun = writeSettingsPerm.isGranted && settingKey != null
