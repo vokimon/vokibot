@@ -2,7 +2,9 @@ package net.canvoki.vokibot
 
 import android.content.Context
 import android.provider.Settings
+import android.speech.tts.TextToSpeech
 import android.view.accessibility.AccessibilityManager
+import android.view.inputmethod.InputMethodManager
 import androidx.annotation.StringRes
 import net.canvoki.vokibot.common.FlagSerialization
 import net.canvoki.vokibot.common.SelectableOption
@@ -65,6 +67,16 @@ private val accessibilityServicesProvider: OptionsProvider = { context ->
     am.installedAccessibilityServiceList.map { info ->
         SelectableOption(info.id, 0)
     }
+}
+
+private val ttsEnabledPluginsProvider: OptionsProvider = { context ->
+    val tts = TextToSpeech(context, null)
+    tts.engines.map { engine -> SelectableOption(engine.name, 0) }
+}
+
+private val enabledInputMethodsProvider: OptionsProvider = { context ->
+    val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    imm.inputMethodList.map { imi -> SelectableOption(imi.id, 0) }
 }
 
 private val SETTING_SPECS: List<SettingSpec> =
@@ -282,8 +294,10 @@ private val SETTING_SPECS: List<SettingSpec> =
             description = R.string.setting_tts_enabled_plugins_description,
             rawHelp = R.string.setting_tts_enabled_plugins_raw_help,
             type =
-                // TODO: dynamic list from TextToSpeech.Engine
-                ExtraType.Flags(serial = FlagSerialization.CommaSeparated),
+                ExtraType.Flags(
+                    serial = FlagSerialization.CommaSeparated,
+                    optionsProvider = ttsEnabledPluginsProvider,
+                ),
         ),
         // Text
         SettingSpec(
@@ -571,8 +585,10 @@ private val SETTING_SPECS: List<SettingSpec> =
             description = R.string.setting_enabled_input_methods_description,
             rawHelp = R.string.setting_component_names_raw_help,
             type =
-                // TODO: dynamic list from InputMethodManager
-                ExtraType.Flags(serial = FlagSerialization.ColonSeparated),
+                ExtraType.Flags(
+                    serial = FlagSerialization.ColonSeparated,
+                    optionsProvider = enabledInputMethodsProvider,
+                ),
         ),
         SettingSpec(
             id = Settings.Secure.SELECTED_INPUT_METHOD_SUBTYPE,
