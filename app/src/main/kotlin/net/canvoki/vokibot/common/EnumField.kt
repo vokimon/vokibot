@@ -34,7 +34,9 @@ fun EnumField(
     ) {
         OutlinedTextField(
             value =
-                selected?.let { stringResource(it.labelRes) }
+                selected?.let {
+                    if (it.labelRes != 0) stringResource(it.labelRes) else it.value
+                }
                     ?: stringResource(R.string.enum_option_custom_value, selectedValue),
             onValueChange = {},
             readOnly = true,
@@ -54,7 +56,15 @@ fun EnumField(
         ) {
             options.forEach { option ->
                 DropdownMenuItem(
-                    text = { Text(stringResource(option.labelRes)) },
+                    text = {
+                        Text(
+                            if (option.labelRes != 0) {
+                                stringResource(option.labelRes)
+                            } else {
+                                option.value
+                            },
+                        )
+                    },
                     onClick = {
                         onValueChanged(option.value)
                         expanded = false

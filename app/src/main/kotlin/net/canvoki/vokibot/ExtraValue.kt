@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.Transient
 import net.canvoki.vokibot.common.EnumField
 import net.canvoki.vokibot.common.FlagField
 import net.canvoki.vokibot.common.FlagSerialization
@@ -274,7 +275,9 @@ sealed class ExtraType {
     @Serializable
     @SerialName("ENUM")
     data class Enum(
-        val options: List<SelectableOption>,
+        val options: List<SelectableOption> = emptyList(),
+        @Transient
+        val optionsProvider: OptionsProvider? = null,
     ) : ExtraType() {
         override val labelRes = R.string.extra_value_type_enum
 
@@ -294,8 +297,10 @@ sealed class ExtraType {
             onChanged: (ExtraValue) -> Unit,
         ) {
             val rawValue = (value as? ExtraValue.StringValue)?.value ?: ""
+            val context = LocalContext.current
+            val effectiveOptions = remember(context) { optionsProvider?.invoke(context) ?: options }
             EnumField(
-                options = options,
+                options = effectiveOptions,
                 selectedValue = rawValue,
                 onValueChanged = { onChanged(ExtraValue.StringValue(it)) },
                 label = label,

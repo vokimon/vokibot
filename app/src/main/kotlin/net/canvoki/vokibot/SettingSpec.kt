@@ -62,8 +62,9 @@ enum class SettingCategory {
 }
 
 private val accessibilityServicesProvider: OptionsProvider = { context ->
-    val am = context.getSystemService(Context.ACCESSIBILITY_SERVICE)
-        as AccessibilityManager
+    val am =
+        context.getSystemService(Context.ACCESSIBILITY_SERVICE)
+            as AccessibilityManager
     am.installedAccessibilityServiceList.map { info ->
         SelectableOption(info.id, 0)
     }
@@ -285,7 +286,10 @@ private val SETTING_SPECS: List<SettingSpec> =
             name = R.string.setting_tts_default_synth_name,
             description = R.string.setting_tts_default_synth_description,
             rawHelp = R.string.setting_tts_default_synth_raw_help,
-            type = ExtraType.String, // TODO: dynamic list from TextToSpeech.Engine
+            type =
+                ExtraType.Enum(
+                    optionsProvider = ttsEnabledPluginsProvider,
+                ),
         ),
         SettingSpec(
             id = Settings.Secure.TTS_ENABLED_PLUGINS,
@@ -576,7 +580,10 @@ private val SETTING_SPECS: List<SettingSpec> =
             name = R.string.setting_default_input_method_name,
             description = R.string.setting_default_input_method_description,
             rawHelp = R.string.setting_component_name_raw_help,
-            type = ExtraType.String, // TODO: dynamic list from InputMethodManager
+            type =
+                ExtraType.Enum(
+                    optionsProvider = enabledInputMethodsProvider,
+                ),
         ),
         SettingSpec(
             id = Settings.Secure.ENABLED_INPUT_METHODS,
