@@ -26,10 +26,9 @@ import androidx.core.net.toUri
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import net.canvoki.vokibot.common.EnumField
-import net.canvoki.vokibot.common.EnumOption
 import net.canvoki.vokibot.common.FlagField
-import net.canvoki.vokibot.common.FlagOption
 import net.canvoki.vokibot.common.FlagSerialization
+import net.canvoki.vokibot.common.SelectableOption
 import net.canvoki.vokibot.common.UriField
 
 @Serializable
@@ -270,7 +269,7 @@ sealed class ExtraType {
     @Serializable
     @SerialName("ENUM")
     data class Enum(
-        val options: List<EnumOption>,
+        val options: List<SelectableOption>,
     ) : ExtraType() {
         override val labelRes = R.string.extra_value_type_enum
 
@@ -302,7 +301,7 @@ sealed class ExtraType {
     @Serializable
     @SerialName("FLAG")
     data class Flags(
-        val options: List<FlagOption>,
+        val options: List<SelectableOption>,
         val serial: FlagSerialization = FlagSerialization.BitMask,
     ) : ExtraType() {
         override val labelRes = R.string.extra_value_type_flags

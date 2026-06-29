@@ -2,8 +2,8 @@ package net.canvoki.vokibot
 
 import net.canvoki.shared.test.assertEquals
 import net.canvoki.shared.test.assertJsonEqual
-import net.canvoki.vokibot.common.FlagOption
 import net.canvoki.vokibot.common.FlagSerialization
+import net.canvoki.vokibot.common.SelectableOption
 import org.junit.Assert.assertTrue
 import org.junit.Test
 import kotlin.reflect.KClass
@@ -523,22 +523,22 @@ class ExtraValueTest {
         )
     }
 
-    // ---------- FlagOption.bitmask ----------
+    // ---------- SelectableOption.bitmask ----------
 
     @Test
-    fun `FlagOption bitmask when int`() {
-        assertEquals(FlagOption("3", 0).bitmask, 3)
+    fun `SelectableOption bitmask when int`() {
+        assertEquals(SelectableOption("3", 0).bitmask, 3)
     }
 
     @Test
-    fun `FlagOption bitmask when not int is zero`() {
-        assertEquals(FlagOption("not int", 0).bitmask, 0)
+    fun `SelectableOption bitmask when not int is zero`() {
+        assertEquals(SelectableOption("not int", 0).bitmask, 0)
     }
 
     // ---------- FlagSerialization.BitMask.fromString ----------
 
     private fun checkFromBitMask(
-        options: List<FlagOption>,
+        options: List<SelectableOption>,
         bitmask: Int,
         expected: List<String>,
     ) = assertEquals(expected, FlagSerialization.BitMask.fromString(bitmask.toString(), options))
@@ -546,7 +546,7 @@ class ExtraValueTest {
     @Test
     fun `toSelectedValues with single option chosen`() {
         checkFromBitMask(
-            options = listOf(FlagOption("2", 0)),
+            options = listOf(SelectableOption("2", 0)),
             bitmask = 2,
             expected = listOf("2"),
         )
@@ -555,7 +555,7 @@ class ExtraValueTest {
     @Test
     fun `toSelectedValues with no matching flag returns empty`() {
         checkFromBitMask(
-            options = listOf(FlagOption("2", 0)),
+            options = listOf(SelectableOption("2", 0)),
             bitmask = 1,
             expected = emptyList(),
         )
@@ -564,7 +564,7 @@ class ExtraValueTest {
     @Test
     fun `toSelectedValues with two options matches second`() {
         checkFromBitMask(
-            options = listOf(FlagOption("1", 0), FlagOption("2", 0)),
+            options = listOf(SelectableOption("1", 0), SelectableOption("2", 0)),
             bitmask = 2,
             expected = listOf("2"),
         )
@@ -573,7 +573,7 @@ class ExtraValueTest {
     @Test
     fun `toSelectedValues with two matching flags returns both`() {
         checkFromBitMask(
-            options = listOf(FlagOption("1", 0), FlagOption("2", 0)),
+            options = listOf(SelectableOption("1", 0), SelectableOption("2", 0)),
             bitmask = 3,
             expected = listOf("1", "2"),
         )
@@ -582,7 +582,7 @@ class ExtraValueTest {
     // ---------- FlagSerialization.BitMask.toString ----------
 
     private fun checkToBitmask(
-        options: List<FlagOption>,
+        options: List<SelectableOption>,
         values: List<String>,
         expected: String,
     ) = assertEquals(expected, FlagSerialization.BitMask.toString(values, options))
@@ -590,7 +590,7 @@ class ExtraValueTest {
     @Test
     fun `toBitmask with single value returns its bitmask`() {
         checkToBitmask(
-            options = listOf(FlagOption("2", 0)),
+            options = listOf(SelectableOption("2", 0)),
             values = listOf("2"),
             expected = "2",
         )
@@ -599,7 +599,7 @@ class ExtraValueTest {
     @Test
     fun `toBitmask with single value not matching`() {
         checkToBitmask(
-            options = listOf(FlagOption("1", 0)),
+            options = listOf(SelectableOption("1", 0)),
             values = listOf("2"),
             expected = "0",
         )
@@ -608,7 +608,7 @@ class ExtraValueTest {
     @Test
     fun `toBitmask with many values choose the proper`() {
         checkToBitmask(
-            options = listOf(FlagOption("2", 0)),
+            options = listOf(SelectableOption("2", 0)),
             values = listOf("1", "2"),
             expected = "2",
         )
@@ -617,7 +617,7 @@ class ExtraValueTest {
     @Test
     fun `toBitmask with many options choose the proper`() {
         checkToBitmask(
-            options = listOf(FlagOption("1", 0), FlagOption("2", 0)),
+            options = listOf(SelectableOption("1", 0), SelectableOption("2", 0)),
             values = listOf("2"),
             expected = "2",
         )
@@ -626,7 +626,7 @@ class ExtraValueTest {
     @Test
     fun `toBitmask multiple matching values ored`() {
         checkToBitmask(
-            options = listOf(FlagOption("1", 0), FlagOption("2", 0)),
+            options = listOf(SelectableOption("1", 0), SelectableOption("2", 0)),
             values = listOf("1", "2"),
             expected = "3",
         )
@@ -634,22 +634,22 @@ class ExtraValueTest {
 
     // ---------- FlagSerialization.CommaSeparated ----------
 
-    private val defaultFlagOptions =
+    private val defaultOptions =
         listOf(
-            FlagOption("option1", 0),
-            FlagOption("option2", 0),
+            SelectableOption("option1", 0),
+            SelectableOption("option2", 0),
         )
 
     private fun checkToCommaSeparated(
         values: List<String>,
         expected: String,
-        options: List<FlagOption> = defaultFlagOptions,
+        options: List<SelectableOption> = defaultOptions,
     ) = assertEquals(expected, FlagSerialization.CommaSeparated.toString(values, options))
 
     private fun checkFromCommaSeparated(
         input: String,
         expected: List<String>,
-        options: List<FlagOption> = defaultFlagOptions,
+        options: List<SelectableOption> = defaultOptions,
     ) = assertEquals(expected, FlagSerialization.CommaSeparated.fromString(input, options))
 
     @Test

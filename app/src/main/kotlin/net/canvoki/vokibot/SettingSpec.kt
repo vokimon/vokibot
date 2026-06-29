@@ -2,9 +2,8 @@ package net.canvoki.vokibot
 
 import android.provider.Settings
 import androidx.annotation.StringRes
-import net.canvoki.vokibot.common.EnumOption
-import net.canvoki.vokibot.common.FlagOption
 import net.canvoki.vokibot.common.FlagSerialization
+import net.canvoki.vokibot.common.SelectableOption
 
 /**
  * Specification of a Settings parameter.
@@ -86,13 +85,13 @@ private val SETTING_SPECS: List<SettingSpec> =
             type =
                 ExtraType.Enum(
                     listOf(
-                        EnumOption("15000", R.string.setting_duration_15_seconds),
-                        EnumOption("30000", R.string.setting_duration_30_seconds),
-                        EnumOption("60000", R.string.setting_duration_1_minute),
-                        EnumOption("120000", R.string.setting_duration_2_minutes),
-                        EnumOption("300000", R.string.setting_duration_5_minutes),
-                        EnumOption("600000", R.string.setting_duration_10_minutes),
-                        EnumOption("1800000", R.string.setting_duration_30_minutes),
+                        SelectableOption("15000", R.string.setting_duration_15_seconds),
+                        SelectableOption("30000", R.string.setting_duration_30_seconds),
+                        SelectableOption("60000", R.string.setting_duration_1_minute),
+                        SelectableOption("120000", R.string.setting_duration_2_minutes),
+                        SelectableOption("300000", R.string.setting_duration_5_minutes),
+                        SelectableOption("600000", R.string.setting_duration_10_minutes),
+                        SelectableOption("1800000", R.string.setting_duration_30_minutes),
                     ),
                 ),
         ),
@@ -105,10 +104,10 @@ private val SETTING_SPECS: List<SettingSpec> =
             type =
                 ExtraType.Enum(
                     listOf(
-                        EnumOption("0", R.string.setting_rotation_0),
-                        EnumOption("1", R.string.setting_rotation_90),
-                        EnumOption("2", R.string.setting_rotation_180),
-                        EnumOption("3", R.string.setting_rotation_270),
+                        SelectableOption("0", R.string.setting_rotation_0),
+                        SelectableOption("1", R.string.setting_rotation_90),
+                        SelectableOption("2", R.string.setting_rotation_180),
+                        SelectableOption("3", R.string.setting_rotation_270),
                     ),
                 ),
         ),
@@ -129,14 +128,14 @@ private val SETTING_SPECS: List<SettingSpec> =
             type =
                 ExtraType.Enum(
                     listOf(
-                        EnumOption("0.5", R.string.setting_font_scale_0_5),
-                        EnumOption("0.7", R.string.setting_font_scale_0_7),
-                        EnumOption("0.85", R.string.setting_font_scale_0_85),
-                        EnumOption("1.0", R.string.setting_font_scale_1_0),
-                        EnumOption("1.15", R.string.setting_font_scale_1_15),
-                        EnumOption("1.3", R.string.setting_font_scale_1_3),
-                        EnumOption("1.5", R.string.setting_font_scale_1_5),
-                        EnumOption("2.0", R.string.setting_font_scale_2_0),
+                        SelectableOption("0.5", R.string.setting_font_scale_0_5),
+                        SelectableOption("0.7", R.string.setting_font_scale_0_7),
+                        SelectableOption("0.85", R.string.setting_font_scale_0_85),
+                        SelectableOption("1.0", R.string.setting_font_scale_1_0),
+                        SelectableOption("1.15", R.string.setting_font_scale_1_15),
+                        SelectableOption("1.3", R.string.setting_font_scale_1_3),
+                        SelectableOption("1.5", R.string.setting_font_scale_1_5),
+                        SelectableOption("2.0", R.string.setting_font_scale_2_0),
                     ),
                 ),
         ),
@@ -198,13 +197,13 @@ private val SETTING_SPECS: List<SettingSpec> =
             type =
                 ExtraType.Flags(
                     listOf(
-                        FlagOption("1", R.string.setting_audio_stream_voice_call),
-                        FlagOption("2", R.string.setting_audio_stream_system),
-                        FlagOption("4", R.string.setting_audio_stream_ring),
-                        FlagOption("8", R.string.setting_audio_stream_music),
-                        FlagOption("16", R.string.setting_audio_stream_alarm),
-                        FlagOption("32", R.string.setting_audio_stream_notification),
-                        FlagOption("64", R.string.setting_audio_stream_bt_sco),
+                        SelectableOption("1", R.string.setting_audio_stream_voice_call),
+                        SelectableOption("2", R.string.setting_audio_stream_system),
+                        SelectableOption("4", R.string.setting_audio_stream_ring),
+                        SelectableOption("8", R.string.setting_audio_stream_music),
+                        SelectableOption("16", R.string.setting_audio_stream_alarm),
+                        SelectableOption("32", R.string.setting_audio_stream_notification),
+                        SelectableOption("64", R.string.setting_audio_stream_bt_sco),
                     ),
                 ),
         ),
@@ -217,13 +216,13 @@ private val SETTING_SPECS: List<SettingSpec> =
             type =
                 ExtraType.Flags(
                     listOf(
-                        FlagOption("1", R.string.setting_audio_stream_voice_call),
-                        FlagOption("2", R.string.setting_audio_stream_system),
-                        FlagOption("4", R.string.setting_audio_stream_ring),
-                        FlagOption("8", R.string.setting_audio_stream_music),
-                        FlagOption("16", R.string.setting_audio_stream_alarm),
-                        FlagOption("32", R.string.setting_audio_stream_notification),
-                        FlagOption("64", R.string.setting_audio_stream_bt_sco),
+                        SelectableOption("1", R.string.setting_audio_stream_voice_call),
+                        SelectableOption("2", R.string.setting_audio_stream_system),
+                        SelectableOption("4", R.string.setting_audio_stream_ring),
+                        SelectableOption("8", R.string.setting_audio_stream_music),
+                        SelectableOption("16", R.string.setting_audio_stream_alarm),
+                        SelectableOption("32", R.string.setting_audio_stream_notification),
+                        SelectableOption("64", R.string.setting_audio_stream_bt_sco),
                     ),
                 ),
         ),
@@ -236,9 +235,9 @@ private val SETTING_SPECS: List<SettingSpec> =
             type =
                 ExtraType.Enum(
                     listOf(
-                        EnumOption("0", R.string.setting_ringer_mode_normal),
-                        EnumOption("1", R.string.setting_ringer_mode_vibrate),
-                        EnumOption("2", R.string.setting_ringer_mode_silent),
+                        SelectableOption("0", R.string.setting_ringer_mode_normal),
+                        SelectableOption("1", R.string.setting_ringer_mode_vibrate),
+                        SelectableOption("2", R.string.setting_ringer_mode_silent),
                     ),
                 ),
         ),
@@ -317,8 +316,8 @@ private val SETTING_SPECS: List<SettingSpec> =
             type =
                 ExtraType.Enum(
                     listOf(
-                        EnumOption("12", R.string.setting_hour_format_12h),
-                        EnumOption("24", R.string.setting_hour_format_24h),
+                        SelectableOption("12", R.string.setting_hour_format_12h),
+                        SelectableOption("24", R.string.setting_hour_format_24h),
                     ),
                 ),
         ),
@@ -331,10 +330,10 @@ private val SETTING_SPECS: List<SettingSpec> =
             type =
                 ExtraType.Enum(
                     listOf(
-                        EnumOption("MM/dd/yyyy", R.string.setting_date_format_mdy),
-                        EnumOption("dd/MM/yyyy", R.string.setting_date_format_dmy),
-                        EnumOption("yyyy/MM/dd", R.string.setting_date_format_ymd),
-                        EnumOption("yyyy-MM-dd", R.string.setting_date_format_iso),
+                        SelectableOption("MM/dd/yyyy", R.string.setting_date_format_mdy),
+                        SelectableOption("dd/MM/yyyy", R.string.setting_date_format_dmy),
+                        SelectableOption("yyyy/MM/dd", R.string.setting_date_format_ymd),
+                        SelectableOption("yyyy-MM-dd", R.string.setting_date_format_iso),
                     ),
                 ),
         ),
@@ -405,10 +404,10 @@ private val SETTING_SPECS: List<SettingSpec> =
                 ExtraType.Flags(
                     options =
                         listOf(
-                            FlagOption("bluetooth", R.string.setting_airplane_mode_option_bluetooth),
-                            FlagOption("cell", R.string.setting_airplane_mode_option_cell),
-                            FlagOption("nfc", R.string.setting_airplane_mode_option_nfc),
-                            FlagOption("wifi", R.string.setting_airplane_mode_option_wifi),
+                            SelectableOption("bluetooth", R.string.setting_airplane_mode_option_bluetooth),
+                            SelectableOption("cell", R.string.setting_airplane_mode_option_cell),
+                            SelectableOption("nfc", R.string.setting_airplane_mode_option_nfc),
+                            SelectableOption("wifi", R.string.setting_airplane_mode_option_wifi),
                         ),
                     serial = FlagSerialization.CommaSeparated,
                 ),
@@ -422,9 +421,9 @@ private val SETTING_SPECS: List<SettingSpec> =
             type =
                 ExtraType.Enum(
                     listOf(
-                        EnumOption("0", R.string.setting_wifi_sleep_policy_default),
-                        EnumOption("1", R.string.setting_wifi_sleep_policy_never_while_plugged),
-                        EnumOption("2", R.string.setting_wifi_sleep_policy_never),
+                        SelectableOption("0", R.string.setting_wifi_sleep_policy_default),
+                        SelectableOption("1", R.string.setting_wifi_sleep_policy_never_while_plugged),
+                        SelectableOption("2", R.string.setting_wifi_sleep_policy_never),
                     ),
                 ),
         ),
@@ -461,13 +460,13 @@ private val SETTING_SPECS: List<SettingSpec> =
             type =
                 ExtraType.Enum(
                     listOf(
-                        EnumOption("15000", R.string.setting_duration_15_seconds),
-                        EnumOption("30000", R.string.setting_duration_30_seconds),
-                        EnumOption("60000", R.string.setting_duration_1_minute),
-                        EnumOption("120000", R.string.setting_duration_2_minutes),
-                        EnumOption("300000", R.string.setting_duration_5_minutes),
-                        EnumOption("600000", R.string.setting_duration_10_minutes),
-                        EnumOption("1800000", R.string.setting_duration_30_minutes),
+                        SelectableOption("15000", R.string.setting_duration_15_seconds),
+                        SelectableOption("30000", R.string.setting_duration_30_seconds),
+                        SelectableOption("60000", R.string.setting_duration_1_minute),
+                        SelectableOption("120000", R.string.setting_duration_2_minutes),
+                        SelectableOption("300000", R.string.setting_duration_5_minutes),
+                        SelectableOption("600000", R.string.setting_duration_10_minutes),
+                        SelectableOption("1800000", R.string.setting_duration_30_minutes),
                     ),
                 ),
         ),
@@ -488,9 +487,9 @@ private val SETTING_SPECS: List<SettingSpec> =
             type =
                 ExtraType.Enum(
                     listOf(
-                        EnumOption("120", R.string.setting_duration_2_minutes),
-                        EnumOption("300", R.string.setting_duration_5_minutes),
-                        EnumOption("600", R.string.setting_duration_10_minutes),
+                        SelectableOption("120", R.string.setting_duration_2_minutes),
+                        SelectableOption("300", R.string.setting_duration_5_minutes),
+                        SelectableOption("600", R.string.setting_duration_10_minutes),
                     ),
                 ),
         ),
@@ -503,8 +502,8 @@ private val SETTING_SPECS: List<SettingSpec> =
             type =
                 ExtraType.Enum(
                     listOf(
-                        EnumOption("0", R.string.setting_end_button_behavior_end_call),
-                        EnumOption("1", R.string.setting_end_button_behavior_caller_log),
+                        SelectableOption("0", R.string.setting_end_button_behavior_end_call),
+                        SelectableOption("1", R.string.setting_end_button_behavior_caller_log),
                     ),
                 ),
         ),
@@ -574,8 +573,8 @@ private val SETTING_SPECS: List<SettingSpec> =
             type =
                 ExtraType.Enum(
                     listOf(
-                        EnumOption("0", R.string.setting_input_method_selector_auto),
-                        EnumOption("1", R.string.setting_input_method_selector_always_show),
+                        SelectableOption("0", R.string.setting_input_method_selector_auto),
+                        SelectableOption("1", R.string.setting_input_method_selector_always_show),
                     ),
                 ),
         ),
@@ -621,13 +620,13 @@ private val SETTING_SPECS: List<SettingSpec> =
             type =
                 ExtraType.Enum(
                     listOf(
-                        EnumOption("0.0", R.string.setting_animation_scale_off),
-                        EnumOption("0.5", R.string.setting_animation_scale_0_5x),
-                        EnumOption("1.0", R.string.setting_animation_scale_1x),
-                        EnumOption("1.5", R.string.setting_animation_scale_1_5x),
-                        EnumOption("2.0", R.string.setting_animation_scale_2x),
-                        EnumOption("5.0", R.string.setting_animation_scale_5x),
-                        EnumOption("10.0", R.string.setting_animation_scale_10x),
+                        SelectableOption("0.0", R.string.setting_animation_scale_off),
+                        SelectableOption("0.5", R.string.setting_animation_scale_0_5x),
+                        SelectableOption("1.0", R.string.setting_animation_scale_1x),
+                        SelectableOption("1.5", R.string.setting_animation_scale_1_5x),
+                        SelectableOption("2.0", R.string.setting_animation_scale_2x),
+                        SelectableOption("5.0", R.string.setting_animation_scale_5x),
+                        SelectableOption("10.0", R.string.setting_animation_scale_10x),
                     ),
                 ),
         ),
@@ -640,13 +639,13 @@ private val SETTING_SPECS: List<SettingSpec> =
             type =
                 ExtraType.Enum(
                     listOf(
-                        EnumOption("0.0", R.string.setting_animation_scale_off),
-                        EnumOption("0.5", R.string.setting_animation_scale_0_5x),
-                        EnumOption("1.0", R.string.setting_animation_scale_1x),
-                        EnumOption("1.5", R.string.setting_animation_scale_1_5x),
-                        EnumOption("2.0", R.string.setting_animation_scale_2x),
-                        EnumOption("5.0", R.string.setting_animation_scale_5x),
-                        EnumOption("10.0", R.string.setting_animation_scale_10x),
+                        SelectableOption("0.0", R.string.setting_animation_scale_off),
+                        SelectableOption("0.5", R.string.setting_animation_scale_0_5x),
+                        SelectableOption("1.0", R.string.setting_animation_scale_1x),
+                        SelectableOption("1.5", R.string.setting_animation_scale_1_5x),
+                        SelectableOption("2.0", R.string.setting_animation_scale_2x),
+                        SelectableOption("5.0", R.string.setting_animation_scale_5x),
+                        SelectableOption("10.0", R.string.setting_animation_scale_10x),
                     ),
                 ),
         ),
@@ -659,13 +658,13 @@ private val SETTING_SPECS: List<SettingSpec> =
             type =
                 ExtraType.Enum(
                     listOf(
-                        EnumOption("0.0", R.string.setting_animation_scale_off),
-                        EnumOption("0.5", R.string.setting_animation_scale_0_5x),
-                        EnumOption("1.0", R.string.setting_animation_scale_1x),
-                        EnumOption("1.5", R.string.setting_animation_scale_1_5x),
-                        EnumOption("2.0", R.string.setting_animation_scale_2x),
-                        EnumOption("5.0", R.string.setting_animation_scale_5x),
-                        EnumOption("10.0", R.string.setting_animation_scale_10x),
+                        SelectableOption("0.0", R.string.setting_animation_scale_off),
+                        SelectableOption("0.5", R.string.setting_animation_scale_0_5x),
+                        SelectableOption("1.0", R.string.setting_animation_scale_1x),
+                        SelectableOption("1.5", R.string.setting_animation_scale_1_5x),
+                        SelectableOption("2.0", R.string.setting_animation_scale_2x),
+                        SelectableOption("5.0", R.string.setting_animation_scale_5x),
+                        SelectableOption("10.0", R.string.setting_animation_scale_10x),
                     ),
                 ),
         ),
@@ -679,9 +678,9 @@ private val SETTING_SPECS: List<SettingSpec> =
             type =
                 ExtraType.Flags(
                     listOf(
-                        FlagOption("1", R.string.setting_plugged_ac),
-                        FlagOption("2", R.string.setting_plugged_usb),
-                        FlagOption("4", R.string.setting_plugged_wireless),
+                        SelectableOption("1", R.string.setting_plugged_ac),
+                        SelectableOption("2", R.string.setting_plugged_usb),
+                        SelectableOption("4", R.string.setting_plugged_wireless),
                     ),
                 ),
         ),

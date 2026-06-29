@@ -20,58 +20,61 @@ import kotlinx.serialization.Serializable
 import net.canvoki.vokibot.R
 
 @Serializable
-data class FlagOption(
+data class SelectableOption(
     val value: String,
-    @get:StringRes val label: Int,
+    @get:StringRes val labelRes: Int,
 ) {
     val bitmask: Int = value.toIntOrNull() ?: 0
 }
 
-private fun List<FlagOption>.toSelectedValues(bitmask: Int): List<String> =
+private fun List<SelectableOption>.toSelectedValues(bitmask: Int): List<String> =
     mapNotNull { if (it.bitmask and bitmask != 0) it.value else null }
 
-private fun List<FlagOption>.toBitmask(values: List<String>): Int =
+private fun List<SelectableOption>.toBitmask(values: List<String>): Int =
     map { it.value }.intersect(values.toSet()).mapNotNull { it.toInt() }.fold(0) { a, b -> a or b }
 
 sealed interface FlagSerialization {
     abstract fun toString(
         values: List<String>,
-        options: List<FlagOption>,
+        options: List<SelectableOption>,
     ): String
 
     abstract fun fromString(
         value: String,
-        options: List<FlagOption>,
+        options: List<SelectableOption>,
     ): List<String>
 
     object BitMask : FlagSerialization {
         override fun toString(
             values: List<String>,
-            options: List<FlagOption>,
+            options: List<SelectableOption>,
         ): String = options.toBitmask(values).toString()
 
         override fun fromString(
             value: String,
-            options: List<FlagOption>,
-        ): List<String> = options.toSelectedValues(value.toInt())
+            options: List<SelectableOption>,
+        ): List<String> {
+            val bitmask = value.toIntOrNull() ?: return emptyList()
+            return options.toSelectedValues(bitmask)
+        }
     }
 
     object CommaSeparated : FlagSerialization {
         override fun toString(
             values: List<String>,
-            options: List<FlagOption>,
+            options: List<SelectableOption>,
         ): String = values.joinToString(",")
 
         override fun fromString(
             value: String,
-            options: List<FlagOption>,
+            options: List<SelectableOption>,
         ): List<String> = value.split(",").map { it.trim() }.filter { it.isNotEmpty() }
     }
 }
 
 @Composable
 fun FlagField(
-    options: List<FlagOption>,
+    options: List<SelectableOption>,
     selection: List<String>,
     onSelectionChanged: (List<String>) -> Unit,
     label: String,
@@ -101,7 +104,7 @@ fun FlagField(
                     },
                     label = {
                         Text(
-                            stringResource(option.label),
+                            stringResource(option.labelRes),
                             style = MaterialTheme.typography.labelSmall,
                         )
                     },
