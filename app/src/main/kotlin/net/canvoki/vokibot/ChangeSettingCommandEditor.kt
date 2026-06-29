@@ -117,7 +117,13 @@ fun ChangeSettingCommandEditor(
     var settingKey by rememberSaveable { mutableStateOf<String?>(null) }
     val settingSpec = settingKey?.let { id -> SettingSpec.get(id) }
     val settingTitle = settingSpec?.let { stringResource(it.name) }
-    val writeSettingsPerm = rememberPermissionState("android.permission.WRITE_SETTINGS")
+    val writePerm =
+        rememberPermissionState(
+            when (settingSpec?.namespace) {
+                SettingNamespace.SYSTEM, null -> "android.permission.WRITE_SETTINGS"
+                SettingNamespace.SECURE, SettingNamespace.GLOBAL -> "android.permission.WRITE_SECURE_SETTINGS"
+            },
+        )
     var rawEdit by rememberSaveable { mutableStateOf(false) }
     var rawValue by rememberSaveable { mutableStateOf("") }
 
@@ -129,7 +135,7 @@ fun ChangeSettingCommandEditor(
             id = editingId,
         )
     }
-    val isReadyToRun = writeSettingsPerm.isGranted && settingKey != null
+    val isReadyToRun = writePerm.isGranted && settingKey != null
     val isReadyToSave = settingKey != null
 
     LaunchedEffect(editingId) {
@@ -245,7 +251,7 @@ fun ChangeSettingCommandEditor(
             )
 
             MissingPermissionBanner(
-                state = writeSettingsPerm,
+                state = writePerm,
                 message = stringResource(R.string.change_setting_permission_required),
             )
         }

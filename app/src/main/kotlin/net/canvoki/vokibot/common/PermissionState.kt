@@ -6,6 +6,8 @@ import android.net.Uri
 import android.provider.Settings
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
@@ -40,6 +42,8 @@ fun rememberPermissionState(permission: String?): PermissionState {
     when (permission) {
         "android.permission.WRITE_SETTINGS" ->
             return rememberWriteSettingsPermissionState()
+        "android.permission.WRITE_SECURE_SETTINGS" ->
+            return rememberWriteSecureSettingsPermissionState()
     }
 
     val context = LocalContext.current
@@ -122,6 +126,54 @@ private fun rememberWriteSettingsPermissionState(): PermissionState {
                     data = Uri.fromParts("package", context.packageName, null)
                 },
             )
+        }
+    }
+}
+
+@Composable
+private fun rememberWriteSecureSettingsPermissionState(): PermissionState {
+    val context = LocalContext.current
+    val lifecycleOwner = LocalLifecycleOwner.current
+
+    var isGranted by remember {
+        mutableStateOf(
+            ContextCompat.checkSelfPermission(
+                context,
+                android.Manifest.permission.WRITE_SECURE_SETTINGS,
+            ) == PackageManager.PERMISSION_GRANTED,
+        )
+    }
+    var showDialog by remember { mutableStateOf(false) }
+
+    DisposableEffect(lifecycleOwner) {
+        val observer =
+            LifecycleEventObserver { _, event ->
+                if (event == Lifecycle.Event.ON_RESUME) {
+                    isGranted =
+                        ContextCompat.checkSelfPermission(
+                            context,
+                            android.Manifest.permission.WRITE_SECURE_SETTINGS,
+                        ) == PackageManager.PERMISSION_GRANTED
+                }
+            }
+        lifecycleOwner.lifecycle.addObserver(observer)
+        onDispose { lifecycleOwner.lifecycle.removeObserver(observer) }
+    }
+
+    if (showDialog) {
+        AlertDialog(
+            onDismissRequest = { showDialog = false },
+            title = { Text("Hello world") },
+            text = { Text("Hello world") },
+            confirmButton = { Text("OK") },
+        )
+    }
+
+    return object : PermissionState {
+        override val isGranted: Boolean get() = isGranted
+
+        override fun request() {
+            showDialog = true
         }
     }
 }

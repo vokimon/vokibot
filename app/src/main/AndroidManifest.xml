@@ -9,9 +9,9 @@
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
 
     <!-- Optional: For automation that needs to change Settings.Global and Settings.Secure -->
-    <!--
-    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" />
-    -->
+    <!-- Requires grant by means of ADB: adb shell pm grant net.canvoki.vokibot android.permission.WRITE_SECURE_SETTINGS -->
+    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
 
     <!-- Optional: For automation that needs to launch apps -->
     <uses-permission android:name="android.permission.EXPAND_STATUS_BAR" />
