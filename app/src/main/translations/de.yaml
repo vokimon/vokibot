@@ -586,7 +586,8 @@ setting_audio_stream_ring: Klingeln
 setting_audio_stream_music: Musik
 setting_audio_stream_alarm: Wecker
 setting_audio_stream_notification: Benachrichtigung
-setting_audio_stream_bt_sco: Bluetooth-Anrufe
+setting_audio_stream_dtmf: DTMF-Töne
+setting_audio_stream_accessibility: Barrierefreiheit
 setting_plugged_usb: USB
 setting_plugged_ac: Netz
 setting_plugged_wireless: Kabellos

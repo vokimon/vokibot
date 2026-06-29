@@ -234,6 +234,7 @@ AOSP source:
     - UI: Enum("15s"=15000, "30s"=30000, "1m"=60000, "2m"=120000, "5m"=300000, "10m"=600000, "30m"=1800000)
 - `USER_ROTATION`: (Int) Default rotation: 0=0deg, 1=90deg, 2=180deg, 3=270deg (System)
     - UI: Enum("0°"=0, "90°"=1, "180°"=2, "270°"=3)
+    - Constants: `Surface.ROTATION_0`=0, `Surface.ROTATION_90`=1, `Surface.ROTATION_180`=2, `Surface.ROTATION_270`=3. Stored as-is.
 - `ACCELEROMETER_ROTATION`: (Int) 0=manual, 1=accelerometer controls rotation (System)
     - UI: Enum("Manual", "Auto") maybe Toggle
 - `FONT_SCALE`: (Float) Font scaling factor, 1.0 is default (System)
@@ -253,12 +254,15 @@ AOSP source:
     - UI: Toggle
 - `HAPTIC_FEEDBACK_ENABLED`: (Int) 0=off, 1=on, haptic feedback on long press etc. (System)
     - UI: Toggle
-- `MODE_RINGER_STREAMS_AFFECTED`: (Int) Bitmask: voice_call=1, system=2, ring=4, music=8, alarm=16, notification=32, bt_sco=64 (System)
-    - UI: Flags("Voice call", "System", "Ring", "Music", "Alarm", "Notification", "BT SCO")
-- `MUTE_STREAMS_AFFECTED`: (Int) Bitmask: voice_call=1, system=2, ring=4, music=8, alarm=16, notification=32, bt_sco=64 (System)
-    - UI: Flags("Voice call", "System", "Ring", "Music", "Alarm", "Notification", "BT SCO")
+- `MODE_RINGER_STREAMS_AFFECTED`: (Int) Bitmask: voice_call=0, system=1, ring=2, music=3, alarm=4, notification=5, dtmf=6, accessibility=7 (System)
+    - UI: Flags("Voice call", "System", "Ring", "Music", "Alarm", "Notification", "DTMF Tones", "Accessibility")
+    - Constants: `AudioManager.STREAM_VOICE_CALL`=0, `STREAM_SYSTEM`=1, `STREAM_RING`=2, `STREAM_MUSIC`=3, `STREAM_ALARM`=4, `STREAM_NOTIFICATION`=5, `STREAM_DTMF`=6, `STREAM_ACCESSIBILITY`=7. Stored as `1 shl STREAM_xxx`.
+- `MUTE_STREAMS_AFFECTED`: (Int) Bitmask: voice_call=0, system=1, ring=2, music=3, alarm=4, notification=5, dtmf=6, accessibility=7 (System)
+    - UI: Flags("Voice call", "System", "Ring", "Music", "Alarm", "Notification", "DTMF Tones", "Accessibility")
+    - Constants: Same as MODE_RINGER_STREAMS_AFFECTED. Stored as `1 shl STREAM_xxx`.
 - `MODE_RINGER`: (Int) 0=normal, 1=vibrate, 2=silent (Global)
     - UI: Enum("Normal", "Vibrate", "Silent")
+    - Constants: `AudioManager.RINGER_MODE_NORMAL`=2, `RINGER_MODE_VIBRATE`=1, `RINGER_MODE_SILENT`=0. Stored as-is.
 - `TTS_DEFAULT_PITCH`: (Int) Pitch value, 10-500 (Secure)
     - UI: Ranged value
 - `TTS_DEFAULT_RATE`: (Int) Speech rate, 10-300 (Secure)
@@ -365,6 +369,7 @@ AOSP source:
 
 - `STAY_ON_WHILE_PLUGGED_IN`: (Int) Bitmask: ac=1, usb=2, wireless=4 (Global)
     - UI: Flags("AC", "USB", "Wireless")
+    - Constants: `BatteryManager.BATTERY_PLUGGED_AC`=1, `BATTERY_PLUGGED_USB`=2, `BATTERY_PLUGGED_WIRELESS`=4. Stored as-is.
 - `USB_MASS_STORAGE_ENABLED`: (Int) 0=off, 1=on (Global)
     - UI: Toggle
 

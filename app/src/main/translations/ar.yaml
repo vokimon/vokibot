@@ -586,7 +586,8 @@ setting_audio_stream_ring: الرنين
 setting_audio_stream_music: موسيقى
 setting_audio_stream_alarm: المنبه
 setting_audio_stream_notification: الإشعار
-setting_audio_stream_bt_sco: مكالمات البلوتوث
+setting_audio_stream_dtmf: نغمات DTMF
+setting_audio_stream_accessibility: إمكانية الوصول
 setting_plugged_usb: USB
 setting_plugged_ac: الشبكة
 setting_plugged_wireless: لاسلكي

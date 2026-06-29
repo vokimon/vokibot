@@ -1,8 +1,11 @@
 package net.canvoki.vokibot
 
 import android.content.Context
+import android.media.AudioManager
+import android.os.BatteryManager
 import android.provider.Settings
 import android.speech.tts.TextToSpeech
+import android.view.Surface
 import android.view.accessibility.AccessibilityManager
 import android.view.inputmethod.InputMethodManager
 import androidx.annotation.StringRes
@@ -60,6 +63,20 @@ enum class SettingCategory {
             DEVICE -> R.string.setting_category_device
         }
 }
+
+private fun streamBitmask(vararg streams: Int) = streams.fold(0) { acc, s -> acc or (1 shl s) }.toString()
+
+private val audioStreamOptions =
+    listOf(
+        SelectableOption(streamBitmask(AudioManager.STREAM_VOICE_CALL), R.string.setting_audio_stream_voice_call),
+        SelectableOption(streamBitmask(AudioManager.STREAM_SYSTEM), R.string.setting_audio_stream_system),
+        SelectableOption(streamBitmask(AudioManager.STREAM_RING), R.string.setting_audio_stream_ring),
+        SelectableOption(streamBitmask(AudioManager.STREAM_MUSIC), R.string.setting_audio_stream_music),
+        SelectableOption(streamBitmask(AudioManager.STREAM_ALARM), R.string.setting_audio_stream_alarm),
+        SelectableOption(streamBitmask(AudioManager.STREAM_NOTIFICATION), R.string.setting_audio_stream_notification),
+        SelectableOption(streamBitmask(AudioManager.STREAM_DTMF), R.string.setting_audio_stream_dtmf),
+        SelectableOption(streamBitmask(AudioManager.STREAM_ACCESSIBILITY), R.string.setting_audio_stream_accessibility),
+    )
 
 private val accessibilityServicesProvider: OptionsProvider = { context ->
     val am =
@@ -127,10 +144,10 @@ private val SETTING_SPECS: List<SettingSpec> =
             type =
                 ExtraType.Enum(
                     listOf(
-                        SelectableOption("0", R.string.setting_rotation_0),
-                        SelectableOption("1", R.string.setting_rotation_90),
-                        SelectableOption("2", R.string.setting_rotation_180),
-                        SelectableOption("3", R.string.setting_rotation_270),
+                        SelectableOption(Surface.ROTATION_0.toString(), R.string.setting_rotation_0),
+                        SelectableOption(Surface.ROTATION_90.toString(), R.string.setting_rotation_90),
+                        SelectableOption(Surface.ROTATION_180.toString(), R.string.setting_rotation_180),
+                        SelectableOption(Surface.ROTATION_270.toString(), R.string.setting_rotation_270),
                     ),
                 ),
         ),
@@ -219,15 +236,7 @@ private val SETTING_SPECS: List<SettingSpec> =
             rawHelp = R.string.setting_stream_bitmask_raw_help,
             type =
                 ExtraType.Flags(
-                    listOf(
-                        SelectableOption("1", R.string.setting_audio_stream_voice_call),
-                        SelectableOption("2", R.string.setting_audio_stream_system),
-                        SelectableOption("4", R.string.setting_audio_stream_ring),
-                        SelectableOption("8", R.string.setting_audio_stream_music),
-                        SelectableOption("16", R.string.setting_audio_stream_alarm),
-                        SelectableOption("32", R.string.setting_audio_stream_notification),
-                        SelectableOption("64", R.string.setting_audio_stream_bt_sco),
-                    ),
+                    audioStreamOptions,
                 ),
         ),
         SettingSpec(
@@ -238,15 +247,7 @@ private val SETTING_SPECS: List<SettingSpec> =
             rawHelp = R.string.setting_stream_bitmask_raw_help,
             type =
                 ExtraType.Flags(
-                    listOf(
-                        SelectableOption("1", R.string.setting_audio_stream_voice_call),
-                        SelectableOption("2", R.string.setting_audio_stream_system),
-                        SelectableOption("4", R.string.setting_audio_stream_ring),
-                        SelectableOption("8", R.string.setting_audio_stream_music),
-                        SelectableOption("16", R.string.setting_audio_stream_alarm),
-                        SelectableOption("32", R.string.setting_audio_stream_notification),
-                        SelectableOption("64", R.string.setting_audio_stream_bt_sco),
-                    ),
+                    audioStreamOptions,
                 ),
         ),
         SettingSpec(
@@ -258,9 +259,18 @@ private val SETTING_SPECS: List<SettingSpec> =
             type =
                 ExtraType.Enum(
                     listOf(
-                        SelectableOption("0", R.string.setting_ringer_mode_normal),
-                        SelectableOption("1", R.string.setting_ringer_mode_vibrate),
-                        SelectableOption("2", R.string.setting_ringer_mode_silent),
+                        SelectableOption(
+                            AudioManager.RINGER_MODE_NORMAL.toString(),
+                            R.string.setting_ringer_mode_normal,
+                        ),
+                        SelectableOption(
+                            AudioManager.RINGER_MODE_VIBRATE.toString(),
+                            R.string.setting_ringer_mode_vibrate,
+                        ),
+                        SelectableOption(
+                            AudioManager.RINGER_MODE_SILENT.toString(),
+                            R.string.setting_ringer_mode_silent,
+                        ),
                     ),
                 ),
         ),
@@ -719,9 +729,12 @@ private val SETTING_SPECS: List<SettingSpec> =
             type =
                 ExtraType.Flags(
                     listOf(
-                        SelectableOption("1", R.string.setting_plugged_ac),
-                        SelectableOption("2", R.string.setting_plugged_usb),
-                        SelectableOption("4", R.string.setting_plugged_wireless),
+                        SelectableOption(BatteryManager.BATTERY_PLUGGED_AC.toString(), R.string.setting_plugged_ac),
+                        SelectableOption(BatteryManager.BATTERY_PLUGGED_USB.toString(), R.string.setting_plugged_usb),
+                        SelectableOption(
+                            BatteryManager.BATTERY_PLUGGED_WIRELESS.toString(),
+                            R.string.setting_plugged_wireless,
+                        ),
                     ),
                 ),
         ),

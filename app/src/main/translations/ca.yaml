@@ -586,7 +586,8 @@ setting_audio_stream_ring: Timbre
 setting_audio_stream_music: Música
 setting_audio_stream_alarm: Alarma
 setting_audio_stream_notification: Notificació
-setting_audio_stream_bt_sco: Trucades Bluetooth
+setting_audio_stream_dtmf: Tons DTMF
+setting_audio_stream_accessibility: Accessibilitat
 setting_plugged_usb: USB
 setting_plugged_ac: Corrent
 setting_plugged_wireless: Sense fil

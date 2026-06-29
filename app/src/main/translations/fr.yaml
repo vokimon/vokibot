@@ -586,7 +586,8 @@ setting_audio_stream_ring: Sonnerie
 setting_audio_stream_music: Musique
 setting_audio_stream_alarm: Alarme
 setting_audio_stream_notification: Notification
-setting_audio_stream_bt_sco: Appels Bluetooth
+setting_audio_stream_dtmf: Tons DTMF
+setting_audio_stream_accessibility: Accessibilité
 setting_plugged_usb: USB
 setting_plugged_ac: Secteur
 setting_plugged_wireless: Sans fil

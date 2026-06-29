@@ -586,7 +586,8 @@ setting_audio_stream_ring: Ring
 setting_audio_stream_music: Music
 setting_audio_stream_alarm: Alarm
 setting_audio_stream_notification: Notification
-setting_audio_stream_bt_sco: Bluetooth calls
+setting_audio_stream_dtmf: DTMF Tones
+setting_audio_stream_accessibility: Accessibility
 setting_plugged_usb: USB
 setting_plugged_ac: AC
 setting_plugged_wireless: Wireless

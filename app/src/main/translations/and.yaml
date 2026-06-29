@@ -584,7 +584,6 @@ setting_audio_stream_ring: Timbre
 setting_audio_stream_music: Múçica
 setting_audio_stream_alarm: Alarma
 setting_audio_stream_notification: Notificaçión
-setting_audio_stream_bt_sco: Yamâh Bluetooth
 setting_plugged_usb: USB
 setting_plugged_ac: Corriente
 setting_plugged_wireless: Inalámbrico
@@ -592,3 +591,5 @@ setting_airplane_mode_option_bluetooth: Bluetooth
 setting_airplane_mode_option_cell: Móvil
 setting_airplane_mode_option_nfc: NFC
 setting_airplane_mode_option_wifi: Wi-Fi
+setting_audio_stream_dtmf: Tonô DTMF
+setting_audio_stream_accessibility: Âççeçibilidá
