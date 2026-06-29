@@ -28,6 +28,10 @@
     - [x] Change Settings Editor: isReadyToTry requires setting not null
     - [ ] Deprecation: Hide deprecated settings according to device android version
     - [ ] Deprecation: When editing a deprecated setting (because device upgraded) show a warning
+    - [x] Setting Namespace: Define enum
+    - [x] Setting Namespace: Include in Spec
+    - [x] Setting Namespace: Execute in the proper namespace
+    - [ ] Setting Namespace: Ask proper permission
     - [x] Typed editor for Boolean (Toggle)
     - [x] Raw editor: Text editor with help on formatting this settings.
     - [x] Permissions warning: and asker (reuse stuff from bluetooth)
