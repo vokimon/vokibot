@@ -1,5 +1,6 @@
 package net.canvoki.vokibot
 
+import android.Manifest
 import android.provider.Settings
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -120,8 +121,8 @@ fun ChangeSettingCommandEditor(
     val writePerm =
         rememberPermissionState(
             when (settingSpec?.namespace) {
-                SettingNamespace.SYSTEM, null -> "android.permission.WRITE_SETTINGS"
-                SettingNamespace.SECURE, SettingNamespace.GLOBAL -> "android.permission.WRITE_SECURE_SETTINGS"
+                SettingNamespace.SYSTEM, null -> Manifest.permission.WRITE_SETTINGS
+                else -> Manifest.permission.WRITE_SECURE_SETTINGS
             },
         )
     var rawEdit by rememberSaveable { mutableStateOf(false) }

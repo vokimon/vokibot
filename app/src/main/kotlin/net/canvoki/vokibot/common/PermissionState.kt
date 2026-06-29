@@ -1,5 +1,6 @@
 package net.canvoki.vokibot.common
 
+import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -40,9 +41,9 @@ fun rememberPermissionState(permission: String?): PermissionState {
     if (permission == null) return alwaysGranted
 
     when (permission) {
-        "android.permission.WRITE_SETTINGS" ->
+        Manifest.permission.WRITE_SETTINGS ->
             return rememberWriteSettingsPermissionState()
-        "android.permission.WRITE_SECURE_SETTINGS" ->
+        Manifest.permission.WRITE_SECURE_SETTINGS ->
             return rememberWriteSecureSettingsPermissionState()
     }
 
