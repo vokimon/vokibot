@@ -484,7 +484,10 @@ private val SETTING_SPECS: List<SettingSpec> =
                 ExtraType.Flags(
                     options =
                         listOf(
-                            SelectableOption(Settings.Global.RADIO_BLUETOOTH, R.string.setting_airplane_mode_option_bluetooth),
+                            SelectableOption(
+                                Settings.Global.RADIO_BLUETOOTH,
+                                R.string.setting_airplane_mode_option_bluetooth,
+                            ),
                             SelectableOption(Settings.Global.RADIO_CELL, R.string.setting_airplane_mode_option_cell),
                             SelectableOption(Settings.Global.RADIO_NFC, R.string.setting_airplane_mode_option_nfc),
                             SelectableOption(Settings.Global.RADIO_WIFI, R.string.setting_airplane_mode_option_wifi),
