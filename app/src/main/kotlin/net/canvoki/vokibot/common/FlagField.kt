@@ -70,6 +70,18 @@ sealed interface FlagSerialization {
             options: List<SelectableOption>,
         ): List<String> = value.split(",").map { it.trim() }.filter { it.isNotEmpty() }
     }
+
+    object ColonSeparated : FlagSerialization {
+        override fun toString(
+            values: List<String>,
+            options: List<SelectableOption>,
+        ): String = values.joinToString(":")
+
+        override fun fromString(
+            value: String,
+            options: List<SelectableOption>,
+        ): List<String> = value.split(":").filter { it.isNotEmpty() }
+    }
 }
 
 @Composable

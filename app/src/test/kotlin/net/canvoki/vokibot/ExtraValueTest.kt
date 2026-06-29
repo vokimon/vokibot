@@ -691,4 +691,58 @@ class ExtraValueTest {
     fun `CommaSeparated fromString does not filter values not in options (intentional)`() {
         checkFromCommaSeparated(input = "unknown", expected = listOf("unknown"))
     }
+
+    // ---------- FlagSerialization.ColonSeparated ----------
+
+    private fun checkToColonSeparated(
+        values: List<String>,
+        expected: String,
+        options: List<SelectableOption> = defaultOptions,
+    ) = assertEquals(expected, FlagSerialization.ColonSeparated.toString(values, options))
+
+    private fun checkFromColonSeparated(
+        input: String,
+        expected: List<String>,
+        options: List<SelectableOption> = defaultOptions,
+    ) = assertEquals(expected, FlagSerialization.ColonSeparated.fromString(input, options))
+
+    @Test
+    fun `ColonSeparated toString with none returns empty`() {
+        checkToColonSeparated(values = emptyList(), expected = "")
+    }
+
+    @Test
+    fun `ColonSeparated toString with single value`() {
+        checkToColonSeparated(values = listOf("option1"), expected = "option1")
+    }
+
+    @Test
+    fun `ColonSeparated toString with multiple values`() {
+        checkToColonSeparated(values = listOf("option1", "option2"), expected = "option1:option2")
+    }
+
+    @Test
+    fun `ColonSeparated fromString with empty returns empty`() {
+        checkFromColonSeparated(input = "", expected = emptyList())
+    }
+
+    @Test
+    fun `ColonSeparated fromString with single value`() {
+        checkFromColonSeparated(input = "option1", expected = listOf("option1"))
+    }
+
+    @Test
+    fun `ColonSeparated fromString with multiple values`() {
+        checkFromColonSeparated(input = "option1:option2", expected = listOf("option1", "option2"))
+    }
+
+    @Test
+    fun `ColonSeparated toString does not filter values not in options (intentional)`() {
+        checkToColonSeparated(values = listOf("unknown"), expected = "unknown")
+    }
+
+    @Test
+    fun `ColonSeparated fromString does not filter values not in options (intentional)`() {
+        checkFromColonSeparated(input = "unknown", expected = listOf("unknown"))
+    }
 }
