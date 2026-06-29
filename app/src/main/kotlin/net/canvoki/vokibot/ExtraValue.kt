@@ -3,10 +3,12 @@ package net.canvoki.vokibot
 import android.content.Intent
 import android.net.Uri
 import androidx.annotation.StringRes
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Slider
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -15,6 +17,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
@@ -130,20 +133,40 @@ sealed class ExtraType {
             onChanged: (ExtraValue) -> Unit,
         ) {
             val intValue = (value as? ExtraValue.IntValue)?.value ?: 0
-            var text by remember { mutableStateOf(intValue.toString()) }
-            LaunchedEffect(intValue) { text = intValue.toString() }
-            OutlinedTextField(
-                value = text,
-                onValueChange = {
-                    val filtered = it.filter { char -> char.isDigit() }
-                    text = filtered
-                    filtered.toIntOrNull()?.let { v -> onChanged(ExtraValue.IntValue(v)) }
-                },
-                label = { Text(label) },
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                maxLines = 1,
-                modifier = Modifier.fillMaxWidth(),
-            )
+
+            if (max != null) {
+                val range = (min ?: 0).toFloat()..max.toFloat()
+                Column {
+                    Text(label)
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier.fillMaxWidth(),
+                    ) {
+                        Text(intValue.toString())
+                        Slider(
+                            value = intValue.toFloat(),
+                            onValueChange = { onChanged(ExtraValue.IntValue(it.toInt())) },
+                            valueRange = range,
+                            modifier = Modifier.weight(1f),
+                        )
+                    }
+                }
+            } else {
+                var text by remember { mutableStateOf(intValue.toString()) }
+                LaunchedEffect(intValue) { text = intValue.toString() }
+                OutlinedTextField(
+                    value = text,
+                    onValueChange = {
+                        val filtered = it.filter { char -> char.isDigit() }
+                        text = filtered
+                        filtered.toIntOrNull()?.let { v -> onChanged(ExtraValue.IntValue(v)) }
+                    },
+                    label = { Text(label) },
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                    maxLines = 1,
+                    modifier = Modifier.fillMaxWidth(),
+                )
+            }
         }
     }
 
