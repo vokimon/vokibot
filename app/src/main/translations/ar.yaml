@@ -595,3 +595,4 @@ setting_airplane_mode_option_bluetooth: بلوتوث
 setting_airplane_mode_option_cell: الهاتف المحمول
 setting_airplane_mode_option_nfc: اتصال NFC
 setting_airplane_mode_option_wifi: واي فاي
+adb_permissions_guide_activity_label: منح الأذونات باستخدام ADB

@@ -21,6 +21,7 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
+import net.canvoki.vokibot.AdbPermissionsGuideActivity
 import net.canvoki.vokibot.R
 
 interface PermissionState {
@@ -144,8 +145,6 @@ private fun rememberWriteSecureSettingsPermissionState(): PermissionState {
             ) == PackageManager.PERMISSION_GRANTED,
         )
     }
-    var showDialog by remember { mutableStateOf(false) }
-
     DisposableEffect(lifecycleOwner) {
         val observer =
             LifecycleEventObserver { _, event ->
@@ -161,20 +160,12 @@ private fun rememberWriteSecureSettingsPermissionState(): PermissionState {
         onDispose { lifecycleOwner.lifecycle.removeObserver(observer) }
     }
 
-    if (showDialog) {
-        AlertDialog(
-            onDismissRequest = { showDialog = false },
-            title = { Text("Hello world") },
-            text = { Text("Hello world") },
-            confirmButton = { Text("OK") },
-        )
-    }
-
     return object : PermissionState {
         override val isGranted: Boolean get() = isGranted
 
         override fun request() {
-            showDialog = true
+            val intent = Intent(context, AdbPermissionsGuideActivity::class.java)
+            context.startActivity(intent)
         }
     }
 }

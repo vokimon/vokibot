@@ -71,6 +71,13 @@
 
         <activity android:name=".AutomationEditorActivity" />
 
+        <!-- ADB Permisions guide -->
+        <activity
+            android:name=".AdbPermissionsGuideActivity"
+            android:label="@string/adb_permissions_guide_activity_label"
+            android:exported="true">
+        </activity>
+
         <!-- NFC Dispatch Activity -->
         <activity
             android:label="@string/nfc_dispatcher_activity_label"

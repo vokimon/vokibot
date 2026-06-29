@@ -595,3 +595,4 @@ setting_airplane_mode_option_bluetooth: Bluetooth
 setting_airplane_mode_option_cell: Cell
 setting_airplane_mode_option_nfc: NFC
 setting_airplane_mode_option_wifi: Wi-Fi
+adb_permissions_guide_activity_label: Grant permissions via ADB
