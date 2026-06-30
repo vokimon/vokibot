@@ -11,6 +11,7 @@ import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -21,6 +22,7 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
+import kotlinx.coroutines.delay
 import net.canvoki.vokibot.AdbPermissionsGuideActivity
 import net.canvoki.vokibot.R
 
@@ -136,28 +138,30 @@ private fun rememberWriteSettingsPermissionState(): PermissionState {
 private fun rememberWriteSecureSettingsPermissionState(): PermissionState {
     val context = LocalContext.current
     val lifecycleOwner = LocalLifecycleOwner.current
+    fun canWrite() =
+        ContextCompat.checkSelfPermission(
+            context,
+            android.Manifest.permission.WRITE_SECURE_SETTINGS,
+        ) == PackageManager.PERMISSION_GRANTED
 
-    var isGranted by remember {
-        mutableStateOf(
-            ContextCompat.checkSelfPermission(
-                context,
-                android.Manifest.permission.WRITE_SECURE_SETTINGS,
-            ) == PackageManager.PERMISSION_GRANTED,
-        )
-    }
+    var isGranted by remember { mutableStateOf(canWrite()) }
     DisposableEffect(lifecycleOwner) {
         val observer =
             LifecycleEventObserver { _, event ->
                 if (event == Lifecycle.Event.ON_RESUME) {
-                    isGranted =
-                        ContextCompat.checkSelfPermission(
-                            context,
-                            android.Manifest.permission.WRITE_SECURE_SETTINGS,
-                        ) == PackageManager.PERMISSION_GRANTED
+                    isGranted = canWrite()
                 }
             }
         lifecycleOwner.lifecycle.addObserver(observer)
         onDispose { lifecycleOwner.lifecycle.removeObserver(observer) }
+    }
+
+    val intervalMillis = 3_000L
+    LaunchedEffect(Unit) {
+        while(true) {
+            delay(intervalMillis)
+            isGranted = canWrite()
+        }
     }
 
     return object : PermissionState {
