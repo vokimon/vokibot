@@ -1,4 +1,4 @@
-package net.canvoki.vokibot
+package net.canvoki.vokibot.nfc
 
 import android.content.Context
 import android.content.Intent
@@ -43,6 +43,8 @@ import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
 import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
+import net.canvoki.vokibot.FileDataRepository
+import net.canvoki.vokibot.R
 import net.canvoki.vokibot.common.EditorHeader
 import net.canvoki.vokibot.common.MagicTextField
 import net.canvoki.vokibot.common.rememberDiscardableState

@@ -1,8 +1,14 @@
-package net.canvoki.vokibot
+package net.canvoki.vokibot.nfc
 
 import android.content.Context
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import net.canvoki.vokibot.EntityMetadata
+import net.canvoki.vokibot.JsonConfig
+import net.canvoki.vokibot.R
+import net.canvoki.vokibot.StorableEntity
+import net.canvoki.vokibot.Trigger
+import net.canvoki.vokibot.toFileSystemId
 
 /**
  * Triggers when an NFC tag aproaches the device

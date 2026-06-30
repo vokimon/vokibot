@@ -13,6 +13,7 @@ import net.canvoki.vokibot.apps.SendBroadcastCommand
 import net.canvoki.vokibot.apps.StartServiceCommand
 import net.canvoki.vokibot.bluetooth.BluetoothConnectCommand
 import net.canvoki.vokibot.bluetooth.BluetoothDeviceTrigger
+import net.canvoki.vokibot.nfc.NfcTrigger
 import net.canvoki.vokibot.setting.ChangeSettingCommand
 import kotlin.reflect.KClass
 
