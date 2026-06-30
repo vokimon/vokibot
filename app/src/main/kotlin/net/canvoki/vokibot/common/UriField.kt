@@ -26,7 +26,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
+import net.canvoki.shared.log
 import net.canvoki.shared.storage.rememberFileUriPicker
+import net.canvoki.shared.usermessage.UserMessage
 import net.canvoki.vokibot.R
 
 private val schemes =
@@ -162,11 +164,19 @@ private fun resolveDisplayName(
     context: Context,
     uri: Uri,
 ): String? =
-    context.contentResolver.query(uri, null, null, null, null)?.use { cursor ->
-        if (cursor.moveToFirst()) {
-            val nameIdx = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)
-            if (nameIdx >= 0) cursor.getString(nameIdx) else null
-        } else {
-            null
+    try {
+        context.contentResolver.query(uri, null, null, null, null)?.use { cursor ->
+            if (cursor.moveToFirst()) {
+                val nameIdx = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)
+                if (nameIdx >= 0) cursor.getString(nameIdx) else null
+            } else {
+                null
+            }
         }
+    } catch (e: SecurityException) {
+        // TODO: SAF URIs lose permission on lifecycle restart,
+        // use takePersistableUriPermission() or copy to internal storage
+        log("resolveDisplayName: $e")
+        UserMessage.Info(e.toString()).post()
+        null
     }
