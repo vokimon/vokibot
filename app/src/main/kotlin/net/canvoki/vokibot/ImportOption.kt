@@ -18,6 +18,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import net.canvoki.shared.storage.rememberOpenFilePicker
 import net.canvoki.shared.usermessage.UserMessage
+import net.canvoki.vokibot.common.ConfirmDialog
 
 @Composable
 fun ImportOption() {

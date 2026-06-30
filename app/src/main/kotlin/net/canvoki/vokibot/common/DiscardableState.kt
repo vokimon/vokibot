@@ -10,8 +10,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.res.stringResource
 import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
-import net.canvoki.vokibot.ConfirmDialog
 import net.canvoki.vokibot.R
+import net.canvoki.vokibot.common.ConfirmDialog
 
 /**
  * State holder for the discard-on-back pattern used by editors.

@@ -13,9 +13,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import net.canvoki.shared.component.StackNavigatorState
-import net.canvoki.vokibot.ConfirmDialog
 import net.canvoki.vokibot.R
 import net.canvoki.vokibot.StorableEntity
+import net.canvoki.vokibot.common.ConfirmDialog
 
 @Composable
 fun ItemMenu(content: @Composable (onDismiss: () -> Unit, onConfirm: (String, () -> Unit) -> Unit) -> Unit) {
