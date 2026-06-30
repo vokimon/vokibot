@@ -7,6 +7,10 @@ import androidx.compose.runtime.Composable
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import net.canvoki.shared.component.StackedScreen
+import net.canvoki.vokibot.apps.AccessProviderCommand
+import net.canvoki.vokibot.apps.LaunchActivityCommand
+import net.canvoki.vokibot.apps.SendBroadcastCommand
+import net.canvoki.vokibot.apps.StartServiceCommand
 import net.canvoki.vokibot.bluetooth.BluetoothConnectCommand
 import net.canvoki.vokibot.bluetooth.BluetoothDeviceTrigger
 import net.canvoki.vokibot.setting.ChangeSettingCommand

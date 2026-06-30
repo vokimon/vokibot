@@ -1,4 +1,4 @@
-package net.canvoki.vokibot
+package net.canvoki.vokibot.apps
 
 import android.content.Context
 import android.content.Intent
@@ -8,6 +8,13 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.core.net.toUri
 import kotlinx.serialization.Serializable
+import net.canvoki.vokibot.Command
+import net.canvoki.vokibot.EntityMetadata
+import net.canvoki.vokibot.ExtraValue
+import net.canvoki.vokibot.JsonConfig
+import net.canvoki.vokibot.NotYetImplementedEditor
+import net.canvoki.vokibot.R
+import net.canvoki.vokibot.StorableEntity
 import java.util.UUID
 
 /**

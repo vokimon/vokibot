@@ -1,4 +1,4 @@
-package net.canvoki.vokibot
+package net.canvoki.vokibot.apps
 
 import android.content.ComponentName
 import android.content.Context

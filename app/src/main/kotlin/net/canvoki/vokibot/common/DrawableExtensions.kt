@@ -7,7 +7,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.graphics.painter.BitmapPainter
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.res.painterResource
 import androidx.core.graphics.drawable.toBitmap
+import net.canvoki.vokibot.R
 
 fun Drawable.toPainter(): BitmapPainter =
     BitmapPainter(
@@ -16,6 +19,12 @@ fun Drawable.toPainter(): BitmapPainter =
             height = intrinsicHeight.coerceAtLeast(48),
         ).asImageBitmap(),
     )
+
+@Composable
+fun drawableToPainter(drawable: Drawable?): Painter =
+    drawable?.let {
+        BitmapPainter(it.toBitmap().asImageBitmap())
+    } ?: painterResource(R.drawable.ic_brand)
 
 @Composable
 fun Drawable.tintIfFlat(): Color =

@@ -47,6 +47,7 @@ import kotlinx.coroutines.delay
 import net.canvoki.shared.component.AppScaffold
 import net.canvoki.shared.component.StackNavigator
 import net.canvoki.shared.component.WatermarkBox
+import net.canvoki.shared.log
 import net.canvoki.vokibot.common.rememberPermissionState
 import java.io.BufferedReader
 import java.io.InputStreamReader

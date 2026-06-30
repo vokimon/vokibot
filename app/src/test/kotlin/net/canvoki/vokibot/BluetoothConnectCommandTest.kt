@@ -5,6 +5,9 @@ import androidx.test.core.app.ApplicationProvider
 import net.canvoki.shared.test.assertEquals
 import net.canvoki.shared.test.assertIsUUID
 import net.canvoki.shared.test.assertJsonEqual
+import net.canvoki.vokibot.bluetooth.BluetoothConnectCommand
+import net.canvoki.vokibot.bluetooth.BluetoothConnectCommandEditor
+import net.canvoki.vokibot.bluetooth.ConnectionAction
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner

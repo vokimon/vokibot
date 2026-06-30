@@ -6,6 +6,7 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.jsonPrimitive
 import net.canvoki.shared.component.StackedScreen
+import net.canvoki.shared.log
 import kotlin.reflect.KClass
 
 /**

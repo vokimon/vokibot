@@ -2,6 +2,10 @@ package net.canvoki.vokibot
 
 import net.canvoki.shared.test.assertEquals
 import net.canvoki.shared.test.assertJsonEqual
+import net.canvoki.vokibot.apps.ExtraSpec
+import net.canvoki.vokibot.apps.computeNewCustomSpecs
+import net.canvoki.vokibot.apps.defaultValue
+import net.canvoki.vokibot.apps.rebuildExtras
 import net.canvoki.vokibot.common.FlagSerialization
 import net.canvoki.vokibot.common.SelectableOption
 import org.junit.Assert.assertTrue

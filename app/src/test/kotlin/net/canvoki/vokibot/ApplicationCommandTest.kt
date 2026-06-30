@@ -5,6 +5,12 @@ import io.mockk.mockk
 import net.canvoki.shared.test.assertEquals
 import net.canvoki.shared.test.assertIsUUID
 import net.canvoki.shared.test.assertJsonEqual
+import net.canvoki.vokibot.apps.AccessProviderCommand
+import net.canvoki.vokibot.apps.ApplicationCommand
+import net.canvoki.vokibot.apps.LaunchActivityCommand
+import net.canvoki.vokibot.apps.ProviderOperation
+import net.canvoki.vokibot.apps.SendBroadcastCommand
+import net.canvoki.vokibot.apps.StartServiceCommand
 import org.junit.Test
 import kotlin.test.assertIs
 

@@ -39,8 +39,8 @@ import net.canvoki.vokibot.common.ItemMenuDeleteOption
 import net.canvoki.vokibot.common.ItemMenuEditOption
 import net.canvoki.vokibot.common.ListFab
 import net.canvoki.vokibot.common.ListGroupHeader
+import net.canvoki.vokibot.common.drawableToPainter
 import net.canvoki.vokibot.common.tintIfFlat
-import net.canvoki.vokibot.drawableToPainter
 
 @Serializable
 data object TriggerList : StackedScreen<String>() {

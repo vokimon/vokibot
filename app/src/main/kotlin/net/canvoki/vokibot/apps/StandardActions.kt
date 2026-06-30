@@ -1,9 +1,11 @@
-package net.canvoki.vokibot
+package net.canvoki.vokibot.apps
 
 import android.content.Intent
 import android.provider.MediaStore
 import android.speech.RecognizerIntent
 import androidx.annotation.StringRes
+import net.canvoki.vokibot.ExtraType
+import net.canvoki.vokibot.R
 
 /**
  * Strategy for probing whether a component accepts an action.

@@ -1,4 +1,4 @@
-package net.canvoki.vokibot
+package net.canvoki.vokibot.apps
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -28,6 +28,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import kotlinx.serialization.builtins.MapSerializer
 import kotlinx.serialization.serializer
+import net.canvoki.vokibot.ExtraType
+import net.canvoki.vokibot.ExtraValue
+import net.canvoki.vokibot.JsonConfig
+import net.canvoki.vokibot.R
 import net.canvoki.vokibot.common.SectionHeader
 
 val ExtraValueMapSaver: Saver<Map<String, ExtraValue>, String> =

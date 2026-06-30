@@ -3,13 +3,13 @@ package net.canvoki.vokibot.bluetooth
 import android.content.Context
 import android.graphics.drawable.Drawable
 import kotlinx.serialization.Serializable
-import net.canvoki.vokibot.R
 import net.canvoki.vokibot.EntityMetadata
 import net.canvoki.vokibot.JsonConfig
+import net.canvoki.vokibot.R
 import net.canvoki.vokibot.StorableEntity
 import net.canvoki.vokibot.Trigger
-import net.canvoki.vokibot.toFileSystemId
 import net.canvoki.vokibot.common.BadgeDrawable
+import net.canvoki.vokibot.toFileSystemId
 
 @Serializable
 data class BluetoothDeviceTrigger(

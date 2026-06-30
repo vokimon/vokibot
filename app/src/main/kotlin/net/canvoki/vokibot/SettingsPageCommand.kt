@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable
 import android.provider.Settings
 import androidx.annotation.StringRes
 import kotlinx.serialization.Serializable
+import net.canvoki.vokibot.apps.resolveIntentIcon
 
 /**
  * Command to open a settings page.

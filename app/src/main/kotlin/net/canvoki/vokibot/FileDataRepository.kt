@@ -17,7 +17,6 @@ fun toFileSystemId(id: String): String =
         .trim('_')
         .ifBlank { "unnamed" }
 
-
 class FileDataRepository(
     directoryPath: String = "repodata",
 ) {

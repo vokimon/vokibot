@@ -1,4 +1,4 @@
-package net.canvoki.vokibot
+package net.canvoki.vokibot.apps
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -38,8 +38,12 @@ import androidx.compose.ui.unit.dp
 import kotlinx.serialization.Serializable
 import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
+import net.canvoki.vokibot.ExtraValue
+import net.canvoki.vokibot.FileDataRepository
+import net.canvoki.vokibot.R
 import net.canvoki.vokibot.common.EditorHeader
 import net.canvoki.vokibot.common.TryCommandButton
+import net.canvoki.vokibot.common.drawableToPainter
 import net.canvoki.vokibot.common.rememberDiscardableState
 
 private fun formatComponentName(

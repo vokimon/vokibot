@@ -1,4 +1,4 @@
-package net.canvoki.vokibot
+package net.canvoki.vokibot.apps
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -8,6 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import net.canvoki.vokibot.R
 import net.canvoki.vokibot.common.MimeField
 import net.canvoki.vokibot.common.SectionHeader
 import net.canvoki.vokibot.common.UriField

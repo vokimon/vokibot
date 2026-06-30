@@ -2,6 +2,8 @@ package net.canvoki.vokibot
 
 import net.canvoki.shared.test.assertEquals
 import net.canvoki.shared.test.assertJsonEqual
+import net.canvoki.vokibot.apps.ApplicationCommand
+import net.canvoki.vokibot.apps.LaunchActivityCommand
 import org.junit.After
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue

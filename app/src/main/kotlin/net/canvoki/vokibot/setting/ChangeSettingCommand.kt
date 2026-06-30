@@ -10,8 +10,8 @@ import net.canvoki.vokibot.EntityMetadata
 import net.canvoki.vokibot.JsonConfig
 import net.canvoki.vokibot.R
 import net.canvoki.vokibot.StorableEntity
+import net.canvoki.vokibot.apps.resolveIntentIcon
 import net.canvoki.vokibot.toFileSystemId
-import net.canvoki.vokibot.resolveIntentIcon
 import java.util.UUID
 
 /**

@@ -41,8 +41,10 @@ import androidx.compose.ui.unit.dp
 import kotlinx.serialization.Serializable
 import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
+import net.canvoki.shared.log
 import net.canvoki.vokibot.common.EditorHeader
 import net.canvoki.vokibot.common.MagicTextField
+import net.canvoki.vokibot.common.drawableToPainter
 import net.canvoki.vokibot.common.rememberDiscardableState
 import net.canvoki.vokibot.common.tintIfFlat
 

@@ -3,6 +3,8 @@ package net.canvoki.vokibot
 import android.content.Context
 import androidx.test.core.app.ApplicationProvider
 import net.canvoki.shared.test.assertEquals
+import net.canvoki.vokibot.bluetooth.DisconnectableRole
+import net.canvoki.vokibot.bluetooth.getLabel
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
