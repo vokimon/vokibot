@@ -273,6 +273,17 @@ fun Step(
     }
 }
 
+fun copyToClipboard(
+    context: Context,
+    text: String,
+) {
+    val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+
+    val clip = ClipData.newPlainText("ADB command", text)
+
+    clipboard.setPrimaryClip(clip)
+}
+
 fun isDeveloperOptionsEnabled(context: Context): Boolean =
     Settings.Global.getInt(
         context.contentResolver,
@@ -286,6 +297,9 @@ fun isUsbDebuggingEnabled(context: Context): Boolean =
         Settings.Global.ADB_ENABLED,
         0,
     ) == 1
+
+
+// TODO: The next functions are diferent unsuccessfull attemps to detect a connected adb host
 
 fun isAdbSessionReady(context: Context): Boolean {
     val adbEnabled =
@@ -335,13 +349,3 @@ fun isAdbLikelyActive(): Boolean? =
         null
     }
 
-fun copyToClipboard(
-    context: Context,
-    text: String,
-) {
-    val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-
-    val clip = ClipData.newPlainText("ADB command", text)
-
-    clipboard.setPrimaryClip(clip)
-}
