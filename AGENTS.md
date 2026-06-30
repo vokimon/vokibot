@@ -31,7 +31,7 @@ with the only exception of `spotlessApply`.
 2. **Propose**: Agent proposes code changes (few tens of lines), focused on a clear goal
 3. **Refine**: User reviews, asks refinements in chat
 4. **Apply**: Either User or Agent writes/edits the files
-5. **Build/Test**: User compiles, tests, and provides feedback in chat not the Agent (this is important)
+5. **Build/Test**: User compiles, tests, and provides feedback in chat. The agent does not compile or test (this is important)
 6. **Iterate**: Repeat until User commits or discards the proposal by reverting uncommited changes.
 
 **Git references**:
@@ -50,9 +50,9 @@ with the only exception of `spotlessApply`.
 - Do NOT execute git commands that change repo state (commit, push, add, etc.)
 - Read-only git commands are allowed (status, log, diff, etc.)
 - Do NOT modify untracked files
-- May create new files, but only edit them after User adds them to the stage
+- May create new files, but only change initial content after User adds them to the stage
 - Produce small, focused proposals (tens of lines)
-- Split large changes into multiple commits,
+- Split large changes into multiple small changesets,
   planning a sequence where each step keeps the codebase working.
   This requires strategic thinking:
   break the task into incremental steps
@@ -77,7 +77,7 @@ When using TDD (Beck/Fowler methodology):
 - Avoid multiple asserts in a single test
 - When asserting multiple parts of a structure, build a helper that dumps the structure as string and assert against expected output using `net.canvoki.shared.test.assertEquals` (supports colored multiline diff)
 - When testing multiple cases with the same logic, create a separate test method for each case; extract common code to a helper method with discriminant features as parameters
-- Asserting large structures, often became fragile. Concentrating in a helper the definition of the irrelevant parts of the structure, and parametrizing the relevant one, makes updating those irrelevant parts more easy. Do not expose parameters before they are needed.
+- Asserting large structures often became fragile. Concentrate inside a helper the setup of the irrelevant parts of the structure, and parametrize the relevant ones, to make updating those irrelevant parts easier. Do not expose parameters before they are needed.
 - For setup objects, encapsulate common setup in a helper with parameters for what varies between cases; this makes each test case show only what differs
 - Name the tests to include those parts: sut, case and optionally expectation, like in `summary with many errors display one each line`
 - For literals, choose content that when shown in assertions, help to make faster diagnoses. Instead of naming two test objects 'a' and 'b', name them "previous", "wrongname"
@@ -98,15 +98,15 @@ verifies the failure message is informative,
 may adjust the test.
 After approval, Agent adds the GREEN fix.
 RED and GREEN are committed together in a single commit for the step.
+Methodologically we separate RED and GREEN, but we do not commit REDs because they would break CI/CD.
 
 ### Long refactorings workflow (Duppe, Fill, Rely, Cleanup)
 
 To keep larger refactors in small stable commits,
 Agent should split the code proposals in committable stages following the methodology explained here.
 Most refactors replace an old artifact (file, class, method, attribute, data source...) with a new one.
-If both artifacts have not split queries (getters) and updates (setters) of the state,
-which is required for this methodology,
-Agent should spot the case to the user and ask how to proceed.
+This methodology requires having different paths for queries (getters) and updates (setters) of the state,
+whenever any artifact mixes them, Agent should spot the case to the user and ask how to proceed.
 
 The stages are:
 
@@ -147,7 +147,7 @@ Since all the steps are stable, we could stop an ongoing refactor and focus on T
 ## Exception Handling
 
 - Avoid catch-all exception handling which may mask bugs
-- Scope try's to the specific statements that may throw
+- Scope try blocks to the specific statements that may throw
 - Expect the specific exception types you want to handle
 - Catching an exception deserves at least a log
 - If you don't know how to handle, let it raise
@@ -160,7 +160,7 @@ Since all the steps are stable, we could stop an ongoing refactor and focus on T
 
 ## Translation Files
 
-- 12 languages: an (aragonese), ar (arabic), ca, de, en, es, eu, fr, gl, pt, ru, and (andaluh, hijacked ISO)
+- 12 languages: an (aragonese), `and` (andaluh, hijacked ISO), ar (arabic), ca, de, en, es, eu, fr, gl, pt, ru
 - English is reference; Andalusian auto-generated from Spanish
 - `meta/translations/<isoCode>.yaml` - format: `id->text`, agents do not edit them directly.
 - Agents propose new strings by generating a proposal.yaml which is `id->lang->text`.
