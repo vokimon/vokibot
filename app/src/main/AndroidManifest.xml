@@ -81,7 +81,7 @@
         <!-- NFC Dispatch Activity -->
         <activity
             android:label="@string/nfc_dispatcher_activity_label"
-            android:name=".NfcDispatchActivity"
+            android:name=".nfc.NfcDispatchActivity"
             android:launchMode="singleTop"
             android:exported="true">
 
@@ -94,7 +94,7 @@
 
         <!-- Shorcut Dispatch Activity -->
         <activity
-            android:name=".ShortcutDispatchActivity"
+            android:name=".shortcut.ShortcutDispatchActivity"
             android:label="@string/shortcut_dispatcher_activity_label"
             android:exported="true"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
@@ -108,7 +108,7 @@
 
         <!-- Bluetooth Trigger Receiver -->
         <receiver
-            android:name=".BluetoothTriggerReceiver"
+            android:name=".bluetooth.BluetoothTriggerReceiver"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.bluetooth.device.action.ACL_CONNECTED" />
