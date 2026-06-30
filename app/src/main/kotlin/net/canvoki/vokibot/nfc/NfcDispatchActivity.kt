@@ -15,8 +15,8 @@ import androidx.compose.ui.res.stringResource
 import net.canvoki.shared.component.AppScaffold
 import net.canvoki.shared.component.WatermarkBox
 import net.canvoki.vokibot.FileDataRepository
-import net.canvoki.vokibot.InputDialog
 import net.canvoki.vokibot.R
+import net.canvoki.vokibot.common.InputDialog
 import net.canvoki.vokibot.common.TriggerDispatcher
 import net.canvoki.vokibot.common.editAutomationForTrigger
 
