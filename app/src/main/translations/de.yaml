@@ -612,3 +612,5 @@ adb_permissions_connect_usb_title: Verbinden Sie den Computer per USB
 adb_permissions_connect_usb_description: Sie werden aufgefordert, den RSA-Schlüssel des Computers zu akzeptieren, um Vertrauen herzustellen.
 adb_permissions_run_adb_title: Führen Sie den adb-Befehl auf dem Computer aus
 adb_permissions_run_adb_copy_button: Kopieren
+free_string_set_remove: Entfernen
+free_string_set_add_value: Wert hinzufügen

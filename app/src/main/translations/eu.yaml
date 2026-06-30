@@ -612,3 +612,5 @@ adb_permissions_connect_usb_title: Konektatu ordenagailua USB bidez
 adb_permissions_connect_usb_description: Ordenagailuaren RSA gakoa onartzea eskatuko dizu konfiantza ezartzeko.
 adb_permissions_run_adb_title: Exekutatu adb komandoa ordenagailutik
 adb_permissions_run_adb_copy_button: Kopiatu
+free_string_set_remove: Kendu
+free_string_set_add_value: Gehitu balioa

@@ -612,3 +612,5 @@ adb_permissions_connect_usb_title: Подключите компьютер по 
 adb_permissions_connect_usb_description: Он попросит вас принять RSA-ключ компьютера для установления доверия.
 adb_permissions_run_adb_title: Выполните команду adb с компьютера
 adb_permissions_run_adb_copy_button: Копировать
+free_string_set_remove: Удалить
+free_string_set_add_value: Добавить значение

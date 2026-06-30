@@ -612,3 +612,5 @@ adb_permissions_connect_usb_title: Connect the computer via USB
 adb_permissions_connect_usb_description: It will ask you to accept the computer's RSA key to establish trust.
 adb_permissions_run_adb_title: Run the adb command from the computer
 adb_permissions_run_adb_copy_button: Copy
+free_string_set_remove: Remove
+free_string_set_add_value: Add value

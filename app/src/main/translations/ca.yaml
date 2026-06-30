@@ -612,3 +612,5 @@ adb_permissions_connect_usb_title: Connecteu l'ordinador per USB
 adb_permissions_connect_usb_description: Us demanarà que accepteu la clau RSA de l'ordinador per establir la confiança.
 adb_permissions_run_adb_title: Executeu la comanda adb des de l'ordinador
 adb_permissions_run_adb_copy_button: Copia
+free_string_set_remove: Elimina
+free_string_set_add_value: Afegeix valor

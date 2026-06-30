@@ -612,3 +612,5 @@ adb_permissions_connect_usb_title: Ligar o computador por USB
 adb_permissions_connect_usb_description: Irá pedir-lhe para aceitar a chave RSA do computador para estabelecer a confiança.
 adb_permissions_run_adb_title: Executar o comando adb a partir do computador
 adb_permissions_run_adb_copy_button: Copiar
+free_string_set_remove: Remover
+free_string_set_add_value: Adicionar valor

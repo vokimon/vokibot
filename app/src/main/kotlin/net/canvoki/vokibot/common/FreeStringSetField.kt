@@ -21,6 +21,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
@@ -57,7 +58,7 @@ fun FreeStringSetField(
                         ) {
                             Icon(
                                 painter = painterResource(R.drawable.ic_close),
-                                contentDescription = "Remove",
+                                contentDescription = stringResource(R.string.free_string_set_remove),
                             )
                         }
                     },
@@ -67,7 +68,7 @@ fun FreeStringSetField(
         OutlinedTextField(
             value = text,
             onValueChange = { text = it },
-            label = { Text("Add value") },
+            label = { Text(stringResource(R.string.free_string_set_add_value)) },
             keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
             keyboardActions =
                 KeyboardActions(

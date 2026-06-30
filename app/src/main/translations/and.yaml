@@ -610,3 +610,5 @@ adb_permissions_connect_usb_title: Conêtta el ordenadôh por USB
 adb_permissions_connect_usb_description: Te pedirá que açêttê la clabe RSA del ordenadôh pa êttableçêh la confiança.
 adb_permissions_run_adb_title: Ehecuta er comando âbb dêdde el ordenadôh
 adb_permissions_run_adb_copy_button: Copiâh
+free_string_set_remove: Eliminâh
+free_string_set_add_value: Añadîh balôh
