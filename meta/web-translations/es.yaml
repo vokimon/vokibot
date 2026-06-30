@@ -14,10 +14,11 @@ FEATURE_MULTIPLE_TRIGGERS_DESCRIPTION: |
 FEATURE_MULTIPLE_COMMANDS_TITLE: Elige qué ejecutar
 FEATURE_MULTIPLE_COMMANDS_DESCRIPTION: |
   ¿Qué puedes automatizar?
-  Actualmente, puedes <b>abrir cualquier aplicación</b>
-  o saltar directamente a una pantalla específica dentro de ella.
-  También puedes saltar directamente a una <b>página de ajustes del sistema</b> específica.
-  Extensiones futuras: Cambiar ajustes, ejecutar scripts ADB, ejecutar scripts Python…
+  Actualmente, puedes <b>invocar otras aplicaciones</b>
+  abriendo pantallas específicas, iniciando servicios o enviando mensajes.
+  También puedes cambiar <b>ajustes del sistema</b>, abrir paneles de ajustes rápidos o ir a páginas de ajustes específicas.
+  Y finalmente, puedes <b>conectar y desconectar dispositivos Bluetooth</b>.
+  ¡Más comandos en camino!
 FEATURE_FREEDOM_AS_FEATURE_TITLE: La libertad como funcionalidad
 FEATURE_FREEDOM_AS_FEATURE_DESCRIPTION: |
   La licencia AGPLv3 protege tus libertades como usuaria.

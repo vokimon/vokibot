@@ -14,10 +14,11 @@ FEATURE_MULTIPLE_TRIGGERS_DESCRIPTION: |
 FEATURE_MULTIPLE_COMMANDS_TITLE: Esculle qué executar
 FEATURE_MULTIPLE_COMMANDS_DESCRIPTION: |
   Qué puetz automatizar?
-  Actualment, puetz <b>ubrir qualsiquier aplicación</b>
-  u ir directament ta una pantalla especifica dentro d'ella.
-  Tamién puetz ir directament ta una <b>pachina d'ajustes d'o sistema</b> especifica.
-  Extensions futuras: Cambiar ajustes, executar scripts ADB, executar scripts Python…
+  Actualment, puetz <b>invocar atras aplicacions</b>
+  ubriendo pantallas especificas, encetando servicios u ninviando mensaches.
+  Tamién puetz cambiar <b>achustes d'o sistema</b>, ubrir panels d'achustes rapidos u ir ta pachinas d'achustes especificas.
+  Y finalment, puetz <b>connectar y desconnectar dispositivos Bluetooth</b>.
+  Bi ha mas comandas en camín!
 FEATURE_FREEDOM_AS_FEATURE_TITLE: Libertat como característica
 FEATURE_FREEDOM_AS_FEATURE_DESCRIPTION: |
   AGPLv3 protege as tuyas libertats como usuario.

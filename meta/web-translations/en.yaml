@@ -1,4 +1,3 @@
-# The native name of the translated language (Español, Català, Deutsch...), not "English" translated to the language 
 LANGUAGE_NAME: English
 MOTTO: Run any action using any trigger
 DESCRIPTION: Android automation tool
@@ -15,10 +14,11 @@ FEATURE_MULTIPLE_TRIGGERS_DESCRIPTION: |
 FEATURE_MULTIPLE_COMMANDS_TITLE: Choose what to run
 FEATURE_MULTIPLE_COMMANDS_DESCRIPTION: |
   What can you automate?
-  Currently, you can <b>open any application</b>
-  or jump to a specific screen within it.
-  You can also jump directly to a specific <b>system settings page</b>.
-  Future extensions: Toggle settings, run ADB scripts, run Python scripts…
+  Currently, you can <b>invoke other applications</b>
+  by opening specific screens, starting services, or sending messages.
+  You can also change <b>system settings</b>, open quick settings panels, or jump to specific settings pages.
+  And finally, you can <b>connect and disconnect Bluetooth devices</b>.
+  More commands are on the way!
 FEATURE_FREEDOM_AS_FEATURE_TITLE: Freedom as a feature
 FEATURE_FREEDOM_AS_FEATURE_DESCRIPTION: |
   AGPLv3 license protects your freedoms as a user.

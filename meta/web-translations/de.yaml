@@ -14,10 +14,11 @@ FEATURE_MULTIPLE_TRIGGERS_DESCRIPTION: |
 FEATURE_MULTIPLE_COMMANDS_TITLE: Wähle, was ausgeführt werden soll
 FEATURE_MULTIPLE_COMMANDS_DESCRIPTION: |
   Was kannst du automatisieren?
-  Derzeit kannst du <b>jede Anwendung öffnen</b>
-  oder direkt zu einem bestimmten Bildschirm darin springen.
-  Du kannst auch direkt zu einer bestimmten <b>Systemeinstellungsseite</b> springen.
-  Zukünftige Erweiterungen: Einstellungen umschalten, ADB-Skripte ausführen, Python-Skripte ausführen…
+  Derzeit kannst du <b>andere Anwendungen aufrufen</b>
+  indem du bestimmte Bildschirme öffnest, Dienste startest oder Nachrichten sendest.
+  Du kannst auch <b>Systemeinstellungen ändern</b>, Schnelleinstellungs-Panels öffnen oder zu bestimmten Einstellungsseiten springen.
+  Und schließlich kannst du <b>Bluetooth-Geräte verbinden und trennen</b>.
+  Weitere Befehle sind unterwegs!
 FEATURE_FREEDOM_AS_FEATURE_TITLE: Freiheit als Feature
 FEATURE_FREEDOM_AS_FEATURE_DESCRIPTION: |
   AGPLv3 schützt deine Freiheiten als Nutzer.

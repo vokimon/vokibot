@@ -14,10 +14,11 @@ FEATURE_MULTIPLE_TRIGGERS_DESCRIPTION: |
 FEATURE_MULTIPLE_COMMANDS_TITLE: Aukeratu zer exekutatu
 FEATURE_MULTIPLE_COMMANDS_DESCRIPTION: |
   Zer automatiza dezakezu?
-  Une honetan, <b>edozein aplikazio ireki</b> dezakezu
-  edo bertako pantaila zehatz batera zuzenean jauzi egin.
-  Sistemako ezarpen-orri zehatz batera ere zuzenean jauzi egin dezakezu.
-  Etorkizuneko hedapenak: Ezarpenak aldatu, ADB scriptak exekutatu, Python scriptak exekutatu…
+  Une honetan, <b>beste aplikazioak dei ditzakezu</b>
+  pantaila zehatzak irekiz, zerbitzuak hasiz edo mezuak bidaliz.
+  <b>Sistemako ezarpenak</b> ere alda ditzakezu, ezarpen azkarren panelak ireki edo ezarpen-orri zehatzetara joan.
+  Eta azkenik, <b>Bluetooth gailuak konektatu eta deskonekta ditzakezu</b>.
+  Komando gehiago bidean dira!
 FEATURE_FREEDOM_AS_FEATURE_TITLE: Askatasuna ezaugarri gisa
 FEATURE_FREEDOM_AS_FEATURE_DESCRIPTION: |
   AGPLv3 lizentziak zure askatasunak babesten ditu erabiltzaile gisa.
