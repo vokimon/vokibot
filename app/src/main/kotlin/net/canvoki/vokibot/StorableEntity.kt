@@ -15,6 +15,7 @@ import net.canvoki.vokibot.bluetooth.BluetoothConnectCommand
 import net.canvoki.vokibot.bluetooth.BluetoothDeviceTrigger
 import net.canvoki.vokibot.nfc.NfcTrigger
 import net.canvoki.vokibot.setting.ChangeSettingCommand
+import net.canvoki.vokibot.shortcut.ShortcutTrigger
 import kotlin.reflect.KClass
 
 val JsonConfig =

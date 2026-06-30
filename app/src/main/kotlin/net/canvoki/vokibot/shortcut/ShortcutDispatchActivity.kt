@@ -1,4 +1,4 @@
-package net.canvoki.vokibot
+package net.canvoki.vokibot.shortcut
 
 import android.content.Intent
 import android.os.Bundle
@@ -13,6 +13,8 @@ import androidx.compose.ui.res.stringResource
 import net.canvoki.shared.component.AppScaffold
 import net.canvoki.shared.component.WatermarkBox
 import net.canvoki.shared.log
+import net.canvoki.vokibot.FileDataRepository
+import net.canvoki.vokibot.R
 import net.canvoki.vokibot.common.TriggerDispatcher
 import net.canvoki.vokibot.common.editAutomationForTrigger
 
