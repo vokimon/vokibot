@@ -9,6 +9,15 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import java.io.File
 
+fun toFileSystemId(id: String): String =
+    id
+        .replace(Regex("[^a-zA-Z0-9_.-]"), "_")
+        .replace(Regex("_+"), "_")
+        .take(64)
+        .trim('_')
+        .ifBlank { "unnamed" }
+
+
 class FileDataRepository(
     directoryPath: String = "repodata",
 ) {

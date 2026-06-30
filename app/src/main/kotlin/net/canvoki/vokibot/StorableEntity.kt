@@ -7,6 +7,7 @@ import androidx.compose.runtime.Composable
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import net.canvoki.shared.component.StackedScreen
+import net.canvoki.vokibot.setting.ChangeSettingCommand
 import kotlin.reflect.KClass
 
 val JsonConfig =

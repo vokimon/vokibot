@@ -10,14 +10,6 @@ import androidx.core.net.toUri
 import kotlinx.serialization.Serializable
 import java.util.UUID
 
-fun toFileSystemId(id: String): String =
-    id
-        .replace(Regex("[^a-zA-Z0-9_.-]"), "_")
-        .replace(Regex("_+"), "_")
-        .take(64)
-        .trim('_')
-        .ifBlank { "unnamed" }
-
 /**
  * Base class for automation commands that interact with other applications.
  */

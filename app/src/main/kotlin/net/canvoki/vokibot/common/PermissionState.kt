@@ -138,6 +138,7 @@ private fun rememberWriteSettingsPermissionState(): PermissionState {
 private fun rememberWriteSecureSettingsPermissionState(): PermissionState {
     val context = LocalContext.current
     val lifecycleOwner = LocalLifecycleOwner.current
+
     fun canWrite() =
         ContextCompat.checkSelfPermission(
             context,
@@ -158,7 +159,7 @@ private fun rememberWriteSecureSettingsPermissionState(): PermissionState {
 
     val intervalMillis = 3_000L
     LaunchedEffect(Unit) {
-        while(true) {
+        while (true) {
             delay(intervalMillis)
             isGranted = canWrite()
         }

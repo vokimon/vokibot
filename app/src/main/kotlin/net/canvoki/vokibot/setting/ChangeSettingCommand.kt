@@ -1,10 +1,17 @@
-package net.canvoki.vokibot
+package net.canvoki.vokibot.setting
 
 import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.provider.Settings
 import kotlinx.serialization.Serializable
+import net.canvoki.vokibot.Command
+import net.canvoki.vokibot.EntityMetadata
+import net.canvoki.vokibot.JsonConfig
+import net.canvoki.vokibot.R
+import net.canvoki.vokibot.StorableEntity
+import net.canvoki.vokibot.toFileSystemId
+import net.canvoki.vokibot.resolveIntentIcon
 import java.util.UUID
 
 /**

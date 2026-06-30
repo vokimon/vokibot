@@ -1,4 +1,4 @@
-package net.canvoki.vokibot
+package net.canvoki.vokibot.setting
 
 import android.content.Context
 import android.media.AudioManager
@@ -9,6 +9,9 @@ import android.view.Surface
 import android.view.accessibility.AccessibilityManager
 import android.view.inputmethod.InputMethodManager
 import androidx.annotation.StringRes
+import net.canvoki.vokibot.ExtraType
+import net.canvoki.vokibot.OptionsProvider
+import net.canvoki.vokibot.R
 import net.canvoki.vokibot.common.FlagSerialization
 import net.canvoki.vokibot.common.SelectableOption
 

@@ -1,4 +1,4 @@
-package net.canvoki.vokibot
+package net.canvoki.vokibot.setting
 
 import android.Manifest
 import android.provider.Settings
@@ -44,6 +44,8 @@ import kotlinx.serialization.Serializable
 import net.canvoki.shared.component.OneTimeNotice
 import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
+import net.canvoki.vokibot.FileDataRepository
+import net.canvoki.vokibot.R
 import net.canvoki.vokibot.common.EditorHeader
 import net.canvoki.vokibot.common.MissingPermissionBanner
 import net.canvoki.vokibot.common.TryCommandButton
