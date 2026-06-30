@@ -6,7 +6,6 @@ import android.provider.Settings
 import androidx.annotation.StringRes
 import net.canvoki.vokibot.R
 
-
 data class SettingsPage(
     val id: String,
     val categoryId: SettingsPageCategory,
@@ -16,8 +15,7 @@ data class SettingsPage(
     @get:StringRes
     val labelRes: Int get() = categoryId.labelRes
 
-    fun isAvailable(context: Context): Boolean =
-        context.packageManager.resolveActivity(Intent(id), 0) != null
+    fun isAvailable(context: Context): Boolean = context.packageManager.resolveActivity(Intent(id), 0) != null
 }
 
 enum class SettingsPageCategory {
