@@ -2,7 +2,9 @@
 
 ## Sprinted
 
-- [ ] Display ChangeSettings commands in command list (description, icon...)
+- [ ] Bug: ChangeSettingEditor: changing from one setting to another does not change the options. ie. Switch from blank screen delay to screen rotation.
+- [ ] Bug: UriField: SAF URI permission lost after lifecycle restart, resolveDisplayName crashes
+- [ ] SettingList: Search filter
 - [ ] ExtraType.Uri parametrization: Add mimeType: String? parameter; update RINGTONE, NOTIFICATION_SOUND, ALARM_ALERT to `ExtraType.Uri("audio/*")`
 - [ ] SettingList: Different icon for each value type?
 - [ ] Static default values for flags and enums
@@ -23,6 +25,7 @@
 
 
 ## Backlog
+
 
 - [ ] Hide Dasher when option clicked
 - [ ] Weblate: create meta module
@@ -62,9 +65,7 @@
 - [ ] Explore Tasker compatibility (being able to reuse tasker extensions as host)
 
 - More commands:
-    - [ ] Airplaine mode on/off
     - [ ] Enable/Disable/Connect Wi-Fi
-    - [ ] Set screen timeout
 
 - More triggers:
     - [ ] System Broadcast: As trigger to vokibot, system sends broadcasts to any listening app
@@ -87,6 +88,9 @@
 
 ## Done
 
+- [x] Airplaine mode on/off -> Via ChangeSettings
+- [x] Command: Set screen timeout -> Via ChangeSettings
+- [x] Display ChangeSettings commands in command list (description, icon...) -> using value as description
 - [x] Extra: Numeric fields being numeric
 - [x] Select a setting
 - [x] Setting List: Screen skeletton returning a setting
