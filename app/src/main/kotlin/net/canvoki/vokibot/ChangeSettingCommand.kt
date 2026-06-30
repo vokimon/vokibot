@@ -46,7 +46,7 @@ data class ChangeSettingCommand(
 
     override fun getTitle(context: Context): String = SettingSpec.get(key)?.let { context.getString(it.name) } ?: key
 
-    override val description: String get() = key
+    override val description: String get() = value.toString()
 
     override fun toJson(): String = JsonConfig.encodeToString(serializer(), this)
 
