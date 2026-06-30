@@ -298,7 +298,6 @@ fun isUsbDebuggingEnabled(context: Context): Boolean =
         0,
     ) == 1
 
-
 // TODO: The next functions are diferent unsuccessfull attemps to detect a connected adb host
 
 fun isAdbSessionReady(context: Context): Boolean {
@@ -348,4 +347,3 @@ fun isAdbLikelyActive(): Boolean? =
         log("isAdbLikelyActive Exception: $e")
         null
     }
-
