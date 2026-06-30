@@ -596,3 +596,19 @@ setting_airplane_mode_option_cell: الهاتف المحمول
 setting_airplane_mode_option_nfc: اتصال NFC
 setting_airplane_mode_option_wifi: واي فاي
 adb_permissions_guide_activity_label: منح الأذونات باستخدام ADB
+adb_permissions_title: إذن لتعديل الإعدادات المحمية
+adb_permissions_warning: كن حذراً! يجعل Android منح هذا الإذن صعباً precisamente بسبب خطورته.
+adb_permissions_click_for_help: "اضغط على كل خطوة للحصول على مساعدة:"
+adb_permissions_developer_options_title: فعّل خيارات المطور
+adb_permissions_developer_options_description: اضغط على "رقم الإصدار" 7 مرات متتالية في أسفل شاشة معلومات الجهاز.
+adb_permissions_developer_options_button_device_info: معلومات الجهاز
+adb_permissions_usb_debugging_title: فعّل تصحيح أخطاء USB
+adb_permissions_usb_debugging_description: الخيار موجود ضمن خيارات المطور العديدة. ستحتاج إلى التمرير للأسفل قليلاً للعثور عليه.
+adb_permissions_usb_debugging_button_developer_options: خيارات المطور
+adb_permissions_install_adb_title: ثبّت ADB على جهاز كمبيوتر
+adb_permissions_install_adb_description: تعتمد طريقة التثبيت على النظام الأساسي. راجع الوثائق.
+adb_permissions_install_adb_button: كيفية تثبيت ADB
+adb_permissions_connect_usb_title: وصّل الكمبيوتر عبر USB
+adb_permissions_connect_usb_description: سيطلب منك قبول مفتاح RSA الخاص بالكمبيوتر لإنشاء الثقة.
+adb_permissions_run_adb_title: شغّل أمر adb من الكمبيوتر
+adb_permissions_run_adb_copy_button: نسخ

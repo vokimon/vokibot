@@ -596,3 +596,19 @@ setting_airplane_mode_option_cell: Mobilfunk
 setting_airplane_mode_option_nfc: NFC
 setting_airplane_mode_option_wifi: Wi-Fi
 adb_permissions_guide_activity_label: Berechtigungen mit ADB vergeben
+adb_permissions_title: Berechtigung zum Ändern geschützter Einstellungen
+adb_permissions_warning: Vorsicht! Android macht das Erteilen dieser Berechtigung absichtlich schwierig, weil sie gefährlich ist.
+adb_permissions_click_for_help: "Tippen Sie auf jeden Schritt, um Hilfe zu erhalten:"
+adb_permissions_developer_options_title: Entwickleroptionen aktivieren
+adb_permissions_developer_options_description: Tippen Sie 7-mal hintereinander auf die "Build-Nummer" ganz unten auf dem Bildschirm mit den Geräteinformationen.
+adb_permissions_developer_options_button_device_info: Geräteinformationen
+adb_permissions_usb_debugging_title: USB-Debugging aktivieren
+adb_permissions_usb_debugging_description: Die Option befindet sich unter den vielen Entwickleroptionen. Sie müssen etwas nach unten scrollen, um sie zu finden.
+adb_permissions_usb_debugging_button_developer_options: Entwickleroptionen
+adb_permissions_install_adb_title: ADB auf einem Computer installieren
+adb_permissions_install_adb_description: Die Installationsmethode hängt von der Plattform ab. Lesen Sie die Dokumentation.
+adb_permissions_install_adb_button: So installieren Sie ADB
+adb_permissions_connect_usb_title: Verbinden Sie den Computer per USB
+adb_permissions_connect_usb_description: Sie werden aufgefordert, den RSA-Schlüssel des Computers zu akzeptieren, um Vertrauen herzustellen.
+adb_permissions_run_adb_title: Führen Sie den adb-Befehl auf dem Computer aus
+adb_permissions_run_adb_copy_button: Kopieren

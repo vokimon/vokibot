@@ -596,3 +596,19 @@ setting_airplane_mode_option_cell: Cell
 setting_airplane_mode_option_nfc: NFC
 setting_airplane_mode_option_wifi: Wi-Fi
 adb_permissions_guide_activity_label: Grant permissions via ADB
+adb_permissions_title: Permission to modify protected settings
+adb_permissions_warning: Be careful! Android makes granting this permission difficult precisely because of how dangerous it is.
+adb_permissions_click_for_help: "Tap each step to get help:"
+adb_permissions_developer_options_title: Enable developer options
+adb_permissions_developer_options_description: Tap 'Build Number' 7 times at the bottom of the device info screen.
+adb_permissions_developer_options_button_device_info: Device info
+adb_permissions_usb_debugging_title: Enable USB debugging
+adb_permissions_usb_debugging_description: The option is among the many developer options. You will need to scroll down a bit to find it.
+adb_permissions_usb_debugging_button_developer_options: Developer options
+adb_permissions_install_adb_title: Install ADB on a computer
+adb_permissions_install_adb_description: The installation method depends on the platform. Check the documentation.
+adb_permissions_install_adb_button: How to install ADB
+adb_permissions_connect_usb_title: Connect the computer via USB
+adb_permissions_connect_usb_description: It will ask you to accept the computer's RSA key to establish trust.
+adb_permissions_run_adb_title: Run the adb command from the computer
+adb_permissions_run_adb_copy_button: Copy

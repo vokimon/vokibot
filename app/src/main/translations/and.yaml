@@ -594,3 +594,19 @@ setting_airplane_mode_option_cell: Móvil
 setting_airplane_mode_option_nfc: NFC
 setting_airplane_mode_option_wifi: Wi-Fi
 adb_permissions_guide_activity_label: Dâh permiçô con ADB
+adb_permissions_title: Permiço pa modificâh configuraçionê protehidâ
+adb_permissions_warning: ¡Cuidao! Androîh dificurta la conçeçión de êtte permiço preçiçamente por lo peligroço que êh.
+adb_permissions_click_for_help: 'Toca en cá paço pa ôttenêh ayuda:'
+adb_permissions_developer_options_title: Âttiba lâ ôççionê de deçarroyadôh
+adb_permissions_developer_options_description: Toca 'Número de compilaçión' 7 beçê ar finâh de la pantaya de informaçión der dîppoçitibo.
+adb_permissions_developer_options_button_device_info: Informaçión der dîppoçitibo
+adb_permissions_usb_debugging_title: Âttiba la depuraçión USB
+adb_permissions_usb_debugging_description: La ôççión êttá entre lâ muxâ ôççionê de deçarroyadôh. Tendrâh que bahâh un poco pa encontrâl-la.
+adb_permissions_usb_debugging_button_developer_options: Ôççionê de deçarroyadôh
+adb_permissions_install_adb_title: Îttala ADB en un ordenadôh
+adb_permissions_install_adb_description: Er método de îttalaçión depende de la plataforma. Conçurta la documentaçión.
+adb_permissions_install_adb_button: Cómo îttalâh ADB
+adb_permissions_connect_usb_title: Conêtta el ordenadôh por USB
+adb_permissions_connect_usb_description: Te pedirá que açêttê la clabe RSA del ordenadôh pa êttableçêh la confiança.
+adb_permissions_run_adb_title: Ehecuta er comando âbb dêdde el ordenadôh
+adb_permissions_run_adb_copy_button: Copiâh

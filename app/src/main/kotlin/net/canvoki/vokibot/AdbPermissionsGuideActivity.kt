@@ -38,6 +38,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
@@ -60,7 +61,7 @@ class AdbPermissionsGuideActivity : AppCompatActivity() {
                 ) {
                     AdbPermissionsGuide(
                         permission = android.Manifest.permission.WRITE_SECURE_SETTINGS,
-                        title = "Permís per modificar configuracions protegides",
+                        title = stringResource(R.string.adb_permissions_title),
                     )
                 }
             }
@@ -136,16 +137,16 @@ fun AdbPermissionsGuide(
                     .padding(vertical = 4.dp)
                     .verticalScroll(rememberScrollState()),
         ) {
-            Text("Vigileu! Android fa complicat otorgar aquest permís justament per la seva perillositat.")
-            Text("Feu click a cada pas per obtindre ajuda:")
+            Text(stringResource(R.string.adb_permissions_warning))
+            Text(stringResource(R.string.adb_permissions_click_for_help))
 
             // https://developer.android.com/studio/debug/dev-options
             Step(
-                title = "Activeu opcions per a desenvolupadores",
+                title = stringResource(R.string.adb_permissions_developer_options_title),
                 done = developerOptionsEnabled.value,
             ) {
                 Text(
-                    "Heu de tocar 7 vegades seguides al 'Número de Compilació' abaix de tot de la pantalla d'informació del dispositiu.",
+                    stringResource(R.string.adb_permissions_developer_options_description),
                 )
                 TextButton(
                     modifier = Modifier.align(Alignment.End),
@@ -157,18 +158,17 @@ fun AdbPermissionsGuide(
                         )
                     },
                 ) {
-                    Text("Informació de dispositiu")
+                    Text(stringResource(R.string.adb_permissions_developer_options_button_device_info))
                 }
             }
 
             // https://developer.android.com/tools/adb#Enabling
             Step(
-                title = "Activeu la depuració USB",
+                title = stringResource(R.string.adb_permissions_usb_debugging_title),
                 done = usbDebugEnabled.value,
             ) {
                 Text(
-                    "L'opció és una de les moltes opcions per a desenvolupadores. " +
-                        "Haureu de baixar una mica per trobar-la.",
+                    stringResource(R.string.adb_permissions_usb_debugging_description),
                 )
                 TextButton(
                     modifier = Modifier.align(Alignment.End),
@@ -180,15 +180,15 @@ fun AdbPermissionsGuide(
                         )
                     },
                 ) {
-                    Text("Opcions per a desenvolupadores")
+                    Text(stringResource(R.string.adb_permissions_usb_debugging_button_developer_options))
                 }
             }
 
             Step(
-                title = "Instal·leu ADB a un ordinador",
+                title = stringResource(R.string.adb_permissions_install_adb_title),
                 done = null,
             ) {
-                Text("El mètode d'instal·lació depén de la plataforma. Consulteu la documentació.")
+                Text(stringResource(R.string.adb_permissions_install_adb_description))
                 TextButton(
                     modifier = Modifier.align(Alignment.End),
                     onClick = {
@@ -197,19 +197,19 @@ fun AdbPermissionsGuide(
                         context.startActivity(intent)
                     },
                 ) {
-                    Text("Com instal·lar ADB")
+                    Text(stringResource(R.string.adb_permissions_install_adb_button))
                 }
             }
 
             Step(
-                title = "Conecteu l'ordinador per USB",
+                title = stringResource(R.string.adb_permissions_connect_usb_title),
                 done = null,
             ) {
-                Text("Us demanarà que accepteu la clau RSA de l'ordinador per establir la confiança")
+                Text(stringResource(R.string.adb_permissions_connect_usb_description))
             }
 
             Step(
-                title = "Executeu la comanda adb des de l'ordinador",
+                title = stringResource(R.string.adb_permissions_run_adb_title),
                 done = permState.isGranted,
             ) {
                 val adbCommand = "adb shell pm grant ${context.packageName} $permission"
@@ -231,7 +231,7 @@ fun AdbPermissionsGuide(
                         copyToClipboard(context, adbCommand)
                     },
                 ) {
-                    Text("Copia")
+                    Text(stringResource(R.string.adb_permissions_run_adb_copy_button))
                 }
             }
         }

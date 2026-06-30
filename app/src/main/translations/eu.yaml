@@ -596,3 +596,19 @@ setting_airplane_mode_option_cell: Mugikorra
 setting_airplane_mode_option_nfc: NFC
 setting_airplane_mode_option_wifi: Wi-Fi
 adb_permissions_guide_activity_label: Eman baimenak ADB erabiliz
+adb_permissions_title: Babestutako ezarpenak aldatzeko baimena
+adb_permissions_warning: Kontuz! Android-ek baimen hau ematea zailtzen du, hain zuzen ere, arriskutsua delako.
+adb_permissions_click_for_help: "Ukitu urrats bakoitza laguntza lortzeko:"
+adb_permissions_developer_options_title: Gaitu garatzaile-aukerak
+adb_permissions_developer_options_description: Sakatu 'Konpilazio-zenbakia' 7 aldiz jarraian gailuaren informazio pantailaren behealdean.
+adb_permissions_developer_options_button_device_info: Gailuaren informazioa
+adb_permissions_usb_debugging_title: Gaitu USB arazketa
+adb_permissions_usb_debugging_description: Aukera garatzaile-aukera askoren artean dago. Behera pixka bat mugitu beharko duzu aurkitzeko.
+adb_permissions_usb_debugging_button_developer_options: Garatzaile-aukerak
+adb_permissions_install_adb_title: Instalatu ADB ordenagailu batean
+adb_permissions_install_adb_description: Instalazio-metodoa plataformaren araberakoa da. Kontsultatu dokumentazioa.
+adb_permissions_install_adb_button: Nola instalatu ADB
+adb_permissions_connect_usb_title: Konektatu ordenagailua USB bidez
+adb_permissions_connect_usb_description: Ordenagailuaren RSA gakoa onartzea eskatuko dizu konfiantza ezartzeko.
+adb_permissions_run_adb_title: Exekutatu adb komandoa ordenagailutik
+adb_permissions_run_adb_copy_button: Kopiatu

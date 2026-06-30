@@ -596,3 +596,19 @@ setting_airplane_mode_option_cell: Móvil
 setting_airplane_mode_option_nfc: NFC
 setting_airplane_mode_option_wifi: Wi-Fi
 adb_permissions_guide_activity_label: Dar permisos con ADB
+adb_permissions_title: Permiso para modificar configuraciones protegidas
+adb_permissions_warning: ¡Cuidado! Android dificulta la concesión de este permiso precisamente por lo peligroso que es.
+adb_permissions_click_for_help: "Toca en cada paso para obtener ayuda:"
+adb_permissions_developer_options_title: Activa las opciones de desarrollador
+adb_permissions_developer_options_description: Toca 'Número de compilación' 7 veces al final de la pantalla de información del dispositivo.
+adb_permissions_developer_options_button_device_info: Información del dispositivo
+adb_permissions_usb_debugging_title: Activa la depuración USB
+adb_permissions_usb_debugging_description: La opción está entre las muchas opciones de desarrollador. Tendrás que bajar un poco para encontrarla.
+adb_permissions_usb_debugging_button_developer_options: Opciones de desarrollador
+adb_permissions_install_adb_title: Instala ADB en un ordenador
+adb_permissions_install_adb_description: El método de instalación depende de la plataforma. Consulta la documentación.
+adb_permissions_install_adb_button: Cómo instalar ADB
+adb_permissions_connect_usb_title: Conecta el ordenador por USB
+adb_permissions_connect_usb_description: Te pedirá que aceptes la clave RSA del ordenador para establecer la confianza.
+adb_permissions_run_adb_title: Ejecuta el comando adb desde el ordenador
+adb_permissions_run_adb_copy_button: Copiar

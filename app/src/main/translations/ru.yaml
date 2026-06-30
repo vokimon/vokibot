@@ -596,3 +596,19 @@ setting_airplane_mode_option_cell: Сотовая связь
 setting_airplane_mode_option_nfc: NFC
 setting_airplane_mode_option_wifi: Wi-Fi
 adb_permissions_guide_activity_label: Выдать разрешения через ADB
+adb_permissions_title: Разрешение на изменение защищённых настроек
+adb_permissions_warning: Будьте осторожны! Android намеренно усложняет выдачу этого разрешения из-за его опасности.
+adb_permissions_click_for_help: "Нажмите на каждый шаг, чтобы получить помощь:"
+adb_permissions_developer_options_title: Включить параметры разработчика
+adb_permissions_developer_options_description: Нажмите 7 раз подряд на "Номер сборки" в нижней части экрана с информацией об устройстве.
+adb_permissions_developer_options_button_device_info: Информация об устройстве
+adb_permissions_usb_debugging_title: Включить отладку по USB
+adb_permissions_usb_debugging_description: Эта опция находится среди множества параметров разработчика. Придётся немного прокрутить вниз.
+adb_permissions_usb_debugging_button_developer_options: Параметры разработчика
+adb_permissions_install_adb_title: Установите ADB на компьютер
+adb_permissions_install_adb_description: Метод установки зависит от платформы. Обратитесь к документации.
+adb_permissions_install_adb_button: Как установить ADB
+adb_permissions_connect_usb_title: Подключите компьютер по USB
+adb_permissions_connect_usb_description: Он попросит вас принять RSA-ключ компьютера для установления доверия.
+adb_permissions_run_adb_title: Выполните команду adb с компьютера
+adb_permissions_run_adb_copy_button: Копировать
