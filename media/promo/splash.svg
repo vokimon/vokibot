@@ -9,7 +9,7 @@
   <!-- App Name -->
   <text x="310" y="220" id="appname" font-family="'Google Sans', 'Helvetica Neue', sans-serif" font-size="64px" font-weight="700" fill="#aa2233" text-anchor="start">VokiBot</text>
   <!-- Version -->
-  <text x="660" y="220" id="version" font-family="Google Sans, Helvetica Neue, sans-serif" font-size="52" font-weight="500" fill="#f0e0dd" text-anchor="start">0.6.1</text>
+  <text x="660" y="220" id="version" font-family="Google Sans, Helvetica Neue, sans-serif" font-size="52" font-weight="500" fill="#f0e0dd" text-anchor="start">0.7.0</text>
   <!-- Motto -->
   <text x="310" y="290" id="motto" font-family="Google Sans, Helvetica Neue, sans-serif" font-size="36" fill="#aa66aa" fill-opacity="0.7" text-anchor="start">
     Run anything using any trigger

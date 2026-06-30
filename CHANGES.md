@@ -1,13 +1,19 @@
 # Change log
 
-## unreleased
+## 0.7.0 (2026-06-30)
 
-Quick system settings panels
+Change system settings and quick settings panels
 
 - ✨ Using nfc panel instead settings page, when available, to enable NFC
 - ✨ Quick panels for Internet, Wifi, Nfc and Volume available as Settings Page
+- ✨ Change system settings command Solves: #1 #2 #3
+- ✨ Type dependant setting value editor: Selects, Multiselects, Ranges...
+- ✨ Alternative raw value editor for user freedom
+- ✨ Asks regular permission to write settings
+- ✨ Assistant to help user to obtain secure settings permissions with ADB
 - 🐛 FAB hid the last component in scrolled lists, pad added
 - 💄 App component list group headers deindented left
+- ♻️ Code reorganized by triggern/command topics
 
 ## 0.6.1 (2026-06-17)
 
