@@ -597,7 +597,7 @@ setting_airplane_mode_option_nfc: اتصال NFC
 setting_airplane_mode_option_wifi: واي فاي
 adb_permissions_guide_activity_label: منح الأذونات باستخدام ADB
 adb_permissions_title: إذن لتعديل الإعدادات المحمية
-adb_permissions_warning: كن حذراً! يجعل Android منح هذا الإذن صعباً precisamente بسبب خطورته.
+adb_permissions_warning: كن حذراً! يجعل Android منح هذا الإذن صعباً تحديداً بسبب خطورته.
 adb_permissions_click_for_help: "اضغط على كل خطوة للحصول على مساعدة:"
 adb_permissions_developer_options_title: فعّل خيارات المطور
 adb_permissions_developer_options_description: اضغط على "رقم الإصدار" 7 مرات متتالية في أسفل شاشة معلومات الجهاز.
