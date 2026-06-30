@@ -38,9 +38,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
 import kotlinx.coroutines.delay
@@ -224,8 +226,12 @@ fun Step(
     action: () -> Unit = {},
     expandable: @Composable ColumnScope.() -> Unit = {},
 ) {
+    val layoutDirection = LocalLayoutDirection.current
+
     var expanded by remember { mutableStateOf(false) }
-    val icon = done?.let { if (done) "✅ " else "❌ " } ?: "👉 "
+    val icon =
+        done?.let { if (done) "✅ " else "❌ " }
+            ?: if (layoutDirection == LayoutDirection.Ltr) "👉 " else "👈 "
     Card(
         modifier =
             Modifier
