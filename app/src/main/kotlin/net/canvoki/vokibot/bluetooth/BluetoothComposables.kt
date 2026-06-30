@@ -1,4 +1,4 @@
-package net.canvoki.vokibot
+package net.canvoki.vokibot.bluetooth
 
 import android.Manifest
 import android.bluetooth.BluetoothAdapter
@@ -36,6 +36,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
+import net.canvoki.vokibot.R
 import net.canvoki.vokibot.common.MissingPermissionBanner
 import net.canvoki.vokibot.common.PermissionState
 import net.canvoki.vokibot.common.WarningBanner

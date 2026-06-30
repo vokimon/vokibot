@@ -1,4 +1,4 @@
-package net.canvoki.vokibot
+package net.canvoki.vokibot.bluetooth
 
 import android.bluetooth.BluetoothDevice
 import android.content.BroadcastReceiver
@@ -6,6 +6,8 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import net.canvoki.shared.log
+import net.canvoki.vokibot.Automation
+import net.canvoki.vokibot.FileDataRepository
 
 class BluetoothTriggerReceiver : BroadcastReceiver() {
     override fun onReceive(

@@ -1,4 +1,4 @@
-package net.canvoki.vokibot
+package net.canvoki.vokibot.bluetooth
 
 import android.bluetooth.BluetoothClass
 import android.bluetooth.BluetoothDevice
@@ -9,6 +9,7 @@ import android.os.Build
 import androidx.annotation.StringRes
 import kotlinx.serialization.Serializable
 import net.canvoki.shared.log
+import net.canvoki.vokibot.R
 
 private fun BluetoothDevice?.bluetoothClassSafe(): BluetoothClass? =
     try {

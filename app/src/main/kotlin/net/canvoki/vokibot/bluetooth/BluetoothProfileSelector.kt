@@ -1,4 +1,4 @@
-package net.canvoki.vokibot
+package net.canvoki.vokibot.bluetooth
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -23,6 +23,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import net.canvoki.vokibot.R
 
 @Composable
 fun BluetoothProfileSelector(
