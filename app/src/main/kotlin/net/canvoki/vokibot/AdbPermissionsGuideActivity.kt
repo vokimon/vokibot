@@ -144,76 +144,60 @@ fun AdbPermissionsGuide(
             // https://developer.android.com/studio/debug/dev-options
             Step(
                 title = stringResource(R.string.adb_permissions_developer_options_title),
+                description = stringResource(R.string.adb_permissions_developer_options_description),
                 done = developerOptionsEnabled.value,
-            ) {
-                Text(
-                    stringResource(R.string.adb_permissions_developer_options_description),
-                )
-                TextButton(
-                    modifier = Modifier.align(Alignment.End),
-                    onClick = {
+                actionText = stringResource(R.string.adb_permissions_developer_options_button_device_info),
+                action = {
                         jumpToParam(
                             context,
                             page = Settings.ACTION_DEVICE_INFO_SETTINGS,
                             param = EXTRA_BUILD_NUMBER,
                         )
-                    },
-                ) {
-                    Text(stringResource(R.string.adb_permissions_developer_options_button_device_info))
-                }
-            }
+                },
+            )
 
             // https://developer.android.com/tools/adb#Enabling
             Step(
                 title = stringResource(R.string.adb_permissions_usb_debugging_title),
+                description = stringResource(R.string.adb_permissions_usb_debugging_description),
                 done = usbDebugEnabled.value,
-            ) {
-                Text(
-                    stringResource(R.string.adb_permissions_usb_debugging_description),
-                )
-                TextButton(
-                    modifier = Modifier.align(Alignment.End),
-                    onClick = {
-                        jumpToParam(
-                            context,
-                            page = Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS,
-                            param = EXTRA_ENABLE_ADB,
-                        )
-                    },
-                ) {
-                    Text(stringResource(R.string.adb_permissions_usb_debugging_button_developer_options))
-                }
-            }
+                actionText = stringResource(R.string.adb_permissions_usb_debugging_button_developer_options),
+                action = {
+                    jumpToParam(
+                        context,
+                        page = Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS,
+                        param = EXTRA_ENABLE_ADB,
+                    )
+                },
+            )
 
             Step(
                 title = stringResource(R.string.adb_permissions_install_adb_title),
+                description = stringResource(R.string.adb_permissions_install_adb_description),
                 done = null,
-            ) {
-                Text(stringResource(R.string.adb_permissions_install_adb_description))
-                TextButton(
-                    modifier = Modifier.align(Alignment.End),
-                    onClick = {
-                        val url = "https://developer.android.com/tools/releases/platform-tools#downloads"
-                        val intent = Intent(Intent.ACTION_VIEW, url.toUri())
-                        context.startActivity(intent)
-                    },
-                ) {
-                    Text(stringResource(R.string.adb_permissions_install_adb_button))
-                }
-            }
+                actionText = stringResource(R.string.adb_permissions_install_adb_button),
+                action = {
+                    val url = "https://developer.android.com/tools/releases/platform-tools#downloads"
+                    val intent = Intent(Intent.ACTION_VIEW, url.toUri())
+                    context.startActivity(intent)
+                },
+            )
 
             Step(
                 title = stringResource(R.string.adb_permissions_connect_usb_title),
+                description = stringResource(R.string.adb_permissions_connect_usb_description),
                 done = null,
-            ) {
-                Text(stringResource(R.string.adb_permissions_connect_usb_description))
-            }
+            )
 
+            val adbCommand = "adb shell pm grant ${context.packageName} $permission"
             Step(
                 title = stringResource(R.string.adb_permissions_run_adb_title),
                 done = permState.isGranted,
+                actionText = stringResource(R.string.adb_permissions_run_adb_copy_button),
+                action = {
+                    copyToClipboard(context, adbCommand)
+                },
             ) {
-                val adbCommand = "adb shell pm grant ${context.packageName} $permission"
                 Surface(
                     tonalElevation = 2.dp,
                     shape = RoundedCornerShape(12.dp),
@@ -226,14 +210,6 @@ fun AdbPermissionsGuide(
                         modifier = Modifier.padding(4.dp),
                     )
                 }
-                TextButton(
-                    modifier = Modifier.align(Alignment.End),
-                    onClick = {
-                        copyToClipboard(context, adbCommand)
-                    },
-                ) {
-                    Text(stringResource(R.string.adb_permissions_run_adb_copy_button))
-                }
             }
         }
     }
@@ -243,7 +219,9 @@ fun AdbPermissionsGuide(
 fun Step(
     done: Boolean?,
     title: String,
-    onClick: () -> Unit = {},
+    description: String? = null,
+    actionText: String? = null,
+    action: () -> Unit = {},
     expandable: @Composable ColumnScope.() -> Unit = {},
 ) {
     var expanded by remember { mutableStateOf(false) }
@@ -277,7 +255,18 @@ fun Step(
                         Modifier
                             .padding(start = 4.dp),
                 ) {
+                    description?.let {
+                        Text(description)
+                    }
                     expandable()
+                    actionText?.let {
+                        TextButton(
+                            modifier = Modifier.align(Alignment.End),
+                            onClick = { action() },
+                        ) {
+                            Text(it)
+                        }
+                    }
                 }
             }
         }
