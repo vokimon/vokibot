@@ -2,60 +2,22 @@
 
 ## Sprinted
 
-
-- Change Setting Command:
-    - [x] Select a setting
-    - [x] Setting List: Screen skeletton returning a setting
-    - [x] Setting List: Build the Category list and translations
-    - [x] Setting List: Settings database
-    - [x] Setting List: Navigate settings database
-    - [x] Setting List: Group by category
-    - [x] Settings: Add type URI
-    - [x] Settings: Add type Enum
-    - [x] Settings: Add type Flags
-    - [x] Settings: Add type ScopedInt
-    - [ ] Settings: Add type Media for audio
-    - [ ] Different icon for each value type?
-    - [ ] Build the page explaining adb scalation for secure settings
-    - [ ] Display ChangeSettings commands in command list (description, icon...)
-    - [ ] Default values for flags and 
-    - [x] Very short description (Brighness) to be used as title, short enough to be also composed as command title "Brightness=100"
-    - [x] Long description: user centered to be shown in the editor when modifying (Sets the brightness of the screen)
-    - [x] Raw value description: to be used in raw edition, describes string format (Integer between 0 and 300)a
-    - [x] Change Settings Editor: rememberDiscardableState
-    - [x] Change Settings Editor: if dirty show discard dialog before leaving
-    - [x] Change Settings Editor: isReadyToSave requires setting not null
-    - [x] Change Settings Editor: isReadyToTry requires setting not null
-    - [ ] Deprecation: Hide deprecated settings according to device android version
-    - [ ] Deprecation: When editing a deprecated setting (because device upgraded) show a warning
-    - [x] Setting Namespace: Define enum
-    - [x] Setting Namespace: Include in Spec
-    - [x] Setting Namespace: Execute in the proper namespace
-    - [ ] Setting Namespace: Ask proper permission
-    - [x] Typed editor for Boolean (Toggle)
-    - [x] Raw editor: Text editor with help on formatting this settings.
-    - [x] Permissions warning: and asker (reuse stuff from bluetooth)
-    - [ ] Permissions warning: for Secure and Global settings
-    - [ ] Permissions warning: Generalize for other strict permissions
-        - [ ] WRITE_SETTINGS	Settings.System.canWrite()	ACTION_MANAGE_WRITE_SETTINGS
-        - [ ] SYSTEM_ALERT_WINDOW	Settings.canDrawOverlays()	ACTION_MANAGE_OVERLAY_PERMISSION
-        - [ ] REQUEST_IGNORE_BATTERY_OPTIMIZATIONS	PowerManager.isIgnoringBatteryOptimizations()	ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS
-        - [ ] PACKAGE_USAGE_STATS	Consultar AppOpsManager	ACTION_USAGE_ACCESS_SETTINGS
-        - [ ] MANAGE_EXTERNAL_STORAGE	Environment.isExternalStorageManager()	ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION
-    - [ ] Review all settings database texts
-    - [x] Translate all settings database texts
-    - [ ] Settings cases
-        - [ ] Take FlagOption values from API constants
-        - [ ] Consider natural rotations: None (0) Left (90) Upside down (180) Right (270)
-        - [ ] ExtraType.Int(min, max): New data class for ranged integers (SCREEN_BRIGHTNESS 0-255, TTS_DEFAULT_PITCH 10-500, TTS_DEFAULT_RATE 10-300)
-        - [ ] String valued Flags for `AIRPLANE_MODE_RADIOS` (instead bitwise ints) 
-        - [ ] `WIFI_MOBILE_DATA_TRANSITION_WAKELOCK_TIMEOUT_MS`: ExtraType.Enum: Reuse setting_duration_* labels, subset of screen timeout values
-        - [ ] ExtraType.Uri parametrization: Add mimeType: String? parameter; update RINGTONE, NOTIFICATION_SOUND, ALARM_ALERT to ExtraType.Uri("audio/*")
-        - [ ] Add Flags test: ExtraValueTest.kt test case for ExtraType.Flags bitmask round-trip
-        - [ ] Finalize BT SCO label: Research MODE_RINGER_STREAMS_AFFECTED semantics for proper label
-        - [ ] EU (Basque) description review: "iturri-kk" needs native speaker correction
-        - [ ] Evaluate 6 dynamic list settings: TTS_DEFAULT_SYNTH, TTS_ENABLED_PLUGINS, ENABLED_ACCESSIBILITY_SERVICES, DEFAULT_INPUT_METHOD, ENABLED_INPUT_METHODS, SELECTED_INPUT_METHOD_SUBTYPE
-    - [ ] Dynamic default
+- [ ] Display ChangeSettings commands in command list (description, icon...)
+- [ ] ExtraType.Uri parametrization: Add mimeType: String? parameter; update RINGTONE, NOTIFICATION_SOUND, ALARM_ALERT to `ExtraType.Uri("audio/*")`
+- [ ] SettingList: Different icon for each value type?
+- [ ] Static default values for flags and enums
+- [ ] Dynamic default values based on current setting values or others
+- [ ] Deprecation: Hide deprecated settings according to device android version
+- [ ] Deprecation: When editing a deprecated setting (because device upgraded or imported) show a warning
+- [ ] Review all settings database texts
+- [ ] Consider natural rotations labels: None (0) Left (90) Upside down (180) Right (270)
+- [ ] Permissions warning: Generalize for other strict permissions
+    - [x] WRITE_SETTINGS	Settings.System.canWrite()	ACTION_MANAGE_WRITE_SETTINGS
+    - [ ] SYSTEM_ALERT_WINDOW	Settings.canDrawOverlays()	ACTION_MANAGE_OVERLAY_PERMISSION
+    - [ ] REQUEST_IGNORE_BATTERY_OPTIMIZATIONS	PowerManager.isIgnoringBatteryOptimizations()	ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS
+    - [ ] PACKAGE_USAGE_STATS	Consultar AppOpsManager	ACTION_USAGE_ACCESS_SETTINGS
+    - [ ] MANAGE_EXTERNAL_STORAGE	Environment.isExternalStorageManager()	ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION
+    - [ ] EU (Basque) description review: "iturri-kk" needs native speaker correction
 - [ ] Editor header: Fix: long titles move the done button out the screen.
 - [ ] Permissions warning: Move to shared
 
@@ -63,13 +25,10 @@
 ## Backlog
 
 - [ ] Hide Dasher when option clicked
-- [x] Add System.Panel to Settings Pages to choose
-- [x] Use System.Panel.ACTION_NFC to enable NFC instead of Settings page
-- [ ] Extra: Numeric fields being numeric
 - [ ] Weblate: create meta module
 - [ ] Weblate: create web module
-- [ ] Import: warn newer versions
-- [ ] Import: warn older versions or give option to migrate
+- [ ] Import: warn newer versions data
+- [ ] Import: warn older versions data or give option to migrate
 - [ ] Import: warn on duplicated ids in the bundle
 - [ ] Import: different ids may collide in file after sanitization
 - [ ] Import: DataChangeBus storm on big files (not relevant by now)
@@ -127,6 +86,44 @@
     - [ ] List of system broadcasts: <https://github.com/flyskywhy/android-sdk/blob/master/platforms/android-10/data/broadcast_actions.txt>
 
 ## Done
+
+- [x] Extra: Numeric fields being numeric
+- [x] Select a setting
+- [x] Setting List: Screen skeletton returning a setting
+- [x] Setting List: Build the Category list and translations
+- [x] Setting List: Settings database
+- [x] Setting List: Navigate settings database
+- [x] Setting List: Group by category
+- [x] Settings: Add type URI
+- [x] Settings: Add type Enum
+- [x] Settings: Add type Flags
+- [x] Settings: Add type ScopedInt
+- [x] Very short description (Brighness) to be used as title, short enough to be also composed as command title "Brightness=100"
+- [x] Long description: user centered to be shown in the editor when modifying (Sets the brightness of the screen)
+- [x] Raw value description: to be used in raw edition, describes string format (Integer between 0 and 300)a
+- [x] Change Settings Editor: rememberDiscardableState
+- [x] Change Settings Editor: if dirty show discard dialog before leaving
+- [x] Change Settings Editor: isReadyToSave requires setting not null
+- [x] Change Settings Editor: isReadyToTry requires setting not null
+- [x] Setting Namespace: Define enum
+- [x] Setting Namespace: Include in Spec
+- [x] Setting Namespace: Execute in the proper namespace
+- [x] Setting Namespace: Ask proper permission
+- [x] Typed editor for Boolean (Toggle)
+- [x] Raw editor: Text editor with help on formatting this settings.
+- [x] Permissions warning: and asker (reuse stuff from bluetooth)
+- [x] Permissions warning: for Secure and Global settings
+- [x] Translate all settings database texts
+- [x] Take FlagOption values from API constants
+- [x] ExtraType.Int(min, max): New data class for ranged integers (SCREEN_BRIGHTNESS 0-255, TTS_DEFAULT_PITCH 10-500, TTS_DEFAULT_RATE 10-300)
+- [x] String valued Flags for `AIRPLANE_MODE_RADIOS` (instead bitwise ints) 
+- [x] `WIFI_MOBILE_DATA_TRANSITION_WAKELOCK_TIMEOUT_MS`: ExtraType.Enum: Reuse setting_duration_* labels, subset of screen timeout values
+- [x] Add Flags test: ExtraValueTest.kt test case for ExtraType.Flags bitmask round-trip
+- [x] Finalize BT SCO label: Research MODE_RINGER_STREAMS_AFFECTED semantics for proper label -> BT_SCO deprecated so removed
+- [x] Evaluate 6 dynamic list settings: TTS_DEFAULT_SYNTH, TTS_ENABLED_PLUGINS, ENABLED_ACCESSIBILITY_SERVICES, DEFAULT_INPUT_METHOD, ENABLED_INPUT_METHODS, SELECTED_INPUT_METHOD_SUBTYPE
+
+- [x] Add System.Panel to Settings Pages to choose
+- [x] Use System.Panel.ACTION_NFC to enable NFC instead of Settings page
 
 ## Done 0.6.1
 
