@@ -148,11 +148,11 @@ fun AdbPermissionsGuide(
                 done = developerOptionsEnabled.value,
                 actionText = stringResource(R.string.adb_permissions_developer_options_button_device_info),
                 action = {
-                        jumpToParam(
-                            context,
-                            page = Settings.ACTION_DEVICE_INFO_SETTINGS,
-                            param = EXTRA_BUILD_NUMBER,
-                        )
+                    jumpToParam(
+                        context,
+                        page = Settings.ACTION_DEVICE_INFO_SETTINGS,
+                        param = EXTRA_BUILD_NUMBER,
+                    )
                 },
             )
 

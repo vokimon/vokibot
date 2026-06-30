@@ -8,12 +8,12 @@ import androidx.core.content.pm.ShortcutManagerCompat
 import androidx.core.graphics.drawable.IconCompat
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
-import java.util.UUID
 import net.canvoki.vokibot.EntityMetadata
 import net.canvoki.vokibot.JsonConfig
 import net.canvoki.vokibot.R
 import net.canvoki.vokibot.StorableEntity
 import net.canvoki.vokibot.Trigger
+import java.util.UUID
 
 /**
  * Triggers on a shortcut icon in the home screen
