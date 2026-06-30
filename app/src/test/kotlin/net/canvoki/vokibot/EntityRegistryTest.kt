@@ -5,6 +5,10 @@ import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
 import net.canvoki.shared.test.assertEquals
 import net.canvoki.shared.test.assertJsonEqual
+import net.canvoki.vokibot.nfc.NfcTrigger
+import net.canvoki.vokibot.nfc.NfcTriggerEditor
+import net.canvoki.vokibot.shortcut.ShortcutTrigger
+import net.canvoki.vokibot.shortcut.ShortcutTriggerEditor
 import org.junit.Test
 
 object DummyScreen : StackedScreen<Unit>() {
