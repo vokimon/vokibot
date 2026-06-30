@@ -1,4 +1,4 @@
-package net.canvoki.vokibot
+package net.canvoki.vokibot.settingspage
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -38,6 +38,8 @@ import net.canvoki.shared.component.AsyncList
 import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
 import net.canvoki.shared.component.preferences.rememberMutablePreference
+import net.canvoki.vokibot.FileDataRepository
+import net.canvoki.vokibot.R
 import net.canvoki.vokibot.common.EditorHeader
 import net.canvoki.vokibot.common.ListGroupHeader
 import net.canvoki.vokibot.common.toPainter
