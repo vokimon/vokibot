@@ -17,7 +17,8 @@ full_description_md: |-
   Implemented commands:
 
   - Activate application components: Activities, Services, Receivers
-  - Open system configuration pages
+  - Change system configuration parameters
+  - Open system configuration pages or quick panels
   - Connect or disconnect Bluetooth devices
 keywords: automation, nfc, timer, shortcut
 changes_0_7_0_md: |-

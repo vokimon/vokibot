@@ -9,5 +9,6 @@ Acionadores implementados:
 Comandos implementados:
 
 - Ativar componentes da aplicação: Atividades, Serviços, Recetores
-- Abrir páginas de configuração do sistema
+- Alterar parâmetros de configuração do sistema
+- Abrir páginas de configuração do sistema ou painéis rápidos
 - Ligar ou desligar dispositivos Bluetooth

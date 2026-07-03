@@ -12,6 +12,7 @@ full_description_md: |
   Inplementatutako komandoak:
 
   - Aplikazio-osagaiak aktibatu: Jarduerak, Zerbitzuak, Hartzaileak
-  - Sistemako konfigurazio-orriak ireki
+  - Sistemako konfigurazio-parametroak aldatu
+  - Sistemako konfigurazio-orriak edo panel azkarrak ireki
   - Bluetooth gailuak konektatu edo deskonektatu
 keywords: automatizazioa, nfc, tenporizadorea, lasterbidea

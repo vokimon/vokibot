@@ -9,5 +9,6 @@ Disparadors implementaus:
 Comandos implementaus:
 
 - Activar components d'aplicación: Actividatz, Serbicios, Receptors
-- Ubrir pachinas de configuración d'o sistema
+- Cambiar parametros de configuración d'o sistema
+- Ubrir pachinas de configuración d'o sistema u panels rapidos
 - Conectar u desconnectar dispositivos Bluetooth

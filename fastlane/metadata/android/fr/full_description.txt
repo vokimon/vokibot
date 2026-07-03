@@ -9,5 +9,6 @@ Déclencheurs implémentés :
 Commandes implémentées :
 
 - Activer les composants de l'application: Activités, Services, Récepteurs
-- Ouvrir les pages de configuration du système
+- Modifier les paramètres de configuration du système
+- Ouvrir les pages de configuration du système ou les panneaux rapides
 - Connecter ou déconnecter des appareils Bluetooth

@@ -12,6 +12,7 @@ full_description_md: |
   Implementierte Befehle:
 
   - Anwendungskomponenten aktivieren: Aktivitäten, Dienste, Empfänger
-  - Systemkonfigurationsseiten öffnen
+  - Systemkonfigurationsparameter ändern
+  - Systemkonfigurationsseiten oder Schnellzugriff-Panels öffnen
   - Bluetooth-Geräte verbinden oder trennen
 keywords: automatisierung, nfc, timer, kurztaste

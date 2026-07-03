@@ -9,5 +9,6 @@ Disparadors implementats:
 Ordres implementades:
 
 - Activar components d'aplicació: Activitats, Serveis, Receptors
-- Obrir pàgines de configuració del sistema
+- Canviar paràmetres de configuració del sistema
+- Obrir pàgines de configuració del sistema o panells ràpids
 - Connectar o desconnectar dispositius Bluetooth

@@ -9,5 +9,6 @@ Disparadores implementados:
 Comandos implementados:
 
 - Activar componentes de aplicación: Actividades, Servicios, Receptores
-- Abrir páginas de configuración del sistema
+- Cambiar parámetros de configuración del sistema
+- Abrir páginas de configuración del sistema o paneles rápidos
 - Conectar o desconectar dispositivos Bluetooth
