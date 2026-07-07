@@ -100,4 +100,16 @@ The maximum and default value can be queried as CameraCharacteristics
 - CameraCharacteristics.FLASH_INFO_STRENGTH_MAXIMUM_LEVEL: Maximum brightness level. The camera HAL advertises this feature by setting a value greater than 1.
 - CameraCharacteristics.FLASH_INFO_STRENGTH_DEFAULT_LEVEL: Default flashlight brightness level.
 
+## Logical cameras consisting in more than one pysical cameras.
+
+Since API 28+, cameras have the capability to join more than one camera under one logical camera.
+You can list the inner phisical cameras fof a logical camera,
+ask for their capabilities, change parameters and set the one by default used with the logical cameras.
+
+
+
+
+
+
+
 
