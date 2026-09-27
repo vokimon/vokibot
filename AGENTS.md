@@ -7,6 +7,15 @@
 - Stack: Jetpack Compose, Material3, serialization, coroutines
 - SDK: compileSdk/targetSdk 36, minSdk 26
 
+## Token economy
+
+- **Default to the shortest answer that fully answers**
+- Outlines over tables and prose; no preambles, no recap of what you just did, no re-explaining changes the diff already shows;
+- Lead with the outcome. No narration, no filler praise, 
+- Use full diff to propose changes, not full code snippets.
+- Agents just analyze code in plan mode and edits it in build mode.
+- Agents can propose build commands for the user to run, when they are not the usual ones, but agens NEVER run build commands.
+
 ## Developer Commands
 
 ```bash
@@ -23,19 +32,21 @@ CI runs: build → test → assemble (see `.github/workflows/main.yaml`)
 
 To avoid build collisions and excessive token expending.
 Those commands are for the User to run. Not for the agent to run,
-with the only exception of `spotlessApply`.
+with the only exception of `spotlessApply` after its editions.
 
 ## Controlled Workflow
 
 1. **Task**: User asks a task
-2. **Propose**: Agent proposes code changes (few tens of lines), focused on a clear goal
+2. **Converge**: Agent asks the user one by one those aspects that are ambiguous in the task
+2. **Propose**: Agent proposes code changes (few tens of lines), focused on a clear goal.
 3. **Refine**: User reviews, asks refinements in chat
 4. **Apply**: Either User or Agent writes/edits the files
 5. **Build/Test**: User compiles, tests, and provides feedback in chat. The agent does not compile or test (this is important)
 6. **Iterate**: Repeat until User commits or discards the proposal by reverting uncommited changes.
 
+
 **Git references**:
-- Last commit = reference for ongoing changes
+- Last commit = reference for ongoing changes for the current proposal
 - Stage = optional reference for refinements (usually before asking for refinements in an ongoing proposal)
 
 **Proposal categories** (do not mix in one proposal):
@@ -102,28 +113,28 @@ Methodologically we separate RED and GREEN, but we do not commit REDs because th
 
 ### Long refactorings workflow (Duppe, Fill, Rely, Cleanup)
 
-To keep larger refactors in small stable commits,
-Agent should split the code proposals in committable stages following the methodology explained here.
+To keep larger refactors in small steps with stable commits,
+Agent should split the code change proposals in committable stages following the methodology explained here.
 Most refactors replace an old artifact (file, class, method, attribute, data source...) with a new one.
-This methodology requires having different paths for queries (getters) and updates (setters) of the state,
+This methodology requires having different interface entry points for queries (getters) and updates (setters) of the state;
 whenever any artifact mixes them, Agent should spot the case to the user and ask how to proceed.
 
 The stages are:
 
 1. Duppe (Duplicate):
-Create a new artifact (file, class, method, attribute, data source)
+Create the new artifact (file, class, method, attribute, data source)
 that will hold the target code, without removing the existing one.
 Both old and new coexist.
 
 2. Fill (Keep in sync):
 Ensure the new artifact mirrors the state of the old one by
-updating the new artifact whenever the old one is modified
+updating the new artifact whenever the old one is modified (double setting)
 This step can be split by each state update strategically thinking what needs to be done first.
 
 3. Rely (Switch to new):
 Once the new artifact faithfully represents the old one,
 switch to using it in the code.
-Replace remaining uses of the old artifact with use of the new one.
+Replace remaining uses of the old artifact with use of the new one (replace getters).
 This step can also be split by each state query.
 
 4. Cleanup:
@@ -146,8 +157,8 @@ Since all the steps are stable, we could stop an ongoing refactor and focus on T
 
 ## Exception Handling
 
-- Avoid catch-all exception handling which may mask bugs
-- Scope try blocks to the specific statements that may throw
+- Avoid catch-all exception handling to avoid masking bugs
+- Scope try blocks to the specific statements expected to throw
 - Expect the specific exception types you want to handle
 - Catching an exception deserves at least a log
 - If you don't know how to handle, let it raise
@@ -155,7 +166,7 @@ Since all the steps are stable, we could stop an ongoing refactor and focus on T
 ## Code Reuse
 
 - Always consider extracting functions for repeated code
-- Consider existing functions before adding new ones
+- Consider reuse existing functions before adding new ones
 - Domain-independent code is promoted to `net.canvoki.shared`, and eventually moved to the shared module/library
 
 ## Translation Files
@@ -168,3 +179,18 @@ Since all the steps are stable, we could stop an ongoing refactor and focus on T
 - Use block scalars for multiline strings
 - Avoid quotes if not needed
 - Use interpolation `{varname}`, escaped `{{`. In code, they will be positional by their order in the reference language.
+
+## Version control
+
+- According to previous rules, agents should not commit, rebase or merge, but they could suggest humans commands for the human to execute or to solve conflicts by editing files.
+- Commit messages use a limited set of gitmoji: 📝 doc, 🐛 fix, ♻️ refactor, 🎨 style, 🔧 ci...
+- First word after the gitmoji should be context if needed (class, file, context of a wide change...)
+- Commits are granular: you should be able to clearly identify in the diff what the change is
+- Commits are topic: separate documentation, code style, refactorings and features or fixes. Each code style/refactor/fix/doc, in a different commit.
+- Branches are short and merged with rebase so the merged history is a linear branch. Mergers are responsible to adapt their branch commits to already merged changes before merge.
+- Agents should warn humans whenever uncomitted changes are about to accommulate so that a granular commit is becoming hard to make.
+
+
+
+
+
