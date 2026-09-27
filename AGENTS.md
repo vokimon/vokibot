@@ -3,7 +3,7 @@
 ## Project
 
 - Kotlin Android app (F-Droid distribution)
-- Modules: `app`, `puppet`, `shared` (git submodule)
+- Modules: `app`, `puppet`, `shared` (a git submodule)
 - Stack: Jetpack Compose, Material3, serialization, coroutines
 - SDK: compileSdk/targetSdk 36, minSdk 26
 
@@ -14,7 +14,7 @@
 - Lead with the outcome. No narration, no filler praise, 
 - Use full diff to propose changes, not full code snippets.
 - Agents just analyze code in plan mode and edits it in build mode.
-- Agents can propose build commands for the user to run, when they are not the usual ones, but agens NEVER run build commands.
+- Agents can propose build commands for the user to run, when they are not the usual ones, but agents NEVER run build commands.
 
 ## Developer Commands
 
@@ -30,24 +30,24 @@
 
 CI runs: build -> test -> assemble (see `.github/workflows/main.yaml`)
 
-To avoid build collisions and excessive token expending.
-Those commands are for the User to run. Not for the agent to run,
-with the only exception of `spotlessApply` after its editions.
+To avoid build collisions and excessive token spending,
+those commands are for the User to run, not for the agent,
+with the only exception of `spotlessApply` after the agent's editions.
 
 ## Controlled Workflow
 
 1. **Task**: User asks a task
 2. **Converge**: Agent asks the user one by one those aspects that are ambiguous in the task
-2. **Propose**: Agent proposes code changes (few tens of lines), focused on a clear goal.
-3. **Refine**: User reviews, asks refinements in chat
-4. **Apply**: Either User or Agent writes/edits the files
-5. **Build/Test**: User compiles, tests, and provides feedback in chat. The agent does not compile or test (this is important)
-6. **Iterate**: Repeat until User commits or discards the proposal by reverting uncommited changes.
+3. **Propose**: Agent proposes code changes (few tens of lines), focused on a clear goal,
+   presented as a full diff in chat (no file touched yet).
+4. **Refine**: User reviews, asks refinements in chat
+5. **Apply**: Agent edits the files as per the approved diff; User may apply them instead.
+6. **Build/Test**: User compiles, tests, and provides feedback in chat. The agent does not compile or test (this is important)
+7. **Iterate**: Repeat until User commits or discards the proposal by reverting uncommitted changes.
 
-
-**Git references**:
-- Last commit = reference for ongoing changes for the current proposal
-- Stage = optional reference for refinements (usually before asking for refinements in an ongoing proposal)
+The User may `git add` an unaccepted proposal before asking for refinements
+in order to have both diffs (full proposal and refinements)
+or to roll back just the refinements.
 
 **Proposal categories** (do not mix in one proposal):
 1. Style (formatting, naming)
@@ -95,7 +95,9 @@ When using TDD (Beck/Fowler methodology):
 - For aggregations consider testing 0, 1, N cases. Depending on the case, 0 or 1 first may make simpler fail the tests in order.
 
 **Rules**:
-- Do not change behavior during RED phase
+- Do not change existing behavior during RED phase: for a bug, the test fails
+  against the current code as-is; for new functionality, the stub compiles but
+  gives a wrong result
 - Implement only what is needed to pass the test, no more
 - Each step must compile.
   RED proposals have only the new test failing by design;
@@ -105,11 +107,12 @@ When using TDD (Beck/Fowler methodology):
 **Workflow**: Agent proposes RED code
 (test + deliberately wrong implementation that compiles but the new test fails).
 User reviews the RED --
-verifies the failure message is informative,
+runs the test and verifies the failure message is informative,
 may adjust the test.
 After approval, Agent adds the GREEN fix.
-RED and GREEN are committed together in a single commit for the step.
-Methodologically we separate RED and GREEN, but we do not commit REDs because they would break CI/CD.
+The User commits RED and GREEN together in a single commit for the step
+(test and its minimal implementation are one topic).
+REDs are never committed alone because they would break CI/CD.
 
 ### Long refactorings workflow (Duppe, Fill, Rely, Cleanup)
 
@@ -168,17 +171,31 @@ Since all the steps are stable, we could stop an ongoing refactor and focus on T
 - Always consider extracting functions for repeated code
 - Consider reuse existing functions before adding new ones
 - Domain-independent code is promoted to `net.canvoki.shared`, and eventually moved to the shared module/library
+- Changes in `shared` affect the other apps consuming it:
+  avoid them unless approved by the User.
 
 ## Translation Files
 
-- 12 languages: an (aragonese), `and` (andaluh, hijacked ISO), ar (arabic), ca, de, en, es, eu, fr, gl, pt, ru
-- English is reference; Andalusian auto-generated from Spanish
-- `meta/translations/<isoCode>.yaml` - format: `id->text`, agents do not edit them directly.
-- Agents propose new strings by generating a proposal.yaml which is `id->lang->text`.
-- User reviews and applies `proposal.yaml` with `yaml-translations distribute`
-- Use block scalars for multiline strings
-- Avoid quotes if not needed
-- Use interpolation `{varname}`, escaped `{{`. In code, they will be positional by their order in the reference language.
+- 12 languages: an (aragonese), `and` (andaluh, hijacked ISO code), ar (arabic), ca, de, en, es, eu, fr, gl, pt, ru
+- `<isoCode>.yaml` - format: `id->text`, agents do not edit them directly.
+- English is the reference language
+- Agents do not propose Andalusian, it is automatically transliterated from Spanish by the user, eventually, once strings are stable.
+- Agents propose new strings by writing a temporary `proposal.yaml`
+  at the project root, with entries `id->lang->text`.
+- User reviews and applies `proposal.yaml` with `yaml-translations distribute ...`
+- For multiline strings, use yaml block scalars
+- Avoid YAML quotes if not needed
+- Use interpolation `{varname}`, escaped `{{`.
+  YAML keeps the named placeholders and may reorder them per language;
+  the build converts them to positional specifiers (`%1$s`, ...)
+  following the first-appearance order in the reference language,
+  which is also the order arguments are passed in code.
+- Each artifact has a different translation file set:
+    - `app/src/main/translations/` for main app code
+    - `shared/src/main/translations/` for shared module code
+    - `meta/translations/` for project metadata
+    - `meta/web-translations/` for website
+- Web and metadata translations are applied by their own scripts, instead of transpiled to xml
 
 ## Version control
 
@@ -223,15 +240,16 @@ Two recurring roles around every entity type:
 **Modules** (`settings.gradle`):
 
 - `:app`: all domain and domain coupled UI.
-- `:shared`: reusable classes shared with other apps: generic UI `StackNavigator`/`StackedScreen`, settings, crash, storage.
+- `:shared`: reusable classes, shared with other apps as _git submodule_: generic UI `StackNavigator`/`StackedScreen`, settings, crash, storage.
 - `:puppet`: dummy app for instrumented and user tests.
 
-**Root package** `app/src/main/kotlin/net/canvoki/vokibot/`:
+**Main package** `app/src/main/kotlin/net/canvoki/vokibot/`:
 
 - Domain:
-    - `StorableEntity.kt`: The abstract class for all entities
+    - `StorableEntity.kt`: `interface StorableEntity`, the base of all entities;
+      also hosts `EntityBootstrap` registration
     - `EntityRegistry.kt`: Central registry for serializable types
-    - `Trigger.kt`/`Command.kt`/`Automation.kt`: Clases for those kind of entities (abstract for triggers and commands)
+    - `Trigger.kt`/`Command.kt`/`Automation.kt`: Classes for those kinds of entities (abstract for triggers and commands)
     - `FileDataRepository.kt`: Abstract storage for entities
     - `DataSet.kt`: Repository projection on one kind of entity (Repository implementation detail)
     - `ExportedBundle.kt`: Storable bundle of entities
@@ -248,8 +266,7 @@ Two recurring roles around every entity type:
 **Entity system** (the key pattern to add new types):
 
 1. `interface StorableEntity`: `id`, `type`, `getTitle`, `iconRes`, `toJson`, `references`.
-2. `abstract class Trigger : StorableEntity`: same pattern for `Command`;
-   `Automation` is a plain data class with the same identity fields.
+2. Direct child classes `Automation`, `Trigger` (abstract) and `Command` (abstract).
 3. `interface EntityMetadata`:
    `typeKey`, `labelRes`, `iconRes`, `editorFactory`, `deserializer`, `helpRes`.
    Each entity implements it in its `companion object`.
@@ -259,23 +276,25 @@ Two recurring roles around every entity type:
 5. Hand-rolled polymorphism (no SerializersModule): `EntityRegistry.fromJson`
    reads the `"type"` discriminator (`JsonConfig`), looks up the metadata and decodes.
 
-**Persistence**: one JSON file per entity in `context.filesDir/repodata/`
+**Repository:**
+
+- Persistence: one JSON file per entity in `context.filesDir/repodata/`
 through `FileDataRepository.kt` -> `DataSet.kt`, file `{prefix}{sanitizedId}.json`.
-`DataSet.save/remove` emit `DataChangeBus` -> UI refreshes via `rememberDataVersion()`.
-Export/import in `ExportedBundle.kt`. No DB/Room and no domain DataStore.
+- Synchronization: `DataSet.save/remove` emit `DataChangeBus` -> UI refreshes via `rememberDataVersion()`.
+- Export/import: `ExportedBundle.kt`. No DB/Room and no domain DataStore.
 
-**Trigger dispatch**: triggers fire by identity (`triggerId`), with no predicates.
-Dispatchers are per type: `NfcDispatchActivity`, `ShortcutDispatchActivity`
-(foreground, via `TriggerDispatcher` composable) and `BluetoothTriggerReceiver`
-(background, runs commands on `Dispatchers.IO`).
-Generic delete in `TriggerList.kt` does not cancel side-effects
-nor clean up `Automation.triggerId`.
+**Navigation/UI**:
 
-**Navigation/UI**: screens are `@Serializable data class/object : StackedScreen<R>`
-with constructor data;
-editors follow the pattern `EditorHeader` + `rememberSaveable` + `rememberDiscardableState`
-+ `LaunchedEffect(editingId)` with a `hasLoaded` flag
-+ `repository.trigger.save(...)` -> `nav.pop()`.
+- Screens are serializable subclasses of `StackedScreen<R>` (constructor data);
+  the whole stack is serialized into the activity state.
+- Screens are pushed to the stack; a callback can be registered
+  and receives the result `R` when the screen is popped.
+- Editors follow the pattern:
+    - EditorHeader: header with icon, title and the 'Done' action button
+    - rememberSaveable: to keep the field state across configuration changes
+    - rememberDiscardableState: to warn on unsaved changes
+    - `LaunchedEffect(editingId)` with a `hasLoaded` flag, to control asynchronous entity loading
+    - 'Done' button implemented with `repository.<kind>.save(...)` -> `nav.pop()`
 
 **Tests** (`app/src/test/kotlin/net/canvoki/vokibot/`):
 template to replicate `BluetoothConnectCommandTest.kt`
@@ -283,9 +302,5 @@ template to replicate `BluetoothConnectCommandTest.kt`
 `registered with correct entityClass`,
 `editor returns XEditor` with/without id);
 also `NfcTriggerTest.kt`, `EntityRegistryTest.kt`, `FileDataRepositoryTest.kt`.
-Helpers: `net/canvoki/shared/test/` (`assertJsonEqual`, multiline `assertEquals`).
-
-
-
-
-
+Helpers package `net.canvoki.shared.test` under `app/src/test/kotlin/`
+(`assertJsonEqual`, multiline `assertEquals`).
