@@ -31,7 +31,7 @@ Methods are independent of which button is pressed.
 Receives `KEYCODE_*` events when the application Activity is in the foreground.
 Cannot intercept events when another app is focused.
 
-Discovery: enumerate available keycodes across connected devices.
+Discovery: enumerate available keycodes across connected input devices.
 
 ```kotlin
 val inputManager = context.getSystemService(InputManager::class.java)
@@ -56,6 +56,23 @@ override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
 }
 ```
 
+Device filtering: `event.device` provides device information.
+
+```kotlin
+override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+    val device = event?.device
+    // device?.isExternal — true for USB/Bluetooth, false for built-in
+    // device?.bluetoothAddress — Bluetooth MAC address
+    // device?.vendorId / productId — USB device identification
+
+    if (selectedDeviceId != null && event?.deviceId != selectedDeviceId) {
+        return super.onKeyDown(keyCode, event)
+    }
+    trigger("KEYCODE_$keyCode")
+    return super.onKeyDown(keyCode, event)
+}
+```
+
 
 ### Accessibility service
 
@@ -72,6 +89,18 @@ Dispatch: implement `onKeyEvent()` in the service.
 
 ```kotlin
 override fun onKeyEvent(event: KeyEvent?): Boolean {
+    trigger("KEYCODE_${event?.keyCode}")
+    return true
+}
+```
+
+Device filtering: same as Activity key events.
+
+```kotlin
+override fun onKeyEvent(event: KeyEvent?): Boolean {
+    if (selectedDeviceId != null && event?.deviceId != selectedDeviceId) {
+        return false
+    }
     trigger("KEYCODE_${event?.keyCode}")
     return true
 }
@@ -108,6 +137,10 @@ volume is routed through AudioManager, not MediaSession.
 Note: This method interferes with actual media players (Spotify, YouTube, etc.).
 When a media player is active, it will receive the events instead.
 The trigger won't work while other media apps are playing.
+
+Note: Device filtering is not available.
+Callback methods do not expose source device information.
+Events are routed by system media priority, not by input device.
 
 Discovery: standard media actions are predefined constants.
 
@@ -155,6 +188,9 @@ session.setCallback(object : MediaSession.Callback() {
 
 Manufacturer-specific SDK for dedicated hardware buttons.
 
+Note: Device filtering depends on vendor SDK capabilities.
+Check vendor documentation for available filtering options.
+
 Discovery: vendor-specific enumeration.
 
 ```kotlin
@@ -192,28 +228,39 @@ the device uses HID profile. HID devices appear as input devices and send standa
 Note: MediaSession already handles media controls (play/pause/next/prev).
 This method is for other buttons on Bluetooth remotes and controllers.
 
-Discovering device capabilities:
+Discovery: enumerate Bluetooth input devices.
 
 ```kotlin
-// Get the InputDevice for a connected Bluetooth HID device
 val inputManager = getSystemService(InputManager::class.java)
-val deviceIds = inputManager.inputDeviceIds
+val devices = inputManager.inputDeviceIds.mapNotNull { inputManager.getInputDevice(it) }
+val btDevices = devices.filter { it.bluetoothAddress != null }
 
-// Find the Bluetooth device by address
-val btDeviceId = deviceIds.firstOrNull { id ->
-    inputManager.getInputDevice(id)?.bluetoothAddress == targetAddress
+for (device in btDevices) {
+    val possibleKeys = intArrayOf(
+        KeyEvent.KEYCODE_VOLUME_UP,
+        KeyEvent.KEYCODE_VOLUME_DOWN,
+        KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE,
+    )
+    val hasKeys = device.hasKeys(*possibleKeys)
+    val supported = possibleKeys.filterIndexed { index, _ -> hasKeys[index] }
+    // Present: "${device.name} (${device.bluetoothAddress}): $supported"
 }
-val btDevice = btDeviceId?.let { inputManager.getInputDevice(it) }
+```
 
-// Check which keycodes the device supports
-val possibleKeys = intArrayOf(
-    KeyEvent.KEYCODE_VOLUME_UP,
-    KeyEvent.KEYCODE_VOLUME_DOWN,
-    KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE,
-    // ... add any keycodes you want to check
-)
-val hasKeys = btDevice?.hasKeys(*possibleKeys)
-// hasKeys[i] is true if device can produce possibleKeys[i]
+Dispatch: filter events by Bluetooth address.
+
+```kotlin
+val selectedBtAddress: String? = "AA:BB:CC:DD:EE:FF"
+
+override fun onKeyEvent(event: KeyEvent?): Boolean {
+    val device = event?.device
+    if (device?.bluetoothAddress == null) return false
+    if (selectedBtAddress != null && device.bluetoothAddress != selectedBtAddress) {
+        return false
+    }
+    trigger("KEYCODE_${event.keyCode}")
+    return true
+}
 ```
 
 
@@ -226,6 +273,9 @@ Note: Continuous sensor monitoring drains battery significantly.
 Use `SensorManager.registerListener()` with appropriate sampling rates
 (`TYPE_DELAY_NORMAL`, `TYPE_DELAY_UI`, or `TYPE_DELAY_GAME`).
 
+Note: Filtering is by sensor type and name, not by input device.
+Each sensor is identified by `sensor.name`, `sensor.type`, `sensor.vendor`.
+
 Discovery: list all sensors on the device.
 
 ```kotlin
@@ -235,7 +285,7 @@ val sensorManager =
 
 val sensors = sensorManager.getSensorList(Sensor.TYPE_ALL)
 for (sensor in sensors) {
-    Log.d(TAG, "Sensor: ${sensor.name}, type: ${sensor.type}")
+    Log.d(TAG, "Sensor: ${sensor.name}, type: ${sensor.type}, vendor: ${sensor.vendor}")
 }
 ```
 
@@ -276,9 +326,30 @@ sensorManager.registerListener(
 Each button type has different available methods.
 
 
-### Discovering available keycodes
+### Discovering input devices and keycodes
 
-Discovery: check which keycodes are available on connected devices.
+Discovery: enumerate input devices and check available keycodes.
+
+Enumerate devices for user selection:
+
+```kotlin
+val inputManager = context.getSystemService(InputManager::class.java)
+val devices = inputManager.inputDeviceIds.mapNotNull { inputManager.getInputDevice(it) }
+
+for (device in devices) {
+    val type = when {
+        device.isVirtual -> "Virtual"
+        device.isExternal -> "External"
+        else -> "Built-in"
+    }
+    val connection = when {
+        device.bluetoothAddress != null -> "Bluetooth"
+        device.isExternal -> "USB"
+        else -> "Integrated"
+    }
+    // Present: "${device.name} ($type, $connection)"
+}
+```
 
 Keycodes to check:
 
@@ -300,18 +371,12 @@ val keyCodes = intArrayOf(
 )
 ```
 
-Enumerate all connected input devices and their supported keycodes:
+Per-device check:
 
 ```kotlin
-val inputManager = context.getSystemService(InputManager::class.java)
-val deviceIds = inputManager.inputDeviceIds
-
-for (id in deviceIds) {
-    val device = inputManager.getInputDevice(id) ?: continue
-    val hasKeys = device.hasKeys(*keyCodes)
-    val supported = keyCodes.filterIndexed { index, _ -> hasKeys[index] }
-    Log.d(TAG, "${device.name}: $supported")
-}
+val device = inputManager.getInputDevice(deviceId)
+val hasKeys = device.hasKeys(*keyCodes)
+val supported = keyCodes.filterIndexed { index, _ -> hasKeys[index] }
 ```
 
 System-wide check (any device):
@@ -321,12 +386,18 @@ val hasKeys = KeyCharacterMap.deviceHasKeys(*keyCodes)
 val supported = keyCodes.filterIndexed { index, _ -> hasKeys[index] }
 ```
 
-Per-device check:
+Device filtering: store selected device ID (or null for any device).
 
 ```kotlin
-val device = inputManager.getInputDevice(deviceId)
-val hasKeys = device.hasKeys(*keyCodes)
-val supported = keyCodes.filterIndexed { index, _ -> hasKeys[index] }
+val selectedDeviceId: Int? = null // null = respond to all devices
+
+override fun onKeyEvent(event: KeyEvent?): Boolean {
+    if (selectedDeviceId != null && event?.deviceId != selectedDeviceId) {
+        return false
+    }
+    trigger("KEYCODE_${event?.keyCode}")
+    return true
+}
 ```
 
 Media keycodes (standard Android):
@@ -355,16 +426,20 @@ Media keycodes (standard Android):
 - Keycodes: `KEYCODE_MEDIA_PLAY`, `KEYCODE_MEDIA_PAUSE`, `KEYCODE_MEDIA_PLAY_PAUSE`, `KEYCODE_MEDIA_STOP`, `KEYCODE_MEDIA_NEXT`, `KEYCODE_MEDIA_PREVIOUS`, `KEYCODE_MEDIA_REWIND`, `KEYCODE_MEDIA_FAST_FORWARD`, `KEYCODE_MEDIA_RECORD`, `KEYCODE_HEADSETHOOK`
 - Methods: Activity key events, Accessibility service, MediaSession
 - Note: MediaSession interferes with actual media players
+- Note: MediaSession does not support device filtering
 
 
 ### Programmable hardware buttons
 
 - Methods: Accessibility service, OEM SDK
+- Note: OEM SDK device filtering depends on vendor implementation
 
 
 ### Bluetooth buttons and remotes
 
 - Methods: Bluetooth input, MediaSession
+- Note: Bluetooth input supports device filtering by Bluetooth address
+- Note: MediaSession does not support device filtering
 
 
 ### Power button
@@ -445,6 +520,9 @@ The trigger engine keeps a short event history and matches patterns.
 Global touch screen gestures detected by the accessibility service.
 Requires `FLAG_REQUEST_TOUCH_EXPLORATION_MODE` in service configuration.
 
+Note: Device filtering is not available.
+Gestures are system-wide, not attributed to specific input devices.
+
 Discovery: gestures are predefined by Android, not dynamic.
 
 Available gestures:
@@ -490,6 +568,9 @@ override fun onGesture(gestureId: Int): Boolean {
 
 Swipe gestures on the fingerprint sensor (API 26+).
 Requires `USE_BIOMETRIC` permission and `FLAG_REQUEST_FINGERPRINT_GESTURES`.
+
+Note: Device filtering is not available.
+Always from fingerprint sensor; no device discrimination needed.
 
 Discovery: check `FingerprintGestureController.isAvailable()`.
 
