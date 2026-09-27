@@ -28,7 +28,7 @@
 ./gradlew build                   # full build (lint + compile)
 ```
 
-CI runs: build → test → assemble (see `.github/workflows/main.yaml`)
+CI runs: build -> test -> assemble (see `.github/workflows/main.yaml`)
 
 To avoid build collisions and excessive token expending.
 Those commands are for the User to run. Not for the agent to run,
@@ -148,7 +148,7 @@ Since all the steps are stable, we could stop an ongoing refactor and focus on T
 - Prefer early exits
 - Apply extract method to sectioning comments
 - IDs and comments in English (regardless of prompt language)
-- Avoid "conversational comments" — code comments that make sense only in this conversation, common in tutorials but awful in committed code
+- Avoid "conversational comments": code comments that make sense only in this conversation, common in tutorials but awful in committed code
 - Comments should help maintenance, not explain what you changed
 - Names should provide meaning and purpose, names should suffice to avoid comments most of the time
 - Meaningful names use to be long, avoid including empty significants (Manager, Object...)
@@ -189,6 +189,101 @@ Since all the steps are stable, we could stop an ongoing refactor and focus on T
 - Commits are topic: separate documentation, code style, refactorings and features or fixes. Each code style/refactor/fix/doc, in a different commit.
 - Branches are short and merged with rebase so the merged history is a linear branch. Mergers are responsible to adapt their branch commits to already merged changes before merge.
 - Agents should warn humans whenever uncomitted changes are about to accommulate so that a granular commit is becoming hard to make.
+
+## Architecture
+
+### Domain concepts
+
+VokiBot automates actions on the device.
+Three entities are linked in a graph:
+
+- **Trigger**: represents an event that fires the automation (NFC, shortcut, bluetooth...).
+  Each type has its **Dispatcher**: an Android component that receives system events,
+  looks up the matching trigger and runs its automations.
+- **Command**: *what action is executed* (`abstract suspend fun execute(context)`).
+  Abstract entity concretable in multiple types.
+- **Automation**: *the link* `triggerId -> commandIds`.
+  When a trigger fires, its automations are looked up and their commands executed.
+
+Flow: `event -> triggerId -> Automation.executeByTrigger() -> command.execute()`.
+
+All of the above implement **StorableEntity**: a persistable entity that
+serializes itself and exposes its references to export the graph.
+Each one is stored as a single JSON file and registered in `EntityRegistry`
+with an `EntityMetadata` that provides the UI editor, strings and icon.
+
+Two recurring roles around every entity type:
+
+- **Editor**: Form UI provided by each concrete entity type to create/edit an instance.
+- **Item representation**: Methods and properties used to present instances in lists and pickers:
+  `getTitle(context)` + `description` + `iconRes`/`loadIcon()`.
+
+### Code structure
+
+**Modules** (`settings.gradle`):
+
+- `:app`: all domain and domain coupled UI.
+- `:shared`: reusable classes shared with other apps: generic UI `StackNavigator`/`StackedScreen`, settings, crash, storage.
+- `:puppet`: dummy app for instrumented and user tests.
+
+**Root package** `app/src/main/kotlin/net/canvoki/vokibot/`:
+
+- Domain:
+    - `StorableEntity.kt`: The abstract class for all entities
+    - `EntityRegistry.kt`: Central registry for serializable types
+    - `Trigger.kt`/`Command.kt`/`Automation.kt`: Clases for those kind of entities (abstract for triggers and commands)
+    - `FileDataRepository.kt`: Abstract storage for entities
+    - `DataSet.kt`: Repository projection on one kind of entity (Repository implementation detail)
+    - `ExportedBundle.kt`: Storable bundle of entities
+    - `DataChangeBus.kt`: Notification/Subscription system for domain entity changes
+- UI:
+    - `MainActivity.kt`, 
+    - `TriggerList.kt`, `TriggerTypePicker.kt`,
+    - `CommandList.kt`, `CommandTypePicker.kt`,
+    - `AutomationList.kt`, `AutomationEditor.kt`
+    - reusable widgets in `common/`.
+- Per-topic subpackages holding the full pattern (entity + editor + dispatcher + related utilities):
+  `nfc/`, `shortcut/`, `bluetooth/`, `apps/`, `setting/`, `settingspage/`.
+
+**Entity system** (the key pattern to add new types):
+
+1. `interface StorableEntity`: `id`, `type`, `getTitle`, `iconRes`, `toJson`, `references`.
+2. `abstract class Trigger : StorableEntity`: same pattern for `Command`;
+   `Automation` is a plain data class with the same identity fields.
+3. `interface EntityMetadata`:
+   `typeKey`, `labelRes`, `iconRes`, `editorFactory`, `deserializer`, `helpRes`.
+   Each entity implements it in its `companion object`.
+4. Static registration in `EntityBootstrap` (inside `StorableEntity.kt`):
+   `NfcTrigger.register()`, `ShortcutTrigger.register()`, `BluetoothDeviceTrigger.register()`...
+   **single place**; the type picker and the list are generated from it.
+5. Hand-rolled polymorphism (no SerializersModule): `EntityRegistry.fromJson`
+   reads the `"type"` discriminator (`JsonConfig`), looks up the metadata and decodes.
+
+**Persistence**: one JSON file per entity in `context.filesDir/repodata/`
+through `FileDataRepository.kt` -> `DataSet.kt`, file `{prefix}{sanitizedId}.json`.
+`DataSet.save/remove` emit `DataChangeBus` -> UI refreshes via `rememberDataVersion()`.
+Export/import in `ExportedBundle.kt`. No DB/Room and no domain DataStore.
+
+**Trigger dispatch**: triggers fire by identity (`triggerId`), with no predicates.
+Dispatchers are per type: `NfcDispatchActivity`, `ShortcutDispatchActivity`
+(foreground, via `TriggerDispatcher` composable) and `BluetoothTriggerReceiver`
+(background, runs commands on `Dispatchers.IO`).
+Generic delete in `TriggerList.kt` does not cancel side-effects
+nor clean up `Automation.triggerId`.
+
+**Navigation/UI**: screens are `@Serializable data class/object : StackedScreen<R>`
+with constructor data;
+editors follow the pattern `EditorHeader` + `rememberSaveable` + `rememberDiscardableState`
++ `LaunchedEffect(editingId)` with a `hasLoaded` flag
++ `repository.trigger.save(...)` -> `nav.pop()`.
+
+**Tests** (`app/src/test/kotlin/net/canvoki/vokibot/`):
+template to replicate `BluetoothConnectCommandTest.kt`
+(`fromJson`, polymorphic roundtrip `assertIs`,
+`registered with correct entityClass`,
+`editor returns XEditor` with/without id);
+also `NfcTriggerTest.kt`, `EntityRegistryTest.kt`, `FileDataRepositoryTest.kt`.
+Helpers: `net/canvoki/shared/test/` (`assertJsonEqual`, multiline `assertEquals`).
 
 
 
