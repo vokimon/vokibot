@@ -22,4 +22,10 @@ class LocalDateTimeIsoSerializerTest {
             }
         assertEquals(exception.parsedString, "not-a-date")
     }
+
+    @Test
+    fun `serialize emits ISO local date time`() {
+        val encoded = JsonConfig.encodeToString(LocalDateTimeIsoSerializer, LocalDateTime.of(2026, 3, 12, 7, 30))
+        assertEquals("\"2026-03-12T07:30\"", encoded)
+    }
 }
