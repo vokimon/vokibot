@@ -18,8 +18,5 @@ object LocalDateTimeIsoSerializer : KSerializer<LocalDateTime> {
         encoder.encodeString("stub")
     }
 
-    override fun deserialize(decoder: Decoder): LocalDateTime {
-        decoder.decodeString()
-        return LocalDateTime.of(2026, 3, 12, 7, 30)
-    }
+    override fun deserialize(decoder: Decoder): LocalDateTime = LocalDateTime.parse(decoder.decodeString())
 }
