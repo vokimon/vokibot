@@ -2,6 +2,7 @@ package net.canvoki.vokibot
 
 import kotlinx.serialization.SerializationException
 import net.canvoki.shared.test.assertEquals
+import net.canvoki.shared.test.assertIsUUID
 import net.canvoki.shared.test.assertJsonEqual
 import net.canvoki.vokibot.time.TimeTrigger
 import org.junit.Assert.assertTrue
@@ -27,5 +28,10 @@ class TimeTriggerTest {
         assertFailsWith<SerializationException> {
             TimeTrigger.fromJson("not a json")
         }
+    }
+
+    @Test
+    fun `id defaults to uuid`() {
+        assertIsUUID(TimeTrigger().id)
     }
 }
