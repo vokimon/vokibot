@@ -37,7 +37,14 @@ Maintenance:
 - The schema is free to change during development.
   Migration is only needed between releases.
 
-## Stage 1 -- entity
+## Plan overview
+
+Vertical thin slices over finished layers: the riskiest part
+(Android scheduling) is touched in phase A, not last.
+`nextOccurrence` starts one-shot and extends with recurrence.
+-> stages reordered and merged: old Stage 1..6 are discarded.
+
+## Phase A -- one-shot end to end
 
 - [x] `LocalDateTimeIsoSerializer`.
       Three RED/GREEN pairs: parse, malformed input, ISO encode.
@@ -46,50 +53,48 @@ Maintenance:
       validates and still stubs the result.
 - [x] `id`, stored in the fixture.
       Two pairs: default is uuid; `toJson` stores `id`.
-- [ ] `fromJson` happy path.
+- [x] `fromJson` happy path.
       GREEN swaps the stub for `decodeFromString`,
       subsuming the `parseToJsonElement` step.
-      Open: `toString` comparison needs `data class`,
-      or assert on `.id`.
+      -> `data class` + `toString` comparison.
 - [ ] infrastructure.
       Implement `Trigger` (fixture gains `type`), plus metadata,
       registration, `proposal.yaml` with 2 keys, and test helpers.
       RED is the fixture widening for `type`;
       the wiring tests pass on arrival.
-- [ ] Remaining attributes, one fixture-widening pair each:
-      `displayName` (+ the `getTitle with displayName` pair),
-      `startAt` (serializer annotation),
-      `recurrence` and `summary`
-      (daily, once, weekly, and `getTitle without displayName`).
-
-## Stage 2 -- editor
-
-- [ ] `TimeTriggerEditor` replaces `NotYetImplementedEditor`.
-  UI, so wiring tests only.
-- [ ] Add the `onMissed` field here.
-  Characterization only.
-
-## Stage 3 -- nextOccurrence (TDD: 0, 1, N cases)
-
-- [ ] Once past returns null, daily, weekly, valid-from boundary.
-- [ ] DST gap day and overlap day.
-- [ ] Late delivery across the fold-back:
-  next after `scheduledFor`, not after now.
-
-## Stage 4 -- scheduling (end-to-end one-shot)
-
+- [ ] `displayName`.
+      Fixture pair + the `getTitle with displayName` pair.
+- [ ] `startAt`.
+      Fixture pair with the `LocalDateTimeIsoSerializer` annotation.
+- [ ] Minimal `TimeTriggerEditor` (displayName + startAt).
+      UI, so wiring tests only.
+      -> only path to create a trigger for manual testing.
+- [ ] `nextOccurrence` one-shot (TDD: 0, 1, N cases).
+      Past -> null, future -> `startAt`, `now` boundary.
 - [ ] `TimeAlarmScheduler`, `TimeTriggerReceiver`, manifest entry.
-  Inexact alarms, no permission needed.
-- [ ] Add the `scheduledFor` field here.
-  Written by the scheduler.
+      Inexact alarm, no permission needed.
+      `scheduledFor` written by the scheduler (characterization).
+      Manual test on device.
 
-## Stage 5 -- recovery
+## Phase B -- recurrence (on top of a working one-shot)
 
-- [ ] Recurrence rescheduling in the receiver.
+- [ ] `recurrence` and `summary`.
+      once / daily / weekly fixture pairs,
+      plus `getTitle without displayName`.
+- [ ] `nextOccurrence` recurrence (TDD: 1, N cases).
+      Daily, weekly, valid-from boundary,
+      DST gap day and overlap day.
+- [ ] Receiver reschedules the next occurrence after fire.
+- [ ] Editor gains the `recurrence` field.
+
+## Phase C -- robustness
+
+- [ ] `onMissed` Skip and CatchUp behavior (TDD).
+      Fold-back: next after `scheduledFor`, not after now.
 - [ ] Reconcile on boot, app open, and DataChangeBus.
-  Decision function under TDD.
-- [ ] `onMissed` Skip and CatchUp behavior.
+      Decision function under TDD.
+- [ ] Exact alarm toggle, once decided.
 
-## Stage 6 -- strings
+## Phase D -- strings
 
 - [ ] Migrate literals to translations once the UI stabilizes.
