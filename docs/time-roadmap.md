@@ -14,11 +14,6 @@ Maintenance:
 
 - Stored UUID id.
   Content-derived ids would orphan automations on edit.
-- The entity grows attribute by attribute over one shared roundtrip
-  fixture: each step widens the expected JSON (RED), then implements
-  the field (GREEN). The first test of a new SUT carries a stub that
-  compiles but fails by assertion.
-  `@Serializable` arrived with `id`; `type` comes with infrastructure.
 - `startAt` is valid-from for all recurrence kinds.
   The device zone applies at fire time.
 - DST: gap resolves with the java.time shift,
@@ -32,10 +27,6 @@ Maintenance:
 - Inexact AlarmManager first, exact toggle later.
 - Dispatch is headless, errors are logged first.
 - Reconcile hooks: app onCreate, DataChangeBus subscription, boot receiver.
-- Strings stay literal until the UI stabilizes,
-  translated through `proposal.yaml` as needed.
-- The schema is free to change during development.
-  Migration is only needed between releases.
 
 ## Plan overview
 
@@ -43,29 +34,43 @@ Vertical thin slices over finished layers: the riskiest part
 (Android scheduling) is touched in phase A, not last.
 `nextOccurrence` starts one-shot and extends with recurrence.
 -> stages reordered and merged: old Stage 1..6 are discarded.
+-> phases follow the functional objectives, in priority order.
+Each phase is complete enough for the user to use it:
+it carries its own attributes, methods, editor field and dispatch.
 
-## Phase A -- one-shot end to end
+Functional objectives, in priority order:
+
+1. Program an hour and execute it, once.
+2. Once executed, if periodic, schedule the next occurrence.
+3. On device boot, reschedule the triggers.
+4. On device boot, execute the triggers that were programmed.
+
+## Phase A -- objective 1: fire once at the programmed time
 
 - [x] `LocalDateTimeIsoSerializer`.
+    - [x] seralization
+    - [x] deserialization
+    - [x] deserialization 
       Three RED/GREEN pairs: parse, malformed input, ISO encode.
-- [x] Roundtrip base.
-      Empty `toJson` pair, then `fromJson` with bad JSON:
-      validates and still stubs the result.
-- [x] `id`, stored in the fixture.
-      Two pairs: default is uuid; `toJson` stores `id`.
-- [x] `fromJson` happy path.
-      GREEN swaps the stub for `decodeFromString`,
-      subsuming the `parseToJsonElement` step.
-      -> `data class` + `toString` comparison.
-- [ ] infrastructure.
-      Implement `Trigger` (fixture gains `type`), plus metadata,
-      registration, `proposal.yaml` with 2 keys, and test helpers.
-      RED is the fixture widening for `type`;
-      the wiring tests pass on arrival.
-- [ ] `displayName`.
-      Fixture pair + the `getTitle with displayName` pair.
-- [ ] `startAt`.
-      Fixture pair with the `LocalDateTimeIsoSerializer` annotation.
+- [x] Serialization interface
+    - [x] toJson empty
+    - [x] fromJson invalid json
+    - [x] fromJson empty
+- [x] `id`
+    - [x] default value uuid
+    - [x] fromJson loads id
+    - [x] toJson stores id
+- [ ] `startAt`
+    - [ ] fixture gains startAt
+    - [ ] startAt with `LocalDateTimeIsoSerializer`
+- [ ] `displayName`
+    - [ ] fixture gains displayName
+- [ ] infrastructure
+    - [ ] fixture gains type
+    - [ ] `Trigger` implementation: getTitle, description, icon
+    - [ ] companion `EntityMetadata`, 2 keys via `proposal.yaml`
+    - [ ] `register()` in `EntityBootstrap`
+    - [ ] wiring tests: registered entityClass, editor, roundtrip
 - [ ] Minimal `TimeTriggerEditor` (displayName + startAt).
       UI, so wiring tests only.
       -> only path to create a trigger for manual testing.
@@ -73,28 +78,32 @@ Vertical thin slices over finished layers: the riskiest part
       Past -> null, future -> `startAt`, `now` boundary.
 - [ ] `TimeAlarmScheduler`, `TimeTriggerReceiver`, manifest entry.
       Inexact alarm, no permission needed.
+      Schedule on save via DataChangeBus (from phase C):
+      entry point for the manual test.
       `scheduledFor` written by the scheduler (characterization).
       Manual test on device.
 
-## Phase B -- recurrence (on top of a working one-shot)
+## Phase B -- objective 2: reschedule after each fire
 
-- [ ] `recurrence` and `summary`.
-      once / daily / weekly fixture pairs,
-      plus `getTitle without displayName`.
+- [ ] `recurrence` and `summary` attributes.
 - [ ] `nextOccurrence` recurrence (TDD: 1, N cases).
-      Daily, weekly, valid-from boundary,
-      DST gap day and overlap day.
-- [ ] Receiver reschedules the next occurrence after fire.
 - [ ] Editor gains the `recurrence` field.
+- [ ] Receiver reschedules the next occurrence after fire.
 
-## Phase C -- robustness
+## Phase C -- objective 3: reschedule on boot
 
-- [ ] `onMissed` Skip and CatchUp behavior (TDD).
-      Fold-back: next after `scheduledFor`, not after now.
-- [ ] Reconcile on boot, app open, and DataChangeBus.
+- [ ] Boot receiver + reconcile on boot and app open.
       Decision function under TDD.
+      Schedule on save already landed in phase A.
+
+## Phase D -- objective 4: run the triggers missed while off
+
+- [ ] `onMissed` attribute (Skip / CatchUp).
+- [ ] Editor gains the `onMissed` field.
+- [ ] CatchUp on boot: run the triggers whose `scheduledFor` passed.
+      Fold-back: next after `scheduledFor`, not after now.
+
+## Later
+
 - [ ] Exact alarm toggle, once decided.
-
-## Phase D -- strings
-
 - [ ] Migrate literals to translations once the UI stabilizes.
