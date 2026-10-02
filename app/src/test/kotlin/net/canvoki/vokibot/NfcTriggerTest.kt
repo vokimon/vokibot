@@ -7,7 +7,6 @@ import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class NfcTriggerTest {
-    // ---------- LaunchActivityCommand ----------
     fun nfcTriggerBase() =
         NfcTrigger(
             displayName = "My ID Card",
