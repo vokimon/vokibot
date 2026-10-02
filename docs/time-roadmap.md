@@ -63,8 +63,8 @@ Functional objectives, in priority order:
 - [x] `startAt`
     - [x] fixture gains startAt
     - [x] startAt with `LocalDateTimeIsoSerializer`
-- [ ] `displayName`
-    - [ ] fixture gains displayName
+- [x] `displayName`
+    - [x] fixture gains displayName
 - [ ] infrastructure
     - [ ] fixture gains type
     - [ ] `Trigger` implementation: getTitle, description, icon

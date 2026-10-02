@@ -12,13 +12,20 @@ import kotlin.test.assertFailsWith
 
 class TimeTriggerTest {
     val startAt = LocalDateTime.of(2026, 6, 1, 8, 30)
+    val displayName = "Morning coffee"
 
-    fun timeTriggerBase(id: String? = "my_id") = TimeTrigger(startAt = startAt, id = id)
+    fun timeTriggerBase(id: String? = "my_id") =
+        TimeTrigger(
+            id = id,
+            displayName = displayName,
+            startAt = startAt,
+        )
 
     fun timeTriggerJson() =
         """
         {
           "id": "my_id",
+          "displayName": "Morning coffee",
           "startAt": "2026-06-01T08:30"
         }
         """

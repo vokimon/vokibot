@@ -12,16 +12,18 @@ import java.util.UUID
 data class TimeTrigger(
     @Serializable(LocalDateTimeIsoSerializer::class)
     val startAt: LocalDateTime,
+    val displayName: String,
     val id: String = UUID.randomUUID().toString(),
 ) {
     // Secondary constructor accepts nullable id.
     // Because primary's id: String rejects nullable,
     // Kotlin resolves all id: String? calls to this secondary.
-    // Params reordered (id before startAt) to avoid JVM signature clash.
+    // Params reordered (id first) to avoid JVM signature clash.
     constructor(
         id: String?,
         startAt: LocalDateTime,
-    ) : this(startAt, id ?: UUID.randomUUID().toString())
+        displayName: String,
+    ) : this(startAt, displayName, id ?: UUID.randomUUID().toString())
 
     companion object {
         fun fromJson(jsonString: String): TimeTrigger = JsonConfig.decodeFromString(serializer(), jsonString)
