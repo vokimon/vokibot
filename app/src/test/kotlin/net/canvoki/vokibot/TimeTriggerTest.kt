@@ -10,11 +10,12 @@ import org.junit.Test
 import kotlin.test.assertFailsWith
 
 class TimeTriggerTest {
-    fun timeTriggerBase() = TimeTrigger()
+    fun timeTriggerBase() = TimeTrigger(id = "my_id")
 
     fun timeTriggerJson() =
         """
         {
+          "id": "my_id"
         }
         """
 
