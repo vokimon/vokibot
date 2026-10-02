@@ -68,21 +68,23 @@ or to roll back just the refinements.
   This requires strategic thinking:
   break the task into incremental steps
   (each must compile; all tests must pass except the new test during TDD RED phase).
-- Before entering to build mode and edit files, the user wants to see a full diff of the change
+- Before entering to build mode and edit/create files, the user wants to see a full diff of it
 
 ## TDD (Test-Driven Development)
 
 When using TDD (Beck/Fowler methodology):
-1. **Red**: Write a failing test.
+1. **Red**: Write a single failing test.
    Only a failing assertion counts as RED --
-   compilation errors, runtime crashes, or build failures do not qualify.
+   compilation errors, runtime crashes, or build failures do not qualify as RED.
    The proposal must compile,
    and only the new test may fail;
    existing tests must still pass.
 2. **Green**: Write the minimal implementation to make the test pass. Do not add extra behavior.
 3. **Refactor**: Clean up code while keeping tests passing.
 
-**When to use**: TDD applies to platform-independent code (e.g., business logic, data models, utilities). UI and Android-specific code does not use TDD.
+**When to use**: TDD applies to platform-independent code (e.g., business logic, data models, utilities). UI and Android-specific code does not use TDD yet.
+
+Notice: The RED for the first test of a new SUT (class, method...) often requires a stub that makes it run but fail by an assertion failure, and not failing by a missing import, class, method...
 
 **Test writing conventions**:
 - Avoid multiple asserts in a single test

@@ -14,6 +14,11 @@ Maintenance:
 
 - Stored UUID id.
   Content-derived ids would orphan automations on edit.
+- The entity grows attribute by attribute over one shared roundtrip
+  fixture: each step widens the expected JSON (RED), then implements
+  the field (GREEN). The first test of a new SUT carries a stub that
+  compiles but fails by assertion.
+  `@Serializable` arrived with `id`; `type` comes with infrastructure.
 - `startAt` is valid-from for all recurrence kinds.
   The device zone applies at fire time.
 - DST: gap resolves with the java.time shift,
@@ -36,18 +41,26 @@ Maintenance:
 
 - [x] `LocalDateTimeIsoSerializer`.
       Three RED/GREEN pairs: parse, malformed input, ISO encode.
-- [ ] infrastructure, zero attributes.
-      Minimal `TimeTrigger(id)` plus metadata, registration,
-      `proposal.yaml` with 2 keys, and test helpers.
-      Wiring tests pass on arrival, so no RED.
-- [ ] `displayName`.
-      One RED/GREEN pair: `getTitle with displayName`.
-- [ ] `startAt`.
-      Field plus serializer annotation plus fixture.
-      Characterization only, covered by existing roundtrip tests.
-- [ ] `recurrence` and `summary`.
-      Four RED/GREEN pairs: daily, once, weekly,
-      and `getTitle without displayName`.
+- [x] Roundtrip base.
+      Empty `toJson` pair, then `fromJson` with bad JSON:
+      validates and still stubs the result.
+- [x] `id`, stored in the fixture.
+      Two pairs: default is uuid; `toJson` stores `id`.
+- [ ] `fromJson` happy path.
+      GREEN swaps the stub for `decodeFromString`,
+      subsuming the `parseToJsonElement` step.
+      Open: `toString` comparison needs `data class`,
+      or assert on `.id`.
+- [ ] infrastructure.
+      Implement `Trigger` (fixture gains `type`), plus metadata,
+      registration, `proposal.yaml` with 2 keys, and test helpers.
+      RED is the fixture widening for `type`;
+      the wiring tests pass on arrival.
+- [ ] Remaining attributes, one fixture-widening pair each:
+      `displayName` (+ the `getTitle with displayName` pair),
+      `startAt` (serializer annotation),
+      `recurrence` and `summary`
+      (daily, once, weekly, and `getTitle without displayName`).
 
 ## Stage 2 -- editor
 
