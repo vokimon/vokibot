@@ -35,4 +35,10 @@ class TimeTriggerTest {
     fun `id defaults to uuid`() {
         assertIsUUID(TimeTrigger().id)
     }
+
+    @Test
+    fun `fromJson`() {
+        val deserialized = TimeTrigger.fromJson(timeTriggerJson())
+        assertEquals(timeTriggerBase().toString(), deserialized.toString())
+    }
 }
