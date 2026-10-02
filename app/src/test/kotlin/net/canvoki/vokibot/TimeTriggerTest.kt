@@ -24,6 +24,7 @@ class TimeTriggerTest {
     fun timeTriggerJson() =
         """
         {
+          "type": "trigger_time",
           "id": "my_id",
           "displayName": "Morning coffee",
           "startAt": "2026-06-01T08:30"

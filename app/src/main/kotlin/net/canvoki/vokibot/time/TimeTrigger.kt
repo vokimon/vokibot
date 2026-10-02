@@ -10,6 +10,7 @@ import java.util.UUID
  */
 @Serializable
 data class TimeTrigger(
+    val type: String = "trigger_time",
     @Serializable(LocalDateTimeIsoSerializer::class)
     val startAt: LocalDateTime,
     val displayName: String,
@@ -23,7 +24,11 @@ data class TimeTrigger(
         id: String?,
         startAt: LocalDateTime,
         displayName: String,
-    ) : this(startAt, displayName, id ?: UUID.randomUUID().toString())
+    ) : this(
+        startAt = startAt,
+        displayName = displayName,
+        id = id ?: UUID.randomUUID().toString(),
+    )
 
     companion object {
         fun fromJson(jsonString: String): TimeTrigger = JsonConfig.decodeFromString(serializer(), jsonString)
