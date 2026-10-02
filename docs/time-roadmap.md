@@ -66,7 +66,7 @@ Functional objectives, in priority order:
 - [x] `displayName`
     - [x] fixture gains displayName
 - [ ] infrastructure
-    - [ ] fixture gains type
+    - [x] fixture gains type
     - [ ] `Trigger` implementation: getTitle, description, icon
     - [ ] companion `EntityMetadata`, 2 keys via `proposal.yaml`
     - [ ] `register()` in `EntityBootstrap`
