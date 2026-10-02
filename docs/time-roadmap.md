@@ -60,9 +60,9 @@ Functional objectives, in priority order:
     - [x] default value uuid
     - [x] fromJson loads id
     - [x] toJson stores id
-- [ ] `startAt`
-    - [ ] fixture gains startAt
-    - [ ] startAt with `LocalDateTimeIsoSerializer`
+- [x] `startAt`
+    - [x] fixture gains startAt
+    - [x] startAt with `LocalDateTimeIsoSerializer`
 - [ ] `displayName`
     - [ ] fixture gains displayName
 - [ ] infrastructure
