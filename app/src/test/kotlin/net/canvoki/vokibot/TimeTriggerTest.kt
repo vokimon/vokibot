@@ -10,7 +10,7 @@ import org.junit.Test
 import kotlin.test.assertFailsWith
 
 class TimeTriggerTest {
-    fun timeTriggerBase() = TimeTrigger(id = "my_id")
+    fun timeTriggerBase(id: String? = "my_id") = if (id == null) TimeTrigger() else TimeTrigger(id)
 
     fun timeTriggerJson() =
         """
@@ -33,7 +33,7 @@ class TimeTriggerTest {
 
     @Test
     fun `id defaults to uuid`() {
-        assertIsUUID(TimeTrigger().id)
+        assertIsUUID(timeTriggerBase(id = null).id)
     }
 
     @Test
