@@ -2,6 +2,7 @@ package net.canvoki.vokibot.time
 
 import kotlinx.serialization.Serializable
 import net.canvoki.vokibot.JsonConfig
+import java.time.LocalDateTime
 import java.util.UUID
 
 /**
@@ -9,6 +10,8 @@ import java.util.UUID
  */
 @Serializable
 data class TimeTrigger(
+    @Serializable(LocalDateTimeIsoSerializer::class)
+    val startAt: LocalDateTime,
     val id: String = UUID.randomUUID().toString(),
 ) {
     companion object {

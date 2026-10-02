@@ -7,15 +7,24 @@ import net.canvoki.shared.test.assertJsonEqual
 import net.canvoki.vokibot.time.TimeTrigger
 import org.junit.Assert.assertTrue
 import org.junit.Test
+import java.time.LocalDateTime
 import kotlin.test.assertFailsWith
 
 class TimeTriggerTest {
-    fun timeTriggerBase(id: String? = "my_id") = if (id == null) TimeTrigger() else TimeTrigger(id)
+    val startAt = LocalDateTime.of(2026, 6, 1, 8, 30)
+
+    fun timeTriggerBase(id: String? = "my_id") =
+        if (id == null) {
+            TimeTrigger(startAt = startAt)
+        } else {
+            TimeTrigger(startAt = startAt, id = id)
+        }
 
     fun timeTriggerJson() =
         """
         {
-          "id": "my_id"
+          "id": "my_id",
+          "startAt": "2026-06-01T08:30"
         }
         """
 
