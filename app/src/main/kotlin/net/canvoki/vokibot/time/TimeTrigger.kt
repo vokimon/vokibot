@@ -34,12 +34,13 @@ data class TimeTrigger(
 
     companion object {
         val typeName = "trigger_time"
+        val iconRes = R.drawable.ic_watch
         const val DESCRIPTION_FORMAT = "yyyy-MM-dd HH:mm"
 
         fun fromJson(jsonString: String): TimeTrigger = JsonConfig.decodeFromString(serializer(), jsonString)
     }
 
-    val iconRes: Int get() = R.drawable.ic_watch
+    val iconRes: Int get() = TimeTrigger.iconRes
 
     val description: String get() = startAt.format(DateTimeFormatter.ofPattern(DESCRIPTION_FORMAT))
 
