@@ -49,6 +49,11 @@ class TimeTriggerTest {
     }
 
     @Test
+    fun `description shows startAt`() {
+        assertEquals("2026-06-01 08:30", timeTriggerBase().description)
+    }
+
+    @Test
     fun `fromJson`() {
         val deserialized = TimeTrigger.fromJson(timeTriggerJson())
         assertEquals(timeTriggerBase().toString(), deserialized.toString())

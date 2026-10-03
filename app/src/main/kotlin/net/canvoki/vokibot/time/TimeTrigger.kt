@@ -36,5 +36,7 @@ data class TimeTrigger(
         fun fromJson(jsonString: String): TimeTrigger = JsonConfig.decodeFromString(serializer(), jsonString)
     }
 
+    val description: String get() = "2026-06-01 08:30"
+
     fun toJson(): String = JsonConfig.encodeToString(serializer(), this)
 }
