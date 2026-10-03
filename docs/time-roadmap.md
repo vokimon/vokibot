@@ -67,13 +67,18 @@ Functional objectives, in priority order:
     - [x] fixture gains displayName
 - [ ] infrastructure
     - [x] fixture gains type
-    - [ ] `Trigger` implementation: getTitle, description, icon
+    - [ ] `description` (member lliure, sense `override` encara)
+    - [ ] `iconRes` (member lliure)
+    - [ ] Runner Robolectric a `TimeTriggerTest` (refactor verd)
+    - [ ] `getTitle` returns displayName (member lliure)
+    - [ ] Heretar `Trigger()`: posar `override` als 5 members.
+          Cap test nou; tot ha de seguir verd.
+    - [ ] Minimal `TimeTriggerEditor` (displayName + startAt).
+          Movença amunt: `editorFactory` no compila sense ell.
+          -> only path to create a trigger for manual testing.
     - [ ] companion `EntityMetadata`, 2 keys via `proposal.yaml`
     - [ ] `register()` in `EntityBootstrap`
     - [ ] wiring tests: registered entityClass, editor, roundtrip
-- [ ] Minimal `TimeTriggerEditor` (displayName + startAt).
-      UI, so wiring tests only.
-      -> only path to create a trigger for manual testing.
 - [ ] `nextOccurrence` one-shot (TDD: 0, 1, N cases).
       Past -> null, future -> `startAt`, `now` boundary.
 - [ ] `TimeAlarmScheduler`, `TimeTriggerReceiver`, manifest entry.
