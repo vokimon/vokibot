@@ -33,11 +33,12 @@ data class TimeTrigger(
 
     companion object {
         val typeName = "trigger_time"
+        const val DESCRIPTION_FORMAT = "yyyy-MM-dd HH:mm"
 
         fun fromJson(jsonString: String): TimeTrigger = JsonConfig.decodeFromString(serializer(), jsonString)
     }
 
-    val description: String get() = startAt.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"))
+    val description: String get() = startAt.format(DateTimeFormatter.ofPattern(DESCRIPTION_FORMAT))
 
     fun toJson(): String = JsonConfig.encodeToString(serializer(), this)
 }

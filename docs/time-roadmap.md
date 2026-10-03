@@ -67,7 +67,8 @@ Functional objectives, in priority order:
     - [x] fixture gains displayName
 - [ ] infrastructure
     - [x] fixture gains type
-    - [ ] `description` (member lliure, sense `override` encara)
+    - [x] `description` (member lliure, sense `override` encara)
+          GREEN literal; refactor format(); refactor const DESCRIPTION_FORMAT.
     - [ ] `iconRes` (member lliure)
     - [ ] Runner Robolectric a `TimeTriggerTest` (refactor verd)
     - [ ] `getTitle` returns displayName (member lliure)
