@@ -67,15 +67,15 @@ Functional objectives, in priority order:
     - [x] fixture gains displayName
 - [ ] infrastructure
     - [x] fixture gains type
-    - [x] `description` (member lliure, sense `override` encara)
+    - [x] `description` (free member, no `override` yet)
           GREEN literal; refactor format(); refactor const DESCRIPTION_FORMAT.
-    - [ ] `iconRes` (member lliure)
-    - [ ] Runner Robolectric a `TimeTriggerTest` (refactor verd)
-    - [ ] `getTitle` returns displayName (member lliure)
-    - [ ] Heretar `Trigger()`: posar `override` als 5 members.
-          Cap test nou; tot ha de seguir verd.
+    - [ ] `iconRes` (free member)  -> ic_watch
+    - [ ] Robolectric runner on `TimeTriggerTest` (green refactor)
+    - [ ] `getTitle` returns displayName (free member)
+    - [ ] Inherit `Trigger()`: add `override` to the 5 members.
+          No new test; everything must stay green.
     - [ ] Minimal `TimeTriggerEditor` (displayName + startAt).
-          Movença amunt: `editorFactory` no compila sense ell.
+          Moved up: `editorFactory` does not compile without it.
           -> only path to create a trigger for manual testing.
     - [ ] companion `EntityMetadata`, 2 keys via `proposal.yaml`
     - [ ] `register()` in `EntityBootstrap`
