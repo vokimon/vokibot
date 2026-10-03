@@ -78,6 +78,12 @@ class TimeTriggerTest {
     }
 
     @Test
+    fun `deserializer parses the fixture`() {
+        val deserialized = TimeTrigger.deserializer(timeTriggerJson())
+        assertEquals(timeTriggerBase().toString(), deserialized.toString())
+    }
+
+    @Test
     fun `fromJson`() {
         val deserialized = TimeTrigger.fromJson(timeTriggerJson())
         assertEquals(timeTriggerBase().toString(), deserialized.toString())

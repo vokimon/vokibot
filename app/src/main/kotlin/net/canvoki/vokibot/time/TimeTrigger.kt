@@ -41,6 +41,8 @@ data class TimeTrigger(
         val iconRes = R.drawable.ic_watch
         val entityClass = TimeTrigger::class
 
+        val deserializer: (String) -> TimeTrigger = { jsonString -> fromJson(jsonString) }
+
         fun fromJson(jsonString: String): TimeTrigger = JsonConfig.decodeFromString(serializer(), jsonString)
     }
 
