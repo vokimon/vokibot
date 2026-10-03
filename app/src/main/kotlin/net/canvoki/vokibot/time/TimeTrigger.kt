@@ -3,6 +3,7 @@ package net.canvoki.vokibot.time
 import kotlinx.serialization.Serializable
 import net.canvoki.vokibot.JsonConfig
 import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.UUID
 
 /**
@@ -36,7 +37,7 @@ data class TimeTrigger(
         fun fromJson(jsonString: String): TimeTrigger = JsonConfig.decodeFromString(serializer(), jsonString)
     }
 
-    val description: String get() = "2026-06-01 08:30"
+    val description: String get() = startAt.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"))
 
     fun toJson(): String = JsonConfig.encodeToString(serializer(), this)
 }
