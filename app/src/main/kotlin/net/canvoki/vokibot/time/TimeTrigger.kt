@@ -13,7 +13,7 @@ import java.util.UUID
  */
 @Serializable
 data class TimeTrigger(
-    val type: String = typeName,
+    val type: String = typeKey,
     @Serializable(LocalDateTimeIsoSerializer::class)
     val startAt: LocalDateTime,
     val displayName: String,
@@ -34,7 +34,7 @@ data class TimeTrigger(
     )
 
     companion object {
-        val typeName = "trigger_time"
+        val typeKey = "trigger_time"
         val iconRes = R.drawable.ic_watch
         const val DESCRIPTION_FORMAT = "yyyy-MM-dd HH:mm"
 
