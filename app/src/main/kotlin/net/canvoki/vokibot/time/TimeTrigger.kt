@@ -1,5 +1,6 @@
 package net.canvoki.vokibot.time
 
+import android.content.Context
 import kotlinx.serialization.Serializable
 import net.canvoki.vokibot.JsonConfig
 import net.canvoki.vokibot.R
@@ -41,6 +42,8 @@ data class TimeTrigger(
     }
 
     val iconRes: Int get() = TimeTrigger.iconRes
+
+    fun getTitle(context: Context): String = displayName
 
     val description: String get() = startAt.format(DateTimeFormatter.ofPattern(DESCRIPTION_FORMAT))
 

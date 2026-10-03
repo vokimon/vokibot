@@ -1,5 +1,7 @@
 package net.canvoki.vokibot
 
+import android.content.Context
+import androidx.test.core.app.ApplicationProvider
 import kotlinx.serialization.SerializationException
 import net.canvoki.shared.test.assertEquals
 import net.canvoki.shared.test.assertIsUUID
@@ -7,9 +9,14 @@ import net.canvoki.shared.test.assertJsonEqual
 import net.canvoki.vokibot.time.TimeTrigger
 import org.junit.Assert.assertTrue
 import org.junit.Test
+import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
+import org.robolectric.annotation.Config
 import java.time.LocalDateTime
 import kotlin.test.assertFailsWith
 
+@RunWith(RobolectricTestRunner::class)
+@Config(qualifiers = "en")
 class TimeTriggerTest {
     val startAt = LocalDateTime.of(2026, 6, 1, 8, 30)
     val displayName = "Morning coffee"
@@ -56,6 +63,13 @@ class TimeTriggerTest {
     @Test
     fun `iconRes is the watch icon`() {
         assertEquals(R.drawable.ic_watch, timeTriggerBase().iconRes)
+    }
+
+    fun context(): Context = ApplicationProvider.getApplicationContext()
+
+    @Test
+    fun `getTitle returns displayName`() {
+        assertEquals(displayName, timeTriggerBase().getTitle(context()))
     }
 
     @Test
