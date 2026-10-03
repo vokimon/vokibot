@@ -69,7 +69,7 @@ Functional objectives, in priority order:
     - [x] fixture gains type
     - [x] `description` (free member, no `override` yet)
           GREEN literal; refactor format(); refactor const DESCRIPTION_FORMAT.
-    - [ ] `iconRes` (free member)  -> ic_watch
+    - [x] `iconRes` (free member)  -> ic_watch
     - [ ] Robolectric runner on `TimeTriggerTest` (green refactor)
     - [ ] `getTitle` returns displayName (free member)
     - [ ] Inherit `Trigger()`: add `override` to the 5 members.

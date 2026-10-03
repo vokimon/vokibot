@@ -2,6 +2,7 @@ package net.canvoki.vokibot.time
 
 import kotlinx.serialization.Serializable
 import net.canvoki.vokibot.JsonConfig
+import net.canvoki.vokibot.R
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.UUID
@@ -37,6 +38,8 @@ data class TimeTrigger(
 
         fun fromJson(jsonString: String): TimeTrigger = JsonConfig.decodeFromString(serializer(), jsonString)
     }
+
+    val iconRes: Int get() = R.drawable.ic_watch
 
     val description: String get() = startAt.format(DateTimeFormatter.ofPattern(DESCRIPTION_FORMAT))
 

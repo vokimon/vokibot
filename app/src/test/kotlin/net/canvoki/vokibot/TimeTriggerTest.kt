@@ -54,6 +54,11 @@ class TimeTriggerTest {
     }
 
     @Test
+    fun `iconRes is the watch icon`() {
+        assertEquals(R.drawable.ic_watch, timeTriggerBase().iconRes)
+    }
+
+    @Test
     fun `fromJson`() {
         val deserialized = TimeTrigger.fromJson(timeTriggerJson())
         assertEquals(timeTriggerBase().toString(), deserialized.toString())
