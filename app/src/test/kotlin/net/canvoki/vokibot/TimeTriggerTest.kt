@@ -73,6 +73,11 @@ class TimeTriggerTest {
     }
 
     @Test
+    fun `entityClass is TimeTrigger`() {
+        assertEquals(TimeTrigger::class, TimeTrigger.entityClass)
+    }
+
+    @Test
     fun `fromJson`() {
         val deserialized = TimeTrigger.fromJson(timeTriggerJson())
         assertEquals(timeTriggerBase().toString(), deserialized.toString())
