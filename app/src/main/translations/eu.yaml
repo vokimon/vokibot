@@ -614,3 +614,5 @@ adb_permissions_run_adb_title: Exekutatu adb komandoa ordenagailutik
 adb_permissions_run_adb_copy_button: Kopiatu
 free_string_set_remove: Kendu
 free_string_set_add_value: Gehitu balioa
+triggerlist_option_time: Denbora
+trigger_time_help: Automatizazioak une zehatz batean abiarazten ditu.

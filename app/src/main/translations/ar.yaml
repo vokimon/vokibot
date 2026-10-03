@@ -614,3 +614,5 @@ adb_permissions_run_adb_title: شغّل أمر adb من الكمبيوتر
 adb_permissions_run_adb_copy_button: نسخ
 free_string_set_remove: إزالة
 free_string_set_add_value: إضافة قيمة
+triggerlist_option_time: وقت
+trigger_time_help: يشتغل الأتمتة في وقت محدد.

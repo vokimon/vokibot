@@ -614,3 +614,5 @@ adb_permissions_run_adb_title: Executeu la comanda adb des de l'ordinador
 adb_permissions_run_adb_copy_button: Copia
 free_string_set_remove: Elimina
 free_string_set_add_value: Afegeix valor
+triggerlist_option_time: Temps
+trigger_time_help: Dispara automatitzacions en un moment determinat.
