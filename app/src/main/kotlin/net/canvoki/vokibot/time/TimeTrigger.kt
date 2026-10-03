@@ -13,12 +13,13 @@ import java.util.UUID
  */
 @Serializable
 data class TimeTrigger(
-    val type: String = typeKey,
     @Serializable(LocalDateTimeIsoSerializer::class)
     val startAt: LocalDateTime,
     val displayName: String,
     val id: String = UUID.randomUUID().toString(),
 ) {
+    val type: String = typeKey
+
     // Secondary constructor accepts nullable id.
     // Because primary's id: String rejects nullable,
     // Kotlin resolves all id: String? calls to this secondary.
