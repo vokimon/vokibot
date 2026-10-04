@@ -26,6 +26,7 @@ import net.canvoki.shared.component.StackNavigatorState
 import net.canvoki.shared.component.StackedScreen
 import net.canvoki.vokibot.FileDataRepository
 import net.canvoki.vokibot.common.EditorHeader
+import net.canvoki.vokibot.common.MagicTextField
 import net.canvoki.vokibot.common.rememberDiscardableState
 import java.time.LocalDateTime
 
@@ -50,9 +51,18 @@ fun TimeTriggerEditor(
     val discardState = rememberDiscardableState(screen = editor, nav = nav)
     val scope = rememberCoroutineScope()
     var isSaving by rememberSaveable { mutableStateOf(false) }
+    var displayName by rememberSaveable { mutableStateOf("") }
+    var hasLoaded by rememberSaveable { mutableStateOf(false) }
 
     LaunchedEffect(editingId) {
-        if (editingId == null) discardState.markDirty()
+        if (editingId == null) {
+            discardState.markDirty()
+        } else if (!hasLoaded) {
+            val existing = repository.trigger.load(editingId) as? TimeTrigger
+            existing?.let { displayName = it.displayName }
+            hasLoaded = true
+            discardState.isDirty = false
+        }
     }
 
     Column(
@@ -67,26 +77,39 @@ fun TimeTriggerEditor(
             icon = painterResource(TimeTrigger.iconRes),
             title = "Time",
             actionText = "Done",
-            actionEnabled = !isSaving,
+            actionEnabled = displayName.isNotBlank() && !isSaving,
             actionIsRunning = isSaving,
             action = {
-                isSaving = true
-                scope.launch {
-                    val existing = editingId?.let { repository.trigger.load(it) as? TimeTrigger }
-                    val trigger =
-                        existing
-                            ?: TimeTrigger(startAt = LocalDateTime.now(), displayName = "")
-                    repository.trigger.save(trigger)
-                    isSaving = false
-                    discardState.isDirty = false
-                    nav.pop()
+                if (displayName.isNotBlank()) {
+                    isSaving = true
+                    scope.launch {
+                        val existing = editingId?.let { repository.trigger.load(it) as? TimeTrigger }
+                        val trigger =
+                            existing?.copy(displayName = displayName.trim())
+                                ?: TimeTrigger(
+                                    startAt = LocalDateTime.now(),
+                                    displayName = displayName.trim(),
+                                )
+                        repository.trigger.save(trigger)
+                        isSaving = false
+                        discardState.isDirty = false
+                        nav.pop()
+                    }
                 }
             },
         )
 
-        Text(
-            text = editingId ?: "new",
+        MagicTextField(
+            value = displayName,
+            onValueChange = {
+                displayName = it
+                discardState.markDirty()
+            },
+            onMagicClick = {},
+            label = { Text("Name") },
+            placeholder = { Text("e.g. Morning coffee") },
             modifier = Modifier.fillMaxWidth(),
+            singleLine = true,
         )
     }
 }

@@ -94,7 +94,7 @@ Functional objectives, in priority order:
                 translations at the end of the release.
                 Editing case: load existing trigger first, or the save
                 would overwrite its startAt with now. Decision needed.
-    - [ ] `displayName` field (pattern already in `ShortcutTriggerEditor`).
+    - [x] `displayName` field (pattern already in `ShortcutTriggerEditor`).
     - [ ] Decide the date/time input: invest in a full editor now
           (if its features will match the eventual recurring editor)
           vs. a basic Material Compose editor to swap later.
