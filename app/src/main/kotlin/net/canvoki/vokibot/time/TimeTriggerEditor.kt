@@ -11,6 +11,6 @@ data class TimeTriggerEditor(
 ) : StackedScreen<Unit>() {
     @Composable
     override fun Screen(nav: StackNavigatorState) {
-        // Filled by the Shell step
+        // TODO
     }
 }

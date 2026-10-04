@@ -101,4 +101,10 @@ class TimeTriggerTest {
         val editor = StorableEntity.getEditorScreen("trigger_time", null)
         assertEquals(TimeTriggerEditor(), editor)
     }
+
+    @Test
+    fun `editor returns TimeTriggerEditor, with id`() {
+        val editor = StorableEntity.getEditorScreen("trigger_time", "my_id")
+        assertEquals(TimeTriggerEditor("my_id"), editor)
+    }
 }
