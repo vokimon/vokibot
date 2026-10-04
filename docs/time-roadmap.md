@@ -84,10 +84,16 @@ Functional objectives, in priority order:
     - [x] TDD for `editorFactory`
           - [x] `editor returns TimeTriggerEditor, without id`
           - [x] `editor returns TimeTriggerEditor, with id`
-    - [ ] Shell from `ShortcutTriggerEditor` / `NfcTriggerEditor`:
-          `StackedScreen` + `EditorHeader` + `rememberDiscardableState` +
-          save via `repository.trigger.save(...)`, with default values
-          (`startAt = now`, `displayName` empty). Then flip `editorFactory`.
+    - [ ] Shell copied from `ShortcutTriggerEditor` / `NfcTriggerEditor`:
+          - [x] Show the `triggerId` parameter in the Screen (hello world;
+                verifies navigation reaches the screen).
+          - [ ] `EditorHeader` + `rememberDiscardableState` + save via
+                `repository.trigger.save(...)` with default values
+                (`startAt = now`, `displayName` empty).
+                English literals for header title/save, migrate to
+                translations at the end of the release.
+                Editing case: load existing trigger first, or the save
+                would overwrite its startAt with now. Decision needed.
     - [ ] `displayName` field (pattern already in `ShortcutTriggerEditor`).
     - [ ] Decide the date/time input: invest in a full editor now
           (if its features will match the eventual recurring editor)
