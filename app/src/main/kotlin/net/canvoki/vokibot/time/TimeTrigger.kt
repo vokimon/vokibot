@@ -42,7 +42,7 @@ data class TimeTrigger(
         const val DESCRIPTION_FORMAT = "yyyy-MM-dd HH:mm"
 
         override val typeKey = "trigger_time"
-        override val iconRes = R.drawable.ic_watch
+        override val iconRes = R.drawable.ic_schedule
         override val entityClass = TimeTrigger::class
         override val labelRes = R.string.triggerlist_option_time
         override val helpRes = R.string.trigger_time_help

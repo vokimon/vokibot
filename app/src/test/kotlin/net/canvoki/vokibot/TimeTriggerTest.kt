@@ -62,8 +62,8 @@ class TimeTriggerTest {
     }
 
     @Test
-    fun `iconRes is the watch icon`() {
-        assertEquals(R.drawable.ic_watch, timeTriggerBase().iconRes)
+    fun `iconRes is the schedule icon`() {
+        assertEquals(R.drawable.ic_schedule, timeTriggerBase().iconRes)
     }
 
     fun context(): Context = ApplicationProvider.getApplicationContext()

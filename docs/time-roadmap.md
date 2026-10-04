@@ -69,7 +69,7 @@ Functional objectives, in priority order:
     - [x] fixture gains type
     - [x] `description` (free member, no `override` yet)
           GREEN literal; refactor format(); refactor const DESCRIPTION_FORMAT.
-    - [x] `iconRes` (free member)  -> ic_watch
+    - [x] `iconRes` (free member)  -> ic_schedule
     - [x] Robolectric runner on `TimeTriggerTest` (green refactor)
     - [x] `getTitle` returns displayName (free member)
     - [x] Inherit `Trigger()`: replace `: StorableEntity` with `: Trigger()`.
