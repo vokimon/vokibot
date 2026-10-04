@@ -86,7 +86,7 @@ Functional objectives, in priority order:
           save via `repository.trigger.save(...)`, with default values
           (`startAt = now`, `displayName` empty). Then flip `editorFactory`.
     - [ ] TDD for `editorFactory`
-          - [ ] `editor returns TimeTriggerEditor, without id`
+          - [x] `editor returns TimeTriggerEditor, without id`
           - [ ] `editor returns TimeTriggerEditor, with id`
     - [ ] `displayName` field (pattern already in `ShortcutTriggerEditor`).
     - [ ] Decide the date/time input: invest in a full editor now

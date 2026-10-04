@@ -7,6 +7,7 @@ import net.canvoki.shared.test.assertEquals
 import net.canvoki.shared.test.assertIsUUID
 import net.canvoki.shared.test.assertJsonEqual
 import net.canvoki.vokibot.time.TimeTrigger
+import net.canvoki.vokibot.time.TimeTriggerEditor
 import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -93,5 +94,11 @@ class TimeTriggerTest {
     fun `fromJson`() {
         val deserialized = TimeTrigger.fromJson(timeTriggerJson())
         assertEquals(timeTriggerBase().toString(), deserialized.toString())
+    }
+
+    @Test
+    fun `editor returns TimeTriggerEditor, without id`() {
+        val editor = StorableEntity.getEditorScreen("trigger_time", null)
+        assertEquals(TimeTriggerEditor(), editor)
     }
 }

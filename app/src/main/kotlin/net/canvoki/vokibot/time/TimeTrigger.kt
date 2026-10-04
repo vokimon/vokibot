@@ -4,7 +4,6 @@ import android.content.Context
 import kotlinx.serialization.Serializable
 import net.canvoki.vokibot.EntityMetadata
 import net.canvoki.vokibot.JsonConfig
-import net.canvoki.vokibot.NotYetImplementedEditor
 import net.canvoki.vokibot.R
 import net.canvoki.vokibot.StorableEntity
 import net.canvoki.vokibot.Trigger
@@ -48,7 +47,7 @@ data class TimeTrigger(
         override val helpRes = R.string.trigger_time_help
 
         override val deserializer = { jsonString: String -> fromJson(jsonString) }
-        override val editorFactory = { _: String? -> NotYetImplementedEditor }
+        override val editorFactory = { _: String? -> TimeTriggerEditor() }
 
         fun fromJson(jsonString: String): TimeTrigger = JsonConfig.decodeFromString(serializer(), jsonString)
 
