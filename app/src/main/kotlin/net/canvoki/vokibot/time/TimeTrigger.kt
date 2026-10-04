@@ -3,6 +3,7 @@ package net.canvoki.vokibot.time
 import android.content.Context
 import kotlinx.serialization.Serializable
 import net.canvoki.vokibot.JsonConfig
+import net.canvoki.vokibot.NotYetImplementedEditor
 import net.canvoki.vokibot.R
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -44,6 +45,7 @@ data class TimeTrigger(
         val helpRes = R.string.trigger_time_help
 
         val deserializer: (String) -> TimeTrigger = { jsonString -> fromJson(jsonString) }
+        val editorFactory = { _: String? -> NotYetImplementedEditor }
 
         fun fromJson(jsonString: String): TimeTrigger = JsonConfig.decodeFromString(serializer(), jsonString)
     }
