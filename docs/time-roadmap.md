@@ -72,8 +72,9 @@ Functional objectives, in priority order:
     - [x] `iconRes` (free member)  -> ic_watch
     - [x] Robolectric runner on `TimeTriggerTest` (green refactor)
     - [x] `getTitle` returns displayName (free member)
-    - [ ] Inherit `Trigger()`: add `override` to the 6 members.
-          No new test; everything must stay green.
+    - [ ] Inherit `Trigger()`: replace `: StorableEntity` with `: Trigger()`.
+          Overrides already in place; must stay green.
+          (Cross-reference: sub-item of companion `EntityMetadata` above.)
     - [ ] Minimal `TimeTriggerEditor` (displayName + startAt).
           -> only path to create a trigger for manual testing.
           -> `editorFactory` uses placeholder `NotYetImplementedEditor` for now,
@@ -81,7 +82,8 @@ Functional objectives, in priority order:
     - [ ] companion `EntityMetadata`, 2 keys via `proposal.yaml`
           [x] member `typeKey`, `iconRes`, `entityClass`, `labelRes`, `helpRes`, `deserializer`
           [x] member `editorFactory` (placeholder `NotYetImplementedEditor`)
-          [ ] inherit `: EntityMetadata` + `override`
+          [x] inherit `: EntityMetadata` + `override`  (class `: StorableEntity` as prerequisite)
+          [ ] class inherits `Trigger()` (replaces `StorableEntity`)
     - [ ] `register()` in `EntityBootstrap`
     - [ ] wiring tests: registered entityClass, editor, roundtrip
 - [ ] `nextOccurrence` one-shot (TDD: 0, 1, N cases).
