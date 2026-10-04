@@ -47,7 +47,7 @@ data class TimeTrigger(
         override val helpRes = R.string.trigger_time_help
 
         override val deserializer = { jsonString: String -> fromJson(jsonString) }
-        override val editorFactory = { triggerId: String? -> TimeTriggerEditor(triggerId) }
+        override val editorFactory = { editingId: String? -> TimeTriggerEditor(editingId) }
 
         fun fromJson(jsonString: String): TimeTrigger = JsonConfig.decodeFromString(serializer(), jsonString)
 

@@ -129,3 +129,14 @@ Functional objectives, in priority order:
 
 - [ ] Exact alarm toggle, once decided.
 - [ ] Migrate literals to translations once the UI stabilizes.
+- [ ] Uniformize other editors with the TimeTrigger scaffold decisions:
+    - [ ] Save asynchronously (all editors save synchronously today).
+    - [ ] Extract the body to a file-level `@Composable fun`.
+    - [ ] Rename the constructor id parameter to `editingId`.
+    - [ ] Header action text: "Done" (Nfc, Shortcut, BluetoothDevice,
+          BluetoothConnect, ChangeSetting still say "Save").
+    - [ ] `Column` with `verticalScroll(rememberScrollState())` +
+          `padding(8.dp)` (Nfc/Automation lack padding, Shortcut/
+          SettingsPage lack scroll, Application scrolls inner content).
+    - [ ] ShortcutTriggerEditor: replace the manual dirty/ConfirmDialog
+          with `rememberDiscardableState`.
