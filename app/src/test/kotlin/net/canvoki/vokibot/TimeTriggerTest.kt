@@ -14,6 +14,7 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import java.time.LocalDateTime
 import kotlin.test.assertFailsWith
+import kotlin.test.assertIs
 
 @RunWith(RobolectricTestRunner::class)
 @Config(qualifiers = "en")
@@ -81,6 +82,11 @@ class TimeTriggerTest {
     fun `deserializer parses the fixture`() {
         val deserialized = TimeTrigger.deserializer(timeTriggerJson())
         assertEquals(timeTriggerBase().toString(), deserialized.toString())
+    }
+
+    @Test
+    fun `polymorphic Trigger fromJson`() {
+        assertIs<TimeTrigger>(Trigger.fromJson(timeTriggerJson()))
     }
 
     @Test

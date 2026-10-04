@@ -72,7 +72,7 @@ Functional objectives, in priority order:
     - [x] `iconRes` (free member)  -> ic_watch
     - [x] Robolectric runner on `TimeTriggerTest` (green refactor)
     - [x] `getTitle` returns displayName (free member)
-    - [ ] Inherit `Trigger()`: replace `: StorableEntity` with `: Trigger()`.
+    - [x] Inherit `Trigger()`: replace `: StorableEntity` with `: Trigger()`.
           Overrides already in place; must stay green.
           (Cross-reference: sub-item of companion `EntityMetadata` above.)
     - [ ] Minimal `TimeTriggerEditor` (displayName + startAt).
@@ -83,9 +83,10 @@ Functional objectives, in priority order:
           [x] member `typeKey`, `iconRes`, `entityClass`, `labelRes`, `helpRes`, `deserializer`
           [x] member `editorFactory` (placeholder `NotYetImplementedEditor`)
           [x] inherit `: EntityMetadata` + `override`  (class `: StorableEntity` as prerequisite)
-          [ ] class inherits `Trigger()` (replaces `StorableEntity`)
-    - [ ] `register()` in `EntityBootstrap`
-    - [ ] wiring tests: registered entityClass, editor, roundtrip
+          [x] class inherits `Trigger()` (replaces `StorableEntity`)
+    - [x] `register()` in `EntityBootstrap`
+    - [ ] wiring tests: roundtrip (RED/GREEN with register);
+          registered entityClass and editor pending (would be born green).
 - [ ] `nextOccurrence` one-shot (TDD: 0, 1, N cases).
       Past -> null, future -> `startAt`, `now` boundary.
 - [ ] `TimeAlarmScheduler`, `TimeTriggerReceiver`, manifest entry.

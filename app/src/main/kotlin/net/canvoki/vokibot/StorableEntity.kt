@@ -17,6 +17,7 @@ import net.canvoki.vokibot.nfc.NfcTrigger
 import net.canvoki.vokibot.setting.ChangeSettingCommand
 import net.canvoki.vokibot.settingspage.SettingsPageCommand
 import net.canvoki.vokibot.shortcut.ShortcutTrigger
+import net.canvoki.vokibot.time.TimeTrigger
 import kotlin.reflect.KClass
 
 val JsonConfig =
@@ -132,6 +133,7 @@ object EntityBootstrap {
         NfcTrigger.register()
         ShortcutTrigger.register()
         BluetoothDeviceTrigger.register()
+        TimeTrigger.register()
         LaunchActivityCommand.register()
         SendBroadcastCommand.register()
         StartServiceCommand.register()

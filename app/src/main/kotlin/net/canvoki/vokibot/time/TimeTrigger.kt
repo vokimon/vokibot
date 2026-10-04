@@ -6,6 +6,7 @@ import net.canvoki.vokibot.EntityMetadata
 import net.canvoki.vokibot.JsonConfig
 import net.canvoki.vokibot.NotYetImplementedEditor
 import net.canvoki.vokibot.R
+import net.canvoki.vokibot.StorableEntity
 import net.canvoki.vokibot.Trigger
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -50,6 +51,8 @@ data class TimeTrigger(
         override val editorFactory = { _: String? -> NotYetImplementedEditor }
 
         fun fromJson(jsonString: String): TimeTrigger = JsonConfig.decodeFromString(serializer(), jsonString)
+
+        fun register() = StorableEntity.register(this)
     }
 
     override val iconRes: Int get() = TimeTrigger.iconRes
