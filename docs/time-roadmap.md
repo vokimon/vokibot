@@ -48,9 +48,8 @@ Functional objectives, in priority order:
 ## Phase A -- objective 1: fire once at the programmed time
 
 - [x] `LocalDateTimeIsoSerializer`.
-    - [x] seralization
+    - [x] serialization
     - [x] deserialization
-    - [x] deserialization 
       Three RED/GREEN pairs: parse, malformed input, ISO encode.
 - [x] Serialization interface
     - [x] toJson empty
@@ -65,36 +64,39 @@ Functional objectives, in priority order:
     - [x] startAt with `LocalDateTimeIsoSerializer`
 - [x] `displayName`
     - [x] fixture gains displayName
-- [ ] infrastructure
+- [x] infrastructure
     - [x] fixture gains type
-    - [x] `description` (free member, no `override` yet)
+    - [x] `description`
           GREEN literal; refactor format(); refactor const DESCRIPTION_FORMAT.
-    - [x] `iconRes` (free member)  -> ic_schedule
+    - [x] `iconRes`  -> ic_schedule
     - [x] Robolectric runner on `TimeTriggerTest` (green refactor)
-    - [x] `getTitle` returns displayName (free member)
+    - [x] `getTitle` returns displayName
     - [x] Inherit `Trigger()`: replace `: StorableEntity` with `: Trigger()`.
           Overrides already in place; must stay green.
           (Cross-reference: sub-item of companion `EntityMetadata` above.)
-    - [ ] Minimal `TimeTriggerEditor` (displayName + startAt).
-          -> only path to create a trigger for manual testing.
-          -> `editorFactory` uses placeholder `NotYetImplementedEditor` for now,
-          real editor later, no longer a prerequisite of EntityMetadata.
-    - [ ] companion `EntityMetadata`, 2 keys via `proposal.yaml`
+    - [x] companion `EntityMetadata`, 2 keys via `proposal.yaml`
           [x] member `typeKey`, `iconRes`, `entityClass`, `labelRes`, `helpRes`, `deserializer`
           [x] member `editorFactory` (placeholder `NotYetImplementedEditor`)
           [x] inherit `: EntityMetadata` + `override`  (class `: StorableEntity` as prerequisite)
           [x] class inherits `Trigger()` (replaces `StorableEntity`)
     - [x] `register()` in `EntityBootstrap`
-    - [ ] wiring tests: roundtrip (RED/GREEN with register);
-          registered entityClass and editor pending (would be born green).
-- [ ] `nextOccurrence` one-shot (TDD: 0, 1, N cases).
-      Past -> null, future -> `startAt`, `now` boundary.
-- [ ] `TimeAlarmScheduler`, `TimeTriggerReceiver`, manifest entry.
-      Inexact alarm, no permission needed.
-      Schedule on save via DataChangeBus (from phase C):
-      entry point for the manual test.
-      `scheduledFor` written by the scheduler (characterization).
-      Manual test on device.
+- [ ] Editor:
+    - [ ] Shell from `ShortcutTriggerEditor` / `NfcTriggerEditor`:
+          `StackedScreen` + `EditorHeader` + `rememberDiscardableState` +
+          save via `repository.trigger.save(...)`, with default values
+          (`startAt = now`, `displayName` empty). Then flip `editorFactory`.
+    - [ ] TDD for `editorFactory`
+          - [ ] `editor returns TimeTriggerEditor, without id`
+          - [ ] `editor returns TimeTriggerEditor, with id`
+    - [ ] `displayName` field (pattern already in `ShortcutTriggerEditor`).
+    - [ ] Decide the date/time input: invest in a full editor now
+          (if its features will match the eventual recurring editor)
+          vs. a basic Material Compose editor to swap later.
+- [ ] Dispatch
+    - [ ] `nextOccurrence` one-shot (TDD: 0, 1, N cases).
+          Past -> null, future -> `startAt`, `now` boundary.
+    - [ ] How to program the triggering
+    - [ ] How to dispatch the triggering
 
 ## Phase B -- objective 2: reschedule after each fire
 
@@ -107,7 +109,8 @@ Functional objectives, in priority order:
 
 - [ ] Boot receiver + reconcile on boot and app open.
       Decision function under TDD.
-      Schedule on save already landed in phase A.
+      Schedule on save: TBD within phase A dispatch
+      (`How to program the triggering`).
 
 ## Phase D -- objective 4: run the triggers missed while off
 
