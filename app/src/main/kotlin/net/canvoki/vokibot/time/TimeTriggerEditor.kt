@@ -82,14 +82,13 @@ fun TimeTriggerEditor(
             action = {
                 if (displayName.isNotBlank()) {
                     isSaving = true
+                    val trigger =
+                        TimeTrigger(
+                            id = editingId,
+                            startAt = LocalDateTime.now(),
+                            displayName = displayName.trim(),
+                        )
                     scope.launch {
-                        val existing = editingId?.let { repository.trigger.load(it) as? TimeTrigger }
-                        val trigger =
-                            existing?.copy(displayName = displayName.trim())
-                                ?: TimeTrigger(
-                                    startAt = LocalDateTime.now(),
-                                    displayName = displayName.trim(),
-                                )
                         repository.trigger.save(trigger)
                         isSaving = false
                         discardState.isDirty = false
