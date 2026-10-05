@@ -60,7 +60,7 @@ data class TimeTrigger(
         TimeScheduler.cancel(context, id)
     }
 
-    fun nextOccurrence(now: LocalDateTime): LocalDateTime? = startAt
+    fun nextOccurrence(now: LocalDateTime): LocalDateTime? = if (startAt.isAfter(now)) startAt else null
 
     override fun getTitle(context: Context): String = displayName
 

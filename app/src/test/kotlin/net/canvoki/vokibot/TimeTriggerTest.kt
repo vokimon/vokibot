@@ -114,4 +114,11 @@ class TimeTriggerTest {
         val now = startAt.minusDays(1)
         assertEquals(startAt, trigger.nextOccurrence(now))
     }
+
+    @Test
+    fun `nextOccurrence past single shot returns null`() {
+        val trigger = timeTriggerBase()
+        val now = startAt.plusDays(1)
+        assertEquals(null, trigger.nextOccurrence(now))
+    }
 }
