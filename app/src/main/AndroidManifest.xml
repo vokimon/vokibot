@@ -115,6 +115,11 @@
             </intent-filter>
         </receiver>
 
+        <!-- Time Trigger Receiver -->
+        <receiver
+            android:name=".time.TimeTriggerReceiver"
+            android:exported="false" />
+
     </application>
 
 </manifest>
