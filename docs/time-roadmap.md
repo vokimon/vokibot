@@ -80,24 +80,28 @@ Functional objectives, in priority order:
           [x] inherit `: EntityMetadata` + `override`  (class `: StorableEntity` as prerequisite)
           [x] class inherits `Trigger()` (replaces `StorableEntity`)
     - [x] `register()` in `EntityBootstrap`
-- [ ] Editor:
+- [x] Editor:
     - [x] TDD for `editorFactory`
           - [x] `editor returns TimeTriggerEditor, without id`
           - [x] `editor returns TimeTriggerEditor, with id`
-    - [ ] Shell copied from `ShortcutTriggerEditor` / `NfcTriggerEditor`:
+    - [x] Shell copied from `ShortcutTriggerEditor` / `NfcTriggerEditor`:
           - [x] Show the `triggerId` parameter in the Screen (hello world;
                 verifies navigation reaches the screen).
-          - [ ] `EditorHeader` + `rememberDiscardableState` + save via
+          - [x] `EditorHeader` + `rememberDiscardableState` + save via
                 `repository.trigger.save(...)` with default values
                 (`startAt = now`, `displayName` empty).
                 English literals for header title/save, migrate to
                 translations at the end of the release.
-                Editing case: load existing trigger first, or the save
-                would overwrite its startAt with now. Decision needed.
+                Editing case `-> resolved`: `displayName` and `startAt`
+                live in editor state (`rememberSaveable`); the save
+                builds the trigger from scratch from that state.
     - [x] `displayName` field (pattern already in `ShortcutTriggerEditor`).
-    - [ ] Decide the date/time input: invest in a full editor now
-          (if its features will match the eventual recurring editor)
-          vs. a basic Material Compose editor to swap later.
+    - [x] Decide the date/time input.
+          `-> resolved`: two clickable rows showing the value (Time
+          first, Date second), edited with Material3 TimePicker /
+          DatePicker dialogs; the date field will evolve when
+          recurrence lands (phase B).
+    - [x] Date and Time fields in the editor (render + pickers).
 - [ ] Dispatch
     - [ ] `nextOccurrence` one-shot (TDD: 0, 1, N cases).
           Past -> null, future -> `startAt`, `now` boundary.

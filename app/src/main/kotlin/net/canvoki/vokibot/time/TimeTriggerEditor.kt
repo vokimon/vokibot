@@ -10,6 +10,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.DatePicker
+import androidx.compose.material3.DatePickerDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -17,6 +19,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TimePicker
+import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.material3.rememberTimePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -41,7 +44,9 @@ import net.canvoki.vokibot.R
 import net.canvoki.vokibot.common.EditorHeader
 import net.canvoki.vokibot.common.MagicTextField
 import net.canvoki.vokibot.common.rememberDiscardableState
+import java.time.Instant
 import java.time.LocalDateTime
+import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 
 private const val TIME_PATTERN = "HH:mm"
@@ -105,6 +110,7 @@ fun TimeTriggerEditor(
         mutableStateOf(LocalDateTime.now())
     }
     var showTimePicker by remember { mutableStateOf(false) }
+    var showDatePicker by remember { mutableStateOf(false) }
 
     LaunchedEffect(editingId) {
         if (editingId == null) {
@@ -142,6 +148,38 @@ fun TimeTriggerEditor(
                 TextButton(onClick = { showTimePicker = false }) { Text("Cancel") }
             },
         )
+    }
+
+    if (showDatePicker) {
+        val datePickerState =
+            rememberDatePickerState(
+                initialSelectedDateMillis =
+                    startAt
+                        .toLocalDate()
+                        .atStartOfDay(ZoneOffset.UTC)
+                        .toInstant()
+                        .toEpochMilli(),
+            )
+        DatePickerDialog(
+            onDismissRequest = { showDatePicker = false },
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        datePickerState.selectedDateMillis?.let { millis ->
+                            val date = Instant.ofEpochMilli(millis).atZone(ZoneOffset.UTC).toLocalDate()
+                            startAt = date.atTime(startAt.toLocalTime())
+                            discardState.markDirty()
+                        }
+                        showDatePicker = false
+                    },
+                ) { Text("OK") }
+            },
+            dismissButton = {
+                TextButton(onClick = { showDatePicker = false }) { Text("Cancel") }
+            },
+        ) {
+            DatePicker(state = datePickerState)
+        }
     }
 
     Column(
@@ -196,7 +234,7 @@ fun TimeTriggerEditor(
         )
         ValueEditRow(
             value = startAt.format(DateTimeFormatter.ofPattern(DATE_PATTERN)),
-            onClick = {},
+            onClick = { showDatePicker = true },
         )
     }
 }
