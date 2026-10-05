@@ -207,7 +207,7 @@ fun TimeTriggerEditor(
                         )
                     scope.launch {
                         repository.trigger.save(trigger)
-                        TimeScheduler.schedule(context, trigger.id, trigger.startAt)
+                        trigger.schedule(context)
                         isSaving = false
                         discardState.isDirty = false
                         nav.pop()
