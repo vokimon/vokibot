@@ -14,6 +14,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.Saver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -29,6 +30,12 @@ import net.canvoki.vokibot.common.EditorHeader
 import net.canvoki.vokibot.common.MagicTextField
 import net.canvoki.vokibot.common.rememberDiscardableState
 import java.time.LocalDateTime
+
+private val StartAtSaver =
+    Saver<LocalDateTime, String>(
+        save = { it.toString() },
+        restore = { LocalDateTime.parse(it) },
+    )
 
 @Serializable
 data class TimeTriggerEditor(
@@ -53,13 +60,19 @@ fun TimeTriggerEditor(
     var isSaving by rememberSaveable { mutableStateOf(false) }
     var displayName by rememberSaveable { mutableStateOf("") }
     var hasLoaded by rememberSaveable { mutableStateOf(false) }
+    var startAt by rememberSaveable(stateSaver = StartAtSaver) {
+        mutableStateOf(LocalDateTime.now())
+    }
 
     LaunchedEffect(editingId) {
         if (editingId == null) {
             discardState.markDirty()
         } else if (!hasLoaded) {
             val existing = repository.trigger.load(editingId) as? TimeTrigger
-            existing?.let { displayName = it.displayName }
+            existing?.let {
+                displayName = it.displayName
+                startAt = it.startAt
+            }
             hasLoaded = true
             discardState.isDirty = false
         }
@@ -85,7 +98,7 @@ fun TimeTriggerEditor(
                     val trigger =
                         TimeTrigger(
                             id = editingId,
-                            startAt = LocalDateTime.now(),
+                            startAt = startAt,
                             displayName = displayName.trim(),
                         )
                     scope.launch {
