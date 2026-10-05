@@ -26,7 +26,6 @@ Maintenance:
   CatchUp depends on `scheduledFor`.
 - Inexact AlarmManager first, exact toggle later.
 - Dispatch is headless, errors are logged first.
-- Reconcile hooks: app onCreate, DataChangeBus subscription, boot receiver.
 
 ## Plan overview
 
@@ -103,26 +102,30 @@ Functional objectives, in priority order:
           recurrence lands (phase B).
     - [x] Date and Time fields in the editor (render + pickers).
 - [ ] Dispatch
-    - [ ] `nextOccurrence` one-shot (TDD: 0, 1, N cases).
-          Past -> null, future -> `startAt`, `now` boundary.
-    - [ ] How to program the triggering
-    - [ ] How to dispatch the triggering
+    - [x] `TimeScheduler` (AlarmManager abstraction).
+    - [x] `TimeTriggerReceiver` + manifest + dispatch via
+          `Automation.executeByTrigger`.
+    - [x] Schedule on save (new and edit).
+    - [x] `StorableEntity.onRemoved`: `TimeTrigger` cancels its alarm.
+    - [ ] Past `triggerAt` rule (skip vs fire now), TDD outside
+          `TimeScheduler`. `-> nextOccurrence one-shot moved to phase B`.
+    - [ ] Reschedule on timezone/clock change.
+    - [ ] Problem: imported time triggers are never scheduled (import
+          bypasses the editor).
+    - [ ] Problem: alarms in the past trigger as soon as they are programmed
+    - [ ] Problem: alarms do not survive reboot
+    - [ ] Problem: alarms do not survive app updates
+    - [ ] Problem: alarms can go stale: any save/delete path that
+          bypasses the editor/list leaves alarms out of sync.
 
-## Phase B -- objective 2: reschedule after each fire
+## Phase B -- Recurrent triggers
 
 - [ ] `recurrence` and `summary` attributes.
 - [ ] `nextOccurrence` recurrence (TDD: 1, N cases).
 - [ ] Editor gains the `recurrence` field.
 - [ ] Receiver reschedules the next occurrence after fire.
 
-## Phase C -- objective 3: reschedule on boot
-
-- [ ] Boot receiver + reconcile on boot and app open.
-      Decision function under TDD.
-      Schedule on save: TBD within phase A dispatch
-      (`How to program the triggering`).
-
-## Phase D -- objective 4: run the triggers missed while off
+## Phase C -- Missed triggers
 
 - [ ] `onMissed` attribute (Skip / CatchUp).
 - [ ] Editor gains the `onMissed` field.
@@ -131,6 +134,9 @@ Functional objectives, in priority order:
 
 ## Later
 
+- [ ] ShortcutTrigger: implement `onRemoved` to unpin the launcher
+      shortcut (today the pinned shortcut survives deletion and dispatch
+      degrades with the NoTrigger message).
 - [ ] Exact alarm toggle, once decided.
 - [ ] Migrate literals to translations once the UI stabilizes.
 - [ ] Uniformize other editors with the TimeTrigger scaffold decisions:

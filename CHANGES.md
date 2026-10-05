@@ -1,5 +1,9 @@
 # Change log
 
+## Unreleased
+
+- ✨ New Time Triggers
+
 ## 0.7.0 (2026-06-30)
 
 Change system settings and quick settings panels
