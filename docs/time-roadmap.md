@@ -112,7 +112,8 @@ Functional objectives, in priority order:
     - [ ] Reschedule on timezone/clock change.
     - [ ] Problem: imported time triggers are never scheduled (import
           bypasses the editor).
-    - [ ] Problem: alarms in the past trigger as soon as they are programmed
+    - [ ] Problem: alarms in  past trigger as soon as they are programmed
+        -> nextOccurrence returning null on past startAt
     - [ ] Problem: alarms do not survive reboot
     - [ ] Problem: alarms do not survive app updates
     - [ ] Problem: alarms can go stale: any save/delete path that

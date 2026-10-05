@@ -60,6 +60,8 @@ data class TimeTrigger(
         TimeScheduler.cancel(context, id)
     }
 
+    fun nextOccurrence(now: LocalDateTime): LocalDateTime? = startAt
+
     override fun getTitle(context: Context): String = displayName
 
     override val description: String get() = startAt.format(DateTimeFormatter.ofPattern(DESCRIPTION_FORMAT))

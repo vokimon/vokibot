@@ -107,4 +107,11 @@ class TimeTriggerTest {
         val editor = StorableEntity.getEditorScreen("trigger_time", "my_id")
         assertEquals(TimeTriggerEditor("my_id"), editor)
     }
+
+    @Test
+    fun `nextOccurrence future single shot returns startAt`() {
+        val trigger = timeTriggerBase()
+        val now = startAt.minusDays(1)
+        assertEquals(startAt, trigger.nextOccurrence(now))
+    }
 }
