@@ -111,7 +111,10 @@ fun TriggerList(
                                 confirmationMessage = stringResource(R.string.triggerlist_delete_title),
                                 onDismiss = onDismiss,
                                 onConfirm = onConfirm,
-                                onDelete = { repository.trigger.remove(trigger.id) },
+                                onDelete = {
+                                    trigger.onRemoved(context)
+                                    repository.trigger.remove(trigger.id)
+                                },
                             )
                         }
                     },

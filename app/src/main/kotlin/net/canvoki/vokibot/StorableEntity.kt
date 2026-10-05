@@ -54,6 +54,9 @@ interface StorableEntity {
 
     fun references(): Set<String> = emptySet()
 
+    /** Side effects to run when this entity is removed from the repository. */
+    fun onRemoved(context: Context) = Unit
+
     companion object {
         private fun ensureInitialized() = EntityBootstrap.ensure()
 

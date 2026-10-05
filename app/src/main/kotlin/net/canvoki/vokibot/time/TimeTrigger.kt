@@ -56,6 +56,10 @@ data class TimeTrigger(
 
     override val iconRes: Int get() = TimeTrigger.iconRes
 
+    override fun onRemoved(context: Context) {
+        TimeScheduler.cancel(context, id)
+    }
+
     override fun getTitle(context: Context): String = displayName
 
     override val description: String get() = startAt.format(DateTimeFormatter.ofPattern(DESCRIPTION_FORMAT))
