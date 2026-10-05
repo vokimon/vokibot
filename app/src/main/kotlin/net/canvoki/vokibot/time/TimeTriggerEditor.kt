@@ -9,10 +9,15 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.material3.TimePicker
+import androidx.compose.material3.rememberTimePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -83,6 +88,7 @@ private fun ValueEditRow(
 }
 
 @Composable
+@OptIn(ExperimentalMaterial3Api::class)
 fun TimeTriggerEditor(
     nav: StackNavigatorState,
     editor: TimeTriggerEditor,
@@ -98,6 +104,7 @@ fun TimeTriggerEditor(
     var startAt by rememberSaveable(stateSaver = StartAtSaver) {
         mutableStateOf(LocalDateTime.now())
     }
+    var showTimePicker by remember { mutableStateOf(false) }
 
     LaunchedEffect(editingId) {
         if (editingId == null) {
@@ -111,6 +118,30 @@ fun TimeTriggerEditor(
             hasLoaded = true
             discardState.isDirty = false
         }
+    }
+
+    if (showTimePicker) {
+        val timePickerState =
+            rememberTimePickerState(
+                initialHour = startAt.hour,
+                initialMinute = startAt.minute,
+            )
+        AlertDialog(
+            onDismissRequest = { showTimePicker = false },
+            text = { TimePicker(state = timePickerState) },
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        startAt = startAt.toLocalDate().atTime(timePickerState.hour, timePickerState.minute)
+                        discardState.markDirty()
+                        showTimePicker = false
+                    },
+                ) { Text("OK") }
+            },
+            dismissButton = {
+                TextButton(onClick = { showTimePicker = false }) { Text("Cancel") }
+            },
+        )
     }
 
     Column(
@@ -161,7 +192,7 @@ fun TimeTriggerEditor(
 
         ValueEditRow(
             value = startAt.format(DateTimeFormatter.ofPattern(TIME_PATTERN)),
-            onClick = {},
+            onClick = { showTimePicker = true },
         )
         ValueEditRow(
             value = startAt.format(DateTimeFormatter.ofPattern(DATE_PATTERN)),
