@@ -3,6 +3,7 @@ package net.canvoki.vokibot.time
 import android.content.Context
 import kotlinx.serialization.Serializable
 import net.canvoki.vokibot.EntityMetadata
+import net.canvoki.vokibot.FileDataRepository
 import net.canvoki.vokibot.JsonConfig
 import net.canvoki.vokibot.R
 import net.canvoki.vokibot.StorableEntity
@@ -52,6 +53,14 @@ data class TimeTrigger(
         fun fromJson(jsonString: String): TimeTrigger = JsonConfig.decodeFromString(serializer(), jsonString)
 
         fun register() = StorableEntity.register(this)
+
+        fun scheduleAll(context: Context) {
+            val repository = FileDataRepository.fromContext(context)
+            repository.trigger
+                .all()
+                .filterIsInstance<TimeTrigger>()
+                .forEach { it.schedule(context) }
+        }
     }
 
     override val iconRes: Int get() = TimeTrigger.iconRes

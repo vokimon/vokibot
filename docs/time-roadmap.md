@@ -106,18 +106,24 @@ Functional objectives, in priority order:
     - [x] `TimeTriggerReceiver` + manifest + dispatch via
           `Automation.executeByTrigger`.
     - [x] Schedule on save (new and edit).
+    - [x] `TimeTrigger.schedule` syncs the alarm: schedule if future,
+          cancel if past (via `nextOccurrence`).
     - [x] `StorableEntity.onRemoved`: `TimeTrigger` cancels its alarm.
-    - [ ] Past `triggerAt` rule (skip vs fire now), TDD outside
-          `TimeScheduler`. `-> nextOccurrence one-shot moved to phase B`.
-    - [ ] Reschedule on timezone/clock change.
+    - [x] Problem: alarms in  past trigger as soon as they are programmed
+        -> nextOccurrence returning null on past startAt
     - [ ] Problem: imported time triggers are never scheduled (import
           bypasses the editor).
-    - [ ] Problem: alarms in  past trigger as soon as they are programmed
-        -> nextOccurrence returning null on past startAt
-    - [ ] Problem: alarms do not survive reboot
-    - [ ] Problem: alarms do not survive app updates
+    - [x] Problem: alarms do not survive reboot
+        -> resolved: `AlarmRestoreReceiver` on BOOT_COMPLETED
+    - [x] Problem: alarms do not survive app updates
+        -> resolved: same receiver on MY_PACKAGE_REPLACED
+    - [x] `TimeTrigger.scheduleAll(context)`: sync the alarm of every
+          TimeTrigger.
+    - [x] `AlarmRestoreReceiver` + manifest (BOOT_COMPLETED,
+          MY_PACKAGE_REPLACED, RECEIVE_BOOT_COMPLETED, exported=false).
     - [ ] Problem: alarms can go stale: any save/delete path that
           bypasses the editor/list leaves alarms out of sync.
+    - [ ] Reschedule on timezone/clock change.
 
 ## Phase B -- Recurrent triggers
 
