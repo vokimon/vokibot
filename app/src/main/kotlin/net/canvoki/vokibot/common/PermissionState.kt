@@ -46,6 +46,8 @@ fun rememberPermissionState(permission: String?): PermissionState {
     when (permission) {
         Manifest.permission.WRITE_SETTINGS ->
             return rememberWriteSettingsPermissionState()
+        Manifest.permission.SYSTEM_ALERT_WINDOW ->
+            return rememberOverlayPermissionState()
         Manifest.permission.WRITE_SECURE_SETTINGS ->
             return rememberWriteSecureSettingsPermissionState()
     }
@@ -127,6 +129,39 @@ private fun rememberWriteSettingsPermissionState(): PermissionState {
         override fun request() {
             context.startActivity(
                 Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS).apply {
+                    data = Uri.fromParts("package", context.packageName, null)
+                },
+            )
+        }
+    }
+}
+
+@Composable
+private fun rememberOverlayPermissionState(): PermissionState {
+    val context = LocalContext.current
+    val lifecycleOwner = LocalLifecycleOwner.current
+
+    var isGranted by remember {
+        mutableStateOf(Settings.canDrawOverlays(context))
+    }
+
+    DisposableEffect(lifecycleOwner) {
+        val observer =
+            LifecycleEventObserver { _, event ->
+                if (event == Lifecycle.Event.ON_RESUME) {
+                    isGranted = Settings.canDrawOverlays(context)
+                }
+            }
+        lifecycleOwner.lifecycle.addObserver(observer)
+        onDispose { lifecycleOwner.lifecycle.removeObserver(observer) }
+    }
+
+    return object : PermissionState {
+        override val isGranted: Boolean get() = isGranted
+
+        override fun request() {
+            context.startActivity(
+                Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION).apply {
                     data = Uri.fromParts("package", context.packageName, null)
                 },
             )
