@@ -101,7 +101,7 @@ Functional objectives, in priority order:
           DatePicker dialogs; the date field will evolve when
           recurrence lands (phase B).
     - [x] Date and Time fields in the editor (render + pickers).
-- [ ] Dispatch
+- [x] Dispatch
     - [x] `TimeScheduler` (AlarmManager abstraction).
     - [x] `TimeTriggerReceiver` + manifest + dispatch via
           `Automation.executeByTrigger`.
@@ -126,9 +126,6 @@ Functional objectives, in priority order:
           TimeTrigger.
     - [x] `AlarmRestoreReceiver` + manifest (BOOT_COMPLETED,
           MY_PACKAGE_REPLACED, RECEIVE_BOOT_COMPLETED, exported=false).
-    - [ ] Problem: alarms can go stale: any save/delete path that
-          bypasses the editor/list leaves alarms out of sync.
-        -> deferred: generic entity callbacks (## Later)
     - [x] Reschedule on timezone/clock change.
         -> resolved: TIME_SET and TIMEZONE_CHANGED actions added to
            AlarmRestoreReceiver
@@ -166,7 +163,9 @@ Functional objectives, in priority order:
     - [ ] ShortcutTriggerEditor: replace the manual dirty/ConfirmDialog
           with `rememberDiscardableState`.
 - [ ] Consider onRemove/Save entity callbacks if other entities than TimeTrigger needs them.
-    That will make each entity more autocontained and will unify adhoc actions on import/save/remove.
+    That will make each entity more autocontained and centralized
+    and will unify adhoc actions on import/save/remove.
+    
 
 
 
