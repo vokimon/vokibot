@@ -111,8 +111,10 @@ Functional objectives, in priority order:
     - [x] `StorableEntity.onRemoved`: `TimeTrigger` cancels its alarm.
     - [x] Problem: alarms in  past trigger as soon as they are programmed
         -> nextOccurrence returning null on past startAt
-    - [ ] Problem: imported time triggers are never scheduled (import
+    - [x] Problem: imported time triggers are never scheduled (import
           bypasses the editor).
+        -> resolved: TimeTrigger.scheduleAll after importBundle in both
+           branches
     - [x] Problem: alarms do not survive reboot
         -> resolved: `AlarmRestoreReceiver` on BOOT_COMPLETED
     - [x] Problem: alarms do not survive app updates
@@ -160,3 +162,10 @@ Functional objectives, in priority order:
           SettingsPage lack scroll, Application scrolls inner content).
     - [ ] ShortcutTriggerEditor: replace the manual dirty/ConfirmDialog
           with `rememberDiscardableState`.
+- [ ] Consider onRemove/Save entity callbacks if other entities than TimeTrigger needs them.
+    That will make each entity more autocontained and will unify adhoc actions on import/save/remove.
+
+
+
+
+

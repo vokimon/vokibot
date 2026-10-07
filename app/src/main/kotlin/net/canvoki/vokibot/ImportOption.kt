@@ -19,6 +19,7 @@ import androidx.compose.ui.res.stringResource
 import net.canvoki.shared.storage.rememberOpenFilePicker
 import net.canvoki.shared.usermessage.UserMessage
 import net.canvoki.vokibot.common.ConfirmDialog
+import net.canvoki.vokibot.time.TimeTrigger
 
 @Composable
 fun ImportOption() {
@@ -50,6 +51,7 @@ fun ImportOption() {
                             val summary = bundle.analyzeImport(repo.entityIds()).summary(context)
                             if (summary.isEmpty()) {
                                 repo.importBundle(bundle)
+                                TimeTrigger.scheduleAll(context)
                                 UserMessage.Info(successMessage.format(bundle.entities.size)).post()
                             } else {
                                 pendingSummary = summary
@@ -72,6 +74,7 @@ fun ImportOption() {
             dismissText = stringResource(R.string.import_confirm_dialog_ko),
             onConfirm = {
                 pendingBundle?.let { repo.importBundle(it) }
+                TimeTrigger.scheduleAll(context)
                 UserMessage.Info(successMessage.format(pendingBundle?.entities?.size ?: 0)).post()
                 pendingSummary = null
                 pendingBundle = null
