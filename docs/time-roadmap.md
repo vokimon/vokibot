@@ -117,6 +117,9 @@ Functional objectives, in priority order:
         -> resolved: `AlarmRestoreReceiver` on BOOT_COMPLETED
     - [x] Problem: alarms do not survive app updates
         -> resolved: same receiver on MY_PACKAGE_REPLACED
+    - [x] Problem: alarm fires but launching activities is blocked
+          from background (BAL)
+        -> SYSTEM_ALERT_WINDOW banner at TimeTriggerEditor
     - [x] `TimeTrigger.scheduleAll(context)`: sync the alarm of every
           TimeTrigger.
     - [x] `AlarmRestoreReceiver` + manifest (BOOT_COMPLETED,

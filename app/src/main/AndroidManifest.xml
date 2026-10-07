@@ -16,6 +16,9 @@
     <!-- Optional: For automation that needs to launch apps -->
     <uses-permission android:name="android.permission.EXPAND_STATUS_BAR" />
 
+    <!-- To start activities from background contexts (receivers) -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
     <!-- NFC Detection -->
     <uses-permission android:name="android.permission.NFC" />
     <uses-feature android:name="android.hardware.nfc" android:required="false" />

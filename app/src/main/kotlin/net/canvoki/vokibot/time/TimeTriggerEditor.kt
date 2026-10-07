@@ -1,5 +1,6 @@
 package net.canvoki.vokibot.time
 
+import android.Manifest
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -43,7 +44,9 @@ import net.canvoki.vokibot.FileDataRepository
 import net.canvoki.vokibot.R
 import net.canvoki.vokibot.common.EditorHeader
 import net.canvoki.vokibot.common.MagicTextField
+import net.canvoki.vokibot.common.MissingPermissionBanner
 import net.canvoki.vokibot.common.rememberDiscardableState
+import net.canvoki.vokibot.common.rememberPermissionState
 import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZoneOffset
@@ -236,6 +239,14 @@ fun TimeTriggerEditor(
         ValueEditRow(
             value = startAt.format(DateTimeFormatter.ofPattern(DATE_PATTERN)),
             onClick = { showDatePicker = true },
+        )
+
+        MissingPermissionBanner(
+            state = rememberPermissionState(Manifest.permission.SYSTEM_ALERT_WINDOW),
+            message =
+                "To let automations open other apps while VokiBot is " +
+                    "closed, allow VokiBot the 'Display over other apps' permission " +
+                    "in the settings list",
         )
     }
 }

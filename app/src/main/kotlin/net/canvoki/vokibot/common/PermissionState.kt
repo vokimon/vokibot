@@ -44,10 +44,10 @@ fun rememberPermissionState(permission: String?): PermissionState {
     if (permission == null) return alwaysGranted
 
     when (permission) {
-        Manifest.permission.WRITE_SETTINGS ->
-            return rememberWriteSettingsPermissionState()
         Manifest.permission.SYSTEM_ALERT_WINDOW ->
             return rememberOverlayPermissionState()
+        Manifest.permission.WRITE_SETTINGS ->
+            return rememberWriteSettingsPermissionState()
         Manifest.permission.WRITE_SECURE_SETTINGS ->
             return rememberWriteSecureSettingsPermissionState()
     }
@@ -163,6 +163,9 @@ private fun rememberOverlayPermissionState(): PermissionState {
             context.startActivity(
                 Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION).apply {
                     data = Uri.fromParts("package", context.packageName, null)
+                    // Android 11+ ignores the package data and opens the full
+                    // app list; this undocumented extra expands the search view
+                    putExtra("expand_search_view", true)
                 },
             )
         }
