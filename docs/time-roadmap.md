@@ -128,7 +128,10 @@ Functional objectives, in priority order:
           MY_PACKAGE_REPLACED, RECEIVE_BOOT_COMPLETED, exported=false).
     - [ ] Problem: alarms can go stale: any save/delete path that
           bypasses the editor/list leaves alarms out of sync.
-    - [ ] Reschedule on timezone/clock change.
+        -> deferred: generic entity callbacks (## Later)
+    - [x] Reschedule on timezone/clock change.
+        -> resolved: TIME_SET and TIMEZONE_CHANGED actions added to
+           AlarmRestoreReceiver
 
 ## Phase B -- Recurrent triggers
 
