@@ -132,10 +132,54 @@ Functional objectives, in priority order:
 
 ## Phase B -- Recurrent triggers
 
-- [ ] `recurrence` and `summary` attributes.
-- [ ] `nextOccurrence` recurrence (TDD: 1, N cases).
-- [ ] Editor gains the `recurrence` field.
-- [ ] Receiver reschedules the next occurrence after fire.
+- [ ] Shared: `recurrence` attribute, null = one-shot.
+    - [ ] `Recurrence` sealed hierarchy + serializers.
+    - [ ] `recurrence` field on TimeTrigger, default null.
+    - [ ] fromJson without the field loads as null (back-compat).
+- [ ] Repeat daily -- fires every day at the startAt time.
+    - [ ] `nextOccurrence` daily slots (TDD: later today, earlier today,
+          before startAt).
+    - [ ] description "Every day at HH:mm".
+    - [ ] editor: recurrence type selector with Daily option.
+- [ ] Repeat on selected weekdays -- a set of days of the week.
+    - [ ] `nextOccurrence` weekly slots (TDD: next matching day, several
+          days, time from startAt).
+    - [ ] description "Every Mon, Thu at HH:mm".
+    - [ ] editor: weekday chips.
+- [ ] Repeat on day of month -- day N, clamped to the last day of short months.
+    - [ ] `nextOccurrence` monthly slots (TDD: normal month, day 31 in
+          February, before startAt month).
+    - [ ] description "Day 31 at HH:mm".
+    - [ ] editor: day-of-month field.
+- [ ] Show the pattern in the list -- description renders e.g.
+      "Every Monday at 07:00"; one-shot stays as today.
+    - [ ] `description` switches on recurrence (null keeps date format).
+- [ ] Edit the recurrence -- changing or removing it reschedules
+      the alarm (as editing startAt does today).
+    - [ ] editor state holds recurrence (rememberSaveable + Saver).
+    - [ ] load the existing recurrence when editing.
+    - [ ] save builds TimeTrigger with recurrence (save -> schedule
+          already reschedules).
+- [ ] Keep firing -- each fire schedules the next occurrence
+      (objective 2; without it, a recurring trigger fires only once).
+    - [ ] receiver calls schedule() after executeByTrigger.
+- [ ] Pause without deleting -- enabled flag; orthogonal, also useful for one-shot.
+    - [ ] `enabled` attribute, default true.
+    - [ ] `schedule` cancels when disabled.
+    - [ ] editor: switch.
+- [ ] Limit until a date -- the recurrence stops after that date.
+    - [ ] `until` attribute, nullable.
+    - [ ] `nextOccurrence` returns null after until (TDD).
+    - [ ] editor: optional end date row.
+- [ ] Interval "every N days/weeks" -- pattern variant.
+    - [ ] interval parameter on the recurrence kinds.
+    - [ ] slots step by N (TDD).
+    - [ ] description variant.
+    - [ ] editor: N field.
+- [ ] "N times" -- stops after N fires (requires a persistent counter).
+    - [ ] fired count attribute.
+    - [ ] schedule stops when count reached (TDD).
+    - [ ] editor: N field.
 
 ## Phase C -- Missed triggers
 
