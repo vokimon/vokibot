@@ -145,6 +145,8 @@ Functional objectives, in priority order:
         - [x] hide date editor whenever daily is selected ??
     - [x] Change semantics, there can be daily occurrences before startAt
     - [ ] description "Every day at HH:mm".
+        -> interim: daily renders the time only ("08:30");
+           the phrase needs translations and a Context-aware description
 - [ ] Repeat on selected weekdays -- a set of days of the week.
     - [ ] `nextOccurrence` weekly slots (TDD: next matching day, several
           days, time from startAt).

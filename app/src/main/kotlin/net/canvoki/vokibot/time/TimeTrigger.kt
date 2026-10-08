@@ -50,6 +50,7 @@ data class TimeTrigger(
 
     companion object : EntityMetadata {
         const val DESCRIPTION_FORMAT = "yyyy-MM-dd HH:mm"
+        const val TIME_FORMAT = "HH:mm"
 
         override val typeKey = "trigger_time"
         override val iconRes = R.drawable.ic_schedule
@@ -102,7 +103,12 @@ data class TimeTrigger(
 
     override fun getTitle(context: Context): String = displayName
 
-    override val description: String get() = startAt.format(DateTimeFormatter.ofPattern(DESCRIPTION_FORMAT))
+    override val description: String
+        get() =
+            when (recurrence) {
+                Recurrence.None -> startAt.format(DateTimeFormatter.ofPattern(DESCRIPTION_FORMAT))
+                Recurrence.Daily -> startAt.format(DateTimeFormatter.ofPattern(TIME_FORMAT))
+            }
 
     override fun toJson(): String = JsonConfig.encodeToString(serializer(), this)
 }
