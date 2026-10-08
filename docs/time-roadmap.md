@@ -144,9 +144,10 @@ Functional objectives, in priority order:
         - [x] editor load/save recurrence
         - [x] hide date editor whenever daily is selected ??
     - [x] Change semantics, there can be daily occurrences before startAt
-    - [ ] description "Every day at HH:mm".
+    - [x] description "Every day at HH:mm".
         -> interim: daily renders the time only ("08:30");
            the phrase needs translations and a Context-aware description
+    - [x] refactor: use description(context) every where
 - [ ] Repeat on selected weekdays -- a set of days of the week.
     - [ ] `nextOccurrence` weekly slots (TDD: next matching day, several
           days, time from startAt).
@@ -196,6 +197,7 @@ Functional objectives, in priority order:
 
 ## Later
 
+- [ ] When magic named adapt the name when data changes
 - [ ] Optional start Date for recurring events
 - [ ] Optional end Date for recurring events
 - [ ] Errors on loading data makes the app unusable (crash on startup)

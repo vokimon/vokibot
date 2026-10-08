@@ -1,5 +1,7 @@
 package net.canvoki.vokibot
 
+import android.content.Context
+import io.mockk.mockk
 import net.canvoki.shared.test.assertEquals
 import net.canvoki.shared.test.assertJsonEqual
 import net.canvoki.vokibot.nfc.NfcTrigger
@@ -37,5 +39,11 @@ class NfcTriggerTest {
     fun `id`() {
         val nfc = nfcTriggerBase()
         assertEquals(nfc.id, "nfc_01_23_45_67_AB_CD_EF")
+    }
+
+    @Test
+    fun `description context without override returns the context free description`() {
+        val nfc = nfcTriggerBase()
+        assertEquals(nfc.description, nfc.description(mockk<Context>()))
     }
 }

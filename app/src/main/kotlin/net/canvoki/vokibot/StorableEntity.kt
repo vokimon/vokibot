@@ -41,6 +41,8 @@ interface StorableEntity {
 
     val description: String
 
+    fun description(context: Context): String = description
+
     @get:DrawableRes
     val iconRes: Int
 
