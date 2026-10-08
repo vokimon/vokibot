@@ -190,12 +190,12 @@ class TimeTriggerTest {
     }
 
     @Test
-    fun `nextOccurrence daily days before startAt returns startAt`() {
+    fun `nextOccurrence daily days before startAt before today occurrency returns today`() {
         assertNextOccurrence(
             recurrence = Recurrence.Daily,
             startAt = "2026-06-01T08:30",
             now = "2026-05-01T07:00",
-            expected = "2026-06-01T08:30",
+            expected = "2026-05-01T08:30",
         )
     }
 }

@@ -85,7 +85,6 @@ data class TimeTrigger(
             Recurrence.None -> if (startAt.isAfter(now)) startAt else null
             Recurrence.Daily ->
                 when {
-                    startAt.isAfter(now) -> startAt
                     candidate.isAfter(now) -> candidate
                     else -> candidate.plusDays(1)
                 }

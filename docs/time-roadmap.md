@@ -143,7 +143,7 @@ Functional objectives, in priority order:
         - [x] recurrence state
         - [x] editor load/save recurrence
         - [x] hide date editor whenever daily is selected ??
-    - [ ] Change semantics, there can be daily occurrences before startAt
+    - [x] Change semantics, there can be daily occurrences before startAt
     - [ ] description "Every day at HH:mm".
 - [ ] Repeat on selected weekdays -- a set of days of the week.
     - [ ] `nextOccurrence` weekly slots (TDD: next matching day, several
