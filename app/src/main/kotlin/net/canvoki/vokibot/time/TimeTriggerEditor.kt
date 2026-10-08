@@ -17,6 +17,9 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.SegmentedButton
+import androidx.compose.material3.SegmentedButtonDefaults
+import androidx.compose.material3.SingleChoiceSegmentedButtonRow
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TimePicker
@@ -112,6 +115,7 @@ fun TimeTriggerEditor(
     var startAt by rememberSaveable(stateSaver = StartAtSaver) {
         mutableStateOf(LocalDateTime.now())
     }
+    var recurrence by rememberSaveable { mutableStateOf(Recurrence.None) }
     var showTimePicker by remember { mutableStateOf(false) }
     var showDatePicker by remember { mutableStateOf(false) }
 
@@ -123,6 +127,7 @@ fun TimeTriggerEditor(
             existing?.let {
                 displayName = it.displayName
                 startAt = it.startAt
+                recurrence = it.recurrence
             }
             hasLoaded = true
             discardState.isDirty = false
@@ -207,7 +212,7 @@ fun TimeTriggerEditor(
                             id = editingId,
                             startAt = startAt,
                             displayName = displayName.trim(),
-                            recurrence = Recurrence.None,
+                            recurrence = recurrence,
                         )
                     scope.launch {
                         repository.trigger.save(trigger)
@@ -232,6 +237,27 @@ fun TimeTriggerEditor(
             modifier = Modifier.fillMaxWidth(),
             singleLine = true,
         )
+
+        SingleChoiceSegmentedButtonRow(modifier = Modifier.fillMaxWidth()) {
+            Recurrence.entries.forEachIndexed { index, entry ->
+                SegmentedButton(
+                    selected = recurrence == entry,
+                    onClick = {
+                        recurrence = entry
+                        discardState.markDirty()
+                    },
+                    shape = SegmentedButtonDefaults.itemShape(index, Recurrence.entries.size),
+                    label = {
+                        Text(
+                            when (entry) {
+                                Recurrence.None -> "Once"
+                                Recurrence.Daily -> "Daily"
+                            },
+                        )
+                    },
+                )
+            }
+        }
 
         ValueEditRow(
             value = startAt.format(DateTimeFormatter.ofPattern(TIME_PATTERN)),

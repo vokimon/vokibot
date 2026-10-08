@@ -140,6 +140,10 @@ Functional objectives, in priority order:
           before startAt).
     - [ ] description "Every day at HH:mm".
     - [ ] editor: recurrence type selector with Daily option.
+        - [x] recurrence selector
+        - [x] recurrence state
+        - [x] editor load/save recurrence
+        - [ ] hide date editor whenever daily is selected ??
 - [ ] Repeat on selected weekdays -- a set of days of the week.
     - [ ] `nextOccurrence` weekly slots (TDD: next matching day, several
           days, time from startAt).
@@ -189,6 +193,7 @@ Functional objectives, in priority order:
 
 ## Later
 
+- [ ] Errors on loading data makes the app unusable (crash on startup)
 - [ ] ShortcutTrigger: implement `onRemoved` to unpin the launcher
       shortcut (today the pinned shortcut survives deletion and dispatch
       degrades with the NoTrigger message).
@@ -209,8 +214,6 @@ Functional objectives, in priority order:
     That will make each entity more autocontained and centralized
     and will unify adhoc actions on import/save/remove.
     
-
-
 
 
 
