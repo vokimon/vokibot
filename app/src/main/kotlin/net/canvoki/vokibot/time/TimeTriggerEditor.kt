@@ -263,10 +263,12 @@ fun TimeTriggerEditor(
             value = startAt.format(DateTimeFormatter.ofPattern(TIME_PATTERN)),
             onClick = { showTimePicker = true },
         )
-        ValueEditRow(
-            value = startAt.format(DateTimeFormatter.ofPattern(DATE_PATTERN)),
-            onClick = { showDatePicker = true },
-        )
+        if (recurrence == Recurrence.None) {
+            ValueEditRow(
+                value = startAt.format(DateTimeFormatter.ofPattern(DATE_PATTERN)),
+                onClick = { showDatePicker = true },
+            )
+        }
 
         MissingPermissionBanner(
             state = rememberPermissionState(Manifest.permission.SYSTEM_ALERT_WINDOW),

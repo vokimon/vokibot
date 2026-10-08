@@ -136,14 +136,15 @@ Functional objectives, in priority order:
     - [x] `recurrence` field in basic case for serialization is `None`, default to None
     - [x] Refactor to have no default, explicit in TimeTriggerEditor usage
 - [ ] Repeat daily -- fires every day at the startAt time.
-    - [ ] `nextOccurrence` daily slots (TDD: later today, earlier today,
+    - [x] `nextOccurrence` daily slots (TDD: later today, earlier today,
           before startAt).
-    - [ ] description "Every day at HH:mm".
-    - [ ] editor: recurrence type selector with Daily option.
+    - [x] editor: recurrence type selector with Daily option.
         - [x] recurrence selector
         - [x] recurrence state
         - [x] editor load/save recurrence
-        - [ ] hide date editor whenever daily is selected ??
+        - [x] hide date editor whenever daily is selected ??
+    - [ ] Change semantics, there can be daily occurrences before startAt
+    - [ ] description "Every day at HH:mm".
 - [ ] Repeat on selected weekdays -- a set of days of the week.
     - [ ] `nextOccurrence` weekly slots (TDD: next matching day, several
           days, time from startAt).
@@ -193,6 +194,8 @@ Functional objectives, in priority order:
 
 ## Later
 
+- [ ] Optional start Date for recurring events
+- [ ] Optional end Date for recurring events
 - [ ] Errors on loading data makes the app unusable (crash on startup)
 - [ ] ShortcutTrigger: implement `onRemoved` to unpin the launcher
       shortcut (today the pinned shortcut survives deletion and dispatch
