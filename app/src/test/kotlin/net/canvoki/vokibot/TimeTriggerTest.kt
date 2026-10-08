@@ -179,15 +179,15 @@ class TimeTriggerTest {
         )
     }
 
-    //@Test
-    //fun `nextOccurrence daily later day after slot returns next day at slot time`() {
-    //    assertNextOccurrence(
-    //        recurrence = Recurrence.Daily,
-    //        startAt = "2026-06-01T08:30",
-    //        now = "2026-06-10T09:00",
-    //        expected = "2026-06-11T08:30",
-    //    )
-    //}
+    @Test
+    fun `nextOccurrence daily later day after that day occurrency`() {
+        assertNextOccurrence(
+            recurrence = Recurrence.Daily,
+            startAt = "2026-06-01T08:30",
+            now = "2026-06-10T09:00",
+            expected = "2026-06-11T08:30",
+        )
+    }
 
     //@Test
     //fun `nextOccurrence daily exactly at slot returns tomorrow`() {

@@ -87,7 +87,7 @@ data class TimeTrigger(
                 when {
                     startAt.isAfter(now) -> startAt
                     candidate.isAfter(now) -> candidate
-                    else -> startAt.plusDays(1)
+                    else -> candidate.plusDays(1)
                 }
         }
     }
