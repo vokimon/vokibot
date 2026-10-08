@@ -89,6 +89,12 @@ class TimeTriggerTest {
     }
 
     @Test
+    fun `description context one shot returns the context free description`() {
+        val trigger = timeTriggerBase()
+        assertEquals(trigger.description, trigger.description(context()))
+    }
+
+    @Test
     fun `iconRes is the schedule icon`() {
         assertEquals(R.drawable.ic_schedule, timeTriggerBase().iconRes)
     }

@@ -110,5 +110,7 @@ data class TimeTrigger(
                 Recurrence.Daily -> startAt.format(DateTimeFormatter.ofPattern(TIME_FORMAT))
             }
 
+    fun description(context: Context): String = description
+
     override fun toJson(): String = JsonConfig.encodeToString(serializer(), this)
 }
