@@ -39,7 +39,7 @@ data class TimeTrigger(
         id: String?,
         startAt: LocalDateTime,
         displayName: String,
-        recurrence: Recurrence = Recurrence.None,
+        recurrence: Recurrence,
     ) : this(
         startAt = startAt,
         displayName = displayName,

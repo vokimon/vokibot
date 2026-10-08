@@ -207,6 +207,7 @@ fun TimeTriggerEditor(
                             id = editingId,
                             startAt = startAt,
                             displayName = displayName.trim(),
+                            recurrence = Recurrence.None,
                         )
                     scope.launch {
                         repository.trigger.save(trigger)
