@@ -231,7 +231,12 @@ fun TimeTriggerEditor(
                 displayName = it
                 discardState.markDirty()
             },
-            onMagicClick = {},
+            onMagicClick = {
+                displayName =
+                    TimeTrigger(editingId, startAt, displayName, recurrence)
+                        .description(context)
+                discardState.markDirty()
+            },
             label = { Text("Name") },
             placeholder = { Text("e.g. Morning coffee") },
             modifier = Modifier.fillMaxWidth(),
