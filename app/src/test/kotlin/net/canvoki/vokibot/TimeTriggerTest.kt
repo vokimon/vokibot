@@ -95,6 +95,14 @@ class TimeTriggerTest {
     }
 
     @Test
+    fun `description context daily shows the phrase`() {
+        assertEquals(
+            "08:30 daily",
+            timeTriggerBase(recurrence = Recurrence.Daily).description(context()),
+        )
+    }
+
+    @Test
     fun `iconRes is the schedule icon`() {
         assertEquals(R.drawable.ic_schedule, timeTriggerBase().iconRes)
     }

@@ -110,7 +110,12 @@ data class TimeTrigger(
                 Recurrence.Daily -> startAt.format(DateTimeFormatter.ofPattern(TIME_FORMAT))
             }
 
-    fun description(context: Context): String = description
+    fun description(context: Context): String =
+        when (recurrence) {
+            Recurrence.None -> description
+            Recurrence.Daily ->
+                "${startAt.format(DateTimeFormatter.ofPattern(TIME_FORMAT))} daily"
+        }
 
     override fun toJson(): String = JsonConfig.encodeToString(serializer(), this)
 }
