@@ -24,13 +24,15 @@ class TimeTriggerTest {
     val startAt = LocalDateTime.of(2026, 6, 1, 8, 30)
     val displayName = "Morning coffee"
 
-    fun timeTriggerBase(id: String? = "my_id") =
-        TimeTrigger(
-            id = id,
-            displayName = displayName,
-            startAt = startAt,
-            recurrence = Recurrence.None,
-        )
+    fun timeTriggerBase(
+        id: String? = "my_id",
+        recurrence: Recurrence = Recurrence.None,
+    ) = TimeTrigger(
+        id = id,
+        displayName = displayName,
+        startAt = startAt,
+        recurrence = recurrence,
+    )
 
     fun timeTriggerJson() =
         """
