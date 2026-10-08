@@ -62,7 +62,7 @@ or to roll back just the refinements.
 - Read-only git commands are allowed (status, log, diff, etc.)
 - Do NOT modify untracked files
 - May create new files, but only change initial content after User adds them to the stage
-- Produce small, focused proposals (tens of lines)
+- Produce small, focused proposals
 - Split large changes into multiple small changesets,
   planning a sequence where each step keeps the codebase working.
   This requires strategic thinking:
@@ -84,7 +84,10 @@ When using TDD (Beck/Fowler methodology):
 
 **When to use**: TDD applies to platform-independent code (e.g., business logic, data models, utilities). UI and Android-specific code does not use TDD yet.
 
-Notice: The RED for the first test of a new SUT (class, method...) often requires a stub that makes it run but fail by an assertion failure, and not failing by a missing import, class, method...
+Notice: The RED is not just writing the test. A RED may also change production code in those cases:
+
+- Failing Stub: The RED for the first test of a new SUT (class, method...) often requires a stub that implements the interface but still fails by an assertion failure, and not failing by a missing import, class, method...
+- Demotion: If we over implemented in the previous Green or Refactor, we can still make room for a new test to increase coverage by demoting the implementation if that does not make the previous tests to fail. This is better done previously to the RED as refactor but often is done as afterthouht when we see a planned test is not failing.
 
 **Test writing conventions**:
 - Avoid multiple asserts in a single test
