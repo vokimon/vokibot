@@ -26,6 +26,7 @@ class TimeTriggerTest {
 
     fun timeTriggerBase(
         id: String? = "my_id",
+        startAt: LocalDateTime = this.startAt,
         recurrence: Recurrence = Recurrence.None,
     ) = TimeTrigger(
         id = id,
@@ -44,6 +45,21 @@ class TimeTriggerTest {
           "startAt": "2026-06-01T08:30"
         }
         """
+
+    fun assertNextOccurrence(
+        recurrence: Recurrence,
+        startAt: String,
+        now: String,
+        expected: String?,
+    ) {
+        val trigger =
+            timeTriggerBase(
+                startAt = LocalDateTime.parse(startAt),
+                recurrence = recurrence,
+            )
+        val actual = trigger.nextOccurrence(LocalDateTime.parse(now))?.toString()
+        assertEquals(expected, actual)
+    }
 
     @Test
     fun `toJson`() {
@@ -115,22 +131,31 @@ class TimeTriggerTest {
 
     @Test
     fun `nextOccurrence future single shot returns startAt`() {
-        val trigger = timeTriggerBase()
-        val now = startAt.minusDays(1)
-        assertEquals(startAt, trigger.nextOccurrence(now))
+        assertNextOccurrence(
+            recurrence = Recurrence.None,
+            startAt = "2026-06-01T08:30",
+            now = "2026-05-31T08:30",
+            expected = "2026-06-01T08:30",
+        )
     }
 
     @Test
     fun `nextOccurrence past single shot returns null`() {
-        val trigger = timeTriggerBase()
-        val now = startAt.plusDays(1)
-        assertEquals(null, trigger.nextOccurrence(now))
+        assertNextOccurrence(
+            recurrence = Recurrence.None,
+            startAt = "2026-06-01T08:30",
+            now = "2026-06-02T08:30",
+            expected = null,
+        )
     }
 
     @Test
     fun `nextOccurrence daily after today's slot returns tomorrow`() {
-        val trigger = timeTriggerBase(recurrence = Recurrence.Daily)
-        val now = LocalDateTime.of(2026, 6, 1, 9, 0)
-        assertEquals(LocalDateTime.of(2026, 6, 2, 8, 30), trigger.nextOccurrence(now))
+        assertNextOccurrence(
+            recurrence = Recurrence.Daily,
+            startAt = "2026-06-01T08:30",
+            now = "2026-06-01T09:00",
+            expected = "2026-06-02T08:30",
+        )
     }
 }
