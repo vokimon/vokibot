@@ -158,4 +158,64 @@ class TimeTriggerTest {
             expected = "2026-06-02T08:30",
         )
     }
+
+    @Test
+    fun `nextOccurrence daily before today's slot returns today's slot`() {
+        assertNextOccurrence(
+            recurrence = Recurrence.Daily,
+            startAt = "2026-06-01T08:30",
+            now = "2026-06-01T07:00",
+            expected = "2026-06-01T08:30",
+        )
+    }
+
+    //@Test
+    //fun `nextOccurrence daily later day before slot returns that day at slot time`() {
+    //    assertNextOccurrence(
+    //        recurrence = Recurrence.Daily,
+    //        startAt = "2026-06-01T08:30",
+    //        now = "2026-06-10T07:00",
+    //        expected = "2026-06-10T08:30",
+    //    )
+    //}
+
+    //@Test
+    //fun `nextOccurrence daily later day after slot returns next day at slot time`() {
+    //    assertNextOccurrence(
+    //        recurrence = Recurrence.Daily,
+    //        startAt = "2026-06-01T08:30",
+    //        now = "2026-06-10T09:00",
+    //        expected = "2026-06-11T08:30",
+    //    )
+    //}
+
+    //@Test
+    //fun `nextOccurrence daily exactly at slot returns tomorrow`() {
+    //    assertNextOccurrence(
+    //        recurrence = Recurrence.Daily,
+    //        startAt = "2026-06-01T08:30",
+    //        now = "2026-06-01T08:30",
+    //        expected = "2026-06-02T08:30",
+    //    )
+    //}
+
+    //@Test
+    //fun `nextOccurrence daily before startAt returns startAt`() {
+    //    assertNextOccurrence(
+    //        recurrence = Recurrence.Daily,
+    //        startAt = "2026-06-01T08:30",
+    //        now = "2026-05-01T07:00",
+    //        expected = "2026-06-01T08:30",
+    //    )
+    //}
+
+    //@Test
+    //fun `nextOccurrence daily before startAt in the afternoon returns startAt`() {
+    //    assertNextOccurrence(
+    //        recurrence = Recurrence.Daily,
+    //        startAt = "2026-06-01T08:30",
+    //        now = "2026-05-01T09:00",
+    //        expected = "2026-06-01T08:30",
+    //    )
+    //}
 }

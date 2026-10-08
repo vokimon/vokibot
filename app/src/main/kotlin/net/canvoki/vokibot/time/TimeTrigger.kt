@@ -82,7 +82,7 @@ data class TimeTrigger(
     fun nextOccurrence(now: LocalDateTime): LocalDateTime? =
         when (recurrence) {
             Recurrence.None -> if (startAt.isAfter(now)) startAt else null
-            Recurrence.Daily -> startAt.plusDays(1)
+            Recurrence.Daily -> if (startAt.isAfter(now)) startAt else startAt.plusDays(1)
         }
 
     fun schedule(context: Context) {
