@@ -1,6 +1,7 @@
 package net.canvoki.vokibot.time
 
 import android.content.Context
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import net.canvoki.vokibot.EntityMetadata
 import net.canvoki.vokibot.FileDataRepository
@@ -12,6 +13,11 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.UUID
 
+@Serializable
+enum class Recurrence {
+    None,
+}
+
 /**
  * Triggers on time condition
  */
@@ -21,6 +27,7 @@ data class TimeTrigger(
     val startAt: LocalDateTime,
     val displayName: String,
     override val id: String = UUID.randomUUID().toString(),
+    val recurrence: Recurrence,
 ) : Trigger() {
     override val type: String = typeKey
 
@@ -32,10 +39,12 @@ data class TimeTrigger(
         id: String?,
         startAt: LocalDateTime,
         displayName: String,
+        recurrence: Recurrence = Recurrence.None,
     ) : this(
         startAt = startAt,
         displayName = displayName,
         id = id ?: UUID.randomUUID().toString(),
+        recurrence = recurrence,
     )
 
     companion object : EntityMetadata {

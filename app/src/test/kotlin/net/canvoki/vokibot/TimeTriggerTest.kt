@@ -6,6 +6,7 @@ import kotlinx.serialization.SerializationException
 import net.canvoki.shared.test.assertEquals
 import net.canvoki.shared.test.assertIsUUID
 import net.canvoki.shared.test.assertJsonEqual
+import net.canvoki.vokibot.time.Recurrence
 import net.canvoki.vokibot.time.TimeTrigger
 import net.canvoki.vokibot.time.TimeTriggerEditor
 import org.junit.Assert.assertTrue
@@ -28,6 +29,7 @@ class TimeTriggerTest {
             id = id,
             displayName = displayName,
             startAt = startAt,
+            recurrence = Recurrence.None,
         )
 
     fun timeTriggerJson() =
@@ -36,6 +38,7 @@ class TimeTriggerTest {
           "type": "trigger_time",
           "id": "my_id",
           "displayName": "Morning coffee",
+          "recurrence": "None",
           "startAt": "2026-06-01T08:30"
         }
         """
