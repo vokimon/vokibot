@@ -94,7 +94,7 @@ fun CommandList(
                     headlineContent = { Text(command.getTitle(context)) },
                     supportingContent = {
                         Text(
-                            text = command.description,
+                            text = command.description(context),
                             style = MaterialTheme.typography.bodySmall,
                             maxLines = 1,
                         )

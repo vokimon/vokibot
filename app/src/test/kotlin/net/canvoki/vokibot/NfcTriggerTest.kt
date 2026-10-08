@@ -44,6 +44,6 @@ class NfcTriggerTest {
     @Test
     fun `description context without override returns the context free description`() {
         val nfc = nfcTriggerBase()
-        assertEquals(nfc.description, nfc.description(mockk<Context>()))
+        assertEquals("01:23:45:67:AB:CD:EF", nfc.description(mockk<Context>()))
     }
 }

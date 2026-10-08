@@ -173,7 +173,10 @@ data class AutomationEditor(
                             color = MaterialTheme.colorScheme.primary,
                         )
                         Text(
-                            text = triggerInfo?.description ?: stringResource(R.string.automation_trigger_hint),
+                            text =
+                                triggerInfo?.description(
+                                    context,
+                                ) ?: stringResource(R.string.automation_trigger_hint),
                             style = MaterialTheme.typography.labelSmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                         )
@@ -251,7 +254,7 @@ data class AutomationEditor(
                                             style = MaterialTheme.typography.bodyMedium,
                                         )
                                         Text(
-                                            command.description,
+                                            command.description(context),
                                             style = MaterialTheme.typography.bodySmall,
                                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                                             maxLines = 2,

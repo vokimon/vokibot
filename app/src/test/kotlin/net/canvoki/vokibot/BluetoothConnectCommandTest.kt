@@ -81,7 +81,7 @@ class BluetoothConnectCommandTest {
     }
 
     @Test fun `description returns macAddress`() {
-        assertEquals("AA:BB:CC:DD:EE:FF", commandBase().description)
+        assertEquals("AA:BB:CC:DD:EE:FF", commandBase().description(context()))
     }
 
     @Test fun `toJson`() {

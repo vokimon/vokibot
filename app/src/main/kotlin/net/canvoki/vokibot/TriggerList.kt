@@ -84,7 +84,7 @@ fun TriggerList(
             ) { trigger ->
                 ListItem(
                     headlineContent = { Text(trigger.getTitle(context)) },
-                    supportingContent = { Text(trigger.description) },
+                    supportingContent = { Text(trigger.description(context)) },
                     leadingContent = {
                         val triggerIcon = remember(trigger.id) { trigger.loadIcon(context) }
                         Icon(

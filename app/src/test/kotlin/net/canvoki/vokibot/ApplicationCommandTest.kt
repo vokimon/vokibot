@@ -89,7 +89,7 @@ class ApplicationCommandTest {
     @Test
     fun `LaunchActivityCommand description returns packageName className`() {
         val cmd = launchActivityCommandBase()
-        assertEquals("com.google.android.apps.maps/com.android.gl.maps.MainActivity", cmd.description)
+        assertEquals("com.google.android.apps.maps/com.android.gl.maps.MainActivity", cmd.description(mockk<Context>()))
     }
 
     @Test
@@ -114,7 +114,7 @@ class ApplicationCommandTest {
                 packageName = "com.google.android.apps.maps",
                 className = "com.google.android.apps.maps.MapsActivity",
             )
-        assertEquals("com.google.android.apps.maps/.MapsActivity", cmd.description)
+        assertEquals("com.google.android.apps.maps/.MapsActivity", cmd.description(mockk<Context>()))
     }
 
     @Test
@@ -188,7 +188,7 @@ class ApplicationCommandTest {
     @Test
     fun `SendBroadcastCommand description returns packageName action`() {
         val cmd = sendBroadcastCommandBase()
-        assertEquals("com.android.messaging/.services.SmsReceiver", cmd.description)
+        assertEquals("com.android.messaging/.services.SmsReceiver", cmd.description(mockk<Context>()))
     }
 
     @Test
@@ -259,7 +259,7 @@ class ApplicationCommandTest {
     @Test
     fun `StartServiceCommand description returns packageName className`() {
         val cmd = startServiceCommandBase()
-        assertEquals("com.example.app/com.android.sync.SyncWorker", cmd.description)
+        assertEquals("com.example.app/com.android.sync.SyncWorker", cmd.description(mockk<Context>()))
     }
 
     @Test
@@ -271,7 +271,7 @@ class ApplicationCommandTest {
                 packageName = "com.example.app",
                 className = "com.example.app.SyncService",
             )
-        assertEquals("com.example.app/.SyncService", cmd.description)
+        assertEquals("com.example.app/.SyncService", cmd.description(mockk<Context>()))
     }
 
     @Test
@@ -345,7 +345,7 @@ class ApplicationCommandTest {
     @Test
     fun `AccessProviderCommand description returns packageName authority`() {
         val cmd = accessProviderCommandBase()
-        assertEquals("com.android.contacts/com.android.contacts", cmd.description)
+        assertEquals("com.android.contacts/com.android.contacts", cmd.description(mockk<Context>()))
     }
 
     @Test

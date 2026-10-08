@@ -80,18 +80,20 @@ class TimeTriggerTest {
 
     @Test
     fun `description shows startAt`() {
-        assertEquals("2026-06-01 08:30", timeTriggerBase().description)
+        assertEquals("2026-06-01 08:30", timeTriggerBase().description(context()))
     }
 
     @Test
-    fun `description daily shows the time only`() {
-        assertEquals("08:30", timeTriggerBase(recurrence = Recurrence.Daily).description)
+    fun `description context daily returns the phrase`() {
+        assertEquals(
+            "08:30 daily",
+            timeTriggerBase(recurrence = Recurrence.Daily).description(context()),
+        )
     }
 
     @Test
     fun `description context one shot returns the context free description`() {
-        val trigger = timeTriggerBase()
-        assertEquals(trigger.description, trigger.description(context()))
+        assertEquals("2026-06-01 08:30", timeTriggerBase().description(context()))
     }
 
     @Test
