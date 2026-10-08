@@ -133,9 +133,8 @@ Functional objectives, in priority order:
 ## Phase B -- Recurrent triggers
 
 - [ ] Shared: `recurrence` attribute, null = one-shot.
-    - [ ] `Recurrence` sealed hierarchy + serializers.
-    - [ ] `recurrence` field on TimeTrigger, default null.
-    - [ ] fromJson without the field loads as null (back-compat).
+    - [x] `recurrence` field in basic case for serialization is `None`, default to None
+    - [x] Refactor to have no default, explicit in TimeTriggerEditor usage
 - [ ] Repeat daily -- fires every day at the startAt time.
     - [ ] `nextOccurrence` daily slots (TDD: later today, earlier today,
           before startAt).

@@ -126,4 +126,11 @@ class TimeTriggerTest {
         val now = startAt.plusDays(1)
         assertEquals(null, trigger.nextOccurrence(now))
     }
+
+    @Test
+    fun `nextOccurrence daily after today's slot returns tomorrow`() {
+        val trigger = timeTriggerBase(recurrence = Recurrence.Daily)
+        val now = LocalDateTime.of(2026, 6, 1, 9, 0)
+        assertEquals(LocalDateTime.of(2026, 6, 2, 8, 30), trigger.nextOccurrence(now))
+    }
 }

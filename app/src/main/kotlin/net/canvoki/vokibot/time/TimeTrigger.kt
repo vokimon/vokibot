@@ -16,6 +16,7 @@ import java.util.UUID
 @Serializable
 enum class Recurrence {
     None,
+    Daily,
 }
 
 /**
@@ -78,7 +79,11 @@ data class TimeTrigger(
         TimeScheduler.cancel(context, id)
     }
 
-    fun nextOccurrence(now: LocalDateTime): LocalDateTime? = if (startAt.isAfter(now)) startAt else null
+    fun nextOccurrence(now: LocalDateTime): LocalDateTime? =
+        when (recurrence) {
+            Recurrence.None -> if (startAt.isAfter(now)) startAt else null
+            Recurrence.Daily -> startAt.plusDays(1)
+        }
 
     fun schedule(context: Context) {
         val occurrence = nextOccurrence(LocalDateTime.now())
