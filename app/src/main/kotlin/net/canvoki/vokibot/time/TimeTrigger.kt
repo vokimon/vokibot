@@ -79,11 +79,18 @@ data class TimeTrigger(
         TimeScheduler.cancel(context, id)
     }
 
-    fun nextOccurrence(now: LocalDateTime): LocalDateTime? =
-        when (recurrence) {
+    fun nextOccurrence(now: LocalDateTime): LocalDateTime? {
+        val candidate = now.toLocalDate().atTime(startAt.toLocalTime())
+        return when (recurrence) {
             Recurrence.None -> if (startAt.isAfter(now)) startAt else null
-            Recurrence.Daily -> if (startAt.isAfter(now)) startAt else startAt.plusDays(1)
+            Recurrence.Daily ->
+                when {
+                    startAt.isAfter(now) -> startAt
+                    candidate.isAfter(now) -> candidate
+                    else -> startAt.plusDays(1)
+                }
         }
+    }
 
     fun schedule(context: Context) {
         val occurrence = nextOccurrence(LocalDateTime.now())
