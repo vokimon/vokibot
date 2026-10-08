@@ -614,3 +614,4 @@ free_string_set_remove: Eliminâh
 free_string_set_add_value: Añadîh balôh
 triggerlist_option_time: Tiempo
 trigger_time_help: Dîppara automatiçaçionê en un momento determinao.
+trigger_time_description_daily: '{time} cá día'

@@ -616,3 +616,4 @@ free_string_set_remove: Elimina
 free_string_set_add_value: Afegeix valor
 triggerlist_option_time: Temps
 trigger_time_help: Dispara automatitzacions en un moment determinat.
+trigger_time_description_daily: "{time} cada dia"

@@ -102,6 +102,15 @@ class TimeTriggerTest {
         )
     }
 
+    @Config(qualifiers = "ca")
+    @Test
+    fun `description context daily in catalan`() {
+        assertEquals(
+            "08:30 cada dia",
+            timeTriggerBase(recurrence = Recurrence.Daily).description(context()),
+        )
+    }
+
     @Test
     fun `iconRes is the schedule icon`() {
         assertEquals(R.drawable.ic_schedule, timeTriggerBase().iconRes)

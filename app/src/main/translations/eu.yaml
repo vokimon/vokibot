@@ -616,3 +616,4 @@ free_string_set_remove: Kendu
 free_string_set_add_value: Gehitu balioa
 triggerlist_option_time: Denbora
 trigger_time_help: Automatizazioak une zehatz batean abiarazten ditu.
+trigger_time_description_daily: "Egunero {time}etan"

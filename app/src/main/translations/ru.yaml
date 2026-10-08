@@ -616,3 +616,4 @@ free_string_set_remove: Удалить
 free_string_set_add_value: Добавить значение
 triggerlist_option_time: Время
 trigger_time_help: Запускает автоматизации в определённый момент.
+trigger_time_description_daily: "Ежедневно в {time}"
