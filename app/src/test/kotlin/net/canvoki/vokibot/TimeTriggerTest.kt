@@ -28,6 +28,7 @@ class TimeTriggerTest {
         id: String? = "my_id",
         startAt: LocalDateTime = this.startAt,
         recurrence: Recurrence = Recurrence.None,
+        displayName: String = this.displayName,
     ) = TimeTrigger(
         id = id,
         displayName = displayName,
@@ -110,6 +111,14 @@ class TimeTriggerTest {
     @Test
     fun `getTitle returns displayName`() {
         assertEquals(displayName, timeTriggerBase().getTitle(context()))
+    }
+
+    @Test
+    fun `getTitle without name daily shows the schedule`() {
+        assertEquals(
+            "08:30 daily",
+            timeTriggerBase(displayName = "", recurrence = Recurrence.Daily).getTitle(context()),
+        )
     }
 
     @Test

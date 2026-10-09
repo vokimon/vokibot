@@ -149,6 +149,8 @@ Functional objectives, in priority order:
            the phrase needs translations and a Context-aware description
     - [x] refactor: use description(context) every where
 - [ ] Repeat on selected weekdays -- a set of days of the week.
+    - [ ] New enum for week days or use a stdlib one
+    - [ ] TDD New attribute set of weekdays, default empty, do not store default
     - [ ] `nextOccurrence` weekly slots (TDD: next matching day, several
           days, time from startAt).
     - [ ] description "Every Mon, Thu at HH:mm".
