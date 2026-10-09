@@ -79,25 +79,12 @@ class TimeTriggerTest {
     }
 
     @Test
-    fun `description shows startAt`() {
+    fun `description one shot shows startAt`() {
         assertEquals("2026-06-01 08:30", timeTriggerBase().description(context()))
     }
 
     @Test
-    fun `description context daily returns the phrase`() {
-        assertEquals(
-            "08:30 daily",
-            timeTriggerBase(recurrence = Recurrence.Daily).description(context()),
-        )
-    }
-
-    @Test
-    fun `description context one shot returns the context free description`() {
-        assertEquals("2026-06-01 08:30", timeTriggerBase().description(context()))
-    }
-
-    @Test
-    fun `description context daily shows the phrase`() {
+    fun `description daily shows the phrase`() {
         assertEquals(
             "08:30 daily",
             timeTriggerBase(recurrence = Recurrence.Daily).description(context()),
@@ -106,7 +93,7 @@ class TimeTriggerTest {
 
     @Config(qualifiers = "ca")
     @Test
-    fun `description context daily in catalan`() {
+    fun `description daily in catalan`() {
         assertEquals(
             "08:30 cada dia",
             timeTriggerBase(recurrence = Recurrence.Daily).description(context()),
