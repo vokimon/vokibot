@@ -69,7 +69,7 @@ data class BluetoothConnectCommand(
             )
         }
 
-    override val description: String get() = macAddress
+    override fun description(context: Context): String = macAddress
 
     override fun toJson(): String = JsonConfig.encodeToString(serializer(), this)
 

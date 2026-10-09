@@ -37,8 +37,7 @@ data class Automation(
 
     override fun getTitle(context: Context): String = name
 
-    override val description: String
-        get() = "$triggerId -> ${commandIds.size} command(s)"
+    override fun description(context: Context): String = "$triggerId -> ${commandIds.size} command(s)"
 
     @get:DrawableRes
     override val iconRes: Int get() = Companion.iconRes

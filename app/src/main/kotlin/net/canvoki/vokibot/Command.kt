@@ -55,7 +55,8 @@ data class UnknownCommand(
 
     override fun getTitle(context: Context): String = context.getString(R.string.unknown_command_title)
 
-    override val description: String = type
+    override fun description(context: Context): String = type
+
     override val iconRes: Int = android.R.drawable.ic_menu_help
 
     override fun toJson(): String = json

@@ -103,16 +103,9 @@ data class TimeTrigger(
 
     override fun getTitle(context: Context): String = displayName
 
-    override val description: String
-        get() =
-            when (recurrence) {
-                Recurrence.None -> startAt.format(DateTimeFormatter.ofPattern(DESCRIPTION_FORMAT))
-                Recurrence.Daily -> startAt.format(DateTimeFormatter.ofPattern(TIME_FORMAT))
-            }
-
     override fun description(context: Context): String =
         when (recurrence) {
-            Recurrence.None -> description
+            Recurrence.None -> startAt.format(DateTimeFormatter.ofPattern(DESCRIPTION_FORMAT))
             Recurrence.Daily ->
                 context.getString(
                     R.string.trigger_time_description_daily,

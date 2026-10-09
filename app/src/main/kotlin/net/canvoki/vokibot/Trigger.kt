@@ -44,7 +44,7 @@ data class UnknownTrigger(
 
     override fun getTitle(context: Context): String = context.getString(R.string.unknown_trigger_title)
 
-    override val description: String = type
+    override fun description(context: Context): String = type
 
     override val iconRes: Int = android.R.drawable.ic_menu_help
 

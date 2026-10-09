@@ -39,9 +39,7 @@ interface StorableEntity {
 
     abstract fun getTitle(context: Context): String
 
-    val description: String
-
-    fun description(context: Context): String = description
+    fun description(context: Context): String
 
     @get:DrawableRes
     val iconRes: Int
@@ -119,7 +117,8 @@ data class UnknownEntity(
 
     override fun getTitle(context: Context): String = context.getString(R.string.unknown_command_title)
 
-    override val description: String = type
+    override fun description(context: Context): String = type
+
     override val iconRes: Int = android.R.drawable.ic_menu_help
 
     override fun toJson(): String = json

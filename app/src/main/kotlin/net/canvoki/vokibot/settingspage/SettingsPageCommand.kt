@@ -44,7 +44,7 @@ data class SettingsPageCommand(
             ?: pageId
     }
 
-    override val description: String get() = pageId
+    override fun description(context: Context): String = pageId
 
     override fun toJson(): String = JsonConfig.encodeToString(serializer(), this)
 

@@ -45,7 +45,7 @@ data class NfcTrigger(
 
     override fun getTitle(context: Context): String = displayName
 
-    override val description: String get() = uid
+    override fun description(context: Context): String = uid
 
     override fun toJson(): String = JsonConfig.encodeToString(serializer(), this)
 }

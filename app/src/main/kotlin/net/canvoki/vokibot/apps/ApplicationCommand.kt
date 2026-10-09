@@ -35,8 +35,7 @@ sealed class ApplicationCommand : Command() {
     override fun getTitle(context: Context): String = displayName
 
     // TODO: Make description composable to show "$packageName/$className" per type
-    override val description: String
-        get() = packageName
+    override fun description(context: Context): String = packageName
 
     protected fun descriptionWithClassName(className: String): String =
         if (className.startsWith(packageName)) {
@@ -112,8 +111,7 @@ data class LaunchActivityCommand(
     @kotlinx.serialization.Transient
     override val typeLabelRes: Int = R.string.command_type_launch_activity
 
-    override val description: String
-        get() = descriptionWithClassName(className)
+    override fun description(context: Context): String = descriptionWithClassName(className)
 
     override fun loadIcon(context: Context): Drawable =
         getAppIcon(context, packageName, className) ?: context.getDrawable(iconRes)!!
@@ -209,8 +207,8 @@ data class SendBroadcastCommand(
     @kotlinx.serialization.Transient
     override val typeLabelRes: Int = R.string.command_type_send_broadcast
 
-    override val description: String
-        get() = className?.let { descriptionWithClassName(it) } ?: "$packageName/$action"
+    override fun description(context: Context): String =
+        className?.let { descriptionWithClassName(it) } ?: "$packageName/$action"
 
     override fun loadIcon(context: Context): Drawable =
         getAppIcon(context, packageName) ?: context.getDrawable(iconRes)!!
@@ -281,8 +279,7 @@ data class StartServiceCommand(
     @kotlinx.serialization.Transient
     override val typeLabelRes: Int = R.string.command_type_start_service
 
-    override val description: String
-        get() = descriptionWithClassName(className)
+    override fun description(context: Context): String = descriptionWithClassName(className)
 
     override fun loadIcon(context: Context): Drawable =
         getAppIcon(context, packageName, className) ?: context.getDrawable(iconRes)!!
@@ -359,8 +356,7 @@ data class AccessProviderCommand(
     @kotlinx.serialization.Transient
     override val typeLabelRes: Int = R.string.command_type_access_provider
 
-    override val description: String
-        get() = "$packageName/$authority"
+    override fun description(context: Context): String = "$packageName/$authority"
 
     override fun loadIcon(context: Context): Drawable =
         getAppIcon(context, packageName) ?: context.getDrawable(iconRes)!!

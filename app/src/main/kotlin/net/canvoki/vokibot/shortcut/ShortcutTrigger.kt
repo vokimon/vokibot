@@ -67,7 +67,7 @@ data class ShortcutTrigger(
 
     override fun getTitle(context: Context): String = displayName
 
-    override val description get() = "ID: ${id.takeLast(6)}"
+    override fun description(context: Context): String = "ID: ${id.takeLast(6)}"
 
     // TODO: make this configurable
     val homeScreenIconRes get() = R.drawable.ic_brand

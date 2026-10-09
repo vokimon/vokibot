@@ -45,7 +45,7 @@ data class BluetoothDeviceTrigger(
         return if (label != null) "$name ($label)" else name
     }
 
-    override val description: String get() = macAddress
+    override fun description(context: Context): String = macAddress
 
     override fun loadIcon(context: Context): Drawable {
         val device = bluetoothDeviceFromMac(context, macAddress)
