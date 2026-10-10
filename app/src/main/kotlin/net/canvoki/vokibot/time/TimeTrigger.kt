@@ -119,7 +119,7 @@ data class TimeTrigger(
 
     override fun getTitle(context: Context): String = displayName.ifBlank { description(context) }
 
-    override fun description(context: Context): String = ""
+    override fun description(context: Context): String = absoluteDescription(context)
 
     fun absoluteDescription(context: Context): String =
         when (recurrence) {

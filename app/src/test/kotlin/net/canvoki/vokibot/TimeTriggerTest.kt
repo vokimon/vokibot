@@ -115,6 +115,20 @@ class TimeTriggerTest {
     }
 
     @Test
+    fun `description returns nextOccurrenceHumanized when name is not given`() {
+        val now = LocalDateTime.of(2026, 5, 29, 9, 0)
+        val trigger =
+            timeTriggerBase(
+                displayName = "",
+                recurrence = Recurrence.Daily,
+            )
+        assertEquals(
+            "In 23 hours",
+            trigger.nextOccurrenceHumanized(context(), now),
+        )
+    }
+
+    @Test
     fun `iconRes is the schedule icon`() {
         assertEquals(R.drawable.ic_schedule, timeTriggerBase().iconRes)
     }
