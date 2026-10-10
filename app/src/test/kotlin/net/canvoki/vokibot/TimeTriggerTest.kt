@@ -102,6 +102,25 @@ class TimeTriggerTest {
     }
 
     @Test
+    fun `nextOccurrenceHumanized daily after first occurrence returns relative`() {
+        val now = LocalDateTime.of(2026, 5, 29, 9, 0)
+        assertEquals(
+            "In 23 hours",
+            timeTriggerBase(recurrence = Recurrence.Daily)
+                .nextOccurrenceHumanized(context(), now),
+        )
+    }
+
+    @Test
+    fun `nextOccurrenceHumanized one shot past returns expired`() {
+        val now = LocalDateTime.of(2026, 6, 2, 0, 0)
+        assertEquals(
+            "expired",
+            timeTriggerBase().nextOccurrenceHumanized(context(), now),
+        )
+    }
+
+    @Test
     fun `iconRes is the schedule icon`() {
         assertEquals(R.drawable.ic_schedule, timeTriggerBase().iconRes)
     }

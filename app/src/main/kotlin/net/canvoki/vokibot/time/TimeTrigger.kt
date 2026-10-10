@@ -1,6 +1,7 @@
 package net.canvoki.vokibot.time
 
 import android.content.Context
+import android.text.format.DateUtils
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import net.canvoki.vokibot.EntityMetadata
@@ -10,6 +11,7 @@ import net.canvoki.vokibot.R
 import net.canvoki.vokibot.StorableEntity
 import net.canvoki.vokibot.Trigger
 import java.time.LocalDateTime
+import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.util.UUID
 
@@ -90,6 +92,20 @@ data class TimeTrigger(
                     else -> candidate.plusDays(1)
                 }
         }
+    }
+
+    fun nextOccurrenceHumanized(
+        context: Context,
+        now: LocalDateTime,
+    ): String {
+        val occurrence = nextOccurrence(now) ?: return "expired"
+        return DateUtils
+            .getRelativeTimeSpanString(
+                occurrence.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli(),
+                now.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli(),
+                DateUtils.MINUTE_IN_MILLIS,
+                0,
+            ).toString()
     }
 
     fun schedule(context: Context) {
