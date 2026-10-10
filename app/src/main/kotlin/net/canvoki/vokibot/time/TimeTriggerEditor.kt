@@ -202,25 +202,23 @@ fun TimeTriggerEditor(
             icon = painterResource(TimeTrigger.iconRes),
             title = "Time",
             actionText = "Done",
-            actionEnabled = displayName.isNotBlank() && !isSaving,
+            actionEnabled = !isSaving,
             actionIsRunning = isSaving,
             action = {
-                if (displayName.isNotBlank()) {
-                    isSaving = true
-                    val trigger =
-                        TimeTrigger(
-                            id = editingId,
-                            startAt = startAt,
-                            displayName = displayName.trim(),
-                            recurrence = recurrence,
-                        )
-                    scope.launch {
-                        repository.trigger.save(trigger)
-                        trigger.schedule(context)
-                        isSaving = false
-                        discardState.isDirty = false
-                        nav.pop()
-                    }
+                isSaving = true
+                val trigger =
+                    TimeTrigger(
+                        id = editingId,
+                        startAt = startAt,
+                        displayName = displayName.trim(),
+                        recurrence = recurrence,
+                    )
+                scope.launch {
+                    repository.trigger.save(trigger)
+                    trigger.schedule(context)
+                    isSaving = false
+                    discardState.isDirty = false
+                    nav.pop()
                 }
             },
         )
