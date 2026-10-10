@@ -117,9 +117,17 @@ data class TimeTrigger(
         }
     }
 
-    override fun getTitle(context: Context): String = displayName.ifBlank { description(context) }
+    override fun getTitle(context: Context): String = displayName.ifBlank { absoluteDescription(context) }
 
-    override fun description(context: Context): String = absoluteDescription(context)
+    override fun description(context: Context): String =
+        if (displayName.isBlank()) {
+            nextOccurrenceHumanized(context, LocalDateTime.now())
+        } else {
+            listOf(
+                absoluteDescription(context),
+                nextOccurrenceHumanized(context, LocalDateTime.now()),
+            ).joinToString(" | ")
+        }
 
     fun absoluteDescription(context: Context): String =
         when (recurrence) {

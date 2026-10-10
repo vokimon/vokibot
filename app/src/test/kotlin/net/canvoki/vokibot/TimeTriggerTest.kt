@@ -6,6 +6,7 @@ import kotlinx.serialization.SerializationException
 import net.canvoki.shared.test.assertEquals
 import net.canvoki.shared.test.assertIsUUID
 import net.canvoki.shared.test.assertJsonEqual
+import net.canvoki.shared.test.withFixedTime
 import net.canvoki.vokibot.time.Recurrence
 import net.canvoki.vokibot.time.TimeTrigger
 import net.canvoki.vokibot.time.TimeTriggerEditor
@@ -115,17 +116,35 @@ class TimeTriggerTest {
     }
 
     @Test
-    fun `description returns nextOccurrenceHumanized when name is not given`() {
+    fun `description returns next occurrence when name is not given`() {
         val now = LocalDateTime.of(2026, 5, 29, 9, 0)
-        val trigger =
-            timeTriggerBase(
-                displayName = "",
-                recurrence = Recurrence.Daily,
+        withFixedTime(now) {
+            val trigger =
+                timeTriggerBase(
+                    displayName = "",
+                    recurrence = Recurrence.Daily,
+                )
+            assertEquals(
+                "In 23 hours",
+                trigger.description(context()),
             )
-        assertEquals(
-            "In 23 hours",
-            trigger.nextOccurrenceHumanized(context(), now),
-        )
+        }
+    }
+
+    @Test
+    fun `description joins short and next occurrence when name is given`() {
+        val now = LocalDateTime.of(2026, 5, 29, 9, 0)
+        withFixedTime(now) {
+            val trigger =
+                timeTriggerBase(
+                    displayName = "Given",
+                    recurrence = Recurrence.Daily,
+                )
+            assertEquals(
+                "08:30 daily | In 23 hours",
+                trigger.description(context()),
+            )
+        }
     }
 
     @Test
