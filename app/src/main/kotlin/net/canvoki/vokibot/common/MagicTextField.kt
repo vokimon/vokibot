@@ -13,7 +13,7 @@ import net.canvoki.vokibot.R
 fun MagicTextField(
     value: String,
     onValueChange: (String) -> Unit,
-    onMagicClick: () -> Unit,
+    onMagicClick: (() -> Unit)? = null,
     modifier: Modifier = Modifier,
     label: @Composable (() -> Unit)? = null,
     placeholder: @Composable (() -> Unit)? = null,
@@ -27,8 +27,10 @@ fun MagicTextField(
         placeholder = placeholder,
         trailingIcon = {
             if (value.isEmpty()) {
-                IconButton(onClick = onMagicClick) {
-                    Icon(painterResource(R.drawable.ic_auto_awesome), contentDescription = null)
+                onMagicClick?.let {
+                    IconButton(onClick = it) {
+                        Icon(painterResource(R.drawable.ic_auto_awesome), contentDescription = null)
+                    }
                 }
             } else {
                 IconButton(onClick = { onValueChange("") }) {

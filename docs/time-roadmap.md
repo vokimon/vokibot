@@ -132,7 +132,7 @@ Functional objectives, in priority order:
 
 ## Phase B -- Recurrent triggers
 
-- [ ] Shared: `recurrence` attribute, null = one-shot.
+- [x] Shared: `recurrence` attribute, null = one-shot.
     - [x] `recurrence` field in basic case for serialization is `None`, default to None
     - [x] Refactor to have no default, explicit in TimeTriggerEditor usage
 - [ ] Repeat daily -- fires every day at the startAt time.
@@ -148,6 +148,12 @@ Functional objectives, in priority order:
         -> interim: daily renders the time only ("08:30");
            the phrase needs translations and a Context-aware description
     - [x] refactor: use description(context) every where
+- [ ] Smart description instead of magic name
+    - [x] Relative next occurrence description
+    - [x] Smart use of relative and absolute descriptions if displayName is defined or not
+    - [ ] Editor: name not mandatory
+    - [ ] Editor: No magic button
+    - [ ] Editor: suggest 
 - [ ] Repeat on selected weekdays -- a set of days of the week.
     - [ ] New enum for week days or use a stdlib one
     - [ ] TDD New attribute set of weekdays, default empty, do not store default
