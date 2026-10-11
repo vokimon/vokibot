@@ -19,6 +19,7 @@ class TimeTriggerReceiver : BroadcastReceiver() {
         }
         log("TimeTriggerReceiver: alarm fired for $triggerId")
         val repository = FileDataRepository.fromContext(context)
+        (repository.trigger.load(triggerId) as? TimeTrigger)?.schedule(context)
         if (!Automation.executeByTrigger(repository, triggerId, context)) {
             log("TimeTriggerReceiver: No automation for $triggerId")
         }

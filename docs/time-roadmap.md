@@ -148,11 +148,12 @@ Functional objectives, in priority order:
         -> interim: daily renders the time only ("08:30");
            the phrase needs translations and a Context-aware description
     - [x] refactor: use description(context) every where
+    - [x] reschedule after firing
 - [ ] Smart description instead of magic name
     - [x] Relative next occurrence description
     - [x] Smart use of relative and absolute descriptions if displayName is defined or not
-    - [ ] Editor: name not mandatory
-    - [ ] Editor: No magic button
+    - [x] Editor: name not mandatory
+    - [x] Editor: No magic button
     - [ ] Editor: suggest 
 - [ ] Repeat on selected weekdays -- a set of days of the week.
     - [ ] New enum for week days or use a stdlib one
@@ -175,9 +176,12 @@ Functional objectives, in priority order:
     - [ ] load the existing recurrence when editing.
     - [ ] save builds TimeTrigger with recurrence (save -> schedule
           already reschedules).
-- [ ] Keep firing -- each fire schedules the next occurrence
+- [x] Keep firing -- each fire schedules the next occurrence
       (objective 2; without it, a recurring trigger fires only once).
-    - [ ] receiver calls schedule() after executeByTrigger.
+    - [x] receiver loads the entity and calls schedule() before
+          executeByTrigger, so the next fire survives command crashes;
+          safe because nextOccurrence is strictly after now and
+          AlarmManager.set never delivers early.
 - [ ] Pause without deleting -- enabled flag; orthogonal, also useful for one-shot.
     - [ ] `enabled` attribute, default true.
     - [ ] `schedule` cancels when disabled.
