@@ -315,8 +315,8 @@ class TimeTriggerTest {
             startAt = "2026-06-01T08:30",
             now = "2026-06-10T07:00",
             expected = "2026-06-10T08:30",
-        )
-    }
+            )
+        }
 
     @Test
     fun `nextOccurrence daily later day after that day occurrency`() {
@@ -346,6 +346,17 @@ class TimeTriggerTest {
             now = "2026-06-01T07:00",
             weekdays = setOf(DayOfWeek.MONDAY),
             expected = "2026-06-01T08:30",
+        )
+    }
+
+    @Test
+    fun `nextOccurrence weekly same day after time returns next week same day`() {
+        assertNextOccurrence(
+            recurrence = Recurrence.Weekly,
+            startAt = "2026-06-01T08:30",
+            now = "2026-06-01T09:00",
+            weekdays = setOf(DayOfWeek.MONDAY),
+            expected = "2026-06-08T08:30",
         )
     }
 }
