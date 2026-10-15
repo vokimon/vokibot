@@ -15,9 +15,7 @@ object WeekdaysSerializer : KSerializer<Set<DayOfWeek>> {
     override fun serialize(
         encoder: Encoder,
         value: Set<DayOfWeek>,
-    ) {
-        delegate.serialize(encoder, value.sortedBy { it.value }.toSet())
-    }
+    ) = delegate.serialize(encoder, value.sorted().toSet())
 
     override fun deserialize(decoder: Decoder): Set<DayOfWeek> = delegate.deserialize(decoder)
 }
