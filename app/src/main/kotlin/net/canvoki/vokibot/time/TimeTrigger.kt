@@ -100,7 +100,11 @@ data class TimeTrigger(
                     else -> candidate.plusDays(1)
                 }
             Recurrence.Weekly ->
-                if (candidate.isAfter(now)) candidate else candidate.plusDays(7)
+                when {
+                    weekdays.isEmpty() -> null
+                    candidate.isAfter(now) -> candidate
+                    else -> candidate.plusDays(7)
+                }
         }
     }
 

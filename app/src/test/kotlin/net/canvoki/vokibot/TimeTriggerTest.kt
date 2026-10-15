@@ -359,4 +359,14 @@ class TimeTriggerTest {
             expected = "2026-06-08T08:30",
         )
     }
+
+    @Test
+    fun `nextOccurrence weekly without weekdays returns null`() {
+        assertNextOccurrence(
+            recurrence = Recurrence.Weekly,
+            startAt = "2026-06-01T08:30",
+            now = "2026-06-01T07:00",
+            expected = null,
+        )
+    }
 }
