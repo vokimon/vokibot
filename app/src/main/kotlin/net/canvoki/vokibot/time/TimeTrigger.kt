@@ -2,6 +2,7 @@ package net.canvoki.vokibot.time
 
 import android.content.Context
 import android.text.format.DateUtils
+import kotlinx.serialization.EncodeDefault
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import net.canvoki.vokibot.EntityMetadata
@@ -10,6 +11,7 @@ import net.canvoki.vokibot.JsonConfig
 import net.canvoki.vokibot.R
 import net.canvoki.vokibot.StorableEntity
 import net.canvoki.vokibot.Trigger
+import java.time.DayOfWeek
 import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
@@ -31,6 +33,8 @@ data class TimeTrigger(
     val displayName: String,
     override val id: String = UUID.randomUUID().toString(),
     val recurrence: Recurrence,
+    @EncodeDefault(EncodeDefault.Mode.NEVER)
+    val weekdays: Set<DayOfWeek> = emptySet(),
 ) : Trigger() {
     override val type: String = typeKey
 

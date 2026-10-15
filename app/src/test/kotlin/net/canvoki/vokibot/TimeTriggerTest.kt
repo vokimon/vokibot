@@ -18,6 +18,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
+import java.time.DayOfWeek
 import java.time.LocalDateTime
 import kotlin.test.assertFailsWith
 import kotlin.test.assertIs
@@ -189,6 +190,12 @@ class TimeTriggerTest {
     fun `fromJson`() {
         val deserialized = TimeTrigger.fromJson(timeTriggerJson())
         assertEquals(timeTriggerBase().toString(), deserialized.toString())
+    }
+
+    @Test
+    fun `fromJson without weekdays loads an empty set`() {
+        val trigger = TimeTrigger.fromJson(timeTriggerJson())
+        assertEquals(emptySet<DayOfWeek>(), trigger.weekdays)
     }
 
     @Test
