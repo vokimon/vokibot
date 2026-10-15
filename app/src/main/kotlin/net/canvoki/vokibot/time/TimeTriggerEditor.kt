@@ -249,6 +249,7 @@ fun TimeTriggerEditor(
                             when (entry) {
                                 Recurrence.None -> "Once"
                                 Recurrence.Daily -> "Daily"
+                                Recurrence.Weekly -> "Weekly"
                             },
                         )
                     },

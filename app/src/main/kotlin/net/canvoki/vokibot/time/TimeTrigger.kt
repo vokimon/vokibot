@@ -21,6 +21,7 @@ import java.util.UUID
 enum class Recurrence {
     None,
     Daily,
+    Weekly,
 }
 
 /**
@@ -98,6 +99,9 @@ data class TimeTrigger(
                     candidate.isAfter(now) -> candidate
                     else -> candidate.plusDays(1)
                 }
+            Recurrence.Weekly ->
+                // TODO: placeholder
+                null
         }
     }
 
@@ -144,6 +148,9 @@ data class TimeTrigger(
                     R.string.trigger_time_description_daily,
                     startAt.format(DateTimeFormatter.ofPattern(TIME_FORMAT)),
                 )
+            Recurrence.Weekly ->
+                // TODO: placeholder
+                "TODO"
         }
 
     override fun toJson(): String = JsonConfig.encodeToString(serializer(), this)
