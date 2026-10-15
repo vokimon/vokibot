@@ -47,11 +47,13 @@ data class TimeTrigger(
         startAt: LocalDateTime,
         displayName: String,
         recurrence: Recurrence,
+        weekdays: Set<DayOfWeek> = emptySet(),
     ) : this(
         startAt = startAt,
         displayName = displayName,
         id = id ?: UUID.randomUUID().toString(),
         recurrence = recurrence,
+        weekdays = weekdays,
     )
 
     companion object : EntityMetadata {

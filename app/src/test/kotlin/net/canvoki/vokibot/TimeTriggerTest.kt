@@ -36,11 +36,13 @@ class TimeTriggerTest {
         startAt: LocalDateTime = this.startAt,
         recurrence: Recurrence = Recurrence.None,
         displayName: String = this.displayName,
+        weekdays: Set<DayOfWeek> = emptySet(),
     ) = TimeTrigger(
         id = id,
         displayName = displayName,
         startAt = startAt,
         recurrence = recurrence,
+        weekdays = weekdays,
     )
 
     fun timeTriggerJson(overrides: JsonObjectBuilder.() -> Unit = {}): String =
@@ -215,6 +217,23 @@ class TimeTriggerTest {
                 },
             )
         assertEquals(setOf(DayOfWeek.MONDAY, DayOfWeek.THURSDAY), trigger.weekdays)
+    }
+
+    @Test
+    fun `toJson weekdays stores the enum names`() {
+        val trigger =
+            timeTriggerBase(weekdays = setOf(DayOfWeek.THURSDAY))
+        assertJsonEqual(
+            timeTriggerJson {
+                put(
+                    "weekdays",
+                    buildJsonArray {
+                        add("THURSDAY")
+                    },
+                )
+            },
+            trigger.toJson(),
+        )
     }
 
     @Test
