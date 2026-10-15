@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.test.core.app.ApplicationProvider
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.json.JsonObjectBuilder
+import kotlinx.serialization.json.add
+import kotlinx.serialization.json.buildJsonArray
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 import net.canvoki.shared.test.assertEquals
@@ -196,6 +198,23 @@ class TimeTriggerTest {
     fun `fromJson without weekdays loads an empty set`() {
         val trigger = TimeTrigger.fromJson(timeTriggerJson())
         assertEquals(emptySet<DayOfWeek>(), trigger.weekdays)
+    }
+
+    @Test
+    fun `fromJson with weekdays parses the enum names`() {
+        val trigger =
+            TimeTrigger.fromJson(
+                timeTriggerJson {
+                    put(
+                        "weekdays",
+                        buildJsonArray {
+                            add("MONDAY")
+                            add("THURSDAY")
+                        },
+                    )
+                },
+            )
+        assertEquals(setOf(DayOfWeek.MONDAY, DayOfWeek.THURSDAY), trigger.weekdays)
     }
 
     @Test
