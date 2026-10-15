@@ -3,6 +3,9 @@ package net.canvoki.vokibot
 import android.content.Context
 import androidx.test.core.app.ApplicationProvider
 import kotlinx.serialization.SerializationException
+import kotlinx.serialization.json.JsonObjectBuilder
+import kotlinx.serialization.json.buildJsonObject
+import kotlinx.serialization.json.put
 import net.canvoki.shared.test.assertEquals
 import net.canvoki.shared.test.assertIsUUID
 import net.canvoki.shared.test.assertJsonEqual
@@ -37,16 +40,15 @@ class TimeTriggerTest {
         recurrence = recurrence,
     )
 
-    fun timeTriggerJson() =
-        """
-        {
-          "type": "trigger_time",
-          "id": "my_id",
-          "displayName": "Morning coffee",
-          "recurrence": "None",
-          "startAt": "2026-06-01T08:30"
-        }
-        """
+    fun timeTriggerJson(overrides: JsonObjectBuilder.() -> Unit = {}): String =
+        buildJsonObject {
+            put("type", "trigger_time")
+            put("id", "my_id")
+            put("displayName", "Morning coffee")
+            put("recurrence", "None")
+            put("startAt", "2026-06-01T08:30")
+            overrides()
+        }.toString()
 
     fun assertNextOccurrence(
         recurrence: Recurrence,

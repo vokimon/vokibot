@@ -156,12 +156,16 @@ Functional objectives, in priority order:
     - [x] Editor: No magic button
     - [ ] Editor: suggest 
 - [ ] Repeat on selected weekdays -- a set of days of the week.
-    - [ ] New enum for week days or use a stdlib one
-    - [ ] TDD New attribute set of weekdays, default empty, do not store default
+    - [x] New enum for week days or use a stdlib one -> stdlib `DayOfWeek`;
+          `Recurrence` stays a plain enum gaining `Weekly`, `weekdays`
+          sibling attribute, ignored unless `Weekly`.
+    - [ ] TDD New attribute set of weekdays, default null, do not store default.
     - [ ] `nextOccurrence` weekly slots (TDD: next matching day, several
           days, time from startAt).
-    - [ ] description "Every Mon, Thu at HH:mm".
-    - [ ] editor: weekday chips.
+    - [ ] description "Every Mon, Thu at HH:mm" (TDD en + ca, proposal.yaml).
+    - [ ] editor: "Weekly" segment, weekday chips, hide date row,
+          disable Done on zero days.
+    - [ ] manual integration pass (save, keep-firing, reboot, import/export).
 - [ ] Repeat on day of month -- day N, clamped to the last day of short months.
     - [ ] `nextOccurrence` monthly slots (TDD: normal month, day 31 in
           February, before startAt month).
