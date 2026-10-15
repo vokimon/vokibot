@@ -60,11 +60,13 @@ class TimeTriggerTest {
         startAt: String,
         now: String,
         expected: String?,
+        weekdays: Set<DayOfWeek> = emptySet(),
     ) {
         val trigger =
             timeTriggerBase(
                 startAt = LocalDateTime.parse(startAt),
                 recurrence = recurrence,
+                weekdays = weekdays,
             )
         val actual = trigger.nextOccurrence(LocalDateTime.parse(now))?.toString()
         assertEquals(expected, actual)
@@ -333,6 +335,17 @@ class TimeTriggerTest {
             startAt = "2026-06-01T08:30",
             now = "2026-05-01T07:00",
             expected = "2026-05-01T08:30",
+        )
+    }
+
+    @Test
+    fun `nextOccurrence weekly same day before time returns that day`() {
+        assertNextOccurrence(
+            recurrence = Recurrence.Weekly,
+            startAt = "2026-06-01T08:30",
+            now = "2026-06-01T07:00",
+            weekdays = setOf(DayOfWeek.MONDAY),
+            expected = "2026-06-01T08:30",
         )
     }
 }

@@ -99,9 +99,7 @@ data class TimeTrigger(
                     candidate.isAfter(now) -> candidate
                     else -> candidate.plusDays(1)
                 }
-            Recurrence.Weekly ->
-                // TODO: placeholder
-                null
+            Recurrence.Weekly -> candidate
         }
     }
 
