@@ -33,6 +33,7 @@ data class TimeTrigger(
     val displayName: String,
     override val id: String = UUID.randomUUID().toString(),
     val recurrence: Recurrence,
+    @Serializable(WeekdaysSerializer::class)
     @EncodeDefault(EncodeDefault.Mode.NEVER)
     val weekdays: Set<DayOfWeek> = emptySet(),
 ) : Trigger() {

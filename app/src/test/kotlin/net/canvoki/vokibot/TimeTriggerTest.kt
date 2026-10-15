@@ -237,6 +237,24 @@ class TimeTriggerTest {
     }
 
     @Test
+    fun `toJson weekdays stores multiple enum names in ISO order`() {
+        val trigger =
+            timeTriggerBase(weekdays = setOf(DayOfWeek.THURSDAY, DayOfWeek.MONDAY))
+        assertJsonEqual(
+            timeTriggerJson {
+                put(
+                    "weekdays",
+                    buildJsonArray {
+                        add("MONDAY")
+                        add("THURSDAY")
+                    },
+                )
+            },
+            trigger.toJson(),
+        )
+    }
+
+    @Test
     fun `editor returns TimeTriggerEditor, without id`() {
         val editor = StorableEntity.getEditorScreen("trigger_time", null)
         assertEquals(TimeTriggerEditor(), editor)
