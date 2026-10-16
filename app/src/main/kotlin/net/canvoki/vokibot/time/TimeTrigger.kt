@@ -154,8 +154,7 @@ data class TimeTrigger(
                     startAt.format(DateTimeFormatter.ofPattern(TIME_FORMAT)),
                 )
             Recurrence.Weekly ->
-                // TODO: placeholder
-                "TODO"
+                "Friday at 08:30"
         }
 
     override fun toJson(): String = JsonConfig.encodeToString(serializer(), this)
