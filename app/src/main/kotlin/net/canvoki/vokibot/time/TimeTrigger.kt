@@ -154,8 +154,10 @@ data class TimeTrigger(
                     startAt.format(DateTimeFormatter.ofPattern(TIME_FORMAT)),
                 )
             Recurrence.Weekly ->
-                // TODO: localize; use locale day names; handle none
-                {
+                // TODO: localize day names and never
+                if (weekdays.isEmpty()) {
+                    "Never"
+                } else {
                     val day =
                         if (weekdays.size == 1) {
                             weekdays

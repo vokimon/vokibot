@@ -128,6 +128,14 @@ class TimeTriggerTest {
     }
 
     @Test
+    fun `absoluteDescription weekly without days shows never`() {
+        assertEquals(
+            "Never",
+            timeTriggerBase(recurrence = Recurrence.Weekly).absoluteDescription(context()),
+        )
+    }
+
+    @Test
     fun `nextOccurrenceHumanized daily after first occurrence returns relative`() {
         val now = LocalDateTime.of(2026, 5, 29, 9, 0)
         assertEquals(
