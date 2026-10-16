@@ -154,7 +154,28 @@ data class TimeTrigger(
                     startAt.format(DateTimeFormatter.ofPattern(TIME_FORMAT)),
                 )
             Recurrence.Weekly ->
-                "Friday at 08:30"
+                // TODO: localize; use locale day names; handle none
+                {
+                    val day =
+                        if (weekdays.size == 1) {
+                            weekdays
+                                .first()
+                                .name
+                                .lowercase()
+                                .replaceFirstChar { it.uppercase() }
+                        } else {
+                            weekdays
+                                .sorted()
+                                .joinToString(", ") {
+                                    it.name
+                                        .lowercase()
+                                        .take(3)
+                                        .replaceFirstChar { it.uppercase() }
+                                }
+                        }
+                    val time = startAt.format(DateTimeFormatter.ofPattern(TIME_FORMAT))
+                    "$day at $time"
+                }
         }
 
     override fun toJson(): String = JsonConfig.encodeToString(serializer(), this)

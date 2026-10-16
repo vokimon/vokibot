@@ -117,6 +117,17 @@ class TimeTriggerTest {
     }
 
     @Test
+    fun `absoluteDescription weekly many days shows the short weekday names`() {
+        assertEquals(
+            "Fri, Sun at 08:30",
+            timeTriggerBase(
+                recurrence = Recurrence.Weekly,
+                weekdays = setOf(DayOfWeek.FRIDAY, DayOfWeek.SUNDAY),
+            ).absoluteDescription(context()),
+        )
+    }
+
+    @Test
     fun `nextOccurrenceHumanized daily after first occurrence returns relative`() {
         val now = LocalDateTime.of(2026, 5, 29, 9, 0)
         assertEquals(
