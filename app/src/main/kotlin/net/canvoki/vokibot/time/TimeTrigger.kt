@@ -134,14 +134,14 @@ data class TimeTrigger(
         }
     }
 
-    override fun getTitle(context: Context): String = displayName.ifBlank { absoluteDescription(context) }
+    override fun getTitle(context: Context): String = displayName.ifBlank { scheduleDescription(context) }
 
     override fun description(context: Context): String =
         if (displayName.isBlank()) {
             nextOccurrenceHumanized(context, LocalDateTime.now())
         } else {
             listOf(
-                absoluteDescription(context),
+                scheduleDescription(context),
                 nextOccurrenceHumanized(context, LocalDateTime.now()),
             ).joinToString(" | ")
         }
@@ -149,7 +149,7 @@ data class TimeTrigger(
     /**
      * Retuns a human compact description of the time scheduling.
      */
-    fun absoluteDescription(context: Context): String =
+    fun scheduleDescription(context: Context): String =
         when (recurrence) {
             Recurrence.None -> startAt.format(DateTimeFormatter.ofPattern(DESCRIPTION_FORMAT))
             Recurrence.Daily ->

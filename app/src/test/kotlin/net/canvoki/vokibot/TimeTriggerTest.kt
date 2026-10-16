@@ -90,81 +90,81 @@ class TimeTriggerTest {
     }
 
     @Test
-    fun `absoluteDescription one shot shows startAt`() {
-        assertEquals("2026-06-01 08:30", timeTriggerBase().absoluteDescription(context()))
+    fun `scheduleDescription one shot shows startAt`() {
+        assertEquals("2026-06-01 08:30", timeTriggerBase().scheduleDescription(context()))
     }
 
     @Test
-    fun `absoluteDescription daily shows the phrase`() {
-        assertEquals("08:30 daily", timeTriggerBase(recurrence = Recurrence.Daily).absoluteDescription(context()))
+    fun `scheduleDescription daily shows the phrase`() {
+        assertEquals("08:30 daily", timeTriggerBase(recurrence = Recurrence.Daily).scheduleDescription(context()))
     }
 
     @Config(qualifiers = "ca")
     @Test
-    fun `absoluteDescription daily in catalan`() {
-        assertEquals("08:30 cada dia", timeTriggerBase(recurrence = Recurrence.Daily).absoluteDescription(context()))
+    fun `scheduleDescription daily in catalan`() {
+        assertEquals("08:30 cada dia", timeTriggerBase(recurrence = Recurrence.Daily).scheduleDescription(context()))
     }
 
     @Test
-    fun `absoluteDescription weekly one day shows the full weekday name`() {
+    fun `scheduleDescription weekly one day shows the full weekday name`() {
         assertEquals(
             "Friday at 08:30",
             timeTriggerBase(
                 recurrence = Recurrence.Weekly,
                 weekdays = setOf(DayOfWeek.FRIDAY),
-            ).absoluteDescription(context()),
+            ).scheduleDescription(context()),
         )
     }
 
     @Test
-    fun `absoluteDescription weekly many days shows the short weekday names`() {
+    fun `scheduleDescription weekly many days shows the short weekday names`() {
         assertEquals(
             "Fri, Sun at 08:30",
             timeTriggerBase(
                 recurrence = Recurrence.Weekly,
                 weekdays = setOf(DayOfWeek.FRIDAY, DayOfWeek.SUNDAY),
-            ).absoluteDescription(context()),
+            ).scheduleDescription(context()),
         )
     }
 
     @Test
-    fun `absoluteDescription weekly no days shows never`() {
+    fun `scheduleDescription weekly no days shows never`() {
         assertEquals(
             "Never",
-            timeTriggerBase(recurrence = Recurrence.Weekly).absoluteDescription(context()),
+            timeTriggerBase(recurrence = Recurrence.Weekly).scheduleDescription(context()),
         )
     }
 
     @Config(qualifiers = "ca")
     @Test
-    fun `absoluteDescription weekly no days in catalan`() {
+    fun `scheduleDescription weekly no days in catalan`() {
         assertEquals(
             "Mai",
-            timeTriggerBase(recurrence = Recurrence.Weekly).absoluteDescription(context()),
+            timeTriggerBase(recurrence = Recurrence.Weekly).scheduleDescription(context()),
         )
     }
 
     @Config(qualifiers = "ca")
     @Test
-    fun `absoluteDescription weekly many days in catalan`() {
+    fun `scheduleDescription weekly many days in catalan`() {
         assertEquals(
             "dv., dg. a les 08:30",
             timeTriggerBase(
                 recurrence = Recurrence.Weekly,
                 weekdays = setOf(DayOfWeek.FRIDAY, DayOfWeek.SUNDAY),
-            ).absoluteDescription(context()),
+            ).scheduleDescription(context()),
         )
     }
 
     @Config(qualifiers = "ca")
     @Test
-    fun `absoluteDescription weekly one day in catalan`() {
+    fun `scheduleDescription weekly one day in catalan`() {
         assertEquals(
             "divendres a les 08:30",
             timeTriggerBase(
                 recurrence = Recurrence.Weekly,
                 weekdays = setOf(DayOfWeek.FRIDAY),
-            ).absoluteDescription(context()),
+            ).scheduleDescription(context()),
         )
     }
 
