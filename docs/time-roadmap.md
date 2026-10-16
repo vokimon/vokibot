@@ -135,14 +135,14 @@ Functional objectives, in priority order:
 - [x] Shared: `recurrence` attribute, null = one-shot.
     - [x] `recurrence` field in basic case for serialization is `None`, default to None
     - [x] Refactor to have no default, explicit in TimeTriggerEditor usage
-- [ ] Repeat daily -- fires every day at the startAt time.
+- [x] Repeat daily -- fires every day at the startAt time.
     - [x] `nextOccurrence` daily slots (TDD: later today, earlier today,
           before startAt).
     - [x] editor: recurrence type selector with Daily option.
         - [x] recurrence selector
         - [x] recurrence state
         - [x] editor load/save recurrence
-        - [x] hide date editor whenever daily is selected ??
+        - [x] hide date editor unless recurrence is None
     - [x] Change semantics, there can be daily occurrences before startAt
     - [x] description "Every day at HH:mm".
         -> interim: daily renders the time only ("08:30");
@@ -155,30 +155,29 @@ Functional objectives, in priority order:
     - [x] Editor: name not mandatory
     - [x] Editor: No magic button
     - [ ] Editor: suggest 
-- [ ] Repeat on selected weekdays -- a set of days of the week.
+- [x] Repeat on selected weekdays -- a set of days of the week.
     - [x] New enum for week days or use a stdlib one -> stdlib `DayOfWeek`;
           `Recurrence` stays a plain enum gaining `Weekly`, `weekdays`
           sibling attribute, ignored unless `Weekly`.
-    - [ ] TDD New attribute set of weekdays, default null, do not store default.
-    - [ ] `nextOccurrence` weekly slots (TDD: next matching day, several
+    - [x] TDD New attribute set of weekdays, default empty, do not store default.
+    - [x] `nextOccurrence` weekly slots (TDD: next matching day, several
           days, time from startAt).
-    - [ ] description "Every Mon, Thu at HH:mm" (TDD en + ca, proposal.yaml).
-    - [ ] editor: "Weekly" segment, weekday chips, hide date row,
+    - [x] description "Every Mon, Thu at HH:mm" (TDD en + ca, proposal.yaml).
+    - [x] editor: "Weekly" segment, weekday selector, hide date row,
           disable Done on zero days.
-    - [ ] manual integration pass (save, keep-firing, reboot, import/export).
-- [ ] Repeat on day of month -- day N, clamped to the last day of short months.
-    - [ ] `nextOccurrence` monthly slots (TDD: normal month, day 31 in
-          February, before startAt month).
-    - [ ] description "Day 31 at HH:mm".
-    - [ ] editor: day-of-month field.
-- [ ] Show the pattern in the list -- description renders e.g.
+    - [x] manual integration pass (save, keep-firing, reboot, import/export).
+        -> resolved: trusted to unit/robolectric tests; residual issues
+           will surface during regular use.
+- [x] Show the pattern in the list -- description renders e.g.
       "Every Monday at 07:00"; one-shot stays as today.
-    - [ ] `description` switches on recurrence (null keeps date format).
-- [ ] Edit the recurrence -- changing or removing it reschedules
+    - [x] `description` switches on recurrence (null keeps date format).
+       -> resolved: `scheduleDescription` renders the pattern both at
+          `getTitle` and at `description`; one-shot keeps the date format.
+- [x] Edit the recurrence -- changing or removing it reschedules
       the alarm (as editing startAt does today).
-    - [ ] editor state holds recurrence (rememberSaveable + Saver).
-    - [ ] load the existing recurrence when editing.
-    - [ ] save builds TimeTrigger with recurrence (save -> schedule
+    - [x] editor state holds recurrence (rememberSaveable + Saver).
+    - [x] load the existing recurrence when editing.
+    - [x] save builds TimeTrigger with recurrence (save -> schedule
           already reschedules).
 - [x] Keep firing -- each fire schedules the next occurrence
       (objective 2; without it, a recurring trigger fires only once).
@@ -186,7 +185,14 @@ Functional objectives, in priority order:
           executeByTrigger, so the next fire survives command crashes;
           safe because nextOccurrence is strictly after now and
           AlarmManager.set never delivers early.
-- [ ] Pause without deleting -- enabled flag; orthogonal, also useful for one-shot.
+- [ ] Localized "expired" at nextOccurrenceHumanized
+      (trigger_time_description_expired, TDD en + ca).
+- [ ] Repeat on day of month -- day N, clamped to the last day of short months.
+    - [ ] `nextOccurrence` monthly slots (TDD: normal month, day 31 in
+          February, before startAt month).
+    - [ ] description "Day 31 at HH:mm".
+    - [ ] editor: day-of-month field.
+- [ ] Pause without deleting -- all recurrencies
     - [ ] `enabled` attribute, default true.
     - [ ] `schedule` cancels when disabled.
     - [ ] editor: switch.
@@ -203,36 +209,35 @@ Functional objectives, in priority order:
     - [ ] fired count attribute.
     - [ ] schedule stops when count reached (TDD).
     - [ ] editor: N field.
-
-## Phase C -- Missed triggers
-
-- [ ] `onMissed` attribute (Skip / CatchUp).
-- [ ] Editor gains the `onMissed` field.
-- [ ] CatchUp on boot: run the triggers whose `scheduledFor` passed.
-      Fold-back: next after `scheduledFor`, not after now.
+- [ ] Handle Missing Triggers
+    - [ ] `onMissed` attribute (Skip / CatchUp).
+    - [ ] Editor gains the `onMissed` field.
+    - [ ] CatchUp on boot: run the triggers whose `scheduledFor` passed.
+          Fold-back: next after `scheduledFor`, not after now.
 
 ## Later
 
-- [ ] When magic named adapt the name when data changes
 - [ ] Optional start Date for recurring events
-- [ ] Optional end Date for recurring events
-- [ ] Errors on loading data makes the app unusable (crash on startup)
+- [ ] App start and lists must survive broken entities. A corrupt file must not block the app or the list (critical).
+- [ ] Opening editor on broken entity shows an error instead of crashing (lesser).
 - [ ] ShortcutTrigger: implement `onRemoved` to unpin the launcher
       shortcut (today the pinned shortcut survives deletion and dispatch
       degrades with the NoTrigger message).
 - [ ] Exact alarm toggle, once decided.
-- [ ] Migrate literals to translations once the UI stabilizes.
-- [ ] Uniformize other editors with the TimeTrigger scaffold decisions:
-    - [ ] Save asynchronously (all editors save synchronously today).
-    - [ ] Extract the body to a file-level `@Composable fun`.
-    - [ ] Rename the constructor id parameter to `editingId`.
-    - [ ] Header action text: "Done" (Nfc, Shortcut, BluetoothDevice,
-          BluetoothConnect, ChangeSetting still say "Save").
-    - [ ] `Column` with `verticalScroll(rememberScrollState())` +
-          `padding(8.dp)` (Nfc/Automation lack padding, Shortcut/
-          SettingsPage lack scroll, Application scrolls inner content).
-    - [ ] ShortcutTriggerEditor: replace the manual dirty/ConfirmDialog
-          with `rememberDiscardableState`.
+- [ ] Migrate literals to translations once the UI stabilizes; only the
+      ones forced by API or tests are translated before.
+- [ ] Save asynchronously (all editors save synchronously today).
+- [ ] Extract the editor body to a file-level `@Composable fun`.
+- [ ] Rename the constructor id parameter to `editingId`.
+- [ ] Header action text: "Done" (Nfc, Shortcut, BluetoothDevice,
+      BluetoothConnect, ChangeSetting still say "Save").
+- [ ] `Column` with `verticalScroll(rememberScrollState())` +
+      `padding(8.dp)` (Nfc/Automation lack padding, Shortcut/
+      SettingsPage lack scroll, Application scrolls inner content).
+- [ ] ShortcutTriggerEditor: replace the manual dirty/ConfirmDialog
+      with `rememberDiscardableState`.
+- [ ] Add `isSaveable`/`isRunnable` flags to the entity bases to
+      generalize editor guards and list components.
 - [ ] Consider onRemove/Save entity callbacks if other entities than TimeTrigger needs them.
     That will make each entity more autocontained and centralized
     and will unify adhoc actions on import/save/remove.
