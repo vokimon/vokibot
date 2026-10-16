@@ -106,7 +106,9 @@ data class TimeTrigger(
                         generateSequence(candidate.plusDays(1)) { it.plusDays(1) }
                             .first { it.dayOfWeek in weekdays }
                     candidate.isAfter(now) -> candidate
-                    else -> candidate.plusDays(7)
+                    else ->
+                        generateSequence(candidate.plusDays(1)) { it.plusDays(1) }
+                            .first { it.dayOfWeek in weekdays }
                 }
         }
     }
