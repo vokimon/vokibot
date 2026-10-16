@@ -50,6 +50,7 @@ import net.canvoki.vokibot.common.MagicTextField
 import net.canvoki.vokibot.common.MissingPermissionBanner
 import net.canvoki.vokibot.common.rememberDiscardableState
 import net.canvoki.vokibot.common.rememberPermissionState
+import java.time.DayOfWeek
 import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZoneOffset
@@ -62,6 +63,18 @@ private val StartAtSaver =
     Saver<LocalDateTime, String>(
         save = { it.toString() },
         restore = { LocalDateTime.parse(it) },
+    )
+
+private val WeekdaysSaver =
+    Saver<Set<DayOfWeek>, String>(
+        save = { days -> days.joinToString(",") { it.name } },
+        restore = { days ->
+            days
+                .split(",")
+                .filter { it.isNotEmpty() }
+                .map(DayOfWeek::valueOf)
+                .toSet()
+        },
     )
 
 @Serializable
@@ -116,6 +129,7 @@ fun TimeTriggerEditor(
         mutableStateOf(LocalDateTime.now())
     }
     var recurrence by rememberSaveable { mutableStateOf(Recurrence.None) }
+    var weekdays by rememberSaveable(stateSaver = WeekdaysSaver) { mutableStateOf(emptySet()) }
     var showTimePicker by remember { mutableStateOf(false) }
     var showDatePicker by remember { mutableStateOf(false) }
 
@@ -128,6 +142,7 @@ fun TimeTriggerEditor(
                 displayName = it.displayName
                 startAt = it.startAt
                 recurrence = it.recurrence
+                weekdays = it.weekdays
             }
             hasLoaded = true
             discardState.isDirty = false
@@ -212,6 +227,7 @@ fun TimeTriggerEditor(
                         startAt = startAt,
                         displayName = displayName.trim(),
                         recurrence = recurrence,
+                        weekdays = weekdays,
                     )
                 scope.launch {
                     repository.trigger.save(trigger)
