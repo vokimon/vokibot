@@ -617,3 +617,4 @@ free_string_set_add_value: إضافة قيمة
 triggerlist_option_time: وقت
 trigger_time_help: يشتغل الأتمتة في وقت محدد.
 trigger_time_description_daily: "يوميًا في {time}"
+trigger_time_description_weekly_never: "أبدًا"
