@@ -41,6 +41,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
@@ -295,7 +296,7 @@ fun TimeTriggerEditor(
         if (recurrence == Recurrence.Weekly) {
             WeekdaysSelector(
                 weekdays = weekdays,
-                locale = context.resources.configuration.locales[0],
+                locale = LocalConfiguration.current.locales[0],
                 onSelectionChange = {
                     weekdays = it
                     discardState.markDirty()
