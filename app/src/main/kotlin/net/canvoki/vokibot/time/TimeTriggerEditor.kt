@@ -4,6 +4,8 @@ import android.Manifest
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -14,6 +16,7 @@ import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.DatePicker
 import androidx.compose.material3.DatePickerDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -55,6 +58,8 @@ import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
+import java.time.format.TextStyle
+import java.util.Locale
 
 private const val TIME_PATTERN = "HH:mm"
 private const val DATE_PATTERN = "EEE d MMM yyyy"
@@ -273,6 +278,17 @@ fun TimeTriggerEditor(
             }
         }
 
+        if (recurrence == Recurrence.Weekly) {
+            WeekdayChips(
+                weekdays = weekdays,
+                locale = context.resources.configuration.locales[0],
+                onSelectionChange = {
+                    weekdays = it
+                    discardState.markDirty()
+                },
+            )
+        }
+
         ValueEditRow(
             value = startAt.format(DateTimeFormatter.ofPattern(TIME_PATTERN)),
             onClick = { showTimePicker = true },
@@ -291,5 +307,27 @@ fun TimeTriggerEditor(
                     "closed, allow VokiBot the 'Display over other apps' permission " +
                     "in the settings list",
         )
+    }
+}
+
+@Composable
+private fun WeekdayChips(
+    weekdays: Set<DayOfWeek>,
+    locale: Locale,
+    onSelectionChange: (Set<DayOfWeek>) -> Unit,
+) {
+    @OptIn(ExperimentalLayoutApi::class)
+    FlowRow(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+    ) {
+        DayOfWeek.entries.forEach { day ->
+            val selected = day in weekdays
+            FilterChip(
+                selected = selected,
+                onClick = { onSelectionChange(if (selected) weekdays - day else weekdays + day) },
+                label = { Text(day.getDisplayName(TextStyle.SHORT, locale)) },
+            )
+        }
     }
 }
