@@ -278,6 +278,18 @@ fun TimeTriggerEditor(
             }
         }
 
+        ValueEditRow(
+            value = startAt.format(DateTimeFormatter.ofPattern(TIME_PATTERN)),
+            onClick = { showTimePicker = true },
+        )
+
+        if (recurrence == Recurrence.None) {
+            ValueEditRow(
+                value = startAt.format(DateTimeFormatter.ofPattern(DATE_PATTERN)),
+                onClick = { showDatePicker = true },
+            )
+        }
+
         if (recurrence == Recurrence.Weekly) {
             WeekdayChips(
                 weekdays = weekdays,
@@ -286,17 +298,6 @@ fun TimeTriggerEditor(
                     weekdays = it
                     discardState.markDirty()
                 },
-            )
-        }
-
-        ValueEditRow(
-            value = startAt.format(DateTimeFormatter.ofPattern(TIME_PATTERN)),
-            onClick = { showTimePicker = true },
-        )
-        if (recurrence == Recurrence.None) {
-            ValueEditRow(
-                value = startAt.format(DateTimeFormatter.ofPattern(DATE_PATTERN)),
-                onClick = { showDatePicker = true },
             )
         }
 
