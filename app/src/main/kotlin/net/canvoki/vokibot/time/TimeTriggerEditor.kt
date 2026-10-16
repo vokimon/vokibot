@@ -222,7 +222,7 @@ fun TimeTriggerEditor(
             icon = painterResource(TimeTrigger.iconRes),
             title = "Time",
             actionText = "Done",
-            actionEnabled = !isSaving,
+            actionEnabled = !isSaving && (recurrence != Recurrence.Weekly || weekdays.isNotEmpty()),
             actionIsRunning = isSaving,
             action = {
                 isSaving = true
