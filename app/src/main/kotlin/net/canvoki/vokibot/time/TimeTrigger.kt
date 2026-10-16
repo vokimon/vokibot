@@ -15,6 +15,7 @@ import java.time.DayOfWeek
 import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
+import java.time.format.TextStyle
 import java.util.UUID
 
 @Serializable
@@ -154,9 +155,9 @@ data class TimeTrigger(
                     startAt.format(DateTimeFormatter.ofPattern(TIME_FORMAT)),
                 )
             Recurrence.Weekly ->
-                // TODO: localize day names and never
+                // TODO: localize day names
                 if (weekdays.isEmpty()) {
-                    "Never"
+                    context.getString(R.string.trigger_time_description_weekly_never)
                 } else {
                     val day =
                         if (weekdays.size == 1) {
@@ -166,17 +167,13 @@ data class TimeTrigger(
                                 .lowercase()
                                 .replaceFirstChar { it.uppercase() }
                         } else {
+                            val locale = context.resources.configuration.locales[0]
                             weekdays
                                 .sorted()
-                                .joinToString(", ") {
-                                    it.name
-                                        .lowercase()
-                                        .take(3)
-                                        .replaceFirstChar { it.uppercase() }
-                                }
+                                .joinToString(", ") { it.getDisplayName(TextStyle.SHORT, locale) }
                         }
                     val time = startAt.format(DateTimeFormatter.ofPattern(TIME_FORMAT))
-                    "$day at $time"
+                    context.getString(R.string.trigger_time_description_weekly, day, time)
                 }
         }
 

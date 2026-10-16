@@ -128,7 +128,7 @@ class TimeTriggerTest {
     }
 
     @Test
-    fun `absoluteDescription weekly without days shows never`() {
+    fun `absoluteDescription weekly no days shows never`() {
         assertEquals(
             "Never",
             timeTriggerBase(recurrence = Recurrence.Weekly).absoluteDescription(context()),
@@ -137,10 +137,22 @@ class TimeTriggerTest {
 
     @Config(qualifiers = "ca")
     @Test
-    fun `absoluteDescription weekly without days shows never in catalan`() {
+    fun `absoluteDescription weekly no days in catalan`() {
         assertEquals(
             "Mai",
             timeTriggerBase(recurrence = Recurrence.Weekly).absoluteDescription(context()),
+        )
+    }
+
+    @Config(qualifiers = "ca")
+    @Test
+    fun `absoluteDescription weekly many days in catalan`() {
+        assertEquals(
+            "dv., dg. a les 08:30",
+            timeTriggerBase(
+                recurrence = Recurrence.Weekly,
+                weekdays = setOf(DayOfWeek.FRIDAY, DayOfWeek.SUNDAY),
+            ).absoluteDescription(context()),
         )
     }
 

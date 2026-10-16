@@ -617,4 +617,5 @@ free_string_set_add_value: Ajouter une valeur
 triggerlist_option_time: Temps
 trigger_time_help: Déclenche des automatisations à un moment donné.
 trigger_time_description_daily: "Chaque jour à {time}"
+trigger_time_description_weekly: "{days} à {time}"
 trigger_time_description_weekly_never: "Jamais"
