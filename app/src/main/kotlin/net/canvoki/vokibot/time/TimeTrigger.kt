@@ -146,6 +146,9 @@ data class TimeTrigger(
             ).joinToString(" | ")
         }
 
+    /**
+     * Retuns a human compact description of the time scheduling.
+     */
     fun absoluteDescription(context: Context): String =
         when (recurrence) {
             Recurrence.None -> startAt.format(DateTimeFormatter.ofPattern(DESCRIPTION_FORMAT))
