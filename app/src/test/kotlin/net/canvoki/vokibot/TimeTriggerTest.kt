@@ -369,4 +369,15 @@ class TimeTriggerTest {
             expected = null,
         )
     }
+
+    @Test
+    fun `nextOccurrence weekly later weekday selected before time returns it this week`() {
+        assertNextOccurrence(
+            recurrence = Recurrence.Weekly,
+            startAt = "2026-06-01T08:30",
+            now = "2026-06-01T07:00",
+            weekdays = setOf(DayOfWeek.THURSDAY),
+            expected = "2026-06-04T08:30",
+        )
+    }
 }

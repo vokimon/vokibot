@@ -102,6 +102,9 @@ data class TimeTrigger(
             Recurrence.Weekly ->
                 when {
                     weekdays.isEmpty() -> null
+                    candidate.dayOfWeek !in weekdays ->
+                        generateSequence(candidate.plusDays(1)) { it.plusDays(1) }
+                            .first { it.dayOfWeek in weekdays }
                     candidate.isAfter(now) -> candidate
                     else -> candidate.plusDays(7)
                 }
