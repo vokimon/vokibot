@@ -158,19 +158,19 @@ data class TimeTrigger(
                 if (weekdays.isEmpty()) {
                     context.getString(R.string.trigger_time_description_weekly_never)
                 } else {
-                    val locale = context.resources.configuration.locales[0]
-                    val day =
-                        if (weekdays.size == 1) {
-                            weekdays.first().getDisplayName(TextStyle.FULL, locale)
-                        } else {
-                            weekdays
-                                .sorted()
-                                .joinToString(", ") { it.getDisplayName(TextStyle.SHORT, locale) }
-                        }
+                    val day = weekdaysDescription(context)
                     val time = startAt.format(DateTimeFormatter.ofPattern(TIME_FORMAT))
                     context.getString(R.string.trigger_time_description_weekly, day, time)
                 }
         }
+
+    private fun weekdaysDescription(context: Context): String {
+        val locale = context.resources.configuration.locales[0]
+        if (weekdays.size == 1) {
+            return weekdays.first().getDisplayName(TextStyle.FULL, locale)
+        }
+        return weekdays.sorted().joinToString(", ") { it.getDisplayName(TextStyle.SHORT, locale) }
+    }
 
     override fun toJson(): String = JsonConfig.encodeToString(serializer(), this)
 }
