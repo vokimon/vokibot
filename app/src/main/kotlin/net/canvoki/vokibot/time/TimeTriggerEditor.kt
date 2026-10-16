@@ -1,28 +1,30 @@
 package net.canvoki.vokibot.time
 
 import android.Manifest
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
-import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.DatePicker
 import androidx.compose.material3.DatePickerDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SegmentedButton
 import androidx.compose.material3.SegmentedButtonDefaults
 import androidx.compose.material3.SingleChoiceSegmentedButtonRow
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TimePicker
@@ -98,13 +100,13 @@ private fun ValueEditRow(
     onClick: () -> Unit,
 ) {
     Row(
-        modifier = Modifier.fillMaxWidth().clickable(onClick = onClick),
+        modifier = Modifier.fillMaxWidth().clickable(onClick = onClick).padding(8.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Text(
             text = value,
-            style = MaterialTheme.typography.headlineMedium,
+            style = MaterialTheme.typography.headlineLarge,
         )
         IconButton(onClick = onClick) {
             Icon(
@@ -291,7 +293,7 @@ fun TimeTriggerEditor(
         }
 
         if (recurrence == Recurrence.Weekly) {
-            WeekdayChips(
+            WeekdaysSelector(
                 weekdays = weekdays,
                 locale = context.resources.configuration.locales[0],
                 onSelectionChange = {
@@ -312,23 +314,47 @@ fun TimeTriggerEditor(
 }
 
 @Composable
-private fun WeekdayChips(
+private fun WeekdaysSelector(
     weekdays: Set<DayOfWeek>,
     locale: Locale,
     onSelectionChange: (Set<DayOfWeek>) -> Unit,
 ) {
-    @OptIn(ExperimentalLayoutApi::class)
-    FlowRow(
+    Row(
         modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
+        horizontalArrangement = Arrangement.SpaceBetween,
     ) {
         DayOfWeek.entries.forEach { day ->
             val selected = day in weekdays
-            FilterChip(
-                selected = selected,
+            Surface(
                 onClick = { onSelectionChange(if (selected) weekdays - day else weekdays + day) },
-                label = { Text(day.getDisplayName(TextStyle.SHORT, locale)) },
-            )
+                modifier = Modifier.size(40.dp),
+                shape = CircleShape,
+                color =
+                    if (selected) {
+                        MaterialTheme.colorScheme.primary
+                    } else {
+                        MaterialTheme.colorScheme.surfaceContainerHighest
+                    },
+                contentColor =
+                    if (selected) {
+                        MaterialTheme.colorScheme.onPrimary
+                    } else {
+                        MaterialTheme.colorScheme.onSurfaceVariant
+                    },
+                border =
+                    if (selected) {
+                        null
+                    } else {
+                        BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant)
+                    },
+            ) {
+                Box(contentAlignment = Alignment.Center) {
+                    Text(
+                        text = day.getDisplayName(TextStyle.SHORT, locale).take(2),
+                        style = MaterialTheme.typography.labelLarge,
+                    )
+                }
+            }
         }
     }
 }
