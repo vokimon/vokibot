@@ -320,7 +320,7 @@ private fun WeekdayChips(
     @OptIn(ExperimentalLayoutApi::class)
     FlowRow(
         modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
     ) {
         DayOfWeek.entries.forEach { day ->
             val selected = day in weekdays
