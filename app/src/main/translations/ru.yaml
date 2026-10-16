@@ -619,3 +619,4 @@ trigger_time_help: Запускает автоматизации в опреде
 trigger_time_description_daily: "Ежедневно в {time}"
 trigger_time_description_weekly: "{days} в {time}"
 trigger_time_description_weekly_never: "Никогда"
+trigger_time_description_expired: "истёк"

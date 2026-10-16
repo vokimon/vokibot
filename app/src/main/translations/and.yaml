@@ -615,3 +615,6 @@ free_string_set_add_value: Añadîh balôh
 triggerlist_option_time: Tiempo
 trigger_time_help: Dîppara automatiçaçionê en un momento determinao.
 trigger_time_description_daily: '{time} cá día'
+trigger_time_description_weekly: '{days} a lâ {time}'
+trigger_time_description_weekly_never: Nunca
+trigger_time_description_expired: caducao

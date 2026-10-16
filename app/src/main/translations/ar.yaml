@@ -619,3 +619,4 @@ trigger_time_help: يشتغل الأتمتة في وقت محدد.
 trigger_time_description_daily: "يوميًا في {time}"
 trigger_time_description_weekly: "{days} في {time}"
 trigger_time_description_weekly_never: "أبدًا"
+trigger_time_description_expired: "منتهٍ"

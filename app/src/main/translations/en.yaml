@@ -619,3 +619,4 @@ trigger_time_help: Triggers automations at a given time.
 trigger_time_description_daily: "{time} daily"
 trigger_time_description_weekly: "{days} at {time}"
 trigger_time_description_weekly_never: "Never"
+trigger_time_description_expired: "expired"

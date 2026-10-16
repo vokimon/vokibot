@@ -619,3 +619,4 @@ trigger_time_help: Déclenche des automatisations à un moment donné.
 trigger_time_description_daily: "Chaque jour à {time}"
 trigger_time_description_weekly: "{days} à {time}"
 trigger_time_description_weekly_never: "Jamais"
+trigger_time_description_expired: "expiré"

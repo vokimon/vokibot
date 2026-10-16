@@ -619,3 +619,4 @@ trigger_time_help: Automatizazioak une zehatz batean abiarazten ditu.
 trigger_time_description_daily: "Egunero {time}etan"
 trigger_time_description_weekly: "{days} {time}etan"
 trigger_time_description_weekly_never: "Inoiz"
+trigger_time_description_expired: "iraungita"

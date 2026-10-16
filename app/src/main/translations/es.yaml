@@ -619,3 +619,4 @@ trigger_time_help: Dispara automatizaciones en un momento determinado.
 trigger_time_description_daily: "{time} cada día"
 trigger_time_description_weekly: "{days} a las {time}"
 trigger_time_description_weekly_never: "Nunca"
+trigger_time_description_expired: "caducado"

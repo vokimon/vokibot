@@ -115,7 +115,7 @@ data class TimeTrigger(
         context: Context,
         now: LocalDateTime,
     ): String {
-        val occurrence = nextOccurrence(now) ?: return "expired"
+        val occurrence = nextOccurrence(now) ?: return context.getString(R.string.trigger_time_description_expired)
         return DateUtils
             .getRelativeTimeSpanString(
                 occurrence.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli(),

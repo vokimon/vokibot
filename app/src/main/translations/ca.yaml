@@ -619,3 +619,4 @@ trigger_time_help: Dispara automatitzacions en un moment determinat.
 trigger_time_description_daily: "{time} cada dia"
 trigger_time_description_weekly: "{days} a les {time}"
 trigger_time_description_weekly_never: "Mai"
+trigger_time_description_expired: "caducat"

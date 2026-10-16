@@ -187,6 +187,16 @@ class TimeTriggerTest {
         )
     }
 
+    @Config(qualifiers = "ca")
+    @Test
+    fun `nextOccurrenceHumanized one shot past in catalan`() {
+        val now = LocalDateTime.of(2026, 6, 2, 0, 0)
+        assertEquals(
+            "caducat",
+            timeTriggerBase().nextOccurrenceHumanized(context(), now),
+        )
+    }
+
     @Test
     fun `description returns next occurrence when name is not given`() {
         val now = LocalDateTime.of(2026, 5, 29, 9, 0)
