@@ -155,19 +155,14 @@ data class TimeTrigger(
                     startAt.format(DateTimeFormatter.ofPattern(TIME_FORMAT)),
                 )
             Recurrence.Weekly ->
-                // TODO: localize day names
                 if (weekdays.isEmpty()) {
                     context.getString(R.string.trigger_time_description_weekly_never)
                 } else {
+                    val locale = context.resources.configuration.locales[0]
                     val day =
                         if (weekdays.size == 1) {
-                            weekdays
-                                .first()
-                                .name
-                                .lowercase()
-                                .replaceFirstChar { it.uppercase() }
+                            weekdays.first().getDisplayName(TextStyle.FULL, locale)
                         } else {
-                            val locale = context.resources.configuration.locales[0]
                             weekdays
                                 .sorted()
                                 .joinToString(", ") { it.getDisplayName(TextStyle.SHORT, locale) }
