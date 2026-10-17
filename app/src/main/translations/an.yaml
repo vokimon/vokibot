@@ -84,9 +84,6 @@ discard_dialog_confirm: Descartar
 automation_hint_trigger: Selecciona un disparador pa continar
 automation_hint_commands: Anyade a lo menos una orden
 shortcut_editor_title: Drecera
-shortcut_editor_discard_title: Descartar cambeos?
-shortcut_editor_discard_message: Quers descartar os cambeos feitos?
-shortcut_editor_discard_confirm: Descartar
 shortcut_editor_name_label: Nombre
 shortcut_editor_name_placeholder: "Ex: Casa, Treballo, Coche…"
 not_yet_implemented: Encara no s'ha implementau

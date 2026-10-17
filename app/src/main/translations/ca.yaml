@@ -84,9 +84,6 @@ discard_dialog_confirm: Descarta
 automation_hint_trigger: Selecciona un disparador per continuar
 automation_hint_commands: Afegeix almenys una ordre
 shortcut_editor_title: Drecera
-shortcut_editor_discard_title: Descartar canvis?
-shortcut_editor_discard_message: Vols descartar els canvis fets?
-shortcut_editor_discard_confirm: Descarta
 shortcut_editor_name_label: Nom
 shortcut_editor_name_placeholder: "Ex: Casa, Feina, Cotxe…"
 not_yet_implemented: Encara no s'ha implementat

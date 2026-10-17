@@ -84,9 +84,6 @@ discard_dialog_confirm: Baztertu
 automation_hint_trigger: Hautatu trigger bat jarraitzeko
 automation_hint_commands: Gehitu gutxienez komando bat
 shortcut_editor_title: Lasterbidea
-shortcut_editor_discard_title: Baztertu aldaketak?
-shortcut_editor_discard_message: Egindako aldaketak baztertu nahi dituzu?
-shortcut_editor_discard_confirm: Baztertu
 shortcut_editor_name_label: Izena
 shortcut_editor_name_placeholder: "Adib.: Etxea, Lana, Autoa…"
 not_yet_implemented: Oraindik ez da inplementatua

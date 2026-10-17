@@ -84,9 +84,6 @@ discard_dialog_confirm: Ignorer
 automation_hint_trigger: Sélectionnez un déclencheur pour continuer
 automation_hint_commands: Ajoutez au moins une commande
 shortcut_editor_title: Raccourci
-shortcut_editor_discard_title: Annuler les modifications ?
-shortcut_editor_discard_message: Voulez-vous annuler les modifications apportées ?
-shortcut_editor_discard_confirm: Annuler
 shortcut_editor_name_label: Nom
 shortcut_editor_name_placeholder: "Ex : Maison, Travail, Voiture…"
 not_yet_implemented: Pas encore implémenté

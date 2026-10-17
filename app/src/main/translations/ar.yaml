@@ -84,9 +84,6 @@ discard_dialog_confirm: تجاهل
 automation_hint_trigger: حدد مشغلاً للمتابعة
 automation_hint_commands: أضف أمرًا واحدًا على الأقل
 shortcut_editor_title: اختصار
-shortcut_editor_discard_title: تجاهل التغييرات؟
-shortcut_editor_discard_message: هل تريد تجاهل التغييرات التي أجريتها؟
-shortcut_editor_discard_confirm: تجاهل
 shortcut_editor_name_label: الاسم
 shortcut_editor_name_placeholder: "مثال: المنزل، العمل، السيارة…"
 not_yet_implemented: غير منفذة بعد

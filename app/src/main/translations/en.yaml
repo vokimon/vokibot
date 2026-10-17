@@ -84,9 +84,6 @@ discard_dialog_confirm: Discard
 automation_hint_trigger: Select a trigger to continue
 automation_hint_commands: Add at least one command
 shortcut_editor_title: Shortcut
-shortcut_editor_discard_title: Discard Changes?
-shortcut_editor_discard_message: Do you want to discard the changes you made?
-shortcut_editor_discard_confirm: Discard
 shortcut_editor_name_label: Name
 shortcut_editor_name_placeholder: "Ex: Home, Work, Car…"
 not_yet_implemented: Not yet implemented

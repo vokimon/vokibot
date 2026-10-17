@@ -84,9 +84,6 @@ discard_dialog_confirm: Descartar
 automation_hint_trigger: Selecciona un disparador para continuar
 automation_hint_commands: Añade al menos un comando
 shortcut_editor_title: Acceso directo
-shortcut_editor_discard_title: ¿Descartar cambios?
-shortcut_editor_discard_message: ¿Quieres descartar los cambios realizados?
-shortcut_editor_discard_confirm: Descartar
 shortcut_editor_name_label: Nombre
 shortcut_editor_name_placeholder: "Ej: Casa, Trabajo, Coche…"
 not_yet_implemented: No implementado aún

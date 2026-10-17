@@ -84,9 +84,6 @@ discard_dialog_confirm: Dêccartâh
 automation_hint_trigger: Çelêççiona un dîpparadôh pa continuâh
 automation_hint_commands: Añade ar menô un comando
 shortcut_editor_title: Âççeço dirêtto
-shortcut_editor_discard_title: ¿Dêccartâh cambiô?
-shortcut_editor_discard_message: ¿Quierê dêccartâh lô cambiô realiçáô?
-shortcut_editor_discard_confirm: Dêccartâh
 shortcut_editor_name_label: Nombre
 shortcut_editor_name_placeholder: "Ej: Caça, Trabaho, Coxe…"
 not_yet_implemented: No implementao aún

@@ -84,9 +84,6 @@ discard_dialog_confirm: Отменить
 automation_hint_trigger: Выберите триггер для продолжения
 automation_hint_commands: Добавьте хотя бы одну команду
 shortcut_editor_title: Ярлык
-shortcut_editor_discard_title: Отменить изменения?
-shortcut_editor_discard_message: Отменить внесённые изменения?
-shortcut_editor_discard_confirm: Отменить
 shortcut_editor_name_label: Имя
 shortcut_editor_name_placeholder: "Пример: Дом, Работа, Машина…"
 not_yet_implemented: Еще не реализовано

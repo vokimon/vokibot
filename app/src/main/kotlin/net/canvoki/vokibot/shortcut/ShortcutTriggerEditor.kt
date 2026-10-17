@@ -57,9 +57,9 @@ data class ShortcutTriggerEditor(
         }
         ConfirmDialog(
             show = showDiscardDialog,
-            title = stringResource(R.string.shortcut_editor_discard_title),
-            text = stringResource(R.string.shortcut_editor_discard_message),
-            confirmText = stringResource(R.string.shortcut_editor_discard_confirm),
+            title = stringResource(R.string.discard_dialog_title),
+            text = stringResource(R.string.discard_dialog_message),
+            confirmText = stringResource(R.string.discard_dialog_confirm),
             dismissText = stringResource(R.string.dialog_cancel),
             onDismiss = {
                 showDiscardDialog = false

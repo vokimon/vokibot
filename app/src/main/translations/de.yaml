@@ -84,9 +84,6 @@ discard_dialog_confirm: Verwerfen
 automation_hint_trigger: Wählen Sie einen Trigger aus, um fortzufahren
 automation_hint_commands: Fügen Sie mindestens einen Befehl hinzu
 shortcut_editor_title: Kurztaste
-shortcut_editor_discard_title: Änderungen verwerfen?
-shortcut_editor_discard_message: Möchten Sie die vorgenommenen Änderungen verwerfen?
-shortcut_editor_discard_confirm: Verwerfen
 shortcut_editor_name_label: Name
 shortcut_editor_name_placeholder: "Bsp.: Zuhause, Arbeit, Auto…"
 not_yet_implemented: Noch nicht implementiert
