@@ -579,7 +579,7 @@ setting_device_provisioned_name: Устройство настроено
 setting_device_provisioned_description: Было ли устройство настроено
 setting_device_provisioned_raw_help: 0=не настроено, 1=настроено
 setting_use_google_mail_name: Использовать Google Mail
-setting_use_google_mail_description: 'Показывать "Google Mail" вместо "Gmail"'
+setting_use_google_mail_description: Показывать "Google Mail" вместо "Gmail"
 setting_audio_stream_voice_call: Голосовой вызов
 setting_audio_stream_system: Система
 setting_audio_stream_ring: Звонок
@@ -618,14 +618,14 @@ triggerlist_option_time: Время
 time_trigger_help: Запускает автоматизации в определённый момент.
 time_trigger_description_daily: "Ежедневно в {time}"
 time_trigger_description_weekly: "{days} в {time}"
-time_trigger_description_weekly_never: "Никогда"
-time_trigger_description_expired: "истёк"
-dialog_ok: "ОК"
-dialog_cancel: "Отмена"
-editor_done: "Готово"
-editor_name_label: "Имя"
-time_editor_name_placeholder: "напр. Утренний кофе"
-time_editor_recurrence_none: "Однократно"
-time_editor_recurrence_daily: "Ежедневно"
-time_editor_recurrence_weekly: "Еженедельно"
-time_editor_overlay_permission_banner: "Чтобы автоматизации могли открывать другие приложения, пока VokiBot закрыт, разрешите VokiBot отображение поверх других приложений в списке настроек"
+time_trigger_description_weekly_never: Никогда
+time_trigger_description_expired: истёк
+dialog_ok: ОК
+dialog_cancel: Отмена
+editor_done: Готово
+editor_name_label: Имя
+time_editor_name_placeholder: напр. Утренний кофе
+time_editor_recurrence_none: Однократно
+time_editor_recurrence_daily: Ежедневно
+time_editor_recurrence_weekly: Еженедельно
+time_editor_overlay_permission_banner: Чтобы автоматизации могли открывать другие приложения, пока VokiBot закрыт, разрешите VokiBot отображение поверх других приложений в списке настроек

@@ -579,7 +579,7 @@ setting_device_provisioned_name: Gailua hornituta
 setting_device_provisioned_description: Gailua hornitu den
 setting_device_provisioned_raw_help: 0=hornitu gabe, 1=hornituta
 setting_use_google_mail_name: Erabili Google Mail
-setting_use_google_mail_description: 'Erakutsi "Google Mail" "Gmail" ordez'
+setting_use_google_mail_description: Erakutsi "Google Mail" "Gmail" ordez
 setting_audio_stream_voice_call: Ahots-dei
 setting_audio_stream_system: Sistema
 setting_audio_stream_ring: Dei-tonua
@@ -618,14 +618,14 @@ triggerlist_option_time: Denbora
 time_trigger_help: Automatizazioak une zehatz batean abiarazten ditu.
 time_trigger_description_daily: "Egunero {time}etan"
 time_trigger_description_weekly: "{days} {time}etan"
-time_trigger_description_weekly_never: "Inoiz"
-time_trigger_description_expired: "iraungita"
-dialog_ok: "Ados"
-dialog_cancel: "Utzi"
-editor_done: "Eginda"
-editor_name_label: "Izena"
-time_editor_name_placeholder: "ad. Goizeko kafea"
-time_editor_recurrence_none: "Behin"
-time_editor_recurrence_daily: "Egunero"
-time_editor_recurrence_weekly: "Astero"
-time_editor_overlay_permission_banner: "VokiBot itxita automatizazioek beste aplikazioak ireki ditzaten, baimendu VokiBoti 'Beste aplikazioen gainean erakutsi' baimena ezarpenen zerrendan"
+time_trigger_description_weekly_never: Inoiz
+time_trigger_description_expired: iraungita
+dialog_ok: Ados
+dialog_cancel: Utzi
+editor_done: Eginda
+editor_name_label: Izena
+time_editor_name_placeholder: ad. Goizeko kafea
+time_editor_recurrence_none: Behin
+time_editor_recurrence_daily: Egunero
+time_editor_recurrence_weekly: Astero
+time_editor_overlay_permission_banner: VokiBot itxita automatizazioek beste aplikazioak ireki ditzaten, baimendu VokiBoti 'Beste aplikazioen gainean erakutsi' baimena ezarpenen zerrendan

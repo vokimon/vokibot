@@ -577,7 +577,7 @@ setting_device_provisioned_name: Dîppoçitibo aprobiçionao
 setting_device_provisioned_description: Çi er dîppoçitibo a çido aprobiçionao
 setting_device_provisioned_raw_help: 0=no aprobiçionao, 1=aprobiçionao
 setting_use_google_mail_name: Uçâh Google Maîh
-setting_use_google_mail_description: 'Môttrâh "Google Maîh" en lugâh de "Gmaîh"'
+setting_use_google_mail_description: Môttrâh "Google Maîh" en lugâh de "Gmaîh"
 setting_audio_stream_voice_call: Yamá de bôh
 setting_audio_stream_system: Çîttema
 setting_audio_stream_ring: Timbre
@@ -614,7 +614,16 @@ free_string_set_remove: Eliminâh
 free_string_set_add_value: Añadîh balôh
 triggerlist_option_time: Tiempo
 time_trigger_help: Dîppara automatiçaçionê en un momento determinao.
-time_trigger_description_daily: '{time} cá día'
-time_trigger_description_weekly: '{days} a lâ {time}'
+time_trigger_description_daily: "{time} cá día"
+time_trigger_description_weekly: "{days} a lâ {time}"
 time_trigger_description_weekly_never: Nunca
 time_trigger_description_expired: caducao
+dialog_ok: Açêttâh
+dialog_cancel: Cançelâh
+editor_done: Exo
+editor_name_label: Nombre
+time_editor_name_placeholder: ej. Café de la mañana
+time_editor_recurrence_none: Una bêh
+time_editor_recurrence_daily: Cá día
+time_editor_recurrence_weekly: Çemanâh
+time_editor_overlay_permission_banner: Pa que lâ automatiçaçionê puedan abrîh otrâ âpps con BokiBôh çerrao, conçede a BokiBôh er permiço 'Môttrâh çobre otrâ aplicaçionê' en la lîtta de ahûttê

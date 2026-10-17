@@ -579,7 +579,7 @@ setting_device_provisioned_name: Dispositiu aprovisionat
 setting_device_provisioned_description: Si el dispositiu ha estat aprovisionat
 setting_device_provisioned_raw_help: 0=no aprovisionat, 1=aprovisionat
 setting_use_google_mail_name: Utilitzar Google Mail
-setting_use_google_mail_description: 'Mostrar "Google Mail" en lloc de "Gmail"'
+setting_use_google_mail_description: Mostrar "Google Mail" en lloc de "Gmail"
 setting_audio_stream_voice_call: Trucada de veu
 setting_audio_stream_system: Sistema
 setting_audio_stream_ring: Timbre
@@ -618,14 +618,14 @@ triggerlist_option_time: Temps
 time_trigger_help: Dispara automatitzacions en un moment determinat.
 time_trigger_description_daily: "{time} cada dia"
 time_trigger_description_weekly: "{days} a les {time}"
-time_trigger_description_weekly_never: "Mai"
-time_trigger_description_expired: "caducat"
-dialog_ok: "D'acord"
-dialog_cancel: "Cancel·la"
-editor_done: "Fet"
-editor_name_label: "Nom"
-time_editor_name_placeholder: "ex. Cafè del matí"
-time_editor_recurrence_none: "Un cop"
-time_editor_recurrence_daily: "Cada dia"
-time_editor_recurrence_weekly: "Setmanal"
-time_editor_overlay_permission_banner: "Per deixar que les automatitzacions obrin altres apps amb VokiBot tancat, concedeix a VokiBot el permís «Mostrar sobre altres aplicacions» a la llista d'ajustos"
+time_trigger_description_weekly_never: Mai
+time_trigger_description_expired: caducat
+dialog_ok: D'acord
+dialog_cancel: Cancel·la
+editor_done: Fet
+editor_name_label: Nom
+time_editor_name_placeholder: ex. Cafè del matí
+time_editor_recurrence_none: Un cop
+time_editor_recurrence_daily: Cada dia
+time_editor_recurrence_weekly: Setmanal
+time_editor_overlay_permission_banner: Per deixar que les automatitzacions obrin altres apps amb VokiBot tancat, concedeix a VokiBot el permís «Mostrar sobre altres aplicacions» a la llista d'ajustos

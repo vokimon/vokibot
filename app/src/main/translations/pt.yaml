@@ -579,7 +579,7 @@ setting_device_provisioned_name: Dispositivo provisionado
 setting_device_provisioned_description: Se o dispositivo foi provisionado
 setting_device_provisioned_raw_help: 0=não provisionado, 1=provisionado
 setting_use_google_mail_name: Usar Google Mail
-setting_use_google_mail_description: 'Mostrar "Google Mail" em vez de "Gmail"'
+setting_use_google_mail_description: Mostrar "Google Mail" em vez de "Gmail"
 setting_audio_stream_voice_call: Chamada de voz
 setting_audio_stream_system: Sistema
 setting_audio_stream_ring: Toque
@@ -618,14 +618,14 @@ triggerlist_option_time: Tempo
 time_trigger_help: Aciona automações num momento determinado.
 time_trigger_description_daily: "{time} todos os dias"
 time_trigger_description_weekly: "{days} às {time}"
-time_trigger_description_weekly_never: "Nunca"
-time_trigger_description_expired: "caducado"
-dialog_ok: "OK"
-dialog_cancel: "Cancelar"
-editor_done: "Concluído"
-editor_name_label: "Nome"
-time_editor_name_placeholder: "ex. Café da manhã"
-time_editor_recurrence_none: "Uma vez"
-time_editor_recurrence_daily: "Todos os dias"
-time_editor_recurrence_weekly: "Semanal"
-time_editor_overlay_permission_banner: "Para permitir que as automações abram outras apps com o VokiBot fechado, permita ao VokiBot a permissão 'Mostrar sobre outras aplicações' na lista de definições"
+time_trigger_description_weekly_never: Nunca
+time_trigger_description_expired: caducado
+dialog_ok: OK
+dialog_cancel: Cancelar
+editor_done: Concluído
+editor_name_label: Nome
+time_editor_name_placeholder: ex. Café da manhã
+time_editor_recurrence_none: Uma vez
+time_editor_recurrence_daily: Todos os dias
+time_editor_recurrence_weekly: Semanal
+time_editor_overlay_permission_banner: Para permitir que as automações abram outras apps com o VokiBot fechado, permita ao VokiBot a permissão 'Mostrar sobre outras aplicações' na lista de definições
