@@ -615,8 +615,8 @@ adb_permissions_run_adb_copy_button: Copia
 free_string_set_remove: Elimina
 free_string_set_add_value: Afegeix valor
 triggerlist_option_time: Temps
-trigger_time_help: Dispara automatitzacions en un moment determinat.
-trigger_time_description_daily: "{time} cada dia"
-trigger_time_description_weekly: "{days} a les {time}"
-trigger_time_description_weekly_never: "Mai"
-trigger_time_description_expired: "caducat"
+time_trigger_help: Dispara automatitzacions en un moment determinat.
+time_trigger_description_daily: "{time} cada dia"
+time_trigger_description_weekly: "{days} a les {time}"
+time_trigger_description_weekly_never: "Mai"
+time_trigger_description_expired: "caducat"

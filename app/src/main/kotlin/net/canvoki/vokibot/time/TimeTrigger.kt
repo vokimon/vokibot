@@ -67,7 +67,7 @@ data class TimeTrigger(
         override val iconRes = R.drawable.ic_schedule
         override val entityClass = TimeTrigger::class
         override val labelRes = R.string.triggerlist_option_time
-        override val helpRes = R.string.trigger_time_help
+        override val helpRes = R.string.time_trigger_help
 
         override val deserializer = { jsonString: String -> fromJson(jsonString) }
         override val editorFactory = { editingId: String? -> TimeTriggerEditor(editingId) }
@@ -115,7 +115,7 @@ data class TimeTrigger(
         context: Context,
         now: LocalDateTime,
     ): String {
-        val occurrence = nextOccurrence(now) ?: return context.getString(R.string.trigger_time_description_expired)
+        val occurrence = nextOccurrence(now) ?: return context.getString(R.string.time_trigger_description_expired)
         return DateUtils
             .getRelativeTimeSpanString(
                 occurrence.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli(),
@@ -154,16 +154,16 @@ data class TimeTrigger(
             Recurrence.None -> startAt.format(DateTimeFormatter.ofPattern(DESCRIPTION_FORMAT))
             Recurrence.Daily ->
                 context.getString(
-                    R.string.trigger_time_description_daily,
+                    R.string.time_trigger_description_daily,
                     startAt.format(DateTimeFormatter.ofPattern(TIME_FORMAT)),
                 )
             Recurrence.Weekly ->
                 if (weekdays.isEmpty()) {
-                    context.getString(R.string.trigger_time_description_weekly_never)
+                    context.getString(R.string.time_trigger_description_weekly_never)
                 } else {
                     val day = weekdaysDescription(context)
                     val time = startAt.format(DateTimeFormatter.ofPattern(TIME_FORMAT))
-                    context.getString(R.string.trigger_time_description_weekly, day, time)
+                    context.getString(R.string.time_trigger_description_weekly, day, time)
                 }
         }
 

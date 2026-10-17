@@ -615,8 +615,8 @@ adb_permissions_run_adb_copy_button: نسخ
 free_string_set_remove: إزالة
 free_string_set_add_value: إضافة قيمة
 triggerlist_option_time: وقت
-trigger_time_help: يشتغل الأتمتة في وقت محدد.
-trigger_time_description_daily: "يوميًا في {time}"
-trigger_time_description_weekly: "{days} في {time}"
-trigger_time_description_weekly_never: "أبدًا"
-trigger_time_description_expired: "منتهٍ"
+time_trigger_help: يشتغل الأتمتة في وقت محدد.
+time_trigger_description_daily: "يوميًا في {time}"
+time_trigger_description_weekly: "{days} في {time}"
+time_trigger_description_weekly_never: "أبدًا"
+time_trigger_description_expired: "منتهٍ"

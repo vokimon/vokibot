@@ -613,8 +613,8 @@ adb_permissions_run_adb_copy_button: Copiâh
 free_string_set_remove: Eliminâh
 free_string_set_add_value: Añadîh balôh
 triggerlist_option_time: Tiempo
-trigger_time_help: Dîppara automatiçaçionê en un momento determinao.
-trigger_time_description_daily: '{time} cá día'
-trigger_time_description_weekly: '{days} a lâ {time}'
-trigger_time_description_weekly_never: Nunca
-trigger_time_description_expired: caducao
+time_trigger_help: Dîppara automatiçaçionê en un momento determinao.
+time_trigger_description_daily: '{time} cá día'
+time_trigger_description_weekly: '{days} a lâ {time}'
+time_trigger_description_weekly_never: Nunca
+time_trigger_description_expired: caducao

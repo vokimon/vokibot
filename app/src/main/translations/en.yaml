@@ -615,8 +615,8 @@ adb_permissions_run_adb_copy_button: Copy
 free_string_set_remove: Remove
 free_string_set_add_value: Add value
 triggerlist_option_time: Time
-trigger_time_help: Triggers automations at a given time.
-trigger_time_description_daily: "{time} daily"
-trigger_time_description_weekly: "{days} at {time}"
-trigger_time_description_weekly_never: "Never"
-trigger_time_description_expired: "expired"
+time_trigger_help: Triggers automations at a given time.
+time_trigger_description_daily: "{time} daily"
+time_trigger_description_weekly: "{days} at {time}"
+time_trigger_description_weekly_never: "Never"
+time_trigger_description_expired: "expired"

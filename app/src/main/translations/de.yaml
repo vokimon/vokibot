@@ -615,8 +615,8 @@ adb_permissions_run_adb_copy_button: Kopieren
 free_string_set_remove: Entfernen
 free_string_set_add_value: Wert hinzufügen
 triggerlist_option_time: Zeit
-trigger_time_help: Startet Automatisierungen zu einem bestimmten Zeitpunkt.
-trigger_time_description_daily: "Täglich um {time}"
-trigger_time_description_weekly: "{days} um {time}"
-trigger_time_description_weekly_never: "Nie"
-trigger_time_description_expired: "abgelaufen"
+time_trigger_help: Startet Automatisierungen zu einem bestimmten Zeitpunkt.
+time_trigger_description_daily: "Täglich um {time}"
+time_trigger_description_weekly: "{days} um {time}"
+time_trigger_description_weekly_never: "Nie"
+time_trigger_description_expired: "abgelaufen"
