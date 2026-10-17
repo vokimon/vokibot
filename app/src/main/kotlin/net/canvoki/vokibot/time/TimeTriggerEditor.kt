@@ -44,6 +44,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
@@ -173,10 +174,10 @@ fun TimeTriggerEditor(
                         discardState.markDirty()
                         showTimePicker = false
                     },
-                ) { Text("OK") }
+                ) { Text(stringResource(R.string.dialog_ok)) }
             },
             dismissButton = {
-                TextButton(onClick = { showTimePicker = false }) { Text("Cancel") }
+                TextButton(onClick = { showTimePicker = false }) { Text(stringResource(R.string.dialog_cancel)) }
             },
         )
     }
@@ -203,10 +204,10 @@ fun TimeTriggerEditor(
                         }
                         showDatePicker = false
                     },
-                ) { Text("OK") }
+                ) { Text(stringResource(R.string.dialog_ok)) }
             },
             dismissButton = {
-                TextButton(onClick = { showDatePicker = false }) { Text("Cancel") }
+                TextButton(onClick = { showDatePicker = false }) { Text(stringResource(R.string.dialog_cancel)) }
             },
         ) {
             DatePicker(state = datePickerState)
@@ -223,8 +224,8 @@ fun TimeTriggerEditor(
     ) {
         EditorHeader(
             icon = painterResource(TimeTrigger.iconRes),
-            title = "Time",
-            actionText = "Done",
+            title = stringResource(R.string.triggerlist_option_time),
+            actionText = stringResource(R.string.editor_done),
             actionEnabled = !isSaving && (recurrence != Recurrence.Weekly || weekdays.isNotEmpty()),
             actionIsRunning = isSaving,
             action = {
@@ -253,8 +254,8 @@ fun TimeTriggerEditor(
                 displayName = it
                 discardState.markDirty()
             },
-            label = { Text("Name") },
-            placeholder = { Text("e.g. Morning coffee") },
+            label = { Text(stringResource(R.string.editor_name_label)) },
+            placeholder = { Text(stringResource(R.string.time_editor_name_placeholder)) },
             modifier = Modifier.fillMaxWidth(),
             singleLine = true,
         )
@@ -270,11 +271,13 @@ fun TimeTriggerEditor(
                     shape = SegmentedButtonDefaults.itemShape(index, Recurrence.entries.size),
                     label = {
                         Text(
-                            when (entry) {
-                                Recurrence.None -> "Once"
-                                Recurrence.Daily -> "Daily"
-                                Recurrence.Weekly -> "Weekly"
-                            },
+                            stringResource(
+                                when (entry) {
+                                    Recurrence.None -> R.string.time_editor_recurrence_none
+                                    Recurrence.Daily -> R.string.time_editor_recurrence_daily
+                                    Recurrence.Weekly -> R.string.time_editor_recurrence_weekly
+                                },
+                            ),
                         )
                     },
                 )
@@ -306,10 +309,7 @@ fun TimeTriggerEditor(
 
         MissingPermissionBanner(
             state = rememberPermissionState(Manifest.permission.SYSTEM_ALERT_WINDOW),
-            message =
-                "To let automations open other apps while VokiBot is " +
-                    "closed, allow VokiBot the 'Display over other apps' permission " +
-                    "in the settings list",
+            message = stringResource(R.string.time_editor_overlay_permission_banner),
         )
     }
 }
