@@ -20,7 +20,6 @@ intent_editor_custom_or_none: Пользовательское или нет
 intent_editor_action_string_optional: Строка действия (необязательно)
 intent_editor_save_command_title: Сохранить команду
 intent_editor_command_name_label: Название команды
-intent_editor_save: Сохранить
 intent_editor_cancel: Отмена
 intent_editor_overwrite_title: Перезаписать?
 intent_editor_overwrite_message: Команда с именем '{commandName}' уже существует.
@@ -39,7 +38,6 @@ command_type_send_broadcast: Уведомить приложение
 command_type_start_service: Запустить/остановить службу
 command_type_access_provider: Доступ к данным приложения
 nfc_editor_header: Метка NFC
-nfc_editor_save: Сохранить
 nfc_editor_name_label: Имя для метки
 nfc_editor_name_placeholder: напр. Проездной
 nfc_editor_uid_label: UID метки
@@ -87,7 +85,6 @@ automation_done: Готово
 automation_hint_trigger: Выберите триггер для продолжения
 automation_hint_commands: Добавьте хотя бы одну команду
 shortcut_editor_title: Ярлык
-shortcut_editor_save: Сохранить
 shortcut_editor_discard_title: Отменить изменения?
 shortcut_editor_discard_message: Отменить внесённые изменения?
 shortcut_editor_discard_confirm: Отменить
@@ -295,7 +292,6 @@ bluetooth_device_class_health_pulse_rate: Пульсометр
 bluetooth_device_class_health_data_display: Дисплей медицинских данных
 bluetooth_device_class_health_uncategorized: Медицинское устройство
 bluetooth_device_class_unknown: Неизвестный тип
-bluetooth_device_editor_save: Сохранить
 bluetooth_device_editor_name_label: Имя устройства
 bluetooth_device_editor_name_placeholder: например, Автомобильная гарнитура
 bluetooth_device_editor_mac_label: MAC-адрес

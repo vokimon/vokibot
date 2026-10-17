@@ -20,7 +20,6 @@ intent_editor_custom_or_none: Custom or none
 intent_editor_action_string_optional: Action string (optional)
 intent_editor_save_command_title: Save Command
 intent_editor_command_name_label: Command name
-intent_editor_save: Save
 intent_editor_cancel: Cancel
 intent_editor_overwrite_title: Overwrite?
 intent_editor_overwrite_message: A command named '{commandName}' already exists.
@@ -39,7 +38,6 @@ command_type_send_broadcast: Notify an app
 command_type_start_service: Start/stop a service
 command_type_access_provider: Access app data
 nfc_editor_header: NFC Tag
-nfc_editor_save: Save
 nfc_editor_name_label: Tag name
 nfc_editor_name_placeholder: e.g. Bus card
 nfc_editor_uid_label: Tag UID
@@ -87,7 +85,6 @@ automation_done: Done
 automation_hint_trigger: Select a trigger to continue
 automation_hint_commands: Add at least one command
 shortcut_editor_title: Shortcut
-shortcut_editor_save: Save
 shortcut_editor_discard_title: Discard Changes?
 shortcut_editor_discard_message: Do you want to discard the changes you made?
 shortcut_editor_discard_confirm: Discard
@@ -295,7 +292,6 @@ bluetooth_device_class_health_pulse_rate: Pulse rate monitor
 bluetooth_device_class_health_data_display: Health data display
 bluetooth_device_class_health_uncategorized: Health device
 bluetooth_device_class_unknown: Unknown type
-bluetooth_device_editor_save: Save
 bluetooth_device_editor_name_label: Device name
 bluetooth_device_editor_name_placeholder: e.g. Car hands-free
 bluetooth_device_editor_mac_label: MAC address

@@ -20,7 +20,6 @@ intent_editor_custom_or_none: Personalitzada o cap
 intent_editor_action_string_optional: Cadena d'acció (opcional)
 intent_editor_save_command_title: Desa l'ordre
 intent_editor_command_name_label: Nom de l'ordre
-intent_editor_save: Desa
 intent_editor_cancel: Cancel·la
 intent_editor_overwrite_title: Sobreescriure?
 intent_editor_overwrite_message: Ja existeix una ordre anomenada '{commandName}'.
@@ -39,7 +38,6 @@ command_type_send_broadcast: Notificar una app
 command_type_start_service: Iniciar/aturar un servei
 command_type_access_provider: Accedir a dades de l'app
 nfc_editor_header: Etiqueta NFC
-nfc_editor_save: Desa
 nfc_editor_name_label: Nom per a l'etiqueta
 nfc_editor_name_placeholder: p. ex. Targeta de bus
 nfc_editor_uid_label: UID de l'etiqueta
@@ -87,7 +85,6 @@ automation_done: Fet
 automation_hint_trigger: Selecciona un disparador per continuar
 automation_hint_commands: Afegeix almenys una ordre
 shortcut_editor_title: Drecera
-shortcut_editor_save: Desa
 shortcut_editor_discard_title: Descartar canvis?
 shortcut_editor_discard_message: Vols descartar els canvis fets?
 shortcut_editor_discard_confirm: Descarta
@@ -295,7 +292,6 @@ bluetooth_device_class_health_pulse_rate: Monitor de freqüència cardíaca
 bluetooth_device_class_health_data_display: Pantalla de dades de salut
 bluetooth_device_class_health_uncategorized: Dispositiu de salut
 bluetooth_device_class_unknown: Desconegut
-bluetooth_device_editor_save: Desa
 bluetooth_device_editor_name_label: Nom del dispositiu
 bluetooth_device_editor_name_placeholder: p. ex. Mans lliures del cotxe
 bluetooth_device_editor_mac_label: Adreça MAC

@@ -20,7 +20,6 @@ intent_editor_custom_or_none: Personnalisée ou aucune
 intent_editor_action_string_optional: Chaîne d'action (optionnelle)
 intent_editor_save_command_title: Enregistrer la commande
 intent_editor_command_name_label: Nom de la commande
-intent_editor_save: Enregistrer
 intent_editor_cancel: Annuler
 intent_editor_overwrite_title: Écraser ?
 intent_editor_overwrite_message: Une commande nommée '{commandName}' existe déjà.
@@ -39,7 +38,6 @@ command_type_send_broadcast: Notifier une app
 command_type_start_service: Démarrer/arrêter un service
 command_type_access_provider: Accéder aux données de l'app
 nfc_editor_header: Étiquette NFC
-nfc_editor_save: Enregistrer
 nfc_editor_name_label: Nom de l'étiquette
 nfc_editor_name_placeholder: ex. Carte de bus
 nfc_editor_uid_label: UID de l'étiquette
@@ -87,7 +85,6 @@ automation_done: Terminé
 automation_hint_trigger: Sélectionnez un déclencheur pour continuer
 automation_hint_commands: Ajoutez au moins une commande
 shortcut_editor_title: Raccourci
-shortcut_editor_save: Enregistrer
 shortcut_editor_discard_title: Annuler les modifications ?
 shortcut_editor_discard_message: Voulez-vous annuler les modifications apportées ?
 shortcut_editor_discard_confirm: Annuler
@@ -295,7 +292,6 @@ bluetooth_device_class_health_pulse_rate: Cardiofréquencemètre
 bluetooth_device_class_health_data_display: Affichage de données de santé
 bluetooth_device_class_health_uncategorized: Dispositif médical
 bluetooth_device_class_unknown: Inconnu
-bluetooth_device_editor_save: Enregistrer
 bluetooth_device_editor_name_label: Nom de l'appareil
 bluetooth_device_editor_name_placeholder: par ex. Kit piéton voiture
 bluetooth_device_editor_mac_label: Adresse MAC

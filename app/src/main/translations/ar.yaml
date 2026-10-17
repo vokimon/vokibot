@@ -20,7 +20,6 @@ intent_editor_custom_or_none: مخصص أو لا شيء
 intent_editor_action_string_optional: سلسلة الإجراء (اختياري)
 intent_editor_save_command_title: حفظ الأمر
 intent_editor_command_name_label: اسم الأمر
-intent_editor_save: حفظ
 intent_editor_cancel: إلغاء
 intent_editor_overwrite_title: استبدال؟
 intent_editor_overwrite_message: يوجد بالفعل أمر باسم '{commandName}'.
@@ -39,7 +38,6 @@ command_type_send_broadcast: إشعار تطبيق
 command_type_start_service: بدء/إيقاف خدمة
 command_type_access_provider: الوصول إلى بيانات التطبيق
 nfc_editor_header: علامة NFC
-nfc_editor_save: حفظ
 nfc_editor_name_label: اسم العلامة
 nfc_editor_name_placeholder: 'مثال: بطاقة الحافلة'
 nfc_editor_uid_label: معرف العلامة
@@ -87,7 +85,6 @@ automation_done: تم
 automation_hint_trigger: حدد مشغلاً للمتابعة
 automation_hint_commands: أضف أمرًا واحدًا على الأقل
 shortcut_editor_title: اختصار
-shortcut_editor_save: حفظ
 shortcut_editor_discard_title: تجاهل التغييرات؟
 shortcut_editor_discard_message: هل تريد تجاهل التغييرات التي أجريتها؟
 shortcut_editor_discard_confirm: تجاهل
@@ -295,7 +292,6 @@ bluetooth_device_class_health_pulse_rate: مراقب معدل النبض
 bluetooth_device_class_health_data_display: شاشة بيانات صحية
 bluetooth_device_class_health_uncategorized: جهاز صحي
 bluetooth_device_class_unknown: نوع غير معروف
-bluetooth_device_editor_save: حفظ
 bluetooth_device_editor_name_label: اسم الجهاز
 bluetooth_device_editor_name_placeholder: 'مثلاً: نظام اليدين الحرتين في السيارة'
 bluetooth_device_editor_mac_label: عنوان MAC
