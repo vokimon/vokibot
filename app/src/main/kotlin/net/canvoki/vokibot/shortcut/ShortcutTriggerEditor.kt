@@ -60,7 +60,7 @@ data class ShortcutTriggerEditor(
             title = stringResource(R.string.shortcut_editor_discard_title),
             text = stringResource(R.string.shortcut_editor_discard_message),
             confirmText = stringResource(R.string.shortcut_editor_discard_confirm),
-            dismissText = stringResource(R.string.shortcut_editor_discard_cancel),
+            dismissText = stringResource(R.string.dialog_cancel),
             onDismiss = {
                 showDiscardDialog = false
             },

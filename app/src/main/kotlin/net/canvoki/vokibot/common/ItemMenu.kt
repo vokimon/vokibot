@@ -48,7 +48,7 @@ fun ItemMenu(content: @Composable (onDismiss: () -> Unit, onConfirm: (String, ()
         title = confirmationMessage,
         text = stringResource(R.string.item_menu_delete_confirmation_message),
         confirmText = stringResource(R.string.item_menu_delete),
-        dismissText = stringResource(R.string.item_menu_delete_confirmation_cancel),
+        dismissText = stringResource(R.string.dialog_cancel),
         onDismiss = { showConfirmDialog = false },
         onConfirm = {
             confirmAction?.invoke()

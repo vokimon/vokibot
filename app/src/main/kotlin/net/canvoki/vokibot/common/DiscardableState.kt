@@ -71,7 +71,7 @@ fun rememberDiscardableState(
         title = stringResource(R.string.discard_dialog_title),
         text = stringResource(R.string.discard_dialog_message),
         confirmText = stringResource(R.string.discard_dialog_confirm),
-        dismissText = stringResource(R.string.discard_dialog_cancel),
+        dismissText = stringResource(R.string.dialog_cancel),
         onConfirm = {
             showDialog = false
             state.isDirty = false

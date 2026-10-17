@@ -81,7 +81,7 @@ class NfcDispatchActivity : ComponentActivity() {
                 label = stringResource(R.string.nfc_editor_name_label),
                 placeholder = stringResource(R.string.nfc_editor_name_placeholder),
                 confirmText = stringResource(R.string.nfc_trigger_name_dialog_confirm),
-                dismissText = stringResource(R.string.nfc_trigger_name_dialog_cancel),
+                dismissText = stringResource(R.string.dialog_cancel),
                 onDismiss = { showNameDialog = false },
                 onConfirm = { value ->
                     if (uid != null) {

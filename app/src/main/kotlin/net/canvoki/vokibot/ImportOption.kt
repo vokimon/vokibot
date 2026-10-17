@@ -71,7 +71,7 @@ fun ImportOption() {
             title = stringResource(R.string.import_confirm_dialog_title),
             text = pendingSummary!!,
             confirmText = stringResource(R.string.import_confirm_dialog_ok),
-            dismissText = stringResource(R.string.import_confirm_dialog_ko),
+            dismissText = stringResource(R.string.dialog_cancel),
             onConfirm = {
                 pendingBundle?.let { repo.importBundle(it) }
                 TimeTrigger.scheduleAll(context)

@@ -152,7 +152,7 @@ fun ExtrasEditor(
                     dismissButton = {
                         TextButton(
                             onClick = { showDialog = false },
-                        ) { Text(stringResource(R.string.intent_extras_editor_add_cancel)) }
+                        ) { Text(stringResource(R.string.dialog_cancel)) }
                     },
                 )
             }
