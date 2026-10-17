@@ -24,7 +24,7 @@ intent_editor_cancel: Utzi
 intent_editor_overwrite_title: Gainidatzi?
 intent_editor_overwrite_message: "'{commandName}' izeneko komandoa dagoeneko existitzen da."
 intent_editor_replace: Ordeztu
-intent_editor_try: Probatu
+command_try_button_label: Probatu
 intent_editor_command_saved: "Komandoa gordeta: {commandName}"
 intent_editor_command_overwritten: "Komandoa gainidatzita: {commandName}"
 commandlist_not_found: Ez dago komando gordetarik
@@ -123,7 +123,6 @@ entity_picker_trigger_type: Abiarazle berri mota
 entity_picker_command_type: Ekintza berri mota
 settings_page_show_all: Erakutsi orri guztiak
 settings_page_no_pages: Ez dago orririk eskuragarri
-settings_page_try: Saiatu
 triggerlist_header: Gordetako abiarazleak
 commandlist_header: Gordetako ekintzak
 item_menu_edit: Editatu

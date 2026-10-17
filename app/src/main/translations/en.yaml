@@ -23,7 +23,7 @@ intent_editor_command_name_label: Command name
 intent_editor_overwrite_title: Overwrite?
 intent_editor_overwrite_message: A command named '{commandName}' already exists.
 intent_editor_replace: Replace
-intent_editor_try: Try
+command_try_button_label: Try
 intent_editor_command_saved: "Command saved: {commandName}"
 intent_editor_command_overwritten: "Command overwritten: {commandName}"
 commandlist_not_found: No saved commands
@@ -116,7 +116,6 @@ entity_picker_trigger_type: Type of the new trigger
 entity_picker_command_type: Type of the new command
 settings_page_show_all: Show all pages
 settings_page_no_pages: No pages available
-settings_page_try: Try
 triggerlist_header: Saved Triggers
 commandlist_header: Saved Commands
 item_menu_edit: Edit

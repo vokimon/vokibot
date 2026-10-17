@@ -24,7 +24,7 @@ intent_editor_cancel: إلغاء
 intent_editor_overwrite_title: استبدال؟
 intent_editor_overwrite_message: يوجد بالفعل أمر باسم '{commandName}'.
 intent_editor_replace: استبدال
-intent_editor_try: تجربة
+command_try_button_label: تجربة
 intent_editor_command_saved: "تم حفظ الأمر: {commandName}"
 intent_editor_command_overwritten: "تم استبدال الأمر: {commandName}"
 commandlist_not_found: لا توجد أوامر محفوظة
@@ -123,7 +123,6 @@ entity_picker_trigger_type: نوع المُطلِق الجديد
 entity_picker_command_type: نوع الإجراء الجديد
 settings_page_show_all: إظهار جميع الصفحات
 settings_page_no_pages: لا توجد صفحات متاحة
-settings_page_try: جرب
 triggerlist_header: المُطلِقات المحفوظة
 commandlist_header: الإجراءات المحفوظة
 item_menu_edit: تعديل

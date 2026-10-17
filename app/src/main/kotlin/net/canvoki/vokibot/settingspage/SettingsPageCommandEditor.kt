@@ -160,7 +160,7 @@ data class SettingsPageCommandEditor(
                     ) {
                         Icon(
                             painter = painterResource(R.drawable.ic_play_arrow),
-                            contentDescription = stringResource(R.string.settings_page_try),
+                            contentDescription = stringResource(R.string.command_try_button_label),
                             tint = MaterialTheme.colorScheme.onSurfaceVariant,
                         )
                     }

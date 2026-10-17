@@ -24,7 +24,7 @@ intent_editor_cancel: Annuler
 intent_editor_overwrite_title: Écraser ?
 intent_editor_overwrite_message: Une commande nommée '{commandName}' existe déjà.
 intent_editor_replace: Remplacer
-intent_editor_try: Essayer
+command_try_button_label: Essayer
 intent_editor_command_saved: "Commande enregistrée : {commandName}"
 intent_editor_command_overwritten: "Commande écrasée : {commandName}"
 commandlist_not_found: Aucune commande enregistrée
@@ -123,7 +123,6 @@ entity_picker_trigger_type: Type du nouveau déclencheur
 entity_picker_command_type: Type de la nouvelle commande
 settings_page_show_all: Afficher toutes les pages
 settings_page_no_pages: Aucune page disponible
-settings_page_try: Essayer
 triggerlist_header: Déclencheurs enregistrés
 commandlist_header: Commandes enregistrées
 item_menu_edit: Modifier

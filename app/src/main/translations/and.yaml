@@ -24,7 +24,7 @@ intent_editor_cancel: Cançelâh
 intent_editor_overwrite_title: ¿Çobrêccribîh?
 intent_editor_overwrite_message: Ya êççîtte un comando yamao '{commandName}'.
 intent_editor_replace: Reemplaçâh
-intent_editor_try: Probâh
+command_try_button_label: Probâh
 intent_editor_command_saved: "Comando guardao: {commandName}"
 intent_editor_command_overwritten: "Comando çobrêccrito: {commandName}"
 commandlist_not_found: No ay comandô guardáô
@@ -121,7 +121,6 @@ entity_picker_trigger_type: Tipo der nuebo dîpparadôh
 entity_picker_command_type: Tipo de la nueba âççión
 settings_page_show_all: Môttrâh toâ lâ páhinâ
 settings_page_no_pages: No ay páhinâ dîpponiblê
-settings_page_try: Probâh
 triggerlist_header: Dîpparadorê guardáô
 commandlist_header: Âççionê guardâh
 item_menu_edit: Editâh

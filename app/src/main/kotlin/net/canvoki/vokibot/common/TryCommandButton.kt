@@ -37,6 +37,6 @@ fun TryCommandButton(
             contentDescription = null,
         )
         Spacer(Modifier.width(8.dp))
-        Text(stringResource(R.string.intent_editor_try))
+        Text(stringResource(R.string.command_try_button_label))
     }
 }

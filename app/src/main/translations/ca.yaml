@@ -24,7 +24,7 @@ intent_editor_cancel: Cancel·la
 intent_editor_overwrite_title: Sobreescriure?
 intent_editor_overwrite_message: Ja existeix una ordre anomenada '{commandName}'.
 intent_editor_replace: Reemplaça
-intent_editor_try: Prova
+command_try_button_label: Prova
 intent_editor_command_saved: "Ordre desada: {commandName}"
 intent_editor_command_overwritten: "Ordre sobreescrita: {commandName}"
 commandlist_not_found: No hi ha ordres desades
@@ -123,7 +123,6 @@ entity_picker_trigger_type: Tipus del nou disparador
 entity_picker_command_type: Tipus de la nova acció
 settings_page_show_all: Mostra totes les pàgines
 settings_page_no_pages: No hi ha pàgines disponibles
-settings_page_try: Prova
 triggerlist_header: Disparadors desats
 commandlist_header: Accions desades
 item_menu_edit: Edita

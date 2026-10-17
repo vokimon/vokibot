@@ -24,7 +24,7 @@ intent_editor_cancel: Cancelar
 intent_editor_overwrite_title: Sobrescribir?
 intent_editor_overwrite_message: Ya existe una orden clamada '{commandName}'.
 intent_editor_replace: Reemplazar
-intent_editor_try: Probar
+command_try_button_label: Probar
 intent_editor_command_saved: "Orden alzada: {commandName}"
 intent_editor_command_overwritten: "Orden sobrescrita: {commandName}"
 commandlist_not_found: No i ha órdenes alzadas
@@ -123,7 +123,6 @@ entity_picker_trigger_type: Tipo d'o nuevo disparador
 entity_picker_command_type: Tipo d'a nueva acción
 settings_page_show_all: Amostrar todas as pachinas
 settings_page_no_pages: No i ha pachinas disponibles
-settings_page_try: Prebar
 triggerlist_header: Disparadors alzacaus
 commandlist_header: Accions alzacadas
 item_menu_edit: Editar
