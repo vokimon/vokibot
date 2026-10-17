@@ -92,7 +92,7 @@ data class AutomationEditor(
             EditorHeader(
                 title = stringResource(R.string.automation_header),
                 icon = painterResource(Automation.iconRes),
-                actionText = stringResource(R.string.automation_done),
+                actionText = stringResource(R.string.editor_done),
                 action = {
                     val automation =
                         Automation(

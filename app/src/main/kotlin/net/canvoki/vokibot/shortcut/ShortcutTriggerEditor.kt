@@ -77,7 +77,7 @@ data class ShortcutTriggerEditor(
             EditorHeader(
                 title = stringResource(R.string.shortcut_editor_title),
                 icon = painterResource(R.drawable.ic_shortcut),
-                actionText = stringResource(R.string.shortcut_editor_save),
+                actionText = stringResource(R.string.editor_done),
                 action = {
                     if (name.isBlank()) return@EditorHeader
                     isProcessing = true

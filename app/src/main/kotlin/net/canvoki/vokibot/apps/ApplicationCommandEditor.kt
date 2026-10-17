@@ -271,7 +271,7 @@ data class ApplicationCommandEditor(
             EditorHeader(
                 icon = painterResource(commandTypeMeta.iconRes),
                 title = stringResource(commandTypeMeta.labelRes),
-                actionText = stringResource(R.string.automation_done),
+                actionText = stringResource(R.string.editor_done),
                 actionEnabled = readyToRun,
                 action = {
                     currentComponent?.let {

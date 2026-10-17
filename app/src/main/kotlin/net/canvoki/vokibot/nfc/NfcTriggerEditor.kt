@@ -159,7 +159,7 @@ data class NfcTriggerEditor(
             EditorHeader(
                 icon = painterResource(R.drawable.ic_nfc),
                 title = stringResource(R.string.nfc_editor_header),
-                actionText = stringResource(R.string.nfc_editor_save),
+                actionText = stringResource(R.string.editor_done),
                 actionEnabled = displayName.isNotBlank() && uid.isNotBlank() && !isSaving,
                 actionIsRunning = isSaving,
                 action = {

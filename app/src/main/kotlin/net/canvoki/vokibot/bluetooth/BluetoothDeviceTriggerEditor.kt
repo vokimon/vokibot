@@ -85,7 +85,7 @@ fun BluetoothDeviceTriggerEditor(
         EditorHeader(
             icon = painterResource(BluetoothDeviceTrigger.iconRes),
             title = stringResource(BluetoothDeviceTrigger.labelRes),
-            actionText = stringResource(R.string.bluetooth_device_editor_save),
+            actionText = stringResource(R.string.editor_done),
             actionEnabled = name.isNotBlank() && mac.isNotBlank() && !isSaving,
             actionIsRunning = isSaving,
             action = {

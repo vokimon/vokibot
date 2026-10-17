@@ -170,7 +170,7 @@ fun ChangeSettingCommandEditor(
         EditorHeader(
             icon = painterResource(ChangeSettingCommand.iconRes),
             title = stringResource(ChangeSettingCommand.labelRes),
-            actionText = stringResource(R.string.bluetooth_device_editor_save),
+            actionText = stringResource(R.string.editor_done),
             actionEnabled = isReadyToSave && !isSaving,
             actionIsRunning = isSaving,
             action = {
