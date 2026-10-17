@@ -1,5 +1,9 @@
 app_name: Vokibot
 applist_not_found: Keine Apps gefunden
+dialog_ok: OK
+dialog_cancel: Abbrechen
+editor_done: Fertig
+editor_name_label: Name
 activitylist_not_found: Keine Aktivitäten gefunden
 app_list_filter_fab_cd: Filtern
 app_list_filter_title: Filter
@@ -20,7 +24,6 @@ intent_editor_custom_or_none: Benutzerdefiniert oder keine
 intent_editor_action_string_optional: Aktionszeichenfolge (optional)
 intent_editor_save_command_title: Befehl speichern
 intent_editor_command_name_label: Befehlsname
-intent_editor_cancel: Abbrechen
 intent_editor_overwrite_title: Überschreiben?
 intent_editor_overwrite_message: Ein Befehl namens '{commandName}' existiert bereits.
 intent_editor_replace: Ersetzen
@@ -48,7 +51,6 @@ nfc_editor_scan_success: Tag erkannt ✓
 nfc_dispatcher_activity_label: Befehle bei NFC-Erkennung ausführen
 nfc_trigger_name_dialog_title: Tag benennen
 nfc_trigger_name_dialog_confirm: Speichern & Weiter
-nfc_trigger_name_dialog_cancel: Abbrechen
 triggerlist_not_found: Keine Trigger konfiguriert
 triggerlist_create_fab_desc: Trigger erstellen
 triggerlist_create_title: Trigger erstellen
@@ -71,7 +73,6 @@ automationlist_create_fab_desc: Automatisierung erstellen
 automationlist_delete: Löschen
 automationlist_delete_title: Automatisierung löschen?
 automationlist_delete_message: Diese Aktion kann nicht rückgängig gemacht werden.
-automationlist_cancel: Abbrechen
 automation_type_automation: Automatisierungsregel
 automation_group_automation: Automatisierungsregeln
 automation_trigger_hint: Tippen zum Auswählen
@@ -80,21 +81,17 @@ automation_edit_title: Automatisierung bearbeiten
 discard_dialog_title: Änderungen verwerfen?
 discard_dialog_message: Nicht gespeicherte Änderungen gehen verloren.
 discard_dialog_confirm: Verwerfen
-discard_dialog_cancel: Abbrechen
-automation_done: Fertig
 automation_hint_trigger: Wählen Sie einen Trigger aus, um fortzufahren
 automation_hint_commands: Fügen Sie mindestens einen Befehl hinzu
 shortcut_editor_title: Kurztaste
 shortcut_editor_discard_title: Änderungen verwerfen?
 shortcut_editor_discard_message: Möchten Sie die vorgenommenen Änderungen verwerfen?
 shortcut_editor_discard_confirm: Verwerfen
-shortcut_editor_discard_cancel: Abbrechen
 shortcut_editor_name_label: Name
 shortcut_editor_name_placeholder: "Bsp.: Zuhause, Arbeit, Auto…"
 not_yet_implemented: Noch nicht implementiert
 command_type_settings_page: Einstellungsseite
 settings_page_header: Einstellungsseite öffnen
-settings_page_done: Fertig
 trigger_nfc_help: |
   Startet Automatisierungen, wenn das Gerät ein NFC-Tag berührt.
 
@@ -137,7 +134,6 @@ intent_extras_editor_add_title: Zusatzparameter hinzufügen
 intent_extras_editor_add_name: Name
 intent_extras_editor_add_type: Typ
 intent_extras_editor_add_confirm: Hinzufügen
-intent_extras_editor_add_cancel: Abbrechen
 intent_extras_editor_comma_separated: (durch Kommas getrennt)
 component_type_activity: Aktivität
 component_type_service: Dienst
@@ -334,7 +330,6 @@ import_analysis_referenced: "Verweise auf bestehende Elemente:"
 import_analysis_unresolved: "Fehlende Verweise:"
 import_confirm_dialog_title: Import bestätigen
 import_confirm_dialog_ok: Importieren
-import_confirm_dialog_ko: Abbrechen
 import_result_success: '{count} Elemente importiert'
 import_result_failure: Ungültige Importdatei {error}
 trigger_dispatcher_create_automation: Automatisierung erstellen
@@ -370,7 +365,6 @@ setting_category_sound: Ton
 item_menu_options_desc: Optionen
 item_menu_delete: Löschen
 item_menu_delete_confirmation_message: Diese Aktion kann nicht rückgängig gemacht werden.
-item_menu_delete_confirmation_cancel: Abbrechen
 item_menu_delete_confirmation_title: Element löschen?
 select_button_placeholder: Tippen zum Auswählen
 change_setting_field_setting: Einstellung
@@ -615,10 +609,6 @@ time_trigger_description_daily: "Täglich um {time}"
 time_trigger_description_weekly: "{days} um {time}"
 time_trigger_description_weekly_never: Nie
 time_trigger_description_expired: abgelaufen
-dialog_ok: OK
-dialog_cancel: Abbrechen
-editor_done: Fertig
-editor_name_label: Name
 time_editor_name_placeholder: z. B. Morgenkaffee
 time_editor_recurrence_none: Einmal
 time_editor_recurrence_daily: Täglich

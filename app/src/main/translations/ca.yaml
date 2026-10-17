@@ -1,5 +1,9 @@
 app_name: Vokibot
 applist_not_found: No s'ha trobat cap app
+dialog_ok: D'acord
+dialog_cancel: Cancel·la
+editor_done: Fet
+editor_name_label: Nom
 activitylist_not_found: No s'ha trobat cap activitat
 app_list_filter_fab_cd: Filtra
 app_list_filter_title: Filtres
@@ -20,7 +24,6 @@ intent_editor_custom_or_none: Personalitzada o cap
 intent_editor_action_string_optional: Cadena d'acció (opcional)
 intent_editor_save_command_title: Desa l'ordre
 intent_editor_command_name_label: Nom de l'ordre
-intent_editor_cancel: Cancel·la
 intent_editor_overwrite_title: Sobreescriure?
 intent_editor_overwrite_message: Ja existeix una ordre anomenada '{commandName}'.
 intent_editor_replace: Reemplaça
@@ -48,7 +51,6 @@ nfc_editor_scan_success: Etiqueta detectada ✓
 nfc_dispatcher_activity_label: Executa comandes en detectar NFC
 nfc_trigger_name_dialog_title: Anomena aquesta etiqueta
 nfc_trigger_name_dialog_confirm: Desa i continua
-nfc_trigger_name_dialog_cancel: Cancel·la
 triggerlist_not_found: No hi ha cap disparador configurat
 triggerlist_create_fab_desc: Crea un disparador
 triggerlist_create_title: Crea un disparador
@@ -71,7 +73,6 @@ automationlist_create_fab_desc: Crea una automatització
 automationlist_delete: Suprimeix
 automationlist_delete_title: Suprimir l'automatització?
 automationlist_delete_message: Aquesta acció no es pot desfer.
-automationlist_cancel: Cancel·la
 automation_type_automation: Regla d'automatització
 automation_group_automation: Regles d'automatització
 automation_trigger_hint: Toca per seleccionar
@@ -80,21 +81,17 @@ automation_edit_title: Edita automatització
 discard_dialog_title: Descartar els canvis?
 discard_dialog_message: Es perdran els canvis no desats.
 discard_dialog_confirm: Descarta
-discard_dialog_cancel: Cancel·la
-automation_done: Fet
 automation_hint_trigger: Selecciona un disparador per continuar
 automation_hint_commands: Afegeix almenys una ordre
 shortcut_editor_title: Drecera
 shortcut_editor_discard_title: Descartar canvis?
 shortcut_editor_discard_message: Vols descartar els canvis fets?
 shortcut_editor_discard_confirm: Descarta
-shortcut_editor_discard_cancel: Cancel·la
 shortcut_editor_name_label: Nom
 shortcut_editor_name_placeholder: "Ex: Casa, Feina, Cotxe…"
 not_yet_implemented: Encara no s'ha implementat
 command_type_settings_page: Pàgina d'ajustos
 settings_page_header: Obre una pàgina d'ajustos
-settings_page_done: Fet
 trigger_nfc_help: |
   Dispara automatitzacions quan el dispositiu toca una etiqueta NFC.
 
@@ -137,7 +134,6 @@ intent_extras_editor_add_title: Afegeix un paràmetre extra
 intent_extras_editor_add_name: Nom
 intent_extras_editor_add_type: Tipus
 intent_extras_editor_add_confirm: Afegeix
-intent_extras_editor_add_cancel: Cancel·la
 intent_extras_editor_comma_separated: (separat per comes)
 component_type_activity: Activitat
 component_type_service: Servei
@@ -334,7 +330,6 @@ import_analysis_referenced: "Referències a elements existents:"
 import_analysis_unresolved: "Referències no resoltes:"
 import_confirm_dialog_title: Confirma la importació
 import_confirm_dialog_ok: Importa
-import_confirm_dialog_ko: Cancel·la
 import_result_success: S'han importat {count} elements
 import_result_failure: Fitxer d'importació no vàlid {error}
 trigger_dispatcher_create_automation: Crea una automatització
@@ -370,7 +365,6 @@ setting_category_sound: So
 item_menu_options_desc: Opcions
 item_menu_delete: Suprimeix
 item_menu_delete_confirmation_message: Aquesta acció no es pot desfer.
-item_menu_delete_confirmation_cancel: Cancel·la
 item_menu_delete_confirmation_title: Voleu suprimir l'element?
 select_button_placeholder: Toca per seleccionar
 change_setting_field_setting: Configuració
@@ -615,10 +609,6 @@ time_trigger_description_daily: "{time} cada dia"
 time_trigger_description_weekly: "{days} a les {time}"
 time_trigger_description_weekly_never: Mai
 time_trigger_description_expired: caducat
-dialog_ok: D'acord
-dialog_cancel: Cancel·la
-editor_done: Fet
-editor_name_label: Nom
 time_editor_name_placeholder: ex. Cafè del matí
 time_editor_recurrence_none: Un cop
 time_editor_recurrence_daily: Cada dia

@@ -1,5 +1,9 @@
 app_name: Vokibot
 applist_not_found: لم يتم العثور على تطبيقات
+dialog_ok: موافق
+dialog_cancel: إلغاء
+editor_done: تم
+editor_name_label: الاسم
 activitylist_not_found: لم يتم العثور على أنشطة
 app_list_filter_fab_cd: تصفية
 app_list_filter_title: عوامل التصفية
@@ -20,7 +24,6 @@ intent_editor_custom_or_none: مخصص أو لا شيء
 intent_editor_action_string_optional: سلسلة الإجراء (اختياري)
 intent_editor_save_command_title: حفظ الأمر
 intent_editor_command_name_label: اسم الأمر
-intent_editor_cancel: إلغاء
 intent_editor_overwrite_title: استبدال؟
 intent_editor_overwrite_message: يوجد بالفعل أمر باسم '{commandName}'.
 intent_editor_replace: استبدال
@@ -48,7 +51,6 @@ nfc_editor_scan_success: تم اكتشاف البطاقة ✓
 nfc_dispatcher_activity_label: تنفيذ الأوامر عند اكتشاف NFC
 nfc_trigger_name_dialog_title: تسمية هذه العلامة
 nfc_trigger_name_dialog_confirm: حفظ ومتابعة
-nfc_trigger_name_dialog_cancel: إلغاء
 triggerlist_not_found: لم يتم تكوين أي مشغلات
 triggerlist_create_fab_desc: إنشاء مشغل
 triggerlist_create_title: إنشاء مشغل
@@ -71,7 +73,6 @@ automationlist_create_fab_desc: إنشاء أتمتة
 automationlist_delete: حذف
 automationlist_delete_title: حذف الأتمتة؟
 automationlist_delete_message: لا يمكن التراجع عن هذا الإجراء.
-automationlist_cancel: إلغاء
 automation_type_automation: قاعدة أتمتة
 automation_group_automation: قواعد الأتمتة
 automation_trigger_hint: انقر للاختيار
@@ -80,21 +81,17 @@ automation_edit_title: تعديل الأتمتة
 discard_dialog_title: هل تريد تجاهل التغييرات؟
 discard_dialog_message: ستفقد التغييرات غير المحفوظة.
 discard_dialog_confirm: تجاهل
-discard_dialog_cancel: إلغاء
-automation_done: تم
 automation_hint_trigger: حدد مشغلاً للمتابعة
 automation_hint_commands: أضف أمرًا واحدًا على الأقل
 shortcut_editor_title: اختصار
 shortcut_editor_discard_title: تجاهل التغييرات؟
 shortcut_editor_discard_message: هل تريد تجاهل التغييرات التي أجريتها؟
 shortcut_editor_discard_confirm: تجاهل
-shortcut_editor_discard_cancel: إلغاء
 shortcut_editor_name_label: الاسم
 shortcut_editor_name_placeholder: "مثال: المنزل، العمل، السيارة…"
 not_yet_implemented: غير منفذة بعد
 command_type_settings_page: صفحة الإعدادات
 settings_page_header: افتح صفحة الإعدادات
-settings_page_done: تم
 trigger_nfc_help: |
   يشتغل عند لمس الجهاز لعلامة NFC.
 
@@ -137,7 +134,6 @@ intent_extras_editor_add_title: إضافة معلمة إضافية
 intent_extras_editor_add_name: الاسم
 intent_extras_editor_add_type: النوع
 intent_extras_editor_add_confirm: إضافة
-intent_extras_editor_add_cancel: إلغاء
 intent_extras_editor_comma_separated: (مفصول بفواصل)
 component_type_activity: نشاط
 component_type_service: خدمة
@@ -334,7 +330,6 @@ import_analysis_referenced: "إشارات إلى عناصر موجودة:"
 import_analysis_unresolved: "إشارات غير محسومة:"
 import_confirm_dialog_title: تأكيد الاستيراد
 import_confirm_dialog_ok: استيراد
-import_confirm_dialog_ko: إلغاء
 import_result_success: تم استيراد {count} عناصر
 import_result_failure: ملف استيراد غير صالح {error}
 trigger_dispatcher_create_automation: إنشاء أتمتة
@@ -370,7 +365,6 @@ setting_category_sound: الصوت
 item_menu_options_desc: خيارات
 item_menu_delete: حذف
 item_menu_delete_confirmation_message: لا يمكن التراجع عن هذا الإجراء.
-item_menu_delete_confirmation_cancel: إلغاء
 item_menu_delete_confirmation_title: حذف العنصر؟
 select_button_placeholder: انقر للتحديد
 change_setting_field_setting: الإعداد
@@ -615,10 +609,6 @@ time_trigger_description_daily: "يوميًا في {time}"
 time_trigger_description_weekly: "{days} في {time}"
 time_trigger_description_weekly_never: أبدًا
 time_trigger_description_expired: منتهٍ
-dialog_ok: موافق
-dialog_cancel: إلغاء
-editor_done: تم
-editor_name_label: الاسم
 time_editor_name_placeholder: 'مثال: قهوة الصباح'
 time_editor_recurrence_none: مرة واحدة
 time_editor_recurrence_daily: يوميًا

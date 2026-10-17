@@ -1,5 +1,9 @@
 app_name: Vokibot
 applist_not_found: No s'ha trobat cap app
+dialog_ok: OK
+dialog_cancel: Cancelar
+editor_done: Hecho
+editor_name_label: Nombre
 activitylist_not_found: No s'ha trobat cap activitat
 app_list_filter_fab_cd: Filtrar
 app_list_filter_title: Filtros
@@ -20,7 +24,6 @@ intent_editor_custom_or_none: Personalizada u garra
 intent_editor_action_string_optional: Cadena d'acción (opcional)
 intent_editor_save_command_title: Alzar orden
 intent_editor_command_name_label: Nombre de l'orden
-intent_editor_cancel: Cancelar
 intent_editor_overwrite_title: Sobrescribir?
 intent_editor_overwrite_message: Ya existe una orden clamada '{commandName}'.
 intent_editor_replace: Reemplazar
@@ -48,7 +51,6 @@ nfc_editor_scan_success: Etiqueta detectada ✓
 nfc_dispatcher_activity_label: Executar comandos en detectar NFC
 nfc_trigger_name_dialog_title: Poner nombre a ista etiqueta
 nfc_trigger_name_dialog_confirm: Alzar y continar
-nfc_trigger_name_dialog_cancel: Cancelar
 triggerlist_not_found: No i ha garra disparador configurau
 triggerlist_create_fab_desc: Crear disparador
 triggerlist_create_title: Crear disparador
@@ -71,7 +73,6 @@ automationlist_create_fab_desc: Crear automatización
 automationlist_delete: Borrar
 automationlist_delete_title: Borrar automatización?
 automationlist_delete_message: Esta acción no se puede desfer.
-automationlist_cancel: Cancelar
 automation_type_automation: Regla d'automatización
 automation_group_automation: Reglas d'automatización
 automation_trigger_hint: Toca ta seleccionar
@@ -80,21 +81,17 @@ automation_edit_title: Editar automatización
 discard_dialog_title: Descartar os cambeos?
 discard_dialog_message: Se perderán os cambeos no guardaus.
 discard_dialog_confirm: Descartar
-discard_dialog_cancel: Cancelar
-automation_done: Heito
 automation_hint_trigger: Selecciona un disparador pa continar
 automation_hint_commands: Anyade a lo menos una orden
 shortcut_editor_title: Drecera
 shortcut_editor_discard_title: Descartar cambeos?
 shortcut_editor_discard_message: Quers descartar os cambeos feitos?
 shortcut_editor_discard_confirm: Descartar
-shortcut_editor_discard_cancel: Cancelar
 shortcut_editor_name_label: Nombre
 shortcut_editor_name_placeholder: "Ex: Casa, Treballo, Coche…"
 not_yet_implemented: Encara no s'ha implementau
 command_type_settings_page: Pachina d'aldu
 settings_page_header: Aber una pachina d'aldu
-settings_page_done: Faito
 trigger_nfc_help: |
   Dispara automatizacions quan o dispositivo toca una etiqueta NFC.
 
@@ -137,7 +134,6 @@ intent_extras_editor_add_title: Anyadir parametro extra
 intent_extras_editor_add_name: Nombre
 intent_extras_editor_add_type: Tipo
 intent_extras_editor_add_confirm: Anyadir
-intent_extras_editor_add_cancel: Cancelar
 intent_extras_editor_comma_separated: (deseparau por comas)
 component_type_activity: Actividat
 component_type_service: Serbizio
@@ -334,7 +330,6 @@ import_analysis_referenced: "Referencias a elementos existients:"
 import_analysis_unresolved: "Referencias no resueltas:"
 import_confirm_dialog_title: Confirmar importación
 import_confirm_dialog_ok: Importar
-import_confirm_dialog_ko: Cancelar
 import_result_success: S'han importau {count} elementos
 import_result_failure: Fichero d'importación invalido {error}
 trigger_dispatcher_create_automation: Crear automatización
@@ -370,7 +365,6 @@ setting_category_sound: Soniu
 item_menu_options_desc: Opcions
 item_menu_delete: Borrar
 item_menu_delete_confirmation_message: Esta acción no se puede desfer.
-item_menu_delete_confirmation_cancel: Cancelar
 item_menu_delete_confirmation_title: Borrar elemento?
 select_button_placeholder: Tocar ta seleccionar
 change_setting_field_setting: Ajuste
@@ -615,10 +609,6 @@ time_trigger_description_daily: "{time} cada día"
 time_trigger_description_weekly: "{days} a las {time}"
 time_trigger_description_weekly_never: Munca
 time_trigger_description_expired: caducado
-dialog_ok: OK
-dialog_cancel: Cancelar
-editor_done: Hecho
-editor_name_label: Nombre
 time_editor_name_placeholder: ej. Café de la mañana
 time_editor_recurrence_none: Una vez
 time_editor_recurrence_daily: Cada día

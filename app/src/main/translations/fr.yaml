@@ -1,5 +1,9 @@
 app_name: Vokibot
 applist_not_found: Aucune app trouvée
+dialog_ok: OK
+dialog_cancel: Annuler
+editor_done: Terminé
+editor_name_label: Nom
 activitylist_not_found: Aucune activité trouvée
 app_list_filter_fab_cd: Filtrer
 app_list_filter_title: Filtres
@@ -20,7 +24,6 @@ intent_editor_custom_or_none: Personnalisée ou aucune
 intent_editor_action_string_optional: Chaîne d'action (optionnelle)
 intent_editor_save_command_title: Enregistrer la commande
 intent_editor_command_name_label: Nom de la commande
-intent_editor_cancel: Annuler
 intent_editor_overwrite_title: Écraser ?
 intent_editor_overwrite_message: Une commande nommée '{commandName}' existe déjà.
 intent_editor_replace: Remplacer
@@ -48,7 +51,6 @@ nfc_editor_scan_success: Étiquette détectée ✓
 nfc_dispatcher_activity_label: Exécuter les commandes lors de la détection NFC
 nfc_trigger_name_dialog_title: Nommer cette étiquette
 nfc_trigger_name_dialog_confirm: Enregistrer et continuer
-nfc_trigger_name_dialog_cancel: Annuler
 triggerlist_not_found: Aucun déclencheur configuré
 triggerlist_create_fab_desc: Créer un déclencheur
 triggerlist_create_title: Créer un déclencheur
@@ -71,7 +73,6 @@ automationlist_create_fab_desc: Créer une automatisation
 automationlist_delete: Supprimer
 automationlist_delete_title: Supprimer l'automatisation ?
 automationlist_delete_message: Cette action est irréversible.
-automationlist_cancel: Annuler
 automation_type_automation: Règle d'automatisation
 automation_group_automation: Règles d'automatisation
 automation_trigger_hint: Appuyez pour sélectionner
@@ -80,21 +81,17 @@ automation_edit_title: Modifier l'automatisation
 discard_dialog_title: Annuler les modifications ?
 discard_dialog_message: Les modifications non enregistrées seront perdues.
 discard_dialog_confirm: Ignorer
-discard_dialog_cancel: Annuler
-automation_done: Terminé
 automation_hint_trigger: Sélectionnez un déclencheur pour continuer
 automation_hint_commands: Ajoutez au moins une commande
 shortcut_editor_title: Raccourci
 shortcut_editor_discard_title: Annuler les modifications ?
 shortcut_editor_discard_message: Voulez-vous annuler les modifications apportées ?
 shortcut_editor_discard_confirm: Annuler
-shortcut_editor_discard_cancel: Annuler
 shortcut_editor_name_label: Nom
 shortcut_editor_name_placeholder: "Ex : Maison, Travail, Voiture…"
 not_yet_implemented: Pas encore implémenté
 command_type_settings_page: Page de paramètres
 settings_page_header: Ouvrir une page de paramètres
-settings_page_done: Terminé
 trigger_nfc_help: |
   Déclenche des automatisations lorsque l'appareil touche une étiquette NFC.
 
@@ -137,7 +134,6 @@ intent_extras_editor_add_title: Ajouter un paramètre supplémentaire
 intent_extras_editor_add_name: Nom
 intent_extras_editor_add_type: Type
 intent_extras_editor_add_confirm: Ajouter
-intent_extras_editor_add_cancel: Annuler
 intent_extras_editor_comma_separated: (séparé par des virgules)
 component_type_activity: Activité
 component_type_service: Service
@@ -334,7 +330,6 @@ import_analysis_referenced: "Références aux éléments existants :"
 import_analysis_unresolved: "Références non résolues :"
 import_confirm_dialog_title: Confirmer l'importation
 import_confirm_dialog_ok: Importer
-import_confirm_dialog_ko: Annuler
 import_result_success: '{count} éléments importés'
 import_result_failure: Fichier d'importation invalide {error}
 trigger_dispatcher_create_automation: Créer une automatisation
@@ -370,7 +365,6 @@ setting_category_sound: Audio
 item_menu_options_desc: Options
 item_menu_delete: Supprimer
 item_menu_delete_confirmation_message: Cette action est irréversible.
-item_menu_delete_confirmation_cancel: Annuler
 item_menu_delete_confirmation_title: Supprimer l'élément ?
 select_button_placeholder: Appuyer pour sélectionner
 change_setting_field_setting: Paramètre
@@ -615,10 +609,6 @@ time_trigger_description_daily: "Chaque jour à {time}"
 time_trigger_description_weekly: "{days} à {time}"
 time_trigger_description_weekly_never: Jamais
 time_trigger_description_expired: expiré
-dialog_ok: OK
-dialog_cancel: Annuler
-editor_done: Terminé
-editor_name_label: Nom
 time_editor_name_placeholder: ex. Café du matin
 time_editor_recurrence_none: Une fois
 time_editor_recurrence_daily: Chaque jour

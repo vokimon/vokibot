@@ -1,5 +1,9 @@
 app_name: Vokibot
 applist_not_found: Приложения не найдены
+dialog_ok: ОК
+dialog_cancel: Отмена
+editor_done: Готово
+editor_name_label: Имя
 activitylist_not_found: Действия не найдены
 app_list_filter_fab_cd: Фильтр
 app_list_filter_title: Фильтры
@@ -20,7 +24,6 @@ intent_editor_custom_or_none: Пользовательское или нет
 intent_editor_action_string_optional: Строка действия (необязательно)
 intent_editor_save_command_title: Сохранить команду
 intent_editor_command_name_label: Название команды
-intent_editor_cancel: Отмена
 intent_editor_overwrite_title: Перезаписать?
 intent_editor_overwrite_message: Команда с именем '{commandName}' уже существует.
 intent_editor_replace: Заменить
@@ -48,7 +51,6 @@ nfc_editor_scan_success: Метка обнаружена ✓
 nfc_dispatcher_activity_label: Выполнение команд при обнаружении NFC
 nfc_trigger_name_dialog_title: Назовите эту метку
 nfc_trigger_name_dialog_confirm: Сохранить и продолжить
-nfc_trigger_name_dialog_cancel: Отмена
 triggerlist_not_found: Триггеры не настроены
 triggerlist_create_fab_desc: Создать триггер
 triggerlist_create_title: Создать триггер
@@ -71,7 +73,6 @@ automationlist_create_fab_desc: Создать автоматизацию
 automationlist_delete: Удалить
 automationlist_delete_title: Удалить автоматизацию?
 automationlist_delete_message: Это действие нельзя отменить.
-automationlist_cancel: Отмена
 automation_type_automation: Правило автоматизации
 automation_group_automation: Правила автоматизации
 automation_trigger_hint: Нажмите, чтобы выбрать
@@ -80,21 +81,17 @@ automation_edit_title: Редактировать автоматизацию
 discard_dialog_title: Отменить изменения?
 discard_dialog_message: Несохранённые изменения будут утеряны.
 discard_dialog_confirm: Отменить
-discard_dialog_cancel: Отмена
-automation_done: Готово
 automation_hint_trigger: Выберите триггер для продолжения
 automation_hint_commands: Добавьте хотя бы одну команду
 shortcut_editor_title: Ярлык
 shortcut_editor_discard_title: Отменить изменения?
 shortcut_editor_discard_message: Отменить внесённые изменения?
 shortcut_editor_discard_confirm: Отменить
-shortcut_editor_discard_cancel: Отмена
 shortcut_editor_name_label: Имя
 shortcut_editor_name_placeholder: "Пример: Дом, Работа, Машина…"
 not_yet_implemented: Еще не реализовано
 command_type_settings_page: Страница настроек
 settings_page_header: Открыть страницу настроек
-settings_page_done: Готово
 trigger_nfc_help: |
   Запускает автоматизации при касании устройством NFC-метки.
 
@@ -137,7 +134,6 @@ intent_extras_editor_add_title: Добавить параметр
 intent_extras_editor_add_name: Имя
 intent_extras_editor_add_type: Тип
 intent_extras_editor_add_confirm: Добавить
-intent_extras_editor_add_cancel: Отмена
 intent_extras_editor_comma_separated: (через запятую)
 component_type_activity: Активность
 component_type_service: Служба
@@ -334,7 +330,6 @@ import_analysis_referenced: "Ссылки на существующие элем
 import_analysis_unresolved: "Неразрешённые ссылки:"
 import_confirm_dialog_title: Подтвердить импорт
 import_confirm_dialog_ok: Импортировать
-import_confirm_dialog_ko: Отмена
 import_result_success: 'Импортировано элементов: {count}'
 import_result_failure: Неверный файл импорта {error}
 trigger_dispatcher_create_automation: Создать автоматизацию
@@ -370,7 +365,6 @@ setting_category_sound: Аудио
 item_menu_options_desc: Параметры
 item_menu_delete: Удалить
 item_menu_delete_confirmation_message: Это действие нельзя отменить.
-item_menu_delete_confirmation_cancel: Отмена
 item_menu_delete_confirmation_title: Удалить элемент?
 select_button_placeholder: Нажмите для выбора
 change_setting_field_setting: Настройка
@@ -615,10 +609,6 @@ time_trigger_description_daily: "Ежедневно в {time}"
 time_trigger_description_weekly: "{days} в {time}"
 time_trigger_description_weekly_never: Никогда
 time_trigger_description_expired: истёк
-dialog_ok: ОК
-dialog_cancel: Отмена
-editor_done: Готово
-editor_name_label: Имя
 time_editor_name_placeholder: напр. Утренний кофе
 time_editor_recurrence_none: Однократно
 time_editor_recurrence_daily: Ежедневно
