@@ -22,18 +22,9 @@ intent_editor_select_app_and_screen: Выберите приложение и э
 intent_editor_action_label: Действие
 intent_editor_custom_or_none: Пользовательское или нет
 intent_editor_action_string_optional: Строка действия (необязательно)
-intent_editor_save_command_title: Сохранить команду
-intent_editor_command_name_label: Название команды
-intent_editor_overwrite_title: Перезаписать?
-intent_editor_overwrite_message: Команда с именем '{commandName}' уже существует.
-intent_editor_replace: Заменить
 command_try_button_label: Попробовать
-intent_editor_command_saved: "Команда сохранена: {commandName}"
-intent_editor_command_overwritten: "Команда перезаписана: {commandName}"
 commandlist_not_found: Нет сохранённых команд
 commandlist_create_fab_desc: Создать команду
-commandlist_create_command_title: Создать команду
-commandlist_launch_app_option: Запустить приложение
 item_menu_run: Запустить
 commandlist_delete_title: Удалить команду?
 command_type_launch_activity: Открыть приложение
@@ -53,7 +44,6 @@ nfc_trigger_name_dialog_title: Назовите эту метку
 nfc_trigger_name_dialog_confirm: Сохранить и продолжить
 triggerlist_not_found: Триггеры не настроены
 triggerlist_create_fab_desc: Создать триггер
-triggerlist_create_title: Создать триггер
 triggerlist_option_nfc: NFC-метка
 triggerlist_option_shortcut: Ярлык
 triggerlist_delete_title: Удалить метку?
@@ -65,24 +55,17 @@ automation_trigger_label: Триггер
 automation_trigger_placeholder: Не выбрано
 automation_commands_label: Команды
 automation_commands_empty: Команды еще не добавлены
-automation_add_command: Добавить команду
 automation_remove_command_desc: Удалить команду
-automation_save: Сохранить автоматизацию
 automationlist_not_found: Автоматизации не настроены
 automationlist_create_fab_desc: Создать автоматизацию
-automationlist_delete: Удалить
 automationlist_delete_title: Удалить автоматизацию?
-automationlist_delete_message: Это действие нельзя отменить.
 automation_type_automation: Правило автоматизации
 automation_group_automation: Правила автоматизации
 automation_trigger_hint: Нажмите, чтобы выбрать
 automation_add_command_desc: Добавить команду
-automation_edit_title: Редактировать автоматизацию
 discard_dialog_title: Отменить изменения?
 discard_dialog_message: Несохранённые изменения будут утеряны.
 discard_dialog_confirm: Отменить
-automation_hint_trigger: Выберите триггер для продолжения
-automation_hint_commands: Добавьте хотя бы одну команду
 shortcut_editor_title: Ярлык
 shortcut_editor_name_label: Имя
 shortcut_editor_name_placeholder: "Пример: Дом, Работа, Машина…"
@@ -132,10 +115,6 @@ intent_extras_editor_add_name: Имя
 intent_extras_editor_add_type: Тип
 intent_extras_editor_add_confirm: Добавить
 intent_extras_editor_comma_separated: (через запятую)
-component_type_activity: Активность
-component_type_service: Служба
-component_type_receiver: Приёмник
-component_type_provider: Провайдер
 standard_action_main: Основное
 standard_action_view: Просмотр
 standard_action_send: Отправить
@@ -224,8 +203,6 @@ settings_page_name_all_settings: Все настройки
 settings_page_name_quick_launch: Быстрый запуск
 unknown_command_title: Команда не поддерживается
 unknown_trigger_title: Триггер не поддерживается
-common_notice_title: Внимание
-common_experimental_title: Экспериментальная функция
 application_command_editor_not_implemented: Этот тип компонента приложения ещё не реализован
 triggerlist_option_bluetooth_device: Устройство Bluetooth
 trigger_bluetooth_device_help: Запускает автоматизации при подключении конкретного устройства Bluetooth.
@@ -362,7 +339,6 @@ setting_category_sound: Аудио
 item_menu_options_desc: Параметры
 item_menu_delete: Удалить
 item_menu_delete_confirmation_message: Это действие нельзя отменить.
-item_menu_delete_confirmation_title: Удалить элемент?
 select_button_placeholder: Нажмите для выбора
 change_setting_field_setting: Настройка
 change_setting_field_value: Значение

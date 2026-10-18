@@ -22,18 +22,9 @@ intent_editor_select_app_and_screen: Aukeratu app-a eta pantaila
 intent_editor_action_label: Ekintza
 intent_editor_custom_or_none: Pertsonalizatua edo bat ere ez
 intent_editor_action_string_optional: Ekintza-katea (auzokoa)
-intent_editor_save_command_title: Gorde komandoa
-intent_editor_command_name_label: Komandoaren izena
-intent_editor_overwrite_title: Gainidatzi?
-intent_editor_overwrite_message: "'{commandName}' izeneko komandoa dagoeneko existitzen da."
-intent_editor_replace: Ordeztu
 command_try_button_label: Probatu
-intent_editor_command_saved: "Komandoa gordeta: {commandName}"
-intent_editor_command_overwritten: "Komandoa gainidatzita: {commandName}"
 commandlist_not_found: Ez dago komando gordetarik
 commandlist_create_fab_desc: Komandoa sortu
-commandlist_create_command_title: Komandoa sortu
-commandlist_launch_app_option: Aplikazio bat abiarazi
 item_menu_run: Exekutatu
 commandlist_delete_title: Komandoa ezabatu?
 command_type_launch_activity: Aplikazio bat ireki
@@ -53,7 +44,6 @@ nfc_trigger_name_dialog_title: Eman izena etiketa honi
 nfc_trigger_name_dialog_confirm: Gorde eta jarraitu
 triggerlist_not_found: Ez dago abiarazlerik konfiguratuta
 triggerlist_create_fab_desc: Abiarazlea sortu
-triggerlist_create_title: Abiarazlea sortu
 triggerlist_option_nfc: NFC etiketa
 triggerlist_option_shortcut: Lasterbidea
 triggerlist_delete_title: Etiketa ezabatu?
@@ -65,24 +55,17 @@ automation_trigger_label: Abiarazlea
 automation_trigger_placeholder: Bat ere ez da hautatu
 automation_commands_label: Komandoak
 automation_commands_empty: Oraindik ez da komandorik gehitu
-automation_add_command: Gehitu komandoa
 automation_remove_command_desc: Kendu komandoa
-automation_save: Gorde automatizazioa
 automationlist_not_found: Ez dago automatizaziorik konfiguratuta
 automationlist_create_fab_desc: Automatizazioa sortu
-automationlist_delete: Ezabatu
 automationlist_delete_title: Automatizazioa ezabatu?
-automationlist_delete_message: Ekintza hau ezin da desegin.
 automation_type_automation: Automatizazio araua
 automation_group_automation: Automatizazio arauak
 automation_trigger_hint: Ukitu hautatzeko
 automation_add_command_desc: Gehitu komandoa
-automation_edit_title: Editatu automatizazioa
 discard_dialog_title: Baztertu aldaketak?
 discard_dialog_message: Gorde gabeko aldaketak galduko dira.
 discard_dialog_confirm: Baztertu
-automation_hint_trigger: Hautatu trigger bat jarraitzeko
-automation_hint_commands: Gehitu gutxienez komando bat
 shortcut_editor_title: Lasterbidea
 shortcut_editor_name_label: Izena
 shortcut_editor_name_placeholder: "Adib.: Etxea, Lana, Autoa…"
@@ -132,10 +115,6 @@ intent_extras_editor_add_name: Izena
 intent_extras_editor_add_type: Mota
 intent_extras_editor_add_confirm: Gehitu
 intent_extras_editor_comma_separated: (komaz bereizita)
-component_type_activity: Jarduera
-component_type_service: Zerbitzua
-component_type_receiver: Hartzailea
-component_type_provider: Hornitzailea
 standard_action_main: Nagusia
 standard_action_view: Ikusi
 standard_action_send: Bidali
@@ -224,8 +203,6 @@ settings_page_name_all_settings: Ezarpen guztiak
 settings_page_name_quick_launch: Abiarazte azkarra
 unknown_command_title: Komandoa ez da onartzen
 unknown_trigger_title: Abiarazlea ez da onartzen
-common_notice_title: Oharra
-common_experimental_title: Funtsio esperimentala
 application_command_editor_not_implemented: Aplikazio-osagai mota hau ez da oraindik inplementatu
 triggerlist_option_bluetooth_device: Bluetooth gailua
 trigger_bluetooth_device_help: Automatizazioak abiarazten ditu Bluetooth gailu zehatz bat konektatzen denean.
@@ -362,7 +339,6 @@ setting_category_sound: Audioa
 item_menu_options_desc: Aukerak
 item_menu_delete: Ezabatu
 item_menu_delete_confirmation_message: Ekintza hau ezin da desegin.
-item_menu_delete_confirmation_title: Elementua ezabatu?
 select_button_placeholder: Ukitu hautatzeko
 change_setting_field_setting: Ezarpena
 change_setting_field_value: Balioa

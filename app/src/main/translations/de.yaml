@@ -22,18 +22,9 @@ intent_editor_select_app_and_screen: App und Bildschirm auswählen
 intent_editor_action_label: Aktion
 intent_editor_custom_or_none: Benutzerdefiniert oder keine
 intent_editor_action_string_optional: Aktionszeichenfolge (optional)
-intent_editor_save_command_title: Befehl speichern
-intent_editor_command_name_label: Befehlsname
-intent_editor_overwrite_title: Überschreiben?
-intent_editor_overwrite_message: Ein Befehl namens '{commandName}' existiert bereits.
-intent_editor_replace: Ersetzen
 command_try_button_label: Testen
-intent_editor_command_saved: "Befehl gespeichert: {commandName}"
-intent_editor_command_overwritten: "Befehl überschrieben: {commandName}"
 commandlist_not_found: Keine gespeicherten Befehle
 commandlist_create_fab_desc: Befehl erstellen
-commandlist_create_command_title: Befehl erstellen
-commandlist_launch_app_option: App starten
 item_menu_run: Ausführen
 commandlist_delete_title: Befehl löschen?
 command_type_launch_activity: App öffnen
@@ -53,7 +44,6 @@ nfc_trigger_name_dialog_title: Tag benennen
 nfc_trigger_name_dialog_confirm: Speichern & Weiter
 triggerlist_not_found: Keine Trigger konfiguriert
 triggerlist_create_fab_desc: Trigger erstellen
-triggerlist_create_title: Trigger erstellen
 triggerlist_option_nfc: NFC-Tag
 triggerlist_option_shortcut: Kurztaste
 triggerlist_delete_title: Tag löschen?
@@ -65,24 +55,17 @@ automation_trigger_label: Trigger
 automation_trigger_placeholder: Keiner ausgewählt
 automation_commands_label: Befehle
 automation_commands_empty: Noch keine Befehle hinzugefügt
-automation_add_command: Befehl hinzufügen
 automation_remove_command_desc: Befehl entfernen
-automation_save: Automatisierung speichern
 automationlist_not_found: Keine Automatisierungen konfiguriert
 automationlist_create_fab_desc: Automatisierung erstellen
-automationlist_delete: Löschen
 automationlist_delete_title: Automatisierung löschen?
-automationlist_delete_message: Diese Aktion kann nicht rückgängig gemacht werden.
 automation_type_automation: Automatisierungsregel
 automation_group_automation: Automatisierungsregeln
 automation_trigger_hint: Tippen zum Auswählen
 automation_add_command_desc: Befehl hinzufügen
-automation_edit_title: Automatisierung bearbeiten
 discard_dialog_title: Änderungen verwerfen?
 discard_dialog_message: Nicht gespeicherte Änderungen gehen verloren.
 discard_dialog_confirm: Verwerfen
-automation_hint_trigger: Wählen Sie einen Trigger aus, um fortzufahren
-automation_hint_commands: Fügen Sie mindestens einen Befehl hinzu
 shortcut_editor_title: Kurztaste
 shortcut_editor_name_label: Name
 shortcut_editor_name_placeholder: "Bsp.: Zuhause, Arbeit, Auto…"
@@ -132,10 +115,6 @@ intent_extras_editor_add_name: Name
 intent_extras_editor_add_type: Typ
 intent_extras_editor_add_confirm: Hinzufügen
 intent_extras_editor_comma_separated: (durch Kommas getrennt)
-component_type_activity: Aktivität
-component_type_service: Dienst
-component_type_receiver: Empfänger
-component_type_provider: Anbieter
 standard_action_main: Haupt
 standard_action_view: Anzeigen
 standard_action_send: Senden
@@ -224,8 +203,6 @@ settings_page_name_all_settings: Alle Einstellungen
 settings_page_name_quick_launch: Schnellstart
 unknown_command_title: Nicht unterstützter Befehl
 unknown_trigger_title: Nicht unterstützter Auslöser
-common_notice_title: Hinweis
-common_experimental_title: Experimentelle Funktion
 application_command_editor_not_implemented: Dieser Typ von Anwendungskomponente ist noch nicht implementiert
 triggerlist_option_bluetooth_device: Bluetooth-Gerät
 trigger_bluetooth_device_help: Startet Automatisierungen, wenn ein bestimmtes Bluetooth-Gerät verbunden wird.
@@ -362,7 +339,6 @@ setting_category_sound: Ton
 item_menu_options_desc: Optionen
 item_menu_delete: Löschen
 item_menu_delete_confirmation_message: Diese Aktion kann nicht rückgängig gemacht werden.
-item_menu_delete_confirmation_title: Element löschen?
 select_button_placeholder: Tippen zum Auswählen
 change_setting_field_setting: Einstellung
 change_setting_field_value: Wert

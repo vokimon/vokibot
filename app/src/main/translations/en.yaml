@@ -22,18 +22,9 @@ intent_editor_select_app_and_screen: Select app and screen
 intent_editor_action_label: Action
 intent_editor_custom_or_none: Custom or none
 intent_editor_action_string_optional: Action string (optional)
-intent_editor_save_command_title: Save Command
-intent_editor_command_name_label: Command name
-intent_editor_overwrite_title: Overwrite?
-intent_editor_overwrite_message: A command named '{commandName}' already exists.
-intent_editor_replace: Replace
 command_try_button_label: Try
-intent_editor_command_saved: "Command saved: {commandName}"
-intent_editor_command_overwritten: "Command overwritten: {commandName}"
 commandlist_not_found: No saved commands
 commandlist_create_fab_desc: Create command
-commandlist_create_command_title: Create Command
-commandlist_launch_app_option: Launch an app
 item_menu_run: Run
 commandlist_delete_title: Delete Command?
 command_type_launch_activity: Open an app
@@ -53,7 +44,6 @@ nfc_trigger_name_dialog_title: Name this tag
 nfc_trigger_name_dialog_confirm: Save & Continue
 triggerlist_not_found: No triggers configured
 triggerlist_create_fab_desc: Create trigger
-triggerlist_create_title: Create Trigger
 triggerlist_option_nfc: NFC Tag
 triggerlist_option_shortcut: Shortcut
 triggerlist_delete_title: Delete tag?
@@ -65,24 +55,17 @@ automation_trigger_label: Trigger
 automation_trigger_placeholder: None selected
 automation_commands_label: Commands
 automation_commands_empty: No commands added yet
-automation_add_command: Add Command
 automation_remove_command_desc: Remove command
-automation_save: Save Automation
 automationlist_not_found: No automations configured
 automationlist_create_fab_desc: Create automation
-automationlist_delete: Delete
 automationlist_delete_title: Delete automation?
-automationlist_delete_message: This action cannot be undone.
 automation_type_automation: Automation Rule
 automation_group_automation: Automation Rules
 automation_trigger_hint: Tap to select
 automation_add_command_desc: Add command
-automation_edit_title: Edit Automation
 discard_dialog_title: Discard changes?
 discard_dialog_message: Unsaved changes will be lost.
 discard_dialog_confirm: Discard
-automation_hint_trigger: Select a trigger to continue
-automation_hint_commands: Add at least one command
 shortcut_editor_title: Shortcut
 shortcut_editor_name_label: Name
 shortcut_editor_name_placeholder: "Ex: Home, Work, Car…"
@@ -132,10 +115,6 @@ intent_extras_editor_add_name: Name
 intent_extras_editor_add_type: Type
 intent_extras_editor_add_confirm: Add
 intent_extras_editor_comma_separated: (comma separated)
-component_type_activity: Activity
-component_type_service: Service
-component_type_receiver: Receiver
-component_type_provider: Provider
 standard_action_main: Main
 standard_action_view: View
 standard_action_send: Send
@@ -224,8 +203,6 @@ settings_page_name_all_settings: All settings
 settings_page_name_quick_launch: Quick launch
 unknown_command_title: Unsupported Command
 unknown_trigger_title: Unsupported Trigger
-common_notice_title: Notice
-common_experimental_title: Experimental feature
 application_command_editor_not_implemented: This kind of application component is not implemented yet
 triggerlist_option_bluetooth_device: Bluetooth device
 trigger_bluetooth_device_help: Triggers automations when a specific Bluetooth device connects.
@@ -362,7 +339,6 @@ setting_category_sound: Audio
 item_menu_options_desc: Options
 item_menu_delete: Delete
 item_menu_delete_confirmation_message: This action cannot be undone.
-item_menu_delete_confirmation_title: Delete item?
 select_button_placeholder: Tap to select
 change_setting_field_setting: Setting
 change_setting_field_value: Value

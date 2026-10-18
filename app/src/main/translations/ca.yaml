@@ -22,18 +22,9 @@ intent_editor_select_app_and_screen: Tria l'app i la pantalla
 intent_editor_action_label: Acció
 intent_editor_custom_or_none: Personalitzada o cap
 intent_editor_action_string_optional: Cadena d'acció (opcional)
-intent_editor_save_command_title: Desa l'ordre
-intent_editor_command_name_label: Nom de l'ordre
-intent_editor_overwrite_title: Sobreescriure?
-intent_editor_overwrite_message: Ja existeix una ordre anomenada '{commandName}'.
-intent_editor_replace: Reemplaça
 command_try_button_label: Prova
-intent_editor_command_saved: "Ordre desada: {commandName}"
-intent_editor_command_overwritten: "Ordre sobreescrita: {commandName}"
 commandlist_not_found: No hi ha ordres desades
 commandlist_create_fab_desc: Crea una ordre
-commandlist_create_command_title: Crea una ordre
-commandlist_launch_app_option: Executa una app
 item_menu_run: Executa
 commandlist_delete_title: Realment vols suprimir l'ordre?
 command_type_launch_activity: Obrir una app
@@ -53,7 +44,6 @@ nfc_trigger_name_dialog_title: Anomena aquesta etiqueta
 nfc_trigger_name_dialog_confirm: Desa i continua
 triggerlist_not_found: No hi ha cap disparador configurat
 triggerlist_create_fab_desc: Crea un disparador
-triggerlist_create_title: Crea un disparador
 triggerlist_option_nfc: Etiqueta NFC
 triggerlist_option_shortcut: Drecera
 triggerlist_delete_title: Suprimir l'etiqueta?
@@ -65,24 +55,17 @@ automation_trigger_label: Disparador
 automation_trigger_placeholder: Cap seleccionat
 automation_commands_label: Ordres
 automation_commands_empty: Encara no s'han afegit ordres
-automation_add_command: Afegeix una ordre
 automation_remove_command_desc: Suprimeix l'ordre
-automation_save: Desa l'automatització
 automationlist_not_found: No hi ha automatitzacions configurades
 automationlist_create_fab_desc: Crea una automatització
-automationlist_delete: Suprimeix
 automationlist_delete_title: Suprimir l'automatització?
-automationlist_delete_message: Aquesta acció no es pot desfer.
 automation_type_automation: Regla d'automatització
 automation_group_automation: Regles d'automatització
 automation_trigger_hint: Toca per seleccionar
 automation_add_command_desc: Afegeix una ordre
-automation_edit_title: Edita automatització
 discard_dialog_title: Descartar els canvis?
 discard_dialog_message: Es perdran els canvis no desats.
 discard_dialog_confirm: Descarta
-automation_hint_trigger: Selecciona un disparador per continuar
-automation_hint_commands: Afegeix almenys una ordre
 shortcut_editor_title: Drecera
 shortcut_editor_name_label: Nom
 shortcut_editor_name_placeholder: "Ex: Casa, Feina, Cotxe…"
@@ -132,10 +115,6 @@ intent_extras_editor_add_name: Nom
 intent_extras_editor_add_type: Tipus
 intent_extras_editor_add_confirm: Afegeix
 intent_extras_editor_comma_separated: (separat per comes)
-component_type_activity: Activitat
-component_type_service: Servei
-component_type_receiver: Receptor
-component_type_provider: Proveïdor
 standard_action_main: Principal
 standard_action_view: Visualitza
 standard_action_send: Envia
@@ -224,8 +203,6 @@ settings_page_name_all_settings: Tots els ajustos
 settings_page_name_quick_launch: Inici ràpid
 unknown_command_title: Comandament no suportat
 unknown_trigger_title: Disparament no suportat
-common_notice_title: Avís
-common_experimental_title: Funcionalitat experimental
 application_command_editor_not_implemented: Aquest tipus de component d'aplicació encara no està implementat
 triggerlist_option_bluetooth_device: Dispositiu Bluetooth
 trigger_bluetooth_device_help: Dispara automatitzacions quan es connecta un dispositiu Bluetooth específic.
@@ -362,7 +339,6 @@ setting_category_sound: So
 item_menu_options_desc: Opcions
 item_menu_delete: Suprimeix
 item_menu_delete_confirmation_message: Aquesta acció no es pot desfer.
-item_menu_delete_confirmation_title: Voleu suprimir l'element?
 select_button_placeholder: Toca per seleccionar
 change_setting_field_setting: Configuració
 change_setting_field_value: Valor

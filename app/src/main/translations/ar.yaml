@@ -22,18 +22,9 @@ intent_editor_select_app_and_screen: اختر التطبيق والشاشة
 intent_editor_action_label: إجراء
 intent_editor_custom_or_none: مخصص أو لا شيء
 intent_editor_action_string_optional: سلسلة الإجراء (اختياري)
-intent_editor_save_command_title: حفظ الأمر
-intent_editor_command_name_label: اسم الأمر
-intent_editor_overwrite_title: استبدال؟
-intent_editor_overwrite_message: يوجد بالفعل أمر باسم '{commandName}'.
-intent_editor_replace: استبدال
 command_try_button_label: تجربة
-intent_editor_command_saved: "تم حفظ الأمر: {commandName}"
-intent_editor_command_overwritten: "تم استبدال الأمر: {commandName}"
 commandlist_not_found: لا توجد أوامر محفوظة
 commandlist_create_fab_desc: إنشاء أمر
-commandlist_create_command_title: إنشاء أمر
-commandlist_launch_app_option: تشغيل تطبيق
 item_menu_run: تشغيل
 commandlist_delete_title: حذف الأمر؟
 command_type_launch_activity: فتح تطبيق
@@ -53,7 +44,6 @@ nfc_trigger_name_dialog_title: تسمية هذه العلامة
 nfc_trigger_name_dialog_confirm: حفظ ومتابعة
 triggerlist_not_found: لم يتم تكوين أي مشغلات
 triggerlist_create_fab_desc: إنشاء مشغل
-triggerlist_create_title: إنشاء مشغل
 triggerlist_option_nfc: علامة NFC
 triggerlist_option_shortcut: اختصار
 triggerlist_delete_title: حذف العلامة؟
@@ -65,24 +55,17 @@ automation_trigger_label: المشغل
 automation_trigger_placeholder: لم يتم اختيار أيّ
 automation_commands_label: الأوامر
 automation_commands_empty: لم تتم إضافة أي أوامر بعد
-automation_add_command: إضافة أمر
 automation_remove_command_desc: إزالة الأمر
-automation_save: حفظ الأتمتة
 automationlist_not_found: لم يتم تكوين أي أتمتة
 automationlist_create_fab_desc: إنشاء أتمتة
-automationlist_delete: حذف
 automationlist_delete_title: حذف الأتمتة؟
-automationlist_delete_message: لا يمكن التراجع عن هذا الإجراء.
 automation_type_automation: قاعدة أتمتة
 automation_group_automation: قواعد الأتمتة
 automation_trigger_hint: انقر للاختيار
 automation_add_command_desc: إضافة أمر
-automation_edit_title: تعديل الأتمتة
 discard_dialog_title: هل تريد تجاهل التغييرات؟
 discard_dialog_message: ستفقد التغييرات غير المحفوظة.
 discard_dialog_confirm: تجاهل
-automation_hint_trigger: حدد مشغلاً للمتابعة
-automation_hint_commands: أضف أمرًا واحدًا على الأقل
 shortcut_editor_title: اختصار
 shortcut_editor_name_label: الاسم
 shortcut_editor_name_placeholder: "مثال: المنزل، العمل، السيارة…"
@@ -132,10 +115,6 @@ intent_extras_editor_add_name: الاسم
 intent_extras_editor_add_type: النوع
 intent_extras_editor_add_confirm: إضافة
 intent_extras_editor_comma_separated: (مفصول بفواصل)
-component_type_activity: نشاط
-component_type_service: خدمة
-component_type_receiver: مستقبل
-component_type_provider: موفر المحتوى
 standard_action_main: رئيسي
 standard_action_view: عرض
 standard_action_send: إرسال
@@ -224,8 +203,6 @@ settings_page_name_all_settings: جميع الإعدادات
 settings_page_name_quick_launch: التشغيل السريع
 unknown_command_title: أمر غير مدعوم
 unknown_trigger_title: محفز غير مدعوم
-common_notice_title: تنبيه
-common_experimental_title: ميزة تجريبية
 application_command_editor_not_implemented: لم يتم تنفيذ نوع مكون التطبيق هذا بعد
 triggerlist_option_bluetooth_device: جهاز بلوتوث
 trigger_bluetooth_device_help: يشتغل عند اتصال جهاز بلوتوث محدد.
@@ -362,7 +339,6 @@ setting_category_sound: الصوت
 item_menu_options_desc: خيارات
 item_menu_delete: حذف
 item_menu_delete_confirmation_message: لا يمكن التراجع عن هذا الإجراء.
-item_menu_delete_confirmation_title: حذف العنصر؟
 select_button_placeholder: انقر للتحديد
 change_setting_field_setting: الإعداد
 change_setting_field_value: القيمة
