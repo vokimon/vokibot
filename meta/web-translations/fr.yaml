@@ -4,10 +4,11 @@ DESCRIPTION: Outil d'automatisation pour Android
 KEYWORDS: android, automatisation, nfc, raccourci, déclencheur, floss, foss, open source, logiciel libre
 FEATURE_MULTIPLE_TRIGGERS_TITLE: Choisissez un déclencheur
 FEATURE_MULTIPLE_TRIGGERS_DESCRIPTION: |
-  Vous pouvez utiliser des <b>balises NFC</b>,
-  des <b>raccourcis sur l'écran d'accueil</b>
-  et des <b>appareils Bluetooth</b>
-  comme déclencheurs pour vos automatisations.
+  Vous pouvez déclencher des automatisations avec
+  le <b>temps</b>,
+  des <b>balises NFC</b>,
+  des <b>raccourcis sur l'écran d'accueil</b> ou
+  des <b>appareils Bluetooth</b>.
   Conçu pour être <b>extensible</b>,
   avec d'autres déclencheurs prévus à l'avenir tels que
   les événements système, les gestes, la détection Wi-Fi…
