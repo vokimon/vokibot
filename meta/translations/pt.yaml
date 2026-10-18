@@ -5,14 +5,15 @@ full_description_md: |
 
   Acionadores implementados:
 
+  - Tempo (a uma hora determinada ou periodicamente)
   - Etiquetas NFC (configurar tocando)
-  - Atalhos (cria ícones no lançador)
+  - Atalho (cria um ícone no lançador)
   - Dispositivos Bluetooth (ao conectar)
 
   Comandos implementados:
 
-  - Ativar componentes da aplicação: Atividades, Serviços, Recetores
+  - Interagir com outras aplicações (com Atividades, Serviços ou Recetores)
   - Alterar parâmetros de configuração do sistema
   - Abrir páginas de configuração do sistema ou painéis rápidos
   - Ligar ou desligar dispositivos Bluetooth
-keywords: automação, nfc, temporizador, atalho
+keywords: automação, nfc, temporizador, atalho, bluetooth

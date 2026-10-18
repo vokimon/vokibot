@@ -5,14 +5,15 @@ full_description_md: |
 
   Disparadores implementados:
 
+  - Tiempo (a una hora determinada o periódicamente)
   - Etiquetas NFC (configurar tocándolas)
-  - Accesos directos (crea iconos en el lanzador)
+  - Acceso directo (crea un icono en el lanzador)
   - Dispositivos Bluetooth (al conectarse)
 
   Comandos implementados:
 
-  - Activar componentes de aplicación: Actividades, Servicios, Receptores
+  - Interactuar con otras aplicaciones (con Actividades, Servicios o Receptores)
   - Cambiar parámetros de configuración del sistema
   - Abrir páginas de configuración del sistema o paneles rápidos
   - Conectar o desconectar dispositivos Bluetooth
-keywords: automatización, nfc, temporizador, acceso directo
+keywords: automatización, nfc, temporizador, acceso directo, bluetooth

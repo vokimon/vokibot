@@ -5,14 +5,15 @@ full_description_md: |
 
   Déclencheurs implémentés :
 
+  - Temps (à une heure donnée ou périodiquement)
   - Étiquettes NFC (configurer en tapant)
-  - Raccourcis (crée des icônes dans le lanceur)
+  - Raccourci (crée une icône dans le lanceur)
   - Appareils Bluetooth (lors de la connexion)
 
   Commandes implémentées :
 
-  - Activer les composants de l'application: Activités, Services, Récepteurs
+  - Interagir avec d'autres applications (via Activités, Services ou Récepteurs)
   - Modifier les paramètres de configuration du système
   - Ouvrir les pages de configuration du système ou les panneaux rapides
   - Connecter ou déconnecter des appareils Bluetooth
-keywords: automatisation, nfc, minuterie, raccourci
+keywords: automatisation, nfc, minuterie, raccourci, bluetooth

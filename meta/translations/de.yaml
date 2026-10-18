@@ -5,14 +5,15 @@ full_description_md: |
 
   Implementierte Auslöser:
 
+  - Zeit (zu einer bestimmten Zeit oder periodisch)
   - NFC-Tags (durch Antippen konfigurieren)
-  - Verknüpfungen (erstellt Launcher-Symbole)
+  - Verknüpfung (erstellt ein Launcher-Symbol)
   - Bluetooth-Geräte (beim Verbinden)
 
   Implementierte Befehle:
 
-  - Anwendungskomponenten aktivieren: Aktivitäten, Dienste, Empfänger
+  - Mit anderen Anwendungen interagieren (über Aktivitäten, Dienste oder Empfänger)
   - Systemkonfigurationsparameter ändern
   - Systemkonfigurationsseiten oder Schnellzugriff-Panels öffnen
   - Bluetooth-Geräte verbinden oder trennen
-keywords: automatisierung, nfc, timer, kurztaste
+keywords: automatisierung, nfc, timer, kurztaste, bluetooth

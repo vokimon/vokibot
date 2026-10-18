@@ -5,14 +5,15 @@ full_description_md: |
 
   Disparadors implementats:
 
+  - Temps (a una hora determinada o periòdicament)
   - Etiquetes NFC (configura tocant-les)
-  - Dreceres (crea icones al llançador)
+  - Drecera (crea una icona al llançador)
   - Dispositius Bluetooth (en connectar-s'hi)
 
   Ordres implementades:
 
-  - Activar components d'aplicació: Activitats, Serveis, Receptors
+  - Interactuar amb altres aplicacions (amb Activitats, Serveis o Receptors)
   - Canviar paràmetres de configuració del sistema
   - Obrir pàgines de configuració del sistema o panells ràpids
   - Connectar o desconnectar dispositius Bluetooth
-keywords: automatització, nfc, temporitzador, drecera
+keywords: automatització, nfc, temporitzador, drecera, bluetooth

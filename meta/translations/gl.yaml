@@ -5,14 +5,15 @@ full_description_md: |
 
   Disparadores implementados:
 
+  - Tempo (a unha hora determinada ou periódicamente)
   - Etiquetas NFC (configurar tocándoas)
-  - Atallos (crea iconas no lanzador)
+  - Atalo (crea unha icona no lanzador)
   - Dispositivos Bluetooth (ao conectarse)
 
   Comandos implementados:
 
-  - Activar compoñentes de aplicación: Actividades, Servizos, Receptores
+  - Interactuar con outras aplicacións (con Actividades, Servizos ou Receptores)
   - Cambiar parámetros de configuración do sistema
   - Abrir páxinas de configuración do sistema ou paneis rápidos
   - Conectar ou desconectar dispositivos Bluetooth
-keywords: automatización, nfc, temporizador, atallo
+keywords: automatización, nfc, temporizador, atallo, bluetooth
