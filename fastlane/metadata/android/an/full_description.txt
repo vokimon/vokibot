@@ -2,13 +2,14 @@ Fa que o tuyo dispositivo Android execute accions (comandos) quan pase algo (dis
 
 Disparadors implementaus:
 
+- Tiempo (a una hora determinada u de forma periódica)
 - Etiquetas NFC (configurar tocando-las)
-- Dreceras (creya iconos en o lanzador)
+- Drecera (creya una icona en o lanzador)
 - Dispositivos Bluetooth (en conectar-se)
 
 Comandos implementaus:
 
-- Activar components d'aplicación: Actividatz, Serbicios, Receptors
+- Interactuar con otras aplicacions (con Actividatz, Serbicios u Receptors)
 - Cambiar parametros de configuración d'o sistema
 - Ubrir pachinas de configuración d'o sistema u panels rapidos
 - Conectar u desconnectar dispositivos Bluetooth

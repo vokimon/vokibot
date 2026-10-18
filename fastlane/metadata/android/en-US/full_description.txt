@@ -2,13 +2,14 @@ Makes your Android device perform actions (commands) whenever something happens 
 
 Implemented triggers:
 
+- Time (at a given time or periodic)
 - NFC tags (configure by tapping)
-- Shortcuts (creates launcher icons)
+- Shortcut (creates a launcher icon)
 - Bluetooth device (on connect to it)
 
 Implemented commands:
 
-- Activate application components: Activities, Services, Receivers
+- Interact with other applications (via Activities, Services or Receivers)
 - Change system configuration parameters
 - Open system configuration pages or quick panels
 - Connect or disconnect Bluetooth devices

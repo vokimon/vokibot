@@ -1,8 +1,14 @@
 # Change log
 
-## Unreleased
+## 0.8.0 (2026-10-17)
 
-- ✨ New Time Triggers
+Added Time triggers: run automations at a given time
+
+- ✨ TimeTrigger: new trigger type
+- ✨ TimeTrigger: Single shot, daily or weekly recurrence
+- ✨ TimeTrigger: Schedule shown in lists (e.g. "Mon, Wed at 08:00", "Never", "expired")
+- 🚸 Editor action buttons are now Done instead of Save, consistent across editors
+- 🐛 TimeTriggerEditor: did not update when the language changed
 
 ## 0.7.0 (2026-06-30)
 

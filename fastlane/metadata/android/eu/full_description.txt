@@ -2,13 +2,14 @@ Zure Android gailuak ekintzak (komandoak) egiten ditu zerbait gertatzen denean (
 
 Inplementatutako abiarazleak:
 
+- Denbora (ordu jakin batean edo periodikoki)
 - NFC etiketak (ukituzez konfiguratu)
-- Lasterbideak (abiarazleko ikonoak sortzen ditu)
+- Lasterbidea (abiarazleko ikono bat sortzen du)
 - Bluetooth gailuak (konektatzean)
 
 Inplementatutako komandoak:
 
-- Aplikazio-osagaiak aktibatu: Jarduerak, Zerbitzuak, Hartzaileak
+- Beste aplikazioekin elkarreraginean jardun (Jarduera, Zerbitzu edo Hartzaileen bidez)
 - Sistemako konfigurazio-parametroak aldatu
 - Sistemako konfigurazio-orriak edo panel azkarrak ireki
 - Bluetooth gailuak konektatu edo deskonektatu
