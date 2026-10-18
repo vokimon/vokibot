@@ -4,10 +4,14 @@ DESCRIPTION: Erramienta de automatiçaçión pa Android
 KEYWORDS: androîh, automatiçaçión, nfc, âççeço dirêtto, dîpparadôh, floss, foss, código abierto, çôttware libre
 FEATURE_MULTIPLE_TRIGGERS_TITLE: Elihe un dîpparadôh
 FEATURE_MULTIPLE_TRIGGERS_DESCRIPTION: |
-  Puedê uçâh <b>etiquetâ NFC</b> y <b>âççeçô dirêttô en la pantaya de iniçio</b> como dîpparadorê pa tû automatiçaçionê.
+  Puedê dîpparâh tû automatiçaçionê con
+  <b>tiempo</b>,
+  <b>etiquetâ NFC</b>,
+  <b>âççeçô dirêttô en la pantaya de iniçio</b> o
+  <b>dîppoçitibô Bluetooth</b>.
   Diçeñao pa çêh <b>êttençible</b>,
   con mâh dîpparadorê planeáô pa er futuro como
-  ebentô der çîttema, hêttô, detêççión Wi-Fi/Bluetooth…
+  ebentô der çîttema, hêttô, detêççión Wi-Fi…
 FEATURE_MULTIPLE_COMMANDS_TITLE: Elihe qué ehecutâh
 FEATURE_MULTIPLE_COMMANDS_DESCRIPTION: |
   ¿Qué puedê automatiçâh?
