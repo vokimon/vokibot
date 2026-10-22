@@ -309,3 +309,45 @@ template to replicate `BluetoothConnectCommandTest.kt`
 also `NfcTriggerTest.kt`, `EntityRegistryTest.kt`, `FileDataRepositoryTest.kt`.
 Helpers package `net.canvoki.shared.test` under `app/src/test/kotlin/`
 (`assertJsonEqual`, multiline `assertEquals`).
+
+## Release and metadata
+
+Metadata is centralized and distributed by `generate-metadata`
+and `generate-web` scripts from
+`http://github.com/vokimon/android-dev-scripts`.
+Both are run by the user, never by the agent.
+
+**Sources edited by hand:**
+
+- `README.md`:
+    - project name from `#` title
+    - short description: the line right after the title
+    - long description: remaining content until `<!-- end-of-description -->`
+- `CHANGES.md`: version and changelog.
+    - Changes accumulate under a top `## Unreleased` heading;
+    - At release it becomes `## X.Y.Z (YYYY-MM-DD)`
+    - First named version is taken as current
+    - versionCode is derived from the version (0.8.0 -> 00080000).
+- `meta/overrides.yaml`: any other metadata (motto, keywords, license, tag prefix, fdroid fields...).
+- `media/`: screenshots, icons and other images.
+- `meta/translations/<lang>.yaml`, metadata translations, en.yaml` is generated from other sources. Follow `proposal.yaml` workflow to update it.
+
+**Generated (do not hand-edit):**
+
+- `fastlane/**`
+- `meta/net.canvoki.vokibot.yml`
+- `version.properties`
+- `meta/translations/en.yaml`
+- `meta/web/`
+
+**Changelog translations:**
+
+- Do not translate `changes_*_md` ids, only english texts should be there.
+- Changelog entries should be yaml block scalars `|-`, but some scripts turn them into quoted strings. Whenever that happens we should normalize back to block scalars.
+
+**Web page:**
+
+- `meta/web-data.yaml`: Items for the web including ids to translate
+- `meta/web-translations/*.yaml`: Translations for the web. Follow `proposal.yaml` workflow to update it.
+- `generate-web` builds `meta/web/` from `meta/web-data.yaml` (placeholders like MOTTO, DESCRIPTION, KEYWORDS) and `meta/web-translations/` (12 languages, unlike the 11 of `meta/translations/`).
+- Web `KEYWORDS` are independent from the fdroid `keywords` in `meta/overrides.yaml`.
